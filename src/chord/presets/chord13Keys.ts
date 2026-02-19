@@ -1,0 +1,15 @@
+export default {
+  "maj13": "maj13",
+  "dom13": "dom13",
+  "min13": "min13",
+  "minmaj13": "minmaj13",
+  "dom13b5": "dom13b5",
+  "dom13#5": "dom13#5",
+  "dom13b9": "dom13b9",
+  "dom13#9": "dom13#9",
+  "dom13#11": "dom13#11",
+  "maj13b5": "maj13b5",
+  "maj13#5": "maj13#5",
+  "maj13b9": "maj13b9",
+  "maj13#11": "maj13#11",
+}

@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "allowJs": true,
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"] ,// 允许任何路径的相对引用
+      "@music/*": [
+        "src/*"
+      ],
+      "@web/*": [
+        "web_test/*"
+      ]
+    },
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": false
+  },
+  /* Linting */
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./utils": {
+      "require": "./dist/utils.js",
+      "import": "./dist/utils.mjs"
+    }
+  },
+  "noUnusedLocals": false,
+  "noUnusedParameters": false,
+  "noFallthroughCasesInSwitch": true,
+  "noImplicitThis": false,
+  // js/ts 混用时设为false
+  "allowSyntheticDefaultImports": true,
+  "include": [
+    "src",
+    "web_test",
+    "src/**/*.ts",
+    "src/**/*.jsx",
+    "src/**/*.js",
+    "src/**/*.d.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode",
+    ".idea"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

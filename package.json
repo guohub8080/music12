@@ -1,0 +1,62 @@
+{
+  "name": "music12",
+  "version": "1.0.0",
+  "description": "TypeScript library for music theory calculations - notes, intervals, chords, scales",
+  "author": "guohub8080",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guohub8080/music12.git"
+  },
+  "keywords": ["music", "music-theory", "chord", "scale", "note", "interval", "typescript"],
+  "scripts": {
+    "dev": "pnpm vite",
+    "build": "del-cli dist/* && tsup src/index.ts --format esm,cjs --dts",
+    "prepublishOnly": "pnpm build"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "chinese-numbering": "^1.0.0",
+    "collect.js": "^4.36.1",
+    "lodash": "4.17.23"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^25.3.0",
+    "@types/power-radix": "^2.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "ahooks": "^3.9.6",
+    "del-cli": "^7.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "immer": "^11.1.4",
+    "jsdom": "^28.1.0",
+    "pnpm": "^10.30.0",
+    "ramda": "^0.32.0",
+    "react": "^19.2.4",
+    "react-async": "^10.0.1",
+    "react-dom": "^19.2.4",
+    "react-router": "^7.13.0",
+    "react-router-dom": "^7.13.0",
+    "react-use": "^17.6.0",
+    "tsup": "^8.5.1",
+    "usehooks-ts": "^3.1.1",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  }
+}

@@ -1,0 +1,15 @@
+export default {
+  NaturalMajor: "MAJ",
+  NaturalMinor: "MIN",
+  Ionian: "MAJ",
+  Aeolian: "MIN",
+  Dorian: "DOR",
+  Phrygian: "PHR",
+  Lydian: "LYD",
+  Mixolydian: "MLY",
+  Locrian: "LOC",
+  HarmonicMinor: "HMIN",
+  HarmonicMajor: "HMAJ",
+  MelodicMinorAscending: "MMINASC",
+  MelodicMajorDescending: "MMAJDESC",
+}
