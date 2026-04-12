@@ -17,7 +17,7 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname),
       "@web": resolve(__dirname,"web_test"),
-      "@music": resolve(__dirname,"src"),
+      "@music12": resolve(__dirname,"src"),
       path: "path-browserify",
     },
     extensions: [".ts", ".tsx", ".js", "jsx"]

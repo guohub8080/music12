@@ -12,13 +12,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["*"] ,// 允许任何路径的相对引用
-      "@music/*": [
-        "src/*"
-      ],
-      "@web/*": [
-        "web_test/*"
-      ]
+      "*": ["*"],
+      "@music12/*": ["src/*"],
+      "@web/*": ["web_test/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -48,6 +44,7 @@
   "allowSyntheticDefaultImports": true,
   "include": [
     "src",
+    "test",
     "web_test",
     "src/**/*.ts",
     "src/**/*.jsx",
