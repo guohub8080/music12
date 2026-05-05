@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "pnpm vite",
     "build": "del-cli dist/* && tsup src/index.ts --format esm,cjs --dts",
+    "build:bundle": "pnpm build && esbuild dist/index.mjs --bundle --format=cjs --platform=node --tree-shaking=true --outfile=dist/music12.bundle.js --minify",
     "prepublishOnly": "pnpm build"
   },
   "main": "./dist/index.js",
