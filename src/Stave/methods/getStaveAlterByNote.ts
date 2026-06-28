@@ -25,10 +25,9 @@
  * getStaveAlterByNote('E', -1)  // Eb 大调(-3b)、eb 小调(-6b) 等
  */
 
-import FIFTH_META from "../../CircleOfFifths/static/FIFTH_META";
-import type { T_AlterValue, T_NoteStep } from "../../common/static/NOTE_TYPES";
-import { isEmpty } from "lodash";
-
+import FIFTH_META from "@circle-of-fifths/static/FIFTH_META";
+import type { T_AlterValue, T_NoteStep } from "@common/static/NOTE_TYPES";
+import isEmpty from "lodash/isEmpty"
 export const getStaveAlterByNote = (step: T_NoteStep, alter: T_AlterValue) => {
 	const findObj = FIFTH_META
 		.where("circleID", ">=", 0)

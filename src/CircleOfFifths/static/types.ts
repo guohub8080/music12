@@ -1,4 +1,4 @@
-import {T_AlterValue, T_NoteStep} from "../../common/static/NOTE_TYPES.ts";
+import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 
 export type t_fifthCircle = {
     step: T_NoteStep,

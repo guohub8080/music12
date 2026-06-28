@@ -1,16 +1,25 @@
+import { isDefined } from "@common/utils/isDefined"
 import { writeFileSync, existsSync, mkdirSync, rmSync } from "fs";
-import { isNil, isObject, isString, isNumber, isBoolean, toPairs, keys, values } from "lodash";
+import isNil from "lodash/isNil"
+import isArray from "lodash/isArray"
+import isObject from "lodash/isObject"
+import isString from "lodash/isString"
+import isNumber from "lodash/isNumber"
+import isBoolean from "lodash/isBoolean"
+import toPairs from "lodash/toPairs"
+import keys from "lodash/keys"
+import values from "lodash/values"
 import { join } from "path";
-import { CHORD_FORMULA_META_MAP } from "../../ChordFormula/static/CHORD_FORMULA_META_MAP.ts";
-import CHORD_FORMULA_ID from "../../ChordFormula/static/CHORD_FORMULA_ID.ts";
-import type { I_ChordFormulaMeta } from "../../ChordFormula/static/types.ts";
-import { Note } from "../../Note";
-import { Interval } from "../../Interval";
-import { getNoteByPianoKeyId } from "../../Note";
+import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP";
+import CHORD_FORMULA_ID from "@chord-formula/static/CHORD_FORMULA_ID";
+import type { I_ChordFormulaMeta } from "@chord-formula/static/types";
+import { Note } from "@note";
+import { Interval } from "@interval";
+import { getNoteByPianoKeyId } from "@note";
 import type {
   T_NoteStep,
   T_AlterValue,
-} from "../../common/static/NOTE_TYPES.ts";
+} from "@common/static/NOTE_TYPES";
 
 /**
  * 和弦实例元数据生成器
@@ -222,7 +231,7 @@ function objectToString(obj: any, indent = 2): string {
     return `[\n${nextSpaces}${items.join(`,\n${nextSpaces}`)}\n${spaces}]`;
   }
 
-  if (isObject(obj) && !isNil(obj)) {
+  if (isObject(obj) && isDefined(obj)) {
     if (isNumericKeyIntervalMap(obj)) {
       return numericKeyIntervalMapToString(obj);
     }
@@ -255,8 +264,8 @@ function objectToString(obj: any, indent = 2): string {
 
 function isSimpleObject(obj: any): boolean {
   if (!isObject(obj) || isNil(obj) || isArray(obj)) return false;
-  const values = values(obj);
-  return values.every(
+  const objValues = values(obj);
+  return objValues.every(
     (v) => isString(v) || isNumber(v) || isBoolean(v) || isNil(v)
   );
 }
@@ -275,14 +284,14 @@ function simpleObjectToString(obj: any): string {
 
 function isNumericKeyIntervalMap(obj: any): boolean {
   if (!isObject(obj) || isNil(obj) || isArray(obj)) return false;
-  const keys = keys(obj);
+  const objKeys = keys(obj);
   if (keys.length === 0) return false;
   // 检查键是否是数字字符串
-  const hasNumericKeys = keys.every((k) => /^\d+$/.test(k));
+  const hasNumericKeys = objKeys.every((k) => /^\d+$/.test(k));
   if (!hasNumericKeys) return false;
   // 检查值是否有 intervalType 和 intervalNum
-  const values = values(obj);
-  return values.every(
+  const objValues = values(obj);
+  return objValues.every(
     (v: any) => v && isObject(v) && "intervalType" in v && "intervalNum" in v
   );
 }
@@ -300,12 +309,12 @@ function numericKeyIntervalMapToString(obj: any): string {
 
 function isNumericKeyPianoKeyMap(obj: any): boolean {
   if (!isObject(obj) || isNil(obj) || isArray(obj)) return false;
-  const keys = keys(obj);
+  const objKeys = keys(obj);
   if (keys.length === 0) return false;
-  const hasNumericKeys = keys.every((k) => /^\d+$/.test(k));
+  const hasNumericKeys = objKeys.every((k) => /^\d+$/.test(k));
   if (!hasNumericKeys) return false;
-  const values = values(obj);
-  return values.every(
+  const objValues = values(obj);
+  return objValues.every(
     (v: any) => v && isObject(v) && "intervalType" in v && "pianoKeyId" in v
   );
 }
@@ -323,8 +332,8 @@ function numericKeyPianoKeyMapToString(obj: any): string {
 
 function isNotesMap(obj: any): boolean {
   if (!isObject(obj) || isNil(obj) || isArray(obj)) return false;
-  const values = values(obj);
-  return values.every(
+  const objValues = values(obj);
+  return objValues.every(
     (v: any) =>
       v && isObject(v) && "step" in v && "alter" in v && "octaveGapToRoot" in v
   );
@@ -393,10 +402,14 @@ function generateSingleChordFile(
   const fileName = getFileName(formulaMeta.chordFormulaId);
   const outputPath = join(outputDir, fileName);
 
-  const content = `import CHORD_FORMULA_ID from "../../../../ChordFormula/static/CHORD_FORMULA_ID.ts"
+  const content = `import CHORD_FORMULA_ID from "@chord-formula/static/CHORD_FORMULA_ID"
+import type { I_ChordInstanceMeta } from "@chord/static/types";
 
 // 由 generateChordInstanceMeta.ts 自动生成
-export default ${objectToString(instances, 0)}
+// 显式类型注解避免 TS 对字面量数组做联合推断（触发 TS2590）
+const CHORD_META: I_ChordInstanceMeta[] = ${objectToString(instances, 0)}
+
+export default CHORD_META;
 `;
 
   writeFileSync(outputPath, content, "utf-8");
@@ -427,7 +440,7 @@ function main() {
 
   for (const meta of values(CHORD_FORMULA_META_MAP)) {
     const folder = getOutputFolder(meta.family);
-    if (!families[folder]) {
+    if (isNil(families[folder])) {
       families[folder] = [];
     }
     families[folder].push(meta);

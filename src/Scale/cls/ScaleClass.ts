@@ -1,8 +1,10 @@
-import { getNoteByPianoKeyId } from "../../Note"
+import { getNoteByPianoKeyId } from "@note"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
-import type { I_ScaleModeMeta } from "../../ScaleMode/static/types"
+import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 import type { T_ScaleModeId } from "../../Scale/static/scaleModeTypes"
-import { isNil, values } from "lodash"
+import isNil from "lodash/isNil"
+import values from "lodash/values"
+import { isDefined } from "@common/utils/isDefined"
 
 // 类方法导入（非简单内联的）
 import cls_getRootNote from "./classFn/cls_getRootNote"
@@ -10,7 +12,7 @@ import cls_getNoteByDegree from "./classFn/cls_getNoteByDegree"
 import cls_getScaleDegreeChord3 from "./classFn/cls_getScaleDegreeChord3"
 import cls_getScaleDegreeChord7 from "./classFn/cls_getScaleDegreeChord7"
 import cls_getNoteByIntervalNum from "./classFn/cls_getNoteByIntervalNum"
-import type { I_AnalyzedChordResult } from "../../Find/findChord/index.ts"
+import type { I_AnalyzedChordResult } from "@find/findChord"
 
 /**
  * 调式类
@@ -54,7 +56,7 @@ export class Scale {
 
 		const scaleInstance = getScaleInstance(rootPianoKeyId, scaleModeId)
 
-		if (!scaleInstance) {
+		if (isNil(scaleInstance)) {
 			throw new Error(`Scale not found: rootPianoKeyId=${rootPianoKeyId}, scaleModeId=${scaleModeId}`)
 		}
 
@@ -147,7 +149,7 @@ export class Scale {
 	 * @returns 如果在调式中返回 true，否则返回 false
 	 */
 	public hasPianoKeyId(pianoKeyId: number): boolean {
-		return !isNil(this.scale.pianoKeyIdToDegree[pianoKeyId])
+		return isDefined(this.scale.pianoKeyIdToDegree[pianoKeyId])
 	}
 
 	/**
@@ -157,7 +159,7 @@ export class Scale {
 	 */
 	public getDegreeByPianoKeyId(pianoKeyId: number): number | null {
 		const degree = this.scale.pianoKeyIdToDegree[pianoKeyId]
-		return !isNil(degree) ? degree : null
+		return isDefined(degree) ? degree : null
 	}
 
 	/**
@@ -233,9 +235,9 @@ export class Scale {
 	/**
 	 * 根据音级数获取音符
 	 * @param num 音级数（可以是跨八度的，如 9 表示九音）
-	 * @returns pianoKeyId (0-11) + octave 信息
+	 * @returns pianoKeyId (0-11) + octave 信息；五声调式缺音（4/7 度）时返回 null
 	 */
-	public getNoteByIntervalNum(num: number): { pianoKeyId: number; octave: number } {
+	public getNoteByIntervalNum(num: number): { pianoKeyId: number; octave: number } | null {
 		return cls_getNoteByIntervalNum(this, num)
 	}
 }

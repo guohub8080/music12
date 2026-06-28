@@ -1,7 +1,7 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
-import { T_IntervalType } from "../../../common/static/INTERVAL_TYPES.ts"
+import { T_IntervalType } from "@common/static/INTERVAL_TYPES"
 
 const FAMILY = "chord3"
 
@@ -14,6 +14,7 @@ export const MAJ3_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三",
   scoreDisplay: "",
   intervalList: [["maj", 3], ["p", 5]],
+  tags: ["chord3","maj"],
   degreeToIntervalMap: { 3: "maj", 5: "p" },
   notesNum: 3,
   semitonesList: [4, 7],
@@ -28,6 +29,7 @@ export const MIN3_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小三",
   scoreDisplay: "m",
   intervalList: [["min", 3], ["p", 5]],
+  tags: ["chord3","min"],
   degreeToIntervalMap: { 3: "min", 5: "p" },
   notesNum: 3,
   semitonesList: [3, 7],
@@ -42,6 +44,7 @@ export const DIM3_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "减三",
   scoreDisplay: "°",
   intervalList: [["min", 3], ["dim", 5]],
+  tags: ["chord3","dim","altered","flat5"],
   degreeToIntervalMap: { 3: "min", 5: "dim" },
   notesNum: 3,
   semitonesList: [3, 6],
@@ -56,6 +59,7 @@ export const AUG3_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "增三",
   scoreDisplay: "+",
   intervalList: [["maj", 3], ["aug", 5]],
+  tags: ["chord3","aug","altered","sharp5"],
   degreeToIntervalMap: { 3: "maj", 5: "aug" },
   notesNum: 3,
   semitonesList: [4, 8],
@@ -70,6 +74,7 @@ export const MAJ3_FLAT5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三减五",
   scoreDisplay: "b5",
   intervalList: [["maj", 3], ["dim", 5]],
+  tags: ["chord3","maj","altered","flat5"],
   degreeToIntervalMap: { 3: "maj", 5: "dim" },
   notesNum: 3,
   semitonesList: [4, 6],

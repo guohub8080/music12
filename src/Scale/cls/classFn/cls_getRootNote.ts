@@ -1,4 +1,4 @@
-import { getNoteByPianoKeyId } from "../../../Note"
+import { getNoteByPianoKeyId } from "@note"
 
 /**
  * 获取根音的 Note 实例

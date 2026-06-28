@@ -1,5 +1,5 @@
-import {Note} from "../../Note/cls/NoteClass";
-import {T_IntervalType} from "../../common/static/INTERVAL_TYPES.ts";
+import {Note} from "@note/cls/NoteClass";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 
 
 export type t_scaleMode = "MAJ" | "DOR" | "PHR" | "LYD" | "MLY" | "MIN" | "ION" | "AEO"

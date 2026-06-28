@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { IntervalRadix, ScaleRadix, Base7Radix } from '@music12/common/radix';
+import { IntervalRadix, ScaleRadix, Base7Radix } from '@common/radix';
 
 describe('Base7Radix', () => {
   it('0-6 应该是第 0 八度', () => {

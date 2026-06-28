@@ -1,6 +1,6 @@
-import {FactoryError} from "../common/processError/errorTypes.ts";
-import {STEP_LIST, T_NoteStep, T_AlterValue} from "../common/static/NOTE_TYPES.ts";
-import {Note} from "../Note";
+import {FactoryError} from "@common/processError/errorTypes";
+import {STEP_LIST, T_NoteStep, T_AlterValue} from "@common/static/NOTE_TYPES";
+import {Note} from "@note";
 
 export const getNote = (step: string, alter: number, octave = 5) => {
   const noteStep = step.trim().toUpperCase();

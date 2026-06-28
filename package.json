@@ -1,6 +1,6 @@
 {
   "name": "music12",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "TypeScript library for music theory calculations - notes, intervals, chords, scales",
   "author": "guohub8080",
   "license": "MIT",
@@ -19,22 +19,74 @@
   ],
   "scripts": {
     "dev": "pnpm vite",
-    "build": "del-cli dist/* && tsup src/index.ts --format esm,cjs --dts",
-    "build:bundle": "pnpm build && esbuild dist/index.mjs --bundle --format=cjs --platform=node --tree-shaking=true --outfile=dist/music12.bundle.js --minify",
+    "build": "del-cli dist/* && vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm build"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
+    },
+    "./note": {
+      "types": "./dist/types/Note/index.d.ts",
+      "import": "./dist/esm/note.mjs",
+      "require": "./dist/cjs/note.cjs"
+    },
+    "./interval": {
+      "types": "./dist/types/Interval/index.d.ts",
+      "import": "./dist/esm/interval.mjs",
+      "require": "./dist/cjs/interval.cjs"
+    },
+    "./scale": {
+      "types": "./dist/types/Scale/index.d.ts",
+      "import": "./dist/esm/scale.mjs",
+      "require": "./dist/cjs/scale.cjs"
+    },
+    "./chord": {
+      "types": "./dist/types/Chord/index.d.ts",
+      "import": "./dist/esm/chord.mjs",
+      "require": "./dist/cjs/chord.cjs"
+    },
+    "./chord-formula": {
+      "types": "./dist/types/ChordFormula/index.d.ts",
+      "import": "./dist/esm/chord-formula.mjs",
+      "require": "./dist/cjs/chord-formula.cjs"
+    },
+    "./find": {
+      "types": "./dist/types/Find/index.d.ts",
+      "import": "./dist/esm/find.mjs",
+      "require": "./dist/cjs/find.cjs"
+    },
+    "./stave": {
+      "types": "./dist/types/Stave/index.d.ts",
+      "import": "./dist/esm/stave.mjs",
+      "require": "./dist/cjs/stave.cjs"
+    },
+    "./radix": {
+      "types": "./dist/types/common/radix/index.d.ts",
+      "import": "./dist/esm/radix.mjs",
+      "require": "./dist/cjs/radix.cjs"
+    },
+    "./circle-of-fifths": {
+      "types": "./dist/types/CircleOfFifths/index.d.ts",
+      "import": "./dist/esm/circle-of-fifths.mjs",
+      "require": "./dist/cjs/circle-of-fifths.cjs"
+    },
+    "./factory": {
+      "types": "./dist/types/factory/index.d.ts",
+      "import": "./dist/esm/factory.mjs",
+      "require": "./dist/cjs/factory.cjs"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "dependencies": {
     "chinese-numbering": "^1.0.0",
@@ -45,7 +97,6 @@
     "@eslint/js": "^10.0.1",
     "@types/lodash": "^4.17.23",
     "@types/node": "^25.3.0",
-    "@types/power-radix": "^2.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
@@ -65,7 +116,6 @@
     "react-router": "^7.13.0",
     "react-router-dom": "^7.13.0",
     "react-use": "^17.6.0",
-    "tsup": "^8.5.1",
     "typescript-eslint": "^8.56.0",
     "usehooks-ts": "^3.1.1",
     "vite": "^7.3.1",

@@ -1,7 +1,7 @@
-import {IntervalError} from "../../../common/processError/errorTypes";
-import {IntervalRadix} from "../../../common/radix";
+import {IntervalError} from "@common/processError/errorTypes";
+import {IntervalRadix} from "@common/radix";
 import INTERVAL_META from "../../static/INTERVAL_META";
-import {T_IntervalType} from "../../../common/static/INTERVAL_TYPES.ts";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 import type {I_IntervalObj} from "../IntervalClass";
 
 /**

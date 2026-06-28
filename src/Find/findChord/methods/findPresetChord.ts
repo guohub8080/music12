@@ -1,8 +1,8 @@
 import collect from "collect.js"
-import ALL_CHORD_INSTANCE_META from "../../../Chord/static/ALL_CHORD_INSTANCE_META.ts"
-import {I_ChordInstanceMeta} from "../../../Chord/static/types.ts"
-import {isEqual, isEmpty} from "lodash"
-
+import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
+import type {I_ChordInstanceMeta} from "@chord/static/types"
+import isEqual from "lodash/isEqual"
+import isEmpty from "lodash/isEmpty"
 /**
  * 查找预设和弦返回结果
  */

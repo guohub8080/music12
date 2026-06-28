@@ -1,5 +1,6 @@
-import { uniq, fromPairs } from "lodash"
-import ALL_SCALE_META from "./allScaleInstances.ts"
+import uniq from "lodash/uniq"
+import fromPairs from "lodash/fromPairs"
+import ALL_SCALE_META from "./allScaleInstances"
 
 // 提取所有调式 ID
 const scaleModeIdList = uniq(ALL_SCALE_META.map((s) => s.scaleModeId))

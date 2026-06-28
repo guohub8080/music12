@@ -4,10 +4,11 @@
  * 负责验证参数并获取和弦公式元数据（init）
  */
 
-import { CHORD_FORMULA_META_MAP } from "../../../ChordFormula/static/CHORD_FORMULA_META_MAP.ts";
-import { ChordError } from "../../../common/processError/errorTypes.ts";
-import type { I_ChordFormulaMeta } from "../../../ChordFormula/static/types.ts";
-import type { T_IntervalType } from "../../../common/static/INTERVAL_TYPES.ts";
+import isNil from "lodash/isNil"
+import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP";
+import { ChordError } from "@common/processError/errorTypes";
+import type { I_ChordFormulaMeta } from "@chord-formula/static/types";
+import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 
 /**
  * 和弦初始化元数据（只来自和弦公式，与根音无关）
@@ -38,7 +39,7 @@ export type I_ChordInitMeta = {
  */
 export const cls_initChord = (chordFormulaId: string): I_ChordInitMeta => {
   const formulaMeta = CHORD_FORMULA_META_MAP[chordFormulaId];
-  if (!formulaMeta) {
+  if (isNil(formulaMeta)) {
     throw new ChordError(
       `Chord formula metadata not found: "${chordFormulaId}"`
     );

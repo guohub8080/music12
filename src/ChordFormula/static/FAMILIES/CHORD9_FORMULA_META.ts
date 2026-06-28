@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "chord9"
 
@@ -14,6 +14,7 @@ export const MAJ9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大九",
   scoreDisplay: "maj9",
   intervalList: [["maj", 3], ["p", 5], ["maj", 7], ["maj", 9]],
+  tags: ["chord9","maj7"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "maj", 9: "maj" },
   notesNum: 5,
   semitonesList: [4, 7, 11, 14],
@@ -28,6 +29,7 @@ export const DOM9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属九",
   scoreDisplay: "9",
   intervalList: [["maj", 3], ["p", 5], ["min", 7], ["maj", 9]],
+  tags: ["chord9","dom"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "min", 9: "maj" },
   notesNum: 5,
   semitonesList: [4, 7, 10, 14],
@@ -42,6 +44,7 @@ export const MIN9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小九",
   scoreDisplay: "m9",
   intervalList: [["min", 3], ["p", 5], ["min", 7], ["maj", 9]],
+  tags: ["chord9","min"],
   degreeToIntervalMap: { 3: "min", 5: "p", 7: "min", 9: "maj" },
   notesNum: 5,
   semitonesList: [3, 7, 10, 14],
@@ -56,6 +59,7 @@ export const MIN_MAJ9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小大九",
   scoreDisplay: "mM9",
   intervalList: [["min", 3], ["p", 5], ["maj", 7], ["maj", 9]],
+  tags: ["chord9","min","maj7"],
   degreeToIntervalMap: { 3: "min", 5: "p", 7: "maj", 9: "maj" },
   notesNum: 5,
   semitonesList: [3, 7, 11, 14],

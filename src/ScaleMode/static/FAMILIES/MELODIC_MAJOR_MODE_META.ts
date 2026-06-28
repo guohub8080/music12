@@ -1,5 +1,5 @@
-import SCALE_MODE_ID from "../SCALE_MODE_ID.ts"
-import type { I_ScaleModeMeta } from "../types.ts"
+import SCALE_MODE_ID from "../SCALE_MODE_ID"
+import type { I_ScaleModeMeta } from "../types"
 
 // ========== 旋律大调族 ==========
 

@@ -1,5 +1,5 @@
-import {Base7Radix} from "../base/Base7Radix.ts";
-import {RadixError} from "../../processError/errorTypes.ts";
+import {Base7Radix} from "../base/Base7Radix";
+import {RadixError} from "../../processError/errorTypes";
 
 /**
  * 音程进制类

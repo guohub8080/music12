@@ -1,4 +1,4 @@
-import { T_IntervalType } from "../../common/static/INTERVAL_TYPES.ts"
+import { T_IntervalType } from "@common/static/INTERVAL_TYPES"
 
 // 调式元数据类型定义（支持五声调式的 null 值）
 export type I_ScaleModeMeta = {

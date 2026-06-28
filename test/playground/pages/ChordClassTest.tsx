@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react"
 import { toPairs, keys, includes } from "lodash"
-import { Chord } from "@music12/Chord"
+import { Chord } from "@chord"
 
 // 变换类型
 type TTransformValue = "aug" | "dim" | "omit" | "add" | undefined

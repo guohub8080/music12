@@ -9,26 +9,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 常用命令
 
 ```bash
-# 构建库（输出到 dist/）
+# 构建库（Vite lib + tsc 声明，输出到 dist/esm、dist/cjs、dist/types）
 pnpm build
 
-# 启动开发服务器（Vite 运行 web_test/）
+# 仅类型检查（不产出）
+pnpm typecheck
+
+# 启动开发服务器（Vite 运行 test/playground/ playground）
 pnpm dev
 
 # 运行测试
 pnpm vitest
 
 # 运行单个测试文件
-pnpm vitest test/common.test.ts
+pnpm vitest test/unit/common.test.ts
 ```
 
 ## 编码规范
 
 ### src/ 目录的 Import 规则
-- `src/` 目录内的所有引用必须使用**相对路径**（如 `./foo`、`../bar/baz`）
-- 只有外部依赖（`dependencies` 或 `devDependencies` 中的包）才允许使用绝对引用
-- 在 `test/` 或 `web_test/` 文件夹中，可以使用短路径 `@music12` 来代替 `src` 路径
-  - 例如：`import { Note } from '@music12/Note'`
+- **跨顶层模块的引用必须使用 `@music12` 别名**（对齐 expub-tool 风格）
+  - 例如：在 `src/Note/` 下引用 Interval/common，写 `import { Interval } from "@music12/Interval"`
+  - 别名 `@music12` → `src/`，在 `tsconfig.json`、`vite.config.ts`、`vite.lib.config.ts`、`vitest.config.ts` 四处均已配置
+- **短路径别名**（高频引用的简化）：
+  - `@common-static` → `src/common/static`（`NOTE_TYPES`、`INTERVAL_TYPES` 等常量类型）
+  - `@utils` → `src/common/utils`（`isDefined`、`isNonEmptyArray`、`assertNonEmptyArray`、`jaccard` 等工具）
+- **模块内部的引用使用相对路径**（如 `./foo`、`../bar/baz`）
+- **禁止在 import 路径上带 `.ts`/`.tsx`/`.js` 后缀**（`moduleResolution: bundler` 下统一无后缀）
+- **类型 only 的跨模块 import 必须用 `import type`**（打断循环依赖的运行时闭环，利于 treeshaking）
+- 在 `test/unit/` 或 `test/playground/` 文件夹中，使用 `@music12` 别名（注意大小写需与目录名一致，如 `@music12/Interval` 而非 `@music12/interval`）
 
 ### 上下文管理规范
 - 当上下文占用达到 70% 时，自动执行 `/compact` 命令压缩对话
@@ -58,27 +67,41 @@ pnpm vitest test/common.test.ts
 
 ### 类型检查规范
 - **使用 lodash 进行类型检查**，禁止使用 `typeof` 运行时检查
+- **lodash 统一使用深路径导入**（利于 treeshaking），不要用 barrel `import { x } from "lodash"`
 - **null/undefined 检查统一使用 `isNil`**，不要使用 `isNull` 或 `isUndefined`
+- **非空检查统一使用 `isDefined`（`@utils/isDefined`）**，禁止 `!isNil(x)` 或 `!x`（对象空判断）
 - **数组检查使用 `isArray`**，不要使用 `Array.isArray`
   ```typescript
-  // ✅ 正确
-  import { isNil, isString, isNumber, isArray } from "lodash"
-  if (isNil(value)) { ... }
+  // ✅ 正确 - 深路径导入
+  import isNil from "lodash/isNil"
+  import isString from "lodash/isString"
+  import { isDefined } from "@utils/isDefined"
+
+  if (isNil(value)) { ... }       // 判空
+  if (isDefined(value)) { ... }   // 判非空（类型守卫）
   if (isString(value)) { ... }
-  if (isArray(value)) { ... }
 
   // ❌ 错误
+  import { isNil, isString } from "lodash"  // barrel 风格，阻碍 treeshaking
   if (value === null || value === undefined) { ... }
+  if (!isNil(value)) { ... }      // 应改用 isDefined(value)
+  if (!objectValue) { ... }       // 对象空判断应改用 isNil(objectValue)
   if (typeof value === "string") { ... }
   if (Array.isArray(value)) { ... }
   ```
+- 注意：`!boolVar`（布尔值取反，如 `!isValid`）、`!set.has()`、`!existsSync` 等**不是空判断**，正常使用 `!` 即可
 - 常用 lodash 类型函数：`isNil`, `isString`, `isNumber`, `isBoolean`, `isObject`, `isArray`, `isInteger`, `isEmpty`, `isEqual`, `defaultTo`
 
 ### lodash 方法使用规范
 - **统一使用 lodash 方法替代原生 JavaScript 方法**，保持代码风格一致
+- **lodash 统一使用深路径导入**（利于 treeshaking）
   ```typescript
-  // ✅ 正确 - 使用 lodash
-  import { toPairs, keys, values, fromPairs, uniq, intersection, union, includes } from "lodash"
+  // ✅ 正确 - 使用 lodash 深路径导入
+  import toPairs from "lodash/toPairs"
+  import keys from "lodash/keys"
+  import values from "lodash/values"
+  import fromPairs from "lodash/fromPairs"
+  import uniq from "lodash/uniq"
   toPairs(obj)           // 替代 Object.entries
   keys(obj)              // 替代 Object.keys
   values(obj)            // 替代 Object.values
@@ -96,7 +119,7 @@ pnpm vitest test/common.test.ts
   new Set(arr)
   arr.includes(value)
   ```
-- 此规范适用于 `src/`、`test/`、`web_test/` 所有目录
+- 此规范适用于 `src/`、`test/unit/`、`test/playground/` 所有目录
 
 ## 架构说明
 
@@ -121,8 +144,19 @@ pnpm vitest test/common.test.ts
 - **预设/元数据**：静态数据如和弦类型（`chordKeys.ts`）、调式名称（`scaleModeNames.ts`）放在 `presets/` 和 `static/` 目录
 - **工厂模式**：使用 `factory.getNote('C', 0, 4)` 代替 `new Note('C', 0, 4)` 更便捷
 
-### 入口文件
+### 入口文件与构建
 
-- `src/index.ts` - 库的主导出
-- `dist/index.js` - 构建输出（ESM）
-- `web_test/` - 基于 Vite 的 React 开发测试环境
+- `src/index.ts` - 库的主导出（barrel）
+- `vite.lib.config.ts` - 库构建配置：Vite lib mode + `preserveModules`，产出 `dist/esm/*.mjs`、`dist/cjs/*.cjs`（一对一映射 src，供消费者 bundler 细粒度 treeshaking）
+- `tsconfig.build.json` - 类型声明构建配置：`tsc --emitDeclarationOnly`，产出 `dist/types/*.d.ts`
+- `vite.config.ts` - 开发配置（服务 `test/playground/` playground，与库构建分离）
+- `package.json` 的 `sideEffects: false` 是 treeshaking 的关键标志，勿删除
+- 当前仅开放主入口 `.`，子路径 subpath exports 待循环依赖（Chord↔Find、Scale↔Find）完全解耦后再开放
+
+## 已知技术债
+
+`pnpm typecheck`（`tsc -p tsconfig.build.json`）当前 **0 错误**。以下问题均已修复：
+
+- ~~`ALL_CHORD_INSTANCE_META.ts` 的 TS2590（类型联合过复杂）~~ — 已修复：87 个子 `*_CHORD_META` 文件加 `: I_ChordInstanceMeta[]` 显式类型注解。
+- ~~`cls_fifthCircleClockMove.ts` 调用不存在的 `Radix.get2DigitNumList_GivenNumAndBase`~~ — 已修复：误用 power-radix 包 API 的死函数，已删除。
+- ~~`src/ChordFormula/` barrel 引用不存在的导出（`DOM9_FLAT9`、`MIN9_FLAT9`、`AUG7`）~~ — 已修复：AUG7 修路径，DOM9_FLAT9/MIN9_FLAT9 删死引用。

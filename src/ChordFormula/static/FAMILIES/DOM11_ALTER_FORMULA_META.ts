@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "dom11alter"
 
@@ -12,6 +12,7 @@ export const DOM11_FLAT5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属十一减五",
   scoreDisplay: "11b5",
   intervalList: [["maj", 3], ["dim", 5], ["min", 7], ["maj", 9], ["p", 11]],
+  tags: ["chord11","dom","altered","flat5"],
   degreeToIntervalMap: { 3: "maj", 5: "dim", 7: "min", 9: "maj", 11: "p" },
   notesNum: 6,
   semitonesList: [4, 6, 10, 14, 17],
@@ -26,6 +27,7 @@ export const DOM11_SHARP5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属十一增五",
   scoreDisplay: "11#5",
   intervalList: [["maj", 3], ["aug", 5], ["min", 7], ["maj", 9], ["p", 11]],
+  tags: ["chord11","dom","altered","sharp5"],
   degreeToIntervalMap: { 3: "maj", 5: "aug", 7: "min", 9: "maj", 11: "p" },
   notesNum: 6,
   semitonesList: [4, 8, 10, 14, 17],
@@ -40,6 +42,7 @@ export const DOM11_FLAT9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属十一减九",
   scoreDisplay: "11b9",
   intervalList: [["maj", 3], ["p", 5], ["min", 7], ["min", 9], ["p", 11]],
+  tags: ["chord11","dom","altered","flat9"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "min", 9: "min", 11: "p" },
   notesNum: 6,
   semitonesList: [4, 7, 10, 13, 17],
@@ -54,6 +57,7 @@ export const DOM11_SHARP9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属十一增九",
   scoreDisplay: "11#9",
   intervalList: [["maj", 3], ["p", 5], ["min", 7], ["aug", 9], ["p", 11]],
+  tags: ["chord11","dom","altered","sharp9"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "min", 9: "aug", 11: "p" },
   notesNum: 6,
   semitonesList: [4, 7, 10, 15, 17],
@@ -68,6 +72,7 @@ export const DOM11_FLAT13_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属十一减十三",
   scoreDisplay: "11b13",
   intervalList: [["maj", 3], ["p", 5], ["min", 7], ["maj", 9], ["p", 11], ["min", 13]],
+  tags: ["chord13","dom","altered","flat13"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "min", 9: "maj", 11: "p", 13: "min" },
   notesNum: 7,
   semitonesList: [4, 7, 10, 14, 17, 20],

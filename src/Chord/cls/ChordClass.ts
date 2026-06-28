@@ -12,9 +12,13 @@
  * 最终音程面板 = initChordFormulaMeta.degreeToIntervalMap + transformPanel
  */
 
-import { some, isNil, toPairs, uniq } from "lodash";
-import { Note } from "../../Note/cls/NoteClass";
-import { getNoteByPianoKeyId } from "../../Note";
+import { isDefined } from "@common/utils/isDefined"
+import some from "lodash/some"
+import isNil from "lodash/isNil"
+import toPairs from "lodash/toPairs"
+import uniq from "lodash/uniq"
+import { Note } from "@note/cls/NoteClass";
+import { getNoteByPianoKeyId } from "@note";
 import { cls_initChord, type I_ChordInitMeta } from "./classFn/cls_initChord";
 import { cls_setChordDegree } from "./classFn/cls_setChordDegree";
 import { cls_setChordOmit } from "./classFn/cls_setChordOmit";
@@ -27,10 +31,10 @@ import type {
   I_ChordIntervalPanel,
   I_TransformPanel,
   I_ChordIntervalNum,
-} from "../static/types.ts";
-import { EMPTY_TRANSFORM_PANEL } from "../static/types.ts";
-import { T_IntervalType } from "../../common/static/INTERVAL_TYPES.ts";
-import { Interval } from "../../Interval/cls/IntervalClass";
+} from "../static/types";
+import { EMPTY_TRANSFORM_PANEL } from "../static/types";
+import { T_IntervalType } from "@common/static/INTERVAL_TYPES";
+import { Interval } from "@interval/cls/IntervalClass";
 
 /**
  * 和弦类
@@ -99,7 +103,7 @@ export class Chord {
 
   /** 是否有变换 */
   public get isTransformed(): boolean {
-    return some(this.#transformPanel, (v) => !isNil(v));
+    return some(this.#transformPanel, (v) => isDefined(v));
   }
 
   /**
@@ -276,9 +280,8 @@ export class Chord {
    * cMaj.set(7).find()  // 查找变换后的音符能匹配到哪些和弦
    */
   public find(config?: {
-    isShowFuzzyOnFullMatch?: boolean
-    isShowFuzzyOnEmptyMatch?: boolean
-    minSimilarity?: number
+    /** true=只返回完全匹配；false=完全匹配+省略音（默认 false） */
+    isStrict?: boolean
   }) {
     return cls_findChord(this, config)
   }

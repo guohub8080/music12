@@ -2,7 +2,7 @@
  * 和弦度数省略设置
  */
 
-import type { I_TransformPanel, I_ChordIntervalNum } from "../../static/types.ts";
+import type { I_TransformPanel, I_ChordIntervalNum } from "../../static/types";
 
 /**
  * 省略指定度数的音

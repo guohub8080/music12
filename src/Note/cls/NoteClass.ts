@@ -1,15 +1,14 @@
 import cls_getNoteByInterval from "./classFn/cls_getNoteByInterval";
-import { T_AlterValue, T_NoteStep } from "../../common/static/NOTE_TYPES.ts";
+import { T_AlterValue, T_NoteStep } from "@common/static/NOTE_TYPES";
 import cls_getSamePitchNotes from "./classFn/cls_getSamePitchNotes";
 import cls_getOvertoneSeries from "./classFn/cls_getHarmonicSeries";
 import { cls_initNoteClass } from "./classFn/cls_initNoteClass";
-import { Interval } from "../../Interval/cls/IntervalClass";
+import type { Interval } from "@interval/cls/IntervalClass";
 import cls_getNoteByNumberNotation from "./classFn/cls_getNoteByString";
-import cls_getTemp251 from "./classFn/cls_getTemp251.ts";
-import cls_semitoneMove from "./classFn/cls_semitoneMove.ts";
-import { PianoKey } from "../../PianoKey";
-import { defaultTo } from "lodash";
-
+import cls_getTemp251 from "./classFn/cls_getTemp251";
+import cls_semitoneMove from "./classFn/cls_semitoneMove";
+import { PianoKey } from "@pianokey";
+import defaultTo from "lodash/defaultTo"
 /**
  * 音符类
  *

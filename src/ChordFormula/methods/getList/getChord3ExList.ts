@@ -8,8 +8,8 @@ import {
   MAJ3_ADD11_FORMULA_META,
   MIN3_ADD9_FORMULA_META,
   MIN3_ADD11_FORMULA_META,
-} from '../../static/FAMILIES/CHORD3_EX_FORMULA_META.ts'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/CHORD3_EX_FORMULA_META'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取三和弦扩展族的元数据列表

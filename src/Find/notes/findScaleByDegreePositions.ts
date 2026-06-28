@@ -1,5 +1,6 @@
-import { isEmpty, toPairs } from "lodash"
-import ALL_SCALE_META, { type I_ScaleInstance } from "../../Scale/static/allScaleInstances.ts"
+import isEmpty from "lodash/isEmpty"
+import toPairs from "lodash/toPairs"
+import ALL_SCALE_META, { type I_ScaleInstance } from "@scale/static/allScaleInstances"
 
 /**
  * 音符位置约束

@@ -1,11 +1,21 @@
-import { range, isNil, isObject, isString, isNumber, isBoolean, toPairs, keys, values } from "lodash"
+import { isDefined } from "@common/utils/isDefined"
+import range from "lodash/range"
+import isNil from "lodash/isNil"
+import isArray from "lodash/isArray"
+import isObject from "lodash/isObject"
+import isString from "lodash/isString"
+import isNumber from "lodash/isNumber"
+import isBoolean from "lodash/isBoolean"
+import toPairs from "lodash/toPairs"
+import keys from "lodash/keys"
+import values from "lodash/values"
 import { Scale } from "../cls/ScaleClass"
-import { PianoKey } from "../../PianoKey"
-import { Note } from "../../Note"
-import { Interval } from "../../Interval"
+import { PianoKey } from "@pianokey"
+import { Note } from "@note"
+import { Interval } from "@interval"
 import { writeFileSync, existsSync, mkdirSync } from "fs"
 import { join } from "path"
-import SCALE_MODE_ID from "../../ScaleMode/static/SCALE_MODE_ID.ts"
+import SCALE_MODE_ID from "@scale-mode/static/SCALE_MODE_ID"
 import {
   // DIATONIC
   NATURAL_MAJOR_MODE_META,
@@ -15,9 +25,9 @@ import {
   MIXOLYDIAN_MODE_META,
   NATURAL_MINOR_MODE_META,
   LOCRIAN_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/DIATONIC_MODE_META.ts"
-import { HARMONIC_MAJOR_MODE_META } from "../../ScaleMode/static/FAMILIES/HARMONIC_MAJOR_MODE_META.ts"
-import { MELODIC_MAJOR_DESCENDING_MODE_META } from "../../ScaleMode/static/FAMILIES/MELODIC_MAJOR_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/DIATONIC_MODE_META"
+import { HARMONIC_MAJOR_MODE_META } from "@scale-mode/static/FAMILIES/HARMONIC_MAJOR_MODE_META"
+import { MELODIC_MAJOR_DESCENDING_MODE_META } from "@scale-mode/static/FAMILIES/MELODIC_MAJOR_MODE_META"
 import {
   HARMONIC_MINOR_MODE_META,
   LOCRIAN_SHARP6_MODE_META,
@@ -25,51 +35,51 @@ import {
   DORIAN_SHARP4_MODE_META,
   PHRYGIAN_DOMINANT_MODE_META,
   LYDIAN_SHARP2_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/HARMONIC_MINOR_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/HARMONIC_MINOR_MODE_META"
 import {
   MELODIC_MINOR_ASCENDING_MODE_META,
   DORIAN_FLAT2_MODE_META,
   LYDIAN_AUGMENTED_MODE_META,
   LYDIAN_DOMINANT_MODE_META,
   LOCRIAN_SHARP2_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/MELODIC_MINOR_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/MELODIC_MINOR_MODE_META"
 import {
   DOUBLE_HARMONIC_MAJOR_MODE_META,
   HUNGARIAN_MINOR_MODE_META,
   ORIENTAL_MODE_META,
   IONIAN_SHARP2_SHARP5_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/DOUBLE_HARMONIC_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/DOUBLE_HARMONIC_MODE_META"
 import {
   GONG_MODE_META,
   SHANG_MODE_META,
   JUE_MODE_META,
   ZHI_MODE_META,
   YU_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/CHINESE_PENTATONIC_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/CHINESE_PENTATONIC_MODE_META"
 import {
   YA_YUE_GONG_MODE_META,
   YA_YUE_SHANG_MODE_META,
   YA_YUE_JUE_MODE_META,
   YA_YUE_ZHI_MODE_META,
   YA_YUE_YU_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/CHINESE_YAYUE_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/CHINESE_YAYUE_MODE_META"
 import {
   QING_YUE_GONG_MODE_META,
   QING_YUE_SHANG_MODE_META,
   QING_YUE_JUE_MODE_META,
   QING_YUE_ZHI_MODE_META,
   QING_YUE_YU_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/CHINESE_QINGYUE_MODE_META.ts"
+} from "@scale-mode/static/FAMILIES/CHINESE_QINGYUE_MODE_META"
 import {
   YAN_YUE_GONG_MODE_META,
   YAN_YUE_SHANG_MODE_META,
   YAN_YUE_JUE_MODE_META,
   YAN_YUE_ZHI_MODE_META,
   YAN_YUE_YU_MODE_META,
-} from "../../ScaleMode/static/FAMILIES/CHINESE_YANYUE_MODE_META.ts"
-import { T_IntervalType } from "../../common/static/INTERVAL_TYPES.ts"
-import { t_scaleMode } from "../static/types.ts"
-import type { I_ScaleModeMeta } from "../static/SCALE_MODE_META/types.ts"
+} from "@scale-mode/static/FAMILIES/CHINESE_YANYUE_MODE_META"
+import { T_IntervalType } from "@common/static/INTERVAL_TYPES"
+import { t_scaleMode } from "../static/types"
+import type { I_ScaleModeMeta } from "../static/SCALE_MODE_META/types"
 
 /**
  * 音阶元数据生成器
@@ -207,9 +217,9 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
     const pianoKey = PianoKey.fromPitchInt(rootPianoKey + 48)
     const notes = pianoKey.getNotes({ isNormal: true, alterAbsLte: 1 })
     const rootNote = notes[0]
-    const scale = new Scale(rootNote, modeMeta.scaleModeId as t_scaleMode)
+    const scale = new Scale(rootNote.pianoKeyId, modeMeta.scaleModeId as t_scaleMode)
 
-    const notesPianoKeyList = scale.notesList.map(n => n.pianoKeyId)
+    const notesPianoKeyList = scale.pianoKeyIds
     const orderedNotesPianoKeyList = [...notesPianoKeyList].sort((a, b) => a - b)
 
     // 构建 degreeToPianoKeyId: { 1: rootPianoKeyId, 2: deg2, ..., 7: deg7 }
@@ -217,13 +227,17 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
     const degreeToPianoKeyId: Record<number, number | null> = { 1: rootPianoKey }
 
     // intervalList 索引 0-5 对应 degree 2-7
+    // 注意：intervalList 可含 null（五声缺音），notesPianoKeyList 只含实际音，
+    // 因此用独立计数器 noteIndex 跟踪，仅在 intervalItem 非 null 时递增。
+    let noteIndex = 0 // notesPianoKeyList 的游标（0 = 根音，已填入 degree 1）
     for (let i = 0; i < 6; i++) {
       const degree = i + 2
       const intervalItem = intervalList[i]
       if (isNil(intervalItem)) {
         degreeToPianoKeyId[degree] = null
       } else {
-        degreeToPianoKeyId[degree] = notesPianoKeyList[i + 1] ?? null
+        noteIndex++ // 移到下一个实际音（跳过 null 度数不递增）
+        degreeToPianoKeyId[degree] = notesPianoKeyList[noteIndex] ?? null
       }
     }
 
@@ -235,7 +249,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
     }
     // 填充音阶中的键
     for (const [deg, keyId] of toPairs(degreeToPianoKeyId)) {
-      if (!isNil(keyId)) {
+      if (isDefined(keyId)) {
         pianoKeyIdToDegree[keyId] = Number(deg)
       }
     }
@@ -277,7 +291,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
       let alterSum = n.alter
       for (const key of keys(notesMap)) {
         const note = notesMap[Number(key)]
-        if (!isNil(note) && note.alter !== 0) {
+        if (isDefined(note) && note.alter !== 0) {
           alterNoteCount++
           alterSum += note.alter
         }
@@ -340,7 +354,7 @@ function objectToString(obj: any, indent = 2, modeIdKey: string): string {
     return `[\n${nextSpaces}${items.join(`,\n${nextSpaces}`)}\n${spaces}]`
   }
 
-  if (isObject(obj) && !isNil(obj)) {
+  if (isObject(obj) && isDefined(obj)) {
     // 数字键到原始值的映射（如 pianoKeyIdToDegree），单行输出
     if (isNumericKeyPrimitiveMap(obj)) {
       return numericKeyMapToString(obj)
@@ -366,8 +380,8 @@ function objectToString(obj: any, indent = 2, modeIdKey: string): string {
 
 function isSimpleObject(obj: any): boolean {
   if (!isObject(obj) || isNil(obj) || isArray(obj)) return false
-  const values = values(obj)
-  return values.every(v => isString(v) || isNumber(v) || isBoolean(v))
+  const objValues = values(obj)
+  return objValues.every(v => isString(v) || isNumber(v) || isBoolean(v))
 }
 
 // 检测是否为数字键到原始值的映射（如 pianoKeyIdToDegree: { 0: 1, 1: null, ... }）
@@ -409,7 +423,7 @@ function generateFile(familyName: string, modeConfig: ModeConfig, outputBaseDir:
   }
 
   const data = generateModeData(modeConfig.modeMeta, modeConfig.modeIdKey)
-  const content = `import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID.ts"
+  const content = `import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID"
 
 // 由 generateScaleMeta.ts 自动生成
 export default ${objectToString(data, 0, modeConfig.modeIdKey)}
@@ -456,7 +470,7 @@ if (args[0] === '--all') {
   const familyName = args[1]
   const family = FAMILIES.find(f => f.familyName === familyName)
 
-  if (!family) {
+  if (isNil(family)) {
     console.error(`找不到家族: ${familyName}`)
     console.log('可用家族:', FAMILIES.map(f => f.familyName).join(', '))
     process.exit(1)

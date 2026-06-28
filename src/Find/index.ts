@@ -2,8 +2,8 @@
 export { findChord } from "./findChord/index"
 
 // 从 Scale 模块重新导出调式类型
-export { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS } from "../Scale/static/scaleModeTypes.ts"
-export type { T_ScaleModeId, T_ScaleModeGroup } from "../Scale/static/scaleModeTypes.ts"
+export { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS } from "@scale/static/scaleModeTypes"
+export type { T_ScaleModeId, T_ScaleModeGroup } from "@scale/static/scaleModeTypes"
 
 // ==================== Notes ====================
 export { findScaleByDegreePositions } from "./notes/findScaleByDegreePositions"

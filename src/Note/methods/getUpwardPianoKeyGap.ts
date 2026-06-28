@@ -1,6 +1,6 @@
 // noinspection ES6PreferShortImport
 
-import {Base12Radix} from "../../common/radix";
+import {Base12Radix} from "@common/radix";
 
 /**
  * 计算两个钢琴键位置之间的向上距离

@@ -10,8 +10,9 @@
  * - omit3 + add2 + add4 → sus2(add4)
  */
 
-import { toPairs, isString } from "lodash";
-import type { I_TransformPanel } from "../../static/types.ts";
+import toPairs from "lodash/toPairs"
+import isString from "lodash/isString"
+import type { I_TransformPanel } from "../../static/types";
 
 /**
  * 获取乐谱符号（含变换）

@@ -29,8 +29,8 @@
  * getAlterStepListByNum(0)  // []
  */
 
-import { CircleOfFifths } from "../../CircleOfFifths/cls/CircleClass";
-import type { T_NoteStep } from "../../common/static/NOTE_TYPES";
+import { CircleOfFifths } from "@circle-of-fifths/cls/CircleClass";
+import type { T_NoteStep } from "@common/static/NOTE_TYPES";
 
 export const getAlterStepListByNum = (num: number): T_NoteStep[] => {
 	if (num === 0) return [];

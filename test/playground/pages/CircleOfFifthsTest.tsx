@@ -1,7 +1,7 @@
-import { CircleOfFifths } from "@music12/CircleOfFifths"
-import FIFTH_META from "@music12/CircleOfFifths/static/FIFTH_META"
-import { getAlterStepListByNum } from "@music12/Stave"
-import { getScaleByStaveAlters } from "@music12/Stave"
+import { CircleOfFifths } from "@circle-of-fifths"
+import FIFTH_META from "@circle-of-fifths/static/FIFTH_META"
+import { getAlterStepListByNum } from "@stave"
+import { getScaleByStaveAlters } from "@stave"
 
 export default function CircleOfFifthsTest() {
 	// 获取所有大调数据（按调号数量排序）

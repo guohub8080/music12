@@ -1,41 +1,26 @@
-import CHORD_FORMULA_ID from "../../../../ChordFormula/static/CHORD_FORMULA_ID.ts";
+import CHORD_FORMULA_ID from "@chord-formula/static/CHORD_FORMULA_ID"
+import type { I_ChordInstanceMeta } from "@chord/static/types";
 
 // 由 generateChordInstanceMeta.ts 自动生成
-export default [
+// 显式类型注解避免 TS 对字面量数组做联合推断（触发 TS2590）
+const CHORD_META: I_ChordInstanceMeta[] = [
   {
     pianoKeyIdRoot: 0,
     chordFormulaId: CHORD_FORMULA_ID["maj13sus2"],
     pianoKeyIds: [0, 2, 7, 11, 9],
     pianoKeyIdsSorted: [0, 2, 7, 9, 11],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      0: { intervalType: "p", intervalNum: 1 },
-      2: { intervalType: "maj", intervalNum: 2 },
-      7: { intervalType: "p", intervalNum: 5 },
-      9: { intervalType: "maj", intervalNum: 13 },
-      11: { intervalType: "maj", intervalNum: 7 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 0 },
-      2: { intervalType: "maj", pianoKeyId: 2 },
-      5: { intervalType: "p", pianoKeyId: 7 },
-      7: { intervalType: "maj", pianoKeyId: 11 },
-      13: { intervalType: "maj", pianoKeyId: 9 },
-    },
+    pianoKeyIdToInterval: { 0: { intervalType: 'p', intervalNum: 1 }, 2: { intervalType: 'maj', intervalNum: 2 }, 7: { intervalType: 'p', intervalNum: 5 }, 9: { intervalType: 'maj', intervalNum: 13 }, 11: { intervalType: 'maj', intervalNum: 7 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 0 }, 2: { intervalType: 'maj', pianoKeyId: 2 }, 5: { intervalType: 'p', pianoKeyId: 7 }, 7: { intervalType: 'maj', pianoKeyId: 11 }, 13: { intervalType: 'maj', pianoKeyId: 9 } },
     notes: [
       {
-        rootNoteStep: "C",
+        rootNoteStep: 'C',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          2: { step: "D", alter: 0, octaveGapToRoot: 0 },
-          7: { step: "G", alter: 0, octaveGapToRoot: 0 },
-          9: { step: "A", alter: 0, octaveGapToRoot: 1 },
-          11: { step: "B", alter: 0, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 2: { step: 'D', alter: 0, octaveGapToRoot: 0 }, 7: { step: 'G', alter: 0, octaveGapToRoot: 0 }, 9: { step: 'A', alter: 0, octaveGapToRoot: 1 }, 11: { step: 'B', alter: 0, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 1,
@@ -43,46 +28,24 @@ export default [
     pianoKeyIds: [1, 3, 8, 0, 10],
     pianoKeyIdsSorted: [0, 1, 3, 8, 10],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      0: { intervalType: "maj", intervalNum: 7 },
-      1: { intervalType: "p", intervalNum: 1 },
-      3: { intervalType: "maj", intervalNum: 2 },
-      8: { intervalType: "p", intervalNum: 5 },
-      10: { intervalType: "maj", intervalNum: 13 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 1 },
-      2: { intervalType: "maj", pianoKeyId: 3 },
-      5: { intervalType: "p", pianoKeyId: 8 },
-      7: { intervalType: "maj", pianoKeyId: 0 },
-      13: { intervalType: "maj", pianoKeyId: 10 },
-    },
+    pianoKeyIdToInterval: { 0: { intervalType: 'maj', intervalNum: 7 }, 1: { intervalType: 'p', intervalNum: 1 }, 3: { intervalType: 'maj', intervalNum: 2 }, 8: { intervalType: 'p', intervalNum: 5 }, 10: { intervalType: 'maj', intervalNum: 13 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 1 }, 2: { intervalType: 'maj', pianoKeyId: 3 }, 5: { intervalType: 'p', pianoKeyId: 8 }, 7: { intervalType: 'maj', pianoKeyId: 0 }, 13: { intervalType: 'maj', pianoKeyId: 10 } },
     notes: [
       {
-        rootNoteStep: "C",
+        rootNoteStep: 'C',
         rootNoteAlter: 1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "B", alter: 1, octaveGapToRoot: 0 },
-          3: { step: "D", alter: 1, octaveGapToRoot: 0 },
-          8: { step: "G", alter: 1, octaveGapToRoot: 0 },
-          10: { step: "A", alter: 1, octaveGapToRoot: 1 },
-        },
+        notesMap: { 0: { step: 'B', alter: 1, octaveGapToRoot: 0 }, 3: { step: 'D', alter: 1, octaveGapToRoot: 0 }, 8: { step: 'G', alter: 1, octaveGapToRoot: 0 }, 10: { step: 'A', alter: 1, octaveGapToRoot: 1 } }
       },
       {
-        rootNoteStep: "D",
+        rootNoteStep: 'D',
         rootNoteAlter: -1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "C", alter: 0, octaveGapToRoot: 1 },
-          3: { step: "E", alter: -1, octaveGapToRoot: 0 },
-          8: { step: "A", alter: -1, octaveGapToRoot: 0 },
-          10: { step: "B", alter: -1, octaveGapToRoot: 1 },
-        },
-      },
-    ],
+        notesMap: { 0: { step: 'C', alter: 0, octaveGapToRoot: 1 }, 3: { step: 'E', alter: -1, octaveGapToRoot: 0 }, 8: { step: 'A', alter: -1, octaveGapToRoot: 0 }, 10: { step: 'B', alter: -1, octaveGapToRoot: 1 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 2,
@@ -90,34 +53,17 @@ export default [
     pianoKeyIds: [2, 4, 9, 1, 11],
     pianoKeyIdsSorted: [1, 2, 4, 9, 11],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      1: { intervalType: "maj", intervalNum: 7 },
-      2: { intervalType: "p", intervalNum: 1 },
-      4: { intervalType: "maj", intervalNum: 2 },
-      9: { intervalType: "p", intervalNum: 5 },
-      11: { intervalType: "maj", intervalNum: 13 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 2 },
-      2: { intervalType: "maj", pianoKeyId: 4 },
-      5: { intervalType: "p", pianoKeyId: 9 },
-      7: { intervalType: "maj", pianoKeyId: 1 },
-      13: { intervalType: "maj", pianoKeyId: 11 },
-    },
+    pianoKeyIdToInterval: { 1: { intervalType: 'maj', intervalNum: 7 }, 2: { intervalType: 'p', intervalNum: 1 }, 4: { intervalType: 'maj', intervalNum: 2 }, 9: { intervalType: 'p', intervalNum: 5 }, 11: { intervalType: 'maj', intervalNum: 13 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 2 }, 2: { intervalType: 'maj', pianoKeyId: 4 }, 5: { intervalType: 'p', pianoKeyId: 9 }, 7: { intervalType: 'maj', pianoKeyId: 1 }, 13: { intervalType: 'maj', pianoKeyId: 11 } },
     notes: [
       {
-        rootNoteStep: "D",
+        rootNoteStep: 'D',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          1: { step: "C", alter: 1, octaveGapToRoot: 1 },
-          4: { step: "E", alter: 0, octaveGapToRoot: 0 },
-          9: { step: "A", alter: 0, octaveGapToRoot: 0 },
-          11: { step: "B", alter: 0, octaveGapToRoot: 1 },
-        },
-      },
-    ],
+        notesMap: { 1: { step: 'C', alter: 1, octaveGapToRoot: 1 }, 4: { step: 'E', alter: 0, octaveGapToRoot: 0 }, 9: { step: 'A', alter: 0, octaveGapToRoot: 0 }, 11: { step: 'B', alter: 0, octaveGapToRoot: 1 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 3,
@@ -125,46 +71,24 @@ export default [
     pianoKeyIds: [3, 5, 10, 2, 0],
     pianoKeyIdsSorted: [0, 2, 3, 5, 10],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      0: { intervalType: "maj", intervalNum: 13 },
-      2: { intervalType: "maj", intervalNum: 7 },
-      3: { intervalType: "p", intervalNum: 1 },
-      5: { intervalType: "maj", intervalNum: 2 },
-      10: { intervalType: "p", intervalNum: 5 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 3 },
-      2: { intervalType: "maj", pianoKeyId: 5 },
-      5: { intervalType: "p", pianoKeyId: 10 },
-      7: { intervalType: "maj", pianoKeyId: 2 },
-      13: { intervalType: "maj", pianoKeyId: 0 },
-    },
+    pianoKeyIdToInterval: { 0: { intervalType: 'maj', intervalNum: 13 }, 2: { intervalType: 'maj', intervalNum: 7 }, 3: { intervalType: 'p', intervalNum: 1 }, 5: { intervalType: 'maj', intervalNum: 2 }, 10: { intervalType: 'p', intervalNum: 5 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 3 }, 2: { intervalType: 'maj', pianoKeyId: 5 }, 5: { intervalType: 'p', pianoKeyId: 10 }, 7: { intervalType: 'maj', pianoKeyId: 2 }, 13: { intervalType: 'maj', pianoKeyId: 0 } },
     notes: [
       {
-        rootNoteStep: "D",
+        rootNoteStep: 'D',
         rootNoteAlter: 1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "B", alter: 1, octaveGapToRoot: 1 },
-          2: { step: "C", alter: 2, octaveGapToRoot: 1 },
-          5: { step: "E", alter: 1, octaveGapToRoot: 0 },
-          10: { step: "A", alter: 1, octaveGapToRoot: 0 },
-        },
+        notesMap: { 0: { step: 'B', alter: 1, octaveGapToRoot: 1 }, 2: { step: 'C', alter: 2, octaveGapToRoot: 1 }, 5: { step: 'E', alter: 1, octaveGapToRoot: 0 }, 10: { step: 'A', alter: 1, octaveGapToRoot: 0 } }
       },
       {
-        rootNoteStep: "E",
+        rootNoteStep: 'E',
         rootNoteAlter: -1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "C", alter: 0, octaveGapToRoot: 2 },
-          2: { step: "D", alter: 0, octaveGapToRoot: 1 },
-          5: { step: "F", alter: 0, octaveGapToRoot: 0 },
-          10: { step: "B", alter: -1, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 0: { step: 'C', alter: 0, octaveGapToRoot: 2 }, 2: { step: 'D', alter: 0, octaveGapToRoot: 1 }, 5: { step: 'F', alter: 0, octaveGapToRoot: 0 }, 10: { step: 'B', alter: -1, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 4,
@@ -172,34 +96,17 @@ export default [
     pianoKeyIds: [4, 6, 11, 3, 1],
     pianoKeyIdsSorted: [1, 3, 4, 6, 11],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      1: { intervalType: "maj", intervalNum: 13 },
-      3: { intervalType: "maj", intervalNum: 7 },
-      4: { intervalType: "p", intervalNum: 1 },
-      6: { intervalType: "maj", intervalNum: 2 },
-      11: { intervalType: "p", intervalNum: 5 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 4 },
-      2: { intervalType: "maj", pianoKeyId: 6 },
-      5: { intervalType: "p", pianoKeyId: 11 },
-      7: { intervalType: "maj", pianoKeyId: 3 },
-      13: { intervalType: "maj", pianoKeyId: 1 },
-    },
+    pianoKeyIdToInterval: { 1: { intervalType: 'maj', intervalNum: 13 }, 3: { intervalType: 'maj', intervalNum: 7 }, 4: { intervalType: 'p', intervalNum: 1 }, 6: { intervalType: 'maj', intervalNum: 2 }, 11: { intervalType: 'p', intervalNum: 5 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 4 }, 2: { intervalType: 'maj', pianoKeyId: 6 }, 5: { intervalType: 'p', pianoKeyId: 11 }, 7: { intervalType: 'maj', pianoKeyId: 3 }, 13: { intervalType: 'maj', pianoKeyId: 1 } },
     notes: [
       {
-        rootNoteStep: "E",
+        rootNoteStep: 'E',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          1: { step: "C", alter: 1, octaveGapToRoot: 2 },
-          3: { step: "D", alter: 1, octaveGapToRoot: 1 },
-          6: { step: "F", alter: 1, octaveGapToRoot: 0 },
-          11: { step: "B", alter: 0, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 1: { step: 'C', alter: 1, octaveGapToRoot: 2 }, 3: { step: 'D', alter: 1, octaveGapToRoot: 1 }, 6: { step: 'F', alter: 1, octaveGapToRoot: 0 }, 11: { step: 'B', alter: 0, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 5,
@@ -207,34 +114,17 @@ export default [
     pianoKeyIds: [5, 7, 0, 4, 2],
     pianoKeyIdsSorted: [0, 2, 4, 5, 7],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      0: { intervalType: "p", intervalNum: 5 },
-      2: { intervalType: "maj", intervalNum: 13 },
-      4: { intervalType: "maj", intervalNum: 7 },
-      5: { intervalType: "p", intervalNum: 1 },
-      7: { intervalType: "maj", intervalNum: 2 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 5 },
-      2: { intervalType: "maj", pianoKeyId: 7 },
-      5: { intervalType: "p", pianoKeyId: 0 },
-      7: { intervalType: "maj", pianoKeyId: 4 },
-      13: { intervalType: "maj", pianoKeyId: 2 },
-    },
+    pianoKeyIdToInterval: { 0: { intervalType: 'p', intervalNum: 5 }, 2: { intervalType: 'maj', intervalNum: 13 }, 4: { intervalType: 'maj', intervalNum: 7 }, 5: { intervalType: 'p', intervalNum: 1 }, 7: { intervalType: 'maj', intervalNum: 2 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 5 }, 2: { intervalType: 'maj', pianoKeyId: 7 }, 5: { intervalType: 'p', pianoKeyId: 0 }, 7: { intervalType: 'maj', pianoKeyId: 4 }, 13: { intervalType: 'maj', pianoKeyId: 2 } },
     notes: [
       {
-        rootNoteStep: "F",
+        rootNoteStep: 'F',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "C", alter: 0, octaveGapToRoot: 1 },
-          2: { step: "D", alter: 0, octaveGapToRoot: 2 },
-          4: { step: "E", alter: 0, octaveGapToRoot: 1 },
-          7: { step: "G", alter: 0, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 0: { step: 'C', alter: 0, octaveGapToRoot: 1 }, 2: { step: 'D', alter: 0, octaveGapToRoot: 2 }, 4: { step: 'E', alter: 0, octaveGapToRoot: 1 }, 7: { step: 'G', alter: 0, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 6,
@@ -242,46 +132,24 @@ export default [
     pianoKeyIds: [6, 8, 1, 5, 3],
     pianoKeyIdsSorted: [1, 3, 5, 6, 8],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      1: { intervalType: "p", intervalNum: 5 },
-      3: { intervalType: "maj", intervalNum: 13 },
-      5: { intervalType: "maj", intervalNum: 7 },
-      6: { intervalType: "p", intervalNum: 1 },
-      8: { intervalType: "maj", intervalNum: 2 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 6 },
-      2: { intervalType: "maj", pianoKeyId: 8 },
-      5: { intervalType: "p", pianoKeyId: 1 },
-      7: { intervalType: "maj", pianoKeyId: 5 },
-      13: { intervalType: "maj", pianoKeyId: 3 },
-    },
+    pianoKeyIdToInterval: { 1: { intervalType: 'p', intervalNum: 5 }, 3: { intervalType: 'maj', intervalNum: 13 }, 5: { intervalType: 'maj', intervalNum: 7 }, 6: { intervalType: 'p', intervalNum: 1 }, 8: { intervalType: 'maj', intervalNum: 2 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 6 }, 2: { intervalType: 'maj', pianoKeyId: 8 }, 5: { intervalType: 'p', pianoKeyId: 1 }, 7: { intervalType: 'maj', pianoKeyId: 5 }, 13: { intervalType: 'maj', pianoKeyId: 3 } },
     notes: [
       {
-        rootNoteStep: "F",
+        rootNoteStep: 'F',
         rootNoteAlter: 1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          1: { step: "C", alter: 1, octaveGapToRoot: 1 },
-          3: { step: "D", alter: 1, octaveGapToRoot: 2 },
-          5: { step: "E", alter: 1, octaveGapToRoot: 1 },
-          8: { step: "G", alter: 1, octaveGapToRoot: 0 },
-        },
+        notesMap: { 1: { step: 'C', alter: 1, octaveGapToRoot: 1 }, 3: { step: 'D', alter: 1, octaveGapToRoot: 2 }, 5: { step: 'E', alter: 1, octaveGapToRoot: 1 }, 8: { step: 'G', alter: 1, octaveGapToRoot: 0 } }
       },
       {
-        rootNoteStep: "G",
+        rootNoteStep: 'G',
         rootNoteAlter: -1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          1: { step: "D", alter: -1, octaveGapToRoot: 1 },
-          3: { step: "E", alter: -1, octaveGapToRoot: 2 },
-          5: { step: "F", alter: 0, octaveGapToRoot: 1 },
-          8: { step: "A", alter: -1, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 1: { step: 'D', alter: -1, octaveGapToRoot: 1 }, 3: { step: 'E', alter: -1, octaveGapToRoot: 2 }, 5: { step: 'F', alter: 0, octaveGapToRoot: 1 }, 8: { step: 'A', alter: -1, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 7,
@@ -289,34 +157,17 @@ export default [
     pianoKeyIds: [7, 9, 2, 6, 4],
     pianoKeyIdsSorted: [2, 4, 6, 7, 9],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      2: { intervalType: "p", intervalNum: 5 },
-      4: { intervalType: "maj", intervalNum: 13 },
-      6: { intervalType: "maj", intervalNum: 7 },
-      7: { intervalType: "p", intervalNum: 1 },
-      9: { intervalType: "maj", intervalNum: 2 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 7 },
-      2: { intervalType: "maj", pianoKeyId: 9 },
-      5: { intervalType: "p", pianoKeyId: 2 },
-      7: { intervalType: "maj", pianoKeyId: 6 },
-      13: { intervalType: "maj", pianoKeyId: 4 },
-    },
+    pianoKeyIdToInterval: { 2: { intervalType: 'p', intervalNum: 5 }, 4: { intervalType: 'maj', intervalNum: 13 }, 6: { intervalType: 'maj', intervalNum: 7 }, 7: { intervalType: 'p', intervalNum: 1 }, 9: { intervalType: 'maj', intervalNum: 2 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 7 }, 2: { intervalType: 'maj', pianoKeyId: 9 }, 5: { intervalType: 'p', pianoKeyId: 2 }, 7: { intervalType: 'maj', pianoKeyId: 6 }, 13: { intervalType: 'maj', pianoKeyId: 4 } },
     notes: [
       {
-        rootNoteStep: "G",
+        rootNoteStep: 'G',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          2: { step: "D", alter: 0, octaveGapToRoot: 1 },
-          4: { step: "E", alter: 0, octaveGapToRoot: 2 },
-          6: { step: "F", alter: 1, octaveGapToRoot: 1 },
-          9: { step: "A", alter: 0, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 2: { step: 'D', alter: 0, octaveGapToRoot: 1 }, 4: { step: 'E', alter: 0, octaveGapToRoot: 2 }, 6: { step: 'F', alter: 1, octaveGapToRoot: 1 }, 9: { step: 'A', alter: 0, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 8,
@@ -324,46 +175,24 @@ export default [
     pianoKeyIds: [8, 10, 3, 7, 5],
     pianoKeyIdsSorted: [3, 5, 7, 8, 10],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      3: { intervalType: "p", intervalNum: 5 },
-      5: { intervalType: "maj", intervalNum: 13 },
-      7: { intervalType: "maj", intervalNum: 7 },
-      8: { intervalType: "p", intervalNum: 1 },
-      10: { intervalType: "maj", intervalNum: 2 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 8 },
-      2: { intervalType: "maj", pianoKeyId: 10 },
-      5: { intervalType: "p", pianoKeyId: 3 },
-      7: { intervalType: "maj", pianoKeyId: 7 },
-      13: { intervalType: "maj", pianoKeyId: 5 },
-    },
+    pianoKeyIdToInterval: { 3: { intervalType: 'p', intervalNum: 5 }, 5: { intervalType: 'maj', intervalNum: 13 }, 7: { intervalType: 'maj', intervalNum: 7 }, 8: { intervalType: 'p', intervalNum: 1 }, 10: { intervalType: 'maj', intervalNum: 2 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 8 }, 2: { intervalType: 'maj', pianoKeyId: 10 }, 5: { intervalType: 'p', pianoKeyId: 3 }, 7: { intervalType: 'maj', pianoKeyId: 7 }, 13: { intervalType: 'maj', pianoKeyId: 5 } },
     notes: [
       {
-        rootNoteStep: "G",
+        rootNoteStep: 'G',
         rootNoteAlter: 1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          3: { step: "D", alter: 1, octaveGapToRoot: 1 },
-          5: { step: "E", alter: 1, octaveGapToRoot: 2 },
-          7: { step: "F", alter: 2, octaveGapToRoot: 1 },
-          10: { step: "A", alter: 1, octaveGapToRoot: 0 },
-        },
+        notesMap: { 3: { step: 'D', alter: 1, octaveGapToRoot: 1 }, 5: { step: 'E', alter: 1, octaveGapToRoot: 2 }, 7: { step: 'F', alter: 2, octaveGapToRoot: 1 }, 10: { step: 'A', alter: 1, octaveGapToRoot: 0 } }
       },
       {
-        rootNoteStep: "A",
+        rootNoteStep: 'A',
         rootNoteAlter: -1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          3: { step: "E", alter: -1, octaveGapToRoot: 1 },
-          5: { step: "F", alter: 0, octaveGapToRoot: 2 },
-          7: { step: "G", alter: 0, octaveGapToRoot: 1 },
-          10: { step: "B", alter: -1, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 3: { step: 'E', alter: -1, octaveGapToRoot: 1 }, 5: { step: 'F', alter: 0, octaveGapToRoot: 2 }, 7: { step: 'G', alter: 0, octaveGapToRoot: 1 }, 10: { step: 'B', alter: -1, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 9,
@@ -371,34 +200,17 @@ export default [
     pianoKeyIds: [9, 11, 4, 8, 6],
     pianoKeyIdsSorted: [4, 6, 8, 9, 11],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      4: { intervalType: "p", intervalNum: 5 },
-      6: { intervalType: "maj", intervalNum: 13 },
-      8: { intervalType: "maj", intervalNum: 7 },
-      9: { intervalType: "p", intervalNum: 1 },
-      11: { intervalType: "maj", intervalNum: 2 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 9 },
-      2: { intervalType: "maj", pianoKeyId: 11 },
-      5: { intervalType: "p", pianoKeyId: 4 },
-      7: { intervalType: "maj", pianoKeyId: 8 },
-      13: { intervalType: "maj", pianoKeyId: 6 },
-    },
+    pianoKeyIdToInterval: { 4: { intervalType: 'p', intervalNum: 5 }, 6: { intervalType: 'maj', intervalNum: 13 }, 8: { intervalType: 'maj', intervalNum: 7 }, 9: { intervalType: 'p', intervalNum: 1 }, 11: { intervalType: 'maj', intervalNum: 2 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 9 }, 2: { intervalType: 'maj', pianoKeyId: 11 }, 5: { intervalType: 'p', pianoKeyId: 4 }, 7: { intervalType: 'maj', pianoKeyId: 8 }, 13: { intervalType: 'maj', pianoKeyId: 6 } },
     notes: [
       {
-        rootNoteStep: "A",
+        rootNoteStep: 'A',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          4: { step: "E", alter: 0, octaveGapToRoot: 1 },
-          6: { step: "F", alter: 1, octaveGapToRoot: 2 },
-          8: { step: "G", alter: 1, octaveGapToRoot: 1 },
-          11: { step: "B", alter: 0, octaveGapToRoot: 0 },
-        },
-      },
-    ],
+        notesMap: { 4: { step: 'E', alter: 0, octaveGapToRoot: 1 }, 6: { step: 'F', alter: 1, octaveGapToRoot: 2 }, 8: { step: 'G', alter: 1, octaveGapToRoot: 1 }, 11: { step: 'B', alter: 0, octaveGapToRoot: 0 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 10,
@@ -406,46 +218,24 @@ export default [
     pianoKeyIds: [10, 0, 5, 9, 7],
     pianoKeyIdsSorted: [0, 5, 7, 9, 10],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      0: { intervalType: "maj", intervalNum: 2 },
-      5: { intervalType: "p", intervalNum: 5 },
-      7: { intervalType: "maj", intervalNum: 13 },
-      9: { intervalType: "maj", intervalNum: 7 },
-      10: { intervalType: "p", intervalNum: 1 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 10 },
-      2: { intervalType: "maj", pianoKeyId: 0 },
-      5: { intervalType: "p", pianoKeyId: 5 },
-      7: { intervalType: "maj", pianoKeyId: 9 },
-      13: { intervalType: "maj", pianoKeyId: 7 },
-    },
+    pianoKeyIdToInterval: { 0: { intervalType: 'maj', intervalNum: 2 }, 5: { intervalType: 'p', intervalNum: 5 }, 7: { intervalType: 'maj', intervalNum: 13 }, 9: { intervalType: 'maj', intervalNum: 7 }, 10: { intervalType: 'p', intervalNum: 1 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 10 }, 2: { intervalType: 'maj', pianoKeyId: 0 }, 5: { intervalType: 'p', pianoKeyId: 5 }, 7: { intervalType: 'maj', pianoKeyId: 9 }, 13: { intervalType: 'maj', pianoKeyId: 7 } },
     notes: [
       {
-        rootNoteStep: "A",
+        rootNoteStep: 'A',
         rootNoteAlter: 1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "B", alter: 1, octaveGapToRoot: 0 },
-          5: { step: "E", alter: 1, octaveGapToRoot: 1 },
-          7: { step: "F", alter: 2, octaveGapToRoot: 2 },
-          9: { step: "G", alter: 2, octaveGapToRoot: 1 },
-        },
+        notesMap: { 0: { step: 'B', alter: 1, octaveGapToRoot: 0 }, 5: { step: 'E', alter: 1, octaveGapToRoot: 1 }, 7: { step: 'F', alter: 2, octaveGapToRoot: 2 }, 9: { step: 'G', alter: 2, octaveGapToRoot: 1 } }
       },
       {
-        rootNoteStep: "B",
+        rootNoteStep: 'B',
         rootNoteAlter: -1,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          0: { step: "C", alter: 0, octaveGapToRoot: 1 },
-          5: { step: "F", alter: 0, octaveGapToRoot: 1 },
-          7: { step: "G", alter: 0, octaveGapToRoot: 2 },
-          9: { step: "A", alter: 0, octaveGapToRoot: 1 },
-        },
-      },
-    ],
+        notesMap: { 0: { step: 'C', alter: 0, octaveGapToRoot: 1 }, 5: { step: 'F', alter: 0, octaveGapToRoot: 1 }, 7: { step: 'G', alter: 0, octaveGapToRoot: 2 }, 9: { step: 'A', alter: 0, octaveGapToRoot: 1 } }
+      }
+    ]
   },
   {
     pianoKeyIdRoot: 11,
@@ -453,33 +243,18 @@ export default [
     pianoKeyIds: [11, 1, 6, 10, 8],
     pianoKeyIdsSorted: [1, 6, 8, 10, 11],
     notesNum: 5,
-    pianoKeyIdToInterval: {
-      1: { intervalType: "maj", intervalNum: 2 },
-      6: { intervalType: "p", intervalNum: 5 },
-      8: { intervalType: "maj", intervalNum: 13 },
-      10: { intervalType: "maj", intervalNum: 7 },
-      11: { intervalType: "p", intervalNum: 1 },
-    },
-    intervalToPianoKeyId: {
-      1: { intervalType: "p", pianoKeyId: 11 },
-      2: { intervalType: "maj", pianoKeyId: 1 },
-      5: { intervalType: "p", pianoKeyId: 6 },
-      7: { intervalType: "maj", pianoKeyId: 10 },
-      13: { intervalType: "maj", pianoKeyId: 8 },
-    },
+    pianoKeyIdToInterval: { 1: { intervalType: 'maj', intervalNum: 2 }, 6: { intervalType: 'p', intervalNum: 5 }, 8: { intervalType: 'maj', intervalNum: 13 }, 10: { intervalType: 'maj', intervalNum: 7 }, 11: { intervalType: 'p', intervalNum: 1 } },
+    intervalToPianoKeyId: { 1: { intervalType: 'p', pianoKeyId: 11 }, 2: { intervalType: 'maj', pianoKeyId: 1 }, 5: { intervalType: 'p', pianoKeyId: 6 }, 7: { intervalType: 'maj', pianoKeyId: 10 }, 13: { intervalType: 'maj', pianoKeyId: 8 } },
     notes: [
       {
-        rootNoteStep: "B",
+        rootNoteStep: 'B',
         rootNoteAlter: 0,
         isRootNoteNormal: true,
         isValid: true,
-        notesMap: {
-          1: { step: "C", alter: 1, octaveGapToRoot: 1 },
-          6: { step: "F", alter: 1, octaveGapToRoot: 1 },
-          8: { step: "G", alter: 1, octaveGapToRoot: 2 },
-          10: { step: "A", alter: 1, octaveGapToRoot: 1 },
-        },
-      },
-    ],
-  },
-];
+        notesMap: { 1: { step: 'C', alter: 1, octaveGapToRoot: 1 }, 6: { step: 'F', alter: 1, octaveGapToRoot: 1 }, 8: { step: 'G', alter: 1, octaveGapToRoot: 2 }, 10: { step: 'A', alter: 1, octaveGapToRoot: 1 } }
+      }
+    ]
+  }
+]
+
+export default CHORD_META;

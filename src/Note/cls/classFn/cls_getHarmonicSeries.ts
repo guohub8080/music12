@@ -1,6 +1,6 @@
-import {Interval} from "../../../Interval/cls/IntervalClass";
-import {T_IntervalType} from "../../../common/static/INTERVAL_TYPES.ts";
-import {T_AlterValue, T_NoteStep} from "../../../common/static/NOTE_TYPES.ts";
+import {Interval} from "@interval/cls/IntervalClass";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
+import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 import {Note} from "../NoteClass";
 
 /**

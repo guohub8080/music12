@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "min7alter"
 
@@ -12,6 +12,7 @@ export const MIN7_SHARP5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小七增五",
   scoreDisplay: "m7#5",
   intervalList: [["min", 3], ["aug", 5], ["min", 7]],
+  tags: ["chord7","min","altered","sharp5"],
   degreeToIntervalMap: { 3: "min", 5: "aug", 7: "min" },
   notesNum: 4,
   semitonesList: [3, 8, 10],
@@ -26,6 +27,7 @@ export const MIN_MAJ7_FLAT5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小大七减五",
   scoreDisplay: "mM7b5",
   intervalList: [["min", 3], ["dim", 5], ["maj", 7]],
+  tags: ["chord7","min","maj7","altered","flat5"],
   degreeToIntervalMap: { 3: "min", 5: "dim", 7: "maj" },
   notesNum: 4,
   semitonesList: [3, 6, 11],
@@ -40,6 +42,7 @@ export const MIN_MAJ7_SHARP5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小大七增五",
   scoreDisplay: "mM7#5",
   intervalList: [["min", 3], ["aug", 5], ["maj", 7]],
+  tags: ["chord7","min","maj7","altered","sharp5"],
   degreeToIntervalMap: { 3: "min", 5: "aug", 7: "maj" },
   notesNum: 4,
   semitonesList: [3, 8, 11],

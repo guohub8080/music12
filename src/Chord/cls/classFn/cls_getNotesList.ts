@@ -2,8 +2,8 @@
  * 获取和弦音符列表
  */
 
-import { Note } from "../../../Note/cls/NoteClass";
-import { getNoteByPianoKeyId } from "../../../Note";
+import { Note } from "@note/cls/NoteClass";
+import { getNoteByPianoKeyId } from "@note";
 
 /**
  * 获取音符列表（基于 pianoKeyIds）

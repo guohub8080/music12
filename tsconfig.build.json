@@ -1,0 +1,26 @@
+{
+  // 构建专用：仅产出 .d.ts 类型声明，供 vite.lib.config.ts 的 build 脚本调用
+  // 开发期类型检查用根 tsconfig.json（noEmit）
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "dist/types"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode",
+    ".idea",
+    "test",
+    "web_test",
+    "src/**/__helper__/**"
+  ]
+}

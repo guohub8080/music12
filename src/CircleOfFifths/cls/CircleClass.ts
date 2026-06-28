@@ -41,10 +41,11 @@
  * c.minCircle  // a 小调信息
  */
 
-import {Base12Radix} from "../../common/radix";
+import isNil from "lodash/isNil"
+import {Base12Radix} from "@common/radix";
 import FIFTH_META from "../static/FIFTH_META";
-import {isInteger} from "lodash";
-import {CircleOfFifthsError} from "../../common/processError/errorTypes.ts";
+import isInteger from "lodash/isInteger"
+import {CircleOfFifthsError} from "@common/processError/errorTypes";
 
 export class CircleOfFifths extends Base12Radix {
 
@@ -213,7 +214,7 @@ export class CircleOfFifths extends Base12Radix {
 			.where("isTonicNormal", true)
 			.first()
 
-		if (!result) {
+		if (isNil(result)) {
 			throw new CircleOfFifthsError(`No normal major scale found at circleID ${circleID}`)
 		}
 

@@ -1,7 +1,9 @@
-import CHORD_FORMULA_ID from "../../../../ChordFormula/static/CHORD_FORMULA_ID.ts"
+import CHORD_FORMULA_ID from "@chord-formula/static/CHORD_FORMULA_ID"
+import type { I_ChordInstanceMeta } from "@chord/static/types";
 
 // 由 generateChordInstanceMeta.ts 自动生成
-export default [
+// 显式类型注解避免 TS 对字面量数组做联合推断（触发 TS2590）
+const CHORD_META: I_ChordInstanceMeta[] = [
   {
     pianoKeyIdRoot: 0,
     chordFormulaId: CHORD_FORMULA_ID["maj3"],
@@ -254,3 +256,5 @@ export default [
     ]
   }
 ]
+
+export default CHORD_META;

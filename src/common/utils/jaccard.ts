@@ -2,8 +2,8 @@
  * 集合相似度计算工具
  */
 
-import { intersection, union } from "lodash"
-
+import intersection from "lodash/intersection"
+import union from "lodash/union"
 /**
  * Jaccard 相似度系数
  *

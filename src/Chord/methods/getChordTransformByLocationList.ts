@@ -1,7 +1,11 @@
-import { getUpwardPianoKeyGap } from "../../Note";
-import { intersection, values, toPairs, isNil } from "lodash";
+import { isDefined } from "@common/utils/isDefined"
+import { getUpwardPianoKeyGap } from "@note";
+import intersection from "lodash/intersection"
+import values from "lodash/values"
+import toPairs from "lodash/toPairs"
+import isNil from "lodash/isNil"
 import { I_ChordNotesPanel } from "../static/types";
-import { Note } from "../../Note";
+import { Note } from "@note";
 
 // ==================== 类型定义 ====================
 
@@ -88,7 +92,7 @@ export const getChordTransformByPianoKeyIds = (
 
   // 获取原始和弦的有效键位列表（排除 undefined）
   const originKeyIds = values(originChordInfo.notesPanel)
-    .filter((note): note is InstanceType<typeof Note> => !isNil(note))
+    .filter((note): note is InstanceType<typeof Note> => isDefined(note))
     .map((note) => note.pianoKeyId);
 
   // 找出共同音符

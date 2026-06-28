@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getAlterStepListByNum, getScaleByStaveAlters, getStaveAlterByNote } from '@music12/Stave/index';
+import { getAlterStepListByNum, getScaleByStaveAlters, getStaveAlterByNote } from '@stave/index';
 
 describe('Stave - getAlterStepListByNum', () => {
 	describe('升号调性', () => {

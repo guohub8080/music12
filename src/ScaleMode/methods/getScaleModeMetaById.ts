@@ -1,13 +1,14 @@
-import { values } from "lodash"
-import { SCALE_MODE_META_MAP } from '../static/SCALE_MODE_META_MAP.js'
-import type { I_ScaleModeMeta } from '../static/types.ts'
+import isNil from "lodash/isNil"
+import values from "lodash/values"
+import { SCALE_MODE_META_MAP } from '../static/SCALE_MODE_META_MAP'
+import type { I_ScaleModeMeta } from '../static/types'
 
 /**
  * 根据调式 ID 获取调式元数据
  */
 export const getScaleModeMetaById = (scaleModeId: string): I_ScaleModeMeta => {
 	const meta = SCALE_MODE_META_MAP[scaleModeId]
-	if (!meta) {
+	if (isNil(meta)) {
 		throw new Error(`Scale mode not found: ${scaleModeId}`)
 	}
 	return meta

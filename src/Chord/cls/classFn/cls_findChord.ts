@@ -1,5 +1,5 @@
-import { findChord, type I_AnalyzedChordResult } from "../../../Find/findChord/index.ts"
-import type { Chord } from "../ChordClass.ts"
+import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
+import type { Chord } from "../ChordClass"
 
 /**
  * 根据和弦当前的 pianoKeyIds（含变换）反查匹配的和弦
@@ -14,9 +14,8 @@ import type { Chord } from "../ChordClass.ts"
 export const cls_findChord = (
   chord: Chord,
   config?: {
-    isShowFuzzyOnFullMatch?: boolean
-    isShowFuzzyOnEmptyMatch?: boolean
-    minSimilarity?: number
+    /** true=只返回完全匹配；false=完全匹配+省略音（默认 false） */
+    isStrict?: boolean
   }
 ): I_AnalyzedChordResult[] => {
   const octave = 4

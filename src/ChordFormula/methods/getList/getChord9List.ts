@@ -4,8 +4,8 @@ import {
   DOM9_FORMULA_META,
   MIN9_FORMULA_META,
   MIN_MAJ9_FORMULA_META,
-} from '../../static/FAMILIES/CHORD9_FORMULA_META.ts'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/CHORD9_FORMULA_META'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取九和弦族的元数据列表

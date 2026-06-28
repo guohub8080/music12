@@ -1,4 +1,4 @@
-import {RadixError} from "../../processError/errorTypes.ts";
+import {RadixError} from "../../processError/errorTypes";
 
 /**
  * 进制基类

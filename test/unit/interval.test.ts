@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Interval } from '@music12/Interval/index';
-import { Note } from '@music12/Note/index';
+import { Interval } from '@interval/index';
+import { Note } from '@note/index';
 
 /**
  * Interval 测试

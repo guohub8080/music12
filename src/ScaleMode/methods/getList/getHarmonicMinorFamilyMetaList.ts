@@ -6,8 +6,8 @@ import {
   DORIAN_SHARP4_MODE_META,
   PHRYGIAN_DOMINANT_MODE_META,
   LYDIAN_SHARP2_MODE_META,
-} from '../../static/FAMILIES/HARMONIC_MINOR_MODE_META.ts'
-import type { I_ScaleModeMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/HARMONIC_MINOR_MODE_META'
+import type { I_ScaleModeMeta } from '../../static/types'
 
 /**
  * 获取和声小调族的调式元数据列表（6 个）

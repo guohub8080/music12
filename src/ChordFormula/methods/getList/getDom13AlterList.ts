@@ -5,8 +5,8 @@ import {
   DOM13_FLAT9_FORMULA_META,
   DOM13_SHARP9_FORMULA_META,
   DOM13_SHARP11_FORMULA_META,
-} from '../../static/FAMILIES/DOM13_ALTER_FORMULA_META.ts'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/DOM13_ALTER_FORMULA_META'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取属十三变音族的元数据列表

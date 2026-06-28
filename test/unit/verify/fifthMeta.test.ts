@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { Note } from '@music12/Note/index';
-import { Interval } from '@music12/Interval/index';
-import FIFTH_META from '@music12/CircleOfFifths/static/FIFTH_META';
+import { Note } from '@note/index';
+import { Interval } from '@interval/index';
+import FIFTH_META from '@circle-of-fifths/static/FIFTH_META';
 
 /**
  * 用 Interval 手动计算调号

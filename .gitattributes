@@ -1,0 +1,21 @@
+# 统一换行符为 LF（text 文件自动 normalization）
+# 提交时 CRLF→LF，checkout 时保持 LF（不再转回 CRLF）
+* text=auto eol=lf
+
+# 二进制文件不做换行符处理
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.otf binary
+*.mp3 binary
+*.mp4 binary
+*.wav binary
+*.pdf binary
+*.lockb binary

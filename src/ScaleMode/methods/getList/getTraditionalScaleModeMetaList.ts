@@ -7,12 +7,12 @@ import {
   LYDIAN_MODE_META,
   MIXOLYDIAN_MODE_META,
   LOCRIAN_MODE_META,
-} from '../../static/FAMILIES/DIATONIC_MODE_META.ts'
-import { HARMONIC_MAJOR_MODE_META } from '../../static/FAMILIES/HARMONIC_MAJOR_MODE_META.ts'
-import { HARMONIC_MINOR_MODE_META } from '../../static/FAMILIES/HARMONIC_MINOR_MODE_META.ts'
-import { MELODIC_MAJOR_DESCENDING_MODE_META } from '../../static/FAMILIES/MELODIC_MAJOR_MODE_META.ts'
-import { MELODIC_MINOR_ASCENDING_MODE_META } from '../../static/FAMILIES/MELODIC_MINOR_MODE_META.ts'
-import type { I_ScaleModeMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/DIATONIC_MODE_META'
+import { HARMONIC_MAJOR_MODE_META } from '../../static/FAMILIES/HARMONIC_MAJOR_MODE_META'
+import { HARMONIC_MINOR_MODE_META } from '../../static/FAMILIES/HARMONIC_MINOR_MODE_META'
+import { MELODIC_MAJOR_DESCENDING_MODE_META } from '../../static/FAMILIES/MELODIC_MAJOR_MODE_META'
+import { MELODIC_MINOR_ASCENDING_MODE_META } from '../../static/FAMILIES/MELODIC_MINOR_MODE_META'
+import type { I_ScaleModeMeta } from '../../static/types'
 
 /**
  * 获取传统调式元数据列表

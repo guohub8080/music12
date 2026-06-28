@@ -1,8 +1,8 @@
-import {Note} from "../cls/NoteClass.ts";
-import NOTE_META from "../static/NOTE_META.ts";
-import {T_AlterValue, T_NoteStep} from "../../common/static/NOTE_TYPES.ts";
-import {defaultTo} from "lodash";
-import normalizeOctave from "./normalizeOctave.ts";
+import {Note} from "../cls/NoteClass";
+import NOTE_META from "../static/NOTE_META";
+import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
+import defaultTo from "lodash/defaultTo"
+import normalizeOctave from "./normalizeOctave";
 
 /**
  * 获取黑键随机音符

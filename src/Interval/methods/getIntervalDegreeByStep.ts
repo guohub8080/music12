@@ -1,6 +1,6 @@
-import { defaultTo } from "lodash"
-import { StepRadix } from "../../common/radix/music/StepRadix.ts"
-import { T_NoteStep } from "../../common/static/NOTE_TYPES.ts"
+import defaultTo from "lodash/defaultTo"
+import { StepRadix } from "@common/radix/music/StepRadix"
+import { T_NoteStep } from "@common/static/NOTE_TYPES"
 
 /**
  * 根据两个音名计算度数

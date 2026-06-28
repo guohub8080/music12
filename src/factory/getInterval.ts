@@ -1,6 +1,6 @@
-import {FactoryError} from "../common/processError/errorTypes.ts";
-import {Interval} from "../Interval";
-import {T_IntervalType} from "../common/static/INTERVAL_TYPES.ts";
+import {FactoryError} from "@common/processError/errorTypes";
+import {Interval} from "@interval";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 
 export const getInterval = (type: string, num: number) => {
   try {

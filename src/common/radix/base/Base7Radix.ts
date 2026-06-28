@@ -1,6 +1,6 @@
-import {isNumber} from "lodash";
-import {Radix} from "./Radix.ts";
-import {RadixError} from "../../processError/errorTypes.ts";
+import isNumber from "lodash/isNumber"
+import {Radix} from "./Radix";
+import {RadixError} from "../../processError/errorTypes";
 
 /**
  * 七进制数类

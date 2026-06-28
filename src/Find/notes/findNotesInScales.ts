@@ -1,5 +1,6 @@
-import { isNil } from "lodash"
-import ALL_SCALE_META, { type I_ScaleInstance } from "../../Scale/static/allScaleInstances.ts"
+import { isDefined } from "@common/utils/isDefined"
+import isNil from "lodash/isNil"
+import ALL_SCALE_META, { type I_ScaleInstance } from "@scale/static/allScaleInstances"
 
 /**
  * 音符在调式中的度数信息
@@ -65,7 +66,7 @@ export const findNotesInScales = (
 		const noteDegrees: INoteDegree[] = []
 		const allNotesInScale = notePianoKeyIds.every((pianoKeyId) => {
 			const degree = scale.pianoKeyIdToDegree[pianoKeyId]
-			if (!isNil(degree)) {
+			if (isDefined(degree)) {
 				const alter = scale.degreeAlterationsMap[degree] ?? 0
 				noteDegrees.push({ pianoKeyId, degree, alter })
 				return true
@@ -96,11 +97,11 @@ export const areNotesInScale = (
 		(s) => s.pianoKeyIdRoot === rootPianoKeyId && s.scaleModeId === scaleModeId
 	)
 
-	if (!scale) return false
+	if (isNil(scale)) return false
 
 	return notePianoKeyIds.every((pianoKeyId) => {
 		const degree = scale.pianoKeyIdToDegree[pianoKeyId]
-		return !isNil(degree)
+		return isDefined(degree)
 	})
 }
 

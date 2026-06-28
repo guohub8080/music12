@@ -1,6 +1,6 @@
 import { toPairs } from "lodash"
-import { Scale, SCALE_MODE_IDS, type T_ScaleModeId } from "@music12/Scale/index"
-import type { I_AnalyzedChordResult } from "@music12/Find/findChord/index"
+import { Scale, SCALE_MODE_IDS, type T_ScaleModeId } from "@scale/index"
+import type { I_AnalyzedChordResult } from "@find/findChord/index"
 import { useState } from "react"
 
 const PIANO_KEY_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]

@@ -1,8 +1,9 @@
-import {isNumber, isString} from "lodash";
-import {IntervalRadix} from "./IntervalRadix.ts";
-import {getIndexByStep, getStepByIndex, T_NoteStep} from "../../static/NOTE_TYPES.ts";
-import {RadixError} from "../../processError/errorTypes.ts";
-import {Base7Radix} from "../base/Base7Radix.ts";
+import isNumber from "lodash/isNumber"
+import isString from "lodash/isString"
+import {IntervalRadix} from "./IntervalRadix";
+import {getIndexByStep, getStepByIndex, T_NoteStep} from "../../static/NOTE_TYPES";
+import {RadixError} from "../../processError/errorTypes";
+import {Base7Radix} from "../base/Base7Radix";
 
 /**
  * 音级进制类

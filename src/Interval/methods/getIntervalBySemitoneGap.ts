@@ -35,11 +35,11 @@
 
 // noinspection ES6PreferShortImport
 
-import {T_IntervalType} from "../../common/static/INTERVAL_TYPES.ts";
-import {Interval} from "../cls/IntervalClass.ts";
-import {isEmpty} from "lodash";
-import INTERVAL_META from "../static/INTERVAL_META.ts";
-import {Base12Radix} from "../../common/radix";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
+import {Interval} from "../cls/IntervalClass";
+import isEmpty from "lodash/isEmpty"
+import INTERVAL_META from "../static/INTERVAL_META";
+import {Base12Radix} from "@common/radix";
 
 export const getIntervalBySemitoneGap = (semitoneGap: number): InstanceType<typeof Interval>[] | [] => {
 	// 取绝对值，支持负数输入

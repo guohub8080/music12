@@ -1,6 +1,6 @@
 import {numberToChinese} from "chinese-numbering";
-import {T_IntervalCnPrefix, T_IntervalType} from "../../common/static/INTERVAL_TYPES.ts";
-import {T_AlterValue} from "../../common/static/NOTE_TYPES.ts";
+import {T_IntervalCnPrefix, T_IntervalType} from "@common/static/INTERVAL_TYPES";
+import {T_AlterValue} from "@common/static/NOTE_TYPES";
 import {cls_initIntervalClass} from "./classFn/cls_initInterval";
 import cls_getEqualInterval from "./classFn/cls_getEqualInterval";
 

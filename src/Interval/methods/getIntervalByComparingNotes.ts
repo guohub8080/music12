@@ -45,12 +45,12 @@
 
 // noinspection ES6PreferShortImport
 
-import {IntervalError} from "../../common/processError/errorTypes";
-import {Base7Radix, StepRadix} from "../../common/radix";
-import {Note} from "../../Note/cls/NoteClass";
+import {IntervalError} from "@common/processError/errorTypes";
+import {Base7Radix, StepRadix} from "@common/radix";
+import type {Note} from "@note/cls/NoteClass";
 import {Interval} from "../cls/IntervalClass";
 import INTERVAL_META from "../static/INTERVAL_META";
-import {T_IntervalType} from "../../common/static/INTERVAL_TYPES.ts";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 
 
 const getIntervalByComparingNotes = (note1: InstanceType<typeof Note>,

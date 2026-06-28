@@ -1,6 +1,6 @@
 // noinspection ES6PreferShortImport
 
-import {PianoKey} from "../../../PianoKey";
+import {PianoKey} from "@pianokey";
 import {Note} from "../NoteClass";
 import collect from "collect.js";
 

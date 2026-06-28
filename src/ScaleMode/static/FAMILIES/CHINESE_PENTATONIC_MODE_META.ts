@@ -1,5 +1,5 @@
-import SCALE_MODE_ID from "../SCALE_MODE_ID.ts"
-import type { I_ScaleModeMeta } from "../types.ts"
+import SCALE_MODE_ID from "../SCALE_MODE_ID"
+import type { I_ScaleModeMeta } from "../types"
 
 // ========== 中国五声调式 ==========
 // null 代表该级在五声音阶中不存在（缺失的偏音）

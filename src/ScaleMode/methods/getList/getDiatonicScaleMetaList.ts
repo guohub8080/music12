@@ -7,8 +7,8 @@ import {
   LYDIAN_MODE_META,
   MIXOLYDIAN_MODE_META,
   LOCRIAN_MODE_META,
-} from '../../static/FAMILIES/DIATONIC_MODE_META.ts'
-import type { I_ScaleModeMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/DIATONIC_MODE_META'
+import type { I_ScaleModeMeta } from '../../static/types'
 
 /**
  * 获取所有自然大调/小调族（教会调式）的调式元数据列表

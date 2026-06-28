@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "min9alter"
 
@@ -12,6 +12,7 @@ export const MIN9_FLAT5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小九减五",
   scoreDisplay: "m9b5",
   intervalList: [["min", 3], ["dim", 5], ["min", 7], ["maj", 9]],
+  tags: ["chord9","halfdim","altered","flat5"],
   degreeToIntervalMap: { 3: "min", 5: "dim", 7: "min", 9: "maj" },
   notesNum: 5,
   semitonesList: [3, 6, 10, 14],

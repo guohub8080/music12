@@ -1,5 +1,6 @@
-import { CHORD_FORMULA_META_MAP } from '../static/CHORD_FORMULA_META_MAP.js'
-import type { I_ChordFormulaMeta } from '../static/types.ts'
+import isNil from "lodash/isNil"
+import { CHORD_FORMULA_META_MAP } from '../static/CHORD_FORMULA_META_MAP'
+import type { I_ChordFormulaMeta } from '../static/types'
 
 /**
  * 根据和弦公式 ID 获取对应的元数据
@@ -8,7 +9,7 @@ import type { I_ChordFormulaMeta } from '../static/types.ts'
  */
 export const getChordFormulaMetaById = (chordFormulaId: string): I_ChordFormulaMeta => {
   const meta = CHORD_FORMULA_META_MAP[chordFormulaId]
-  if (!meta) {
+  if (isNil(meta)) {
     throw new Error(`Chord formula not found: ${chordFormulaId}`)
   }
   return meta

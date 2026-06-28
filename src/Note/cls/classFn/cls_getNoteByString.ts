@@ -1,8 +1,8 @@
-import {IntervalError} from "../../../common/processError/errorTypes";
-import {Interval} from "../../../Interval/cls/IntervalClass";
-import {intervalSlide_145, intervalSlide_2367} from "../../../Interval/methods/intervalSlide";
-import {isPureInterval} from "../../../Interval/methods/isPureInterval";
-import {T_IntervalType} from "../../../common/static/INTERVAL_TYPES.ts";
+import {IntervalError} from "@common/processError/errorTypes";
+import {Interval} from "@interval/cls/IntervalClass";
+import {intervalSlide_145, intervalSlide_2367} from "@interval/methods/intervalSlide";
+import {isPureInterval} from "@interval/methods/isPureInterval";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 import {Note} from "../NoteClass";
 
 /**

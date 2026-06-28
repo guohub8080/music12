@@ -1,6 +1,6 @@
-import { values } from "lodash"
-import { CHORD_FORMULA_META_MAP } from '../../static/CHORD_FORMULA_META_MAP.js'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+import values from "lodash/values"
+import { CHORD_FORMULA_META_MAP } from '../../static/CHORD_FORMULA_META_MAP'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取所有和弦公式的元数据列表

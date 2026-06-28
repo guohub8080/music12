@@ -1,5 +1,5 @@
 import { toPairs, keys } from "lodash"
-import { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS, type T_ScaleModeId } from "@music12/Find/index"
+import { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS, type T_ScaleModeId } from "@find/index"
 import { useState } from "react"
 
 const PIANO_KEY_NAMES = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
@@ -37,7 +37,7 @@ const ScaleModeTypesTest = () => {
 
 	// 生成代码示例
 	const generateImportExample = (modeId: T_ScaleModeId) => {
-		return `import { findNoteDegreeInAllScales, SCALE_MODE } from "@music12/Find/index"
+		return `import { findNoteDegreeInAllScales, SCALE_MODE } from "@find/index"
 
 // 方式一：使用 SCALE_MODE 对象（推荐）
 const results = findNoteDegreeInAllScales(4, {
@@ -202,7 +202,7 @@ const results2 = findNoteDegreeInAllScales(4, {
 					fontSize: 13,
 					margin: 0
 				}}>
-					<code>{`import { SCALE_MODE, SCALE_MODE_IDS, type T_ScaleModeId } from "@music12/Find/index"
+					<code>{`import { SCALE_MODE, SCALE_MODE_IDS, type T_ScaleModeId } from "@find/index"
 
 // 方式一：使用 SCALE_MODE 对象（推荐，有类型提示）
 SCALE_MODE.NATURAL_MAJOR    // "NATURAL_MAJOR"

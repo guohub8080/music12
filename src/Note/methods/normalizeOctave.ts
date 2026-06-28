@@ -1,4 +1,5 @@
-import {isArray, isNumber} from "lodash";
+import isArray from "lodash/isArray"
+import isNumber from "lodash/isNumber"
 import collect from "collect.js";
 
 /**

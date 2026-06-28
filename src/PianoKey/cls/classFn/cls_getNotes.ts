@@ -1,8 +1,10 @@
-import NOTE_META from "../../../Note/static/NOTE_META.ts"
-import { T_NoteStep, T_AlterValue } from "../../../common/static/NOTE_TYPES.ts"
-import { Note } from "../../../Note/cls/NoteClass.ts"
-import { defaultTo, isNil } from "lodash"
-import type { PianoKey } from "../PianoKeyClass.ts"
+import { isDefined } from "@common/utils/isDefined"
+import NOTE_META from "@note/static/NOTE_META"
+import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
+import { Note } from "@note/cls/NoteClass"
+import defaultTo from "lodash/defaultTo"
+import isNil from "lodash/isNil"
+import type { PianoKey } from "../PianoKeyClass"
 
 /**
  * 获取该钢琴键位置的所有音符（等音异名）
@@ -22,7 +24,7 @@ export const cls_getNotes = (
   if (isNormal) handle = handle.where("isNormal", true)
 
   const alterLimit = config?.alterAbsLte
-  if (!isNil(alterLimit)) {
+  if (isDefined(alterLimit)) {
     if (alterLimit < 0 || alterLimit > 2) {
       throw new Error("alterAbsLte must be 0, 1, or 2.")
     }

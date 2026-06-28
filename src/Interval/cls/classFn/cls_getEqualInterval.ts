@@ -1,9 +1,9 @@
+import isNil from "lodash/isNil"
 import type {I_IntervalObj, I_GetEqualIntervalOptions} from "../IntervalClass"
-import {IntervalError} from "../../../common/processError/errorTypes";
+import {IntervalError} from "@common/processError/errorTypes";
 import INTERVAL_META from "../../static/INTERVAL_META";
 import {Interval} from "../IntervalClass";
-import {defaultTo} from "lodash";
-
+import defaultTo from "lodash/defaultTo"
 /**
  * 获取等音程
  *
@@ -76,7 +76,7 @@ export default (intervalInstance: InstanceType<typeof Interval>,
   // 从元数据中查找相同半音位置的所有音程
   const findIntervalOnSameLocation = INTERVAL_META.where("semitoneClockPosition",
     intervalInstance.semitoneClockPosition).all()
-  if (!findIntervalOnSameLocation) throw new IntervalError("Internal error: no intervals found at this location.")
+  if (isNil(findIntervalOnSameLocation)) throw new IntervalError("Internal error: no intervals found at this location.")
 
   // 过滤 → 计算实际度数 → 排除无效度数 → 构造 Interval
   return findIntervalOnSameLocation

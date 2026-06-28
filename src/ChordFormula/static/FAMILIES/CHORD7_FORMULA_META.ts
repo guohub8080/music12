@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "chord7"
 
@@ -12,6 +12,7 @@ export const MAJ7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大七",
   scoreDisplay: "M7",
   intervalList: [["maj", 3], ["p", 5], ["maj", 7]],
+  tags: ["chord7","maj7"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "maj" },
   notesNum: 4,
   semitonesList: [4, 7, 11],
@@ -26,6 +27,7 @@ export const DOM7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "属七",
   scoreDisplay: "7",
   intervalList: [["maj", 3], ["p", 5], ["min", 7]],
+  tags: ["chord7","dom"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "min" },
   notesNum: 4,
   semitonesList: [4, 7, 10],
@@ -40,6 +42,7 @@ export const MIN7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小七",
   scoreDisplay: "m7",
   intervalList: [["min", 3], ["p", 5], ["min", 7]],
+  tags: ["chord7","min"],
   degreeToIntervalMap: { 3: "min", 5: "p", 7: "min" },
   notesNum: 4,
   semitonesList: [3, 7, 10],
@@ -54,6 +57,7 @@ export const HALFDIM7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "半减七",
   scoreDisplay: "ø",
   intervalList: [["min", 3], ["dim", 5], ["min", 7]],
+  tags: ["chord7","halfdim","altered","flat5"],
   degreeToIntervalMap: { 3: "min", 5: "dim", 7: "min" },
   notesNum: 4,
   semitonesList: [3, 6, 10],
@@ -68,6 +72,7 @@ export const DIM7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "减七",
   scoreDisplay: "°7",
   intervalList: [["min", 3], ["dim", 5], ["dim", 7]],
+  tags: ["chord7","dim","altered","flat5"],
   degreeToIntervalMap: { 3: "min", 5: "dim", 7: "dim" },
   notesNum: 4,
   semitonesList: [3, 6, 9],
@@ -82,6 +87,7 @@ export const MIN_MAJ7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小大七",
   scoreDisplay: "mM7",
   intervalList: [["min", 3], ["p", 5], ["maj", 7]],
+  tags: ["chord7","min","maj7"],
   degreeToIntervalMap: { 3: "min", 5: "p", 7: "maj" },
   notesNum: 4,
   semitonesList: [3, 7, 11],

@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { findChord } from "@music12/Find/index"
-import { getNoteByPianoKeyId } from "@music12/Note"
+import { findChord } from "@find/index"
+import { getNoteByPianoKeyId } from "@note"
 
 type TestCase = {
 	name: string

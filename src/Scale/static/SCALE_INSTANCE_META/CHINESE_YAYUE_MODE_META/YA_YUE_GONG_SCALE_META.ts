@@ -1,4 +1,4 @@
-import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID.ts"
+import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID"
 
 // 由 generateScaleMeta.ts 自动生成
 export default [

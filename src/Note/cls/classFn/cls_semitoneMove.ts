@@ -1,6 +1,7 @@
+import { isDefined } from "@common/utils/isDefined"
 import {Note} from "../../index";
-import {PianoKey} from "../../../PianoKey";
-import {isNil} from "lodash";
+import {PianoKey} from "@pianokey";
+import isNil from "lodash/isNil"
 import collect from "collect.js";
 
 /**
@@ -36,7 +37,7 @@ const cls_semitoneMove = (noteInstance: InstanceType<typeof Note>,
 
   // 优先找 alter === 0 的自然音
   const zeroAlterNote = handle.where("alter", 0).first()
-  if (!isNil(zeroAlterNote)) return zeroAlterNote
+  if (isDefined(zeroAlterNote)) return zeroAlterNote
 
   // 没有自然音：向上选升号，向下选降号
   if (moveStep > 0) {

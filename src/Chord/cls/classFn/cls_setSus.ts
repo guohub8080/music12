@@ -2,8 +2,8 @@
  * 挂留和弦设置
  */
 
-import type { I_TransformPanel } from "../../static/types.ts";
-import type { T_IntervalType } from "../../../common/static/INTERVAL_TYPES.ts";
+import type { I_TransformPanel } from "../../static/types";
+import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 
 /**
  * 设置挂留和弦

@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import {Radix} from "@music12/common/radix";
-import {Interval} from "@music12/interval";
-import {Note} from "@music12/note";
+import {Radix} from "@common/radix";
+import {Interval} from "@interval";
+import {Note} from "@note";
 
 const RadixComps = () => {
 	const show1 = () => {

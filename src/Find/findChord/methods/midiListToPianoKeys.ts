@@ -1,5 +1,7 @@
-import {isArray, min, sortBy, uniq} from "lodash"
-
+import isArray from "lodash/isArray"
+import min from "lodash/min"
+import sortBy from "lodash/sortBy"
+import uniq from "lodash/uniq"
 /**
  * MIDI 列表转换结果
  */

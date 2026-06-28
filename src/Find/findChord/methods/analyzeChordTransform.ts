@@ -1,6 +1,10 @@
-import { difference, sortBy, isNil, toPairs } from "lodash"
-import type { I_RoughChordResult } from "./findRoughChord.ts"
-import type { I_ChordInstanceMeta } from "../../../Chord/static/types.ts"
+import { isDefined } from "@common/utils/isDefined"
+import difference from "lodash/difference"
+import sortBy from "lodash/sortBy"
+import isNil from "lodash/isNil"
+import toPairs from "lodash/toPairs"
+import type { I_RoughChordResult } from "./findRoughChord"
+import type { I_ChordInstanceMeta } from "@chord/static/types"
 
 /**
  * 变化信息：从原度数变化到新度数
@@ -122,7 +126,7 @@ const getChordNamedDegree = (chordFormulaId: string): number | null => {
   // 匹配模式：数字前可能是变音符号(b/#)，数字后可能有其他字符
   // 如 "maj7" → 7, "dom9#11" → 9, "min13" → 13
   const match = chordFormulaId.match(/(\d+)/)
-  if (!match) return null
+  if (isNil(match)) return null
 
   const degree = parseInt(match[1], 10)
 
@@ -179,7 +183,7 @@ export const analyzeChordTransform = (
 
   // ===== 检查命名度数是否被省略 =====
   const namedDegree = getChordNamedDegree(result.chordFormulaId)
-  if (!isNil(namedDegree)) {
+  if (isDefined(namedDegree)) {
     // 检查省略的音中是否包含命名度数
     const hasNamedDegreeOmitted = omittedWithDegree.some((omitted) => {
       const omittedDegreeNum = extractDegreeNumber(omitted.degreeName)
@@ -228,7 +232,7 @@ export const analyzeChordTransform = (
       const extraDegreeNum = extractDegreeNumber(extra.degreeName)
 
       // 如果度数编号相同，说明是同一度数的变化
-      if (omittedDegreeNum === extraDegreeNum && !isNil(omittedDegreeNum)) {
+      if (omittedDegreeNum === extraDegreeNum && isDefined(omittedDegreeNum)) {
         alterations.push({
           fromDegree: omitted.degreeName,
           toDegree: extra.degreeName,

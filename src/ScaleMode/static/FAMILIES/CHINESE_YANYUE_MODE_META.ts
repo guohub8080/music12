@@ -1,5 +1,5 @@
-import SCALE_MODE_ID from "../SCALE_MODE_ID.ts"
-import type { I_ScaleModeMeta } from "../types.ts"
+import SCALE_MODE_ID from "../SCALE_MODE_ID"
+import type { I_ScaleModeMeta } from "../types"
 
 // ========== 燕乐七声调式（Yanyue family） ==========
 // 燕乐音阶 = 五声宫调式 + 清角(4) + 闰(b7) = 1 2 3 4 5 6 b7

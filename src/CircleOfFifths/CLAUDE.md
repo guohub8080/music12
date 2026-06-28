@@ -11,7 +11,6 @@ CircleOfFifths/
 ├── cls/                  # 类定义
 │   ├── CircleClass.ts    # CircleOfFifths 类
 │   └── classFn/          # 类方法实现
-│       └── cls_fifthCircleClockMove.ts
 ├── methods/              # 独立工具函数
 │   └── getFifthCircleByAlter.ts
 └── static/               # 静态数据和类型

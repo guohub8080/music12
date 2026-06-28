@@ -1,7 +1,7 @@
-import {FactoryError} from "../common/processError/errorTypes.ts";
-import {getNote} from "./getNote.ts";
-import {Scale} from "../Scale";
-import {T_ScaleModeId} from "../Scale/static/scaleModeTypes.ts";
+import {FactoryError} from "@common/processError/errorTypes";
+import {getNote} from "./getNote";
+import {Scale} from "@scale";
+import {T_ScaleModeId} from "@scale/static/scaleModeTypes";
 
 /**
  * 快捷创建 Scale 实例

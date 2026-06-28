@@ -4,9 +4,10 @@
  * 支持 set(度数) 和 set("度数")/set("#度数")/set("b度数") 格式
  */
 
-import { isNumber } from "lodash";
-import type { T_IntervalType } from "../../../common/static/INTERVAL_TYPES.ts";
-import type { I_TransformPanel } from "../../static/types.ts";
+import isNil from "lodash/isNil"
+import isNumber from "lodash/isNumber"
+import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
+import type { I_TransformPanel } from "../../static/types";
 
 /**
  * 默认音程类型映射
@@ -77,7 +78,7 @@ export const cls_setChordDegree = (
     // # 和 b 不区分大小写和位置
     const normalized = input.toUpperCase().replace(/B/g, "b");
     const match = normalized.match(/^([#b]?)(\d+)([#b]?)$/);
-    if (!match) {
+    if (isNil(match)) {
       throw new Error(`Invalid degree input: "${input}"`);
     }
 

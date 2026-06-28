@@ -1,5 +1,5 @@
-import {INTERVAL_TYPE_LIST_145, INTERVAL_TYPE_LIST_2367, T_IntervalType145, T_IntervalType2367} from "../../common/static/INTERVAL_TYPES.ts";
-import {IntervalError} from "../../common/processError/errorTypes";
+import {INTERVAL_TYPE_LIST_145, INTERVAL_TYPE_LIST_2367, T_IntervalType145, T_IntervalType2367} from "@common/static/INTERVAL_TYPES";
+import {IntervalError} from "@common/processError/errorTypes";
 
 /**
  * 1/4/5 度音程类型滑动

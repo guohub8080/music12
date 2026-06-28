@@ -1,5 +1,5 @@
-import {Note} from "../NoteClass.ts";
-import {NoteError} from "../../../common/processError/errorTypes.ts";
+import {Note} from "../NoteClass";
+import {NoteError} from "@common/processError/errorTypes";
 
 /**
  * 获取 ii-V-I 进行

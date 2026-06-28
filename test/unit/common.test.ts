@@ -1,4 +1,4 @@
-import { Radix } from "@music12/common/radix"
+import { Radix } from "@common/radix"
 import { expect, test } from "vitest";
 
 test("Test PowerRadix", () => {

@@ -1,6 +1,6 @@
-import {FactoryError} from "../common/processError/errorTypes.ts";
-import {getNote} from "./getNote.ts";
-import {Chord} from "../Chord";
+import {FactoryError} from "@common/processError/errorTypes";
+import {getNote} from "./getNote";
+import {Chord} from "@chord";
 
 /**
  * 快捷创建 Chord 实例

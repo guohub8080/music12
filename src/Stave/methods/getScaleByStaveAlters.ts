@@ -31,7 +31,7 @@
  * getScaleByStaveAlters(-7)  // Cb 大调、ab 小调（包含等音异名）
  */
 
-import FIFTH_META from "../../CircleOfFifths/static/FIFTH_META";
+import FIFTH_META from "@circle-of-fifths/static/FIFTH_META";
 
 export const getScaleByStaveAlters = (staveAlter: number) => {
 	if (Math.abs(staveAlter) > 7) {

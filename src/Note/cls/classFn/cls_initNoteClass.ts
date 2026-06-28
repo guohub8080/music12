@@ -1,6 +1,6 @@
 import NOTE_META from "../../static/NOTE_META";
-import {T_AlterValue, T_NoteStep} from "../../../common/static/NOTE_TYPES.ts";
-import {NoteError} from "../../../common/processError/errorTypes";
+import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
+import {NoteError} from "@common/processError/errorTypes";
 
 type I_NoteObj = {
     uid: number;

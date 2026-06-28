@@ -1,2 +1,2 @@
 // 类
-export { PianoKey } from "./cls/PianoKeyClass.ts"
+export { PianoKey } from "./cls/PianoKeyClass"

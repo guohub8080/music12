@@ -14,7 +14,30 @@
     "paths": {
       "*": ["*"],
       "@music12/*": ["src/*"],
-      "@web/*": ["web_test/*"]
+      "@note": ["src/Note"],
+      "@note/*": ["src/Note/*"],
+      "@interval": ["src/Interval"],
+      "@interval/*": ["src/Interval/*"],
+      "@scale": ["src/Scale"],
+      "@scale/*": ["src/Scale/*"],
+      "@chord": ["src/Chord"],
+      "@chord/*": ["src/Chord/*"],
+      "@chord-formula": ["src/ChordFormula"],
+      "@chord-formula/*": ["src/ChordFormula/*"],
+      "@scale-mode": ["src/ScaleMode"],
+      "@scale-mode/*": ["src/ScaleMode/*"],
+      "@circle-of-fifths": ["src/CircleOfFifths"],
+      "@circle-of-fifths/*": ["src/CircleOfFifths/*"],
+      "@find": ["src/Find"],
+      "@find/*": ["src/Find/*"],
+      "@pianokey": ["src/PianoKey"],
+      "@pianokey/*": ["src/PianoKey/*"],
+      "@stave": ["src/Stave"],
+      "@stave/*": ["src/Stave/*"],
+      "@common/*": ["src/common/*"],
+      "@factory": ["src/factory"],
+      "@factory/*": ["src/factory/*"],
+      "@web/*": ["test/playground/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -23,29 +46,18 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "strict": false
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": false,
+    // js/ts 混用时设为false
+    "allowSyntheticDefaultImports": true
   },
-  /* Linting */
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    },
-    "./utils": {
-      "require": "./dist/utils.js",
-      "import": "./dist/utils.mjs"
-    }
-  },
-  "noUnusedLocals": false,
-  "noUnusedParameters": false,
-  "noFallthroughCasesInSwitch": true,
-  "noImplicitThis": false,
-  // js/ts 混用时设为false
-  "allowSyntheticDefaultImports": true,
   "include": [
     "src",
     "test",
-    "web_test",
+    "test/playground",
     "src/**/*.ts",
     "src/**/*.jsx",
     "src/**/*.js",

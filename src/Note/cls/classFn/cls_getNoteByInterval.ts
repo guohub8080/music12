@@ -1,11 +1,11 @@
-import {isNil} from "lodash";
-import {IntervalError, NoteError} from "../../../common/processError/errorTypes";
-import {StepRadix} from "../../../common/radix";
-import {PianoKey} from "../../../PianoKey";
-import {Interval} from "../../../Interval";
+import isNil from "lodash/isNil"
+import {IntervalError, NoteError} from "@common/processError/errorTypes";
+import {StepRadix} from "@common/radix";
+import {PianoKey} from "@pianokey";
+import type {Interval} from "@interval";
 import {Note} from "../../index";
 import NOTE_META from "../../static/NOTE_META";
-import {T_AlterValue, T_NoteStep} from "../../../common/static/NOTE_TYPES.ts";
+import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 
 /**
  * 根据音程计算目标音符

@@ -1,5 +1,5 @@
 import { toPairs } from "lodash"
-import { findNoteDegreeInAllScales, SCALE_MODE, SCALE_MODE_GROUPS, type I_NoteDegreeInScale, type T_ScaleModeId } from "@music12/Find/index"
+import { findNoteDegreeInAllScales, SCALE_MODE, SCALE_MODE_GROUPS, type I_NoteDegreeInScale, type T_ScaleModeId } from "@find/index"
 import { useState } from "react"
 
 const PIANO_KEY_NAMES = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]

@@ -1,5 +1,5 @@
-import SCALE_MODE_ID from "../SCALE_MODE_ID.ts"
-import type { I_ScaleModeMeta } from "../types.ts"
+import SCALE_MODE_ID from "../SCALE_MODE_ID"
+import type { I_ScaleModeMeta } from "../types"
 
 // ========== 雅乐七声调式（Yayue family） ==========
 // 雅乐音阶是在五声调式基础上加入"变宫、变徵"两个偏音得到的七声调式

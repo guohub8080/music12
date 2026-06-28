@@ -1,5 +1,5 @@
-import {T_IntervalType} from "../../common/static/INTERVAL_TYPES.ts";
-import {Note} from "../../Note/cls/NoteClass.ts";
+import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
+import {Note} from "@note/cls/NoteClass";
 
 
 // 和弦音程度数类型

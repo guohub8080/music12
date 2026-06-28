@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "maj7alter"
 
@@ -12,6 +12,7 @@ export const MAJ7_FLAT5_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大七减五",
   scoreDisplay: "maj7b5",
   intervalList: [["maj", 3], ["dim", 5], ["maj", 7]],
+  tags: ["chord7","maj7","altered","flat5"],
   degreeToIntervalMap: { 3: "maj", 5: "dim", 7: "maj" },
   notesNum: 4,
   semitonesList: [4, 6, 11],
@@ -26,6 +27,7 @@ export const MAJ7_FLAT9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大七减九",
   scoreDisplay: "maj7b9",
   intervalList: [["maj", 3], ["p", 5], ["maj", 7], ["min", 9]],
+  tags: ["chord9","maj7","altered","flat9"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "maj", 9: "min" },
   notesNum: 5,
   semitonesList: [4, 7, 11, 13],
@@ -40,6 +42,7 @@ export const MAJ7_FLAT13_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大七减十三",
   scoreDisplay: "maj7b13",
   intervalList: [["maj", 3], ["p", 5], ["maj", 7], ["min", 13]],
+  tags: ["chord7","maj7","altered","flat13"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "maj", 13: "min" },
   notesNum: 5,
   semitonesList: [4, 7, 11, 20],
@@ -54,6 +57,7 @@ export const MAJ7_SHARP11_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大七增十一",
   scoreDisplay: "maj7#11",
   intervalList: [["maj", 3], ["p", 5], ["maj", 7], ["aug", 11]],
+  tags: ["chord7","maj7","altered","sharp11"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 7: "maj", 11: "aug" },
   notesNum: 5,
   semitonesList: [4, 7, 11, 18],
@@ -68,6 +72,7 @@ export const AUG7_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "增大七",
   scoreDisplay: "maj7#5",
   intervalList: [["maj", 3], ["aug", 5], ["maj", 7]],
+  tags: ["chord7","maj7","altered","sharp5"],
   degreeToIntervalMap: { 3: "maj", 5: "aug", 7: "maj" },
   notesNum: 4,
   semitonesList: [4, 8, 11],

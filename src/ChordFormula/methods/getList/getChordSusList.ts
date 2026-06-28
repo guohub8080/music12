@@ -12,8 +12,8 @@ import {
   DOM13_SUS4_FORMULA_META,
   MAJ13_SUS4_FORMULA_META,
   MAJ13_SUS2_FORMULA_META,
-} from '../../static/FAMILIES/CHORD_SUS_FORMULA_META.ts'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/CHORD_SUS_FORMULA_META'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取挂留和弦族的元数据列表

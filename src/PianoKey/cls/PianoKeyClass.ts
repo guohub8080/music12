@@ -1,7 +1,8 @@
-import NOTE_META from "../../Note/static/NOTE_META.ts"
-import { T_NoteStep, T_AlterValue } from "../../common/static/NOTE_TYPES.ts"
-import { Note } from "../../Note/cls/NoteClass.ts"
-import cls_getNotes from "./classFn/cls_getNotes.ts"
+import isNil from "lodash/isNil"
+import NOTE_META from "@note/static/NOTE_META"
+import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
+import type { Note } from "@note/cls/NoteClass"
+import cls_getNotes from "./classFn/cls_getNotes"
 
 /**
  * 钢琴键类
@@ -59,7 +60,7 @@ export class PianoKey {
    */
   static fromNote(step: T_NoteStep, alter: T_AlterValue, octave: number = 4): PianoKey {
     const noteMeta = NOTE_META.where("step", step).where("alter", alter).first()
-    if (!noteMeta) {
+    if (isNil(noteMeta)) {
       throw new Error(`Invalid note: ${step} with alter ${alter}`)
     }
     return new PianoKey(noteMeta.pianoKeyId, octave)

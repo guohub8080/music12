@@ -1,6 +1,6 @@
-import FIFTH_META from "../static/FIFTH_META.ts";
-import {CircleOfFifthsError} from "../../common/processError/errorTypes.ts";
-import {CircleOfFifths} from "../cls/CircleClass.ts";
+import FIFTH_META from "../static/FIFTH_META";
+import {CircleOfFifthsError} from "@common/processError/errorTypes";
+import {CircleOfFifths} from "../cls/CircleClass";
 
 export const getFifthCircleByAlter = (alter: number) => {
   const obj = FIFTH_META.where("staveAlters", alter).first();

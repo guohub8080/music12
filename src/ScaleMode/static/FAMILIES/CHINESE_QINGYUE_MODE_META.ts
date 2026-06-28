@@ -1,5 +1,5 @@
-import SCALE_MODE_ID from "../SCALE_MODE_ID.ts"
-import type { I_ScaleModeMeta } from "../types.ts"
+import SCALE_MODE_ID from "../SCALE_MODE_ID"
+import type { I_ScaleModeMeta } from "../types"
 
 // ========== 清乐七声调式（Qingyue family） ==========
 // 清乐音阶又称下徵音阶、新音阶，是在五声调式基础上加入"清角（4）"和"变宫（7）"两个偏音而成

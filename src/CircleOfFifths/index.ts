@@ -1,5 +1,5 @@
 // 类
-export {CircleOfFifths} from "./cls/CircleClass.ts"
+export {CircleOfFifths} from "./cls/CircleClass"
 
 // 工具函数
-export {getFifthCircleByAlter} from "./methods/getFifthCircleByAlter.ts"
+export {getFifthCircleByAlter} from "./methods/getFifthCircleByAlter"

@@ -12,12 +12,24 @@ export default defineConfig({
     minifyIdentifiers:false,
     // keepNames:true
   },
-  root:resolve(__dirname, "web_test"),
+  root:resolve(__dirname, "test/playground"),
   resolve: {
     alias: {
       "@": resolve(__dirname),
-      "@web": resolve(__dirname,"web_test"),
+      "@web": resolve(__dirname,"test/playground"),
       "@music12": resolve(__dirname,"src"),
+      "@note": resolve(__dirname,"src/Note"),
+      "@interval": resolve(__dirname,"src/Interval"),
+      "@scale": resolve(__dirname,"src/Scale"),
+      "@chord": resolve(__dirname,"src/Chord"),
+      "@chord-formula": resolve(__dirname,"src/ChordFormula"),
+      "@scale-mode": resolve(__dirname,"src/ScaleMode"),
+      "@circle-of-fifths": resolve(__dirname,"src/CircleOfFifths"),
+      "@find": resolve(__dirname,"src/Find"),
+      "@pianokey": resolve(__dirname,"src/PianoKey"),
+      "@stave": resolve(__dirname,"src/Stave"),
+      "@common": resolve(__dirname,"src/common"),
+      "@factory": resolve(__dirname,"src/factory"),
       path: "path-browserify",
     },
     extensions: [".ts", ".tsx", ".js", "jsx"]

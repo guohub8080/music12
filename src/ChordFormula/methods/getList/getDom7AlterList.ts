@@ -1,7 +1,6 @@
 import collect from 'collect.js'
 import {
   DOM7_SHARP5_FORMULA_META,
-  AUG7_FORMULA_META,
   DOM7_FLAT5_FORMULA_META,
   DOM7_FLAT9_FORMULA_META,
   DOM7_SHARP9_FORMULA_META,
@@ -11,8 +10,8 @@ import {
   DOM7_FLAT5_SHARP9_FORMULA_META,
   DOM7_SHARP5_FLAT9_FORMULA_META,
   DOM7_SHARP5_SHARP9_FORMULA_META,
-} from '../../static/FAMILIES/DOM7_ALTER_FORMULA_META.ts'
-import type { I_ChordFormulaMeta } from '../../static/types.ts'
+} from '../../static/FAMILIES/DOM7_ALTER_FORMULA_META'
+import type { I_ChordFormulaMeta } from '../../static/types'
 
 /**
  * 获取属七变音族的元数据列表
@@ -20,7 +19,6 @@ import type { I_ChordFormulaMeta } from '../../static/types.ts'
 export const getDom7AlterList = () => {
   return collect<I_ChordFormulaMeta>([
     DOM7_SHARP5_FORMULA_META,
-    AUG7_FORMULA_META,
     DOM7_FLAT5_FORMULA_META,
     DOM7_FLAT9_FORMULA_META,
     DOM7_SHARP9_FORMULA_META,

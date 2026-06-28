@@ -1,4 +1,4 @@
-import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID.ts"
+import SCALE_MODE_ID from "../../../../ScaleMode/static/SCALE_MODE_ID"
 
 // 由 generateScaleMeta.ts 自动生成
 export default [
@@ -7,8 +7,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [0, 2, 5, 7, 9],
     pianoKeyIdsSorted: [0, 2, 5, 7, 9],
-    degreeToPianoKeyId: { 1: 0, 2: 2, 3: null, 4: 7, 5: 9, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: 1, 1: null, 2: 2, 3: null, 4: null, 5: null, 6: null, 7: 4, 8: null, 9: 5, 10: null, 11: null },
+    degreeToPianoKeyId: { 1: 0, 2: 2, 3: null, 4: 5, 5: 7, 6: 9, 7: null },
+    pianoKeyIdToDegree: { 0: 1, 1: null, 2: 2, 3: null, 4: null, 5: 4, 6: null, 7: 5, 8: null, 9: 6, 10: null, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -107,8 +107,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [1, 3, 6, 8, 10],
     pianoKeyIdsSorted: [1, 3, 6, 8, 10],
-    degreeToPianoKeyId: { 1: 1, 2: 3, 3: null, 4: 8, 5: 10, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: 1, 2: null, 3: 2, 4: null, 5: null, 6: null, 7: null, 8: 4, 9: null, 10: 5, 11: null },
+    degreeToPianoKeyId: { 1: 1, 2: 3, 3: null, 4: 6, 5: 8, 6: 10, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: 1, 2: null, 3: 2, 4: null, 5: null, 6: 4, 7: null, 8: 5, 9: null, 10: 6, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -207,8 +207,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [2, 4, 7, 9, 11],
     pianoKeyIdsSorted: [2, 4, 7, 9, 11],
-    degreeToPianoKeyId: { 1: 2, 2: 4, 3: null, 4: 9, 5: 11, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: null, 2: 1, 3: null, 4: 2, 5: null, 6: null, 7: null, 8: null, 9: 4, 10: null, 11: 5 },
+    degreeToPianoKeyId: { 1: 2, 2: 4, 3: null, 4: 7, 5: 9, 6: 11, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: null, 2: 1, 3: null, 4: 2, 5: null, 6: null, 7: 4, 8: null, 9: 5, 10: null, 11: 6 },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -289,8 +289,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [3, 5, 8, 10, 0],
     pianoKeyIdsSorted: [0, 3, 5, 8, 10],
-    degreeToPianoKeyId: { 1: 3, 2: 5, 3: null, 4: 10, 5: 0, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: 5, 1: null, 2: null, 3: 1, 4: null, 5: 2, 6: null, 7: null, 8: null, 9: null, 10: 4, 11: null },
+    degreeToPianoKeyId: { 1: 3, 2: 5, 3: null, 4: 8, 5: 10, 6: 0, 7: null },
+    pianoKeyIdToDegree: { 0: 6, 1: null, 2: null, 3: 1, 4: null, 5: 2, 6: null, 7: null, 8: 4, 9: null, 10: 5, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -389,8 +389,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [4, 6, 9, 11, 1],
     pianoKeyIdsSorted: [1, 4, 6, 9, 11],
-    degreeToPianoKeyId: { 1: 4, 2: 6, 3: null, 4: 11, 5: 1, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: 5, 2: null, 3: null, 4: 1, 5: null, 6: 2, 7: null, 8: null, 9: null, 10: null, 11: 4 },
+    degreeToPianoKeyId: { 1: 4, 2: 6, 3: null, 4: 9, 5: 11, 6: 1, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: 6, 2: null, 3: null, 4: 1, 5: null, 6: 2, 7: null, 8: null, 9: 4, 10: null, 11: 5 },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -489,8 +489,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [5, 7, 10, 0, 2],
     pianoKeyIdsSorted: [0, 2, 5, 7, 10],
-    degreeToPianoKeyId: { 1: 5, 2: 7, 3: null, 4: 0, 5: 2, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: 4, 1: null, 2: 5, 3: null, 4: null, 5: 1, 6: null, 7: 2, 8: null, 9: null, 10: null, 11: null },
+    degreeToPianoKeyId: { 1: 5, 2: 7, 3: null, 4: 10, 5: 0, 6: 2, 7: null },
+    pianoKeyIdToDegree: { 0: 5, 1: null, 2: 6, 3: null, 4: null, 5: 1, 6: null, 7: 2, 8: null, 9: null, 10: 4, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -589,8 +589,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [6, 8, 11, 1, 3],
     pianoKeyIdsSorted: [1, 3, 6, 8, 11],
-    degreeToPianoKeyId: { 1: 6, 2: 8, 3: null, 4: 1, 5: 3, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: 4, 2: null, 3: 5, 4: null, 5: null, 6: 1, 7: null, 8: 2, 9: null, 10: null, 11: null },
+    degreeToPianoKeyId: { 1: 6, 2: 8, 3: null, 4: 11, 5: 1, 6: 3, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: 5, 2: null, 3: 6, 4: null, 5: null, 6: 1, 7: null, 8: 2, 9: null, 10: null, 11: 4 },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -689,8 +689,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [7, 9, 0, 2, 4],
     pianoKeyIdsSorted: [0, 2, 4, 7, 9],
-    degreeToPianoKeyId: { 1: 7, 2: 9, 3: null, 4: 2, 5: 4, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: null, 2: 4, 3: null, 4: 5, 5: null, 6: null, 7: 1, 8: null, 9: 2, 10: null, 11: null },
+    degreeToPianoKeyId: { 1: 7, 2: 9, 3: null, 4: 0, 5: 2, 6: 4, 7: null },
+    pianoKeyIdToDegree: { 0: 4, 1: null, 2: 5, 3: null, 4: 6, 5: null, 6: null, 7: 1, 8: null, 9: 2, 10: null, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -771,8 +771,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [8, 10, 1, 3, 5],
     pianoKeyIdsSorted: [1, 3, 5, 8, 10],
-    degreeToPianoKeyId: { 1: 8, 2: 10, 3: null, 4: 3, 5: 5, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: null, 2: null, 3: 4, 4: null, 5: 5, 6: null, 7: null, 8: 1, 9: null, 10: 2, 11: null },
+    degreeToPianoKeyId: { 1: 8, 2: 10, 3: null, 4: 1, 5: 3, 6: 5, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: 4, 2: null, 3: 5, 4: null, 5: 6, 6: null, 7: null, 8: 1, 9: null, 10: 2, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -871,8 +871,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [9, 11, 2, 4, 6],
     pianoKeyIdsSorted: [2, 4, 6, 9, 11],
-    degreeToPianoKeyId: { 1: 9, 2: 11, 3: null, 4: 4, 5: 6, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: null, 2: null, 3: null, 4: 4, 5: null, 6: 5, 7: null, 8: null, 9: 1, 10: null, 11: 2 },
+    degreeToPianoKeyId: { 1: 9, 2: 11, 3: null, 4: 2, 5: 4, 6: 6, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: null, 2: 4, 3: null, 4: 5, 5: null, 6: 6, 7: null, 8: null, 9: 1, 10: null, 11: 2 },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -953,8 +953,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [10, 0, 3, 5, 7],
     pianoKeyIdsSorted: [0, 3, 5, 7, 10],
-    degreeToPianoKeyId: { 1: 10, 2: 0, 3: null, 4: 5, 5: 7, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: 2, 1: null, 2: null, 3: null, 4: null, 5: 4, 6: null, 7: 5, 8: null, 9: null, 10: 1, 11: null },
+    degreeToPianoKeyId: { 1: 10, 2: 0, 3: null, 4: 3, 5: 5, 6: 7, 7: null },
+    pianoKeyIdToDegree: { 0: 2, 1: null, 2: null, 3: 4, 4: null, 5: 5, 6: null, 7: 6, 8: null, 9: null, 10: 1, 11: null },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,
@@ -1053,8 +1053,8 @@ export default [
     scaleModeId: SCALE_MODE_ID.Zhi,
     pianoKeyIds: [11, 1, 4, 6, 8],
     pianoKeyIdsSorted: [1, 4, 6, 8, 11],
-    degreeToPianoKeyId: { 1: 11, 2: 1, 3: null, 4: 6, 5: 8, 6: null, 7: null },
-    pianoKeyIdToDegree: { 0: null, 1: 2, 2: null, 3: null, 4: null, 5: null, 6: 4, 7: null, 8: 5, 9: null, 10: null, 11: 1 },
+    degreeToPianoKeyId: { 1: 11, 2: 1, 3: null, 4: 4, 5: 6, 6: 8, 7: null },
+    pianoKeyIdToDegree: { 0: null, 1: 2, 2: null, 3: null, 4: 4, 5: null, 6: 5, 7: null, 8: 6, 9: null, 10: null, 11: 1 },
     degreeAlterationsMap: { 2: 0, 3: null, 4: 0, 5: 0, 6: 0, 7: null },
     scaleMode: {
       scaleModeId: SCALE_MODE_ID.Zhi,

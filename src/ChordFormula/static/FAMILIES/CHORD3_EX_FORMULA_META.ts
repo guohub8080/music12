@@ -1,5 +1,5 @@
-import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID.ts"
-import type { I_ChordFormulaMeta } from "../types.ts"
+import CHORD_FORMULA_ID from "../CHORD_FORMULA_ID"
+import type { I_ChordFormulaMeta } from "../types"
 
 const FAMILY = "chord3_ex"
 
@@ -14,6 +14,7 @@ export const MAJ3_ADD6_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三加六",
   scoreDisplay: "add6",
   intervalList: [["maj", 3], ["p", 5], ["maj", 6]],
+  tags: ["chord3","maj","add6"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 6: "maj" },
   notesNum: 4,
   semitonesList: [4, 7, 9],
@@ -28,6 +29,7 @@ export const MIN3_ADD6_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小三加六",
   scoreDisplay: "madd6",
   intervalList: [["min", 3], ["p", 5], ["maj", 6]],
+  tags: ["chord3","min","add6"],
   degreeToIntervalMap: { 3: "min", 5: "p", 6: "maj" },
   notesNum: 4,
   semitonesList: [3, 7, 9],
@@ -44,6 +46,7 @@ export const MAJ3_ADD6_ADD9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三加六加九",
   scoreDisplay: "add6add9",
   intervalList: [["maj", 3], ["p", 5], ["maj", 6], ["maj", 9]],
+  tags: ["chord3","maj","add6","add"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 6: "maj", 9: "maj" },
   notesNum: 5,
   semitonesList: [4, 7, 9, 14],
@@ -58,6 +61,7 @@ export const MIN3_ADD6_ADD9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小三加六加九",
   scoreDisplay: "madd6add9",
   intervalList: [["min", 3], ["p", 5], ["maj", 6], ["maj", 9]],
+  tags: ["chord3","min","add6","add"],
   degreeToIntervalMap: { 3: "min", 5: "p", 6: "maj", 9: "maj" },
   notesNum: 5,
   semitonesList: [3, 7, 9, 14],
@@ -74,6 +78,7 @@ export const MAJ3_ADD9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三加九",
   scoreDisplay: "add9",
   intervalList: [["maj", 3], ["p", 5], ["maj", 9]],
+  tags: ["chord3","maj","add"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 9: "maj" },
   notesNum: 4,
   semitonesList: [4, 7, 14],
@@ -88,6 +93,7 @@ export const MAJ3_ADD11_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "大三加十一",
   scoreDisplay: "add11",
   intervalList: [["maj", 3], ["p", 5], ["p", 11]],
+  tags: ["chord3","maj","add"],
   degreeToIntervalMap: { 3: "maj", 5: "p", 11: "p" },
   notesNum: 4,
   semitonesList: [4, 7, 17],
@@ -102,6 +108,7 @@ export const MIN3_ADD9_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小三加九",
   scoreDisplay: "madd9",
   intervalList: [["min", 3], ["p", 5], ["maj", 9]],
+  tags: ["chord3","min","add"],
   degreeToIntervalMap: { 3: "min", 5: "p", 9: "maj" },
   notesNum: 4,
   semitonesList: [3, 7, 14],
@@ -116,6 +123,7 @@ export const MIN3_ADD11_FORMULA_META: I_ChordFormulaMeta = {
   cnName: "小三加十一",
   scoreDisplay: "madd11",
   intervalList: [["min", 3], ["p", 5], ["p", 11]],
+  tags: ["chord3","min","add"],
   degreeToIntervalMap: { 3: "min", 5: "p", 11: "p" },
   notesNum: 4,
   semitonesList: [3, 7, 17],

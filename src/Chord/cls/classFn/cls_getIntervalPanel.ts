@@ -4,12 +4,14 @@
  * init.degreeToIntervalMap + transformPanel = intervalPanel
  */
 
-import { toPairs, isNil } from "lodash";
-import type { T_IntervalType } from "../../../common/static/INTERVAL_TYPES.ts";
+import { isDefined } from "@common/utils/isDefined"
+import toPairs from "lodash/toPairs"
+import isNil from "lodash/isNil"
+import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 import type {
   I_ChordIntervalPanel,
   I_TransformPanel,
-} from "../../static/types.ts";
+} from "../../static/types";
 import type { I_ChordInitMeta } from "./cls_initChord";
 
 /**
@@ -52,7 +54,7 @@ export const cls_getIntervalPanel = (
     const degreeNum = Number(degree);
     if (value === "omit") {
       panel[degreeNum as keyof I_ChordIntervalPanel] = void 0;
-    } else if (!isNil(value)) {
+    } else if (isDefined(value)) {
       panel[degreeNum as keyof I_ChordIntervalPanel] =
         value as T_IntervalType;
     }
