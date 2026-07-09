@@ -10,8 +10,8 @@
  * - omit3 + add2 + add4 → sus2(add4)
  */
 
-import toPairs from "lodash/toPairs"
-import isString from "lodash/isString"
+import { isString } from 'es-toolkit'
+import { toPairs } from 'es-toolkit/compat'
 import type { I_TransformPanel } from "../../static/types";
 
 /**

@@ -1,3 +1,4 @@
+import { defaultTo } from 'es-toolkit/compat'
 import cls_getNoteByInterval from "./classFn/cls_getNoteByInterval";
 import { T_AlterValue, T_NoteStep } from "@common/static/NOTE_TYPES";
 import cls_getSamePitchNotes from "./classFn/cls_getSamePitchNotes";
@@ -8,7 +9,6 @@ import cls_getNoteByNumberNotation from "./classFn/cls_getNoteByString";
 import cls_getTemp251 from "./classFn/cls_getTemp251";
 import cls_semitoneMove from "./classFn/cls_semitoneMove";
 import { PianoKey } from "@pianokey";
-import defaultTo from "lodash/defaultTo"
 /**
  * 音符类
  *

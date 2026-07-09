@@ -1,5 +1,5 @@
+import { isNil } from 'es-toolkit'
 import { isDefined } from "@common/utils/isDefined"
-import isNil from "lodash/isNil"
 import ALL_SCALE_META, { type I_ScaleInstance } from "@scale/static/allScaleInstances"
 
 /**

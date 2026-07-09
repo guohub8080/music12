@@ -1,7 +1,7 @@
+import { isNil } from 'es-toolkit'
 import { isDefined } from "@common/utils/isDefined"
 import {Note} from "../../index";
 import {PianoKey} from "@pianokey";
-import isNil from "lodash/isNil"
 import collect from "collect.js";
 
 /**

@@ -1,5 +1,4 @@
-import isNumber from "lodash/isNumber"
-import isString from "lodash/isString"
+import { isNumber, isString } from 'es-toolkit'
 import {IntervalRadix} from "./IntervalRadix";
 import {getIndexByStep, getStepByIndex, T_NoteStep} from "../../static/NOTE_TYPES";
 import {RadixError} from "../../processError/errorTypes";

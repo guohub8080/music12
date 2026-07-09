@@ -55,7 +55,7 @@ export default defineConfig({
         },
         rollupOptions: {
             // 运行时依赖标为外部，不打进 bundle
-            external: ['lodash', /^lodash\//, 'collect.js', 'chinese-numbering'],
+            external: ['es-toolkit', 'collect.js', 'chinese-numbering'],
             output: [
                 {
                     format: 'es',

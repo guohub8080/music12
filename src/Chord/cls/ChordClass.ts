@@ -12,11 +12,9 @@
  * 最终音程面板 = initChordFormulaMeta.degreeToIntervalMap + transformPanel
  */
 
+import { isNil, uniq } from 'es-toolkit'
+import { some, toPairs } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
-import some from "lodash/some"
-import isNil from "lodash/isNil"
-import toPairs from "lodash/toPairs"
-import uniq from "lodash/uniq"
 import { Note } from "@note/cls/NoteClass";
 import { getNoteByPianoKeyId } from "@note";
 import { cls_initChord, type I_ChordInitMeta } from "./classFn/cls_initChord";

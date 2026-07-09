@@ -1,8 +1,8 @@
+import { range } from 'es-toolkit'
+import { defaultTo } from 'es-toolkit/compat'
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
-import range from "lodash/range"
-import defaultTo from "lodash/defaultTo"
 /**
  * 根据钢琴键 ID 获取音符
  *

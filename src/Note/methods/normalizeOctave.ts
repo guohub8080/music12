@@ -1,5 +1,5 @@
-import isArray from "lodash/isArray"
-import isNumber from "lodash/isNumber"
+import { isNumber } from 'es-toolkit'
+import { isArray } from 'es-toolkit/compat'
 import collect from "collect.js";
 
 /**

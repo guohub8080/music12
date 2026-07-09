@@ -1,4 +1,4 @@
-import { toPairs } from "lodash"
+import { toPairs } from "es-toolkit/compat"
 import { findNoteDegreeInAllScales, SCALE_MODE, SCALE_MODE_GROUPS, type I_NoteDegreeInScale, type T_ScaleModeId } from "@find/index"
 import { useState } from "react"
 

@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react"
-import { toPairs, keys, includes } from "lodash"
+import { toPairs, keys } from "es-toolkit/compat"
+import { includes } from "es-toolkit"
 import { Chord } from "@chord"
 
 // 变换类型

@@ -1,6 +1,5 @@
+import { intersection, isEqual } from 'es-toolkit'
 import collect from "collect.js"
-import intersection from "lodash/intersection"
-import isEqual from "lodash/isEqual"
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
 import type { I_ChordInstanceMeta } from "@chord/static/types"
 import { jaccard } from "@common/utils/jaccard"

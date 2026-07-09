@@ -41,10 +41,10 @@
  * c.minCircle  // a 小调信息
  */
 
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
+import { isInteger } from 'es-toolkit/compat'
 import {Base12Radix} from "@common/radix";
 import FIFTH_META from "../static/FIFTH_META";
-import isInteger from "lodash/isInteger"
 import {CircleOfFifthsError} from "@common/processError/errorTypes";
 
 export class CircleOfFifths extends Base12Radix {

@@ -1,9 +1,7 @@
+import { intersection, isNil } from 'es-toolkit'
+import { toPairs, values } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
 import { getUpwardPianoKeyGap } from "@note";
-import intersection from "lodash/intersection"
-import values from "lodash/values"
-import toPairs from "lodash/toPairs"
-import isNil from "lodash/isNil"
 import { I_ChordNotesPanel } from "../static/types";
 import { Note } from "@note";
 

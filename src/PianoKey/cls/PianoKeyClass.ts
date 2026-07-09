@@ -1,4 +1,4 @@
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
 import NOTE_META from "@note/static/NOTE_META"
 import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
 import type { Note } from "@note/cls/NoteClass"

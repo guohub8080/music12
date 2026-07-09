@@ -1,5 +1,5 @@
+import { isNil } from 'es-toolkit'
 import { getNoteByPianoKeyId } from "@note"
-import isNil from "lodash/isNil"
 /**
  * 获取指定度数的 Note 实例
  * @param scale Scale 实例

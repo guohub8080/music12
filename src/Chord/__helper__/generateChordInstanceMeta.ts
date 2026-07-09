@@ -1,14 +1,7 @@
+import { isBoolean, isNil, isNumber, isString } from 'es-toolkit'
+import { isArray, isObject, keys, toPairs, values } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
 import { writeFileSync, existsSync, mkdirSync, rmSync } from "fs";
-import isNil from "lodash/isNil"
-import isArray from "lodash/isArray"
-import isObject from "lodash/isObject"
-import isString from "lodash/isString"
-import isNumber from "lodash/isNumber"
-import isBoolean from "lodash/isBoolean"
-import toPairs from "lodash/toPairs"
-import keys from "lodash/keys"
-import values from "lodash/values"
 import { join } from "path";
 import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP";
 import CHORD_FORMULA_ID from "@chord-formula/static/CHORD_FORMULA_ID";
@@ -169,7 +162,7 @@ function generateNotesMeta(
 
   // 对于黑键，添加降号变体（如果 isNormal）
   if (rootNote.isBlack) {
-    const samePitchNotes = rootNote.getSamePitchNotes(true, 1);
+    const samePitchNotes = rootNote.getSamePitchNotes({ isSelfIncluded: true, alterAbsLte: 1 });
     for (const altRoot of samePitchNotes) {
       if (altRoot.isNormal && altRoot.step !== rootNote.step) {
         rootVariants.push(altRoot);
@@ -249,7 +242,7 @@ function objectToString(obj: any, indent = 2): string {
     const items = entries.map(([key, value]) => {
       // 处理 chordFormulaId
       if (key === "chordFormulaId") {
-        return `${key}: CHORD_FORMULA_ID[${JSON.stringify(obj.chordFormulaId)}]`;
+        return `${key}: CHORD_FORMULA_ID[${JSON.stringify((obj as { chordFormulaId?: unknown }).chordFormulaId)}]`;
       }
       return `${key}: ${objectToString(value, nextIndent)}`;
     });

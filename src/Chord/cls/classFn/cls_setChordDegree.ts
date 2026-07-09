@@ -4,8 +4,7 @@
  * 支持 set(度数) 和 set("度数")/set("#度数")/set("b度数") 格式
  */
 
-import isNil from "lodash/isNil"
-import isNumber from "lodash/isNumber"
+import { isNil, isNumber } from 'es-toolkit'
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 import type { I_TransformPanel } from "../../static/types";
 

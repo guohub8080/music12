@@ -35,9 +35,9 @@
 
 // noinspection ES6PreferShortImport
 
+import { isEmpty } from 'es-toolkit/compat'
 import {T_IntervalType} from "@common/static/INTERVAL_TYPES";
 import {Interval} from "../cls/IntervalClass";
-import isEmpty from "lodash/isEmpty"
 import INTERVAL_META from "../static/INTERVAL_META";
 import {Base12Radix} from "@common/radix";
 

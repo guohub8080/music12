@@ -1,7 +1,7 @@
+import { defaultTo } from 'es-toolkit/compat'
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
-import defaultTo from "lodash/defaultTo"
 import normalizeOctave from "./normalizeOctave";
 
 /**

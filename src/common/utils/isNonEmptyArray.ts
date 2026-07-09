@@ -1,6 +1,3 @@
-import isArray from "lodash/isArray"
-import isEmpty from "lodash/isEmpty"
-
 /**
  * 判断值是否为非空数组
  *
@@ -9,6 +6,7 @@ import isEmpty from "lodash/isEmpty"
  * @example
  * if (isNonEmptyArray(list)) { /* list 已收窄为非空数组 *\/ }
  */
+import { isArray, isEmpty } from 'es-toolkit/compat'
 export function isNonEmptyArray<T>(value: unknown): value is T[] {
   return isArray(value) && !isEmpty(value)
 }

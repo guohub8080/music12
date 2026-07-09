@@ -1,9 +1,9 @@
+import { isNil } from 'es-toolkit'
+import { values } from 'es-toolkit/compat'
 import { getNoteByPianoKeyId } from "@note"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
 import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 import type { T_ScaleModeId } from "../../Scale/static/scaleModeTypes"
-import isNil from "lodash/isNil"
-import values from "lodash/values"
 import { isDefined } from "@common/utils/isDefined"
 
 // 类方法导入（非简单内联的）

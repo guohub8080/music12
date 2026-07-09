@@ -1,6 +1,6 @@
 {
   "name": "music12",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "TypeScript library for music theory calculations - notes, intervals, chords, scales",
   "author": "guohub8080",
   "license": "MIT",
@@ -91,11 +91,10 @@
   "dependencies": {
     "chinese-numbering": "^1.0.0",
     "collect.js": "^4.36.1",
-    "lodash": "4.17.23"
+    "es-toolkit": "^1.49.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/lodash": "^4.17.23",
     "@types/node": "^25.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

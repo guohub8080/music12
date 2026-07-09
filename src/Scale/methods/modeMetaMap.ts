@@ -1,4 +1,4 @@
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
 import { Scale } from "@scale/cls/ScaleClass"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES"

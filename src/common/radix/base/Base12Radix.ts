@@ -1,4 +1,4 @@
-import isNumber from "lodash/isNumber"
+import { isNumber } from 'es-toolkit'
 import {Radix} from "./Radix";
 import {RadixError} from "../../processError/errorTypes";
 

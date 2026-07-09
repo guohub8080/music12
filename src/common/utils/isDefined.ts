@@ -1,5 +1,3 @@
-import isNil from "lodash/isNil"
-
 /**
  * 判断值是否已定义（非 null 且非 undefined）
  *
@@ -9,4 +7,5 @@ import isNil from "lodash/isNil"
  * @example
  * if (isDefined(value)) { /* value 已收窄为非空 *\/ }
  */
+import { isNil } from 'es-toolkit'
 export const isDefined = <T>(value: T): value is NonNullable<T> => !isNil(value)

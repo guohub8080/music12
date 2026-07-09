@@ -1,8 +1,8 @@
+import { isEqual } from 'es-toolkit'
+import { isEmpty } from 'es-toolkit/compat'
 import collect from "collect.js"
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
 import type {I_ChordInstanceMeta} from "@chord/static/types"
-import isEqual from "lodash/isEqual"
-import isEmpty from "lodash/isEmpty"
 /**
  * 查找预设和弦返回结果
  */

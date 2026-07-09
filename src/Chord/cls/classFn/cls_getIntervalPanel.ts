@@ -4,9 +4,9 @@
  * init.degreeToIntervalMap + transformPanel = intervalPanel
  */
 
+import { isNil } from 'es-toolkit'
+import { toPairs } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
-import toPairs from "lodash/toPairs"
-import isNil from "lodash/isNil"
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 import type {
   I_ChordIntervalPanel,

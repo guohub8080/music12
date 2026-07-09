@@ -1,7 +1,7 @@
+import { isNil } from 'es-toolkit'
 import {midiListToPianoKeys} from "./methods/midiListToPianoKeys"
 import {findRoughChord} from "./methods/findRoughChord"
 import {analyzeChordTransform, type I_AnalyzedChordResult} from "./methods/analyzeChordTransform"
-import {isNil} from "lodash"
 
 // 导出类型
 export type { I_ChordAlteration, I_ChordTransform, I_AnalyzedChordResult } from "./methods/analyzeChordTransform"

@@ -1,10 +1,9 @@
-import isArray from "lodash/isArray"
-import min from "lodash/min"
-import sortBy from "lodash/sortBy"
-import uniq from "lodash/uniq"
 /**
  * MIDI 列表转换结果
  */
+import { uniq } from 'es-toolkit'
+import { sortBy } from 'es-toolkit/compat'
+import { isArray, min } from 'es-toolkit/compat'
 export type I_MidiListToPianoKeysResult = {
   /** 最低的 pianoKeyId（可能是根音） */
   lowestPianoKeyId: number

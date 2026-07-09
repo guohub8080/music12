@@ -1,4 +1,4 @@
-import defaultTo from "lodash/defaultTo"
+import { defaultTo } from 'es-toolkit/compat'
 import { StepRadix } from "@common/radix/music/StepRadix"
 import { T_NoteStep } from "@common/static/NOTE_TYPES"
 

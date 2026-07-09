@@ -1,5 +1,4 @@
-import isEmpty from "lodash/isEmpty"
-import toPairs from "lodash/toPairs"
+import { isEmpty, toPairs } from 'es-toolkit/compat'
 import ALL_SCALE_META, { type I_ScaleInstance } from "@scale/static/allScaleInstances"
 
 /**

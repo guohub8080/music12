@@ -1,8 +1,7 @@
+import { difference, isNil } from 'es-toolkit'
+import { sortBy } from 'es-toolkit/compat'
+import { toPairs } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
-import difference from "lodash/difference"
-import sortBy from "lodash/sortBy"
-import isNil from "lodash/isNil"
-import toPairs from "lodash/toPairs"
 import type { I_RoughChordResult } from "./findRoughChord"
 import type { I_ChordInstanceMeta } from "@chord/static/types"
 

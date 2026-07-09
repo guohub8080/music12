@@ -4,7 +4,7 @@
  * 负责验证参数并获取和弦公式元数据（init）
  */
 
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
 import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP";
 import { ChordError } from "@common/processError/errorTypes";
 import type { I_ChordFormulaMeta } from "@chord-formula/static/types";

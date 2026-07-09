@@ -1,4 +1,4 @@
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
 import { CHORD_FORMULA_META_MAP } from '../static/CHORD_FORMULA_META_MAP'
 import type { I_ChordFormulaMeta } from '../static/types'
 

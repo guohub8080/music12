@@ -1,14 +1,6 @@
+import { isBoolean, isNil, isNumber, isString, range } from 'es-toolkit'
+import { isArray, isObject, keys, toPairs, values } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
-import range from "lodash/range"
-import isNil from "lodash/isNil"
-import isArray from "lodash/isArray"
-import isObject from "lodash/isObject"
-import isString from "lodash/isString"
-import isNumber from "lodash/isNumber"
-import isBoolean from "lodash/isBoolean"
-import toPairs from "lodash/toPairs"
-import keys from "lodash/keys"
-import values from "lodash/values"
 import { Scale } from "../cls/ScaleClass"
 import { PianoKey } from "@pianokey"
 import { Note } from "@note"
@@ -79,7 +71,7 @@ import {
 } from "@scale-mode/static/FAMILIES/CHINESE_YANYUE_MODE_META"
 import { T_IntervalType } from "@common/static/INTERVAL_TYPES"
 import { t_scaleMode } from "../static/types"
-import type { I_ScaleModeMeta } from "../static/SCALE_MODE_META/types"
+import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 
 /**
  * 音阶元数据生成器

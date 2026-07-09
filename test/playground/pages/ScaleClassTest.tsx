@@ -1,4 +1,4 @@
-import { toPairs } from "lodash"
+import { toPairs } from "es-toolkit/compat"
 import { Scale, SCALE_MODE_IDS, type T_ScaleModeId } from "@scale/index"
 import type { I_AnalyzedChordResult } from "@find/findChord/index"
 import { useState } from "react"

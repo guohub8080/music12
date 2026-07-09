@@ -1,9 +1,9 @@
+import { isNil } from 'es-toolkit'
+import { defaultTo } from 'es-toolkit/compat'
 import { isDefined } from "@common/utils/isDefined"
 import NOTE_META from "@note/static/NOTE_META"
 import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
 import { Note } from "@note/cls/NoteClass"
-import defaultTo from "lodash/defaultTo"
-import isNil from "lodash/isNil"
 import type { PianoKey } from "../PianoKeyClass"
 
 /**

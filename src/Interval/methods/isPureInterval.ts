@@ -15,8 +15,8 @@
  * isPureInterval(3)  // false (三度是大/小音程)
  */
 
+import { isInteger } from 'es-toolkit/compat'
 import {IntervalRadix} from "@common/radix";
-import isInteger from "lodash/isInteger"
 export const isPureInterval = (degree: number): boolean => {
   if (degree <= 0 || !isInteger(degree)) {
     throw new Error("Degree must be a positive integer.")

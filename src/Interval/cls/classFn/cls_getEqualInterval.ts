@@ -1,9 +1,9 @@
-import isNil from "lodash/isNil"
+import { isNil } from 'es-toolkit'
+import { defaultTo } from 'es-toolkit/compat'
 import type {I_IntervalObj, I_GetEqualIntervalOptions} from "../IntervalClass"
 import {IntervalError} from "@common/processError/errorTypes";
 import INTERVAL_META from "../../static/INTERVAL_META";
 import {Interval} from "../IntervalClass";
-import defaultTo from "lodash/defaultTo"
 /**
  * 获取等音程
  *
