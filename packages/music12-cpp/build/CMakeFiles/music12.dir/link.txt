@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmusic12.a CMakeFiles/music12.dir/src/Note.cpp.o
+/usr/bin/ranlib libmusic12.a
