@@ -3,3 +3,7 @@ node_modules/
 .DS_Store
 **/.DS_Store
 dist/
+
+# === C++ build ===
+packages/music12-cpp/build/
+_deps/

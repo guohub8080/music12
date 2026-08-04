@@ -1,5 +1,0 @@
-if(EXISTS "/Users/guo/WebstormProjects/music12/packages/music12-cpp/build/music12_tests_e3b0c442_tests.cmake")
-  include("/Users/guo/WebstormProjects/music12/packages/music12-cpp/build/music12_tests_e3b0c442_tests.cmake")
-else()
-  add_test(music12_tests_NOT_BUILT music12_tests_NOT_BUILT)
-endif()
