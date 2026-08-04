@@ -271,7 +271,8 @@ private:
             }
         }
 
-        // 4. 从 intervalPanel 计算 pianoKeyIds
+        // 4. 从 intervalPanel 计算 pianoKeyIds(按度数顺序,去重但不排序)
+        // TS 版用 uniq(result):保持首次出现顺序
         m_cachedPianoKeyIds.clear();
         m_cachedPianoKeyIds.push_back(rootPianoKeyId); // 根音
 
@@ -280,16 +281,13 @@ private:
                 Interval interval(typeOpt.value(), degree);
                 int targetKeyId = (rootPianoKeyId + interval.semitoneGap) % 12;
                 if (targetKeyId < 0) targetKeyId += 12;
-                m_cachedPianoKeyIds.push_back(targetKeyId);
+                // 去重:如果已存在则不加
+                if (std::find(m_cachedPianoKeyIds.begin(), m_cachedPianoKeyIds.end(), targetKeyId)
+                    == m_cachedPianoKeyIds.end()) {
+                    m_cachedPianoKeyIds.push_back(targetKeyId);
+                }
             }
         }
-
-        // 去重(根音可能在 intervalPanel 里也出现)
-        std::sort(m_cachedPianoKeyIds.begin(), m_cachedPianoKeyIds.end());
-        m_cachedPianoKeyIds.erase(
-            std::unique(m_cachedPianoKeyIds.begin(), m_cachedPianoKeyIds.end()),
-            m_cachedPianoKeyIds.end()
-        );
 
         m_cachedNotesNum = static_cast<int>(m_cachedPianoKeyIds.size());
         m_cacheValid = true;
