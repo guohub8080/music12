@@ -15,6 +15,7 @@
 #include "Stave.hpp"
 #include "CircleOfFifths.hpp"
 #include "Factory.hpp"
+#include "Find.hpp"
 #include <filesystem>
 
 // 测试固件:加载 JSON 数据
@@ -266,4 +267,36 @@ TEST_F(Music12Test, FactoryGetScale) {
 TEST_F(Music12Test, FactoryGetChord) {
     auto c = music12::getChord("C", 0, "maj3");
     EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 4, 7}));
+}
+
+// ==================== Find 测试 ====================
+
+TEST_F(Music12Test, FindChordCMajor) {
+    // C-E-G = MIDI 60-64-67 = pianoKeyId {0,4,7} = C 大三
+    auto results = music12::findChord({60, 64, 67});
+    EXPECT_FALSE(results.empty());
+    bool foundMaj3 = false;
+    for (const auto& r : results) {
+        if (r.chordFormulaId == "maj3" && r.rootPianoKeyId == 0) {
+            foundMaj3 = true;
+            EXPECT_DOUBLE_EQ(r.similarity, 1.0);
+        }
+    }
+    EXPECT_TRUE(foundMaj3);
+}
+
+TEST_F(Music12Test, FindChordCMinor) {
+    // C-Eb-G = MIDI 60-63-67 = pianoKeyId {0,3,7} = C 小三
+    auto results = music12::findChord({60, 63, 67});
+    EXPECT_FALSE(results.empty());
+    bool foundMin3 = false;
+    for (const auto& r : results) {
+        if (r.chordFormulaId == "min3") foundMin3 = true;
+    }
+    EXPECT_TRUE(foundMin3);
+}
+
+TEST_F(Music12Test, FindChordTooFew) {
+    auto results = music12::findChord({60, 64});
+    EXPECT_TRUE(results.empty());  // 少于 3 个音不查
 }
