@@ -12,6 +12,9 @@
 #include "Radix.hpp"
 #include "StepRadix.hpp"
 #include "IntervalRadix.hpp"
+#include "Stave.hpp"
+#include "CircleOfFifths.hpp"
+#include "Factory.hpp"
 #include <filesystem>
 
 // 测试固件:加载 JSON 数据
@@ -216,4 +219,51 @@ TEST_F(Music12Test, ChordClearTransform) {
 TEST_F(Music12Test, PianoKeyFromPitch) {
     auto pk = music12::PianoKey::fromPitchInt(60);  // C4 = MIDI 60... 但 TS 用 octave*12+semitone
     EXPECT_EQ(pk.octave, 5);  // 60/12 = 5
+}
+
+// ==================== Stave 测试 ====================
+
+TEST_F(Music12Test, StaveSharps) {
+    EXPECT_EQ(music12::getAlterStepListByNum(1), std::vector<std::string>({"F"}));
+    EXPECT_EQ(music12::getAlterStepListByNum(2), std::vector<std::string>({"F", "C"}));
+    EXPECT_EQ(music12::getAlterStepListByNum(7), std::vector<std::string>({"F","C","G","D","A","E","B"}));
+}
+
+TEST_F(Music12Test, StaveFlats) {
+    EXPECT_EQ(music12::getAlterStepListByNum(-1), std::vector<std::string>({"B"}));
+    EXPECT_EQ(music12::getAlterStepListByNum(-3), std::vector<std::string>({"B", "E", "A"}));
+}
+
+TEST_F(Music12Test, StaveZero) {
+    EXPECT_TRUE(music12::getAlterStepListByNum(0).empty());
+}
+
+// ==================== CircleOfFifths 测试 ====================
+
+TEST_F(Music12Test, CircleAlter) {
+    auto c = music12::getFifthCircleByAlter(1);  // 1 升号 = G 大调
+    EXPECT_EQ(c.alterValue(), 1);
+}
+
+TEST_F(Music12Test, CircleCMajor) {
+    auto c = music12::getFifthCircleByAlter(0);  // 0 升降 = C 大调
+    EXPECT_EQ(c.circleID, 0);  // circleID = alters mod 12
+}
+
+// ==================== Factory 测试 ====================
+
+TEST_F(Music12Test, FactoryGetNote) {
+    auto n = music12::getNote("c", 0, 4);  // 小写
+    EXPECT_EQ(n.step, "C");
+    EXPECT_EQ(n.octave, 4);
+}
+
+TEST_F(Music12Test, FactoryGetScale) {
+    auto s = music12::getScale("C", 0, "NATURAL_MAJOR");
+    EXPECT_EQ(s.pianoKeyIds, std::vector<int>({0, 2, 4, 5, 7, 9, 11}));
+}
+
+TEST_F(Music12Test, FactoryGetChord) {
+    auto c = music12::getChord("C", 0, "maj3");
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 4, 7}));
 }
