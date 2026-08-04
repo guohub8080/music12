@@ -157,18 +157,58 @@ TEST_F(Music12Test, ScaleAllRoots) {
 
 TEST_F(Music12Test, ChordCMajor) {
     music12::Chord cMaj(0, "maj3");
-    EXPECT_EQ(cMaj.pianoKeyIds, std::vector<int>({0, 4, 7}));
-    EXPECT_EQ(cMaj.notesNum, 3);
+    EXPECT_EQ(cMaj.pianoKeyIds(), std::vector<int>({0, 4, 7}));
+    EXPECT_EQ(cMaj.notesNum(), 3);
 }
 
 TEST_F(Music12Test, ChordCMinor) {
     music12::Chord cMin(0, "min3");
-    EXPECT_EQ(cMin.pianoKeyIds, std::vector<int>({0, 3, 7}));
+    EXPECT_EQ(cMin.pianoKeyIds(), std::vector<int>({0, 3, 7}));
 }
 
 TEST_F(Music12Test, ChordC7) {
     music12::Chord c7(0, "dom7");
-    EXPECT_EQ(c7.pianoKeyIds, std::vector<int>({0, 4, 7, 10}));
+    EXPECT_EQ(c7.pianoKeyIds(), std::vector<int>({0, 4, 7, 10}));
+}
+
+// ==================== Chord 变换面板测试 ====================
+
+TEST_F(Music12Test, ChordSet7) {
+    // C 大三 + set(7) = Cmaj7(大七度 = 11 半音,不是属七的 10)
+    music12::Chord c(0, "maj3");
+    c.set(7);
+    EXPECT_TRUE(c.isTransformed());
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 4, 7, 11}));
+}
+
+TEST_F(Music12Test, ChordSetSus4) {
+    // C 大三 + sus4 = Csus4 (omit 3, add 4 → [0, 5, 7])
+    music12::Chord c(0, "maj3");
+    c.setSus(4);
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 5, 7}));
+}
+
+TEST_F(Music12Test, ChordSetString) {
+    // set("b3") = 小三度 → Cm
+    music12::Chord c(0, "maj3");
+    c.set("b3");
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 3, 7}));
+}
+
+TEST_F(Music12Test, ChordOmit) {
+    // C7 omit 7 = C 大三
+    music12::Chord c(0, "dom7");
+    c.setOmit(7);
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 4, 7}));
+}
+
+TEST_F(Music12Test, ChordClearTransform) {
+    music12::Chord c(0, "maj3");
+    c.set(7);
+    EXPECT_TRUE(c.isTransformed());
+    c.clearTransform();
+    EXPECT_FALSE(c.isTransformed());
+    EXPECT_EQ(c.pianoKeyIds(), std::vector<int>({0, 4, 7}));
 }
 
 // ==================== PianoKey 测试 ====================
