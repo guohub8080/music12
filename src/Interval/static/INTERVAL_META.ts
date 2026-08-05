@@ -1,7 +1,6 @@
 /**
  * INTERVAL_META — 音程元数据(39 条)
  *
- * monorepo 重构:数据已移至 shared/data/intervals.json
- * 此文件保留为转发层,消费方 import 路径不变。
+ * 数据来自 shared/data/intervals.json(6.9KB)
  */
-export { INTERVAL_META as default } from "../../data-loader"
+export { INTERVAL_META as default } from "./interval-data"
