@@ -97,6 +97,47 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → 只 C6
 
 ---
 
+## Monorepo 架构(v4.0+)
+
+music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄金测试向量保证密等。
+
+### 双实现
+
+| 实现 | 语言 | 用途 |
+|---|---|---|
+| `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
+| `packages/music12-cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
+
+两个版本读同一份 JSON 数据(`shared/data/`),输出完全一致(99.2% 密等验证通过)。
+
+### 数据架构
+
+```
+shared/data/          ← 单一真相源(7 个 JSON)
+├── notes.json        (35 条音符元数据)
+├── intervals.json    (39 条音程元数据)
+├── chord-formulas.json (87 个和弦公式)
+├── scale-modes.json  (46 个调式)
+├── chord-instances.json (1044 条 = 87×12)
+└── scale-instances.json (552 条 = 46×12)
+```
+
+数据由 `packages/music12-gen/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
+
+### 密等验证
+
+```bash
+pnpm verify:all   # TS 测试(213) + C++ 测试(32) + 黄金向量(1687)
+```
+
+1687 个黄金测试向量覆盖全调式 × 全和弦,TS 版和 C++ 版跑同样输入,输出必须一致。
+
+### Tree Shaking
+
+每个模块独立加载自己的 JSON,用户只 `import { Note }` → 只打包 5KB(不拖 Chord 的 2.1MB)。
+
+---
+
 ## License
 
 MIT

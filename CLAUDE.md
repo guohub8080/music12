@@ -4,26 +4,78 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-`music12` 是一个 TypeScript 乐理计算库，提供音符、音程、和弦、调式音阶等乐理概念的面向对象 API。核心理念是将抽象的乐理概念对象化，便于程序化操作。
+`music12` 是一个乐理计算库，提供音符、音程、和弦、调式音阶等乐理概念的面向对象 API。核心理念是将抽象的乐理概念对象化，便于程序化操作。
+
+**Monorepo 架构(v4.0+)**：TS 版 + C++ 版双实现，共享 JSON 数据，通过黄金测试向量保证密等。
+
+## Monorepo 结构
+
+```
+music12/
+├── src/                       ← TS 版源码(核心算法 ~1万行,读 JSON 不硬编码)
+├── packages/
+│   ├── music12-gen/           ← 数据生成器(跑一次 → 产出 shared/data/*.json)
+│   ├── music12-cpp/           ← C++ 版(密等移植,读同一份 JSON)
+│   │   ├── include/music12/   ← 头文件(Radix/Note/Interval/Scale/Chord/Find/Stave/Circle/Factory)
+│   │   ├── src/               ← 实现(.cpp)
+│   │   ├── test/              ← GoogleTest + 密等验证器
+│   │   ├── third_party/       ← nlohmann/json(单头文件)
+│   │   └── CMakeLists.txt
+│   └── (未来: music12-wasm, music12-python...)
+├── shared/
+│   └── data/                  ← 单一真相源(7 个 JSON,4.2MB)
+│       ├── notes.json         (35 条)
+│       ├── intervals.json     (39 条)
+│       ├── fifth.json         (42 条)
+│       ├── chord-formulas.json (87 条)
+│       ├── scale-modes.json   (46 条)
+│       ├── chord-instances.json(1044 条 = 87×12)
+│       └── scale-instances.json(552 条 = 46×12)
+├── tests/
+│   └── vectors/
+│       └── golden-vectors.json ← 1687 个黄金测试向量(密等验证用)
+├── tools/
+│   └── extract-golden.ts      ← 黄金向量提取器
+└── test/                      ← TS 版测试(213 个)
+```
 
 ## 常用命令
 
 ```bash
-# 构建库（Vite lib + tsc 声明，输出到 dist/esm、dist/cjs、dist/types）
-pnpm build
+# === TS 版 ===
+pnpm build              # 构建库(Vite lib + tsc 声明)
+pnpm typecheck          # 类型检查
+pnpm dev                # 开发服务器(playground)
+pnpm test               # 跑 213 个测试
+pnpm vitest test/unit/common.test.ts  # 单个测试文件
 
-# 仅类型检查（不产出）
-pnpm typecheck
+# === 数据生成 ===
+pnpm gen:data           # 重跑生成器,产出 shared/data/*.json
+pnpm gen:golden         # 重提取黄金测试向量
 
-# 启动开发服务器（Vite 运行 test/playground/ playground）
-pnpm dev
+# === C++ 版 ===
+pnpm build:cpp          # 编译 C++ 版(CMake)
+pnpm test:cpp           # 跑 32 个 GoogleTest
+pnpm verify:equivalence # 跑 1687 个黄金向量做密等验证
 
-# 运行测试
-pnpm vitest
-
-# 运行单个测试文件
-pnpm vitest test/unit/common.test.ts
+# === 全量验证(TS 测试 + C++ 测试 + 密等)===
+pnpm verify:all
 ```
+
+## 数据架构(核心)
+
+**单一真相源**：所有乐理数据在 `shared/data/*.json`，TS 版和 C++ 版都读这份数据。
+
+**Tree Shaking**：每个模块独立加载自己的 JSON（不用集中式 DataLoader）：
+- `Note/static/note-data.ts` → 只读 notes.json(7.7KB)
+- `Chord/static/chord-instance-data.ts` → 只读 chord-instances.json(2.1MB)
+- 用户 `import { Note }` → 只打包 5KB，不拖 Chord 的 2.1MB
+
+**数据修改流程**：
+1. 改 `packages/music12-gen/` 里的生成器或定义表
+2. `pnpm gen:data` → 重新产出 `shared/data/*.json`
+3. `pnpm gen:golden` → 重新提取黄金向量
+4. `pnpm verify:all` → 验证两边密等
 
 ## 编码规范
 
