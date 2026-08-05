@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `music12` 是一个乐理计算库，提供音符、音程、和弦、调式音阶等乐理概念的面向对象 API。核心理念是将抽象的乐理概念对象化，便于程序化操作。
 
-**Monorepo 架构(v4.0+)**：TS 版 + C++ 版双实现，共享 JSON 数据，通过黄金测试向量保证密等。
+**Monorepo 架构(v4.0+)**：TS 版 + C++ 版双实现，共享 JSON 数据，通过黄金测试向量保证幂等。
 
 ## Monorepo 结构
 
@@ -15,10 +15,10 @@ music12/
 ├── src/                       ← TS 版源码(核心算法 ~1万行,读 JSON 不硬编码)
 ├── packages/
 │   ├── music12-gen/           ← 数据生成器(跑一次 → 产出 shared/data/*.json)
-│   ├── music12-cpp/           ← C++ 版(密等移植,读同一份 JSON)
+│   ├── music12-cpp/           ← C++ 版(幂等移植,读同一份 JSON)
 │   │   ├── include/music12/   ← 头文件(Radix/Note/Interval/Scale/Chord/Find/Stave/Circle/Factory)
 │   │   ├── src/               ← 实现(.cpp)
-│   │   ├── test/              ← GoogleTest + 密等验证器
+│   │   ├── test/              ← GoogleTest + 幂等验证器
 │   │   ├── third_party/       ← nlohmann/json(单头文件)
 │   │   └── CMakeLists.txt
 │   └── (未来: music12-wasm, music12-python...)
@@ -33,7 +33,7 @@ music12/
 │       └── scale-instances.json(552 条 = 46×12)
 ├── tests/
 │   └── vectors/
-│       └── golden-vectors.json ← 1687 个黄金测试向量(密等验证用)
+│       └── golden-vectors.json ← 1687 个黄金测试向量(幂等验证用)
 ├── tools/
 │   └── extract-golden.ts      ← 黄金向量提取器
 └── test/                      ← TS 版测试(213 个)
@@ -56,9 +56,9 @@ pnpm gen:golden         # 重提取黄金测试向量
 # === C++ 版 ===
 pnpm build:cpp          # 编译 C++ 版(CMake)
 pnpm test:cpp           # 跑 32 个 GoogleTest
-pnpm verify:equivalence # 跑 1687 个黄金向量做密等验证
+pnpm verify:equivalence # 跑 1687 个黄金向量做幂等验证
 
-# === 全量验证(TS 测试 + C++ 测试 + 密等)===
+# === 全量验证(TS 测试 + C++ 测试 + 幂等)===
 pnpm verify:all
 ```
 
@@ -75,7 +75,7 @@ pnpm verify:all
 1. 改 `packages/music12-gen/` 里的生成器或定义表
 2. `pnpm gen:data` → 重新产出 `shared/data/*.json`
 3. `pnpm gen:golden` → 重新提取黄金向量
-4. `pnpm verify:all` → 验证两边密等
+4. `pnpm verify:all` → 验证两边幂等
 
 ## 编码规范
 
@@ -93,7 +93,7 @@ pnpm verify:all
 
 ### 上下文管理规范
 - 当上下文占用达到 70% 时，自动执行 `/compact` 命令压缩对话
-- 压缩完成后，立即重新读取 `CLAUDE.md` 以恢复关键规则，防止丢失上下文
+- 压缩完成后，立即重新读取 `AGENTS.md` 以恢复关键规则，防止丢失上下文
 
 ### Git 提交规范
 - 每次完成对话/任务后，自动创建 git commit
@@ -101,11 +101,11 @@ pnpm verify:all
 - 提交信息应简洁明了
 - **不要**在 commit 中添加 Co-Authored-By 或任何 Anthropic/Claude 相关的作者信息
 
-### CLAUDE.md 与代码双向同步规则
-- 如果文件夹内存在 `CLAUDE.md`，说明该文档的作用范围是这个文件夹
+### AGENTS.md 与代码双向同步规则
+- 如果文件夹内存在 `AGENTS.md`，说明该文档的作用范围是这个文件夹
 - **代码 ↔ 文档 双向绑定**：
-  - 修改该文件夹内的代码后，自动更新对应的 `CLAUDE.md` 描述
-  - 修改 `CLAUDE.md` 描述后，自动更新对应的代码实现
+  - 修改该文件夹内的代码后，自动更新对应的 `AGENTS.md` 描述
+  - 修改 `AGENTS.md` 描述后，自动更新对应的代码实现
 - 除非明确指出"不要同步"或"只改代码/只改文档"，否则始终保持双向一致
 - 这确保了文档与代码永远处于同步状态
 
