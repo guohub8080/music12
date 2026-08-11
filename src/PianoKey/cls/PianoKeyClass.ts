@@ -29,6 +29,15 @@ import cls_getNotes from "./classFn/cls_getNotes"
  * cSharp4.getNotes()  // [C#4, Db4]
  */
 export class PianoKey {
+  /**
+   * 钢琴键位置符号（纯位置助记，不带乐理含义）
+   *
+   * 白键用 CDEFGAB（与音名一致），黑键用 PQXYZ（不与音名冲突）：
+   * pianoKeyId: 0  1  2  3  4  5  6  7  8  9  10  11
+   * symbol:     C  P  D  Q  E  F  X  G  Y  A  Z   B
+   */
+  static readonly SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"] as const
+
   /** 钢琴键位置（0-11） */
   public pianoKeyId: number
   /** 八度数 */
@@ -36,6 +45,10 @@ export class PianoKey {
   /** 是否为黑键 */
   public get isBlack(): boolean {
     return NOTE_META.where("pianoKeyId", this.pianoKeyId).first()?.isBlack ?? false
+  }
+  /** 位置符号（C/P/D/Q/E/F/X/G/Y/A/Z/B） */
+  public get symbol(): string {
+    return PianoKey.SYMBOLS[this.pianoKeyId]
   }
 
   constructor(pianoKeyId: number, octave: number = 4) {
