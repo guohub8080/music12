@@ -80,6 +80,25 @@ export class PianoKey {
   }
 
   /**
+   * 从位置符号创建 PianoKey 实例
+   * @param symbolArray [八度, 符号]，符号为 C/P/D/Q/E/F/X/G/Y/A/Z/B
+   * @returns PianoKey 实例
+   *
+   * @example
+   * PianoKey.fromSymbol([4, "P"])  // pianoKeyId=1, octave=4（C#4）
+   * PianoKey.fromSymbol([5, "X"])  // pianoKeyId=6, octave=5（F#5）
+   * PianoKey.fromSymbol([3, "B"])  // pianoKeyId=11, octave=3（B3）
+   */
+  static fromSymbol(symbolArray: [number, string]): PianoKey {
+    const [octave, symbol] = symbolArray
+    const pianoKeyId = (PianoKey.SYMBOLS as readonly string[]).indexOf(symbol)
+    if (pianoKeyId === -1) {
+      throw new Error(`Invalid symbol: ${symbol}. Must be one of C/P/D/Q/E/F/X/G/Y/A/Z/B.`)
+    }
+    return new PianoKey(pianoKeyId, octave)
+  }
+
+  /**
    * 从 MIDI 音高值创建 PianoKey 实例
    * @param pitchInt MIDI 音高值（如 C4 = 60）
    * @returns PianoKey 实例
