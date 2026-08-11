@@ -94,7 +94,9 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "AGENTS.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "chinese-numbering": "^1.0.0",

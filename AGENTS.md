@@ -1,214 +1,140 @@
-# AGENTS.md
+# AGENTS.md — music12 AI Guide
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+> 本文件专为 AI（Claude / GPT / Cursor 等）编写，帮助 AI 快速理解 music12 的设计理念和 API 用法。
 
-## 项目概述
+## 核心理念：pianoKeyId 是一等公民
 
-`music12` 是一个乐理计算库，提供音符、音程、和弦、调式音阶等乐理概念的面向对象 API。核心理念是将抽象的乐理概念对象化，便于程序化操作。
+music12 以**钢琴键（pianoKeyId，0-11）**为基础抽象，而非音名（C/D/E）。原因：音名有记谱歧义（C# 还是 Db？），但 pianoKeyId 是客观唯一的——`pianoKeyId = 1` 永远是同一个琴键，不管你叫它 C# 还是 Db。
 
-**Monorepo 架构(v4.0+)**：TS 版 + C++ 版双实现，共享 JSON 数据，通过黄金测试向量保证幂等。
+所有乐理概念都建立在 pianoKeyId 之上：
+- **音符**：step（音名）+ alter（升降号）→ pianoKeyId（0-11）
+- **和弦**：rootPianoKeyId + chordFormulaId → pianoKeyIds 数组
+- **调式**：rootPianoKeyId + scaleModeId → pianoKeyIds 数组
+- **等音/等和弦**：pianoKeyId 相同 = 同一个键，只是记法不同
 
-## Monorepo 结构
+## pianoKeyId 对照表
 
 ```
-music12/
-├── src/                       ← TS 版源码(核心算法 ~1万行,读 JSON 不硬编码)
-├── packages/
-│   ├── music12-gen/           ← 数据生成器(跑一次 → 产出 shared/data/*.json)
-│   ├── music12-cpp/           ← C++ 版(幂等移植,读同一份 JSON)
-│   │   ├── include/music12/   ← 头文件(Radix/Note/Interval/Scale/Chord/Find/Stave/Circle/Factory)
-│   │   ├── src/               ← 实现(.cpp)
-│   │   ├── test/              ← GoogleTest + 幂等验证器
-│   │   ├── third_party/       ← nlohmann/json(单头文件)
-│   │   └── CMakeLists.txt
-│   └── (未来: music12-wasm, music12-python...)
-├── shared/
-│   └── data/                  ← 单一真相源(7 个 JSON,4.2MB)
-│       ├── notes.json         (35 条)
-│       ├── intervals.json     (39 条)
-│       ├── fifth.json         (42 条)
-│       ├── chord-formulas.json (87 条)
-│       ├── scale-modes.json   (46 条)
-│       ├── chord-instances.json(1044 条 = 87×12)
-│       └── scale-instances.json(552 条 = 46×12)
-├── tests/
-│   └── vectors/
-│       └── golden-vectors.json ← 1687 个黄金测试向量(幂等验证用)
-├── tools/
-│   └── extract-golden.ts      ← 黄金向量提取器
-└── test/                      ← TS 版测试(213 个)
+ID:  0   1    2   3    4   5   6    7   8    9   10   11
+音:  C   C#/Db D   D#/Eb E   F   F#/Gb G   G#/Ab A   A#/Bb B
+键:  白  黑   白  黑   白  白  黑   白  黑   白  黑   白
 ```
 
-## 常用命令
+## 导入方式
 
-```bash
-# === TS 版 ===
-pnpm build              # 构建库(Vite lib + tsc 声明)
-pnpm typecheck          # 类型检查
-pnpm dev                # 开发服务器(playground)
-pnpm test               # 跑 213 个测试
-pnpm vitest test/unit/common.test.ts  # 单个测试文件
+```ts
+// 推荐：子路径导入（treeshaking 最彻底）
+import { Note } from "music12/note"
+import { Chord } from "music12/chord"
+import { findChord } from "music12/find"
 
-# === 数据生成 ===
-pnpm gen:data           # 重跑生成器,产出 shared/data/*.json
-pnpm gen:golden         # 重提取黄金测试向量
-
-# === C++ 版 ===
-pnpm build:cpp          # 编译 C++ 版(CMake)
-pnpm test:cpp           # 跑 32 个 GoogleTest
-pnpm verify:equivalence # 跑 1687 个黄金向量做幂等验证
-
-# === 全量验证(TS 测试 + C++ 测试 + 幂等)===
-pnpm verify:all
+// 也可以：主入口具名导入
+import { Note, Chord, findChord } from "music12"
 ```
 
-## 数据架构(核心)
+可用子路径：`note` `interval` `scale` `chord` `chord-formula` `find` `stave` `radix` `circle-of-fifths` `factory`
 
-**单一真相源**：所有乐理数据在 `shared/data/*.json`，TS 版和 C++ 版都读这份数据。
+## API 速查
 
-**Tree Shaking**：每个模块独立加载自己的 JSON（不用集中式 DataLoader）：
-- `Note/static/note-data.ts` → 只读 notes.json(7.7KB)
-- `Chord/static/chord-instance-data.ts` → 只读 chord-instances.json(2.1MB)
-- 用户 `import { Note }` → 只打包 5KB，不拖 Chord 的 2.1MB
+### 创建实例
 
-**数据修改流程**：
-1. 改 `packages/music12-gen/` 里的生成器或定义表
-2. `pnpm gen:data` → 重新产出 `shared/data/*.json`
-3. `pnpm gen:golden` → 重新提取黄金向量
-4. `pnpm verify:all` → 验证两边幂等
+```ts
+// 工厂函数（推荐，用音名）
+import { getNote, getChord, getScale, getInterval } from "music12/factory"
+const note = getNote("C", 0, 4)              // C4，第二参数 0=还原 1=升 -1=降
+const chord = getChord("C", 0, "maj7")       // Cmaj7
+const scale = getScale("C", 0, "NATURAL_MAJOR") // C 大调
 
-## 编码规范
+// 类构造（用 pianoKeyId）
+import { Note, Chord, Scale } from "music12"
+const note = new Note("C", 0, 4)             // C4
+const chord = new Chord(0, "maj7")           // Cmaj7（根音 pianoKeyId=0）
+const scale = new Scale(0, "NATURAL_MAJOR")  // C 大调
+```
 
-### src/ 目录的 Import 规则
-- **跨顶层模块的引用必须使用 `@music12` 别名**（对齐 expub-tool 风格）
-  - 例如：在 `src/Note/` 下引用 Interval/common，写 `import { Interval } from "@music12/Interval"`
-  - 别名 `@music12` → `src/`，在 `tsconfig.json`、`vite.config.ts`、`vite.lib.config.ts`、`vitest.config.ts` 四处均已配置
-- **短路径别名**（高频引用的简化）：
-  - `@common-static` → `src/common/static`（`NOTE_TYPES`、`INTERVAL_TYPES` 等常量类型）
-  - `@utils` → `src/common/utils`（`isDefined`、`isNonEmptyArray`、`assertNonEmptyArray`、`jaccard` 等工具）
-- **模块内部的引用使用相对路径**（如 `./foo`、`../bar/baz`）
-- **禁止在 import 路径上带 `.ts`/`.tsx`/`.js` 后缀**（`moduleResolution: bundler` 下统一无后缀）
-- **类型 only 的跨模块 import 必须用 `import type`**（打断循环依赖的运行时闭环，利于 treeshaking）
-- 在 `test/unit/` 或 `test/playground/` 文件夹中，使用 `@music12` 别名（注意大小写需与目录名一致，如 `@music12/Interval` 而非 `@music12/interval`）
+### 和弦变换（链式）
 
-### 上下文管理规范
-- 当上下文占用达到 70% 时，自动执行 `/compact` 命令压缩对话
-- 压缩完成后，立即重新读取 `AGENTS.md` 以恢复关键规则，防止丢失上下文
+```ts
+const chord = new Chord(0, "dom7")
+  .set("#5")     // 升五度
+  .set("b9")     // 降九度
+  .setOmit(5)    // 省略五度
+  .setSus(4)     // sus4
 
-### Git 提交规范
-- 每次完成对话/任务后，自动创建 git commit
-- 除非明确要求，否则**不要 push 到远程**
-- 提交信息应简洁明了
-- **不要**在 commit 中添加 Co-Authored-By 或任何 Anthropic/Claude 相关的作者信息
+chord.scoreSymbol  // 变换后的记谱符号
+chord.pianoKeyIds  // 当前各音 [root, 3rd, 5th, 7th...]
+chord.isTransformed // 是否被变换过
+chord.clearTransform() // 回到原始和弦
+```
 
-### AGENTS.md 与代码双向同步规则
-- 如果文件夹内存在 `AGENTS.md`，说明该文档的作用范围是这个文件夹
-- **代码 ↔ 文档 双向绑定**：
-  - 修改该文件夹内的代码后，自动更新对应的 `AGENTS.md` 描述
-  - 修改 `AGENTS.md` 描述后，自动更新对应的代码实现
-- 除非明确指出"不要同步"或"只改代码/只改文档"，否则始终保持双向一致
-- 这确保了文档与代码永远处于同步状态
+### 反向查找（识别和弦）
 
-### TypeScript 类型命名规范
-- **`T_` 前缀**：通用/公共类型，定义在 `src/common/static/` 目录
-  - 示例：`T_NoteStep`, `T_AlterValue`, `T_IntervalType`, `T_IntervalList`
-  - 这些类型可被多个模块共用，直接从 `common/static/` 导入
-- **`I_` 前缀**：模块内部类型，定义在各模块的 `static/types.ts` 中
-  - 示例：`I_NoteObj`, `I_Interval`, `I_IntervalObj`, `I_GetEqualIntervalOptions`
-  - 这些类型仅在模块内部使用，由各模块自行导出
+```ts
+import { findChord } from "music12"
 
-### 类型检查规范
-- **使用 lodash 进行类型检查**，禁止使用 `typeof` 运行时检查
-- **lodash 统一使用深路径导入**（利于 treeshaking），不要用 barrel `import { x } from "lodash"`
-- **null/undefined 检查统一使用 `isNil`**，不要使用 `isNull` 或 `isUndefined`
-- **非空检查统一使用 `isDefined`（`@utils/isDefined`）**，禁止 `!isNil(x)` 或 `!x`（对象空判断）
-- **数组检查使用 `isArray`**，不要使用 `Array.isArray`
-  ```typescript
-  // ✅ 正确 - 深路径导入
-  import isNil from "lodash/isNil"
-  import isString from "lodash/isString"
-  import { isDefined } from "@utils/isDefined"
+// 输入 MIDI 音符列表（60=C4, 64=E4, 67=G4...）
+findChord([60, 64, 67, 70]) // → [{ chordFormulaId: "dom7", ... }]
 
-  if (isNil(value)) { ... }       // 判空
-  if (isDefined(value)) { ... }   // 判非空（类型守卫）
-  if (isString(value)) { ... }
+// 严格模式：只返回完全匹配
+findChord([60, 64, 67], { isStrict: true })
 
-  // ❌ 错误
-  import { isNil, isString } from "lodash"  // barrel 风格，阻碍 treeshaking
-  if (value === null || value === undefined) { ... }
-  if (!isNil(value)) { ... }      // 应改用 isDefined(value)
-  if (!objectValue) { ... }       // 对象空判断应改用 isNil(objectValue)
-  if (typeof value === "string") { ... }
-  if (Array.isArray(value)) { ... }
-  ```
-- 注意：`!boolVar`（布尔值取反，如 `!isValid`）、`!set.has()`、`!existsSync` 等**不是空判断**，正常使用 `!` 即可
-- 常用 lodash 类型函数：`isNil`, `isString`, `isNumber`, `isBoolean`, `isObject`, `isArray`, `isInteger`, `isEmpty`, `isEqual`, `defaultTo`
+// 指定根音：区分等和弦 C6 vs Am7
+findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → C6
+findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // → Am7
+```
 
-### lodash 方法使用规范
-- **统一使用 lodash 方法替代原生 JavaScript 方法**，保持代码风格一致
-- **lodash 统一使用深路径导入**（利于 treeshaking）
-  ```typescript
-  // ✅ 正确 - 使用 lodash 深路径导入
-  import toPairs from "lodash/toPairs"
-  import keys from "lodash/keys"
-  import values from "lodash/values"
-  import fromPairs from "lodash/fromPairs"
-  import uniq from "lodash/uniq"
-  toPairs(obj)           // 替代 Object.entries
-  keys(obj)              // 替代 Object.keys
-  values(obj)            // 替代 Object.values
-  fromPairs(arr)         // 替代 Object.fromEntries
-  uniq(arr)              // 替代 [...new Set(arr)]
-  intersection(arr1, arr2)  // 替代 Set 交集操作
-  union(arr1, arr2)      // 替代 Set 并集操作
-  includes(arr, value)   // 替代 Set.has() 或 arr.includes()
+findChord 的匹配规则：
+- 默认：完全匹配优先；无完全匹配时返回省略音匹配（用户少弹了音）
+- 特征音不可省：七和弦必须有 3 度和 7 度，变和弦必须有变化音
+- 纯五度和扩展音（9/11/13）可省
+- 少于 3 个不同音会抛错
 
-  // ❌ 错误 - 使用原生方法
-  Object.entries(obj)
-  Object.keys(obj)
-  Object.values(obj)
-  Object.fromEntries(arr)
-  new Set(arr)
-  arr.includes(value)
-  ```
-- 此规范适用于 `src/`、`test/unit/`、`test/playground/` 所有目录
+### 调式查询
 
-## 架构说明
+```ts
+const cMajor = new Scale(0, "NATURAL_MAJOR")
 
-库按领域模块组织在 `src/` 目录下：
+cMajor.pianoKeyIds           // [0,2,4,5,7,9,11]
+cMajor.hasPianoKeyId(0)      // true（C 在 C 大调里）
+cMajor.getDegreeByPianoKeyId(4) // 3（E 是 3 度）
+cMajor.getScaleDegreeChord7(5)  // G7（5 级七和弦）
+cMajor.getScaleDegreeChord7(1)  // Cmaj7（1 级）
+```
 
-| 模块 | 用途 |
-|------|------|
-| `note/` | `Note` 类 - 音高、MIDI 值、等音异名 |
-| `interval/` | `Interval` 类 - 音符间的距离 |
-| `chord/` | `Chord` 类 - 根音 + 音程、变化音（b9, #11 等） |
-| `scale/` | `Scale` 类 - 调式、顺阶和弦、音阶级数 |
-| `factory/` | 便捷工厂函数：`getNote()`、`getChord()`、`getScale()`、`getInterval()` |
-| `find/` | 反向查找：根据音符列表查找和弦/调式 |
-| `circleOfFifths/` | 五度圈计算 |
-| `stave/` | 谱号/调号工具 |
-| `common/radix/` | 用于乐理计算的七进制和十二进制数学 |
+### 标签查询
 
-### 关键模式
+```ts
+import { getChordFormulaByTags } from "music12"
 
-- **类与类方法**：每个领域有一个主类（如 `NoteClass.ts`、`ChordClass.ts`、`ScaleClass.ts`），辅助函数放在 `cls/classFn/` 目录
-- **类型定义**：每个模块在 `static/types.ts` 中定义 TypeScript 类型
-- **预设/元数据**：静态数据如和弦类型（`chordKeys.ts`）、调式名称（`scaleModeNames.ts`）放在 `presets/` 和 `static/` 目录
-- **工厂模式**：使用 `factory.getNote('C', 0, 4)` 代替 `new Note('C', 0, 4)` 更便捷
+getChordFormulaByTags(["dom", "altered"]) // 所有属功能变音和弦
+getChordFormulaByTags(["sus", "ext13"])   // 扩展到 13 度的挂留和弦
+getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
+```
 
-### 入口文件与构建
+## 常见误区
 
-- `src/index.ts` - 库的主导出（barrel）
-- `vite.lib.config.ts` - 库构建配置：Vite lib mode + `preserveModules`，产出 `dist/esm/*.mjs`、`dist/cjs/*.cjs`（一对一映射 src，供消费者 bundler 细粒度 treeshaking）
-- `tsconfig.build.json` - 类型声明构建配置：`tsc --emitDeclarationOnly`，产出 `dist/types/*.d.ts`
-- `vite.config.ts` - 开发配置（服务 `test/playground/` playground，与库构建分离）
-- `package.json` 的 `sideEffects: false` 是 treeshaking 的关键标志，勿删除
-- 当前仅开放主入口 `.`，子路径 subpath exports 待循环依赖（Chord↔Find、Scale↔Find）完全解耦后再开放
+1. **findChord 接收 MIDI 数（如 60），不是 pianoKeyId（如 0）**。findNotesInScales 等才接收 pianoKeyId。
+2. **pianoKeyId 不带八度**。C4/C5/C3 的 pianoKeyId 都是 0。要绝对音高用 `pitchValue`（MIDI 编号）。
+3. **等和弦**：C6（C-E-G-A）和 Am7（A-C-E-G）是同一组键 `[0,4,7,9]`，findChord 会同时返回两者。
+4. **五声调式缺 4 度和 7 度**：`getNoteByIntervalNum(4)` 返回 null（不崩溃）。
+5. **黑键有两个名字**：pianoKeyId=1 既是 C# 也是 Db。`getNoteByPianoKeyId(1)` 返回两者。
 
-## 已知技术债
+## 87 个和弦公式 ID
 
-`pnpm typecheck`（`tsc -p tsconfig.build.json`）当前 **0 错误**。以下问题均已修复：
+常用公式：`maj3` `min3` `dim3` `aug3` `sus2` `sus4` `maj7` `dom7` `min7` `dim7` `halfdim7` `minmaj7` `dom9` `maj9` `min9` `dom11` `maj11` `min11` `dom13` `maj13` `min13`
 
-- ~~`ALL_CHORD_INSTANCE_META.ts` 的 TS2590（类型联合过复杂）~~ — 已修复：87 个子 `*_CHORD_META` 文件加 `: I_ChordInstanceMeta[]` 显式类型注解。
-- ~~`cls_fifthCircleClockMove.ts` 调用不存在的 `Radix.get2DigitNumList_GivenNumAndBase`~~ — 已修复：误用 power-radix 包 API 的死函数，已删除。
-- ~~`src/ChordFormula/` barrel 引用不存在的导出（`DOM9_FLAT9`、`MIN9_FLAT9`、`AUG7`）~~ — 已修复：AUG7 修路径，DOM9_FLAT9/MIN9_FLAT9 删死引用。
+变音和弦：`dom7#5` `dom7b5` `dom7b9` `dom7#9` `dom7#11` `dom9#5` `dom9#11` `maj7b5` `maj7#11` `min7b5` 等。
+
+完整列表用 `getChordFormulaByTags([])` 查询（返回全部 87 个）。
+
+## 44 个调式 ID
+
+自然调式：`NATURAL_MAJOR` `DORIAN` `PHRYGIAN` `LYDIAN` `MIXOLYDIAN` `NATURAL_MINOR` `LOCRIAN`
+
+和声/旋律：`HARMONIC_MINOR` `HARMONIC_MAJOR` `MELODIC_MINOR_ASCENDING` `MELODIC_MAJOR_DESCENDING` 及衍生模式
+
+中国调式：`GONG` `SHANG` `JUE` `ZHI` `YU`（五声）；`YA_YUE_GONG` `QING_YUE_GONG` `YAN_YUE_GONG` 等（七声）
+
+## 完整文档
+
+人类可读的详细文档在 `documents/` 目录（如果包含在包里）或 [GitHub](https://github.com/guohub8080/music12)。
