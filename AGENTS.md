@@ -229,6 +229,11 @@ this._cache = void 0
 - 开发分支**不删**，改名保留为存档（如 `refactor/v3.1`），细粒度历史全在里面
 - 推送时三样一起：`git push origin main vX.Y.Z refactor/vX.Y`
 
+### 提交与推送纪律
+
+- **默认每次对话/任务完成后 commit 当前未提交的所有改动**：`git add -A`，提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范（中文，正文写清动机与验证结果）
+- **完成后绝对禁止执行 `git push` 或任何推送远程的命令**。推送是极为谨慎的事情——只允许在用户明确说「push」时执行，任何情况下都不得自动推送、不得顺带推送、不得推完 main 顺手推别的分支
+
 ### 验证三件套（结构/数据改动后必跑）
 
 ```bash
