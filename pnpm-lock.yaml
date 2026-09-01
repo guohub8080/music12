@@ -54,6 +54,9 @@ importers:
       jsdom:
         specifier: ^28.1.0
         version: 28.1.0
+      json5:
+        specifier: ^2.2.3
+        version: 2.2.3
       pnpm:
         specifier: ^10.30.0
         version: 10.30.0
