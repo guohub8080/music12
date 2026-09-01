@@ -1,0 +1,675 @@
+/**
+ * fifth — 五度圈调号裁决表(42 条)
+ *
+ * 本文件是 JSON5 源头(可带注释、尾逗号),编译产物为 static-data/fifth.json。
+ * 手改只改这里,然后跑 pnpm gen:data;产物永不手改。
+ *
+ * ── 整体结构 ─────────────────────────────────────────────
+ * 42 = 2 调式(major/minor)× 7 步 × 3 alter(-1/0/+1),
+ * 枚举每一种「主音拼法请求」,逐条给出裁决(实际主音/圈位/是否替换)。
+ * 文件序:大调组 21 条(step C→B × alter -1→+1),小调组同构。
+ * 平行调共享圈位与调号:circleID 0 = C 大调 = A 小调。
+ *
+ * ── 字段说明 ─────────────────────────────────────────────
+ *   rawNoteStep / rawNoteAlter  请求的主音拼法(自由量)
+ *   mode        major / minor
+ *   rawStaveAlters  调号数(正=升号数,负=降号数)。
+ *                  = fifthValue(主音) - 3(minor 时;A 小调与 C 大调同调号,
+ *                  平行调圈位对齐)。getFifthCircleByAlter 按此字段查询
+ *   circleID    五度圈十二圈位(0=C,1=G,...,11=F;沿五度步进)。
+ *              等音对共享圈位:B 与 C♭ 同在 5,F♯ 与 G♭ 同在 6,C♯ 与 D♭ 同在 7
+ *   actualNoteStep / actualNoteAlter  裁决后实际使用的主音
+ *   isTonicReplaced  是否被等音替换
+ *   isTonicNormal    原始请求拼法(rawStep+rawAlter)是否为常用拼法,
+ *                  镜像 pianokey 表的 isNormal,与 actual 无关
+ *   isDoubleAlterIncluded  原拼法调号是否含重升/重降(理论调标志)
+ *
+ * ── 三层裁决(全部由 |rawStaveAlters| 决定) ───────────────
+ *   |stave| ≤ 6  保留原拼法(F♯ 与 G♭ 各 6 号打平,双方都保留;
+ *               小调侧 D♯小 +6 与 E♭小 -6 同理)
+ *   |stave| = 7  等音替换但保住圈位:
+ *               C♯大(+7)→D♭大、C♭大(-7)→B大、
+ *               A♯小(+7)→B♭小、A♭小(-7)→G♯小
+ *   |stave| ≥ 8  替换 + 圈位 -1 + 重升降标记:
+ *               D♯大调需 9 个升号(音阶必现重升),纯理论调,
+ *               被踢出十二圈;C♭小(-10)、E♯小(+8) 等同理
+ *
+ * ── 派生关系 ─────────────────────────────────────────────
+ * fifthValue = 五度圈基值(step: C0 D2 E4 F-1 G1 A3 B5) + 7×alter
+ * rawStaveAlters = fifthValue - (mode==minor ? 3 : 0)
+ * circleID       = |stave| ≤ 7 ? stave mod 12 : -1
+ * isTonicReplaced = |stave| ≥ 7
+ * isDoubleAlterIncluded = |stave| ≥ 8
+ * 源里真正自由的只有 rawStep + rawAlter + mode,其余全部可推导。
+ * 42 条 × 5 条规则已机器验证一致。
+ */
+[
+  // C♭大调 · 调号7♭ · 圈位5 · → B大调
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "B",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -7,
+  "circleID": 5
+  },
+
+
+  // C大调 · 无调号 · 圈位0
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 0,
+  "circleID": 0
+  },
+
+
+  // C♯大调 · 调号7♯ · 圈位7 · → D♭大调
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "D",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 7,
+  "circleID": 7
+  },
+
+
+  // D♭大调 · 调号5♭ · 圈位7
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "D",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -5,
+  "circleID": 7
+  },
+
+
+  // D大调 · 调号2♯ · 圈位2
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "D",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 2,
+  "circleID": 2
+  },
+
+
+  // D♯大调 · 调号9♯ · 圈位-1 · 含重升降 · → E♭大调
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "E",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 9,
+  "circleID": -1
+  },
+
+
+  // E♭大调 · 调号3♭ · 圈位9
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "E",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -3,
+  "circleID": 9
+  },
+
+
+  // E大调 · 调号4♯ · 圈位4
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "E",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 4,
+  "circleID": 4
+  },
+
+
+  // E♯大调 · 调号11♯ · 圈位-1 · 含重升降 · → F大调
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 11,
+  "circleID": -1
+  },
+
+
+  // F♭大调 · 调号8♭ · 圈位-1 · 含重升降 · → E大调
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "E",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": -8,
+  "circleID": -1
+  },
+
+
+  // F大调 · 调号1♭ · 圈位11
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -1,
+  "circleID": 11
+  },
+
+
+  // F♯大调 · 调号6♯ · 圈位6
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 6,
+  "circleID": 6
+  },
+
+
+  // G♭大调 · 调号6♭ · 圈位6
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "G",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -6,
+  "circleID": 6
+  },
+
+
+  // G大调 · 调号1♯ · 圈位1
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "G",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 1,
+  "circleID": 1
+  },
+
+
+  // G♯大调 · 调号8♯ · 圈位-1 · 含重升降 · → A♭大调
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "A",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 8,
+  "circleID": -1
+  },
+
+
+  // A♭大调 · 调号4♭ · 圈位8
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "A",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -4,
+  "circleID": 8
+  },
+
+
+  // A大调 · 调号3♯ · 圈位3
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "A",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 3,
+  "circleID": 3
+  },
+
+
+  // A♯大调 · 调号10♯ · 圈位-1 · 含重升降 · → B♭大调
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "B",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 10,
+  "circleID": -1
+  },
+
+
+  // B♭大调 · 调号2♭ · 圈位10
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": -1,
+  "mode": "major",
+  "actualNoteStep": "B",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -2,
+  "circleID": 10
+  },
+
+
+  // B大调 · 调号5♯ · 圈位5
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": 0,
+  "mode": "major",
+  "actualNoteStep": "B",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 5,
+  "circleID": 5
+  },
+
+
+  // B♯大调 · 调号12♯ · 圈位-1 · 含重升降 · → C大调
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": 1,
+  "mode": "major",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 12,
+  "circleID": -1
+  },
+
+
+  // C♭小调 · 调号10♭ · 圈位-1 · 含重升降 · → B小调
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "B",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": -10,
+  "circleID": -1
+  },
+
+
+  // C小调 · 调号3♭ · 圈位9
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -3,
+  "circleID": 9
+  },
+
+
+  // C♯小调 · 调号4♯ · 圈位4
+  {
+  "rawNoteStep": "C",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 4,
+  "circleID": 4
+  },
+
+
+  // D♭小调 · 调号8♭ · 圈位-1 · 含重升降 · → C♯小调
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": -8,
+  "circleID": -1
+  },
+
+
+  // D小调 · 调号1♭ · 圈位11
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "D",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -1,
+  "circleID": 11
+  },
+
+
+  // D♯小调 · 调号6♯ · 圈位6
+  {
+  "rawNoteStep": "D",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "D",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 6,
+  "circleID": 6
+  },
+
+
+  // E♭小调 · 调号6♭ · 圈位6
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "E",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -6,
+  "circleID": 6
+  },
+
+
+  // E小调 · 调号1♯ · 圈位1
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "E",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 1,
+  "circleID": 1
+  },
+
+
+  // E♯小调 · 调号8♯ · 圈位-1 · 含重升降 · → F小调
+  {
+  "rawNoteStep": "E",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 8,
+  "circleID": -1
+  },
+
+
+  // F♭小调 · 调号11♭ · 圈位-1 · 含重升降 · → E小调
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "E",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": -11,
+  "circleID": -1
+  },
+
+
+  // F小调 · 调号4♭ · 圈位8
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -4,
+  "circleID": 8
+  },
+
+
+  // F♯小调 · 调号3♯ · 圈位3
+  {
+  "rawNoteStep": "F",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 3,
+  "circleID": 3
+  },
+
+
+  // G♭小调 · 调号9♭ · 圈位-1 · 含重升降 · → F♯小调
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "F",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": -9,
+  "circleID": -1
+  },
+
+
+  // G小调 · 调号2♭ · 圈位10
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "G",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -2,
+  "circleID": 10
+  },
+
+
+  // G♯小调 · 调号5♯ · 圈位5
+  {
+  "rawNoteStep": "G",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "G",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 5,
+  "circleID": 5
+  },
+
+
+  // A♭小调 · 调号7♭ · 圈位5 · → G♯小调
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "G",
+  "actualNoteAlter": 1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -7,
+  "circleID": 5
+  },
+
+
+  // A小调 · 无调号 · 圈位0
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "A",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 0,
+  "circleID": 0
+  },
+
+
+  // A♯小调 · 调号7♯ · 圈位7 · → B♭小调
+  {
+  "rawNoteStep": "A",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "B",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": true,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 7,
+  "circleID": 7
+  },
+
+
+  // B♭小调 · 调号5♭ · 圈位7
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": -1,
+  "mode": "minor",
+  "actualNoteStep": "B",
+  "actualNoteAlter": -1,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": -5,
+  "circleID": 7
+  },
+
+
+  // B小调 · 调号2♯ · 圈位2
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": 0,
+  "mode": "minor",
+  "actualNoteStep": "B",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": false,
+  "isTonicNormal": true,
+  "isDoubleAlterIncluded": false,
+  "rawStaveAlters": 2,
+  "circleID": 2
+  },
+
+
+  // B♯小调 · 调号9♯ · 圈位-1 · 含重升降 · → C小调
+  {
+  "rawNoteStep": "B",
+  "rawNoteAlter": 1,
+  "mode": "minor",
+  "actualNoteStep": "C",
+  "actualNoteAlter": 0,
+  "isTonicReplaced": true,
+  "isTonicNormal": false,
+  "isDoubleAlterIncluded": true,
+  "rawStaveAlters": 9,
+  "circleID": -1
+  }
+]
