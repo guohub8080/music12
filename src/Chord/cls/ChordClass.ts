@@ -81,11 +81,6 @@ export class Chord {
     return this.#initChordFormulaMeta.cnName;
   }
 
-  /** 和弦家族 */
-  public get family(): string {
-    return this.#initChordFormulaMeta.family;
-  }
-
   /** 基础音程列表（不含变换） */
   public get baseIntervalList(): [T_IntervalType, number][] {
     return this.#initChordFormulaMeta.baseIntervalList;

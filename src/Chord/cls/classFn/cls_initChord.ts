@@ -16,8 +16,6 @@ import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 export type I_ChordInitMeta = {
   /** 和弦公式 ID */
   chordFormulaId: string;
-  /** 和弦家族 */
-  family: string;
   /** 中文名称 */
   cnName: string;
   /** 基础符号（不含变换） */
@@ -47,7 +45,6 @@ export const cls_initChord = (chordFormulaId: string): I_ChordInitMeta => {
 
   return {
     chordFormulaId: formulaMeta.chordFormulaId,
-    family: formulaMeta.family,
     cnName: formulaMeta.cnName,
     baseSymbol: formulaMeta.scoreDisplay,
     baseIntervalList: formulaMeta.intervalList,

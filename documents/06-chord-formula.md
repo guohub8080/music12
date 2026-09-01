@@ -88,7 +88,7 @@ getChordFormulaByTags(["dom", "flat9"])
 getChordFormulaByTags([]).length  // 87
 ```
 
-多标签是**交集**（AND）——公式必须同时含所有给定标签才返回。这比旧的 `getDom7AlterList()` 之类按家族硬编码的查询灵活得多。
+多标签是**交集**（AND）——公式必须同时含所有给定标签才返回。这种多维查询远比按家族硬编码的列表函数灵活（v4 起旧的 `getXxxList()` 家族函数已随 `family` 字段一并移除，统一用标签查询）。
 
 ## 标签推导原理
 

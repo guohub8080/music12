@@ -30,11 +30,10 @@ describe("Chord 构造与基础 getter", () => {
     expect(am7.pianoKeyIdsSorted).toEqual([0, 4, 7, 9])
   })
 
-  it("baseSymbol / cnName / family 可读", () => {
+  it("baseSymbol / cnName 可读", () => {
     const c = new Chord(0, "maj3")
     expect(typeof c.baseSymbol).toBe("string")
     expect(typeof c.cnName).toBe("string")
-    expect(typeof c.family).toBe("string")
   })
 
   it("intervalList 按度数升序", () => {
