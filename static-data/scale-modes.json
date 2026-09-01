@@ -1,0 +1,3330 @@
+{
+  "NATURAL_MAJOR": {
+    "scaleModeId": "NATURAL_MAJOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "自然大调",
+    "type": "major",
+    "family": "diatonic",
+    "description": "又称 Ionian 调式，自然大调的 I 级音阶，由 C 大调的 C 进行到高八度的 C，构成音分别为：1 2 3 4 5 6 7 1"
+  },
+  "IONIAN": {
+    "scaleModeId": "NATURAL_MAJOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "自然大调",
+    "type": "major",
+    "family": "diatonic",
+    "description": "又称 Ionian 调式，自然大调的 I 级音阶，由 C 大调的 C 进行到高八度的 C，构成音分别为：1 2 3 4 5 6 7 1"
+  },
+  "LYDIAN": {
+    "scaleModeId": "LYDIAN",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "aug",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      6,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 6,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "Lydian",
+    "type": "major",
+    "family": "diatonic",
+    "description": "自然大调的 IV 级音阶，由 C 大调的 F 进行到高八度的 F，构成音分别为：1 2 3 #4 5 6 7 1"
+  },
+  "MIXOLYDIAN": {
+    "scaleModeId": "MIXOLYDIAN",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Mixolydian",
+    "type": "major",
+    "family": "diatonic",
+    "description": "自然大调的 V 级音阶，由 C 大调的 G 进行到高八度的 G，构成音分别为：1 2 3 4 5 6 b7 1"
+  },
+  "NATURAL_MINOR": {
+    "scaleModeId": "NATURAL_MINOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "自然小调",
+    "type": "minor",
+    "family": "diatonic",
+    "description": "又称 Aeolian 调式，自然大调的 VI 级音阶，由 C 大调的 A 进行到高八度的 A，构成音分别为：1 2 b3 4 5 b6 b7 1"
+  },
+  "AEOLIAN": {
+    "scaleModeId": "NATURAL_MINOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "自然小调",
+    "type": "minor",
+    "family": "diatonic",
+    "description": "又称 Aeolian 调式，自然大调的 VI 级音阶，由 C 大调的 A 进行到高八度的 A，构成音分别为：1 2 b3 4 5 b6 b7 1"
+  },
+  "DORIAN": {
+    "scaleModeId": "DORIAN",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Dorian",
+    "type": "minor",
+    "family": "diatonic",
+    "description": "自然大调的 II 级音阶，由 C 大调的 D 进行到高八度的 D，构成音分别为：1 2 b3 4 5 6 b7 1"
+  },
+  "PHRYGIAN": {
+    "scaleModeId": "PHRYGIAN",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "Phrygian",
+    "type": "minor",
+    "family": "diatonic",
+    "description": "自然大调的 III 级音阶，由 C 大调的 E 进行到高八度的 E，构成音分别为：1 b2 b3 4 5 b6 b7 1"
+  },
+  "LOCRIAN": {
+    "scaleModeId": "LOCRIAN",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "dim",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      6,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 6,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": -1,
+      "6": -1,
+      "7": -1
+    },
+    "name": "Locrian",
+    "type": "halfdim7",
+    "family": "diatonic",
+    "description": "自然大调的 VII 级音阶，由 C 大调的 B 进行到高八度的 B，构成音分别为：1 b2 b3 4 b5 b6 b7 1"
+  },
+  "HARMONIC_MAJOR": {
+    "scaleModeId": "HARMONIC_MAJOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      8,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": 0
+    },
+    "name": "和声大调",
+    "type": "major",
+    "family": "harmonic-major",
+    "description": "把自然大调的第六级音降低一个半音，构成音分别为：1 2 3 4 5 b6 7 1"
+  },
+  "HARMONIC_MINOR": {
+    "scaleModeId": "HARMONIC_MINOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": 0
+    },
+    "name": "和声小调",
+    "type": "minor",
+    "family": "harmonic-minor",
+    "description": "把自然小调的第七级音升高一个半音，构成音分别为：1 2 b3 4 5 b6 7 1"
+  },
+  "PHRYGIAN_DOMINANT": {
+    "scaleModeId": "PHRYGIAN_DOMINANT",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      4,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      0,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "Phrygian Dominant",
+    "type": "major",
+    "family": "harmonic-minor",
+    "description": "和声小调的 V 级音阶，构成音分别为：1 b2 3 4 5 b6 b7 1，常用于弗拉门戈和中东风格"
+  },
+  "LOCRIAN_SHARP6": {
+    "scaleModeId": "LOCRIAN_SHARP6",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "dim",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      6,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 6,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      -1,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": -1,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Locrian #6",
+    "type": "halfdim7",
+    "family": "harmonic-minor",
+    "description": "和声小调的 II 级音阶，构成音分别为：1 b2 b3 4 b5 6 b7 1"
+  },
+  "IONIAN_SHARP5": {
+    "scaleModeId": "IONIAN_SHARP5",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "aug",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      8,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 8,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 1,
+      "6": 0,
+      "7": 0
+    },
+    "name": "Ionian #5",
+    "type": "major",
+    "family": "harmonic-minor",
+    "description": "和声小调的 III 级音阶，构成音分别为：1 2 3 4 #5 6 7 1"
+  },
+  "DORIAN_SHARP4": {
+    "scaleModeId": "DORIAN_SHARP4",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "aug",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      6,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 6,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      1,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Dorian #4",
+    "type": "minor",
+    "family": "harmonic-minor",
+    "description": "和声小调的 IV 级音阶，又称乌克兰多利亚，构成音分别为：1 2 b3 #4 5 6 b7 1"
+  },
+  "LYDIAN_SHARP2": {
+    "scaleModeId": "LYDIAN_SHARP2",
+    "intervalList": [
+      [
+        "aug",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "aug",
+      "3": "maj",
+      "4": "aug",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      3,
+      4,
+      6,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 3,
+      "3": 4,
+      "4": 6,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 1,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "Lydian #2",
+    "type": "major",
+    "family": "harmonic-minor",
+    "description": "和声小调的 VI 级音阶，构成音分别为：1 #2 3 #4 5 6 7 1"
+  },
+  "MELODIC_MAJOR_DESCENDING": {
+    "scaleModeId": "MELODIC_MAJOR_DESCENDING",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "旋律大调（下行）",
+    "type": "major",
+    "family": "melodic-major",
+    "description": "把自然大调的第六、七级音降低一个半音，构成音分别为：1 2 3 4 5 b6 b7 1"
+  },
+  "MELODIC_MINOR_ASCENDING": {
+    "scaleModeId": "MELODIC_MINOR_ASCENDING",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "旋律小调（上行）",
+    "type": "minor",
+    "family": "melodic-minor",
+    "description": "把自然小调的第六、七级音升高一个半音，构成音分别为：1 2 b3 4 5 6 7 1"
+  },
+  "LYDIAN_DOMINANT": {
+    "scaleModeId": "LYDIAN_DOMINANT",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "aug",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      6,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 6,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Lydian Dominant",
+    "type": "major",
+    "family": "melodic-minor",
+    "description": "旋律小调的 IV 级音阶，构成音分别为：1 2 3 #4 5 6 b7 1，爵士乐中常见的属和弦代换调式"
+  },
+  "DORIAN_FLAT2": {
+    "scaleModeId": "DORIAN_FLAT2",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Dorian b2",
+    "type": "minor",
+    "family": "melodic-minor",
+    "description": "旋律小调的 II 级音阶，构成音分别为：1 b2 b3 4 5 6 b7 1"
+  },
+  "LYDIAN_AUGMENTED": {
+    "scaleModeId": "LYDIAN_AUGMENTED",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "aug",
+      "5": "aug",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      6,
+      8,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 6,
+      "5": 8,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 1,
+      "6": 0,
+      "7": 0
+    },
+    "name": "Lydian Augmented",
+    "type": "major",
+    "family": "melodic-minor",
+    "description": "旋律小调的 III 级音阶，构成音分别为：1 2 3 #4 #5 6 7 1"
+  },
+  "LOCRIAN_SHARP2": {
+    "scaleModeId": "LOCRIAN_SHARP2",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "dim",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      6,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 6,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": -1,
+      "6": -1,
+      "7": -1
+    },
+    "name": "Locrian #2",
+    "type": "halfdim7",
+    "family": "melodic-minor",
+    "description": "旋律小调的 VI 级音阶，构成音分别为：1 2 b3 4 b5 b6 b7 1，半减七和弦常用替代调式"
+  },
+  "DOUBLE_HARMONIC_MAJOR": {
+    "scaleModeId": "DOUBLE_HARMONIC_MAJOR",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "maj"
+    },
+    "semitonesList": [
+      1,
+      4,
+      5,
+      7,
+      8,
+      11
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      -1,
+      0,
+      0,
+      0,
+      -1,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": 0
+    },
+    "name": "Double Harmonic Major",
+    "type": "major",
+    "family": "double-harmonic",
+    "description": "双重和声大调的 I 级音阶，又称拜占庭音阶，含两个增二度音程（b2→3，b6→7），构成音分别为：1 b2 3 4 5 b6 7 1"
+  },
+  "HUNGARIAN_MINOR": {
+    "scaleModeId": "HUNGARIAN_MINOR",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "aug",
+      "5": "p",
+      "6": "min",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      3,
+      6,
+      7,
+      8,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 6,
+      "5": 7,
+      "6": 8,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      1,
+      0,
+      -1,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 1,
+      "5": 0,
+      "6": -1,
+      "7": 0
+    },
+    "name": "Hungarian Minor",
+    "type": "minor",
+    "family": "double-harmonic",
+    "description": "双重和声大调的 IV 级音阶，又称匈牙利小调或吉普赛小调，构成音分别为：1 2 b3 #4 5 b6 7 1"
+  },
+  "ORIENTAL": {
+    "scaleModeId": "ORIENTAL",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "maj",
+      "4": "p",
+      "5": "dim",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      4,
+      5,
+      6,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 4,
+      "4": 5,
+      "5": 6,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      0,
+      0,
+      -1,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": 0,
+      "4": 0,
+      "5": -1,
+      "6": 0,
+      "7": -1
+    },
+    "name": "Oriental",
+    "type": "major",
+    "family": "double-harmonic",
+    "description": "双重和声大调的 V 级音阶，又称东方调式，构成音分别为：1 b2 3 4 b5 6 b7 1"
+  },
+  "IONIAN_SHARP2_SHARP5": {
+    "scaleModeId": "IONIAN_SHARP2_SHARP5",
+    "intervalList": [
+      [
+        "aug",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "aug",
+      "3": "maj",
+      "4": "p",
+      "5": "aug",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      3,
+      4,
+      5,
+      8,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 3,
+      "3": 4,
+      "4": 5,
+      "5": 8,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 1,
+      "3": 0,
+      "4": 0,
+      "5": 1,
+      "6": 0,
+      "7": 0
+    },
+    "name": "Ionian #2 #5",
+    "type": "major",
+    "family": "double-harmonic",
+    "description": "双重和声大调的 VI 级音阶，构成音分别为：1 #2 3 4 #5 6 7 1"
+  },
+  "GONG": {
+    "scaleModeId": "GONG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      null,
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      null
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": null,
+      "5": "p",
+      "6": "maj",
+      "7": null
+    },
+    "semitonesList": [
+      2,
+      4,
+      null,
+      7,
+      9,
+      null
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": null,
+      "5": 7,
+      "6": 9,
+      "7": null
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      null,
+      0,
+      0,
+      null
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": null,
+      "5": 0,
+      "6": 0,
+      "7": null
+    },
+    "name": "宫调式",
+    "type": "major",
+    "family": "pentatonic",
+    "description": "中国五声调式第 I 级（宫），由 C 宫调式的 C 进行到高八度的 C，构成音分别为：1 2 3 5 6 1"
+  },
+  "SHANG": {
+    "scaleModeId": "SHANG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      null,
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      null,
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": null,
+      "4": "p",
+      "5": "p",
+      "6": null,
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      null,
+      5,
+      7,
+      null,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": null,
+      "4": 5,
+      "5": 7,
+      "6": null,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      null,
+      0,
+      0,
+      null,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": null,
+      "4": 0,
+      "5": 0,
+      "6": null,
+      "7": -1
+    },
+    "name": "商调式",
+    "type": "minor",
+    "family": "pentatonic",
+    "description": "中国五声调式第 II 级（商），由 C 宫调式的 D 进行到高八度的 D，构成音分别为：1 2 4 5 b7 1"
+  },
+  "JUE": {
+    "scaleModeId": "JUE",
+    "intervalList": [
+      null,
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      null,
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": null,
+      "3": "min",
+      "4": "p",
+      "5": null,
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      null,
+      3,
+      5,
+      null,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": null,
+      "3": 3,
+      "4": 5,
+      "5": null,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      null,
+      -1,
+      0,
+      null,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": null,
+      "3": -1,
+      "4": 0,
+      "5": null,
+      "6": -1,
+      "7": -1
+    },
+    "name": "角调式",
+    "type": "minor",
+    "family": "pentatonic",
+    "description": "中国五声调式第 III 级（角），由 C 宫调式的 E 进行到高八度的 E，构成音分别为：1 b3 4 b6 b7 1"
+  },
+  "ZHI": {
+    "scaleModeId": "ZHI",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      null,
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      null
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": null,
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": null
+    },
+    "semitonesList": [
+      2,
+      null,
+      5,
+      7,
+      9,
+      null
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": null,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": null
+    },
+    "degreeAlterationsList": [
+      0,
+      null,
+      0,
+      0,
+      0,
+      null
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": null,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": null
+    },
+    "name": "徵调式",
+    "type": "major",
+    "family": "pentatonic",
+    "description": "中国五声调式第 V 级（徵），由 C 宫调式的 G 进行到高八度的 G，构成音分别为：1 2 4 5 6 1"
+  },
+  "YU": {
+    "scaleModeId": "YU",
+    "intervalList": [
+      null,
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      null,
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": null,
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": null,
+      "7": "min"
+    },
+    "semitonesList": [
+      null,
+      3,
+      5,
+      7,
+      null,
+      10
+    ],
+    "semitonesMap": {
+      "2": null,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": null,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      null,
+      -1,
+      0,
+      0,
+      null,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": null,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": null,
+      "7": -1
+    },
+    "name": "羽调式",
+    "type": "minor",
+    "family": "pentatonic",
+    "description": "中国五声调式第 VI 级（羽），由 C 宫调式的 A 进行到高八度的 A，构成音分别为：1 b3 4 5 b7 1"
+  },
+  "YA_YUE_GONG": {
+    "scaleModeId": "YA_YUE_GONG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "aug",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      6,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 6,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "雅乐宫调式",
+    "type": "major",
+    "family": "yayue",
+    "description": "雅乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 #4 5 6 7 1"
+  },
+  "YA_YUE_SHANG": {
+    "scaleModeId": "YA_YUE_SHANG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "雅乐商调式",
+    "type": "major",
+    "family": "yayue",
+    "description": "雅乐音阶的商调式（商为主音），以 C 雅乐宫调式的 D 为主音：1 2 3 4 5 6 b7 1"
+  },
+  "YA_YUE_JUE": {
+    "scaleModeId": "YA_YUE_JUE",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "雅乐角调式",
+    "type": "minor",
+    "family": "yayue",
+    "description": "雅乐音阶的角调式（角为主音），以 C 雅乐宫调式的 E 为主音：1 2 b3 4 5 b6 b7 1"
+  },
+  "YA_YUE_ZHI": {
+    "scaleModeId": "YA_YUE_ZHI",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "雅乐徵调式",
+    "type": "major",
+    "family": "yayue",
+    "description": "雅乐音阶的徵调式（徵为主音），以 C 雅乐宫调式的 G 为主音：1 2 3 4 5 6 7 1"
+  },
+  "YA_YUE_YU": {
+    "scaleModeId": "YA_YUE_YU",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "雅乐羽调式",
+    "type": "minor",
+    "family": "yayue",
+    "description": "雅乐音阶的羽调式（羽为主音），以 C 雅乐宫调式的 A 为主音：1 2 b3 4 5 6 b7 1"
+  },
+  "QING_YUE_GONG": {
+    "scaleModeId": "QING_YUE_GONG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "maj"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      11
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 11
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0
+    },
+    "name": "清乐宫调式",
+    "type": "major",
+    "family": "qingyue",
+    "description": "清乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 4 5 6 7 1"
+  },
+  "QING_YUE_SHANG": {
+    "scaleModeId": "QING_YUE_SHANG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "清乐商调式",
+    "type": "minor",
+    "family": "qingyue",
+    "description": "清乐音阶的商调式（商为主音），以 C 清乐宫调式的 D 为主音：1 2 b3 4 5 6 b7 1"
+  },
+  "QING_YUE_JUE": {
+    "scaleModeId": "QING_YUE_JUE",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "清乐角调式",
+    "type": "minor",
+    "family": "qingyue",
+    "description": "清乐音阶的角调式（角为主音），以 C 清乐宫调式的 E 为主音：1 b2 b3 4 5 b6 b7 1"
+  },
+  "QING_YUE_ZHI": {
+    "scaleModeId": "QING_YUE_ZHI",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "清乐徵调式",
+    "type": "major",
+    "family": "qingyue",
+    "description": "清乐音阶的徵调式（徵为主音），以 C 清乐宫调式的 G 为主音：1 2 3 4 5 6 b7 1"
+  },
+  "QING_YUE_YU": {
+    "scaleModeId": "QING_YUE_YU",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "清乐羽调式",
+    "type": "minor",
+    "family": "qingyue",
+    "description": "清乐音阶的羽调式（羽为主音），以 C 清乐宫调式的 A 为主音：1 2 b3 4 5 b6 b7 1"
+  },
+  "YAN_YUE_GONG": {
+    "scaleModeId": "YAN_YUE_GONG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "maj",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      4,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 4,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "燕乐宫调式",
+    "type": "major",
+    "family": "yanyue",
+    "description": "燕乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 4 5 6 b7 1"
+  },
+  "YAN_YUE_SHANG": {
+    "scaleModeId": "YAN_YUE_SHANG",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "燕乐商调式",
+    "type": "minor",
+    "family": "yanyue",
+    "description": "燕乐音阶的商调式（商为主音），以 C 燕乐宫调式的 D 为主音：1 2 b3 4 5 b6 b7 1"
+  },
+  "YAN_YUE_JUE": {
+    "scaleModeId": "YAN_YUE_JUE",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "dim",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      6,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 6,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      -1,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": -1,
+      "6": -1,
+      "7": -1
+    },
+    "name": "燕乐角调式",
+    "type": "halfdim7",
+    "family": "yanyue",
+    "description": "燕乐音阶的角调式（角为主音），以 C 燕乐宫调式的 E 为主音：1 b2 b3 4 b5 b6 b7 1"
+  },
+  "YAN_YUE_ZHI": {
+    "scaleModeId": "YAN_YUE_ZHI",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "maj",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "semitonesList": [
+      2,
+      3,
+      5,
+      7,
+      9,
+      10
+    ],
+    "semitonesMap": {
+      "2": 2,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 9,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      0,
+      -1,
+      0,
+      0,
+      0,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": 0,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": -1
+    },
+    "name": "燕乐徵调式",
+    "type": "minor",
+    "family": "yanyue",
+    "description": "燕乐音阶的徵调式（徵为主音），以 C 燕乐宫调式的 G 为主音：1 2 b3 4 5 6 b7 1"
+  },
+  "YAN_YUE_YU": {
+    "scaleModeId": "YAN_YUE_YU",
+    "intervalList": [
+      [
+        "min",
+        2
+      ],
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "intervalMap": {
+      "2": "min",
+      "3": "min",
+      "4": "p",
+      "5": "p",
+      "6": "min",
+      "7": "min"
+    },
+    "semitonesList": [
+      1,
+      3,
+      5,
+      7,
+      8,
+      10
+    ],
+    "semitonesMap": {
+      "2": 1,
+      "3": 3,
+      "4": 5,
+      "5": 7,
+      "6": 8,
+      "7": 10
+    },
+    "degreeAlterationsList": [
+      -1,
+      -1,
+      0,
+      0,
+      -1,
+      -1
+    ],
+    "degreeAlterationsMap": {
+      "2": -1,
+      "3": -1,
+      "4": 0,
+      "5": 0,
+      "6": -1,
+      "7": -1
+    },
+    "name": "燕乐羽调式",
+    "type": "minor",
+    "family": "yanyue",
+    "description": "燕乐音阶的羽调式（羽为主音），以 C 燕乐宫调式的 A 为主音：1 b2 b3 4 5 b6 b7 1"
+  }
+}

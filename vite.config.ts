@@ -30,6 +30,7 @@ export default defineConfig({
       "@stave": resolve(__dirname,"src/Stave"),
       "@common": resolve(__dirname,"src/common"),
       "@factory": resolve(__dirname,"src/factory"),
+      "@static-data": resolve(__dirname,"static-data"),
       path: "path-browserify",
     },
     extensions: [".ts", ".tsx", ".js", "jsx"]

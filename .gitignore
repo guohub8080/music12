@@ -3,3 +3,16 @@ node_modules/
 .DS_Store
 **/.DS_Store
 dist/
+
+# === AI 工具本地状态（不进仓库）===
+.claude/
+.mimosa/
+.video_agent/
+out/
+.cursor/
+.codex/
+.gemini/
+
+# === C++ build ===
+mono-repo/cpp/build/
+_deps/

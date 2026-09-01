@@ -1,0 +1,3910 @@
+{
+  "maj3": {
+    "chordFormulaId": "maj3",
+    "family": "chord3",
+    "cnName": "大三",
+    "scoreDisplay": "",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      4,
+      7
+    ],
+    "name": "Major",
+    "description": "大三和弦，根音、大三度、纯五度构成,是最基本的和弦之一"
+  },
+  "min3": {
+    "chordFormulaId": "min3",
+    "family": "chord3",
+    "cnName": "小三",
+    "scoreDisplay": "m",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "min"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      3,
+      7
+    ],
+    "name": "Minor",
+    "description": "小三和弦,根音、小三度、纯五度构成"
+  },
+  "dim3": {
+    "chordFormulaId": "dim3",
+    "family": "chord3",
+    "cnName": "减三",
+    "scoreDisplay": "°",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "dim",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      3,
+      6
+    ],
+    "name": "Diminished",
+    "description": "减三和弦,根音、小三度、减五度构成"
+  },
+  "aug3": {
+    "chordFormulaId": "aug3",
+    "family": "chord3",
+    "cnName": "增三",
+    "scoreDisplay": "+",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "aug",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      4,
+      8
+    ],
+    "name": "Augmented",
+    "description": "增三和弦,根音、大三度、增五度构成"
+  },
+  "maj3b5": {
+    "chordFormulaId": "maj3b5",
+    "family": "chord3",
+    "cnName": "大三减五",
+    "scoreDisplay": "b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      4,
+      6
+    ],
+    "name": "Major Flat Five",
+    "description": "大三减五和弦,根音、大三度、减五度构成"
+  },
+  "maj3add6": {
+    "chordFormulaId": "maj3add6",
+    "family": "chord3_ex",
+    "cnName": "大三加六",
+    "scoreDisplay": "add6",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj",
+      "add6"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "6": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      7,
+      9
+    ],
+    "name": "Major Add 6",
+    "description": "大三加六和弦，在大三和弦基础上增加大六度音"
+  },
+  "min3add6": {
+    "chordFormulaId": "min3add6",
+    "family": "chord3_ex",
+    "cnName": "小三加六",
+    "scoreDisplay": "madd6",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "min",
+      "add6"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "6": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      7,
+      9
+    ],
+    "name": "Minor Add 6",
+    "description": "小三加六和弦，在小三和弦基础上增加大六度音"
+  },
+  "maj3add6add9": {
+    "chordFormulaId": "maj3add6add9",
+    "family": "chord3_ex",
+    "cnName": "大三加六加九",
+    "scoreDisplay": "add6add9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj",
+      "add6",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "6": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "name": "Major Add 6 Add 9",
+    "description": "大三加六加九和弦，在大三和弦基础上增加大六度和大九度音"
+  },
+  "min3add6add9": {
+    "chordFormulaId": "min3add6add9",
+    "family": "chord3_ex",
+    "cnName": "小三加六加九",
+    "scoreDisplay": "madd6add9",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "min",
+      "add6",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "6": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      3,
+      7,
+      9,
+      14
+    ],
+    "name": "Minor Add 6 Add 9",
+    "description": "小三加六加九和弦，在小三和弦基础上增加大六度和大九度音"
+  },
+  "maj3add9": {
+    "chordFormulaId": "maj3add9",
+    "family": "chord3_ex",
+    "cnName": "大三加九",
+    "scoreDisplay": "add9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "9": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      7,
+      14
+    ],
+    "name": "Major Add 9",
+    "description": "大三加九和弦，在大三和弦基础上增加大九度音"
+  },
+  "maj3add11": {
+    "chordFormulaId": "maj3add11",
+    "family": "chord3_ex",
+    "cnName": "大三加十一",
+    "scoreDisplay": "add11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "maj",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "11": "p"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      7,
+      17
+    ],
+    "name": "Major Add 11",
+    "description": "大三加十一和弦，在大三和弦基础上增加纯十一度音"
+  },
+  "min3add9": {
+    "chordFormulaId": "min3add9",
+    "family": "chord3_ex",
+    "cnName": "小三加九",
+    "scoreDisplay": "madd9",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "min",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "9": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      7,
+      14
+    ],
+    "name": "Minor Add 9",
+    "description": "小三加九和弦，在小三和弦基础上增加大九度音"
+  },
+  "min3add11": {
+    "chordFormulaId": "min3add11",
+    "family": "chord3_ex",
+    "cnName": "小三加十一",
+    "scoreDisplay": "madd11",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord3",
+      "min",
+      "add"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "11": "p"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      7,
+      17
+    ],
+    "name": "Minor Add 11",
+    "description": "小三加十一和弦，在小三和弦基础上增加纯十一度音"
+  },
+  "maj7": {
+    "chordFormulaId": "maj7",
+    "family": "chord7",
+    "cnName": "大七",
+    "scoreDisplay": "M7",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      7,
+      11
+    ],
+    "name": "Major Seventh",
+    "description": "大七和弦，由大三和弦加大七度音构成，音响明亮稳定"
+  },
+  "dom7": {
+    "chordFormulaId": "dom7",
+    "family": "chord7",
+    "cnName": "属七",
+    "scoreDisplay": "7",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      7,
+      10
+    ],
+    "name": "Dominant Seventh",
+    "description": "属七和弦，由大三和弦加小七度音构成，具有强烈的解决倾向性"
+  },
+  "min7": {
+    "chordFormulaId": "min7",
+    "family": "chord7",
+    "cnName": "小七",
+    "scoreDisplay": "m7",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "min"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      7,
+      10
+    ],
+    "name": "Minor Seventh",
+    "description": "小七和弦，由小三和弦加小七度音构成，音响柔和常见"
+  },
+  "halfdim7": {
+    "chordFormulaId": "halfdim7",
+    "family": "chord7",
+    "cnName": "半减七",
+    "scoreDisplay": "ø",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "halfdim",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      6,
+      10
+    ],
+    "name": "Half-Diminished Seventh",
+    "description": "半减七和弦，由减三和弦加小七度音构成，也称为小七减五和弦"
+  },
+  "dim7": {
+    "chordFormulaId": "dim7",
+    "family": "chord7",
+    "cnName": "减七",
+    "scoreDisplay": "°7",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "dim",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dim",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim",
+      "7": "dim"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      6,
+      9
+    ],
+    "name": "Diminished Seventh",
+    "description": "减七和弦，由减三和弦加减七度音构成，所有音程均为小三度，具有对称性"
+  },
+  "minmaj7": {
+    "chordFormulaId": "minmaj7",
+    "family": "chord7",
+    "cnName": "小大七",
+    "scoreDisplay": "mM7",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "min",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      7,
+      11
+    ],
+    "name": "Minor Major Seventh",
+    "description": "小大七和弦，由小三和弦加大七度音构成，音响独特而神秘"
+  },
+  "maj7add11": {
+    "chordFormulaId": "maj7add11",
+    "family": "chord7Add",
+    "cnName": "大七加十一",
+    "scoreDisplay": "maj7add11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "11": "p"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      17
+    ],
+    "name": "Major 7th Add 11",
+    "description": "大七加十一和弦，在大七和弦基础上增加纯十一度音"
+  },
+  "dom7add6": {
+    "chordFormulaId": "dom7add6",
+    "family": "chord7Add",
+    "cnName": "属七加六",
+    "scoreDisplay": "7add6",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        6
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom",
+      "add6"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "6": "maj",
+      "7": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      9,
+      10
+    ],
+    "name": "Dominant 7th Add 6",
+    "description": "属七加六和弦，在属七和弦基础上增加大六度音"
+  },
+  "sus2": {
+    "chordFormulaId": "sus2",
+    "family": "chordSus",
+    "cnName": "挂二",
+    "scoreDisplay": "sus2",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "p",
+        5
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext5"
+    ],
+    "degreeToIntervalMap": {
+      "2": "maj",
+      "5": "p"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      2,
+      7
+    ],
+    "name": "Suspended 2nd",
+    "description": "挂二和弦，用大二度音替代三度音，具有解决到大三或小三和弦的倾向"
+  },
+  "sus4": {
+    "chordFormulaId": "sus4",
+    "family": "chordSus",
+    "cnName": "挂四",
+    "scoreDisplay": "sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext5"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p"
+    },
+    "notesNum": 3,
+    "semitonesList": [
+      5,
+      7
+    ],
+    "name": "Suspended 4th",
+    "description": "挂四和弦，用纯四度音替代三度音，是最常见的挂留和弦形式"
+  },
+  "dom7sus2": {
+    "chordFormulaId": "dom7sus2",
+    "family": "chordSus",
+    "cnName": "属七挂二",
+    "scoreDisplay": "7sus2",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext7",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "2": "maj",
+      "5": "p",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      2,
+      7,
+      10
+    ],
+    "name": "Dominant 7th Suspended 2nd",
+    "description": "属七挂二和弦，在属七和弦基础上用大二度音替代三度音"
+  },
+  "dom7sus4": {
+    "chordFormulaId": "dom7sus4",
+    "family": "chordSus",
+    "cnName": "属七挂四",
+    "scoreDisplay": "7sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext7",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      5,
+      7,
+      10
+    ],
+    "name": "Dominant 7th Suspended 4th",
+    "description": "属七挂四和弦，在属七和弦基础上用纯四度音替代三度音"
+  },
+  "dom7sus4b9": {
+    "chordFormulaId": "dom7sus4b9",
+    "family": "chordSus",
+    "cnName": "属七挂四减九",
+    "scoreDisplay": "7sus4b9",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext9",
+      "dom",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "min",
+      "9": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      5,
+      7,
+      10,
+      13
+    ],
+    "name": "Dominant 7th Suspended 4th Flat 9",
+    "description": "属七挂四减九和弦，在属七挂四和弦基础上增加小九度音"
+  },
+  "maj7sus2": {
+    "chordFormulaId": "maj7sus2",
+    "family": "chordSus",
+    "cnName": "大七挂二",
+    "scoreDisplay": "maj7sus2",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext7",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "2": "maj",
+      "5": "p",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      2,
+      7,
+      11
+    ],
+    "name": "Major 7th Suspended 2nd",
+    "description": "大七挂二和弦，在大七和弦基础上用大二度音替代三度音"
+  },
+  "maj7sus4": {
+    "chordFormulaId": "maj7sus4",
+    "family": "chordSus",
+    "cnName": "大七挂四",
+    "scoreDisplay": "maj7sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext7",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      5,
+      7,
+      11
+    ],
+    "name": "Major 7th Suspended 4th",
+    "description": "大七挂四和弦，在大七和弦基础上用纯四度音替代三度音"
+  },
+  "dom9sus4": {
+    "chordFormulaId": "dom9sus4",
+    "family": "chordSus",
+    "cnName": "属九挂四",
+    "scoreDisplay": "9sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext9",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      5,
+      7,
+      10,
+      14
+    ],
+    "name": "Dominant 9th Suspended 4th",
+    "description": "属九挂四和弦，在属九和弦基础上用纯四度音替代三度音，常用于爵士乐"
+  },
+  "maj9sus4": {
+    "chordFormulaId": "maj9sus4",
+    "family": "chordSus",
+    "cnName": "大九挂四",
+    "scoreDisplay": "maj9sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext9",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      5,
+      7,
+      11,
+      14
+    ],
+    "name": "Major 9th Suspended 4th",
+    "description": "大九挂四和弦，在大九和弦基础上用纯四度音替代三度音"
+  },
+  "dom13sus4": {
+    "chordFormulaId": "dom13sus4",
+    "family": "chordSus",
+    "cnName": "属十三挂四",
+    "scoreDisplay": "13sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext13",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "13": "maj"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      5,
+      7,
+      10,
+      14,
+      21
+    ],
+    "name": "Dominant 13th Suspended 4th",
+    "description": "属十三挂四和弦，在属十三和弦基础上用纯四度音替代三度音"
+  },
+  "maj13sus4": {
+    "chordFormulaId": "maj13sus4",
+    "family": "chordSus",
+    "cnName": "大十三挂四",
+    "scoreDisplay": "maj13sus4",
+    "intervalList": [
+      [
+        "p",
+        4
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext13",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "4": "p",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "13": "maj"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      5,
+      7,
+      11,
+      14,
+      21
+    ],
+    "name": "Major 13th Suspended 4th",
+    "description": "大十三挂四和弦，在大十三和弦基础上用纯四度音替代三度音"
+  },
+  "maj13sus2": {
+    "chordFormulaId": "maj13sus2",
+    "family": "chordSus",
+    "cnName": "大十三挂二",
+    "scoreDisplay": "maj13sus2",
+    "intervalList": [
+      [
+        "maj",
+        2
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "sus",
+      "ext13",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "2": "maj",
+      "5": "p",
+      "7": "maj",
+      "13": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      2,
+      7,
+      11,
+      21
+    ],
+    "name": "Major 13th Suspended 2nd",
+    "description": "大十三挂二和弦，在大十三和弦基础上用大二度音替代三度音"
+  },
+  "maj9": {
+    "chordFormulaId": "maj9",
+    "family": "chord9",
+    "cnName": "大九",
+    "scoreDisplay": "maj9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14
+    ],
+    "name": "Major Ninth",
+    "description": "大九和弦，在大七和弦基础上增加大九度音，音响丰富温暖"
+  },
+  "dom9": {
+    "chordFormulaId": "dom9",
+    "family": "chord9",
+    "cnName": "属九",
+    "scoreDisplay": "9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14
+    ],
+    "name": "Dominant Ninth",
+    "description": "属九和弦，在属七和弦基础上增加大九度音，常用于爵士乐和流行音乐"
+  },
+  "min9": {
+    "chordFormulaId": "min9",
+    "family": "chord9",
+    "cnName": "小九",
+    "scoreDisplay": "m9",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "min"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      3,
+      7,
+      10,
+      14
+    ],
+    "name": "Minor Ninth",
+    "description": "小九和弦，在小七和弦基础上增加大九度音，音响柔和忧郁"
+  },
+  "minmaj9": {
+    "chordFormulaId": "minmaj9",
+    "family": "chord9",
+    "cnName": "小大九",
+    "scoreDisplay": "mM9",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "min",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      3,
+      7,
+      11,
+      14
+    ],
+    "name": "Minor Major Ninth",
+    "description": "小大九和弦，在小大七和弦基础上增加大九度音，音响神秘而独特"
+  },
+  "dom9#5": {
+    "chordFormulaId": "dom9#5",
+    "family": "dom9alter",
+    "cnName": "属九增五",
+    "scoreDisplay": "9#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      8,
+      10,
+      14
+    ],
+    "name": "Dominant 9th Sharp 5",
+    "description": "属九增五和弦，在属九和弦基础上将五度音升高半音"
+  },
+  "dom9#11": {
+    "chordFormulaId": "dom9#11",
+    "family": "dom9alter",
+    "cnName": "属九增十一",
+    "scoreDisplay": "9#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "aug",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "aug"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      18
+    ],
+    "name": "Dominant 9th Sharp 11",
+    "description": "属九增十一和弦，在属九和弦基础上增加增十一度音"
+  },
+  "dom9b13": {
+    "chordFormulaId": "dom9b13",
+    "family": "dom9alter",
+    "cnName": "属九减十三",
+    "scoreDisplay": "9b13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "min",
+        13
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "flat13"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "13": "min"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      20
+    ],
+    "name": "Dominant 9th Flat 13",
+    "description": "属九减十三和弦，在属九和弦基础上增加小十三度音"
+  },
+  "dom9add13": {
+    "chordFormulaId": "dom9add13",
+    "family": "dom9alter",
+    "cnName": "属九加十三",
+    "scoreDisplay": "9add13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "13": "maj"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      21
+    ],
+    "name": "Dominant 9th Add 13",
+    "description": "属九加十三和弦，在属九和弦基础上增加大十三度音，省略十一度音"
+  },
+  "maj9b5": {
+    "chordFormulaId": "maj9b5",
+    "family": "maj9alter",
+    "cnName": "大九减五",
+    "scoreDisplay": "maj9b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "maj7",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      6,
+      11,
+      14
+    ],
+    "name": "Major 9th Flat 5",
+    "description": "大九减五和弦，在大九和弦基础上将五度音降低半音"
+  },
+  "maj9#5": {
+    "chordFormulaId": "maj9#5",
+    "family": "maj9alter",
+    "cnName": "大九增五",
+    "scoreDisplay": "maj9#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "maj7",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "maj",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      8,
+      11,
+      14
+    ],
+    "name": "Major 9th Sharp 5",
+    "description": "大九增五和弦，在大九和弦基础上将五度音升高半音"
+  },
+  "maj9#11": {
+    "chordFormulaId": "maj9#11",
+    "family": "maj9alter",
+    "cnName": "大九增十一",
+    "scoreDisplay": "maj9#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "aug",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "maj7",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "aug"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14,
+      18
+    ],
+    "name": "Major 9th Sharp 11",
+    "description": "大九增十一和弦，在大九和弦基础上增加增十一度音"
+  },
+  "maj9b13": {
+    "chordFormulaId": "maj9b13",
+    "family": "maj9alter",
+    "cnName": "大九减十三",
+    "scoreDisplay": "maj9b13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "min",
+        13
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "maj7",
+      "altered",
+      "flat13"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "13": "min"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14,
+      20
+    ],
+    "name": "Major 9th Flat 13",
+    "description": "大九减十三和弦，在大九和弦基础上增加小十三度音"
+  },
+  "min9b5": {
+    "chordFormulaId": "min9b5",
+    "family": "min9alter",
+    "cnName": "小九减五",
+    "scoreDisplay": "m9b5",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "halfdim",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      3,
+      6,
+      10,
+      14
+    ],
+    "name": "Minor 9th Flat 5",
+    "description": "小九减五和弦，在小九和弦基础上将五度音降低半音"
+  },
+  "maj11": {
+    "chordFormulaId": "maj11",
+    "family": "chord11",
+    "cnName": "大十一",
+    "scoreDisplay": "maj11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14,
+      17
+    ],
+    "name": "Major Eleventh",
+    "description": "大十一和弦，在大九和弦基础上增加纯十一度音，音响宽广丰富"
+  },
+  "dom11": {
+    "chordFormulaId": "dom11",
+    "family": "chord11",
+    "cnName": "属十一",
+    "scoreDisplay": "11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      17
+    ],
+    "name": "Dominant Eleventh",
+    "description": "属十一和弦，在属九和弦基础上增加纯十一度音，常用于爵士乐"
+  },
+  "min11": {
+    "chordFormulaId": "min11",
+    "family": "chord11",
+    "cnName": "小十一",
+    "scoreDisplay": "m11",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "min"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      3,
+      7,
+      10,
+      14,
+      17
+    ],
+    "name": "Minor Eleventh",
+    "description": "小十一和弦，在小九和弦基础上增加纯十一度音，音响柔和"
+  },
+  "minmaj11": {
+    "chordFormulaId": "minmaj11",
+    "family": "chord11",
+    "cnName": "小大十一",
+    "scoreDisplay": "mM11",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "min",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      3,
+      7,
+      11,
+      14,
+      17
+    ],
+    "name": "Minor Major Eleventh",
+    "description": "小大十一和弦，在小大九和弦基础上增加纯十一度音，音响独特"
+  },
+  "dom11b5": {
+    "chordFormulaId": "dom11b5",
+    "family": "dom11alter",
+    "cnName": "属十一减五",
+    "scoreDisplay": "11b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      6,
+      10,
+      14,
+      17
+    ],
+    "name": "Dominant 11th Flat 5",
+    "description": "属十一减五和弦，在属十一和弦基础上将五度音降低半音"
+  },
+  "dom11#5": {
+    "chordFormulaId": "dom11#5",
+    "family": "dom11alter",
+    "cnName": "属十一增五",
+    "scoreDisplay": "11#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      8,
+      10,
+      14,
+      17
+    ],
+    "name": "Dominant 11th Sharp 5",
+    "description": "属十一增五和弦，在属十一和弦基础上将五度音升高半音"
+  },
+  "dom11b9": {
+    "chordFormulaId": "dom11b9",
+    "family": "dom11alter",
+    "cnName": "属十一减九",
+    "scoreDisplay": "11b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "min",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      13,
+      17
+    ],
+    "name": "Dominant 11th Flat 9",
+    "description": "属十一减九和弦，在属十一和弦基础上将九度音降低半音"
+  },
+  "dom11#9": {
+    "chordFormulaId": "dom11#9",
+    "family": "dom11alter",
+    "cnName": "属十一增九",
+    "scoreDisplay": "11#9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "dom",
+      "altered",
+      "sharp9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "aug",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      15,
+      17
+    ],
+    "name": "Dominant 11th Sharp 9",
+    "description": "属十一增九和弦，在属十一和弦基础上将九度音升高半音"
+  },
+  "dom11b13": {
+    "chordFormulaId": "dom11b13",
+    "family": "dom11alter",
+    "cnName": "属十一减十三",
+    "scoreDisplay": "11b13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "min",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "flat13"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "p",
+      "13": "min"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      17,
+      20
+    ],
+    "name": "Dominant 11th Flat 13",
+    "description": "属十一减十三和弦，在属十一和弦基础上增加小十三度音"
+  },
+  "min11b5": {
+    "chordFormulaId": "min11b5",
+    "family": "min11alter",
+    "cnName": "小十一减五",
+    "scoreDisplay": "m11b5",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ]
+    ],
+    "tags": [
+      "chord11",
+      "halfdim",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim",
+      "7": "min",
+      "9": "maj",
+      "11": "p"
+    },
+    "notesNum": 6,
+    "semitonesList": [
+      3,
+      6,
+      10,
+      14,
+      17
+    ],
+    "name": "Minor 11th Flat 5",
+    "description": "小十一减五和弦，在小十一和弦基础上将五度音降低半音"
+  },
+  "maj13": {
+    "chordFormulaId": "maj13",
+    "family": "chord13",
+    "cnName": "大十三",
+    "scoreDisplay": "maj13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14,
+      17,
+      21
+    ],
+    "name": "Major Thirteenth",
+    "description": "大十三和弦，在大十一和弦基础上增加大十三度音，音响最为丰满"
+  },
+  "dom13": {
+    "chordFormulaId": "dom13",
+    "family": "chord13",
+    "cnName": "属十三",
+    "scoreDisplay": "13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      17,
+      21
+    ],
+    "name": "Dominant Thirteenth",
+    "description": "属十三和弦，在属十一和弦基础上增加大十三度音，常用于爵士乐"
+  },
+  "min13": {
+    "chordFormulaId": "min13",
+    "family": "chord13",
+    "cnName": "小十三",
+    "scoreDisplay": "m13",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "min"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      3,
+      7,
+      10,
+      14,
+      17,
+      21
+    ],
+    "name": "Minor Thirteenth",
+    "description": "小十三和弦，在小十一和弦基础上增加大十三度音，音响丰富柔和"
+  },
+  "minmaj13": {
+    "chordFormulaId": "minmaj13",
+    "family": "chord13",
+    "cnName": "小大十三",
+    "scoreDisplay": "mM13",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "min",
+      "maj7"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      3,
+      7,
+      11,
+      14,
+      17,
+      21
+    ],
+    "name": "Minor Major Thirteenth",
+    "description": "小大十三和弦，在小大十一和弦基础上增加大十三度音，音响独特而神秘"
+  },
+  "dom13b5": {
+    "chordFormulaId": "dom13b5",
+    "family": "dom13alter",
+    "cnName": "属十三减五",
+    "scoreDisplay": "13b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      6,
+      10,
+      14,
+      17,
+      21
+    ],
+    "name": "Dominant 13th Flat 5",
+    "description": "属十三减五和弦，在属十三和弦基础上将五度音降低半音"
+  },
+  "dom13#5": {
+    "chordFormulaId": "dom13#5",
+    "family": "dom13alter",
+    "cnName": "属十三增五",
+    "scoreDisplay": "13#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      8,
+      10,
+      14,
+      17,
+      21
+    ],
+    "name": "Dominant 13th Sharp 5",
+    "description": "属十三增五和弦，在属十三和弦基础上将五度音升高半音"
+  },
+  "dom13b9": {
+    "chordFormulaId": "dom13b9",
+    "family": "dom13alter",
+    "cnName": "属十三减九",
+    "scoreDisplay": "13b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "min",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      13,
+      17,
+      21
+    ],
+    "name": "Dominant 13th Flat 9",
+    "description": "属十三减九和弦，在属十三和弦基础上将九度音降低半音"
+  },
+  "dom13#9": {
+    "chordFormulaId": "dom13#9",
+    "family": "dom13alter",
+    "cnName": "属十三增九",
+    "scoreDisplay": "13#9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "sharp9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "aug",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      15,
+      17,
+      21
+    ],
+    "name": "Dominant 13th Sharp 9",
+    "description": "属十三增九和弦，在属十三和弦基础上将九度音升高半音"
+  },
+  "dom13#11": {
+    "chordFormulaId": "dom13#11",
+    "family": "dom13alter",
+    "cnName": "属十三增十一",
+    "scoreDisplay": "13#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "aug",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "dom",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "maj",
+      "11": "aug",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      14,
+      18,
+      21
+    ],
+    "name": "Dominant 13th Sharp 11",
+    "description": "属十三增十一和弦，在属十三和弦基础上将十一度音升高半音"
+  },
+  "maj13b5": {
+    "chordFormulaId": "maj13b5",
+    "family": "maj13alter",
+    "cnName": "大十三减五",
+    "scoreDisplay": "maj13b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "maj7",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "maj",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      6,
+      11,
+      14,
+      17,
+      21
+    ],
+    "name": "Major 13th Flat 5",
+    "description": "大十三减五和弦，在大十三和弦基础上将五度音降低半音"
+  },
+  "maj13#5": {
+    "chordFormulaId": "maj13#5",
+    "family": "maj13alter",
+    "cnName": "大十三增五",
+    "scoreDisplay": "maj13#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "maj7",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "maj",
+      "9": "maj",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      8,
+      11,
+      14,
+      17,
+      21
+    ],
+    "name": "Major 13th Sharp 5",
+    "description": "大十三增五和弦，在大十三和弦基础上将五度音升高半音"
+  },
+  "maj13b9": {
+    "chordFormulaId": "maj13b9",
+    "family": "maj13alter",
+    "cnName": "大十三减九",
+    "scoreDisplay": "maj13b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "min",
+        9
+      ],
+      [
+        "p",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "maj7",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "min",
+      "11": "p",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      13,
+      17,
+      21
+    ],
+    "name": "Major 13th Flat 9",
+    "description": "大十三减九和弦，在大十三和弦基础上将九度音降低半音"
+  },
+  "maj13#11": {
+    "chordFormulaId": "maj13#11",
+    "family": "maj13alter",
+    "cnName": "大十三增十一",
+    "scoreDisplay": "maj13#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "maj",
+        9
+      ],
+      [
+        "aug",
+        11
+      ],
+      [
+        "maj",
+        13
+      ]
+    ],
+    "tags": [
+      "chord13",
+      "maj7",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "maj",
+      "11": "aug",
+      "13": "maj"
+    },
+    "notesNum": 7,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      14,
+      18,
+      21
+    ],
+    "name": "Major 13th Sharp 11",
+    "description": "大十三增十一和弦，在大十三和弦基础上将十一度音升高半音"
+  },
+  "dom7#5": {
+    "chordFormulaId": "dom7#5",
+    "family": "dom7alter",
+    "cnName": "属七增五",
+    "scoreDisplay": "7#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      8,
+      10
+    ],
+    "name": "Dominant 7th Sharp 5",
+    "description": "属七增五和弦，在属七和弦基础上将五度音升高半音"
+  },
+  "dom7b5": {
+    "chordFormulaId": "dom7b5",
+    "family": "dom7alter",
+    "cnName": "属七减五",
+    "scoreDisplay": "7b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      6,
+      10
+    ],
+    "name": "Dominant 7th Flat 5",
+    "description": "属七减五和弦，在属七和弦基础上将五度音降低半音"
+  },
+  "dom7b9": {
+    "chordFormulaId": "dom7b9",
+    "family": "dom7alter",
+    "cnName": "属七减九",
+    "scoreDisplay": "7b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      13
+    ],
+    "name": "Dominant 7th Flat 9",
+    "description": "属七减九和弦，在属七和弦基础上增加小九度音，常用于爵士乐"
+  },
+  "dom7#9": {
+    "chordFormulaId": "dom7#9",
+    "family": "dom7alter",
+    "cnName": "属七增九",
+    "scoreDisplay": "7#9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "sharp9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "9": "aug"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      15
+    ],
+    "name": "Dominant 7th Sharp 9",
+    "description": "属七增九和弦，在属七和弦基础上增加增九度音，常用于布鲁斯和摇滚乐"
+  },
+  "dom7#11": {
+    "chordFormulaId": "dom7#11",
+    "family": "dom7alter",
+    "cnName": "属七增十一",
+    "scoreDisplay": "7#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        11
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "11": "aug"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      18
+    ],
+    "name": "Dominant 7th Sharp 11",
+    "description": "属七增十一和弦，在属七和弦基础上增加增十一度音"
+  },
+  "dom7b13": {
+    "chordFormulaId": "dom7b13",
+    "family": "dom7alter",
+    "cnName": "属七减十三",
+    "scoreDisplay": "7b13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        13
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "dom",
+      "altered",
+      "flat13"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "min",
+      "13": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      10,
+      20
+    ],
+    "name": "Dominant 7th Flat 13",
+    "description": "属七减十三和弦，在属七和弦基础上增加小十三度音"
+  },
+  "dom7b5b9": {
+    "chordFormulaId": "dom7b5b9",
+    "family": "dom7alter",
+    "cnName": "属七减五减九",
+    "scoreDisplay": "7b5b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "flat5",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min",
+      "9": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      6,
+      10,
+      13
+    ],
+    "name": "Dominant 7th Flat 5 Flat 9",
+    "description": "属七减五减九和弦，在属七和弦基础上同时降低五度和九度音"
+  },
+  "dom7b5#9": {
+    "chordFormulaId": "dom7b5#9",
+    "family": "dom7alter",
+    "cnName": "属七减五增九",
+    "scoreDisplay": "7b5#9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "flat5",
+      "sharp9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min",
+      "9": "aug"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      6,
+      10,
+      15
+    ],
+    "name": "Dominant 7th Flat 5 Sharp 9",
+    "description": "属七减五增九和弦，在属七和弦基础上同时降低五度音和升高九度音"
+  },
+  "dom7#5b9": {
+    "chordFormulaId": "dom7#5b9",
+    "family": "dom7alter",
+    "cnName": "属七增五减九",
+    "scoreDisplay": "7#5b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "min",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "sharp5",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min",
+      "9": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      8,
+      10,
+      13
+    ],
+    "name": "Dominant 7th Sharp 5 Flat 9",
+    "description": "属七增五减九和弦，在属七和弦基础上同时升高五度音和降低九度音"
+  },
+  "dom7#5#9": {
+    "chordFormulaId": "dom7#5#9",
+    "family": "dom7alter",
+    "cnName": "属七增五增九",
+    "scoreDisplay": "7#5#9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ],
+      [
+        "aug",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "dom",
+      "altered",
+      "sharp5",
+      "sharp9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "min",
+      "9": "aug"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      8,
+      10,
+      15
+    ],
+    "name": "Dominant 7th Sharp 5 Sharp 9",
+    "description": "属七增五增九和弦，在属七和弦基础上同时升高五度和九度音"
+  },
+  "maj7b5": {
+    "chordFormulaId": "maj7b5",
+    "family": "maj7alter",
+    "cnName": "大七减五",
+    "scoreDisplay": "maj7b5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      6,
+      11
+    ],
+    "name": "Major 7th Flat 5",
+    "description": "大七减五和弦，在大七和弦基础上将五度音降低半音"
+  },
+  "maj7b9": {
+    "chordFormulaId": "maj7b9",
+    "family": "maj7alter",
+    "cnName": "大七减九",
+    "scoreDisplay": "maj7b9",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "min",
+        9
+      ]
+    ],
+    "tags": [
+      "chord9",
+      "maj7",
+      "altered",
+      "flat9"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "9": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      13
+    ],
+    "name": "Major 7th Flat 9",
+    "description": "大七减九和弦，在大七和弦基础上增加小九度音"
+  },
+  "maj7b13": {
+    "chordFormulaId": "maj7b13",
+    "family": "maj7alter",
+    "cnName": "大七减十三",
+    "scoreDisplay": "maj7b13",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "min",
+        13
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7",
+      "altered",
+      "flat13"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "13": "min"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      20
+    ],
+    "name": "Major 7th Flat 13",
+    "description": "大七减十三和弦，在大七和弦基础上增加小十三度音"
+  },
+  "maj7#11": {
+    "chordFormulaId": "maj7#11",
+    "family": "maj7alter",
+    "cnName": "大七增十一",
+    "scoreDisplay": "maj7#11",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "p",
+        5
+      ],
+      [
+        "maj",
+        7
+      ],
+      [
+        "aug",
+        11
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7",
+      "altered",
+      "sharp11"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "p",
+      "7": "maj",
+      "11": "aug"
+    },
+    "notesNum": 5,
+    "semitonesList": [
+      4,
+      7,
+      11,
+      18
+    ],
+    "name": "Major 7th Sharp 11",
+    "description": "大七增十一和弦，在大七和弦基础上增加增十一度音，也称为利底亚和弦"
+  },
+  "augmaj7": {
+    "chordFormulaId": "augmaj7",
+    "family": "maj7alter",
+    "cnName": "增大七",
+    "scoreDisplay": "maj7#5",
+    "intervalList": [
+      [
+        "maj",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "maj7",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "aug",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      4,
+      8,
+      11
+    ],
+    "name": "Augmented Major Seventh",
+    "description": "增大七和弦，由增三和弦加大七度音构成。此和弦也称为大七增五和弦(maj7#5)，两者为同一和弦的不同命名"
+  },
+  "min7#5": {
+    "chordFormulaId": "min7#5",
+    "family": "min7alter",
+    "cnName": "小七增五",
+    "scoreDisplay": "m7#5",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "min",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "min",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "aug",
+      "7": "min"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      8,
+      10
+    ],
+    "name": "Minor 7th Sharp 5",
+    "description": "小七增五和弦，在小七和弦基础上将五度音升高半音"
+  },
+  "minmaj7b5": {
+    "chordFormulaId": "minmaj7b5",
+    "family": "min7alter",
+    "cnName": "小大七减五",
+    "scoreDisplay": "mM7b5",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "dim",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "min",
+      "maj7",
+      "altered",
+      "flat5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "dim",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      6,
+      11
+    ],
+    "name": "Minor Major 7th Flat 5",
+    "description": "小大七减五和弦，在小大七和弦基础上将五度音降低半音"
+  },
+  "minmaj7#5": {
+    "chordFormulaId": "minmaj7#5",
+    "family": "min7alter",
+    "cnName": "小大七增五",
+    "scoreDisplay": "mM7#5",
+    "intervalList": [
+      [
+        "min",
+        3
+      ],
+      [
+        "aug",
+        5
+      ],
+      [
+        "maj",
+        7
+      ]
+    ],
+    "tags": [
+      "chord7",
+      "min",
+      "maj7",
+      "altered",
+      "sharp5"
+    ],
+    "degreeToIntervalMap": {
+      "3": "min",
+      "5": "aug",
+      "7": "maj"
+    },
+    "notesNum": 4,
+    "semitonesList": [
+      3,
+      8,
+      11
+    ],
+    "name": "Minor Major 7th Sharp 5",
+    "description": "小大七增五和弦，在小大七和弦基础上将五度音升高半音"
+  }
+}

@@ -21,7 +21,15 @@
     "dev": "pnpm vite",
     "build": "del-cli dist/* && vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "gen:data": "npx tsx ts-dev/index.ts",
+    "gen:golden": "npx tsx mono-repo/cpp/tools/extract-golden.ts",
+    "test": "vitest run",
+    "test:ts": "vitest run",
+    "build:cpp": "cd mono-repo/cpp && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release && cmake --build . --parallel 4",
+    "test:cpp": "cd mono-repo/cpp/build && MUSIC12_ROOT=$(pwd)/../../.. ./music12_tests",
+    "verify:equivalence": "cd mono-repo/cpp/build && MUSIC12_ROOT=$(pwd)/../../.. ./verify_equivalence",
+    "verify:all": "pnpm test:ts && pnpm test:cpp && pnpm verify:equivalence"
   },
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.mjs",
@@ -86,7 +94,9 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "AGENTS.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "chinese-numbering": "^1.0.0",

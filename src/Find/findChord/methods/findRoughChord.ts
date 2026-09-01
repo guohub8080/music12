@@ -84,8 +84,9 @@ function hasAllCharacteristicNotes(
  *
  * **第二层 · 省略音匹配**（仅模糊模式）：用户少弹了音，但弹的音全是候选和弦的音
  * （输入 ⊆ 候选），且候选和弦的特征音都被弹到。
- * 例：输入 C-E-G → 匹配 Cmaj7（用户少弹了 B），但 C-E-G 不会匹配 dom7
- * （dom7 的特征音小七度 Bb 没被弹到）。
+ * 例：输入 C-E → 匹配 Cmaj（用户少弹了纯五度 G，纯五度可省），但 C-E 不会匹配
+ * Cmaj7（七度 B 是特征音，必须弹到），也不会匹配 dom7（特征音小七度 Bb 没被弹到）。
+ * 注：C-E-G 三个音在第一层就完全匹配 Cmaj，不会进入第二层。
  *
  * @param pianoKeyIdList - 钢琴键 ID 列表（0-11），已排序去重
  * @param isStrict - true=只返回完全匹配；false=完全匹配优先，无则返回省略音匹配

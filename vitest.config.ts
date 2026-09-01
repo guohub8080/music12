@@ -21,7 +21,8 @@ export default defineConfig({
       '@pianokey': path.resolve(__dirname, './src/PianoKey'),
       '@stave': path.resolve(__dirname, './src/Stave'),
       '@common': path.resolve(__dirname, './src/common'),
-      '@factory': path.resolve(__dirname, './src/factory')
+      '@factory': path.resolve(__dirname, './src/factory'),
+      '@static-data': path.resolve(__dirname, './static-data')
     }
   }
 });
