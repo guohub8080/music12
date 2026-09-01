@@ -54,6 +54,7 @@
  * 极简源甚至可以只写这三项,编译时自动展开。
  */
 [
+  // C
   {
     "uid": 1,
     "artName": "C",
@@ -68,6 +69,7 @@
     "isBlack": false,
     "mathName": "C"
   },
+  // D
   {
     "uid": 2,
     "artName": "D",
@@ -82,6 +84,7 @@
     "isBlack": false,
     "mathName": "D"
   },
+  // E
   {
     "uid": 3,
     "artName": "E",
@@ -96,6 +99,7 @@
     "isBlack": false,
     "mathName": "E"
   },
+  // F
   {
     "uid": 4,
     "artName": "F",
@@ -110,6 +114,7 @@
     "isBlack": false,
     "mathName": "F"
   },
+  // G
   {
     "uid": 5,
     "artName": "G",
@@ -124,6 +129,7 @@
     "isBlack": false,
     "mathName": "G"
   },
+  // A
   {
     "uid": 6,
     "artName": "A",
@@ -138,6 +144,7 @@
     "isBlack": false,
     "mathName": "A"
   },
+  // B
   {
     "uid": 7,
     "artName": "B",
@@ -152,6 +159,7 @@
     "isBlack": false,
     "mathName": "B"
   },
+  // C♯
   {
     "uid": 8,
     "artName": "C♯",
@@ -166,6 +174,7 @@
     "isBlack": true,
     "mathName": "C+1"
   },
+  // C♭
   {
     "uid": 9,
     "artName": "C♭",
@@ -180,6 +189,7 @@
     "isBlack": false,
     "mathName": "C-1"
   },
+  // D♯
   {
     "uid": 10,
     "artName": "D♯",
@@ -194,6 +204,7 @@
     "isBlack": true,
     "mathName": "D+1"
   },
+  // D♭
   {
     "uid": 11,
     "artName": "D♭",
@@ -208,6 +219,7 @@
     "isBlack": true,
     "mathName": "D-1"
   },
+  // E♯
   {
     "uid": 12,
     "artName": "E♯",
@@ -222,6 +234,7 @@
     "isBlack": false,
     "mathName": "E+1"
   },
+  // E♭
   {
     "uid": 13,
     "artName": "E♭",
@@ -236,6 +249,7 @@
     "isBlack": true,
     "mathName": "E-1"
   },
+  // F♯
   {
     "uid": 14,
     "artName": "F♯",
@@ -250,6 +264,7 @@
     "isBlack": true,
     "mathName": "F+1"
   },
+  // F♭
   {
     "uid": 15,
     "artName": "F♭",
@@ -264,6 +279,7 @@
     "isBlack": false,
     "mathName": "F-1"
   },
+  // G♯
   {
     "uid": 16,
     "artName": "G♯",
@@ -278,6 +294,7 @@
     "isBlack": true,
     "mathName": "G+1"
   },
+  // G♭
   {
     "uid": 17,
     "artName": "G♭",
@@ -292,6 +309,7 @@
     "isBlack": true,
     "mathName": "G-1"
   },
+  // A♯
   {
     "uid": 18,
     "artName": "A♯",
@@ -306,6 +324,7 @@
     "isBlack": true,
     "mathName": "A+1"
   },
+  // A♭
   {
     "uid": 19,
     "artName": "A♭",
@@ -320,6 +339,7 @@
     "isBlack": true,
     "mathName": "A-1"
   },
+  // B♯
   {
     "uid": 20,
     "artName": "B♯",
@@ -334,6 +354,7 @@
     "isBlack": false,
     "mathName": "B+1"
   },
+  // B♭
   {
     "uid": 21,
     "artName": "B♭",
@@ -348,6 +369,7 @@
     "isBlack": true,
     "mathName": "B-1"
   },
+  // C♯♯
   {
     "uid": 22,
     "artName": "C♯♯",
@@ -362,6 +384,7 @@
     "isBlack": false,
     "mathName": "C+2"
   },
+  // C♭♭
   {
     "uid": 23,
     "artName": "C♭♭",
@@ -376,6 +399,7 @@
     "isBlack": true,
     "mathName": "C-2"
   },
+  // D♯♯
   {
     "uid": 24,
     "artName": "D♯♯",
@@ -390,6 +414,7 @@
     "isBlack": false,
     "mathName": "D+2"
   },
+  // D♭♭
   {
     "uid": 25,
     "artName": "D♭♭",
@@ -404,6 +429,7 @@
     "isBlack": false,
     "mathName": "D-2"
   },
+  // E♯♯
   {
     "uid": 26,
     "artName": "E♯♯",
@@ -418,6 +444,7 @@
     "isBlack": true,
     "mathName": "E+2"
   },
+  // E♭♭
   {
     "uid": 27,
     "artName": "E♭♭",
@@ -432,6 +459,7 @@
     "isBlack": false,
     "mathName": "E-2"
   },
+  // F♯♯
   {
     "uid": 28,
     "artName": "F♯♯",
@@ -446,6 +474,7 @@
     "isBlack": false,
     "mathName": "F+2"
   },
+  // F♭♭
   {
     "uid": 29,
     "artName": "F♭♭",
@@ -460,6 +489,7 @@
     "isBlack": true,
     "mathName": "F-2"
   },
+  // G♯♯
   {
     "uid": 30,
     "artName": "G♯♯",
@@ -474,6 +504,7 @@
     "isBlack": false,
     "mathName": "G+2"
   },
+  // G♭♭
   {
     "uid": 31,
     "artName": "G♭♭",
@@ -488,6 +519,7 @@
     "isBlack": false,
     "mathName": "G-2"
   },
+  // A♯♯
   {
     "uid": 32,
     "artName": "A♯♯",
@@ -502,6 +534,7 @@
     "isBlack": false,
     "mathName": "A+2"
   },
+  // A♭♭
   {
     "uid": 33,
     "artName": "A♭♭",
@@ -516,6 +549,7 @@
     "isBlack": false,
     "mathName": "A-2"
   },
+  // B♯♯
   {
     "uid": 34,
     "artName": "B♯♯",
@@ -530,6 +564,7 @@
     "isBlack": true,
     "mathName": "B+2"
   },
+  // B♭♭
   {
     "uid": 35,
     "artName": "B♭♭",
