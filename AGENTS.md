@@ -135,6 +135,54 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 中国调式：`GONG` `SHANG` `JUE` `ZHI` `YU`（五声）；`YA_YUE_GONG` `QING_YUE_GONG` `YAN_YUE_GONG` 等（七声）
 
+## 开发规范
+
+> 本节面向在 music12 仓库里做开发的 AI/人类，约定目录、数据流、分支与验证方式。
+
+### 目录结构（按语言归类，禁止无意义嵌套）
+
+```
+src/           TS 库本体（发布 npm 的就是它）
+static-data/   单一真相源：7 个 JSON，TS 和 C++ 都只读这一份
+ts-dev/        TS 开发工具脚本（数据生成器，直接平铺在根下）
+mono-repo/cpp/ C++20 实现（非 TS 的一律进 mono-repo）
+test/          单元测试（test/unit）+ 黄金向量（test/vectors）
+documents/     人类可读的分章文档
+```
+
+原则：顶层目录必须装实际内容；只有一个模块时不许再套 `xxx/src/` 之类的空架子（ts-dev 曾因此拍平）。
+
+### 数据流（改数据只改生成器，不手改 JSON）
+
+```
+ts-dev/index.ts  --pnpm gen:data-->  static-data/*.json  -->  src/ 各 data.ts 用 @static-data/xxx.json 导入
+                                        └-->  mono-repo/cpp 通过 MUSIC12_ROOT 指向仓库根读取
+```
+
+- 改数据 = 改 `ts-dev/` 生成器逻辑，然后 `pnpm gen:data` 重新产出
+- 产出必须幂等：重跑 `pnpm gen:data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
+
+### 短路径别名（四处配置必须同步）
+
+`tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@stave` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
+
+### 分支与发布流程
+
+- 开发在 `refactor/vX.Y` 分支上做，提交遵循 Conventional Commits（中文，正文写清动机和验证结果）
+- 发布时：切到 main → `git merge --squash` 压缩成一个提交（正文按「特性/修复/文档/结构/验证」分组写发布摘要）→ 打注解 tag `vX.Y.Z`（与 npm 版本号一致）
+- 开发分支**不删**，改名保留为存档（如 `refactor/v3.1`），细粒度历史全在里面
+- 推送时三样一起：`git push origin main vX.Y.Z refactor/vX.Y`
+
+### 验证三件套（结构/数据改动后必跑）
+
+```bash
+pnpm test                 # TS 单元测试（当前 213 个）
+pnpm test:cpp             # C++ 测试（当前 32 个，需先 pnpm build:cpp）
+pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1687 条黄金向量，必须 100%）
+```
+
+任何一个红了就不许提交。改动涉及数据或目录时，额外确认生成器重跑零差异。
+
 ## 完整文档
 
 人类可读的详细文档在 `documents/` 目录（如果包含在包里）或 [GitHub](https://github.com/guohub8080/music12)。
