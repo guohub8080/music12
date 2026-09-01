@@ -1,7 +1,7 @@
 /**
  * music12-cpp · 幂等验证器
  *
- * 读 tests/vectors/golden-vectors.json,逐条调用 C++ API,
+ * 读 test/vectors/golden-vectors.json,逐条调用 C++ API,
  * 对比输出,统计通过/失败/不一致。
  *
  * 用法:
@@ -88,7 +88,7 @@ int main() {
     music12::DataLoader::instance().loadFromDirectory(dataDir);
 
     // 读 golden vectors
-    std::string vecPath = std::string(root) + "/tests/vectors/golden-vectors.json";
+    std::string vecPath = std::string(root) + "/test/vectors/golden-vectors.json";
     std::ifstream file(vecPath);
     if (!file.is_open()) {
         std::cerr << "Cannot open: " << vecPath << "\n";

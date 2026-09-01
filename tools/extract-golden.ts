@@ -5,14 +5,14 @@
  * 供 C++ 版跑同样的向量验证幂等。
  *
  * 运行: npx tsx tools/extract-golden.ts
- * 输出: tests/vectors/golden-vectors.json
+ * 输出: test/vectors/golden-vectors.json
  */
 import { writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = resolve(__dirname, "../tests/vectors");
+const OUT_DIR = resolve(__dirname, "../test/vectors");
 mkdirSync(OUT_DIR, { recursive: true });
 
 interface Vector {
