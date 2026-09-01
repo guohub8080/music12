@@ -10,7 +10,7 @@
  *   chord-instances.json(1056 条) 和弦实例(生成器算出)
  *   scale-instances.json(528 条)  音阶实例(生成器算出)
  *
- * 运行: npx tsx packages/music12-gen/src/index.ts
+ * 运行: npx tsx ts-dev/music12-gen/src/index.ts
  *
  * 这是 monorepo 的「单一真相源」:
  *   TS 版和 C++ 版都读这里产出的 JSON,数据永远一致。

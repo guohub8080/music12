@@ -106,7 +106,7 @@ music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄�
 | 实现 | 语言 | 用途 |
 |---|---|---|
 | `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
-| `packages/music12-cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
+| `mono-repo/cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
 
 两个版本读同一份 JSON 数据(`shared/data/`),输出完全一致(幂等验证 1687/1687 通过)。
 
@@ -122,7 +122,7 @@ shared/data/          ← 单一真相源(7 个 JSON)
 └── scale-instances.json (552 条 = 46×12)
 ```
 
-数据由 `packages/music12-gen/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
+数据由 `ts-dev/music12-gen/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
 
 ### 幂等验证
 

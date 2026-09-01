@@ -4,7 +4,7 @@
  * 跑 music12 的核心 API,把「输入→输出」对记录成 JSON,
  * 供 C++ 版跑同样的向量验证幂等。
  *
- * 运行: npx tsx tools/extract-golden.ts
+ * 运行: npx tsx mono-repo/cpp/tools/extract-golden.ts
  * 输出: test/vectors/golden-vectors.json
  */
 import { writeFileSync, mkdirSync } from "fs";
@@ -12,7 +12,8 @@ import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = resolve(__dirname, "../test/vectors");
+// 从 mono-repo/cpp/tools/ 指向仓库根的 test/vectors/
+const OUT_DIR = resolve(__dirname, "../../../test/vectors");
 mkdirSync(OUT_DIR, { recursive: true });
 
 interface Vector {
@@ -31,7 +32,7 @@ function add(module: string, fn: string, input: any, output: any) {
 
 // ==================== Note ====================
 console.log("[1/8] Note...");
-import { Note } from "../src/Note";
+import { Note } from "../../../src/Note";
 
 // 构造各种音符
 for (const [step, alter, octave] of [
@@ -64,7 +65,7 @@ for (const move of [1, 2, 3, 5, 7, 12, -1, -2, -5, -12]) {
 }
 
 // getNoteByInterval(用音程)
-import { Interval } from "../src/Interval";
+import { Interval } from "../../../src/Interval";
 const intervals: [string, number][] = [
     ["p", 1], ["maj", 2], ["maj", 3], ["p", 4], ["p", 5],
     ["maj", 6], ["maj", 7], ["p", 8], ["min", 3], ["aug", 4],
@@ -94,10 +95,10 @@ for (const [type, num] of intervals) {
 
 // ==================== Scale ====================
 console.log("[3/8] Scale...");
-import { Scale } from "../src/Scale";
+import { Scale } from "../../../src/Scale";
 
 // 全部 46 调式 × 12 主音
-import { SCALE_MODE_META_MAP } from "../src/ScaleMode/static/SCALE_MODE_META_MAP";
+import { SCALE_MODE_META_MAP } from "../../../src/ScaleMode/static/SCALE_MODE_META_MAP";
 const allModeIds = Object.keys(SCALE_MODE_META_MAP);
 
 for (const rootPianoKeyId of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
@@ -118,8 +119,8 @@ for (const rootPianoKeyId of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
 
 // ==================== Chord ====================
 console.log("[4/8] Chord...");
-import { Chord } from "../src/Chord";
-import { CHORD_FORMULA_META_MAP } from "../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
+import { Chord } from "../../../src/Chord";
+import { CHORD_FORMULA_META_MAP } from "../../../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
 const allFormulaIds = Object.keys(CHORD_FORMULA_META_MAP);
 
 for (const rootPianoKeyId of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
@@ -164,7 +165,7 @@ for (const formulaId of ["maj3", "maj7", "dom7"]) {
 
 // ==================== findChord ====================
 console.log("[5/8] findChord...");
-import { findChord } from "../src/Find";
+import { findChord } from "../../../src/Find";
 
 const chordInputs = [
     [60, 64, 67],           // C 大三
@@ -194,7 +195,7 @@ for (const midiPitchList of chordInputs) {
 
 // ==================== Stave ====================
 console.log("[6/8] Stave...");
-import { getAlterStepListByNum, getStaveAlterByNote } from "../src/Stave";
+import { getAlterStepListByNum, getStaveAlterByNote } from "../../../src/Stave";
 
 for (const num of [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]) {
     const result = getAlterStepListByNum(num);
@@ -208,7 +209,7 @@ for (const [step, alter] of [["C", 0], ["F", 1], ["B", -1], ["G", 0]] as const) 
 
 // ==================== CircleOfFifths ====================
 console.log("[7/8] CircleOfFifths...");
-import { getFifthCircleByAlter } from "../src/CircleOfFifths";
+import { getFifthCircleByAlter } from "../../../src/CircleOfFifths";
 
 for (const alter of [-7, -5, -3, -1, 0, 1, 3, 5, 7]) {
     const result = getFifthCircleByAlter(alter);
@@ -217,7 +218,7 @@ for (const alter of [-7, -5, -3, -1, 0, 1, 3, 5, 7]) {
 
 // ==================== PianoKey ====================
 console.log("[8/8] PianoKey...");
-import { PianoKey } from "../src/PianoKey";
+import { PianoKey } from "../../../src/PianoKey";
 
 for (const pitchInt of [48, 49, 50, 60, 61, 69, 72]) {
     const pk = PianoKey.fromPitchInt(pitchInt);

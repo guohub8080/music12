@@ -28,9 +28,9 @@ protected:
 
         // 尝试几个可能的路径
         std::vector<std::string> candidates = {
-            "../../../shared/data",      // 从 build 目录
-            "../../../../shared/data",   // 从 build/packages/ 目录
-            "../../shared/data",         // 从 build/packages/music12-cpp/
+            "../../../shared/data",      // 从 build 目录(mono-repo/cpp/build)
+            "../../../../shared/data",   // 从更深的构建目录
+            "../../shared/data",         // 从 mono-repo/cpp/
             "shared/data",               // 从项目根
         };
         // 加上绝对路径

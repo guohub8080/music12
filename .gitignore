@@ -14,5 +14,5 @@ out/
 .gemini/
 
 # === C++ build ===
-packages/music12-cpp/build/
+mono-repo/cpp/build/
 _deps/
