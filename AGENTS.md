@@ -169,6 +169,13 @@ chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计
 - json5 源支持 `//` 注释、尾逗号、单引号；编译用 devDependencies 的 `json5` 包，注释不进产物
 - 产出必须幂等：重跑 `pnpm gen:data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
 
+### 数据表语义陷阱（历史 bug 教训）
+
+- **哨兵值不等于合法值**：fifth.json 里理论调（|调号|≥8，如 D♯大调 9♯）的 `circleID = -1` 是「无座位」标记，**不是合法圈位**。把它喂给 `CircleOfFifths` 会被 Base12Radix 取模成 11（F 位），静默返回错误数据（曾发生：用户问 9♯ 得到 F 大调）。消费端遇到哨兵值必须显式抛错并附等音建议（`getFifthCircleByAlter` 现行为：抛 `CircleOfFifthsError`，附 `alter - 12×sign(alter)` 的等音实用调号）
+- **数据与消费端是两层责任**：数据表经 `ts-dev/verify/verifyScales.ts`（12354 项乐理对拍）与规则断言双重验证后即为可信；此后若用户端拿到错误结果，**优先怀疑消费代码消化了哨兵值/边界值，而不是先改数据**（fifth.json 数据从未错过，bug 全在代码层）
+- **理论调的完整裁决仍在表里**：按主音拼法查询（`rawNoteStep + rawNoteAlter + mode`）永远安全，返回完整记录含 `actualNote*` 等音替换结果；只有「要圈位座位」这一诉求才会触发抛错
+- 改动数据消费逻辑后，跑 `ts-dev/verify/verifyScales.ts` 兜底（`npx tsx` 直跑，不依赖 vitest）
+
 ### 短路径别名（四处配置必须同步）
 
 `tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@stave` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
