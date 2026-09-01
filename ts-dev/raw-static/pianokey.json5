@@ -21,6 +21,10 @@
  *                  允许越界——它是「字母世界的物理量」
  *   pianoKeyId     semitone mod 12 收进 0-11,真正的物理键。
  *                  边界例:C♭♭ -2→10、B♯ 12→0、B♯♯ 13→1
+ *   pianoKeySymbol pianoKeyId 的助记孪生,只和 id 双向绑定,与拼法/升降/八度无关。
+ *                  对照(0-11):C P D Q E F X G Y A Z B——白键用音名 C-B,
+ *                  黑键从左到右 P Q X Y Z。同一键所有拼法共享同一 symbol
+ *                  (C♯/D♭/B♯♯ 都是 id=1 → P)。symbol→id 即 indexOf,可逆
  *   isBlack        pianoKeyId ∈ {1,3,6,8,10}。跟着键走而非拼法走:
  *                  E♯♯ 落在 F♯ 黑键上为 true,C♭♭ 落在 A♯/B♭ 黑键上也为 true
  *
@@ -59,6 +63,7 @@
     "stepId": 0,
     "fifthValue": 0,
     "pianoKeyId": 0,
+    "pianoKeySymbol": "C",
     "isNormal": true,
     "isBlack": false,
     "mathName": "C"
@@ -72,6 +77,7 @@
     "stepId": 1,
     "fifthValue": 2,
     "pianoKeyId": 2,
+    "pianoKeySymbol": "D",
     "isNormal": true,
     "isBlack": false,
     "mathName": "D"
@@ -85,6 +91,7 @@
     "stepId": 2,
     "fifthValue": 4,
     "pianoKeyId": 4,
+    "pianoKeySymbol": "E",
     "isNormal": true,
     "isBlack": false,
     "mathName": "E"
@@ -98,6 +105,7 @@
     "stepId": 3,
     "fifthValue": -1,
     "pianoKeyId": 5,
+    "pianoKeySymbol": "F",
     "isNormal": true,
     "isBlack": false,
     "mathName": "F"
@@ -111,6 +119,7 @@
     "stepId": 4,
     "fifthValue": 1,
     "pianoKeyId": 7,
+    "pianoKeySymbol": "G",
     "isNormal": true,
     "isBlack": false,
     "mathName": "G"
@@ -124,6 +133,7 @@
     "stepId": 5,
     "fifthValue": 3,
     "pianoKeyId": 9,
+    "pianoKeySymbol": "A",
     "isNormal": true,
     "isBlack": false,
     "mathName": "A"
@@ -137,6 +147,7 @@
     "stepId": 6,
     "fifthValue": 5,
     "pianoKeyId": 11,
+    "pianoKeySymbol": "B",
     "isNormal": true,
     "isBlack": false,
     "mathName": "B"
@@ -150,6 +161,7 @@
     "stepId": 0,
     "fifthValue": 7,
     "pianoKeyId": 1,
+    "pianoKeySymbol": "P",
     "isNormal": true,
     "isBlack": true,
     "mathName": "C+1"
@@ -163,6 +175,7 @@
     "stepId": 0,
     "fifthValue": -7,
     "pianoKeyId": 11,
+    "pianoKeySymbol": "B",
     "isNormal": false,
     "isBlack": false,
     "mathName": "C-1"
@@ -176,6 +189,7 @@
     "stepId": 1,
     "fifthValue": 9,
     "pianoKeyId": 3,
+    "pianoKeySymbol": "Q",
     "isNormal": true,
     "isBlack": true,
     "mathName": "D+1"
@@ -189,6 +203,7 @@
     "stepId": 1,
     "fifthValue": -5,
     "pianoKeyId": 1,
+    "pianoKeySymbol": "P",
     "isNormal": true,
     "isBlack": true,
     "mathName": "D-1"
@@ -202,6 +217,7 @@
     "stepId": 2,
     "fifthValue": 11,
     "pianoKeyId": 5,
+    "pianoKeySymbol": "F",
     "isNormal": false,
     "isBlack": false,
     "mathName": "E+1"
@@ -215,6 +231,7 @@
     "stepId": 2,
     "fifthValue": -3,
     "pianoKeyId": 3,
+    "pianoKeySymbol": "Q",
     "isNormal": true,
     "isBlack": true,
     "mathName": "E-1"
@@ -228,6 +245,7 @@
     "stepId": 3,
     "fifthValue": 6,
     "pianoKeyId": 6,
+    "pianoKeySymbol": "X",
     "isNormal": true,
     "isBlack": true,
     "mathName": "F+1"
@@ -241,6 +259,7 @@
     "stepId": 3,
     "fifthValue": -8,
     "pianoKeyId": 4,
+    "pianoKeySymbol": "E",
     "isNormal": false,
     "isBlack": false,
     "mathName": "F-1"
@@ -254,6 +273,7 @@
     "stepId": 4,
     "fifthValue": 8,
     "pianoKeyId": 8,
+    "pianoKeySymbol": "Y",
     "isNormal": true,
     "isBlack": true,
     "mathName": "G+1"
@@ -267,6 +287,7 @@
     "stepId": 4,
     "fifthValue": -6,
     "pianoKeyId": 6,
+    "pianoKeySymbol": "X",
     "isNormal": true,
     "isBlack": true,
     "mathName": "G-1"
@@ -280,6 +301,7 @@
     "stepId": 5,
     "fifthValue": 10,
     "pianoKeyId": 10,
+    "pianoKeySymbol": "Z",
     "isNormal": true,
     "isBlack": true,
     "mathName": "A+1"
@@ -293,6 +315,7 @@
     "stepId": 5,
     "fifthValue": -4,
     "pianoKeyId": 8,
+    "pianoKeySymbol": "Y",
     "isNormal": true,
     "isBlack": true,
     "mathName": "A-1"
@@ -306,6 +329,7 @@
     "stepId": 6,
     "fifthValue": 12,
     "pianoKeyId": 0,
+    "pianoKeySymbol": "C",
     "isNormal": false,
     "isBlack": false,
     "mathName": "B+1"
@@ -319,6 +343,7 @@
     "stepId": 6,
     "fifthValue": -2,
     "pianoKeyId": 10,
+    "pianoKeySymbol": "Z",
     "isNormal": true,
     "isBlack": true,
     "mathName": "B-1"
@@ -332,6 +357,7 @@
     "stepId": 0,
     "fifthValue": 14,
     "pianoKeyId": 2,
+    "pianoKeySymbol": "D",
     "isNormal": false,
     "isBlack": false,
     "mathName": "C+2"
@@ -345,6 +371,7 @@
     "stepId": 0,
     "fifthValue": -14,
     "pianoKeyId": 10,
+    "pianoKeySymbol": "Z",
     "isNormal": false,
     "isBlack": true,
     "mathName": "C-2"
@@ -358,6 +385,7 @@
     "stepId": 1,
     "fifthValue": 16,
     "pianoKeyId": 4,
+    "pianoKeySymbol": "E",
     "isNormal": false,
     "isBlack": false,
     "mathName": "D+2"
@@ -371,6 +399,7 @@
     "stepId": 1,
     "fifthValue": -12,
     "pianoKeyId": 0,
+    "pianoKeySymbol": "C",
     "isNormal": false,
     "isBlack": false,
     "mathName": "D-2"
@@ -384,6 +413,7 @@
     "stepId": 2,
     "fifthValue": 18,
     "pianoKeyId": 6,
+    "pianoKeySymbol": "X",
     "isNormal": false,
     "isBlack": true,
     "mathName": "E+2"
@@ -397,6 +427,7 @@
     "stepId": 2,
     "fifthValue": -10,
     "pianoKeyId": 2,
+    "pianoKeySymbol": "D",
     "isNormal": false,
     "isBlack": false,
     "mathName": "E-2"
@@ -410,6 +441,7 @@
     "stepId": 3,
     "fifthValue": 13,
     "pianoKeyId": 7,
+    "pianoKeySymbol": "G",
     "isNormal": false,
     "isBlack": false,
     "mathName": "F+2"
@@ -423,6 +455,7 @@
     "stepId": 3,
     "fifthValue": -15,
     "pianoKeyId": 3,
+    "pianoKeySymbol": "Q",
     "isNormal": false,
     "isBlack": true,
     "mathName": "F-2"
@@ -436,6 +469,7 @@
     "stepId": 4,
     "fifthValue": 15,
     "pianoKeyId": 9,
+    "pianoKeySymbol": "A",
     "isNormal": false,
     "isBlack": false,
     "mathName": "G+2"
@@ -449,6 +483,7 @@
     "stepId": 4,
     "fifthValue": -13,
     "pianoKeyId": 5,
+    "pianoKeySymbol": "F",
     "isNormal": false,
     "isBlack": false,
     "mathName": "G-2"
@@ -462,6 +497,7 @@
     "stepId": 5,
     "fifthValue": 17,
     "pianoKeyId": 11,
+    "pianoKeySymbol": "B",
     "isNormal": false,
     "isBlack": false,
     "mathName": "A+2"
@@ -475,6 +511,7 @@
     "stepId": 5,
     "fifthValue": -11,
     "pianoKeyId": 7,
+    "pianoKeySymbol": "G",
     "isNormal": false,
     "isBlack": false,
     "mathName": "A-2"
@@ -488,6 +525,7 @@
     "stepId": 6,
     "fifthValue": 19,
     "pianoKeyId": 1,
+    "pianoKeySymbol": "P",
     "isNormal": false,
     "isBlack": true,
     "mathName": "B+2"
@@ -501,6 +539,7 @@
     "stepId": 6,
     "fifthValue": -9,
     "pianoKeyId": 9,
+    "pianoKeySymbol": "A",
     "isNormal": false,
     "isBlack": false,
     "mathName": "B-2"
