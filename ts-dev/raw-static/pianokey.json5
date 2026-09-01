@@ -13,7 +13,8 @@
  *
  * ── 字段说明 ─────────────────────────────────────────────
  * 身份层(7 进制记谱世界):
- *   step + alter   拼法的本体。mathName 是它的 ASCII 化(C+1、B-2),artName 是显示名(C♯♯)
+ *   step + alter   拼法的本体,源里唯一需要的记谱信息。
+ *                  显示名(C♯♯)与机器名(C+2)均为编译时由 step+alter 派生,不存于源
  *   stepId (0-6)   step 的编号,7 进制世界的数字(Base7 位)
  *
  * 物理层(12 进制世界):
@@ -46,18 +47,19 @@
  * 即「pianoKeyId 是一等公民,音名只是记谱身份」的数据层实现。
  *
  * ── 派生关系(改写提示) ──────────────────────────────────
- * semitone / pianoKeyId / fifthValue / isBlack 全部可由 step+alter 推导:
+ * semitone / pianoKeyId / fifthValue / isBlack / 显示名 / 机器名,全部可由 step+alter 推导:
  *   semitone   = 基值半音(step) + alter
  *   pianoKeyId = ((semitone mod 12) + 12) mod 12
  *   fifthValue = 7×alter + 五度圈基值(step)
- * 真正自由的只有 step + alter + isNormal,其余都是派生量——
+ *   artName    = step + 升降符号(编译时生成,如 E♭、C♯♯)
+ *   mathName   = step + ("+"|"-"|"") + |alter|(编译时生成,如 C+1、B-2)
+ * 源里真正自由的只有 step + alter + isNormal,其余都是派生量——
  * 极简源甚至可以只写这三项,编译时自动展开。
  */
 [
   // C
   {
     "uid": 1,
-    "artName": "C",
     "step": "C",
     "alter": 0,
     "semitone": 0,
@@ -66,14 +68,11 @@
     "pianoKeyId": 0,
     "pianoKeySymbol": "C",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "C"
+    "isBlack": false
   },
-
   // D
   {
     "uid": 2,
-    "artName": "D",
     "step": "D",
     "alter": 0,
     "semitone": 2,
@@ -82,14 +81,11 @@
     "pianoKeyId": 2,
     "pianoKeySymbol": "D",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "D"
+    "isBlack": false
   },
-
   // E
   {
     "uid": 3,
-    "artName": "E",
     "step": "E",
     "alter": 0,
     "semitone": 4,
@@ -98,14 +94,11 @@
     "pianoKeyId": 4,
     "pianoKeySymbol": "E",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "E"
+    "isBlack": false
   },
-
   // F
   {
     "uid": 4,
-    "artName": "F",
     "step": "F",
     "alter": 0,
     "semitone": 5,
@@ -114,14 +107,11 @@
     "pianoKeyId": 5,
     "pianoKeySymbol": "F",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "F"
+    "isBlack": false
   },
-
   // G
   {
     "uid": 5,
-    "artName": "G",
     "step": "G",
     "alter": 0,
     "semitone": 7,
@@ -130,14 +120,11 @@
     "pianoKeyId": 7,
     "pianoKeySymbol": "G",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "G"
+    "isBlack": false
   },
-
   // A
   {
     "uid": 6,
-    "artName": "A",
     "step": "A",
     "alter": 0,
     "semitone": 9,
@@ -146,14 +133,11 @@
     "pianoKeyId": 9,
     "pianoKeySymbol": "A",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "A"
+    "isBlack": false
   },
-
   // B
   {
     "uid": 7,
-    "artName": "B",
     "step": "B",
     "alter": 0,
     "semitone": 11,
@@ -162,14 +146,11 @@
     "pianoKeyId": 11,
     "pianoKeySymbol": "B",
     "isNormal": true,
-    "isBlack": false,
-    "mathName": "B"
+    "isBlack": false
   },
-
   // C♯
   {
     "uid": 8,
-    "artName": "C♯",
     "step": "C",
     "alter": 1,
     "semitone": 1,
@@ -178,14 +159,11 @@
     "pianoKeyId": 1,
     "pianoKeySymbol": "P",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "C+1"
+    "isBlack": true
   },
-
   // C♭
   {
     "uid": 9,
-    "artName": "C♭",
     "step": "C",
     "alter": -1,
     "semitone": -1,
@@ -194,14 +172,11 @@
     "pianoKeyId": 11,
     "pianoKeySymbol": "B",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "C-1"
+    "isBlack": false
   },
-
   // D♯
   {
     "uid": 10,
-    "artName": "D♯",
     "step": "D",
     "alter": 1,
     "semitone": 3,
@@ -210,14 +185,11 @@
     "pianoKeyId": 3,
     "pianoKeySymbol": "Q",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "D+1"
+    "isBlack": true
   },
-
   // D♭
   {
     "uid": 11,
-    "artName": "D♭",
     "step": "D",
     "alter": -1,
     "semitone": 1,
@@ -226,14 +198,11 @@
     "pianoKeyId": 1,
     "pianoKeySymbol": "P",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "D-1"
+    "isBlack": true
   },
-
   // E♯
   {
     "uid": 12,
-    "artName": "E♯",
     "step": "E",
     "alter": 1,
     "semitone": 5,
@@ -242,14 +211,11 @@
     "pianoKeyId": 5,
     "pianoKeySymbol": "F",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "E+1"
+    "isBlack": false
   },
-
   // E♭
   {
     "uid": 13,
-    "artName": "E♭",
     "step": "E",
     "alter": -1,
     "semitone": 3,
@@ -258,14 +224,11 @@
     "pianoKeyId": 3,
     "pianoKeySymbol": "Q",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "E-1"
+    "isBlack": true
   },
-
   // F♯
   {
     "uid": 14,
-    "artName": "F♯",
     "step": "F",
     "alter": 1,
     "semitone": 6,
@@ -274,14 +237,11 @@
     "pianoKeyId": 6,
     "pianoKeySymbol": "X",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "F+1"
+    "isBlack": true
   },
-
   // F♭
   {
     "uid": 15,
-    "artName": "F♭",
     "step": "F",
     "alter": -1,
     "semitone": 4,
@@ -290,14 +250,11 @@
     "pianoKeyId": 4,
     "pianoKeySymbol": "E",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "F-1"
+    "isBlack": false
   },
-
   // G♯
   {
     "uid": 16,
-    "artName": "G♯",
     "step": "G",
     "alter": 1,
     "semitone": 8,
@@ -306,14 +263,11 @@
     "pianoKeyId": 8,
     "pianoKeySymbol": "Y",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "G+1"
+    "isBlack": true
   },
-
   // G♭
   {
     "uid": 17,
-    "artName": "G♭",
     "step": "G",
     "alter": -1,
     "semitone": 6,
@@ -322,14 +276,11 @@
     "pianoKeyId": 6,
     "pianoKeySymbol": "X",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "G-1"
+    "isBlack": true
   },
-
   // A♯
   {
     "uid": 18,
-    "artName": "A♯",
     "step": "A",
     "alter": 1,
     "semitone": 10,
@@ -338,14 +289,11 @@
     "pianoKeyId": 10,
     "pianoKeySymbol": "Z",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "A+1"
+    "isBlack": true
   },
-
   // A♭
   {
     "uid": 19,
-    "artName": "A♭",
     "step": "A",
     "alter": -1,
     "semitone": 8,
@@ -354,14 +302,11 @@
     "pianoKeyId": 8,
     "pianoKeySymbol": "Y",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "A-1"
+    "isBlack": true
   },
-
   // B♯
   {
     "uid": 20,
-    "artName": "B♯",
     "step": "B",
     "alter": 1,
     "semitone": 12,
@@ -370,14 +315,11 @@
     "pianoKeyId": 0,
     "pianoKeySymbol": "C",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "B+1"
+    "isBlack": false
   },
-
   // B♭
   {
     "uid": 21,
-    "artName": "B♭",
     "step": "B",
     "alter": -1,
     "semitone": 10,
@@ -386,14 +328,11 @@
     "pianoKeyId": 10,
     "pianoKeySymbol": "Z",
     "isNormal": true,
-    "isBlack": true,
-    "mathName": "B-1"
+    "isBlack": true
   },
-
   // C♯♯
   {
     "uid": 22,
-    "artName": "C♯♯",
     "step": "C",
     "alter": 2,
     "semitone": 2,
@@ -402,14 +341,11 @@
     "pianoKeyId": 2,
     "pianoKeySymbol": "D",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "C+2"
+    "isBlack": false
   },
-
   // C♭♭
   {
     "uid": 23,
-    "artName": "C♭♭",
     "step": "C",
     "alter": -2,
     "semitone": -2,
@@ -418,14 +354,11 @@
     "pianoKeyId": 10,
     "pianoKeySymbol": "Z",
     "isNormal": false,
-    "isBlack": true,
-    "mathName": "C-2"
+    "isBlack": true
   },
-
   // D♯♯
   {
     "uid": 24,
-    "artName": "D♯♯",
     "step": "D",
     "alter": 2,
     "semitone": 4,
@@ -434,14 +367,11 @@
     "pianoKeyId": 4,
     "pianoKeySymbol": "E",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "D+2"
+    "isBlack": false
   },
-
   // D♭♭
   {
     "uid": 25,
-    "artName": "D♭♭",
     "step": "D",
     "alter": -2,
     "semitone": 0,
@@ -450,14 +380,11 @@
     "pianoKeyId": 0,
     "pianoKeySymbol": "C",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "D-2"
+    "isBlack": false
   },
-
   // E♯♯
   {
     "uid": 26,
-    "artName": "E♯♯",
     "step": "E",
     "alter": 2,
     "semitone": 6,
@@ -466,14 +393,11 @@
     "pianoKeyId": 6,
     "pianoKeySymbol": "X",
     "isNormal": false,
-    "isBlack": true,
-    "mathName": "E+2"
+    "isBlack": true
   },
-
   // E♭♭
   {
     "uid": 27,
-    "artName": "E♭♭",
     "step": "E",
     "alter": -2,
     "semitone": 2,
@@ -482,14 +406,11 @@
     "pianoKeyId": 2,
     "pianoKeySymbol": "D",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "E-2"
+    "isBlack": false
   },
-
   // F♯♯
   {
     "uid": 28,
-    "artName": "F♯♯",
     "step": "F",
     "alter": 2,
     "semitone": 7,
@@ -498,14 +419,11 @@
     "pianoKeyId": 7,
     "pianoKeySymbol": "G",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "F+2"
+    "isBlack": false
   },
-
   // F♭♭
   {
     "uid": 29,
-    "artName": "F♭♭",
     "step": "F",
     "alter": -2,
     "semitone": 3,
@@ -514,14 +432,11 @@
     "pianoKeyId": 3,
     "pianoKeySymbol": "Q",
     "isNormal": false,
-    "isBlack": true,
-    "mathName": "F-2"
+    "isBlack": true
   },
-
   // G♯♯
   {
     "uid": 30,
-    "artName": "G♯♯",
     "step": "G",
     "alter": 2,
     "semitone": 9,
@@ -530,14 +445,11 @@
     "pianoKeyId": 9,
     "pianoKeySymbol": "A",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "G+2"
+    "isBlack": false
   },
-
   // G♭♭
   {
     "uid": 31,
-    "artName": "G♭♭",
     "step": "G",
     "alter": -2,
     "semitone": 5,
@@ -546,14 +458,11 @@
     "pianoKeyId": 5,
     "pianoKeySymbol": "F",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "G-2"
+    "isBlack": false
   },
-
   // A♯♯
   {
     "uid": 32,
-    "artName": "A♯♯",
     "step": "A",
     "alter": 2,
     "semitone": 11,
@@ -562,14 +471,11 @@
     "pianoKeyId": 11,
     "pianoKeySymbol": "B",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "A+2"
+    "isBlack": false
   },
-
   // A♭♭
   {
     "uid": 33,
-    "artName": "A♭♭",
     "step": "A",
     "alter": -2,
     "semitone": 7,
@@ -578,14 +484,11 @@
     "pianoKeyId": 7,
     "pianoKeySymbol": "G",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "A-2"
+    "isBlack": false
   },
-
   // B♯♯
   {
     "uid": 34,
-    "artName": "B♯♯",
     "step": "B",
     "alter": 2,
     "semitone": 13,
@@ -594,14 +497,11 @@
     "pianoKeyId": 1,
     "pianoKeySymbol": "P",
     "isNormal": false,
-    "isBlack": true,
-    "mathName": "B+2"
+    "isBlack": true
   },
-
   // B♭♭
   {
     "uid": 35,
-    "artName": "B♭♭",
     "step": "B",
     "alter": -2,
     "semitone": 9,
@@ -610,7 +510,6 @@
     "pianoKeyId": 9,
     "pianoKeySymbol": "A",
     "isNormal": false,
-    "isBlack": false,
-    "mathName": "B-2"
+    "isBlack": false
   }
 ]
