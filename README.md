@@ -122,7 +122,7 @@ static-data/          ← 单一真相源(7 个 JSON)
 └── scale-instances.json (552 条 = 46×12)
 ```
 
-数据由 `ts-dev/music12-gen/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
+数据由 `ts-dev/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
 
 ### 幂等验证
 

@@ -22,7 +22,7 @@
     "build": "del-cli dist/* && vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm build",
-    "gen:data": "npx tsx ts-dev/music12-gen/src/index.ts",
+    "gen:data": "npx tsx ts-dev/index.ts",
     "gen:golden": "npx tsx mono-repo/cpp/tools/extract-golden.ts",
     "test": "vitest run",
     "test:ts": "vitest run",

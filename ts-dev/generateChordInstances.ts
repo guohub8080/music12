@@ -8,11 +8,11 @@
  *            notesNum, pianoKeyIdToInterval, intervalToPianoKeyId, notes
  */
 import { values } from "es-toolkit/compat";
-import { CHORD_FORMULA_META_MAP } from "../../../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
-import type { I_ChordFormulaMeta } from "../../../src/ChordFormula/static/types";
-import { Note } from "../../../src/Note";
-import { Interval } from "../../../src/Interval";
-import { getNoteByPianoKeyId } from "../../../src/Note";
+import { CHORD_FORMULA_META_MAP } from "../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
+import type { I_ChordFormulaMeta } from "../src/ChordFormula/static/types";
+import { Note } from "../src/Note";
+import { Interval } from "../src/Interval";
+import { getNoteByPianoKeyId } from "../src/Note";
 
 type I_Interval = [string, number];
 type I_NoteMeta = { step: string; alter: number; octaveGapToRoot: number };

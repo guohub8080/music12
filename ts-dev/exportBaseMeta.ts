@@ -4,9 +4,9 @@
  * 这三个表在原 music12 里是 collect.js 包裹的数组(default export),
  * 导出时取 .all() 拿到原数组(JSON 里不需要 collect.js)。
  */
-import NOTE_META from "../../../src/Note/static/NOTE_META";
-import INTERVAL_META from "../../../src/Interval/static/INTERVAL_META";
-import FIFTH_META from "../../../src/CircleOfFifths/static/FIFTH_META";
+import NOTE_META from "../src/Note/static/NOTE_META";
+import INTERVAL_META from "../src/Interval/static/INTERVAL_META";
+import FIFTH_META from "../src/CircleOfFifths/static/FIFTH_META";
 
 /** collect.js 对象 → 原始数组 → JSON */
 function toArray(meta: { all(): unknown[] }): unknown[] {

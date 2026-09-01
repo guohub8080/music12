@@ -6,7 +6,7 @@
  *
  * 注意:tags 字段是由 deriveTags() 动态注入的,导出时已包含。
  */
-import { CHORD_FORMULA_META_MAP } from "../../../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
+import { CHORD_FORMULA_META_MAP } from "../src/ChordFormula/static/CHORD_FORMULA_META_MAP";
 
 export function exportChordFormulas(): Record<string, unknown> {
     // 直接返回整个 Record(JSON 友好)

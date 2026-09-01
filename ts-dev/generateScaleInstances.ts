@@ -6,16 +6,16 @@
  */
 import { range } from "es-toolkit/compat";
 import { toPairs, keys, values } from "es-toolkit/compat";
-import { isDefined } from "../../../src/common/utils/isDefined";
+import { isDefined } from "../src/common/utils/isDefined";
 import { isNil } from "es-toolkit";
-import { SCALE_MODE_META_MAP } from "../../../src/ScaleMode/static/SCALE_MODE_META_MAP";
-import type { I_ScaleModeMeta } from "../../../src/ScaleMode/static/types";
-import type { t_scaleMode } from "../../../src/Scale/static/types";
-import type { T_IntervalType } from "../../../src/common/static/INTERVAL_TYPES";
-import { Note } from "../../../src/Note";
-import { Interval } from "../../../src/Interval";
-import { PianoKey } from "../../../src/PianoKey";
-import { Scale } from "../../../src/Scale";
+import { SCALE_MODE_META_MAP } from "../src/ScaleMode/static/SCALE_MODE_META_MAP";
+import type { I_ScaleModeMeta } from "../src/ScaleMode/static/types";
+import type { t_scaleMode } from "../src/Scale/static/types";
+import type { T_IntervalType } from "../src/common/static/INTERVAL_TYPES";
+import { Note } from "../src/Note";
+import { Interval } from "../src/Interval";
+import { PianoKey } from "../src/PianoKey";
+import { Scale } from "../src/Scale";
 
 type I_ScaleInstance = {
     pianoKeyIdRoot: number;
