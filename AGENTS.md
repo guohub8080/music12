@@ -166,6 +166,62 @@ ts-dev/index.ts  --pnpm gen:data-->  static-data/*.json  -->  src/ 各 data.ts �
 
 `tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@stave` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
 
+### 工具库：es-toolkit（不是 lodash）
+
+已全部迁移到 es-toolkit，**禁止任何 lodash 导入**（代码与注释都不出现 lodash 字样）。
+
+**predicate vs compat 划分**（按 es-toolkit 1.49 实际 API）：
+
+```ts
+// isXxx 谓词统一从 predicate 子模块导（tree-shaking 最优）
+import { isString, isNumber, isBoolean, isFunction, isNil, isNotNil, isUndefined } from "es-toolkit/predicate"
+
+// 仅 predicate 没有的函数才用 compat
+import { isArray, isObject, defaultTo, values, keys, toPairs, range, uniq } from "es-toolkit/compat"
+```
+
+- `es-toolkit/predicate`：`isString` `isNumber` `isBoolean` `isFunction` `isNil` `isNotNil` `isNull` `isUndefined` `isSymbol` `isDate` `isRegExp` `isPromise` `isError` `isMap` `isSet` `isPlainObject` `isEmptyObject` `isEqual` 等
+- `es-toolkit/compat`（仅此有）：`isArray` `isObject` `defaultTo` `values` `keys` `toPairs` `range` `uniq` `isEmpty` `clamp` `sum` 等
+- 一个文件两类都用时分两行写（predicate 一行、compat 一行）
+- 旧代码存在 `from "es-toolkit"` 根导入的写法，新代码一律用子路径，触碰旧文件时顺手迁移
+
+**类型判断：绝对禁止 typeof。** `typeof x === "string"` 等原生判断一律不用，用 predicate 的 `isXxx`。
+
+**非空判断：用 isDefined，禁止 `!isNil(x)`。** `isDefined` 是本库 `@common/utils` 的类型守卫（`value is NonNullable<T>`），语义等价 es-toolkit/predicate 的 `isNotNil`；判断「为空」仍用 `isNil`。
+
+```ts
+// ❌ 禁止
+if (!isNil(x)) { ... }
+const valid = list.filter(x => !isNil(x))
+
+// ✅ 必须
+import { isDefined } from "@common/utils"
+if (isDefined(x)) { ... }
+const valid = list.filter(isDefined)
+```
+
+**空值默认：用 defaultTo（compat），禁止 `??` 和 `||` 兜底。**
+
+```ts
+// ❌ 禁止
+const octave = config.octave ?? 4
+const x = value || 0
+
+// ✅ 必须
+import { defaultTo } from "es-toolkit/compat"
+const octave = defaultTo(config.octave, 4)
+```
+
+**主动赋空值：用 void 0，禁止直接写 undefined。** 类型标注里的 `| undefined` 不受限（那是声明不是赋值）。
+
+```ts
+// ❌ 禁止
+this._cache = undefined
+
+// ✅ 必须
+this._cache = void 0
+```
+
 ### 分支与发布流程
 
 - 开发在 `refactor/vX.Y` 分支上做，提交遵循 Conventional Commits（中文，正文写清动机和验证结果）
