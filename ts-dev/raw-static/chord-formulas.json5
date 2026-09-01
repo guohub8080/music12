@@ -2,7 +2,7 @@
  * chord-formulas — 和弦公式定义表(87 个,极简源 + 基座引用)
  *
  * 本文件是 JSON5 源头,编译产物为 static-data/chord-formulas.json(gen:data 展开)。
- * 手改只改这里;产物永不手改。
+ * 手改只改这里;产物永不手改。展开正确性由 ts-dev/verify/verifyChordFormulas.ts 兜底。
  *
  * ── 极简原则 ─────────────────────────────────────────────
  * 每条只写不可推导的真信息:键(id) + intervalList(或基座引用) +
@@ -20,15 +20,19 @@
  *   $set   {度数: 性质} 替换基座中该度数的性质(dom7#5 = dom7 + $set{5:aug})
  *   $add   [[性质, 度数],...] 追加扩展音(dom9 = dom7 + $add[[maj,9]])
  * 展开顺序:递归展开 $base → 应用 $set → 应用 $add → 按度数升序。
- * 全表只有 3 个完整定义(树根):maj3、sus2、sus4;其余 84 个基座化,
- * intervalList 音数 355 → 90(压缩 75%)。
+ * 全表 6 个完整定义(树根,基础三和弦/挂留):
+ *   maj3 min3 dim3 aug3 sus2 sus4;其余 81 个基座化,
+ * intervalList 音数 355 → 93(压缩 74%)。
  *
- * 基座合法性(无环保证,编译器必须遵守):
- *   基座的「度数+性质秩」序列必须严格小于目标的序列。
- *   性质秩:p=0, maj=0(基准), min=1, aug=2, dim=2(变音), aug+/dim-=3。
- *   严格偏序 → 引用图天然为 DAG( maj3↔min3 互指成环的历史教训)。
- * 基座选择:操作数($set 数+$add 数)最少者优先;平手时同名前缀优先
- *   (dom7#5 基于 dom7 而非 aug3——名字即意图);再平手按键序。
+ * 基座规则(无环 + 乐理双重保证,编译器必须遵守):
+ *   1. 偏序:基座的「度数+性质秩」序列必须严格小于目标的序列。
+ *      性质秩:p=0, maj=0(基准), min=1, aug=2, dim=2(变音), aug+/dim-=3。
+ *      严格偏序 → 引用图天然 DAG(maj3↔min3 互指成环的历史教训)。
+ *   2. $set 仅限同名前缀的变音(dom7#5 基于 dom7);跨 id 禁用 set——
+ *      maj3/min3/dim3/aug3 是平级基础和弦,不是相互修改出来的。
+ *   3. $add 任意合法基座(堆叠视角):dom7 = maj3+min7, halfdim7 = dim3+min7
+ *      (减小七), dim7 = dim3+dim7(减减七), minmaj7 = min3+maj7(小大七)。
+ *   4. 基座选择:操作数最少者优先;平手同名前缀优先(名字即意图);再平手按键序。
  *
  * ── 记录注释格式(展开快照) ──────────────────────────────
  * 两行注释展示「展开后」的完整面貌(弥补基座引用不直读的代价):
@@ -52,8 +56,7 @@
   // min3 · 小三 · C-E♭-G · min3=3 p5=7
   //   小三和弦,根音、小三度、纯五度构成
   "min3": {
-  "$base": "maj3",
-  "$set": {"3": "min"},
+  "intervalList": [["min", 3], ["p", 5]],
   "cnName": "小三",
   "name": "Minor",
   "scoreDisplay": "m"
@@ -63,8 +66,7 @@
   // dim3 · 减三 · C-E♭-G♭ · min3=3 dim5=6
   //   减三和弦,根音、小三度、减五度构成
   "dim3": {
-  "$base": "min3",
-  "$set": {"5": "dim"},
+  "intervalList": [["min", 3], ["dim", 5]],
   "cnName": "减三",
   "name": "Diminished",
   "scoreDisplay": "°"
@@ -74,8 +76,7 @@
   // aug3 · 增三 · C-E-G♯ · maj3=4 aug5=8
   //   增三和弦,根音、大三度、增五度构成
   "aug3": {
-  "$base": "maj3",
-  "$set": {"5": "aug"},
+  "intervalList": [["maj", 3], ["aug", 5]],
   "cnName": "增三",
   "name": "Augmented",
   "scoreDisplay": "+"
