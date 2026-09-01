@@ -4,6 +4,10 @@ node_modules/
 **/.DS_Store
 dist/
 
+# === 工具本地状态（不进仓库）===
+.mimosa/
+.video_agent/
+
 # === C++ build ===
 packages/music12-cpp/build/
 _deps/
