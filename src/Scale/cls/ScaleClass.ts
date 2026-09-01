@@ -1,10 +1,9 @@
-import { isNil } from 'es-toolkit'
-import { values } from 'es-toolkit/compat'
+import { isNil, isNotNil } from "es-toolkit/predicate";
+import { defaultTo, values } from "es-toolkit/compat";
 import { getNoteByPianoKeyId } from "@note"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
 import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 import type { T_ScaleModeId } from "../../Scale/static/scaleModeTypes"
-import { isDefined } from "@common/utils/isDefined"
 
 // 类方法导入（非简单内联的）
 import cls_getRootNote from "./classFn/cls_getRootNote"
@@ -149,7 +148,7 @@ export class Scale {
 	 * @returns 如果在调式中返回 true，否则返回 false
 	 */
 	public hasPianoKeyId(pianoKeyId: number): boolean {
-		return isDefined(this.scale.pianoKeyIdToDegree[pianoKeyId])
+		return isNotNil(this.scale.pianoKeyIdToDegree[pianoKeyId])
 	}
 
 	/**
@@ -159,7 +158,7 @@ export class Scale {
 	 */
 	public getDegreeByPianoKeyId(pianoKeyId: number): number | null {
 		const degree = this.scale.pianoKeyIdToDegree[pianoKeyId]
-		return isDefined(degree) ? degree : null
+		return isNotNil(degree) ? degree : null
 	}
 
 	/**
@@ -170,7 +169,7 @@ export class Scale {
 	public getDegreeAndAlter(pianoKeyId: number): { degree: number; alter: number } | null {
 		const degree = this.scale.pianoKeyIdToDegree[pianoKeyId]
 		if (isNil(degree)) return null
-		return { degree, alter: this.scale.degreeAlterationsMap[degree] ?? 0 }
+		return { degree, alter: defaultTo(this.scale.degreeAlterationsMap[degree], 0) }
 	}
 
 	/**
@@ -192,7 +191,7 @@ export class Scale {
 	 * @returns 变音值（0=自然, 1=#, -1=b）
 	 */
 	public getAlterByDegree(degree: number): number {
-		return this.scale.degreeAlterationsMap[degree] ?? 0
+		return defaultTo(this.scale.degreeAlterationsMap[degree], 0)
 	}
 
 	// ========== 通过 classFn 实现的方法 ==========

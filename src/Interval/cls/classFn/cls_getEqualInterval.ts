@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import { defaultTo } from 'es-toolkit/compat'
 import type {I_IntervalObj, I_GetEqualIntervalOptions} from "../IntervalClass"
 import {IntervalError} from "@common/processError/errorTypes";

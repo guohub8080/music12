@@ -1,13 +1,12 @@
+import { isNil, isNotNil } from "es-toolkit/predicate";
 /**
  * 生成音阶实例表(528 条 = 44 调式 × 12 主音)
  *
  * 核心算法移植自 src/Scale/__helper__/generateScaleMeta.ts 的 generateModeData(),
  * 但输出 JSON 数组(而非写 .ts 文件)。
  */
-import { range } from "es-toolkit/compat";
+import { defaultTo, range } from "es-toolkit/compat";
 import { toPairs, keys, values } from "es-toolkit/compat";
-import { isDefined } from "../src/common/utils/isDefined";
-import { isNil } from "es-toolkit";
 import { SCALE_MODE_META_MAP } from "../src/ScaleMode/static/SCALE_MODE_META_MAP";
 import type { I_ScaleModeMeta } from "../src/ScaleMode/static/types";
 import type { t_scaleMode } from "../src/Scale/static/types";
@@ -50,7 +49,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
                 degreeToPianoKeyId[degree] = null;
             } else {
                 noteIndex++;
-                degreeToPianoKeyId[degree] = notesPianoKeyList[noteIndex] ?? null;
+                degreeToPianoKeyId[degree] = defaultTo(notesPianoKeyList[noteIndex], null);
             }
         }
 
@@ -59,7 +58,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
             pianoKeyIdToDegree[key] = null;
         }
         for (const [deg, keyId] of toPairs(degreeToPianoKeyId)) {
-            if (isDefined(keyId)) {
+            if (isNotNil(keyId)) {
                 pianoKeyIdToDegree[keyId as number] = Number(deg);
             }
         }
@@ -97,7 +96,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
             let alterSum = n.alter;
             for (const key of keys(notesMap)) {
                 const note = notesMap[Number(key)];
-                if (isDefined(note) && note.alter !== 0) {
+                if (isNotNil(note) && note.alter !== 0) {
                     alterNoteCount++;
                     alterSum += note.alter;
                 }

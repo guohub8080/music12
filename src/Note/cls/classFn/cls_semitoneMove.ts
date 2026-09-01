@@ -1,5 +1,4 @@
-import { isNil } from 'es-toolkit'
-import { isDefined } from "@common/utils/isDefined"
+import { isNil, isNotNil } from "es-toolkit/predicate";
 import {Note} from "../../index";
 import {PianoKey} from "@pianokey";
 import collect from "collect.js";
@@ -37,7 +36,7 @@ const cls_semitoneMove = (noteInstance: InstanceType<typeof Note>,
 
   // 优先找 alter === 0 的自然音
   const zeroAlterNote = handle.where("alter", 0).first()
-  if (isDefined(zeroAlterNote)) return zeroAlterNote
+  if (isNotNil(zeroAlterNote)) return zeroAlterNote
 
   // 没有自然音：向上选升号，向下选降号
   if (moveStep > 0) {

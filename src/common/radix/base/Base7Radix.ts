@@ -1,4 +1,4 @@
-import { isNumber } from 'es-toolkit'
+import { isNumber } from 'es-toolkit/predicate';
 import {Radix} from "./Radix";
 import {RadixError} from "../../processError/errorTypes";
 

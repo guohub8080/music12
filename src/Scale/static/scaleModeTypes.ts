@@ -1,5 +1,4 @@
-import { uniq } from 'es-toolkit'
-import { fromPairs } from 'es-toolkit/compat'
+import { fromPairs, uniq } from 'es-toolkit/compat';
 import ALL_SCALE_META from "./allScaleInstances"
 
 // 提取所有调式 ID

@@ -1,4 +1,5 @@
-import { isNil } from 'es-toolkit'
+import { defaultTo } from 'es-toolkit/compat';
+import { isNil, isNotNil } from 'es-toolkit/predicate';
 import {midiListToPianoKeys} from "./methods/midiListToPianoKeys"
 import {findRoughChord} from "./methods/findRoughChord"
 import {analyzeChordTransform, type I_AnalyzedChordResult} from "./methods/analyzeChordTransform"
@@ -55,7 +56,7 @@ export const findChord = (
     rootNoteLocation?: number
   }
 ): I_AnalyzedChordResult[] => {
-  const isStrict = config?.isStrict ?? false
+  const isStrict = defaultTo(config?.isStrict, false)
   const rootNoteLocation = config?.rootNoteLocation
 
   // ===== 步骤 1：将 MIDI 列表转换为 pianoKeyId 并去重排序 =====
@@ -89,7 +90,7 @@ export const findChord = (
         return analyzed
       }
     })
-    .filter((x): x is I_AnalyzedChordResult => !isNil(x))
+    .filter((x): x is I_AnalyzedChordResult => isNotNil(x))
 
   return results
 }

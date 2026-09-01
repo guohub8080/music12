@@ -1,5 +1,5 @@
-import { isNil } from 'es-toolkit'
-import { isDefined } from "@common/utils/isDefined"
+import { defaultTo } from "es-toolkit/compat";
+import { isNil, isNotNil } from "es-toolkit/predicate";
 import ALL_SCALE_META, { type I_ScaleInstance } from "@scale/static/allScaleInstances"
 
 /**
@@ -46,8 +46,8 @@ export const findNoteDegreeInAllScales = (
 
 		const degree = scale.pianoKeyIdToDegree[pianoKeyId]
 
-		if (isDefined(degree)) {
-			const alter = scale.degreeAlterationsMap[degree] ?? 0
+		if (isNotNil(degree)) {
+			const alter = defaultTo(scale.degreeAlterationsMap[degree], 0)
 
 			results.push({
 				degree,
@@ -75,7 +75,7 @@ export const findNoteDegreeInScale = (
 	if (isNil(scale)) return null
 
 	const degree = scale.pianoKeyIdToDegree[pianoKeyId]
-	return isDefined(degree) ? degree : null
+	return isNotNil(degree) ? degree : null
 }
 
 export default findNoteDegreeInAllScales

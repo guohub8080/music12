@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import {IntervalError, NoteError} from "@common/processError/errorTypes";
 import {StepRadix} from "@common/radix";
 import {PianoKey} from "@pianokey";

@@ -1,5 +1,4 @@
-import { range } from 'es-toolkit'
-import { defaultTo } from 'es-toolkit/compat'
+import { defaultTo, range } from 'es-toolkit/compat';
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";

@@ -1,3 +1,4 @@
+import { isString } from 'es-toolkit/predicate';
 /**
  * 获取乐谱符号（含变换）
  *
@@ -10,7 +11,6 @@
  * - omit3 + add2 + add4 → sus2(add4)
  */
 
-import { isString } from 'es-toolkit'
 import { toPairs } from 'es-toolkit/compat'
 import type { I_TransformPanel } from "../../static/types";
 

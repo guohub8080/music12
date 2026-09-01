@@ -1,4 +1,4 @@
-import { isNumber } from 'es-toolkit'
+import { isNumber } from 'es-toolkit/predicate';
 import { isArray } from 'es-toolkit/compat'
 import collect from "collect.js";
 

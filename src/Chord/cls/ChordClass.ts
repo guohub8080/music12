@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from "es-toolkit/predicate";
 /**
  * 和弦类 - 重构版 V3
  *
@@ -12,9 +13,7 @@
  * 最终音程面板 = initChordFormulaMeta.degreeToIntervalMap + transformPanel
  */
 
-import { isNil, uniq } from 'es-toolkit'
-import { some, toPairs } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
+import { some, toPairs, uniq } from "es-toolkit/compat";
 import { Note } from "@note/cls/NoteClass";
 import { getNoteByPianoKeyId } from "@note";
 import { cls_initChord, type I_ChordInitMeta } from "./classFn/cls_initChord";
@@ -101,7 +100,7 @@ export class Chord {
 
   /** 是否有变换 */
   public get isTransformed(): boolean {
-    return some(this.#transformPanel, (v) => isDefined(v));
+    return some(this.#transformPanel, (v) => isNotNil(v));
   }
 
   /**

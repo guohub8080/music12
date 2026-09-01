@@ -1,4 +1,4 @@
-import { isEqual } from 'es-toolkit'
+import { isEqual } from 'es-toolkit/predicate';
 import { isEmpty } from 'es-toolkit/compat'
 import collect from "collect.js"
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"

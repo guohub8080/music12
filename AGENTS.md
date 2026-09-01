@@ -187,7 +187,7 @@ import { isArray, isObject, defaultTo, values, keys, toPairs, range, uniq } from
 
 **类型判断：绝对禁止 typeof。** `typeof x === "string"` 等原生判断一律不用，用 predicate 的 `isXxx`。
 
-**非空判断：用 isDefined，禁止 `!isNil(x)`。** `isDefined` 是本库 `@common/utils` 的类型守卫（`value is NonNullable<T>`），语义等价 es-toolkit/predicate 的 `isNotNil`；判断「为空」仍用 `isNil`。
+**非空判断：用 isNotNil（predicate），禁止 `!isNil(x)`。** `isNotNil` 是类型守卫，收窄为非空类型，还能直接当 `filter(isNotNil)` 谓词传递；判断「为空」仍用 `isNil`。
 
 ```ts
 // ❌ 禁止
@@ -195,9 +195,9 @@ if (!isNil(x)) { ... }
 const valid = list.filter(x => !isNil(x))
 
 // ✅ 必须
-import { isDefined } from "@common/utils"
-if (isDefined(x)) { ... }
-const valid = list.filter(isDefined)
+import { isNotNil } from "es-toolkit/predicate"
+if (isNotNil(x)) { ... }
+const valid = list.filter(isNotNil)
 ```
 
 **空值默认：用 defaultTo（compat），禁止 `??` 和 `||` 兜底。**

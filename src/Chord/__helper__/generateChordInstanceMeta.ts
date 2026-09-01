@@ -1,6 +1,5 @@
-import { isBoolean, isNil, isNumber, isString } from 'es-toolkit'
+import { isBoolean, isNil, isNotNil, isNumber, isString } from "es-toolkit/predicate";
 import { isArray, isObject, keys, toPairs, values } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
 import { writeFileSync, existsSync, mkdirSync, rmSync } from "fs";
 import { join } from "path";
 import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP";
@@ -224,7 +223,7 @@ function objectToString(obj: any, indent = 2): string {
     return `[\n${nextSpaces}${items.join(`,\n${nextSpaces}`)}\n${spaces}]`;
   }
 
-  if (isObject(obj) && isDefined(obj)) {
+  if (isObject(obj) && isNotNil(obj)) {
     if (isNumericKeyIntervalMap(obj)) {
       return numericKeyIntervalMapToString(obj);
     }

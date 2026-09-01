@@ -1,6 +1,5 @@
-import { isBoolean, isNil, isNumber, isString, range } from 'es-toolkit'
-import { isArray, isObject, keys, toPairs, values } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
+import { isBoolean, isNil, isNotNil, isNumber, isString } from "es-toolkit/predicate";
+import { defaultTo, isArray, isObject, keys, range, toPairs, values } from "es-toolkit/compat";
 import { Scale } from "../cls/ScaleClass"
 import { PianoKey } from "@pianokey"
 import { Note } from "@note"
@@ -229,7 +228,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
         degreeToPianoKeyId[degree] = null
       } else {
         noteIndex++ // 移到下一个实际音（跳过 null 度数不递增）
-        degreeToPianoKeyId[degree] = notesPianoKeyList[noteIndex] ?? null
+        degreeToPianoKeyId[degree] = defaultTo(notesPianoKeyList[noteIndex], null)
       }
     }
 
@@ -241,7 +240,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
     }
     // 填充音阶中的键
     for (const [deg, keyId] of toPairs(degreeToPianoKeyId)) {
-      if (isDefined(keyId)) {
+      if (isNotNil(keyId)) {
         pianoKeyIdToDegree[keyId] = Number(deg)
       }
     }
@@ -283,7 +282,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta, modeIdKey: string) {
       let alterSum = n.alter
       for (const key of keys(notesMap)) {
         const note = notesMap[Number(key)]
-        if (isDefined(note) && note.alter !== 0) {
+        if (isNotNil(note) && note.alter !== 0) {
           alterNoteCount++
           alterSum += note.alter
         }
@@ -346,7 +345,7 @@ function objectToString(obj: any, indent = 2, modeIdKey: string): string {
     return `[\n${nextSpaces}${items.join(`,\n${nextSpaces}`)}\n${spaces}]`
   }
 
-  if (isObject(obj) && isDefined(obj)) {
+  if (isObject(obj) && isNotNil(obj)) {
     // 数字键到原始值的映射（如 pianoKeyIdToDegree），单行输出
     if (isNumericKeyPrimitiveMap(obj)) {
       return numericKeyMapToString(obj)

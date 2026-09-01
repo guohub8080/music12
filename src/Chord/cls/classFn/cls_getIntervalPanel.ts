@@ -1,12 +1,11 @@
+import { isNil, isNotNil } from "es-toolkit/predicate";
 /**
  * 获取应用变换后的音程面板
  *
  * init.degreeToIntervalMap + transformPanel = intervalPanel
  */
 
-import { isNil } from 'es-toolkit'
 import { toPairs } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES";
 import type {
   I_ChordIntervalPanel,
@@ -54,7 +53,7 @@ export const cls_getIntervalPanel = (
     const degreeNum = Number(degree);
     if (value === "omit") {
       panel[degreeNum as keyof I_ChordIntervalPanel] = void 0;
-    } else if (isDefined(value)) {
+    } else if (isNotNil(value)) {
       panel[degreeNum as keyof I_ChordIntervalPanel] =
         value as T_IntervalType;
     }

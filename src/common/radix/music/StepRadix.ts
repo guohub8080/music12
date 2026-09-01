@@ -1,4 +1,4 @@
-import { isNumber, isString } from 'es-toolkit'
+import { isNumber, isString } from 'es-toolkit/predicate';
 import {IntervalRadix} from "./IntervalRadix";
 import {getIndexByStep, getStepByIndex, T_NoteStep} from "../../static/NOTE_TYPES";
 import {RadixError} from "../../processError/errorTypes";

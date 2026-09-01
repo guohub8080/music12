@@ -1,7 +1,6 @@
-import { difference, isNil } from 'es-toolkit'
-import { sortBy } from 'es-toolkit/compat'
+import { isNil, isNotNil } from "es-toolkit/predicate";
+import { difference, sortBy } from "es-toolkit/compat";
 import { toPairs } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
 import type { I_RoughChordResult } from "./findRoughChord"
 import type { I_ChordInstanceMeta } from "@chord/static/types"
 
@@ -182,7 +181,7 @@ export const analyzeChordTransform = (
 
   // ===== 检查命名度数是否被省略 =====
   const namedDegree = getChordNamedDegree(result.chordFormulaId)
-  if (isDefined(namedDegree)) {
+  if (isNotNil(namedDegree)) {
     // 检查省略的音中是否包含命名度数
     const hasNamedDegreeOmitted = omittedWithDegree.some((omitted) => {
       const omittedDegreeNum = extractDegreeNumber(omitted.degreeName)
@@ -231,7 +230,7 @@ export const analyzeChordTransform = (
       const extraDegreeNum = extractDegreeNumber(extra.degreeName)
 
       // 如果度数编号相同，说明是同一度数的变化
-      if (omittedDegreeNum === extraDegreeNum && isDefined(omittedDegreeNum)) {
+      if (omittedDegreeNum === extraDegreeNum && isNotNil(omittedDegreeNum)) {
         alterations.push({
           fromDegree: omitted.degreeName,
           toDegree: extra.degreeName,

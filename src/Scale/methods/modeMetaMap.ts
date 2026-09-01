@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil, isNotNil } from 'es-toolkit/predicate';
 import { Scale } from "@scale/cls/ScaleClass"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES"
@@ -59,8 +59,8 @@ const ABBR_ALIAS: Record<string, string> = {
  * @throws 无效 modeKey 时抛错
  */
 export const resolveModeKey = (modeKey: string): string => {
-  if (!isNil(MODE_META_MAP[modeKey])) return modeKey
+  if (isNotNil(MODE_META_MAP[modeKey])) return modeKey
   const full = ABBR_ALIAS[modeKey]
-  if (!isNil(full)) return full
+  if (isNotNil(full)) return full
   throw new Error(`Invalid modeKey: "${modeKey}".`)
 }

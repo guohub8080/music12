@@ -1,4 +1,5 @@
-import { isNil } from 'es-toolkit'
+import { defaultTo } from 'es-toolkit/compat';
+import { isNil } from 'es-toolkit/predicate';
 import NOTE_META from "@note/static/NOTE_META"
 import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
 import type { Note } from "@note/cls/NoteClass"
@@ -44,7 +45,7 @@ export class PianoKey {
   public octave: number
   /** 是否为黑键 */
   public get isBlack(): boolean {
-    return NOTE_META.where("pianoKeyId", this.pianoKeyId).first()?.isBlack ?? false
+    return defaultTo(NOTE_META.where("pianoKeyId", this.pianoKeyId).first()?.isBlack, false)
   }
   /** 位置符号（C/P/D/Q/E/F/X/G/Y/A/Z/B） */
   public get symbol(): string {

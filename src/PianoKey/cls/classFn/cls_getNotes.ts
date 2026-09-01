@@ -1,6 +1,5 @@
-import { isNil } from 'es-toolkit'
+import { isNil, isNotNil } from "es-toolkit/predicate";
 import { defaultTo } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
 import NOTE_META from "@note/static/NOTE_META"
 import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
 import { Note } from "@note/cls/NoteClass"
@@ -24,7 +23,7 @@ export const cls_getNotes = (
   if (isNormal) handle = handle.where("isNormal", true)
 
   const alterLimit = config?.alterAbsLte
-  if (isDefined(alterLimit)) {
+  if (isNotNil(alterLimit)) {
     if (alterLimit < 0 || alterLimit > 2) {
       throw new Error("alterAbsLte must be 0, 1, or 2.")
     }

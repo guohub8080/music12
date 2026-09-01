@@ -1,6 +1,5 @@
-import { intersection, isNil } from 'es-toolkit'
-import { toPairs, values } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
+import { isNil, isNotNil } from "es-toolkit/predicate";
+import { intersection, toPairs, values } from "es-toolkit/compat";
 import { getUpwardPianoKeyGap } from "@note";
 import { I_ChordNotesPanel } from "../static/types";
 import { Note } from "@note";
@@ -90,7 +89,7 @@ export const getChordTransformByPianoKeyIds = (
 
   // 获取原始和弦的有效键位列表（排除 undefined）
   const originKeyIds = values(originChordInfo.notesPanel)
-    .filter((note): note is InstanceType<typeof Note> => isDefined(note))
+    .filter((note): note is InstanceType<typeof Note> => isNotNil(note))
     .map((note) => note.pianoKeyId);
 
   // 找出共同音符
