@@ -3,6 +3,6 @@
  *
  * 只读 scale-modes.json(48KB)。
  */
-import scaleModesJson from "../../../shared/data/scale-modes.json";
+import scaleModesJson from "@static-data/scale-modes.json";
 
 export const SCALE_MODE_META_MAP = scaleModesJson as Record<string, any>;

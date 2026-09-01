@@ -3,6 +3,6 @@
  *
  * 只读 chord-formulas.json(62KB)。
  */
-import chordFormulasJson from "../../../shared/data/chord-formulas.json";
+import chordFormulasJson from "@static-data/chord-formulas.json";
 
 export const CHORD_FORMULA_META_MAP = chordFormulasJson as Record<string, any>;

@@ -84,7 +84,7 @@ int main() {
         std::cerr << "Set MUSIC12_ROOT env var\n";
         return 1;
     }
-    std::string dataDir = std::string(root) + "/shared/data";
+    std::string dataDir = std::string(root) + "/static-data";
     music12::DataLoader::instance().loadFromDirectory(dataDir);
 
     // 读 golden vectors

@@ -4,7 +4,7 @@
  * 只读 chord-instances.json(2.1MB)。
  * 用户 import Chord 时才打包这个文件。
  */
-import chordInstancesJson from "../../../shared/data/chord-instances.json";
+import chordInstancesJson from "@static-data/chord-instances.json";
 import type { I_ChordInstanceMeta } from "./types";
 
 export const ALL_CHORD_INSTANCE_META = chordInstancesJson as any[];

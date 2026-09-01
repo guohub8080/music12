@@ -35,6 +35,7 @@
       "@stave": ["src/Stave"],
       "@stave/*": ["src/Stave/*"],
       "@common/*": ["src/common/*"],
+      "@static-data/*": ["static-data/*"],
       "@factory": ["src/factory"],
       "@factory/*": ["src/factory/*"],
       "@web/*": ["test/playground/*"]

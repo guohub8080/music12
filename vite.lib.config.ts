@@ -28,6 +28,7 @@ export default defineConfig({
             '@stave': resolve(__dirname, 'src/Stave'),
             '@common': resolve(__dirname, 'src/common'),
             '@factory': resolve(__dirname, 'src/factory'),
+            '@static-data': resolve(__dirname, 'static-data'),
             // 与 vite.config.ts 保持一致：path 桥接到 browserify 版本
             path: 'path-browserify',
         },

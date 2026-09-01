@@ -108,12 +108,12 @@ music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄�
 | `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
 | `mono-repo/cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
 
-两个版本读同一份 JSON 数据(`shared/data/`),输出完全一致(幂等验证 1687/1687 通过)。
+两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1687/1687 通过)。
 
 ### 数据架构
 
 ```
-shared/data/          ← 单一真相源(7 个 JSON)
+static-data/          ← 单一真相源(7 个 JSON)
 ├── notes.json        (35 条音符元数据)
 ├── intervals.json    (39 条音程元数据)
 ├── chord-formulas.json (87 个和弦公式)

@@ -5,6 +5,6 @@
  * 用户 import Note 时,只打包这个文件。
  */
 import collect from "collect.js";
-import notesJson from "../../../shared/data/notes.json";
+import notesJson from "@static-data/notes.json";
 
 export const NOTE_META = collect(notesJson);

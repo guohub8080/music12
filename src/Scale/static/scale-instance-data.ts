@@ -4,7 +4,7 @@
  * 只读 scale-instances.json(1.9MB)。
  * 用户 import Scale 时才打包这个文件。
  */
-import scaleInstancesJson from "../../../shared/data/scale-instances.json";
+import scaleInstancesJson from "@static-data/scale-instances.json";
 
 export type I_ScaleInstance = {
     pianoKeyIdRoot: number

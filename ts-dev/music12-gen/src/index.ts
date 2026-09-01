@@ -1,7 +1,7 @@
 /**
  * music12 数据生成器入口
  *
- * 跑一次,产出所有共享 JSON 到 shared/data/:
+ * 跑一次,产出所有共享 JSON 到 static-data/:
  *   notes.json          (35 条)  音符元数据
  *   intervals.json      (39 条)  音程元数据
  *   fifth.json          (42 条)  五度圈元数据
@@ -20,7 +20,7 @@ import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = resolve(__dirname, "../../../shared/data");
+const OUT_DIR = resolve(__dirname, "../../../static-data");
 
 mkdirSync(OUT_DIR, { recursive: true });
 
@@ -58,4 +58,4 @@ console.log("\n[3/3] 派生实例表(用乐理类计算,耗时几秒)...");
 writeJson("chord-instances.json", exportChordInstances());
 writeJson("scale-instances.json", exportScaleInstances());
 
-console.log("\n✅ 全部完成。JSON 已写入 shared/data/");
+console.log("\n✅ 全部完成。JSON 已写入 static-data/");

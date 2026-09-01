@@ -22,21 +22,21 @@
 class Music12Test : public ::testing::Test {
 protected:
     static void SetUpTestSuite() {
-        // 找 shared/data 目录(相对于测试可执行文件的位置)
+        // 找 static-data 目录(相对于测试可执行文件的位置)
         namespace fs = std::filesystem;
         auto& dl = music12::DataLoader::instance();
 
         // 尝试几个可能的路径
         std::vector<std::string> candidates = {
-            "../../../shared/data",      // 从 build 目录(mono-repo/cpp/build)
-            "../../../../shared/data",   // 从更深的构建目录
-            "../../shared/data",         // 从 mono-repo/cpp/
-            "shared/data",               // 从项目根
+            "../../../static-data",      // 从 build 目录(mono-repo/cpp/build)
+            "../../../../static-data",   // 从更深的构建目录
+            "../../static-data",         // 从 mono-repo/cpp/
+            "static-data",               // 从项目根
         };
         // 加上绝对路径
         const char* projRoot = std::getenv("MUSIC12_ROOT");
         if (projRoot) {
-            candidates.insert(candidates.begin(), std::string(projRoot) + "/shared/data");
+            candidates.insert(candidates.begin(), std::string(projRoot) + "/static-data");
         }
 
         for (const auto& path : candidates) {
@@ -50,7 +50,7 @@ protected:
                 // 继续尝试下一个路径
             }
         }
-        FAIL() << "Cannot find shared/data/ directory. Set MUSIC12_ROOT env var.";
+        FAIL() << "Cannot find static-data/ directory. Set MUSIC12_ROOT env var.";
     }
 };
 

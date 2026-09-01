@@ -2,7 +2,7 @@
  * music12-cpp · DataLoader
  *
  * 移植自 music12 TS 版 src/data-loader.ts
- * 从 shared/data/*.json 加载数据,提供查询接口。
+ * 从 static-data/*.json 加载数据,提供查询接口。
  *
  * C++ 版用 nlohmann/json 解析,启动时加载一次,之后常驻内存。
  */
@@ -29,7 +29,7 @@ public:
  *
  * 用法:
  *   auto& dl = DataLoader::instance();
- *   dl.loadFromDirectory("/path/to/shared/data");
+ *   dl.loadFromDirectory("/path/to/static-data");
  *   auto note = dl.findNote("C", 0);  // 查 C 自然音
  */
 class DataLoader {
