@@ -144,7 +144,7 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 ```
 src/           TS 库本体（发布 npm 的就是它）
 static-data/   编译产物：7 个 JSON（TS 和 C++ 只读这一份，永不手改）
-ts-dev/        TS 开发工具：数据生成器脚本 + raw/ 数据源头（手改、带注释）
+ts-dev/        TS 开发工具：数据生成器脚本 + raw-static/ 数据源头（手改、带注释）
 mono-repo/cpp/ C++20 实现（非 TS 的一律进 mono-repo）
 test/          单元测试（test/unit）+ 黄金向量（test/vectors）
 documents/     人类可读的分章文档
@@ -152,10 +152,10 @@ documents/     人类可读的分章文档
 
 原则：顶层目录必须装实际内容；只有一个模块时不许再套 `xxx/src/` 之类的空架子（ts-dev 曾因此拍平）。
 
-### 数据流（源头在 ts-dev/raw，产物在 static-data）
+### 数据流（源头在 ts-dev/raw-static，产物在 static-data）
 
 ```
-ts-dev/raw/*.json5   ← 手改的数据源头：JSON5 格式，带 // 注释（仅 5 个定义表）
+ts-dev/raw-static/*.json5   ← 手改的数据源头：JSON5 格式，带 // 注释（仅 5 个定义表）
       │  pnpm gen:data 第 0 步：JSON5 → 标准 JSON 编译
       ▼
 static-data/*.json   ← 编译/生成产物（提交进仓库；TS 与 C++ 只读，永不手改）
@@ -165,7 +165,7 @@ static-data/*.json   ← 编译/生成产物（提交进仓库；TS 与 C++ 只�
 chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计算产出
 ```
 
-- **手改数据只改 `ts-dev/raw/*.json5`，然后跑 `pnpm gen:data`**；`static-data/*.json` 是编译产物，永远不手改（改了也会被下次编译覆盖，天然自愈）
+- **手改数据只改 `ts-dev/raw-static/*.json5`，然后跑 `pnpm gen:data`**；`static-data/*.json` 是编译产物，永远不手改（改了也会被下次编译覆盖，天然自愈）
 - json5 源支持 `//` 注释、尾逗号、单引号；编译用 devDependencies 的 `json5` 包，注释不进产物
 - 产出必须幂等：重跑 `pnpm gen:data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
 
