@@ -35,7 +35,28 @@ const readSrc = (name: string) =>
     JSON5.parse(readFileSync(resolve(SRC_DIR, name), "utf-8"));
 const readDst = (name: string) =>
     readFileSync(resolve(OUT_DIR, name), "utf-8");
-const serialize = (data: unknown) => JSON.stringify(data, null, 2) + "\n";
+
+/**
+ * 紧凑数组序列化:对象多行(2 空格缩进),≤80 字符的数组单行。
+ * 避免 JSON.stringify 把 ["maj", 3] 炸成 6 行的默认行为。
+ */
+function pretty(value: unknown, indent: number): string {
+    if (Array.isArray(value)) {
+        const items = value.map(v => pretty(v, indent + 2));
+        const oneLine = `[${items.join(", ")}]`;
+        if (oneLine.length <= 80) return oneLine;
+        const pad = " ".repeat(indent + 2);
+        return `[\n${pad}${items.join(`,\n${pad}`)}\n${" ".repeat(indent)}]`;
+    }
+    if (typeof value === "object" && value !== null) {
+        const pad = " ".repeat(indent + 2);
+        const entries = Object.entries(value as Record<string, unknown>)
+            .map(([k, v]) => `${pad}${JSON.stringify(k)}: ${pretty(v, indent + 2)}`);
+        return `{\n${entries.join(",\n")}\n${" ".repeat(indent)}}`;
+    }
+    return JSON.stringify(value);
+}
+const serialize = (data: unknown) => pretty(data, 0) + "\n";
 
 // ==================== pianokey → notes ====================
 // 回填 artName(step + 升降符号)与 mathName(step + ("+"|"-"|"") + |alter|)
