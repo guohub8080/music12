@@ -1,7 +1,7 @@
 /**
  * chord-formulas — 和弦公式定义表(87 个,极简源 + 基座引用)
  *
- * 本文件是 JSON5 源头,编译产物为 static-data/chord-formulas.json(gen:data 展开)。
+ * 本文件是 JSON5 源头,编译产物为 static-data/chord-formulas.json(gen:static-data 展开)。
  * 手改只改这里;产物永不手改。展开正确性由 ts-dev/verify/verifyChordFormulas.ts 兜底。
  *
  * ── 极简原则 ─────────────────────────────────────────────

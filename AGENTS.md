@@ -156,7 +156,7 @@ documents/     人类可读的分章文档
 
 ```
 ts-dev/raw-static/*.json5   ← 手改的数据源头：JSON5 格式，带 // 注释（仅 5 个定义表）
-      │  pnpm gen:data 第 0 步：JSON5 → 标准 JSON 编译
+      │  pnpm gen:static-data 第 0 步：JSON5 → 标准 JSON 编译
       ▼
 static-data/*.json   ← 编译/生成产物（提交进仓库；TS 与 C++ 只读，永不手改）
       ├── src/ 各 data.ts 用 @static-data/xxx.json 导入
@@ -165,9 +165,9 @@ static-data/*.json   ← 编译/生成产物（提交进仓库；TS 与 C++ 只�
 chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计算产出
 ```
 
-- **手改数据只改 `ts-dev/raw-static/*.json5`，然后跑 `pnpm gen:data`**；`static-data/*.json` 是编译产物，永远不手改（改了也会被下次编译覆盖，天然自愈）
+- **手改数据只改 `ts-dev/raw-static/*.json5`，然后跑 `pnpm gen:static-data`**；`static-data/*.json` 是编译产物，永远不手改（改了也会被下次编译覆盖，天然自愈）
 - json5 源支持 `//` 注释、尾逗号、单引号；编译用 devDependencies 的 `json5` 包，注释不进产物
-- 产出必须幂等：重跑 `pnpm gen:data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
+- 产出必须幂等：重跑 `pnpm gen:static-data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
 
 ### 数据表语义陷阱（历史 bug 教训）
 
