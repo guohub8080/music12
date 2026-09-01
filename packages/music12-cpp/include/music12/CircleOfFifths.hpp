@@ -17,6 +17,8 @@ namespace music12 {
 class CircleOfFifths {
 public:
     int circleID;
+    // 对齐 TS 版 Base12Radix 的自有属性(实例序列化结果为 {"radixBase": 12})
+    static constexpr int radixBase = 12;
 
     explicit CircleOfFifths(int id) : circleID(id) {
         if (id < 0 || id > 12) {

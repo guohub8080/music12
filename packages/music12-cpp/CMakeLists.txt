@@ -54,7 +54,7 @@ if(MUSIC12_BUILD_TESTS)
     include(GoogleTest)
     gtest_discover_tests(music12_tests)
 
-    # 密等验证器(独立可执行,不链接 GoogleTest)
+    # 等价验证器(独立可执行,不链接 GoogleTest)
     add_executable(verify_equivalence test/verify_equivalence.cpp)
     target_link_libraries(verify_equivalence PRIVATE music12)
 endif()

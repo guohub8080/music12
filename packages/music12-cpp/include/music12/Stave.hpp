@@ -37,15 +37,16 @@ inline std::vector<std::string> getAlterStepListByNum(int num) {
 /**
  * 根据音符获取其可能所属的调性信息
  * 查 FIFTH_META:circleID 0-12,rawNoteStep + rawNoteAlter 匹配
+ * 返回与 TS 版一致:完整元数据行数组(含 mode/circleID/rawStaveAlters 等全部字段)
  */
-inline std::vector<std::string> getStaveAlterByNote(const std::string& step, int alter) {
+inline json getStaveAlterByNote(const std::string& step, int alter) {
     auto& dl = DataLoader::instance();
-    std::vector<std::string> result;
+    json result = json::array();
     for (const auto& item : dl.fifthData()) {
         int circleID = item["circleID"];
         if (circleID < 0 || circleID > 12) continue;
         if (item["rawNoteStep"] == step && item["rawNoteAlter"] == alter) {
-            result.push_back(item.value("actualNoteStep", step));
+            result.push_back(item);
         }
     }
     if (result.empty()) {

@@ -1,10 +1,37 @@
 import { useState, useMemo } from "react"
 import { toPairs, keys } from "es-toolkit/compat"
-import { includes } from "es-toolkit"
 import { Chord } from "@chord"
 
 // 变换类型
 type TTransformValue = "aug" | "dim" | "omit" | "add" | undefined
+
+// 快捷预设
+type TPreset = { name: string; transforms: Record<number, TTransformValue> }
+type TAddPreset = TPreset & { formula: string }
+
+const TRANSFORM_PRESETS: TPreset[] = [
+	{ name: "标准", transforms: {} },
+	{ name: "b5", transforms: { 5: "dim" } },
+	{ name: "#5", transforms: { 5: "aug" } },
+	{ name: "b9", transforms: { 9: "dim" } },
+	{ name: "#9", transforms: { 9: "aug" } },
+	{ name: "#11", transforms: { 11: "aug" } },
+	{ name: "b13", transforms: { 13: "dim" } },
+	{ name: "b5#9", transforms: { 5: "dim", 9: "aug" } },
+	{ name: "7#9b13", transforms: { 9: "aug", 13: "dim" } },
+	{ name: "alt", transforms: { 5: "aug", 9: "aug", 13: "dim" } },
+	{ name: "no5", transforms: { 5: "omit" } },
+	{ name: "no3", transforms: { 3: "omit" } },
+]
+
+const ADD_PRESETS: TAddPreset[] = [
+	{ name: "add2", formula: "maj3", transforms: { 2: "add" } },
+	{ name: "add4", formula: "maj3", transforms: { 4: "add" } },
+	{ name: "add9", formula: "maj3", transforms: { 9: "add" } },
+	{ name: "add11", formula: "maj3", transforms: { 11: "add" } },
+	{ name: "add6", formula: "maj3", transforms: { 6: "add" } },
+	{ name: "add6/9", formula: "maj3", transforms: { 6: "add", 9: "add" } },
+]
 
 const DEGREES = [2, 3, 4, 5, 6, 7, 9, 11, 13] as const
 
@@ -44,7 +71,7 @@ const ChordClassTest = () => {
 
 	// 判断某个度数是否在基础和弦中
 	const isDegreeInBaseChord = (degree: number) => {
-		return includes(getBaseDegrees, degree)
+		return getBaseDegrees.includes(degree)
 	}
 
 	// 创建和弦并应用变换
@@ -224,7 +251,7 @@ const ChordClassTest = () => {
 							和弦公式定义的度数→音程映射
 						</div>
 						<div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-							{getBaseDegrees.size > 0 ? Array.from(getBaseDegrees).sort((a, b) => a - b).map(degree => {
+							{getBaseDegrees.length > 0 ? Array.from(getBaseDegrees).sort((a, b) => a - b).map(degree => {
 								const tempChord = new Chord(selectedRoot, selectedFormula as any)
 								const intervalType = tempChord.intervalPanel[degree as keyof typeof tempChord.intervalPanel]
 								return (
@@ -235,7 +262,7 @@ const ChordClassTest = () => {
 										borderRadius: 4,
 										fontSize: 13,
 									}}>
-										<strong>{degree}</strong>: {intervalType}
+										<strong>{degree}</strong>: {String(intervalType ?? "-")}
 									</div>
 								)
 							}) : <span style={{ color: "#999" }}>无</span>}
@@ -283,7 +310,7 @@ const ChordClassTest = () => {
 									borderRadius: 4,
 									fontSize: 13,
 								}}>
-									<strong>{degree}</strong>: {intervalType}
+									<strong>{degree}</strong>: {String(intervalType ?? "-")}
 								</div>
 							))}
 						</div>
@@ -336,20 +363,7 @@ const ChordClassTest = () => {
 			<section style={{ marginBottom: 20 }}>
 				<h2>⚡ 快捷预设</h2>
 				<div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-					{[
-						{ name: "标准", transforms: {} },
-						{ name: "b5", transforms: { 5: "dim" } },
-						{ name: "#5", transforms: { 5: "aug" } },
-						{ name: "b9", transforms: { 9: "dim" } },
-						{ name: "#9", transforms: { 9: "aug" } },
-						{ name: "#11", transforms: { 11: "aug" } },
-						{ name: "b13", transforms: { 13: "dim" } },
-						{ name: "b5#9", transforms: { 5: "dim", 9: "aug" } },
-						{ name: "7#9b13", transforms: { 9: "aug", 13: "dim" } },
-						{ name: "alt", transforms: { 5: "aug", 9: "aug", 13: "dim" } },
-						{ name: "no5", transforms: { 5: "omit" } },
-						{ name: "no3", transforms: { 3: "omit" } },
-					].map(preset => (
+					{TRANSFORM_PRESETS.map(preset => (
 						<button
 							key={preset.name}
 							onClick={() => applyPreset(preset.transforms)}
@@ -361,14 +375,7 @@ const ChordClassTest = () => {
 				</div>
 				<div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
 					<strong style={{ width: "100%", marginBottom: 4 }}>添加音程 (需要先选三和弦):</strong>
-					{[
-						{ name: "add2", formula: "maj3", transforms: { 2: "add" } },
-						{ name: "add4", formula: "maj3", transforms: { 4: "add" } },
-						{ name: "add9", formula: "maj3", transforms: { 9: "add" } },
-						{ name: "add11", formula: "maj3", transforms: { 11: "add" } },
-						{ name: "add6", formula: "maj3", transforms: { 6: "add" } },
-						{ name: "add6/9", formula: "maj3", transforms: { 6: "add", 9: "add" } },
-					].map(preset => (
+					{ADD_PRESETS.map(preset => (
 						<button
 							key={preset.name}
 							onClick={() => {

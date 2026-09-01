@@ -308,10 +308,9 @@ const testCases: TestCase[] = [
 ]
 
 const FindComplexChordTest = () => {
-	// 配置开关
-	const [isShowFuzzyOnFullMatch, setIsShowFuzzyOnFullMatch] = useState(false)
-	const [isShowFuzzyOnEmptyMatch, setIsShowFuzzyOnEmptyMatch] = useState(false)
-	const [minSimilarity, setMinSimilarity] = useState(0.5)
+	// 配置开关（v3：isStrict 只返回完全匹配；rootNoteLocation 指定根音区分等和弦）
+	const [isStrict, setIsStrict] = useState(false)
+	const [rootNoteLocation, setRootNoteLocation] = useState<number | "">("")
 
 	// 将 MIDI 数组转换为音名数组
 	const midiListToNoteNames = (midiList: number[]): string => {
@@ -328,9 +327,8 @@ const FindComplexChordTest = () => {
 			return {
 				...testCase,
 				matches: findChord(testCase.midiPitches, {
-					isShowFuzzyOnFullMatch,
-					isShowFuzzyOnEmptyMatch,
-					minSimilarity
+					isStrict,
+					...(rootNoteLocation !== "" ? { rootNoteLocation } : {})
 				})
 			}
 		} catch (e) {
@@ -414,28 +412,19 @@ const FindComplexChordTest = () => {
 					<label style={{ display: "flex", alignItems: "center", gap: 6 }}>
 						<input
 							type="checkbox"
-							checked={isShowFuzzyOnFullMatch}
-							onChange={e => setIsShowFuzzyOnFullMatch(e.target.checked)}
+							checked={isStrict}
+							onChange={e => setIsStrict(e.target.checked)}
 						/>
-						<span>有完全匹配时显示模糊匹配</span>
+						<span>只返回完全匹配 (isStrict)</span>
 					</label>
 					<label style={{ display: "flex", alignItems: "center", gap: 6 }}>
-						<input
-							type="checkbox"
-							checked={isShowFuzzyOnEmptyMatch}
-							onChange={e => setIsShowFuzzyOnEmptyMatch(e.target.checked)}
-						/>
-						<span>无完全匹配时显示模糊匹配</span>
-					</label>
-					<label style={{ display: "flex", alignItems: "center", gap: 6 }}>
-						<span>最低相似度:</span>
+						<span>指定根音位置 (rootNoteLocation，留空为自动):</span>
 						<input
 							type="number"
 							min="0"
-							max="1"
-							step="0.1"
-							value={minSimilarity}
-							onChange={e => setMinSimilarity(parseFloat(e.target.value) || 0)}
+							step="1"
+							value={rootNoteLocation}
+							onChange={e => setRootNoteLocation(e.target.value === "" ? "" : parseInt(e.target.value, 10))}
 							style={{ width: 60, padding: "4px 8px", borderRadius: 4, border: "1px solid #ccc" }}
 						/>
 					</label>

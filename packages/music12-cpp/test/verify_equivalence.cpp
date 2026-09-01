@@ -1,5 +1,5 @@
 /**
- * music12-cpp · 密等验证器
+ * music12-cpp · 等价验证器
  *
  * 读 tests/vectors/golden-vectors.json,逐条调用 C++ API,
  * 对比输出,统计通过/失败/不一致。
@@ -182,7 +182,8 @@ int main() {
             }
             else if (module == "CircleOfFifths" && fn == "getFifthCircleByAlter") {
                 auto c = music12::getFifthCircleByAlter(input["alter"]);
-                json actual = c.circleID;  // TS 版输出是什么?需要看
+                // TS 版实例 JSON.stringify 只剩自有属性 radixBase(Base12Radix 基数 12)
+                json actual = {{"radixBase", c.radixBase}};
                 check(id, expected, actual);
             }
             else if (module == "PianoKey" && fn == "fromPitchInt") {
