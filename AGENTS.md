@@ -201,6 +201,25 @@ import { isArray, isObject, defaultTo, values, keys, toPairs, range, uniq } from
 
 **类型判断：绝对禁止 typeof。** `typeof x === "string"` 等原生判断一律不用，用 predicate 的 `isXxx`。
 
+**空值比较：`=== undefined` / `!== undefined` / `=== null` / `!== null` 永远不用，一律 isNil / isNotNil。** 判断「是 null 或 undefined」用 `isNil(x)`，判断「不是」用 `isNotNil(x)`——两者都是类型守卫，语义覆盖原生双等价的全部场景且能收窄类型。
+
+```ts
+// ❌ 禁止
+if (x === undefined) { ... }
+if (x !== undefined) { ... }
+if (x === null) { ... }
+while (node !== null) { ... }
+const valid = list.filter(x => x !== undefined)
+
+// ✅ 必须
+import { isNil, isNotNil } from "es-toolkit/predicate"
+if (isNil(x)) { ... }
+if (isNotNil(x)) { ... }
+const valid = list.filter(isNotNil)
+```
+
+例外：`typeof x === "undefined"` 形式的防御性全局检查（防未声明变量抛 ReferenceError）不受此限——但库代码里不应出现这种场景。
+
 **非空判断：用 isNotNil（predicate），禁止 `!isNil(x)`。** `isNotNil` 是类型守卫，收窄为非空类型，还能直接当 `filter(isNotNil)` 谓词传递；判断「为空」仍用 `isNil`。
 
 ```ts
