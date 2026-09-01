@@ -59,7 +59,6 @@
 [
   // C
   {
-    "uid": 1,
     "step": "C",
     "alter": 0,
     "semitone": 0,
@@ -70,9 +69,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // D
   {
-    "uid": 2,
     "step": "D",
     "alter": 0,
     "semitone": 2,
@@ -83,9 +83,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // E
   {
-    "uid": 3,
     "step": "E",
     "alter": 0,
     "semitone": 4,
@@ -96,9 +97,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // F
   {
-    "uid": 4,
     "step": "F",
     "alter": 0,
     "semitone": 5,
@@ -109,9 +111,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // G
   {
-    "uid": 5,
     "step": "G",
     "alter": 0,
     "semitone": 7,
@@ -122,9 +125,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // A
   {
-    "uid": 6,
     "step": "A",
     "alter": 0,
     "semitone": 9,
@@ -135,9 +139,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // B
   {
-    "uid": 7,
     "step": "B",
     "alter": 0,
     "semitone": 11,
@@ -148,9 +153,10 @@
     "isNormal": true,
     "isBlack": false
   },
+
+
   // C♯
   {
-    "uid": 8,
     "step": "C",
     "alter": 1,
     "semitone": 1,
@@ -161,9 +167,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // C♭
   {
-    "uid": 9,
     "step": "C",
     "alter": -1,
     "semitone": -1,
@@ -174,9 +181,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // D♯
   {
-    "uid": 10,
     "step": "D",
     "alter": 1,
     "semitone": 3,
@@ -187,9 +195,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // D♭
   {
-    "uid": 11,
     "step": "D",
     "alter": -1,
     "semitone": 1,
@@ -200,9 +209,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // E♯
   {
-    "uid": 12,
     "step": "E",
     "alter": 1,
     "semitone": 5,
@@ -213,9 +223,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // E♭
   {
-    "uid": 13,
     "step": "E",
     "alter": -1,
     "semitone": 3,
@@ -226,9 +237,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // F♯
   {
-    "uid": 14,
     "step": "F",
     "alter": 1,
     "semitone": 6,
@@ -239,9 +251,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // F♭
   {
-    "uid": 15,
     "step": "F",
     "alter": -1,
     "semitone": 4,
@@ -252,9 +265,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // G♯
   {
-    "uid": 16,
     "step": "G",
     "alter": 1,
     "semitone": 8,
@@ -265,9 +279,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // G♭
   {
-    "uid": 17,
     "step": "G",
     "alter": -1,
     "semitone": 6,
@@ -278,9 +293,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // A♯
   {
-    "uid": 18,
     "step": "A",
     "alter": 1,
     "semitone": 10,
@@ -291,9 +307,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // A♭
   {
-    "uid": 19,
     "step": "A",
     "alter": -1,
     "semitone": 8,
@@ -304,9 +321,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // B♯
   {
-    "uid": 20,
     "step": "B",
     "alter": 1,
     "semitone": 12,
@@ -317,9 +335,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // B♭
   {
-    "uid": 21,
     "step": "B",
     "alter": -1,
     "semitone": 10,
@@ -330,9 +349,10 @@
     "isNormal": true,
     "isBlack": true
   },
+
+
   // C♯♯
   {
-    "uid": 22,
     "step": "C",
     "alter": 2,
     "semitone": 2,
@@ -343,9 +363,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // C♭♭
   {
-    "uid": 23,
     "step": "C",
     "alter": -2,
     "semitone": -2,
@@ -356,9 +377,10 @@
     "isNormal": false,
     "isBlack": true
   },
+
+
   // D♯♯
   {
-    "uid": 24,
     "step": "D",
     "alter": 2,
     "semitone": 4,
@@ -369,9 +391,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // D♭♭
   {
-    "uid": 25,
     "step": "D",
     "alter": -2,
     "semitone": 0,
@@ -382,9 +405,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // E♯♯
   {
-    "uid": 26,
     "step": "E",
     "alter": 2,
     "semitone": 6,
@@ -395,9 +419,10 @@
     "isNormal": false,
     "isBlack": true
   },
+
+
   // E♭♭
   {
-    "uid": 27,
     "step": "E",
     "alter": -2,
     "semitone": 2,
@@ -408,9 +433,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // F♯♯
   {
-    "uid": 28,
     "step": "F",
     "alter": 2,
     "semitone": 7,
@@ -421,9 +447,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // F♭♭
   {
-    "uid": 29,
     "step": "F",
     "alter": -2,
     "semitone": 3,
@@ -434,9 +461,10 @@
     "isNormal": false,
     "isBlack": true
   },
+
+
   // G♯♯
   {
-    "uid": 30,
     "step": "G",
     "alter": 2,
     "semitone": 9,
@@ -447,9 +475,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // G♭♭
   {
-    "uid": 31,
     "step": "G",
     "alter": -2,
     "semitone": 5,
@@ -460,9 +489,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // A♯♯
   {
-    "uid": 32,
     "step": "A",
     "alter": 2,
     "semitone": 11,
@@ -473,9 +503,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // A♭♭
   {
-    "uid": 33,
     "step": "A",
     "alter": -2,
     "semitone": 7,
@@ -486,9 +517,10 @@
     "isNormal": false,
     "isBlack": false
   },
+
+
   // B♯♯
   {
-    "uid": 34,
     "step": "B",
     "alter": 2,
     "semitone": 13,
@@ -499,9 +531,10 @@
     "isNormal": false,
     "isBlack": true
   },
+
+
   // B♭♭
   {
-    "uid": 35,
     "step": "B",
     "alter": -2,
     "semitone": 9,

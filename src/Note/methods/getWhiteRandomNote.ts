@@ -24,8 +24,8 @@ import normalizeOctave from "./normalizeOctave";
 export default (options?: { octave?: number | number[], isNormal?: boolean }): InstanceType<typeof Note> => {
   const isNormal = defaultTo(options?.isNormal, true)
   if (isNormal) {
-    // uid 1-7 对应 C, D, E, F, G, A, B
-    const noteObj = NOTE_META.where("uid", "<=", 7).random()
+    // alter === 0 即 7 个自然音 C, D, E, F, G, A, B(其余 28 条 |alter| 均 ≥ 1)
+    const noteObj = NOTE_META.where("alter", 0).random()
     return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
   }
   const noteObj = NOTE_META.where("isBlack", false).random()

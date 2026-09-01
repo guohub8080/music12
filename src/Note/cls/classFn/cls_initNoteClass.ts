@@ -3,7 +3,6 @@ import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 import {NoteError} from "@common/processError/errorTypes";
 
 type I_NoteObj = {
-    uid: number;
     isNormal: boolean;
     artName: string;
     isBlack: boolean;
@@ -24,7 +23,6 @@ type I_NoteObj = {
  *
  * ### noteMeta 包含的属性
  *
- * - `uid`: 唯一标识符
  * - `step`: 音名（C, D, E, F, G, A, B）
  * - `alter`: 变化音值（-2 到 2）
  * - `semitone`: 相对于 C0 的半音偏移
