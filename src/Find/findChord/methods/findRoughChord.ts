@@ -1,7 +1,6 @@
 import { intersection } from 'es-toolkit/compat';
-import { isEqual } from 'es-toolkit/predicate';
-import collect from "collect.js"
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
+import { CHORD_INSTANCE_SOUNDSET_MAP } from "@chord/static/chord-instance-data"
 import type { I_ChordInstanceMeta } from "@chord/static/types"
 import { jaccard } from "@common/utils/jaccard"
 
@@ -101,20 +100,13 @@ export const findRoughChord = (
 ): I_RoughChordResult[] => {
   const inputSet = [...new Set(pianoKeyIdList)].sort((a, b) => a - b)
 
-  // 若指定根音，先按根音过滤候选库（缩小搜索范围）
-  const candidates = collect(ALL_CHORD_INSTANCE_META)
+  // ===== 第一层：完全匹配(音集哈希索引 O(1),等和弦天然同桶) =====
+  const exactMatches = (CHORD_INSTANCE_SOUNDSET_MAP.get(inputSet.join(",")) ?? [])
     .filter((chord: I_ChordInstanceMeta) =>
-    rootNoteLocation === undefined
-      ? true
-      : chord.pianoKeyIdRoot === rootNoteLocation,
-  )
-
-  // ===== 第一层：完全匹配 =====
-  const exactMatches = candidates
-    .filter((chord: I_ChordInstanceMeta) =>
-      isEqual(inputSet, chord.pianoKeyIdsSorted),
+      rootNoteLocation === undefined
+        ? true
+        : chord.pianoKeyIdRoot === rootNoteLocation,
     )
-    .all()
     .map((chord: I_ChordInstanceMeta) => {
       const intersect = intersection(chord.pianoKeyIdsSorted, inputSet)
       return {
@@ -136,6 +128,11 @@ export const findRoughChord = (
 
   // ===== 第二层：省略音匹配（无完全匹配时） =====
   // 输入必须是候选和弦的子集（用户弹的音全在候选里），且特征音都弹到
+  const candidates = rootNoteLocation === undefined
+    ? ALL_CHORD_INSTANCE_META
+    : ALL_CHORD_INSTANCE_META.filter(
+        (chord: I_ChordInstanceMeta) => chord.pianoKeyIdRoot === rootNoteLocation,
+      )
   const omissionMatches = candidates
     .filter((chord: I_ChordInstanceMeta) => {
       // 候选音集必须比输入多（用户省略了音）
@@ -151,7 +148,6 @@ export const findRoughChord = (
       // 至少 3 个音匹配
       return intersect.length > 2
     })
-    .all()
     .map((chord: I_ChordInstanceMeta) => {
       const intersect = intersection(chord.pianoKeyIdsSorted, inputSet)
       const similarity = jaccard(chord.pianoKeyIdsSorted, inputSet)
