@@ -45,7 +45,7 @@ public:
      * 位置永远为正数(模运算)
      *
      * 注意:C++ 整除向零取整(-13/7=-1),而 TS 的 Math.floor 向负无穷(-13/7=-2)。
-     * 为与 TS 版等价,负数时需要用 floor 语义。
+     * 为与 TS 版幂等,负数时需要用 floor 语义。
      */
     static int floorDiv(int a, int b) {
         int q = a / b;

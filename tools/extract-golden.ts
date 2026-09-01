@@ -2,7 +2,7 @@
  * 黄金测试向量提取器
  *
  * 跑 music12 的核心 API,把「输入→输出」对记录成 JSON,
- * 供 C++ 版跑同样的向量验证等价。
+ * 供 C++ 版跑同样的向量验证幂等。
  *
  * 运行: npx tsx tools/extract-golden.ts
  * 输出: tests/vectors/golden-vectors.json

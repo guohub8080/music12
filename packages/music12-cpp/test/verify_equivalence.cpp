@@ -1,5 +1,5 @@
 /**
- * music12-cpp · 等价验证器
+ * music12-cpp · 幂等验证器
  *
  * 读 tests/vectors/golden-vectors.json,逐条调用 C++ API,
  * 对比输出,统计通过/失败/不一致。
