@@ -579,6 +579,22 @@
     "semitonesList": [4, 8, 10, 14],
     "name": "Dominant 9th Sharp 5"
   },
+  "dom9b5": {
+    "chordFormulaId": "dom9b5",
+    "cnName": "属九减五",
+    "scoreDisplay": "9b5",
+    "intervalList": [["maj", 3], ["dim", 5], ["min", 7], ["maj", 9]],
+    "tags": ["chord9", "dom", "altered", "flat5"],
+    "degreeToIntervalMap": {
+      "3": "maj",
+      "5": "dim",
+      "7": "min",
+      "9": "maj"
+    },
+    "notesNum": 5,
+    "semitonesList": [4, 6, 10, 14],
+    "name": "Dominant 9th Flat 5"
+  },
   "dom9#11": {
     "chordFormulaId": "dom9#11",
     "cnName": "属九增十一",

@@ -1,5 +1,5 @@
 /**
- * chord-formulas — 和弦公式定义表(87 个,极简源 + 基座引用)
+ * chord-formulas — 和弦公式定义表(88 个,极简源 + 基座引用)
  *
  * 本文件是 JSON5 源头,编译产物为 static-data/chord-formulas.json(gen:static-data 展开)。
  * 手改只改这里;产物永不手改。展开正确性由 ts-dev/verify/verifyChordFormulas.ts 兜底。
@@ -21,8 +21,8 @@
  *   $add   [[性质, 度数],...] 追加扩展音(dom9 = dom7 + $add[[maj,9]])
  * 展开顺序:递归展开 $base → 应用 $set → 应用 $add → 按度数升序。
  * 全表 6 个完整定义(树根,基础三和弦/挂留):
- *   maj3 min3 dim3 aug3 sus2 sus4;其余 81 个基座化,
- * intervalList 音数 355 → 93(压缩 74%)。
+ *   maj3 min3 dim3 aug3 sus2 sus4;其余 82 个基座化,
+ * intervalList 音数 359 → 94(压缩 74%)。
  *
  * 基座规则(无环 + 乐理双重保证,编译器必须遵守):
  *   1. 偏序:基座的「度数+性质秩」序列必须严格小于目标的序列。
@@ -452,6 +452,17 @@
   "cnName": "属九增五",
   "name": "Dominant 9th Sharp 5",
   "scoreDisplay": "9#5"
+  },
+
+
+  // dom9b5 · 属九减五 · C-E-G♭-B♭-D · maj3=4 dim5=6 min7=10 maj9=14
+  //   属九减五和弦，在属九和弦基础上将五度音降低半音;与 maj9b5/min9b5 对称补全 dom 系变音
+  "dom9b5": {
+  "$base": "dom9",
+  "$set": {"5": "dim"},
+  "cnName": "属九减五",
+  "name": "Dominant 9th Flat 5",
+  "scoreDisplay": "9b5"
   },
 
 

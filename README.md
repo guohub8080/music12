@@ -62,7 +62,7 @@ console.log(results[0].chordFormulaId)        // "dom7"
 | [Note](./documents/03-note.md) | 音符：构造、属性、音程叠加、等音、半音移动、泛音列 |
 | [Interval](./documents/04-interval.md) | 音程：类型（纯/大/小/增/减）、度数、半音间距、音程滑动 |
 | [Chord](./documents/05-chord.md) | 和弦：构造、变换（set/sus/omit）、音符获取、find 反查 |
-| [和弦公式](./documents/06-chord-formula.md) | 87 个公式、tags 标签系统、getChordFormulaByTags 查询 |
+| [和弦公式](./documents/06-chord-formula.md) | 88 个公式、tags 标签系统、getChordFormulaByTags 查询 |
 | [Scale](./documents/07-scale.md) | 调式：构造、度数查询、顺阶和弦、调式列表 |
 | [Find](./documents/08-find.md) | 反向查找：findChord（严格/模糊模式）、调式查找 |
 | [Factory](./documents/09-factory.md) | 工厂函数：getNote/getInterval/getChord/getScale |
@@ -108,7 +108,7 @@ music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄�
 | `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
 | `mono-repo/cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
 
-两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1687/1687 通过)。
+两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1699/1699 通过)。
 
 ### 数据架构
 
@@ -116,9 +116,9 @@ music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄�
 static-data/          ← 单一真相源(7 个 JSON)
 ├── notes.json        (35 条音符元数据)
 ├── intervals.json    (39 条音程元数据)
-├── chord-formulas.json (87 个和弦公式)
+├── chord-formulas.json (88 个和弦公式)
 ├── scale-modes.json  (46 个调式)
-├── chord-instances.json (1044 条 = 87×12)
+├── chord-instances.json (1056 条 = 88×12)
 └── scale-instances.json (552 条 = 46×12)
 ```
 
@@ -127,10 +127,10 @@ static-data/          ← 单一真相源(7 个 JSON)
 ### 幂等验证
 
 ```bash
-pnpm verify:all   # TS 测试(213) + C++ 测试(32) + 黄金向量(1687)
+pnpm verify:all   # TS 测试(213) + C++ 测试(32) + 黄金向量(1699)
 ```
 
-1687 个黄金测试向量覆盖全调式 × 全和弦,TS 版和 C++ 版跑同样输入,输出必须一致。
+1699 个黄金测试向量覆盖全调式 × 全和弦,TS 版和 C++ 版跑同样输入,输出必须一致。
 
 ### Tree Shaking
 

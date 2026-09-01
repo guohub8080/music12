@@ -66,8 +66,8 @@ const gap = (t: string, N: number) =>
     SIMPLE_GAP[`${t}/${((N - 1) % 7) + 1}`] + 12 * Math.floor((N - 1) / 7);
 
 // ---- 逐条:展开 + 派生回填,与产物全等 ----
-check(Object.keys(src).length === 87, `源公式数 ${Object.keys(src).length} ≠ 87`);
-check(Object.keys(dst).length === 87, `产物公式数 ${Object.keys(dst).length} ≠ 87`);
+check(Object.keys(src).length === 88, `源公式数 ${Object.keys(src).length} ≠ 88`);
+check(Object.keys(dst).length === 88, `产物公式数 ${Object.keys(dst).length} ≠ 88`);
 
 for (const cid of Object.keys(dst)) {
     const expect = dst[cid];
@@ -122,7 +122,7 @@ for (const cid of Object.keys(src)) {
 }
 
 console.log("=== chord-formulas.json5 展开验证(独立实现 + json5 包解析) ===");
-console.log(`公式数: 87 | 断言: ${pass + fail} 通过: ${pass} 失败: ${fail}`);
+console.log(`公式数: 88 | 断言: ${pass + fail} 通过: ${pass} 失败: ${fail}`);
 if (fail > 0) {
     console.log("\n失败明细(前 20 条):");
     for (const e of errors.slice(0, 20)) console.log(`  ✗ ${e}`);

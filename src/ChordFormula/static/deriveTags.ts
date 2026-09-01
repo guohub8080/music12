@@ -165,7 +165,7 @@ function deriveStructureTags(degrees: Set<number>): ChordTag[] {
  * 标签由四个维度组成（家族 / 性质 / 变音 / 结构），
  * 全部从 intervalList 客观推导，无需手填。
  *
- * 已用全部 87 个和弦公式验证：0 遗漏、0 歧义。
+ * 已用全部 88 个和弦公式验证：0 遗漏、0 歧义。
  *
  * @example
  * deriveTags([["maj",3],["aug",5],["min",7],["maj",9]])

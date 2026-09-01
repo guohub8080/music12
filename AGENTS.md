@@ -119,13 +119,13 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 4. **五声调式缺 4 度和 7 度**：`getNoteByIntervalNum(4)` 返回 null（不崩溃）。
 5. **黑键有两个名字**：pianoKeyId=1 既是 C# 也是 Db。`getNoteByPianoKeyId(1)` 返回两者。
 
-## 87 个和弦公式 ID
+## 88 个和弦公式 ID
 
 常用公式：`maj3` `min3` `dim3` `aug3` `sus2` `sus4` `maj7` `dom7` `min7` `dim7` `halfdim7` `minmaj7` `dom9` `maj9` `min9` `dom11` `maj11` `min11` `dom13` `maj13` `min13`
 
 变音和弦：`dom7#5` `dom7b5` `dom7b9` `dom7#9` `dom7#11` `dom9#5` `dom9#11` `maj7b5` `maj7#11` `min7b5` 等。
 
-完整列表用 `getChordFormulaByTags([])` 查询（返回全部 87 个）。
+完整列表用 `getChordFormulaByTags([])` 查询（返回全部 88 个）。
 
 ## 44 个调式 ID
 
@@ -253,7 +253,7 @@ this._cache = void 0
 ```bash
 pnpm test                 # TS 单元测试（当前 213 个）
 pnpm test:cpp             # C++ 测试（当前 32 个，需先 pnpm build:cpp）
-pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1687 条黄金向量，必须 100%）
+pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1699 条黄金向量，必须 100%）
 ```
 
 任何一个红了就不许提交。改动涉及数据或目录时，额外确认生成器重跑零差异。

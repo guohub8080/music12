@@ -133,53 +133,59 @@ function compileChordFormulas(): Record<string, unknown> {
 }
 
 // ==================== 主流程:编译 + 对比/写盘 ====================
-const targets: Array<{ srcFile: string; dstFile: string; compile: () => unknown }> = [
-    { srcFile: "pianokey.json5", dstFile: "notes.json", compile: compilePianokey },
-    { srcFile: "interval.json5", dstFile: "intervals.json", compile: () => compilePassThrough("interval.json5") },
-    { srcFile: "fifth.json5", dstFile: "fifth.json", compile: () => compilePassThrough("fifth.json5") },
-    { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
-];
+// 导出供 gen:static-data(index.ts)调用;直接运行时按 --write 参数执行
+export function compileAll(write: boolean): boolean {
+    let allSame = true;
 
-console.log(`=== static-data 编译器(${WRITE ? "写盘模式" : "dry-run 对比"}) ===\n`);
-let allSame = true;
+    console.log(`=== static-data 编译器(${write ? "写盘模式" : "dry-run 对比"}) ===\n`);
+    const targets: Array<{ srcFile: string; dstFile: string; compile: () => unknown }> = [
+        { srcFile: "pianokey.json5", dstFile: "notes.json", compile: compilePianokey },
+        { srcFile: "interval.json5", dstFile: "intervals.json", compile: () => compilePassThrough("interval.json5") },
+        { srcFile: "fifth.json5", dstFile: "fifth.json", compile: () => compilePassThrough("fifth.json5") },
+        { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
+    ];
 
-for (const { srcFile, dstFile, compile } of targets) {
-    const produced = serialize(compile());
-    const existing = readDst(dstFile);
-    const same = produced === existing;
+    for (const { srcFile, dstFile, compile } of targets) {
+        const produced = serialize(compile());
+        const existing = readDst(dstFile);
+        const same = produced === existing;
 
-    if (!same) allSame = false;
-    console.log(`${same ? "✓ 零差异" : "△ 有差异"}  ${srcFile} → ${dstFile}  (${(produced.length / 1024).toFixed(1)}KB)`);
+        if (!same) allSame = false;
+        console.log(`${same ? "✓ 零差异" : "△ 有差异"}  ${srcFile} → ${dstFile}  (${(produced.length / 1024).toFixed(1)}KB)`);
 
-    if (!same) {
-        // 字段级差异统计
-        const a = JSON.parse(produced);
-        const b = JSON.parse(existing);
-        const isArr = Array.isArray(b);
-        const keysA = new Set<string>();
-        const keysB = new Set<string>();
-        if (isArr) {
-            for (const r of a) Object.keys(r).forEach(k => keysA.add(k));
-            for (const r of b) Object.keys(r).forEach(k => keysB.add(k));
-        } else {
-            for (const r of Object.values(a)) Object.keys(r).forEach(k => keysA.add(k));
-            for (const r of Object.values(b)) Object.keys(r).forEach(k => keysB.add(k));
+        if (!same) {
+            // 字段级差异统计
+            const a = JSON.parse(produced);
+            const b = JSON.parse(existing);
+            const isArr = Array.isArray(b);
+            const keysA = new Set<string>();
+            const keysB = new Set<string>();
+            if (isArr) {
+                for (const r of a) Object.keys(r).forEach(k => keysA.add(k));
+                for (const r of b) Object.keys(r).forEach(k => keysB.add(k));
+            } else {
+                for (const r of Object.values(a)) Object.keys(r).forEach(k => keysA.add(k));
+                for (const r of Object.values(b)) Object.keys(r).forEach(k => keysB.add(k));
+            }
+            const added = [...keysA].filter(k => !keysB.has(k));
+            const removed = [...keysB].filter(k => !keysA.has(k));
+            const lenA = isArr ? a.length : Object.keys(a).length;
+            const lenB = isArr ? b.length : Object.keys(b).length;
+            console.log(`    条目: ${lenA} vs 现有 ${lenB}`);
+            if (added.length) console.log(`    新增字段: ${added.join(", ")}`);
+            if (removed.length) console.log(`    移除字段: ${removed.join(", ")}`);
+            if (!added.length && !removed.length && lenA === lenB)
+                console.log(`    (字段集相同——差异为格式/顺序/值级,可用 git diff 细看)`);
         }
-        const added = [...keysA].filter(k => !keysB.has(k));
-        const removed = [...keysB].filter(k => !keysA.has(k));
-        const lenA = isArr ? a.length : Object.keys(a).length;
-        const lenB = isArr ? b.length : Object.keys(b).length;
-        console.log(`    条目: ${lenA} vs 现有 ${lenB}`);
-        if (added.length) console.log(`    新增字段: ${added.join(", ")}`);
-        if (removed.length) console.log(`    移除字段: ${removed.join(", ")}`);
-        if (!added.length && !removed.length && lenA === lenB)
-            console.log(`    (字段集相同——差异为格式/顺序/值级,可用 git diff 细看)`);
-        if (WRITE) writeFileSync(resolve(OUT_DIR, dstFile), produced, "utf-8");
-    } else if (WRITE) {
-        // 零差异也重写,保证幂等路径一致
-        writeFileSync(resolve(OUT_DIR, dstFile), produced, "utf-8");
+        if (write) writeFileSync(resolve(OUT_DIR, dstFile), produced, "utf-8");
     }
+
+    console.log(`\n${allSame ? "四个文件全部与现有产物一致" : "存在差异(见上)"}`);
+    if (write) console.log("已写入 static-data/");
+    return allSame;
 }
 
-console.log(`\n${allSame ? "四个文件全部与现有产物一致" : "存在差异(见上;--write 模式才会落盘)"}`);
-if (WRITE) console.log("已写入 static-data/(请用 git diff 审查后再提交)");
+// 直接执行(非被 import)时按命令行参数运行
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+    compileAll(WRITE);
+}
