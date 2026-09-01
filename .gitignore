@@ -8,6 +8,7 @@ dist/
 .claude/
 .mimosa/
 .video_agent/
+out/
 .cursor/
 .codex/
 .gemini/
