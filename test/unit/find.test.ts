@@ -10,6 +10,21 @@ import { findChord, findNotesInScales, findNoteDegreeInAllScales, findNoteDegree
  */
 
 describe("findChord（MIDI 输入）", () => {
+  it("等和弦双解：C-E-G-A 不指定根音时 C6 与 Am7 同时返回（音集同桶）", () => {
+    const results = findChord([60, 64, 67, 69])
+    expect(results.some((r) => r.chordFormulaId === "maj3add6" && r.pianoKeyIdRoot === 0)).toBe(true)
+    expect(results.some((r) => r.chordFormulaId === "min7" && r.pianoKeyIdRoot === 9)).toBe(true)
+  })
+
+  it("enrich 契约：结果对象上音集字段存在且类型正确（JSON 只存记谱层，音集由加载器实时 enrich）", () => {
+    const [r] = findChord([60, 64, 67])
+    expect(Array.isArray(r.pianoKeyIds)).toBe(true)
+    expect(r.pianoKeyIdsSorted).toEqual([...r.pianoKeyIds].sort((a, b) => a - b))
+    expect(typeof r.notesNum).toBe("number")
+    expect(typeof r.pianoKeyIdToInterval[r.pianoKeyIdRoot].intervalType).toBe("string")
+    expect(r.intervalToPianoKeyId[3].pianoKeyId).toBe(4) // 大三度 → E
+  })
+
   it("C-E-G [60,64,67] 找到 C 大三和弦", () => {
     const results = findChord([60, 64, 67])
     expect(results.length).toBeGreaterThan(0)
