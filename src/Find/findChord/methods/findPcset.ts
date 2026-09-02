@@ -1,6 +1,7 @@
 import pcsetNamesJson from "@static-data/pcset-names.json"
 import { isNumber } from "es-toolkit/predicate"
 import { keyMaskFromIds, idsFromKeyMask, primeFormMask, maskDistance } from "@common/keyMask"
+import { PianoKey } from "@pianokey"
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
 
 /**
@@ -58,7 +59,7 @@ export const findPcset = (sortedIds: number[]): I_PcsetResult => {
 
   // 等距最近方案(位运算扫描 1056 实例,收集最小距离的全部实例)
   const inputMask = keyMaskFromIds(sortedIds)
-  const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
+  const SYMBOLS = PianoKey.SYMBOLS
   const describe = (inst: (typeof ALL_CHORD_INSTANCE_META)[number], d: number) => {
     // 差异 = 输入多弹的 + 少弹的;变换记号按 omit/extra 语义拼接。
     // 记号约定:omit 后是「度数」(候选和弦里该音的度),extra 后是「键 symbol」
