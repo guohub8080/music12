@@ -11,6 +11,7 @@
  * 单一真相源:json5 源 + 生成器逻辑;TS 版和 C++ 版都读这里产出的 JSON。
  * 产物幂等:重跑后 git diff 必须为零(验证兜底:ts-dev/verify/*)。
  */
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -26,8 +27,8 @@ function writeJson(name: string, data: unknown) {
     writeFileSync(path, JSON.stringify(data, null, 2) + "\n", "utf-8");
     const count = Array.isArray(data)
         ? data.length
-        : typeof data === "object" && data !== null
-            ? Object.keys(data).length
+        : (isNotNil(data) && typeof data === "object")
+            ? Object.keys(data as Record<string, unknown>).length
             : 1;
     console.log(`  ✓ ${name} (${count} 条)`);
 }

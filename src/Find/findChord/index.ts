@@ -103,7 +103,7 @@ export const findChord = (
           sortedPianoKeyIdList,
           x.pianoKeyIdRoot,
         )
-        return analyzed === null ? null : { type: "chord" as const, level: 1 as const, ...analyzed }
+        return isNil(analyzed) ? null : { type: "chord" as const, level: 1 as const, ...analyzed }
       }
     })
     .filter((x): x is I_FindResult => isNotNil(x))

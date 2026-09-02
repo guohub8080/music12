@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { useState, useMemo } from "react"
 import { toPairs, keys } from "es-toolkit/compat"
 import { Chord } from "@chord"
@@ -102,7 +103,7 @@ const ChordClassTest = () => {
 	const setDegreeTransform = (degree: number, value: TTransformValue) => {
 		setTransformPanel(prev => {
 			const newPanel = { ...prev }
-			if (value === undefined) {
+			if (isNil(value)) {
 				delete newPanel[degree]
 			} else {
 				newPanel[degree] = value
@@ -123,7 +124,7 @@ const ChordClassTest = () => {
 
 	// 判断某个度数是否被修改
 	const isDegreeModified = (degree: number) => {
-		return transformPanel[degree] !== undefined
+		return isNotNil(transformPanel[degree])
 	}
 
 	return (

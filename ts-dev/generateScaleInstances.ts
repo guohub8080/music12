@@ -35,9 +35,16 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
         const pianoKey = PianoKey.fromPitchInt(rootPianoKey + 48);
         const notes = pianoKey.getNotes({ isNormal: true, alterAbsLte: 1 });
         const rootNote = notes[0];
-        const scale = new Scale(rootNote.pianoKeyId, modeMeta.scaleModeId as t_scaleMode);
 
-        const notesPianoKeyList = scale.pianoKeyIds;
+        // 直接从 modeMeta 计算(不经过 Scale 类——Scale 构造器读旧实例表,
+        // 新增调式 key(如 IONIAN)在旧表不存在会鸡生蛋死锁)
+        const notesPianoKeyList: number[] = [rootPianoKey];
+        intervalList.forEach((item, idx) => {
+            if (isNil(item)) return;
+            const semi = modeMeta.semitonesList[idx];
+            if (isNil(semi)) return;
+            notesPianoKeyList.push((rootPianoKey + semi) % 12);
+        });
         const orderedNotesPianoKeyList = [...notesPianoKeyList].sort((a, b) => a - b);
 
         const degreeToPianoKeyId: Record<number, number | null> = { 1: rootPianoKey };
@@ -130,8 +137,8 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
             pianoKeyIdsSorted: orderedNotesPianoKeyList,
             degreeToPianoKeyId,
             pianoKeyIdToDegree,
-            degreeAlterationsMap: scale.scaleMode.degreeAlterationsMap,
-            scaleMode: scale.scaleMode,
+            degreeAlterationsMap: modeMeta.degreeAlterationsMap as Record<number, number>,
+            scaleMode: modeMeta,
             scales,
         };
     });

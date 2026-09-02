@@ -1,6 +1,7 @@
 // @ts-nocheck
 // scale-modes.json5 编译验证器(独立第二重):json5 包解析 → 独立回填实现 → 与产物全等对拍
 // 另含行为契约:46 键 46 id(别名自名)、五声缺度 null、type 三值域
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -24,7 +25,7 @@ check(Object.keys(dst).length === 46, `产物调式数 ${Object.keys(dst).length
 
 for (const sid of Object.keys(dst)) {
     const s = src[sid], d = dst[sid];
-    check(s !== undefined, `源缺 ${sid}`);
+    check(isNotNil(s), `源缺 ${sid}`);
     // 自由量等价
     check(d.name === s.name && d.type === s.type, `${sid} name/type 不符`);
     check(JSON.stringify(d.intervalList) === JSON.stringify(s.intervalList), `${sid} intervalList 不符`);
@@ -33,9 +34,9 @@ for (const sid of Object.keys(dst)) {
     for (let i = 0; i < 6; i++) {
         const deg = i + 2;
         const item = il[i];
-        if (item === null) {
-            check(d.intervalMap[String(deg)] === null && d.semitonesMap[String(deg)] === null
-                && d.degreeAlterationsMap[String(deg)] === null, `${sid} ${deg}度 缺度字段非 null`);
+        if (isNil(item)) {
+            check(isNil(d.intervalMap[String(deg)]) && isNil(d.semitonesMap[String(deg)])
+                && isNil(d.degreeAlterationsMap[String(deg)]), `${sid} ${deg}度 缺度字段非 null`);
         } else {
             const [t, n] = item;
             check(n === deg, `${sid} 槽 ${i} 度数 ${n} ≠ ${deg}(度数由位置决定)`);

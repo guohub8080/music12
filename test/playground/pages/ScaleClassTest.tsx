@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { toPairs } from "es-toolkit/compat"
 import { Scale, SCALE_MODE_IDS, type T_ScaleModeId } from "@scale/index"
 import type { I_AnalyzedChordResult } from "@find/findChord/index"
@@ -400,11 +401,11 @@ const ScaleClassTest = () => {
 										const result = scale.getDegreeAndAlter(i)
 										const noteName = PIANO_KEY_NAMES[i]
 										return (
-											<tr key={i} style={{ borderBottom: "1px solid #eee", background: result === null ? "#fff0f0" : "#fff" }}>
+											<tr key={i} style={{ borderBottom: "1px solid #eee", background: isNil(result) ? "#fff0f0" : "#fff" }}>
 												<td style={{ padding: 8, fontFamily: "monospace" }}>{i}</td>
 												<td style={{ padding: 8, fontWeight: "bold" }}>{noteName}</td>
 												<td style={{ padding: 8, fontFamily: "monospace" }}>
-													{result === null
+													{isNil(result)
 														? <span style={{ color: "#999" }}>null (不在调式中)</span>
 														: <span>
 															度数: <strong>{result.degree}</strong>
@@ -526,17 +527,17 @@ const ScaleClassTest = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(num => {
-										const result = scale.getNoteByIntervalNum(num)
-										return (
-											<tr key={num} style={{ borderBottom: "1px solid #eee" }}>
-												<td style={{ padding: 8 }}>{num}</td>
-												<td style={{ padding: 8, fontFamily: "monospace" }}>{result.pianoKeyId}</td>
-												<td style={{ padding: 8, fontFamily: "monospace" }}>{result.octave}</td>
-												<td style={{ padding: 8 }}>{PIANO_KEY_NAMES[result.pianoKeyId]}</td>
-											</tr>
-										)
-									})}
+										{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(num => {
+											const result = scale.getNoteByIntervalNum(num)
+											return (
+												<tr key={num} style={{ borderBottom: "1px solid #eee", background: isNil(result) ? "#fff0f0" : "#fff" }}>
+													<td style={{ padding: 8 }}>{num}</td>
+													<td style={{ padding: 8, fontFamily: "monospace" }}>{isNil(result) ? "—" : result.pianoKeyId}</td>
+													<td style={{ padding: 8, fontFamily: "monospace" }}>{isNil(result) ? "—" : result.octave}</td>
+													<td style={{ padding: 8 }}>{isNil(result) ? "缺度" : PIANO_KEY_NAMES[result.pianoKeyId]}</td>
+												</tr>
+											)
+										})}
 								</tbody>
 							</table>
 						</div>

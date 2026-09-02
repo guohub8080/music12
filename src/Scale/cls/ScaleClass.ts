@@ -75,13 +75,13 @@ export class Scale {
 		return this.scale.pianoKeyIdsSorted
 	}
 
-	/** 度数到钢琴键 ID 的映射 */
-	public get degreeToPianoKeyId(): Record<number, number> {
+	/** 度数到钢琴键 ID 的映射(五声缺度为 null) */
+	public get degreeToPianoKeyId(): Record<number, number | null> {
 		return this.scale.degreeToPianoKeyId
 	}
 
-	/** 钢琴键 ID 到度数的映射 */
-	public get pianoKeyIdToDegree(): Record<number, number> {
+	/** 钢琴键 ID 到度数的映射(五声缺度为 null) */
+	public get pianoKeyIdToDegree(): Record<number, number | null> {
 		return this.scale.pianoKeyIdToDegree
 	}
 

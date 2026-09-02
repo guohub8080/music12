@@ -13,6 +13,6 @@ export const getChord = (step: string, alter: number, chordFormulaId: string) =>
     const rootNote = getNote(step, alter)
     return new Chord(rootNote.pianoKeyId, chordFormulaId)
   } catch (e) {
-    throw new FactoryError(e.message)
+    throw new FactoryError((e as Error).message)
   }
 }

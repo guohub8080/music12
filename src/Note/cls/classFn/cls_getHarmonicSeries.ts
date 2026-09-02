@@ -56,16 +56,16 @@ const overtoneSeriesIntervalList: [T_IntervalType, number][] = [
  * cls_getHarmonicSeries('C', 0, 4)
  * // [C5, G5, C6, E6, G6, Bb6, C7, D7, E7, F#7, G7, A7, Bb7, B7, C8]
  */
-export default (step: T_NoteStep, alter: T_AlterValue, octave: number): {
+export default (step: T_NoteStep, alter: T_AlterValue, octave: number): ({
   step: T_NoteStep,
   alter: T_AlterValue,
   pianoKeyId: number,
   artName: string
-}[] => {
+} | undefined)[] => {
   // 只支持变化音绝对值 <= 1 的基音
   if (Math.abs(alter) > 1) return []
 
-  const result = []
+  const result: ({ step: T_NoteStep; alter: T_AlterValue; pianoKeyId: number; artName: string } | undefined)[] = []
   let baseNote = new Note(step, alter, octave)
 
   // 依次计算每个泛音

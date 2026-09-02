@@ -10,7 +10,7 @@ import type { T_IntervalType } from "@common/static/INTERVAL_TYPES"
  */
 export const getIntervalListByModeKey = (
   modeKey: string,
-): [T_IntervalType, number][] => {
+): ([T_IntervalType, number] | null)[] => {
   return MODE_META_MAP[resolveModeKey(modeKey)].intervalList
 }
 export default getIntervalListByModeKey

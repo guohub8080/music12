@@ -19,6 +19,7 @@
  *   npx tsx ts-dev/compileStaticData.ts            # dry-run:编译并对比现有产物,不写盘
  *   npx tsx ts-dev/compileStaticData.ts --write    # 写盘覆盖 static-data/
  */
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -50,7 +51,7 @@ function pretty(value: unknown, indent: number): string {
         const pad = " ".repeat(indent + 2);
         return `[\n${pad}${items.join(`,\n${pad}`)}\n${" ".repeat(indent)}]`;
     }
-    if (typeof value === "object" && value !== null) {
+    if (isNotNil(value) && typeof value === "object") {
         const pad = " ".repeat(indent + 2);
         const entries = Object.entries(value as Record<string, unknown>)
             .map(([k, v]) => `${pad}${JSON.stringify(k)}: ${pretty(v, indent + 2)}`);
@@ -107,7 +108,7 @@ function compileChordFormulas(): Record<string, unknown> {
     const expand = (cid: string, trail: string[] = []): [string, number][] => {
         if (trail.includes(cid)) throw new Error(`基座环: ${[...trail, cid].join(" → ")}`);
         const f = src[cid];
-        if (f.$base === undefined) return f.intervalList;
+        if (isNil(f.$base)) return f.intervalList;
         let list = expand(f.$base, [...trail, cid]);
         if (f.$set) list = list.map(([t, n]) => [f.$set[String(n)] ?? t, n]);
         if (f.$add) list = [...list, ...f.$add];
@@ -151,7 +152,7 @@ function compileScaleModes(): Record<string, unknown> {
         for (let i = 0; i < 6; i++) {
             const item = il[i];
             const degree = i + 2;
-            if (item === null) {
+            if (isNil(item)) {
                 intervalMap[String(degree)] = null;
                 semitonesList.push(null);
                 semitonesMap[String(degree)] = null;
@@ -210,7 +211,7 @@ export function compileAll(write: boolean): boolean {
             // 字段级差异统计(首次生成时现有文件不存在,跳过统计)
             let a: any, b: any;
             try { a = JSON.parse(produced); b = JSON.parse(existing); } catch { a = b = null; }
-            if (a !== null && b !== null) {
+            if (isNotNil(a) && isNotNil(b)) {
             const isArr = Array.isArray(b);
             const keysA = new Set<string>();
             const keysB = new Set<string>();

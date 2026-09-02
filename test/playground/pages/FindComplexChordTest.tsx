@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { useState } from "react"
 import { findChord } from "@find/index"
 import { getNoteByPianoKeyId } from "@note"
@@ -551,7 +552,7 @@ const FindComplexChordTest = () => {
 											<td style={{ padding: 8, border: "1px solid #ccc", fontSize: 11 }}>
 												{transformString ? (
 													<span style={{ fontSize: 11 }}>
-														{transformString.split(",").map((part, idx) => {
+														{transformString.split(",").map((part: string, idx: number) => {
 															// 区分不同类型的变换
 															const isAlteration = part.includes("→")
 															const isOmit = part.startsWith("omit")
@@ -586,7 +587,7 @@ const FindComplexChordTest = () => {
 												)}
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc", textAlign: "center" }}>
-												{hasTransform && (match as any).transformCount !== undefined ? (
+												{hasTransform && isNotNil((match as any).transformCount) ? (
 													<span style={{
 														fontWeight: (match as any).transformCount > 0 ? "bold" : "normal",
 														color: (match as any).transformCount > 0 ? "#6c757d" : "#ccc"

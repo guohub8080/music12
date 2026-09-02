@@ -16,6 +16,7 @@
  *
  * 运行: npx tsx ts-dev/verify/verifyScales.ts
  */
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -71,9 +72,9 @@ for (const inst of scaleInstances) {
             const item = intervalList[i];
             const label = `${inst.scaleModeId}@${scaleEntry.tonicStep}${scaleEntry.tonicAlter} ${degree}度`;
 
-            if (item === null) {
+            if (isNil(item)) {
                 // 五声等缺度:数据侧也应为 null
-                check(scaleEntry.notesMap[degree] === null && inst.degreeToPianoKeyId[degree] === null, `${label} 应缺度`);
+                check(isNil(scaleEntry.notesMap[degree]) && isNil(inst.degreeToPianoKeyId[degree]), `${label} 应缺度`);
                 continue;
             }
 

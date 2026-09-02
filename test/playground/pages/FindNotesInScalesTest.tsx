@@ -1,3 +1,4 @@
+import { isNil } from 'es-toolkit/predicate'
 import { toPairs } from "es-toolkit/compat"
 import { findNotesInScales, SCALE_MODE_GROUPS, type I_NotesInScale, type T_ScaleModeId } from "@find/index"
 import { useState } from "react"
@@ -212,8 +213,8 @@ const FindNotesInScalesTest = () => {
 							onClick={() => selectGroup(null)}
 							style={{
 								padding: "6px 12px",
-								background: selectedGroup === null ? "#007bff" : "#fff",
-								color: selectedGroup === null ? "#fff" : "#333",
+								background: isNil(selectedGroup) ? "#007bff" : "#fff",
+								color: isNil(selectedGroup) ? "#fff" : "#333",
 								border: "1px solid #ccc",
 								borderRadius: 4,
 								cursor: "pointer",

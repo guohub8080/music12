@@ -12,6 +12,7 @@
  *
  * 运行: npx tsx ts-dev/verify/verifyChordFormulas.ts
  */
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -42,7 +43,7 @@ function expand(cid: string, trail: string[] = []): [string, number][] {
     const f = src[cid];
     if (!f) throw new Error(`引用不存在的公式: ${cid}`);
     let list: [string, number][];
-    if (f.$base !== undefined) {
+    if (isNotNil(f.$base)) {
         list = expand(f.$base, [...trail, cid]);
         if (f.$set) {
             list = list.map(([t, n]) => [f.$set[String(n)] ?? t, n] as [string, number]);
@@ -72,7 +73,7 @@ check(Object.keys(dst).length === 88, `产物公式数 ${Object.keys(dst).length
 for (const cid of Object.keys(dst)) {
     const expect = dst[cid];
     const got = src[cid];
-    check(got !== undefined, `源缺公式 ${cid}`);
+    check(isNotNil(got), `源缺公式 ${cid}`);
 
     // 1. intervalList 展开等价
     let expanded: [string, number][];
@@ -110,7 +111,7 @@ for (const cid of Object.keys(dst)) {
 }
 
 // ---- 结构契约:完整根恰好 6 个;$set 全部同名前缀 ----
-const fullRoots = Object.keys(src).filter(c => src[c].intervalList !== undefined).sort();
+const fullRoots = Object.keys(src).filter(c => isNotNil(src[c].intervalList)).sort();
 check(
     JSON.stringify(fullRoots) === JSON.stringify(["aug3", "dim3", "maj3", "min3", "sus2", "sus4"]),
     `完整根应为 6 个基础三和弦/挂留,实际: ${fullRoots.join(",")}`,

@@ -1,4 +1,5 @@
 import {IntervalError} from "@common/processError/errorTypes";
+import { isNil } from "es-toolkit/predicate";
 import {Interval} from "@interval/cls/IntervalClass";
 import {intervalSlide_145, intervalSlide_2367} from "@interval/methods/intervalSlide";
 import {isPureInterval} from "@interval/methods/isPureInterval";
@@ -53,8 +54,9 @@ import {Note} from "../NoteClass";
 export default (noteInstance: InstanceType<typeof Note>,
                 numberNotation: string,
                 isAscending = true): InstanceType<typeof Note> => {
-	// 提取音程数字
+	// 提取音程数字(无数字时 match 返回 null——显式抛错而非后续崩溃)
 	const intervalNumReg = numberNotation.match(/\d+/g)
+	if (isNil(intervalNumReg)) throw new IntervalError("No interval number found in notation.")
 	if (intervalNumReg.length > 1) throw new IntervalError("Only one interval number is allowed.")
 
 	// 统计低八度符号

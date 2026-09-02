@@ -10,7 +10,7 @@ import { SCALE_MODE_IDS } from "@scale/static/scaleModeTypes"
 export interface I_ModeMetaEntry {
   name: string
   type: string
-  intervalList: [T_IntervalType, number][]
+  intervalList: ([T_IntervalType, number] | null)[]
 }
 
 /**

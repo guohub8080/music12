@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { toPairs, keys } from "es-toolkit/compat"
 import { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS, type T_ScaleModeId } from "@find/index"
 import { useState } from "react"
@@ -75,8 +76,8 @@ const results2 = findNoteDegreeInAllScales(4, {
 							onClick={() => setSelectedGroup(null)}
 							style={{
 								padding: "10px 16px",
-								background: selectedGroup === null ? "#007bff" : "#f8f9fa",
-								color: selectedGroup === null ? "#fff" : "#333",
+								background: isNil(selectedGroup) ? "#007bff" : "#f8f9fa",
+								color: isNil(selectedGroup) ? "#fff" : "#333",
 								border: "1px solid #ccc",
 								borderRadius: 6,
 								cursor: "pointer",
