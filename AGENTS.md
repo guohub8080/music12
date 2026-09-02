@@ -218,7 +218,16 @@ if (isNotNil(x)) { ... }
 const valid = list.filter(isNotNil)
 ```
 
-例外：`typeof x === "undefined"` 形式的防御性全局检查（防未声明变量抛 ReferenceError）不受此限——但库代码里不应出现这种场景。
+```ts
+// ❌ 禁止
+if (x === undefined) { ... }
+if (x !== undefined) { ... }
+if (x === null) { ... }
+while (node !== null) { ... }
+const valid = list.filter(x => x !== undefined)
+```
+
+**无例外条款**：本库**不区分 undefined 与 null**（空值语义统一），因此 `typeof x === "undefined"` 的防御性写法同样禁止——不存在需要它防的场景，一律 isNil。
 
 **非空判断：用 isNotNil（predicate），禁止 `!isNil(x)`。** `isNotNil` 是类型守卫，收窄为非空类型，还能直接当 `filter(isNotNil)` 谓词传递；判断「为空」仍用 `isNil`。
 
