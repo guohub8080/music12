@@ -60,10 +60,14 @@ export const findPcset = (sortedIds: number[]): I_PcsetResult => {
     const d = maskDistance(inputMask, keyMaskFromIds(inst.pianoKeyIdsSorted))
     if (d < bestDist) {
       bestDist = d
-      // 差异 = 输入多弹的 + 少弹的;变换记号按 omit/extra 语义拼接
+      // 差异 = 输入多弹的 + 少弹的;变换记号按 omit/extra 语义拼接。
+      // 记号约定:omit 后是「度数」(候选和弦里该音的度),extra 后是「键 symbol」
+      // (输入多弹的音不在和弦里,无度数可标,用 pianoKeySymbol 避免与度数混淆)
       const omitted = inst.pianoKeyIdsSorted.filter(k => !sortedIds.includes(k))
         .map(k => inst.pianoKeyIdToInterval[k]?.intervalNum).filter(isNumber)
+      const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
       const extra = sortedIds.filter(k => !inst.pianoKeyIdsSorted.includes(k))
+        .map(k => SYMBOLS[k])
       const parts: string[] = []
       if (omitted.length) parts.push(`omit${omitted.join(",")}`)
       if (extra.length) parts.push(`extra${extra.join(",")}`)
