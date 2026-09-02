@@ -120,21 +120,13 @@ const pianoKeyIdToDegreeName = (rootPianoKeyId: number, pianoKeyId: number): str
  * getChordNamedDegree("min13")   // → 13
  * getChordNamedDegree("maj3")    // → null（三和弦无命名度数）
  */
-const getChordNamedDegree = (chordFormulaId: string): number | null => {
-  // 匹配模式：数字前可能是变音符号(b/#)，数字后可能有其他字符
-  // 如 "maj7" → 7, "dom9#11" → 9, "min13" → 13
-  const match = chordFormulaId.match(/(\d+)/)
-  if (isNil(match)) return null
-
-  const degree = parseInt(match[1], 10)
-
-  // 只有 7, 9, 11, 13 是命名度数
-  // 5 音的和弦（如 sus4, sus2）不算
-  if ([7, 9, 11, 13].includes(degree)) {
-    return degree
-  }
-
-  return null
+const getChordNamedDegrees = (chordFormulaId: string): number[] => {
+  // id 中宣示的全部度数(如 "maj7add11" → [7,11],"dom9#11" → [9,11],"min13" → [13])
+  // 修复史:曾只保护第一个数字,maj7add11 omit11(「add11 又 omit11」的名实矛盾)混入列表——
+  // 省掉任何宣示度数的候选都退化为更简单的和弦,而那个更简单的候选本就独立存在
+  const matches = chordFormulaId.match(/\d+/g)
+  if (isNil(matches)) return []
+  return matches.map(Number)
 }
 
 /**
@@ -180,13 +172,15 @@ export const analyzeChordTransform = (
   }
 
   // ===== 检查命名度数是否被省略 =====
-  const namedDegree = getChordNamedDegree(result.chordFormulaId)
-  if (isNotNil(namedDegree)) {
-    // 检查省略的音中是否包含命名度数
-    const hasNamedDegreeOmitted = omittedWithDegree.some((omitted) => {
-      const omittedDegreeNum = extractDegreeNumber(omitted.degreeName)
-      return omittedDegreeNum === namedDegree
-    })
+  // 用 omitted.degree(公式 intervalToPianoKeyId 的真实度数)比较,不用 degreeName 的
+  // 字符串转换——degreeName 的半音映射把大六度记成 "13",与 id 宣示的 add6 错位,
+  // 曾导致 dom7add6 omit6 名实矛盾漏过保护
+  const namedDegrees = getChordNamedDegrees(result.chordFormulaId)
+  if (namedDegrees.length > 0) {
+    // 检查省略的音中是否包含任何宣示度数(省掉 = 名不副实,退化为更简单和弦)
+    const hasNamedDegreeOmitted = omittedWithDegree.some((omitted) =>
+      namedDegrees.includes(omitted.degree),
+    )
 
     // 如果省略了命名度数，返回 null（不合法的匹配）
     if (hasNamedDegreeOmitted) {
