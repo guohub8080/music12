@@ -146,7 +146,7 @@ describe("Chord 音符方法", () => {
 describe("Chord find 反查", () => {
   it("C 大三和弦反查应找到 maj3@C", () => {
     const c = new Chord(0, "maj3")
-    const results = c.find()
+    const results = c.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
     expect(results.length).toBeGreaterThan(0)
     // 应包含完全匹配（similarity = 1）
     const fullMatch = results.find((r) => r.similarity === 1)
@@ -156,7 +156,7 @@ describe("Chord find 反查", () => {
 
   it("G7 反查应找到 dom7@G", () => {
     const g7 = new Chord(7, "dom7")
-    const results = g7.find()
+    const results = g7.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
     const fullMatch = results.find((r) => r.similarity === 1)
     expect(fullMatch).toBeDefined()
     expect(fullMatch!.pianoKeyIdRoot).toBe(7)

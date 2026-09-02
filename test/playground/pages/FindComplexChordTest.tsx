@@ -9,7 +9,7 @@ type TestCase = {
 }
 
 type TestResult = TestCase & {
-	matches: ReturnType<typeof findChord>
+	matches: Extract<ReturnType<typeof findChord>[number], { type: "chord" }>[]
 	error?: string
 }
 
@@ -329,7 +329,7 @@ const FindComplexChordTest = () => {
 				matches: findChord(testCase.midiPitches, {
 					isStrict,
 					...(rootNoteLocation !== "" ? { rootNoteLocation } : {})
-				})
+				}).filter((x): x is Extract<typeof x, { type: "chord" }> => x.type === "chord")
 			}
 		} catch (e) {
 			return {

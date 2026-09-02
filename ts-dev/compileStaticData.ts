@@ -19,7 +19,7 @@
  *   npx tsx ts-dev/compileStaticData.ts            # dry-run:编译并对比现有产物,不写盘
  *   npx tsx ts-dev/compileStaticData.ts --write    # 写盘覆盖 static-data/
  */
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import JSON5 from "json5";
@@ -33,8 +33,10 @@ const WRITE = process.argv.includes("--write");
 
 const readSrc = (name: string) =>
     JSON5.parse(readFileSync(resolve(SRC_DIR, name), "utf-8"));
-const readDst = (name: string) =>
-    readFileSync(resolve(OUT_DIR, name), "utf-8");
+const readDst = (name: string) => {
+    const p = resolve(OUT_DIR, name);
+    return existsSync(p) ? readFileSync(p, "utf-8") : "(不存在,首次生成)";
+};
 
 /**
  * 紧凑数组序列化:对象多行(2 空格缩进),≤80 字符的数组单行。
@@ -143,6 +145,7 @@ export function compileAll(write: boolean): boolean {
         { srcFile: "interval.json5", dstFile: "intervals.json", compile: () => compilePassThrough("interval.json5") },
         { srcFile: "fifth.json5", dstFile: "fifth.json", compile: () => compilePassThrough("fifth.json5") },
         { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
+        { srcFile: "pcset-names.json5", dstFile: "pcset-names.json", compile: () => compilePassThrough("pcset-names.json5") },
     ];
 
     for (const { srcFile, dstFile, compile } of targets) {
@@ -154,9 +157,10 @@ export function compileAll(write: boolean): boolean {
         console.log(`${same ? "✓ 零差异" : "△ 有差异"}  ${srcFile} → ${dstFile}  (${(produced.length / 1024).toFixed(1)}KB)`);
 
         if (!same) {
-            // 字段级差异统计
-            const a = JSON.parse(produced);
-            const b = JSON.parse(existing);
+            // 字段级差异统计(首次生成时现有文件不存在,跳过统计)
+            let a: any, b: any;
+            try { a = JSON.parse(produced); b = JSON.parse(existing); } catch { a = b = null; }
+            if (a !== null && b !== null) {
             const isArr = Array.isArray(b);
             const keysA = new Set<string>();
             const keysB = new Set<string>();
@@ -176,11 +180,12 @@ export function compileAll(write: boolean): boolean {
             if (removed.length) console.log(`    移除字段: ${removed.join(", ")}`);
             if (!added.length && !removed.length && lenA === lenB)
                 console.log(`    (字段集相同——差异为格式/顺序/值级,可用 git diff 细看)`);
+            }
         }
         if (write) writeFileSync(resolve(OUT_DIR, dstFile), produced, "utf-8");
     }
 
-    console.log(`\n${allSame ? "四个文件全部与现有产物一致" : "存在差异(见上)"}`);
+    console.log(`\n${allSame ? "五个文件全部与现有产物一致" : "存在差异(见上)"}`);
     if (write) console.log("已写入 static-data/");
     return allSame;
 }

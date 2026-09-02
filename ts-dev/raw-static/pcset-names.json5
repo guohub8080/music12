@@ -1,0 +1,136 @@
+/**
+ * pcset-names — 音级集合(prime form)命名表
+ *
+ * 本文件是 JSON5 源头,编译产物为 static-data/pcset-names.json(gen:static-data 透传)。
+ * 手改只改这里;产物永不手改。
+ *
+ * ── 用途 ─────────────────────────────────────────────────
+ * findChord 的和弦层无匹配时,fallback:"pcset" 模式会给出音集的
+ * 「集合论身份」:prime form + 本表的名字/描述 + 离最近和弦的距离。
+ * 让任何输入都有诚实的输出,而不是空白。
+ *
+ * ── 键的规则 ─────────────────────────────────────────────
+ * 键 = prime form(移调+反转等价类的最紧凑代表)的音,逗号分隔。
+ * 三音 12 类 = Forte 3-1 ~ 3-12 全集;四音 29 类(3-13 ~ 3-48 中有效类)可后续补编。
+ * 缺键不致命:引擎降级输出「未命名集合」+ prime form,仍可用。
+ *
+ * ── 字段 ─────────────────────────────────────────────────
+ * forte        Forte 编号(集合论标准命名)
+ * cnName       中文名(初拟,待定稿)
+ * name         英文名
+ * description  一句话乐理身份(人读)
+ * tags         检索标签(cluster/modal/tonal/symmetric...)
+ */
+{
+  // ===== 三音 12 类(Forte 全集;★ = 无标准和弦对应的 7 类)=====
+
+  // ★ 半音簇:三个连续半音。唯一连省略音解释都没有的类
+  "0,1,2": {
+    "forte": "3-1",
+    "cnName": "半音簇",
+    "name": "Chromatic Cluster",
+    "description": "三个连续半音的非三度结构;现代音乐(音块技法)的张力材料",
+    "tags": ["cluster", "chromatic"]
+  },
+
+  // ★ Phrygian 特征组:♭2+♭3,弗拉门戈/alt 属音响核心
+  "0,1,3": {
+    "forte": "3-2",
+    "cnName": "Phrygian 特征组",
+    "name": "Phrygian Trichord",
+    "description": "小二度+小三度的调式碎片;弗拉门戈与变化属和弦(b9)的音响签名",
+    "tags": ["modal", "phrygian"]
+  },
+
+  // ★ 半音+大三度:同根大小三度并存的方向冲突
+  "0,1,4": {
+    "forte": "3-3",
+    "cnName": "半音叠大三组",
+    "name": "Major-minor Trichord",
+    "description": "小二度叠大三度,蓝调推弦与双和声的边缘音响",
+    "tags": ["chromatic", "blues"]
+  },
+
+  // ★ 半音+纯四:Phrygian 另一面(♭2+4)
+  "0,1,5": {
+    "forte": "3-4",
+    "cnName": "半音叠纯四组",
+    "name": "Diatonic Trichord",
+    "description": "小二度叠纯四度;弗拉门戈常数组合(♭2 与 4)",
+    "tags": ["modal"]
+  },
+
+  // ★ 半音+三全音:最大张力组,音程级全部不协和
+  "0,1,6": {
+    "forte": "3-5",
+    "cnName": "半音叠三全音组",
+    "name": "Tritone Cluster",
+    "description": "小二度叠三全音,音程含量最不协和的三音组;自由爵士常见",
+    "tags": ["chromatic", "dissonant"]
+  },
+
+  // ★ 全音对组:两个全音叠加,印象派色彩
+  "0,2,4": {
+    "forte": "3-6",
+    "cnName": "全音对组",
+    "name": "Whole-tone Trichord",
+    "description": "两个全音叠置,德彪西式全音阶碎片",
+    "tags": ["wholeTone", "impressionist"]
+  },
+
+  // ★ 四度堆叠碎片:C-D-F,quartal 和声单元
+  "0,2,5": {
+    "forte": "3-7",
+    "cnName": "四度碎片组",
+    "name": "Quartal Fragment",
+    "description": "大二度叠纯四度;四度和声(quartal)的基本单元,梅西安调式色彩",
+    "tags": ["quartal", "modal"]
+  },
+
+  // maj3b5 家族在此类(有标准和弦代表)
+  "0,2,6": {
+    "forte": "3-8",
+    "cnName": "全音叠三全音组",
+    "name": "Major-flat-five Trichord",
+    "description": "大二度叠三全音;maj3b5 的镜像形状,功能和声最边缘的居民",
+    "tags": ["tonal", "wholeTone"]
+  },
+
+  // sus 组:sus2/sus4 互为镜像,挂留音响
+  "0,2,7": {
+    "forte": "3-9",
+    "cnName": "挂留组",
+    "name": "Suspended Trichord",
+    "description": "sus2 与 sus4 的共同形状(互为反转);流行/爵士挂留音响",
+    "tags": ["tonal", "sus"]
+  },
+
+  // 减三和弦:根+小三+三全音
+  "0,3,6": {
+    "forte": "3-10",
+    "cnName": "减三和弦组",
+    "name": "Diminished Trichord",
+    "description": "小三度叠减五度(dim3);功能和声紧张度最高的三和弦",
+    "tags": ["tonal", "diminished"]
+  },
+
+  // 大小三和弦:互为镜像,集合论眼里同一块积木
+  "0,3,7": {
+    "forte": "3-11",
+    "cnName": "大小三和弦组",
+    "name": "Major/Minor Trichord",
+    "description": "大三与小三互为反转镜像;功能和声的中心居民",
+    "tags": ["tonal"]
+  },
+
+  // 增三和弦:八度三等分,对称
+  "0,4,8": {
+    "forte": "3-12",
+    "cnName": "增三和弦组",
+    "name": "Augmented Trichord",
+    "description": "大三度均分八度(4+4+4);对称结构,一组键三个名字",
+    "tags": ["tonal", "symmetric"]
+  }
+
+  // ===== 四音 29 类(3-13 ~ 3-48):待编,键如 "0,1,2,3" =====
+}

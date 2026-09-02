@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { findChord, findNotesInScales, findNoteDegreeInAllScales, findNoteDegreeInScale, SCALE_MODE } from "@find/index"
+import { findChord as findChordRaw, findNotesInScales, findNoteDegreeInAllScales, findNoteDegreeInScale, SCALE_MODE } from "@find/index"
 
 /**
  * Find 模块测试
@@ -7,7 +7,12 @@ import { findChord, findNotesInScales, findNoteDegreeInAllScales, findNoteDegree
  * 注意输入域差异：
  * - findChord 接收 MIDI 数（如 [60,64,67]）
  * - findNotesInScales / findNoteDegreeInAllScales 接收 pianoKeyId（0-11）
+ *
+ * 包装说明:本文件的断言全部针对和弦结果(pcset 降级项由专属测试覆盖),
+ * 故统一 filter 出 type === "chord" 的分支。
  */
+const findChord = (midi: number[], config?: Parameters<typeof findChordRaw>[1]) =>
+  findChordRaw(midi, config).filter((x): x is Extract<typeof x, { type: "chord" }> => x.type === "chord")
 
 describe("findChord（MIDI 输入）", () => {
   it("等和弦双解：C-E-G-A 不指定根音时 C6 与 Am7 同时返回（音集同桶）", () => {

@@ -25,7 +25,7 @@ export default function cls_getScaleDegreeChord7(scale: any, scaleDegree: number
 		ids[d(6)],  // 七度
 	]
 
-	const results = findChord(pianoKeyIds)
+	const results = findChord(pianoKeyIds).filter((x): x is import("@find/findChord").I_ChordFindResult => x.type === "chord")
 	// 调式和弦以该级音为根，优先返回根音 === 该级音的结果。
 	// 不用 isRootPosition（它判 mod12 最低音，对 0-11 音高类输入不可靠）。
 	const rootKeyId = ids[d(0)]

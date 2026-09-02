@@ -3,9 +3,18 @@ import {isNil, isNotNil} from 'es-toolkit/predicate';
 import {midiListToPianoKeys} from "./methods/midiListToPianoKeys"
 import {findRoughChord} from "./methods/findRoughChord"
 import {analyzeChordTransform, type I_AnalyzedChordResult} from "./methods/analyzeChordTransform"
+import {findPcset, type I_PcsetResult} from "./methods/findPcset"
 
 // 导出类型
 export type { I_ChordAlteration, I_ChordTransform, I_AnalyzedChordResult } from "./methods/analyzeChordTransform"
+export type { I_PcsetResult } from "./methods/findPcset"
+
+/**
+ * 统一查找结果:判别联合(type 字段分流)。
+ * 和弦结果 = 历史全部字段 + type/level;pcset 为降级兜底项(fallback:"pcset" 时才出现,level=3)。
+ */
+export type I_ChordFindResult = I_AnalyzedChordResult & { type: "chord"; level: 0 | 1 }
+export type I_FindResult = I_ChordFindResult | I_PcsetResult
 
 /**
  * 根据音符列表查找和弦
@@ -54,8 +63,13 @@ export const findChord = (
     isStrict?: boolean
     /** 可选：指定根音（0-11），缩小搜索范围并确定原位 */
     rootNoteLocation?: number
+    /**
+     * 降级兜底：和弦层无匹配时返回音集的集合论身份（prime form + 命名 + 最近和弦）。
+     * 默认不开启（返回空数组，与历史行为一致）。
+     */
+    fallback?: "pcset"
   }
-): I_AnalyzedChordResult[] => {
+): I_FindResult[] => {
   const isStrict = defaultTo(config?.isStrict, false)
   const rootNoteLocation = config?.rootNoteLocation
 
@@ -73,10 +87,12 @@ export const findChord = (
   // isRootPosition 仅在调用方明确指定根音时才有意义（否则音高类无法判断"最低音"）
   const hasRoot = isNotNil(rootNoteLocation)
   const results = findRoughChordResult
-    .map(x => {
+    .map((x): I_FindResult | null => {
       if (x.similarity === 1) {
         // 完全匹配
         return {
+          type: "chord" as const,
+          level: 0 as const,
           ...x,
           isRootPosition: hasRoot,
         }
@@ -87,10 +103,15 @@ export const findChord = (
           sortedPianoKeyIdList,
           x.pianoKeyIdRoot,
         )
-        return analyzed
+        return analyzed === null ? null : { type: "chord" as const, level: 1 as const, ...analyzed }
       }
     })
-    .filter((x): x is I_AnalyzedChordResult => isNotNil(x))
+    .filter((x): x is I_FindResult => isNotNil(x))
+
+  // ===== 步骤 4：降级兜底（可选）=====
+  if (results.length === 0 && config?.fallback === "pcset" && !isStrict) {
+    return [findPcset(sortedPianoKeyIdList)]
+  }
 
   return results
 }

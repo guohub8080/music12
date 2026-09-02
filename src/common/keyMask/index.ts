@@ -61,6 +61,23 @@ export const canonicalForm = (mask: number): number => {
 export const maskDistance = (a: number, b: number): number =>
     popcount(a ^ b)
 
+/** 倒影:bit i → bit (12-i) mod 12(音高轴反转) */
+export const invertMask = (mask: number): number => {
+    let r = 0
+    for (let i = 0; i < 12; i++) if (mask & (1 << i)) r |= 1 << ((12 - i) % 12)
+    return r
+}
+
+/**
+ * prime form:移调+反转等价类的规范代表(音级集合论/Forte 分类的键)
+ * = 12 个循环移位与 12 个倒影移位共 24 个形态中最紧凑者。
+ * 三音全集 220 种 → 12 个 prime form(恰为 Forte 3-1 ~ 3-12)。
+ */
+export const primeFormMask = (ids: number[]): number => {
+    const m = keyMaskFromIds(ids)
+    return Math.min(canonicalForm(m), canonicalForm(invertMask(m)))
+}
+
 // ==================== 公式 pattern 表 ====================
 
 export type I_FormulaPattern = {

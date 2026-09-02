@@ -1,4 +1,4 @@
-import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
+import { findChord, type I_FindResult } from "@find/findChord"
 import type { Chord } from "../ChordClass"
 
 /**
@@ -17,7 +17,7 @@ export const cls_findChord = (
     /** true=只返回完全匹配；false=完全匹配+省略音（默认 false） */
     isStrict?: boolean
   }
-): I_AnalyzedChordResult[] => {
+): I_FindResult[] => {
   const octave = 4
   const midiList = chord.pianoKeyIdsSorted.map(id => id + octave * 12)
   return findChord(midiList, config)
