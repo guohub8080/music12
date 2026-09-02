@@ -1,0 +1,382 @@
+/**
+ * scale-modes — 调式定义表(46 个,极简源)
+ *
+ * 本文件是 JSON5 源头,编译产物为 static-data/scale-modes.json(gen:static-data 展开)。
+ * 手改只改这里;产物永不手改。
+ *
+ * ── 极简原则 ─────────────────────────────────────────────
+ * 每条只写:键(scaleModeId)+ type(调式主和弦性质:major/minor/halfdim7——
+ *   Locrian 系一级七和弦即半减七,燕乐角调式同)+ name(中文名)+ intervalList(6 槽)。
+ * 派生字段一律编译时算回:
+ *   intervalMap/semitonesList/semitonesMap     intervalList 的 map/半音形态
+ *   degreeAlterationsList/Map                  相对自然大调同度数的半音差
+ *   scaleModeId                                从键回填
+ * 已删化石:family(分段信息保留在注释)/description(由每条第二行注释承载)
+ *
+ * ── intervalList 语义 ────────────────────────────────────
+ * 6 个槽位对应 2~7 度,槽 i 的度数恒为 i+2——**度数由位置决定,不用写**。
+ * 缺失的度为 null(五声:宫商角徵羽缺 4、7 度)。
+ * 例:GONG(宫调式)= [maj2, maj3, null, p5, maj6, null]。
+ *
+ * ── 派生公式(编译契约) ─────────────────────────────────
+ * semitones[i]        = GAP[type, degree](intervals.json 查表;度≤7 无复合)
+ * degreeAlterations[i]= semitones[i] − 自然大调同度半音({2:2,3:4,4:5,5:7,6:9,7:11})
+ *
+ * ── 记录注释格式 ─────────────────────────────────────────
+ * 第一行:中文名 · 度数变音特征(相对自然大调,如「♭3 ♭6 ♭7」;五声标缺度)
+ * 第二行:原 description(人读描述)
+ */
+{
+
+  // ══════ 自然音系(diatonic) ══════
+
+  // 自然大调(= NATURAL_MAJOR 的别名键,同形异名) · (=自然大调)
+  //   又称 Ionian 调式，自然大调的 I 级音阶，由 C 大调的 C 进行到高八度的 C，构成音分别为：1 2 3 4 5 6 7 1
+  "NATURAL_MAJOR": {
+  "type": "major",
+  "name": "自然大调",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // 自然大调(= NATURAL_MAJOR 的别名键,同形异名) · (=自然大调)
+  //   又称 Ionian 调式，自然大调的 I 级音阶，由 C 大调的 C 进行到高八度的 C，构成音分别为：1 2 3 4 5 6 7 1
+  "IONIAN": {
+  "type": "major",
+  "name": "自然大调",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Lydian · #4
+  //   自然大调的 IV 级音阶，由 C 大调的 F 进行到高八度的 F，构成音分别为：1 2 3 #4 5 6 7 1
+  "LYDIAN": {
+  "type": "major",
+  "name": "Lydian",
+  "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Mixolydian · ♭7
+  //   自然大调的 V 级音阶，由 C 大调的 G 进行到高八度的 G，构成音分别为：1 2 3 4 5 6 b7 1
+  "MIXOLYDIAN": {
+  "type": "major",
+  "name": "Mixolydian",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 自然小调(= NATURAL_MINOR 的别名键,同形异名) · ♭3 ♭6 ♭7
+  //   又称 Aeolian 调式，自然大调的 VI 级音阶，由 C 大调的 A 进行到高八度的 A，构成音分别为：1 2 b3 4 5 b6 b7 1
+  "NATURAL_MINOR": {
+  "type": "minor",
+  "name": "自然小调",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // 自然小调(= NATURAL_MINOR 的别名键,同形异名) · ♭3 ♭6 ♭7
+  //   又称 Aeolian 调式，自然大调的 VI 级音阶，由 C 大调的 A 进行到高八度的 A，构成音分别为：1 2 b3 4 5 b6 b7 1
+  "AEOLIAN": {
+  "type": "minor",
+  "name": "自然小调",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // Dorian · ♭3 ♭7
+  //   自然大调的 II 级音阶，由 C 大调的 D 进行到高八度的 D，构成音分别为：1 2 b3 4 5 6 b7 1
+  "DORIAN": {
+  "type": "minor",
+  "name": "Dorian",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // Phrygian · ♭2 ♭3 ♭6 ♭7
+  //   自然大调的 III 级音阶，由 C 大调的 E 进行到高八度的 E，构成音分别为：1 b2 b3 4 5 b6 b7 1
+  "PHRYGIAN": {
+  "type": "minor",
+  "name": "Phrygian",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // Locrian · ♭2 ♭3 ♭5 ♭6 ♭7
+  //   自然大调的 VII 级音阶，由 C 大调的 B 进行到高八度的 B，构成音分别为：1 b2 b3 4 b5 b6 b7 1
+  "LOCRIAN": {
+  "type": "halfdim7",
+  "name": "Locrian",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
+  },
+
+  // ══════ 和声大调系(harmonic-major) ══════
+
+  // 和声大调 · ♭6
+  //   把自然大调的第六级音降低一个半音，构成音分别为：1 2 3 4 5 b6 7 1
+  "HARMONIC_MAJOR": {
+  "type": "major",
+  "name": "和声大调",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
+  },
+
+  // ══════ 和声小调系(harmonic-minor) ══════
+
+  // 和声小调 · ♭3 ♭6
+  //   把自然小调的第七级音升高一个半音，构成音分别为：1 2 b3 4 5 b6 7 1
+  "HARMONIC_MINOR": {
+  "type": "minor",
+  "name": "和声小调",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
+  },
+  // Phrygian Dominant · ♭2 ♭6 ♭7
+  //   和声小调的 V 级音阶，构成音分别为：1 b2 3 4 5 b6 b7 1，常用于弗拉门戈和中东风格
+  "PHRYGIAN_DOMINANT": {
+  "type": "major",
+  "name": "Phrygian Dominant",
+  "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // Locrian #6 · ♭2 ♭3 ♭5 ♭7
+  //   和声小调的 II 级音阶，构成音分别为：1 b2 b3 4 b5 6 b7 1
+  "LOCRIAN_SHARP6": {
+  "type": "halfdim7",
+  "name": "Locrian #6",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["maj", 6], ["min", 7]]
+  },
+  // Ionian #5 · #5
+  //   和声小调的 III 级音阶，构成音分别为：1 2 3 4 #5 6 7 1
+  "IONIAN_SHARP5": {
+  "type": "major",
+  "name": "Ionian #5",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Dorian #4 · ♭3 #4 ♭7
+  //   和声小调的 IV 级音阶，又称乌克兰多利亚，构成音分别为：1 2 b3 #4 5 6 b7 1
+  "DORIAN_SHARP4": {
+  "type": "minor",
+  "name": "Dorian #4",
+  "intervalList": [["maj", 2], ["min", 3], ["aug", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // Lydian #2 · #2 #4
+  //   和声小调的 VI 级音阶，构成音分别为：1 #2 3 #4 5 6 7 1
+  "LYDIAN_SHARP2": {
+  "type": "major",
+  "name": "Lydian #2",
+  "intervalList": [["aug", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+
+  // ══════ 旋律大调系(melodic-major) ══════
+
+  // 旋律大调（下行） · ♭6 ♭7
+  //   把自然大调的第六、七级音降低一个半音，构成音分别为：1 2 3 4 5 b6 b7 1
+  "MELODIC_MAJOR_DESCENDING": {
+  "type": "major",
+  "name": "旋律大调（下行）",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+
+  // ══════ 旋律小调系(melodic-minor) ══════
+
+  // 旋律小调（上行） · ♭3
+  //   把自然小调的第六、七级音升高一个半音，构成音分别为：1 2 b3 4 5 6 7 1
+  "MELODIC_MINOR_ASCENDING": {
+  "type": "minor",
+  "name": "旋律小调（上行）",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Lydian Dominant · #4 ♭7
+  //   旋律小调的 IV 级音阶，构成音分别为：1 2 3 #4 5 6 b7 1，爵士乐中常见的属和弦代换调式
+  "LYDIAN_DOMINANT": {
+  "type": "major",
+  "name": "Lydian Dominant",
+  "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // Dorian b2 · ♭2 ♭3 ♭7
+  //   旋律小调的 II 级音阶，构成音分别为：1 b2 b3 4 5 6 b7 1
+  "DORIAN_FLAT2": {
+  "type": "minor",
+  "name": "Dorian b2",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // Lydian Augmented · #4 #5
+  //   旋律小调的 III 级音阶，构成音分别为：1 2 3 #4 #5 6 7 1
+  "LYDIAN_AUGMENTED": {
+  "type": "major",
+  "name": "Lydian Augmented",
+  "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Locrian #2 · ♭3 ♭5 ♭6 ♭7
+  //   旋律小调的 VI 级音阶，构成音分别为：1 2 b3 4 b5 b6 b7 1，半减七和弦常用替代调式
+  "LOCRIAN_SHARP2": {
+  "type": "halfdim7",
+  "name": "Locrian #2",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
+  },
+
+  // ══════ 双重和声系(double-harmonic) ══════
+
+  // Double Harmonic Major · ♭2 ♭6
+  //   双重和声大调的 I 级音阶，又称拜占庭音阶，含两个增二度音程（b2→3，b6→7），构成音分别为：1 b2 3 4 5 b6 7 1
+  "DOUBLE_HARMONIC_MAJOR": {
+  "type": "major",
+  "name": "Double Harmonic Major",
+  "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
+  },
+  // Hungarian Minor · ♭3 #4 ♭6
+  //   双重和声大调的 IV 级音阶，又称匈牙利小调或吉普赛小调，构成音分别为：1 2 b3 #4 5 b6 7 1
+  "HUNGARIAN_MINOR": {
+  "type": "minor",
+  "name": "Hungarian Minor",
+  "intervalList": [["maj", 2], ["min", 3], ["aug", 4], ["p", 5], ["min", 6], ["maj", 7]]
+  },
+  // Oriental · ♭2 ♭5 ♭7
+  //   双重和声大调的 V 级音阶，又称东方调式，构成音分别为：1 b2 3 4 b5 6 b7 1
+  "ORIENTAL": {
+  "type": "major",
+  "name": "Oriental",
+  "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["dim", 5], ["maj", 6], ["min", 7]]
+  },
+  // Ionian #2 #5 · #2 #5
+  //   双重和声大调的 VI 级音阶，构成音分别为：1 #2 3 4 #5 6 7 1
+  "IONIAN_SHARP2_SHARP5": {
+  "type": "major",
+  "name": "Ionian #2 #5",
+  "intervalList": [["aug", 2], ["maj", 3], ["p", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
+  },
+
+  // ══════ 中国五声(pentatonic) ══════
+
+  // 宫调式 · 缺4、7度
+  //   中国五声调式第 I 级（宫），由 C 宫调式的 C 进行到高八度的 C，构成音分别为：1 2 3 5 6 1
+  "GONG": {
+  "type": "major",
+  "name": "宫调式",
+  "intervalList": [["maj", 2], ["maj", 3], null, ["p", 5], ["maj", 6], null]
+  },
+  // 商调式 · ♭7 缺4、7度
+  //   中国五声调式第 II 级（商），由 C 宫调式的 D 进行到高八度的 D，构成音分别为：1 2 4 5 b7 1
+  "SHANG": {
+  "type": "minor",
+  "name": "商调式",
+  "intervalList": [["maj", 2], null, ["p", 4], ["p", 5], null, ["min", 7]]
+  },
+  // 角调式 · ♭3 ♭6 ♭7 缺4、7度
+  //   中国五声调式第 III 级（角），由 C 宫调式的 E 进行到高八度的 E，构成音分别为：1 b3 4 b6 b7 1
+  "JUE": {
+  "type": "minor",
+  "name": "角调式",
+  "intervalList": [null, ["min", 3], ["p", 4], null, ["min", 6], ["min", 7]]
+  },
+  // 徵调式 · 缺4、7度
+  //   中国五声调式第 V 级（徵），由 C 宫调式的 G 进行到高八度的 G，构成音分别为：1 2 4 5 6 1
+  "ZHI": {
+  "type": "major",
+  "name": "徵调式",
+  "intervalList": [["maj", 2], null, ["p", 4], ["p", 5], ["maj", 6], null]
+  },
+  // 羽调式 · ♭3 ♭7 缺4、7度
+  //   中国五声调式第 VI 级（羽），由 C 宫调式的 A 进行到高八度的 A，构成音分别为：1 b3 4 5 b7 1
+  "YU": {
+  "type": "minor",
+  "name": "羽调式",
+  "intervalList": [null, ["min", 3], ["p", 4], ["p", 5], null, ["min", 7]]
+  },
+
+  // ══════ 雅乐七声(yayue) ══════
+
+  // 雅乐宫调式 · #4
+  //   雅乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 #4 5 6 7 1
+  "YA_YUE_GONG": {
+  "type": "major",
+  "name": "雅乐宫调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // 雅乐商调式 · ♭7
+  //   雅乐音阶的商调式（商为主音），以 C 雅乐宫调式的 D 为主音：1 2 3 4 5 6 b7 1
+  "YA_YUE_SHANG": {
+  "type": "major",
+  "name": "雅乐商调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 雅乐角调式 · ♭3 ♭6 ♭7
+  //   雅乐音阶的角调式（角为主音），以 C 雅乐宫调式的 E 为主音：1 2 b3 4 5 b6 b7 1
+  "YA_YUE_JUE": {
+  "type": "minor",
+  "name": "雅乐角调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // 雅乐徵调式 · (=自然大调)
+  //   雅乐音阶的徵调式（徵为主音），以 C 雅乐宫调式的 G 为主音：1 2 3 4 5 6 7 1
+  "YA_YUE_ZHI": {
+  "type": "major",
+  "name": "雅乐徵调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // 雅乐羽调式 · ♭3 ♭7
+  //   雅乐音阶的羽调式（羽为主音），以 C 雅乐宫调式的 A 为主音：1 2 b3 4 5 6 b7 1
+  "YA_YUE_YU": {
+  "type": "minor",
+  "name": "雅乐羽调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+
+  // ══════ 清乐七声(qingyue) ══════
+
+  // 清乐宫调式 · (=自然大调)
+  //   清乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 4 5 6 7 1
+  "QING_YUE_GONG": {
+  "type": "major",
+  "name": "清乐宫调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // 清乐商调式 · ♭3 ♭7
+  //   清乐音阶的商调式（商为主音），以 C 清乐宫调式的 D 为主音：1 2 b3 4 5 6 b7 1
+  "QING_YUE_SHANG": {
+  "type": "minor",
+  "name": "清乐商调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 清乐角调式 · ♭2 ♭3 ♭6 ♭7
+  //   清乐音阶的角调式（角为主音），以 C 清乐宫调式的 E 为主音：1 b2 b3 4 5 b6 b7 1
+  "QING_YUE_JUE": {
+  "type": "minor",
+  "name": "清乐角调式",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // 清乐徵调式 · ♭7
+  //   清乐音阶的徵调式（徵为主音），以 C 清乐宫调式的 G 为主音：1 2 3 4 5 6 b7 1
+  "QING_YUE_ZHI": {
+  "type": "major",
+  "name": "清乐徵调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 清乐羽调式 · ♭3 ♭6 ♭7
+  //   清乐音阶的羽调式（羽为主音），以 C 清乐宫调式的 A 为主音：1 2 b3 4 5 b6 b7 1
+  "QING_YUE_YU": {
+  "type": "minor",
+  "name": "清乐羽调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+
+  // ══════ 燕乐七声(yanyue) ══════
+
+  // 燕乐宫调式 · ♭7
+  //   燕乐音阶的宫调式（宫为主音），以 C 为宫：1 2 3 4 5 6 b7 1
+  "YAN_YUE_GONG": {
+  "type": "major",
+  "name": "燕乐宫调式",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 燕乐商调式 · ♭3 ♭6 ♭7
+  //   燕乐音阶的商调式（商为主音），以 C 燕乐宫调式的 D 为主音：1 2 b3 4 5 b6 b7 1
+  "YAN_YUE_SHANG": {
+  "type": "minor",
+  "name": "燕乐商调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // 燕乐角调式 · ♭2 ♭3 ♭5 ♭6 ♭7
+  //   燕乐音阶的角调式（角为主音），以 C 燕乐宫调式的 E 为主音：1 b2 b3 4 b5 b6 b7 1
+  "YAN_YUE_JUE": {
+  "type": "halfdim7",
+  "name": "燕乐角调式",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
+  },
+  // 燕乐徵调式 · ♭3 ♭7
+  //   燕乐音阶的徵调式（徵为主音），以 C 燕乐宫调式的 G 为主音：1 2 b3 4 5 6 b7 1
+  "YAN_YUE_ZHI": {
+  "type": "minor",
+  "name": "燕乐徵调式",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // 燕乐羽调式 · ♭2 ♭3 ♭6 ♭7
+  //   燕乐音阶的羽调式（羽为主音），以 C 燕乐宫调式的 A 为主音：1 b2 b3 4 5 b6 b7 1
+  "YAN_YUE_YU": {
+  "type": "minor",
+  "name": "燕乐羽调式",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  }
+}

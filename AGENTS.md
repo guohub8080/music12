@@ -127,7 +127,7 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 完整列表用 `getChordFormulaByTags([])` 查询（返回全部 88 个）。
 
-## 44 个调式 ID
+## 46 个调式 ID（含 IONIAN/AEOLIAN 两个别名键）
 
 自然调式：`NATURAL_MAJOR` `DORIAN` `PHRYGIAN` `LYDIAN` `MIXOLYDIAN` `NATURAL_MINOR` `LOCRIAN`
 

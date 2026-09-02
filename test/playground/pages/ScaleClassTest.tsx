@@ -84,7 +84,7 @@ const ScaleClassTest = () => {
 				{/* 调式基本信息 */}
 				<div style={{ marginTop: 16, padding: 12, background: "#e8f4fd", borderRadius: 6 }}>
 					<strong>调式信息：</strong> {scale.modeName} ({scale.type})
-					<span style={{ marginLeft: 16, color: "#666" }}>{scale.modeDescription}</span>
+					<span style={{ marginLeft: 16, color: "#666" }}>{scale.modeName}</span>
 				</div>
 			</div>
 
@@ -154,8 +154,8 @@ const ScaleClassTest = () => {
 									</td>
 								</tr>
 								<tr style={{ borderBottom: "1px solid #eee" }}>
-									<td style={{ padding: 12, fontWeight: "bold" }}>modeDescription</td>
-									<td style={{ padding: 12 }}>{scale.modeDescription}</td>
+									<td style={{ padding: 12, fontWeight: "bold" }}>modeName</td>
+									<td style={{ padding: 12 }}>{scale.modeName}</td>
 								</tr>
 								<tr style={{ borderBottom: "1px solid #eee" }}>
 									<td style={{ padding: 12, fontWeight: "bold" }}>simpleDescription</td>

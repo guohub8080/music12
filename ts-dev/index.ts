@@ -2,10 +2,11 @@
  * music12 数据生产入口(pnpm gen:static-data)
  *
  * 产出 static-data/ 全部 7 个 JSON,分两路:
- *   [编译] 4 个定义表 ← ts-dev/raw-static/*.json5 极简源(compileStaticData 展开)
- *     notes.json(35) / intervals.json(39) / fifth.json(42) / chord-formulas.json(88)
- *   [生成] 3 个表 ← 用 src 乐理类实时计算
- *     scale-modes.json(44) / chord-instances.json(1056=88×12) / scale-instances.json(528=44×12)
+ *   [编译] 6 个定义表 ← ts-dev/raw-static/*.json5 极简源(compileStaticData 展开)
+ *     notes(35) / intervals(39) / fifth(42) / chord-formulas(88)
+ *     / scale-modes(46) / pcset-names(Forte 分类)
+ *   [生成] 2 个表 ← 用 src 乐理类实时计算
+ *     chord-instances(1056=88×12) / scale-instances(552=46×12)
  *
  * 单一真相源:json5 源 + 生成器逻辑;TS 版和 C++ 版都读这里产出的 JSON。
  * 产物幂等:重跑后 git diff 必须为零(验证兜底:ts-dev/verify/*)。
@@ -37,14 +38,12 @@ console.log(`输出目录: ${OUT_DIR}\n`);
 console.log("[1/2] 定义表编译(json5 源 → 产物)...");
 compileAll(true);
 
-console.log("\n[2/2] 生成表(scale-modes 自 src 导出;实例表用乐理类计算)...");
+console.log("\n[2/2] 生成表(实例表用乐理类计算)...");
 // 动态 require:必须在 compileAll 写盘之后加载 src 模块——
 // 静态 import 会被提升到编译之前执行,读到旧的 chord-formulas.json(时序坑实测)
-const { exportScaleModes } = require("./exportScaleModes");
 const { exportChordInstances } = require("./generateChordInstances");
 const { exportScaleInstances } = require("./generateScaleInstances");
 
-writeJson("scale-modes.json", exportScaleModes());
 writeJson("chord-instances.json", exportChordInstances());
 writeJson("scale-instances.json", exportScaleInstances());
 

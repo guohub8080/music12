@@ -134,6 +134,55 @@ function compileChordFormulas(): Record<string, unknown> {
     return out;
 }
 
+// ==================== scale-modes(回填派生) ====================
+const MAJOR_DEGREE_SEMITONES = { 2: 2, 3: 4, 4: 5, 5: 7, 6: 9, 7: 11 } as const
+
+function compileScaleModes(): Record<string, unknown> {
+    const src = readSrc("scale-modes.json5") as Record<string, any>;
+    const out: Record<string, any> = {};
+    for (const sid of Object.keys(src)) {
+        const m = src[sid];
+        const il = m.intervalList as ([string, number] | null)[];
+        const intervalMap: Record<string, string | null> = {};
+        const semitonesList: (number | null)[] = [];
+        const semitonesMap: Record<string, number | null> = {};
+        const degreeAlterationsList: (number | null)[] = [];
+        const degreeAlterationsMap: Record<string, number | null> = {};
+        for (let i = 0; i < 6; i++) {
+            const item = il[i];
+            const degree = i + 2;
+            if (item === null) {
+                intervalMap[String(degree)] = null;
+                semitonesList.push(null);
+                semitonesMap[String(degree)] = null;
+                degreeAlterationsList.push(null);
+                degreeAlterationsMap[String(degree)] = null;
+            } else {
+                const [t, n] = item;
+                const semi = gap(t, n);
+                intervalMap[String(degree)] = t;
+                semitonesList.push(semi);
+                semitonesMap[String(degree)] = semi;
+                const da = semi - MAJOR_DEGREE_SEMITONES[degree as 2|3|4|5|6|7];
+                degreeAlterationsList.push(da);
+                degreeAlterationsMap[String(degree)] = da;
+            }
+        }
+        out[sid] = {
+            scaleModeId: sid,
+            type: m.type,
+            intervalList: il,
+            intervalMap,
+            semitonesList,
+            semitonesMap,
+            degreeAlterationsList,
+            degreeAlterationsMap,
+            name: m.name,
+        };
+    }
+    return out;
+}
+
 // ==================== 主流程:编译 + 对比/写盘 ====================
 // 导出供 gen:static-data(index.ts)调用;直接运行时按 --write 参数执行
 export function compileAll(write: boolean): boolean {
@@ -145,6 +194,7 @@ export function compileAll(write: boolean): boolean {
         { srcFile: "interval.json5", dstFile: "intervals.json", compile: () => compilePassThrough("interval.json5") },
         { srcFile: "fifth.json5", dstFile: "fifth.json", compile: () => compilePassThrough("fifth.json5") },
         { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
+        { srcFile: "scale-modes.json5", dstFile: "scale-modes.json", compile: compileScaleModes },
         { srcFile: "pcset-names.json5", dstFile: "pcset-names.json", compile: () => compilePassThrough("pcset-names.json5") },
     ];
 

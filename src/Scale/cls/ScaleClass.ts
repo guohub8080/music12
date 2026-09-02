@@ -100,10 +100,7 @@ export class Scale {
 		return this.scaleMode.type
 	}
 
-	/** 调式描述 */
-	public get modeDescription(): string {
-		return this.scaleMode.description
-	}
+	// modeDescription getter 已随 description 字段移除(数据源注释承载,零核心消费)
 
 	// ========== 简单计算属性（内联） ==========
 
