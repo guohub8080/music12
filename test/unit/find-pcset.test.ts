@@ -26,12 +26,22 @@ describe("findChord pcset 降级(fallback)", () => {
     expect(r.length).toBeGreaterThan(0)
   })
 
-  it("nearest:最近和弦参考带距离与变换记号", () => {
+  it("nearests:全部等距最近方案,带距离与变换记号", () => {
     const p: any = findChord([60, 61, 62], { fallback: "pcset" })[0]
-    expect(p.nearest).toBeDefined()
-    expect(typeof p.nearest.maskDistance).toBe("number")
-    expect(p.nearest.maskDistance).toBeGreaterThan(0)
-    expect(p.nearest.transformString).toMatch(/omit|extra/)
+    expect(p.nearests).toBeDefined()
+    expect(p.nearests.length).toBeGreaterThanOrEqual(1)
+    for (const n of p.nearests) {
+      expect(n.maskDistance).toBe(p.nearestDistance)
+      expect(n.transformString).toMatch(/omit|extra/)
+    }
+  })
+
+  it("nearests 等距多方案:D-Q-E(半音簇)距离 2 应有 4 条换音岔路", () => {
+    const p: any = findChord([62, 63, 64], { fallback: "pcset" })[0]
+    expect(p.nearestDistance).toBe(2)
+    expect(p.nearests.length).toBe(4)
+    const ids = p.nearests.map((n: any) => `${n.chordFormulaId}@${n.root}`).sort()
+    expect(ids).toEqual(["maj3b5@10", "maj7b9@3", "sus2@2", "sus4@9"].sort())
   })
 
   it("和弦命中时 fallback 不触发(返回正常和弦结果)", () => {

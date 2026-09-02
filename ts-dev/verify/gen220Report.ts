@@ -33,9 +33,12 @@ for (const ids of inputs) {
 
   if (r[0]?.type === "pcset") {
     const p = r[0]
-    lines.push(`| prime form | Forte | 名称 | 离最近和弦 |`)
+    const nearStr = p.nearests && p.nearests.length
+      ? p.nearests.map(n => `${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}`).join(" / ")
+      : "太远,不给参考"
+    lines.push(`| prime form | Forte | 名称 | 等距最近(全部 ${p.nearests?.length ?? 0} 方案) |`)
     lines.push(`|---|---|---|---|`)
-    lines.push(`| [${p.primeFormIds.join(",")}] | ${p.forte ?? "—"} | ${p.cnName ?? "未命名(名字表缺键)"} | ${p.nearestDistance} 音(${p.nearest ? `${p.nearest.chordFormulaId}@${NAMES[p.nearest.root]} ${p.nearest.transformString}` : "太远,不给参考"}) |`)
+    lines.push(`| [${p.primeFormIds.join(",")}] | ${p.forte ?? "—"} | ${p.cnName ?? "未命名(名字表缺键)"} | ${p.nearestDistance} 音(${nearStr}) |`)
   } else {
     lines.push(`| # | 和弦 | 根音 | sim | 变换 | 层级 |`)
     lines.push(`|---|---|---|---|---|---|`)
