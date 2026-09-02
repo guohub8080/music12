@@ -1,5 +1,5 @@
 import { defaultTo } from 'es-toolkit/compat';
-import { isNil, isNotNil } from 'es-toolkit/predicate';
+import {isNil, isNotNil} from 'es-toolkit/predicate';
 import {midiListToPianoKeys} from "./methods/midiListToPianoKeys"
 import {findRoughChord} from "./methods/findRoughChord"
 import {analyzeChordTransform, type I_AnalyzedChordResult} from "./methods/analyzeChordTransform"
@@ -71,7 +71,7 @@ export const findChord = (
 
   // ===== 步骤 3：根据匹配类型映射结果 =====
   // isRootPosition 仅在调用方明确指定根音时才有意义（否则音高类无法判断"最低音"）
-  const hasRoot = rootNoteLocation !== undefined
+  const hasRoot = isNotNil(rootNoteLocation)
   const results = findRoughChordResult
     .map(x => {
       if (x.similarity === 1) {

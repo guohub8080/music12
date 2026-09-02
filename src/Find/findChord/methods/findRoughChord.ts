@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { intersection } from 'es-toolkit/compat';
 import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
 import { CHORD_INSTANCE_SOUNDSET_MAP } from "@chord/static/chord-instance-data"
@@ -47,30 +48,30 @@ function hasAllCharacteristicNotes(
   const intervalTypeOf = (degree: number) => degreeMap[degree]?.intervalType
   const has = (degree: number): boolean => {
     const id = noteOf(degree)
-    return id !== undefined && inputIds.includes(id)
+    return isNotNil(id) && inputIds.includes(id)
   }
 
   // 根音必须弹到
   if (!inputIds.includes(chord.pianoKeyIdRoot)) return false
 
   // 七度：若和弦含 7 度，必须弹到（七和弦的身份）
-  if (noteOf(7) !== undefined && !has(7)) return false
+  if (isNotNil(noteOf(7)) && !has(7)) return false
 
   // 三度或其替代音：
   //   - 有 3 度 → 必须弹 3 度
   //   - 无 3 度但有 2 度（sus2）→ 必须弹 2 度
   //   - 无 3 度但有 4 度（sus4）→ 必须弹 4 度
-  if (noteOf(3) !== undefined) {
+  if (isNotNil(noteOf(3))) {
     if (!has(3)) return false
-  } else if (noteOf(2) !== undefined) {
+  } else if (isNotNil(noteOf(2))) {
     if (!has(2)) return false
-  } else if (noteOf(4) !== undefined) {
+  } else if (isNotNil(noteOf(4))) {
     if (!has(4)) return false
   }
 
   // 变化五度：5 度是 aug/dim（非纯五）时必须弹到（变化音是和弦特征）
   const fifthType = intervalTypeOf(5)
-  if (fifthType !== undefined && fifthType !== "p" && !has(5)) return false
+  if (isNotNil(fifthType) && fifthType !== "p" && !has(5)) return false
 
   return true
 }
@@ -103,7 +104,7 @@ export const findRoughChord = (
   // ===== 第一层：完全匹配(音集哈希索引 O(1),等和弦天然同桶) =====
   const exactMatches = (CHORD_INSTANCE_SOUNDSET_MAP.get(inputSet.join(",")) ?? [])
     .filter((chord: I_ChordInstanceMeta) =>
-      rootNoteLocation === undefined
+      isNil(rootNoteLocation)
         ? true
         : chord.pianoKeyIdRoot === rootNoteLocation,
     )
@@ -128,7 +129,7 @@ export const findRoughChord = (
 
   // ===== 第二层：省略音匹配（无完全匹配时） =====
   // 输入必须是候选和弦的子集（用户弹的音全在候选里），且特征音都弹到
-  const candidates = rootNoteLocation === undefined
+  const candidates = isNil(rootNoteLocation)
     ? ALL_CHORD_INSTANCE_META
     : ALL_CHORD_INSTANCE_META.filter(
         (chord: I_ChordInstanceMeta) => chord.pianoKeyIdRoot === rootNoteLocation,
