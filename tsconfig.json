@@ -10,6 +10,7 @@
     "allowJs": true,
     "module": "ESNext",
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@music12/*": ["./src/*"],
       "@note": ["./src/Note"],
