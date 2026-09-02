@@ -204,6 +204,46 @@ Spiano 调用的 `findChord(list, true)`（严格模式）在 v4 的等价物是
 - 不传 `rootNoteLocation`：查所有根，`isRootPosition = false`（信息不足）
 - 传了：桶内按根过滤。`[C,E,G]` + 根 0 → `maj3@0 isRootPosition=true`；同输入 + 根 7（坚持 G 是根）→ **0 结果**——{C,E,G} 不存在以 G 为根的公式，库如实拒绝而不是硬凑一个 Gsus 出来
 
+### 3.6 命名度数保护：名实矛盾的防线
+
+省略音匹配有一条铁律：**省掉和弦名里宣示的任何度数 = 名不副实 = 出局**。`maj7add11 omit11`（「都 add11 了又省 11」）这类候选被 `analyzeChordTransform` 过滤——因为省掉宣示音后它退化成更简单的和弦，而那个更简单的候选本来就独立在列表里（`maj7add11 omit11,5` 的信息量不超过 `maj7 omit5`）。
+
+这条防线经过两次修复才闭环：
+
+1. 初版只提取 id 的**第一个**数字（`maj7add11` 只保护 7 度，11 度裸奔）
+2. 补全为全部宣示度数后，`dom7add6 omit6` 仍漏网——度数比对走了 `degreeName` 字符串，其半音映射把大六度记成 `"13"`，与 id 的 `add6` 错位。最终改用 `intervalToPianoKeyId` 的**公式真实度数**直接比对
+
+### 3.7 pcset 降级层：任何输入都有诚实的输出
+
+功能和声地图覆盖不了的音集（实测：220 种三音中的 36 种、495 种四音中的 126 种，**全部含半音对**）不是噪音——它们是音级集合论（Forte 体系）的居民。`fallback: "pcset"` 配置让 findChord 永不空手：
+
+```ts
+findChord([60, 61, 62], { fallback: "pcset" })
+// → { type: "pcset", level: 3,
+//     primeFormIds: [0,1,2], forte: "3-1", cnName: "半音簇",
+//     nearest: { chordFormulaId: "maj3b5", root: 8,
+//                transformString: "omit1 extraP", maskDistance: 2 } }
+```
+
+- **prime form**：移调+反转等价类的规范代表（`src/common/keyMask` 的 `primeFormMask`），三音全集 220 种恰收敛为 Forte 3-1~3-12 十二类
+- **命名表**：`ts-dev/raw-static/pcset-names.json5`（手编源，三音 12 类齐全，四音 29 类可续编；缺键降级为「未命名 + prime form」照常可用）
+- **nearest**：`maskDistance`（对称差位运算）扫 1056 实例取最近，距离 ≤4 才给参考
+- **记号约定**：`omit{度数}`（候选和弦里该度的音没弹到）与 `extra{键 symbol}`（多弹了 PQXYZ 哪个键）——两种数字语义严格区分
+
+返回类型为判别联合 `I_FindResult = I_ChordFindResult | I_PcsetResult`（`type`/`level` 字段分流），和弦分支保留全部历史字段；**fallback 默认关闭 = 行为零变化**。
+
+### 3.8 恐怖测试与全量报告
+
+`C(12,3)=220` 与 `C(12,4)=495` 全集压测：
+
+| | 三音 220 | 四音 495 |
+|---|---|---|
+| 完全匹配 | 29.1% | 40.6% |
+| 两层和弦层 | 83.6% | 74.5% |
+| + pcset 兜底 | **100%** | **100%** |
+
+无匹配音集全部含半音对（三音收敛为 3 个移调等价类、四音 11 个）——非三度堆叠结构的乐理边界。全量结果逐组列表于 `ts-dev/find-report-220.md`（`gen220Report.ts` 可重跑刷新），音名用 pianoKeySymbol 标注（黑键 PQXYZ）。
+
 ## 4. 验证体系：每层都有独立证据
 
 这次升级的每个环节都配了可重跑的机器验证，互相独立、互为印证：
@@ -215,7 +255,8 @@ Spiano 调用的 `findChord(list, true)`（严格模式）在 v4 的等价物是
 | `verify/benchFindChord.ts` | — | 线性 vs 索引基准，结果等价性抽验 |
 | `verify/verifyScales.ts` | 12354 | 乐理级对拍（Note.getNoteByInterval 重算音阶 vs 数据） |
 | `test/vectors/`（黄金向量） | 1699 | API 输入→输出全量快照，重跑零差异 = 行为零漂移 |
-| `test/unit/find.test.ts` 等 | 221 | 语义级断言，含等和弦双解、enrich 契约、特征音规则 |
+| `test/unit/find.test.ts` 等 | 241 | 语义级断言，含等和弦双解、enrich 契约、特征音规则、pcset 降级、命名度数保护 |
+| `verify/terrorTestFinal.ts` | 715 输入 | C(12,3)+C(12,4) 全集压测，fallback 开启后覆盖率 100% |
 
 其中黄金向量是「功能不变」的最终裁判：v4 动了这么多刀，1699 条向量重跑一个字节没变。
 
@@ -227,19 +268,25 @@ Spiano 调用的 `findChord(list, true)`（严格模式）在 v4 的等价物是
 
 三个层次的共同点是：**同一事实只在源头存一遍**。公式表存 intervalList，semiTones 从它算；实例表存记谱层，音集从公式算；查找引擎存引用，桶从实例建。每一层的「消失的数据」都有等价校验背书，每一次提速都没有用体积去换。
 
-这条原则的下一个台阶已经铺好：第二层的子集判断将来可以位运算化——公式变成 12-bit 位模式，transpose 变成循环移位，子集判断变成 `(input & ~candidate) === 0` 两条指令。数据架构已经为它留好了位置（音集层的运行时化意味着引擎可以随时换内核而不动存储）。
+这条原则的下一个台阶已经**部分落地**：`src/common/keyMask/` 模块实现了 12-bit 音集位模式——`rotate`（循环移位=移调）、`isSubsetOf`（`(sub & ~sup) === 0`）、`maskDistance`（对称差）、`canonicalForm`（移调等价类指纹）、`primeFormMask`（移调+反转等价类/Forte 键），以及 88 个公式的根归一化 pattern 表和 `transposeFamily` 转位族查询（输入音集循环移位 12 次查 pattern 表，双向对拍与哈希桶完全一致）。余下的展望：第二层匹配的数组 intersection 换成位运算内核，与 pcset 的 nearest 扫描共用同一次位掩码循环。
+
+均分八度的对称家族在这个体系里有漂亮的位置：增三=三等分（4+4+4，一组键三个名字）、减七=四等分（3+3+3+3，四个名字）、三全音=二等分（G7 与 D♭7 共享 3-7 那对三全音=三全音代理的数学根基）。`transposeFamily` 一查便见：`[C,E♭,G♭,B♭♭]` 一次返回 dim7@C/E♭/G♭/A 四个根。
 
 ## 附：文件地图与常用命令
 
 ```
 ts-dev/raw-static/chord-formulas.json5   公式极简源(88 个,基座 DSL,手改这里)
+ts-dev/raw-static/pcset-names.json5      集合命名源(Forte 分类,手编)
 ts-dev/compileStaticData.ts              编译器(json5 → static-data,展开+回填)
 ts-dev/generateChordInstances.ts         实例生成器(只产记谱层)
 static-data/chord-formulas.json          公式产物(编译产物,勿手改)
 static-data/chord-instances.json         实例产物(1.1MB,记谱层)
+static-data/pcset-names.json             集合命名产物
 src/Chord/static/chord-instance-data.ts  加载器(enrich + 音集哈希桶)
-src/Find/findChord/                      两层匹配引擎
+src/common/keyMask/                      12-bit 位模式引擎(pattern 表/转位族/prime form)
+src/Find/findChord/                      两层匹配引擎 + pcset 降级层
 ts-dev/verify/                           验证器家族(本章各表所列)
+ts-dev/find-report-220.md                C(12,3) 全量查找报告(可重跑刷新)
 ```
 
 ```bash
