@@ -4,7 +4,8 @@ import { findChord } from "../../src/Find"
 import { transposeFamily, canonicalForm, keyMaskFromIds, idsFromKeyMask } from "../../src/common/keyMask"
 import ALL from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
 
-const NAMES = ["C","C♯","D","D♯","E","F","F♯","G","G♯","A","A♯","B"]
+import { PianoKey } from "../../src/PianoKey"
+const NAMES = PianoKey.SYMBOLS
 const combo = (arr: number[], k: number): number[][] =>
   k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
 const label = (ids: number[]) => ids.map(x => NAMES[x]).join("-")

@@ -18,7 +18,8 @@ const primeForm = (ids: number[]): number => {
 
 const combo = (arr: number[], k: number): number[][] =>
   k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
-const NAMES = ["C","C♯","D","E♭","E","F","F♯","G","A♭","A","B♭","B"]
+import { PianoKey } from "../../src/PianoKey"
+const NAMES = PianoKey.SYMBOLS
 
 // 全部 220 种三音 → prime form 分类
 const classes = new Map<number, { members: number[][]; chordExamples: string[] }>()

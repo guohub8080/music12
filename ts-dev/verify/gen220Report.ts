@@ -3,8 +3,9 @@
 import { writeFileSync } from "fs"
 import { findChord } from "../../src/Find"
 
-// 音名标注:pianoKeySymbol(白键 CDEFGAB,黑键 P Q X Y Z)——见 PianoKey.SYMBOLS
-const NAMES = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
+// 音名标注:PianoKey.SYMBOLS 唯一真相源(白键 CDEFGAB,黑键 P Q X Y Z)
+import { PianoKey } from "../../src/PianoKey"
+const NAMES = PianoKey.SYMBOLS
 const combo = (arr, k) => k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
 const label = (ids) => ids.map(x => NAMES[x]).join("-")
 

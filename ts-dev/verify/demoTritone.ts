@@ -2,7 +2,8 @@
 // 三全音 × 减和弦的数学关系演示(用本库的 KeyMask/transposeFamily 实证)
 import { transposeFamily, keyMaskFromIds, rotate, canonicalForm, idsFromKeyMask } from "../../src/common/keyMask"
 
-const NAMES = ["C","C♯","D","D♯/E♭","E","F","F♯/G♭","G","G♯/A♭","A","A♯/B♭","B"]
+import { PianoKey } from "../../src/PianoKey"
+const NAMES = PianoKey.SYMBOLS
 
 console.log("=== 1. 减七和弦的自对称:一组键,四个名字 ===")
 const dim7 = [0, 3, 6, 9]  // C-E♭-G♭-B♭♭

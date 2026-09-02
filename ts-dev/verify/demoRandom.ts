@@ -11,7 +11,8 @@ const pick = () => {
   return [...s]
 }
 
-const nameOf = (id) => ["C","C♯/D♭","D","D♯/E♭","E","F","F♯/G♭","G","G♯/A♭","A","A♯/B♭","B"][id]
+import { PianoKey } from "../../src/PianoKey"
+const nameOf = (id) => PianoKey.SYMBOLS[id]
 
 let exact = 0, fuzzy = 0, none = 0
 for (let i = 0; i < 14; i++) {
