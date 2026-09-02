@@ -67,6 +67,7 @@ console.log(results[0].chordFormulaId)        // "dom7"
 | [Find](./documents/08-find.md) | 反向查找：findChord（严格/模糊模式）、调式查找 |
 | [Factory](./documents/09-factory.md) | 工厂函数：getNote/getInterval/getChord/getScale |
 | [进阶模块](./documents/10-advanced.md) | 五度圈、调号 |
+| [v4 和弦算法](./documents/11-chord-algorithm-v4.md) | **v4 升级全记录**：json5 基座 DSL、实例表瘦身、音集哈希引擎（900x） |
 
 ## 核心概念
 
