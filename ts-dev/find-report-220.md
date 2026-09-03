@@ -11,7 +11,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@Y omit1 extraP / sus2@C omit5 extraP / sus4@G omit1 extraP / maj7b9@P omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Yb5(omit1) ←换P / Csus2(omit5) ←换P / Gsus4(omit1) ←换P / Pmaj7b9(omit3,5)) |
 
 ## C-P-Q  `{0,1,3}`
 
@@ -51,7 +51,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@P omit3 / minmaj7b5@P omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Pmaj7b5(omit3) / PmM7b5(omit3)) |
 
 ## C-P-Y  `{0,1,8}`
 
@@ -67,7 +67,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@P omit3 / minmaj7#5@P omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Pmaj7#5(omit3) / PmM7#5(omit3)) |
 
 ## C-P-Z  `{0,1,10}`
 
@@ -83,7 +83,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@G omit1 extraC / sus2@B omit5 extraC / sus4@X omit1 extraC / maj7b9@C omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Gb5(omit1) ←换C / Bsus2(omit5) ←换C / Xsus4(omit1) ←换C / Cmaj7b9(omit3,5)) |
 
 ## C-D-Q  `{0,2,3}`
 
@@ -166,7 +166,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@E omit3 / minmaj7#5@E omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Emaj7#5(omit3) / EmM7#5(omit3)) |
 
 ## C-Q-F  `{0,3,5}`
 
@@ -288,7 +288,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@X omit3 / minmaj7b5@X omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Xmaj7b5(omit3) / XmM7b5(omit3)) |
 
 ## C-F-G  `{0,5,7}`
 
@@ -370,7 +370,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@C omit3 / minmaj7b5@C omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Cmaj7b5(omit3) / CmM7b5(omit3)) |
 
 ## C-G-Y  `{0,7,8}`
 
@@ -427,7 +427,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@C omit3 / minmaj7#5@C omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Cmaj7#5(omit3) / CmM7#5(omit3)) |
 
 ## C-A-Z  `{0,9,10}`
 
@@ -451,7 +451,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@X omit1 extraB / sus2@Z omit5 extraB / sus4@F omit1 extraB / maj7b9@B omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Xb5(omit1) ←换B / Zsus2(omit5) ←换B / Fsus4(omit1) ←换B / Bmaj7b9(omit3,5)) |
 
 ## P-D-Q  `{1,2,3}`
 
@@ -459,7 +459,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@A omit1 extraD / sus2@P omit5 extraD / sus4@Y omit1 extraD / maj7b9@D omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Ab5(omit1) ←换D / Psus2(omit5) ←换D / Ysus4(omit1) ←换D / Dmaj7b9(omit3,5)) |
 
 ## P-D-E  `{1,2,4}`
 
@@ -499,7 +499,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@D omit3 / minmaj7b5@D omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Dmaj7b5(omit3) / DmM7b5(omit3)) |
 
 ## P-D-A  `{1,2,9}`
 
@@ -515,7 +515,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@D omit3 / minmaj7#5@D omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Dmaj7#5(omit3) / DmM7#5(omit3)) |
 
 ## P-D-B  `{1,2,11}`
 
@@ -598,7 +598,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@F omit3 / minmaj7#5@F omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Fmaj7#5(omit3) / FmM7#5(omit3)) |
 
 ## P-E-X  `{1,4,6}`
 
@@ -704,7 +704,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@G omit3 / minmaj7b5@G omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Gmaj7b5(omit3) / GmM7b5(omit3)) |
 
 ## P-X-Y  `{1,6,8}`
 
@@ -827,7 +827,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@Z omit1 extraQ / sus2@D omit5 extraQ / sus4@A omit1 extraQ / maj7b9@Q omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Zb5(omit1) ←换Q / Dsus2(omit5) ←换Q / Asus4(omit1) ←换Q / Qmaj7b9(omit3,5)) |
 
 ## D-Q-F  `{2,3,5}`
 
@@ -867,7 +867,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@Q omit3 / minmaj7b5@Q omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Qmaj7b5(omit3) / QmM7b5(omit3)) |
 
 ## D-Q-Z  `{2,3,10}`
 
@@ -883,7 +883,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@Q omit3 / minmaj7#5@Q omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Qmaj7#5(omit3) / QmM7#5(omit3)) |
 
 ## D-E-F  `{2,4,5}`
 
@@ -949,7 +949,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@X omit3 / minmaj7#5@X omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Xmaj7#5(omit3) / XmM7#5(omit3)) |
 
 ## D-F-G  `{2,5,7}`
 
@@ -1039,7 +1039,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@Y omit3 / minmaj7b5@Y omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Ymaj7b5(omit3) / YmM7b5(omit3)) |
 
 ## D-G-A  `{2,7,9}`
 
@@ -1120,7 +1120,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@B omit1 extraE / sus2@Q omit5 extraE / sus4@Z omit1 extraE / maj7b9@E omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Bb5(omit1) ←换E / Qsus2(omit5) ←换E / Zsus4(omit1) ←换E / Emaj7b9(omit3,5)) |
 
 ## Q-E-X  `{3,4,6}`
 
@@ -1160,7 +1160,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@E omit3 / minmaj7b5@E omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Emaj7b5(omit3) / EmM7b5(omit3)) |
 
 ## Q-E-B  `{3,4,11}`
 
@@ -1226,7 +1226,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@G omit3 / minmaj7#5@G omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Gmaj7#5(omit3) / GmM7#5(omit3)) |
 
 ## Q-X-Y  `{3,6,8}`
 
@@ -1300,7 +1300,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@A omit3 / minmaj7b5@A omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Amaj7b5(omit3) / AmM7b5(omit3)) |
 
 ## Q-Y-Z  `{3,8,10}`
 
@@ -1349,7 +1349,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@C omit1 extraF / sus2@E omit5 extraF / sus4@B omit1 extraF / maj7b9@F omit5,3) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Cb5(omit1) ←换F / Esus2(omit5) ←换F / Bsus4(omit1) ←换F / Fmaj7b9(omit3,5)) |
 
 ## E-F-G  `{4,5,7}`
 
@@ -1389,7 +1389,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@F omit3 / minmaj7b5@F omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Fmaj7b5(omit3) / FmM7b5(omit3)) |
 
 ## E-X-G  `{4,6,7}`
 
@@ -1439,7 +1439,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@Y omit3 / minmaj7#5@Y omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Ymaj7#5(omit3) / YmM7#5(omit3)) |
 
 ## E-G-A  `{4,7,9}`
 
@@ -1495,7 +1495,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@Z omit3 / minmaj7b5@Z omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Zmaj7b5(omit3) / ZmM7b5(omit3)) |
 
 ## E-A-B  `{4,9,11}`
 
@@ -1520,7 +1520,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@P omit1 extraX / sus2@F omit5 extraX / sus4@C omit1 extraX / maj7b9@X omit5,3) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Pb5(omit1) ←换X / Fsus2(omit5) ←换X / Csus4(omit1) ←换X / Xmaj7b9(omit3,5)) |
 
 ## F-X-Y  `{5,6,8}`
 
@@ -1593,7 +1593,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@A omit3 / minmaj7#5@A omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Amaj7#5(omit3) / AmM7#5(omit3)) |
 
 ## F-Y-Z  `{5,8,10}`
 
@@ -1633,7 +1633,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(maj7b5@B omit3 / minmaj7b5@B omit3) |
+| [0,1,6] | 3-5 | 半音叠三全音组 | 1 音(Bmaj7b5(omit3) / BmM7b5(omit3)) |
 
 ## X-G-Y  `{6,7,8}`
 
@@ -1641,7 +1641,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@D omit1 extraG / sus2@X omit5 extraG / sus4@P omit1 extraG / maj7b9@G omit5,3) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Db5(omit1) ←换G / Xsus2(omit5) ←换G / Psus4(omit1) ←换G / Gmaj7b9(omit3,5)) |
 
 ## X-G-A  `{6,7,9}`
 
@@ -1698,7 +1698,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@Z omit3 / minmaj7#5@Z omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Zmaj7#5(omit3) / ZmM7#5(omit3)) |
 
 ## X-A-B  `{6,9,11}`
 
@@ -1722,7 +1722,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@Q omit1 extraY / sus2@G omit5 extraY / sus4@D omit1 extraY / maj7b9@Y omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Qb5(omit1) ←换Y / Gsus2(omit5) ←换Y / Dsus4(omit1) ←换Y / Ymaj7b9(omit3,5)) |
 
 ## G-Y-Z  `{7,8,10}`
 
@@ -1763,7 +1763,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 2 方案) |
 |---|---|---|---|
-| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(augmaj7@B omit3 / minmaj7#5@B omit3) |
+| [0,1,4] | 3-3 | 半音叠大三组 | 1 音(Bmaj7#5(omit3) / BmM7#5(omit3)) |
 
 ## Y-A-Z  `{8,9,10}`
 
@@ -1771,7 +1771,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@E omit1 extraA / sus2@Y omit5 extraA / sus4@Q omit1 extraA / maj7b9@A omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Eb5(omit1) ←换A / Ysus2(omit5) ←换A / Qsus4(omit1) ←换A / Amaj7b9(omit3,5)) |
 
 ## Y-A-B  `{8,9,11}`
 
@@ -1795,4 +1795,4 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(maj3b5@F omit1 extraZ / sus2@A omit5 extraZ / sus4@E omit1 extraZ / maj7b9@Z omit3,5) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Fb5(omit1) ←换Z / Asus2(omit5) ←换Z / Esus4(omit1) ←换Z / Zmaj7b9(omit3,5)) |

@@ -2,6 +2,7 @@
 // 生成 C(12,3)=220 全量查找报告(Markdown)→ ts-dev/find-report-220.md
 import { writeFileSync } from "fs"
 import { findChord } from "../../src/Find"
+import { Chord } from "../../src/Chord"
 
 // 音名标注:PianoKey.SYMBOLS 唯一真相源(白键 CDEFGAB,黑键 P Q X Y Z)
 import { PianoKey } from "../../src/PianoKey"
@@ -35,7 +36,20 @@ for (const ids of inputs) {
   if (r[0]?.type === "pcset") {
     const p = r[0]
     const nearStr = p.nearests && p.nearests.length
-      ? p.nearests.map(n => `${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}`).join(" / ")
+      ? p.nearests.map(n => {
+          // 用 Chord 类 transform 引擎生成完整记谱符号 + 补弹的键
+          try {
+            const c = new Chord(n.root, n.chordFormulaId)
+            const omitMatch = n.transformString.match(/omit([\d,]+)/)
+            if (omitMatch) {
+              for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
+            }
+            // scoreSymbol 含 omit 记法;extra 键(需要换的键)追加在后
+            const extraPart = n.transformString.includes("extra")
+              ? ` ←换${n.transformString.match(/extra(\S+)/)?.[1] ?? ""}` : ""
+            return `${NAMES[n.root]}${c.scoreSymbol}${extraPart}`
+          } catch { return `${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}` }
+        }).join(" / ")
       : "太远,不给参考"
     lines.push(`| prime form | Forte | 名称 | 等距最近(全部 ${p.nearests?.length ?? 0} 方案) |`)
     lines.push(`|---|---|---|---|`)
