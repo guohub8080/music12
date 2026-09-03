@@ -35,26 +35,38 @@ for (const ids of inputs) {
 
   if (r[0]?.type === "pcset") {
     const p = r[0]
-    const nearStr = p.nearests && p.nearests.length
-      ? p.nearests.map(n => {
-          // 用 Chord transform 引擎生成记谱符号;needRoot 方案不对根音做 setOmit(乐理不成立)
-          try {
-            const c = new Chord(n.root, n.chordFormulaId)
-            const omitMatch = n.transformString.match(/omit([\d,]+)/)
-            if (omitMatch) {
-              for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
-            }
-            const rootPart = n.transformString.includes("needRoot")
-              ? ` ←补根${NAMES[n.root]}` : ""
-            const extraPart = n.transformString.includes("extra")
-              ? ` ←换${n.transformString.match(/extra(\S+)/)?.[1] ?? ""}` : ""
-            return `${NAMES[n.root]}${c.scoreSymbol}${rootPart}${extraPart}`
-          } catch { return `${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}` }
-        }).join(" / ")
-      : "太远,不给参考"
-    lines.push(`| prime form | Forte | 名称 | 等距最近(全部 ${p.nearests?.length ?? 0} 方案) |`)
-    lines.push(`|---|---|---|---|`)
-    lines.push(`| [${p.primeFormIds.join(",")}] | ${p.forte ?? "—"} | ${p.cnName ?? "未命名(名字表缺键)"} | ${p.nearestDistance} 音(${nearStr}) |`)
+    lines.push(`- prime form:[${p.primeFormIds.join(",")}]`)
+    lines.push(`- Forte:${p.forte ?? "—"} | 名称:${p.cnName ?? "未命名"}`)
+    lines.push(`- 等距最近(差 ${p.nearestDistance} 音,共 ${p.nearests?.length ?? 0} 方案):`)
+    if (p.nearests && p.nearests.length) {
+      for (const n of p.nearests) {
+        try {
+          const c = new Chord(n.root, n.chordFormulaId)
+          const chordName = `${NAMES[n.root]}${c.scoreSymbol}`
+          const ts = n.transformString
+          if (ts === "(完全一致)") {
+            lines.push(`  - **${chordName}**(完全一致)`)
+          } else if (ts.includes("needRoot") && ts.includes("extra")) {
+            // 换音型:把多弹的键换成根音
+            const extra = ts.match(/extra(\S+)/)?.[1] ?? ""
+            lines.push(`  - **${chordName}** — 把 ${extra} 换成 ${NAMES[n.root]} 就是`)
+          } else if (ts.includes("needRoot")) {
+            lines.push(`  - **${chordName}** — 补弹 ${NAMES[n.root]} 就是`)
+          } else if (ts.includes("omit") && ts.includes("extra")) {
+            const extra = ts.match(/extra(\S+)/)?.[1] ?? ""
+            lines.push(`  - **${chordName}** — 把 ${extra} 换成缺的音就是`)
+          } else if (ts.includes("omit")) {
+            const omitMatch = ts.match(/omit([\d,]+)/)
+            if (omitMatch) for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
+            lines.push(`  - **${NAMES[n.root]}${c.scoreSymbol}** — 补弹缺的音就是(${ts})`)
+          } else {
+            lines.push(`  - **${chordName}**(${ts})`)
+          }
+        } catch { lines.push(`  - ${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}`) }
+      }
+    } else {
+      lines.push(`  - 太远,不给参考`)
+    }
   } else {
     lines.push(`| # | 和弦 | 根音 | sim | 变换 | 层级 |`)
     lines.push(`|---|---|---|---|---|---|`)
