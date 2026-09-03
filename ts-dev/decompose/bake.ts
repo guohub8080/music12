@@ -14,6 +14,7 @@
 import { writeFileSync } from "fs"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
+import { isNil } from "es-toolkit/predicate"
 import { decompose } from "./engine"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -30,11 +31,21 @@ const isDom7Family = (formulaId: string): boolean =>
 const isSeventhChord = (formulaId: string): boolean =>
   /maj7|min7|dim7|halfdim|minmaj/.test(formulaId)
 
+/** 从公式 id 提取命名度数(最高数字)——如 "maj13" → 13,"dom9#11" → [9,11],"sus4" → [4] */
+const getNamedDegrees = (formulaId: string): number[] => {
+  const matches = formulaId.match(/\d+/g)
+  if (isNil(matches)) return []
+  return matches.map(Number)
+}
+
 /** omit 的加权 cost */
 export const omitCost = (degree: number, formulaId: string): number => {
+  // 命名度数不可省(省掉 = 名不副实,退化为更简单和弦——那个更简单和弦已独立存在)
+  // 如 maj13 omit13 → 退化为 maj7/9/11(已在列表);dom9 omit9 → 退化为 dom7
+  if (getNamedDegrees(formulaId).includes(degree)) return Infinity
   if (degree === 5) return 0                    // 纯五度:不定义性质,预期可省
   if (degree === 11) return 0                   // avoid note 冲突,省掉是预期
-  if ([9, 13].includes(degree)) return 0.5      // 扩展音:色彩音
+  if ([9, 13].includes(degree)) return 0.5      // 扩展音:色彩音(但不是命名度数时才算)
   if ([3, 7].includes(degree)) return Infinity  // guide tones:排除
   return 1                                       // 其他(如 6 度)
 }
