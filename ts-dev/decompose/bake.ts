@@ -86,6 +86,23 @@ const bake = () => {
     const key = ids.join(",")
     const raw = decompose(ids)
 
+    // 硬性限制:同方向变化不允许连续出现 2 个以上
+    // (♯A + ♯B = 两个升号 → 基座选错了;♯A + ♭B = 一升一降 → 合法)
+    // 注意:这与重升(♯♯)是两回事——重升是单个音升全音,这里是两个不同音各升半音
+    const hasSameDirectionPair = (r: any): boolean => {
+      let sharps = 0, flats = 0
+      for (const op of r.ops) {
+        if (op.kind === "alter") {
+          if (op.offset > 0) sharps++
+          else if (op.offset < 0) flats++
+        } else if (op.kind === "add" && op.offset !== 0) {
+          if (op.offset > 0) sharps++
+          else if (op.offset < 0) flats++
+        }
+      }
+      return sharps >= 2 || flats >= 2
+    }
+
     // 按加权 cost 重排序
     const weighted = raw
       .map(r => ({
@@ -98,6 +115,7 @@ const bake = () => {
         }, 0),
       }))
       .filter((r: any) => r.weightedCost < Infinity)
+      .filter((r: any) => !hasSameDirectionPair(r))  // 同方向连续变化排除
       .sort((a: any, b: any) => a.weightedCost - b.weightedCost || a.chordFormulaId.localeCompare(b.chordFormulaId))
 
     // 分组:按 cost 与变换内容划入 6 个 tier(乐理依据 theory.md)
