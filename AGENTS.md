@@ -152,6 +152,17 @@ documents/     人类可读的分章文档
 
 原则：顶层目录必须装实际内容；只有一个模块时不许再套 `xxx/src/` 之类的空架子（ts-dev 曾因此拍平）。
 
+### 和弦识别管线（ts-dev/decompose/）
+
+和弦从「公式定义」到「任意输入全量识别」的完整管线在 `ts-dev/decompose/`，
+**必读 [ts-dev/decompose/README.md](./ts-dev/decompose/README.md)**——包含：
+- 5 步管线流程（公式源 json5 → 编译 → 12根实例 → C(12,3) 穷举倒推 → tier 报告）
+- 基座 DSL 语法与无环保证
+- 派生字段回填规则（gap 公式、tags 注入）
+- 4 条硬性排除规则 + 加权 cost 函数 + 6 级 tier 语义
+- 乐理依据（theory.md，Mark Levine/Berklee 体系）
+- 文件清单与运行时查找示例
+
 ### 数据流（源头在 ts-dev/raw-static，产物在 static-data）
 
 ```
