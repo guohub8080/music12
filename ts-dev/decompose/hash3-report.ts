@@ -50,12 +50,8 @@ for (const ids of inputs) {
   lines.push(`|---|---|---|---|---|`)
 
   results.forEach((r: any, i) => {
-    let fullSymbol = `${r.s}${r.f}`
-    try {
-      const c = new Chord(r.r, r.f)
-      fullSymbol = `${r.s}${c.scoreSymbol}`
-    } catch {}
-    lines.push(`| ${i + 1} | ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${fullSymbol}** | ${r.n || "—"} | ${r.c} |`)
+    // 显示公式 id(全表小写,如 maj7/augmaj7/dom7sus4),不用 scoreDisplay(记谱写法 M7/mM7 各家族自洽)
+    lines.push(`| ${i + 1} | ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${r.s}${r.f}** | ${r.n || "—"} | ${r.c} |`)
   })
   lines.push("")
 }
