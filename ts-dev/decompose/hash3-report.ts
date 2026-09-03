@@ -65,11 +65,11 @@ for (const ids of inputs) {
     const notation = r.n || "—"
     const note = r.isExact ? "零变换"
       : r.c === 0 ? "纯 omit(预期行为)"
-      : r.c === 0.5 ? "自然扩展(色彩音)"
-      : r.c === 1 ? "属七变化(张力)"
-      : r.c === 1.5 ? "组合变换"
-      : r.c >= 3 ? "avoid note / 双变化"
-      : ""
+      : r.c <= 0.5 ? "自然扩展(色彩音)"
+      : r.c <= 1 ? "属七变化(张力)"
+      : r.c <= 1.5 ? "组合变换(省略+扩展)"
+      : r.c < 3 ? "多重变换"
+      : "avoid note / 双变化"
 
     lines.push(`| ${i + 1} | **${fullSymbol}** | ${notation} | ${r.c} | ${note} |`)
   })
