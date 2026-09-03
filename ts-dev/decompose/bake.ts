@@ -53,7 +53,7 @@ export const omitCost = (degree: number, formulaId: string): number => {
 /** alter(♯/♭) 的加权 cost */
 export const alterCost = (offset: number, formulaId: string): number => {
   if (offset === 0) return 0
-  if (Math.abs(offset) >= 2) return 4           // 双变化(♯♯/♭♭):极不寻常
+  if (Math.abs(offset) >= 2) return Infinity    // 单次步长≥2:硬性排除(只允许±1半音)
   if (isDom7Family(formulaId)) return 1         // 属七上的变化:合法张力
   // 非属七:检查是否自然扩展
   // ♯11 在 maj7 上是合法的(利底亚色彩)
@@ -67,7 +67,7 @@ export const addCost = (degree: number, offset: number, formulaId: string): numb
   // sus + add3 = 违反 sus 的定义——正确解释应该是 maj3add2 或 min3add2
   if (degree === 3 && formulaId.includes("sus")) return Infinity
   if (offset === 0) return 0.5                   // 自然扩展(9/11/13)
-  if (Math.abs(offset) >= 2) return 4
+  if (Math.abs(offset) >= 2) return Infinity     // 单次步长≥2:硬性排除
   if (isDom7Family(formulaId)) return 1
   return 3
 }
@@ -86,22 +86,13 @@ const bake = () => {
     const key = ids.join(",")
     const raw = decompose(ids)
 
-    // 硬性限制:同方向变化不允许连续出现 2 个以上
-    // (♯A + ♯B = 两个升号 → 基座选错了;♯A + ♭B = 一升一降 → 合法)
-    // 注意:这与重升(♯♯)是两回事——重升是单个音升全音,这里是两个不同音各升半音
-    const hasSameDirectionPair = (r: any): boolean => {
-      let sharps = 0, flats = 0
-      for (const op of r.ops) {
-        if (op.kind === "alter") {
-          if (op.offset > 0) sharps++
-          else if (op.offset < 0) flats++
-        } else if (op.kind === "add" && op.offset !== 0) {
-          if (op.offset > 0) sharps++
-          else if (op.offset < 0) flats++
-        }
-      }
-      return sharps >= 2 || flats >= 2
-    }
+    // 硬性限制:每次升降操作只允许 ±1 半音(单次步长)
+    // ♯N(升半音)→ 允许;♭N(降半音)→ 允许
+    // ♯♯N(一次升全音)→ 排除——不管结果音名是否恰好是重升,操作步长不能 ≥2
+    const hasStepTooLarge = (r: any): boolean =>
+      r.ops.some((op: any) =>
+        (op.kind === "alter" || op.kind === "add") && Math.abs(op.offset) >= 2
+      )
 
     // 按加权 cost 重排序
     const weighted = raw
@@ -115,7 +106,7 @@ const bake = () => {
         }, 0),
       }))
       .filter((r: any) => r.weightedCost < Infinity)
-      .filter((r: any) => !hasSameDirectionPair(r))  // 同方向连续变化排除
+      .filter((r: any) => !hasStepTooLarge(r))  // 单次升降步长 ≥2 排除
       .sort((a: any, b: any) => a.weightedCost - b.weightedCost || a.chordFormulaId.localeCompare(b.chordFormulaId))
 
     // 分组:按 cost 与变换内容划入 6 个 tier(乐理依据 theory.md)
