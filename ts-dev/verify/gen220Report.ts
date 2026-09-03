@@ -42,25 +42,28 @@ for (const ids of inputs) {
       for (const n of p.nearests) {
         try {
           const c = new Chord(n.root, n.chordFormulaId)
-          const chordName = `${NAMES[n.root]}${c.scoreSymbol}`
           const ts = n.transformString
+          // 先应用 omit 变换再取 scoreSymbol(否则 omit5 类的记谱符号缺失)
+          const omitMatch = ts.match(/omit([\d,]+)/)
+          if (omitMatch && !ts.includes("extra")) {
+            // 纯补音型(无换键): omit 记法写进 scoreSymbol
+            for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
+          }
+          const fullSymbol = `${NAMES[n.root]}${c.scoreSymbol}`
+          const extraSym = ts.match(/extra(\S+)/)?.[1] ?? ""
+
           if (ts === "(完全一致)") {
-            lines.push(`  - **${chordName}**(完全一致)`)
-          } else if (ts.includes("needRoot") && ts.includes("extra")) {
-            // 换音型:把多弹的键换成根音
-            const extra = ts.match(/extra(\S+)/)?.[1] ?? ""
-            lines.push(`  - **${chordName}** — 把 ${extra} 换成 ${NAMES[n.root]} 就是`)
+            lines.push(`  - **${fullSymbol}**(完全一致)`)
+          } else if (ts.includes("needRoot") && extraSym) {
+            lines.push(`  - **${fullSymbol}** — 把 ${extraSym} 换成 ${NAMES[n.root]} 就是`)
           } else if (ts.includes("needRoot")) {
-            lines.push(`  - **${chordName}** — 补弹 ${NAMES[n.root]} 就是`)
-          } else if (ts.includes("omit") && ts.includes("extra")) {
-            const extra = ts.match(/extra(\S+)/)?.[1] ?? ""
-            lines.push(`  - **${chordName}** — 把 ${extra} 换成缺的音就是`)
-          } else if (ts.includes("omit")) {
-            const omitMatch = ts.match(/omit([\d,]+)/)
-            if (omitMatch) for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
-            lines.push(`  - **${NAMES[n.root]}${c.scoreSymbol}** — 补弹缺的音就是(${ts})`)
+            lines.push(`  - **${fullSymbol}** — 补弹 ${NAMES[n.root]} 就是`)
+          } else if (omitMatch && extraSym) {
+            lines.push(`  - **${fullSymbol}(${omitMatch[0]})** — 把 ${extraSym} 换成缺的音就是`)
+          } else if (omitMatch) {
+            lines.push(`  - **${fullSymbol}** — 补弹缺的音就是`)
           } else {
-            lines.push(`  - **${chordName}**(${ts})`)
+            lines.push(`  - **${fullSymbol}**(${ts})`)
           }
         } catch { lines.push(`  - ${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}`) }
       }
