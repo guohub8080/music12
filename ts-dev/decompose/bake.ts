@@ -11,7 +11,7 @@
  *
  * 运行: npx tsx ts-dev/decompose/bake.ts
  */
-import { writeFileSync } from "fs"
+import { writeFileSync, readFileSync } from "fs"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
 import { isNil } from "es-toolkit/predicate"
@@ -76,13 +76,49 @@ export const addCost = (degree: number, offset: number, formulaId: string): numb
 const combo = (arr: number[], k: number): number[][] =>
   k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
 
+// ===== 特殊 set 加载(special-sets.json5 编译产物) =====
+// 人工审核后命名的非 tertian 音集;set 命中 = 与 chord tier1 完全命中同级的「set 完全命中」
+const SPECIAL_SETS: Array<{ setId: string; cnName: string; name: string; offsets: number[] }> = (() => {
+  const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "special-sets.json"), "utf-8"))
+  return Object.entries(raw).map(([setId, s]: [string, any]) => ({
+    setId, cnName: s.cnName, name: s.name, offsets: s.offsets,
+  }))
+})()
+
 const bake = () => {
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], 3)
   const table: Record<string, any[]> = {}
   let totalSolutions = 0
+  let setHits = 0
 
   for (const ids of inputs) {
     const key = ids.join(",")
+    const inputSet = new Set(ids)
+
+    // ── set 完全命中:匹配 special-sets 的 offsets ──
+    const setEntries: any[] = []
+    for (const ss of SPECIAL_SETS) {
+      for (let root = 0; root < 12; root++) {
+        const setKeys = ss.offsets.map(o => (root + o) % 12)
+        const keySet = new Set(setKeys)
+        // 键集完全相同(排序后比较)
+        if (keySet.size === inputSet.size && [...keySet].every(k => inputSet.has(k))) {
+          setEntries.push({
+            r: root,
+            s: SYMBOLS[root],
+            f: ss.setId,           // spset-xxx 前缀
+            n: "",                 // set 无变换(完全命中)
+            c: 0,                  // cost = 0(与 tier1 同级)
+            t: 1,                  // tier 1(set 完全命中)
+            set: true,             // 标记为 set 类型(与 chord 区分)
+            cn: ss.cnName,         // 中文名(仅 set 条目)
+          })
+          setHits++
+        }
+      }
+    }
+
+    // ── chord 倒推(原有逻辑) ──
     const raw = decompose(ids)
 
     // 硬性限制:每次升降操作只允许 ±1 半音(单次步长)
@@ -118,21 +154,24 @@ const bake = () => {
       return 6                                           // 极端:双变化/多重 avoid note
     }
 
-    // 精简存储:只保留必要字段
-    table[key] = weighted.slice(0, 10).map((r: any) => ({
-      r: r.root,           // 根音 pianoKeyId
-      s: SYMBOLS[r.root],   // 根音 symbol
-      f: r.chordFormulaId,  // 公式 id
-      n: r.notation,        // 变换记号
-      c: r.weightedCost,    // 加权 cost
-      t: tierOf(r.weightedCost, r.notation),  // 分组 tier 1-6
+    // 精简存储:set 命中排最前(完全命中),chord 方案按 tier 排后
+    const chordEntries = weighted.slice(0, 10).map((r: any) => ({
+      r: r.root,
+      s: SYMBOLS[r.root],
+      f: r.chordFormulaId,
+      n: r.notation,
+      c: r.weightedCost,
+      t: tierOf(r.weightedCost, r.notation),
     }))
+    // set 条目在前的条件:该键集被人工审核为 set → set 完全命中替代 chord 解释的第一名
+    // 但 chord 解释仍保留在后面(供参考)
+    table[key] = [...setEntries, ...chordEntries]
     totalSolutions += table[key].length
   }
 
   const outPath = resolve(ROOT, "static-data", "chord-hash-3.json")
   writeFileSync(outPath, JSON.stringify(table, null, 2) + "\n", "utf-8")
-  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案`)
+  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中)`)
   console.log(`输出:${outPath}`)
   console.log(`文件大小:${(JSON.stringify(table).length / 1024).toFixed(1)}KB`)
 }

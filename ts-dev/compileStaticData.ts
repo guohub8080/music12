@@ -197,6 +197,7 @@ export function compileAll(write: boolean): boolean {
         { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
         { srcFile: "scale-modes.json5", dstFile: "scale-modes.json", compile: compileScaleModes },
         { srcFile: "pcset-names.json5", dstFile: "pcset-names.json", compile: () => compilePassThrough("pcset-names.json5") },
+        { srcFile: "special-sets.json5", dstFile: "special-sets.json", compile: () => compilePassThrough("special-sets.json5") },
     ];
 
     for (const { srcFile, dstFile, compile } of targets) {

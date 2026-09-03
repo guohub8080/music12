@@ -6,14 +6,25 @@
 
 | tier | 含义 | 键集数 |
 |---|---|---|
-| ✅1 | 完全命中(零变换) | 40 |
+| ✅1 | 完全命中(零变换) | 52 |
 | 🔵2 | 预期省略(纯 omit5/omit11) | 144 |
-| 🟢3 | 自然扩展(色彩音/属七变化) | 12 |
+| 🟢3 | 自然扩展(色彩音/属七变化) | 0 |
 | 🟡4 | 组合变换(多重省略+扩展) | 24 |
 | 🟠5 | 边缘(avoid note) | 0 |
 | 🔴6 | 极端(双变化/多重冲突) | 0 |
 
 # ✅ Tier 1 — 完全命中(零变换)
+
+## C-P-A  `{0,1,9}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Aspset-split_third** | — | 0 |
+| 🟢3 | **Amin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Aaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Amaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Amaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Amin3add11** | (♭11 omit5) | 3 |
 
 ## C-D-Y  `{0,2,8}`
 
@@ -29,6 +40,18 @@
 | 🟠5 | **Ysus4** | (♭4 ♭5) | 3 |
 | 🔴6 | **Dsus4** | (♯4 omit5 add♯6) | 4.5 |
 | 🔴6 | **Cmin3** | (♭3 ♯5) | 6 |
+
+## C-Q-E  `{0,3,4}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Cspset-split_third** | — | 0 |
+| 🟢3 | **Cmin3** | (omit5 add3) | 0.5 |
+| 🟡4 | **Qdom7sus2** | (♭7 ♭2 omit5) | 2 |
+| 🟠5 | **Caug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Cmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Cmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Cmin3add11** | (♭11 omit5) | 3 |
 
 ## C-Q-X  `{0,3,6}`
 
@@ -165,6 +188,29 @@
 | 🔴6 | **Xmin3** | (♭5 ♯3) | 6 |
 | 🔴6 | **Zmin3** | (♭3 ♯5) | 6 |
 
+## C-Y-B  `{0,8,11}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Yspset-split_third** | — | 0 |
+| 🟢3 | **Ymin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Yaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Ymaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Ymaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Ymin3add11** | (♭11 omit5) | 3 |
+| 🔴6 | **Ysus4** | (♭4 omit5 add♯2) | 4.5 |
+
+## P-D-Z  `{1,2,10}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Zspset-split_third** | — | 0 |
+| 🟢3 | **Zmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Zaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Zmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Zmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Zmin3add11** | (♭11 omit5) | 3 |
+
 ## P-Q-A  `{1,3,9}`
 
 | tier | 和弦 | 变换 | cost |
@@ -179,6 +225,18 @@
 | 🟠5 | **Asus4** | (♭4 ♭5) | 3 |
 | 🔴6 | **Qsus4** | (♯4 omit5 add♯6) | 4.5 |
 | 🔴6 | **Pmin3** | (♭3 ♯5) | 6 |
+
+## P-E-F  `{1,4,5}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Pspset-split_third** | — | 0 |
+| 🟢3 | **Pmin3** | (omit5 add3) | 0.5 |
+| 🟡4 | **Edom7sus2** | (♭7 ♭2 omit5) | 2 |
+| 🟠5 | **Paug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Pmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Pmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Pmin3add11** | (♭11 omit5) | 3 |
 
 ## P-E-G  `{1,4,7}`
 
@@ -315,6 +373,18 @@
 | 🔴6 | **Gmin3** | (♭5 ♯3) | 6 |
 | 🔴6 | **Bmin3** | (♭3 ♯5) | 6 |
 
+## D-Q-B  `{2,3,11}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Bspset-split_third** | — | 0 |
+| 🟢3 | **Bmin3** | (omit5 add3) | 0.5 |
+| 🟡4 | **Ddom7sus2** | (♭2 ♭7 omit5) | 2 |
+| 🟠5 | **Baug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Bmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Bmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Bmin3add11** | (♭11 omit5) | 3 |
+
 ## D-E-Z  `{2,4,10}`
 
 | tier | 和弦 | 变换 | cost |
@@ -329,6 +399,17 @@
 | 🟠5 | **Zsus4** | (♭4 ♭5) | 3 |
 | 🔴6 | **Esus4** | (♯4 omit5 add♯6) | 4.5 |
 | 🔴6 | **Dmin3** | (♭3 ♯5) | 6 |
+
+## D-F-X  `{2,5,6}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Dspset-split_third** | — | 0 |
+| 🟢3 | **Dmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Daug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Dmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Dmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Dmin3add11** | (♭11 omit5) | 3 |
 
 ## D-F-Y  `{2,5,8}`
 
@@ -465,6 +546,17 @@
 | 🔴6 | **Bmin3** | (♯3 ♭5) | 6 |
 | 🔴6 | **Bmin3add11** | (♯3 ♯11 omit5) | 6 |
 
+## Q-X-G  `{3,6,7}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Qspset-split_third** | — | 0 |
+| 🟢3 | **Qmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Qaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Qmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Qmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Qmin3add11** | (♭11 omit5) | 3 |
+
 ## Q-X-A  `{3,6,9}`
 
 | tier | 和弦 | 变换 | cost |
@@ -540,6 +632,17 @@
 | 🟠5 | **Gsus4** | (♯5 ♭4) | 3 |
 | 🟠5 | **Bsus4** | (♭4 ♯5) | 3 |
 
+## E-G-Y  `{4,7,8}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Espset-split_third** | — | 0 |
+| 🟢3 | **Emin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Eaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Emaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Emaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Emin3add11** | (♭11 omit5) | 3 |
+
 ## E-G-Z  `{4,7,10}`
 
 | tier | 和弦 | 变换 | cost |
@@ -585,6 +688,17 @@
 | 🟠5 | **Ysus2** | (♯5 ♯2) | 3 |
 | 🔴6 | **Baug3** | (♯3 ♯5) | 6 |
 
+## F-Y-A  `{5,8,9}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Fspset-split_third** | — | 0 |
+| 🟢3 | **Fmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Faug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Fmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Fmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Fmin3add11** | (♭11 omit5) | 3 |
+
 ## F-Y-B  `{5,8,11}`
 
 | tier | 和弦 | 变换 | cost |
@@ -614,6 +728,28 @@
 | 🔴6 | **Bsus4** | (♯4 omit5 add♯6) | 4.5 |
 | 🔴6 | **Fmin3** | (♯3 ♭5) | 6 |
 | 🔴6 | **Amin3** | (♯5 ♭3) | 6 |
+
+## X-A-Z  `{6,9,10}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Xspset-split_third** | — | 0 |
+| 🟢3 | **Xmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Xaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Xmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Xmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Xmin3add11** | (♭11 omit5) | 3 |
+
+## G-Z-B  `{7,10,11}`
+
+| tier | 和弦 | 变换 | cost |
+|---|---|---|---|
+| ✅1 | **Gspset-split_third** | — | 0 |
+| 🟢3 | **Gmin3** | (omit5 add3) | 0.5 |
+| 🟠5 | **Gaug3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Gmaj3** | (omit5 add♯2) | 3 |
+| 🟠5 | **Gmaj3add9** | (♯9 omit5) | 3 |
+| 🟠5 | **Gmin3add11** | (♭11 omit5) | 3 |
 
 # 🔵 Tier 2 — 预期省略(纯 omit5/omit11)
 
@@ -2696,132 +2832,6 @@
 | 🟠5 | **Zmaj7sus2** | (♭7 ♭2 omit5) | 3 |
 | 🟠5 | **Ysus2** | (omit5 add♯2) | 3 |
 | 🔴6 | **Zsus2** | (♭2 omit5 add♯6) | 4.5 |
-
-# 🟢 Tier 3 — 自然扩展(色彩音/属七变化)
-
-## C-P-A  `{0,1,9}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Amin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Aaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Amaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Amaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Amin3add11** | (♭11 omit5) | 3 |
-
-## C-Q-E  `{0,3,4}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Cmin3** | (omit5 add3) | 0.5 |
-| 🟡4 | **Qdom7sus2** | (♭7 ♭2 omit5) | 2 |
-| 🟠5 | **Caug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Cmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Cmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Cmin3add11** | (♭11 omit5) | 3 |
-
-## C-Y-B  `{0,8,11}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Ymin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Yaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Ymaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Ymaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Ymin3add11** | (♭11 omit5) | 3 |
-| 🔴6 | **Ysus4** | (♭4 omit5 add♯2) | 4.5 |
-
-## P-D-Z  `{1,2,10}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Zmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Zaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Zmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Zmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Zmin3add11** | (♭11 omit5) | 3 |
-
-## P-E-F  `{1,4,5}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Pmin3** | (omit5 add3) | 0.5 |
-| 🟡4 | **Edom7sus2** | (♭7 ♭2 omit5) | 2 |
-| 🟠5 | **Paug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Pmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Pmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Pmin3add11** | (♭11 omit5) | 3 |
-
-## D-Q-B  `{2,3,11}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Bmin3** | (omit5 add3) | 0.5 |
-| 🟡4 | **Ddom7sus2** | (♭2 ♭7 omit5) | 2 |
-| 🟠5 | **Baug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Bmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Bmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Bmin3add11** | (♭11 omit5) | 3 |
-
-## D-F-X  `{2,5,6}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Dmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Daug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Dmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Dmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Dmin3add11** | (♭11 omit5) | 3 |
-
-## Q-X-G  `{3,6,7}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Qmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Qaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Qmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Qmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Qmin3add11** | (♭11 omit5) | 3 |
-
-## E-G-Y  `{4,7,8}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Emin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Eaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Emaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Emaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Emin3add11** | (♭11 omit5) | 3 |
-
-## F-Y-A  `{5,8,9}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Fmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Faug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Fmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Fmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Fmin3add11** | (♭11 omit5) | 3 |
-
-## X-A-Z  `{6,9,10}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Xmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Xaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Xmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Xmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Xmin3add11** | (♭11 omit5) | 3 |
-
-## G-Z-B  `{7,10,11}`
-
-| tier | 和弦 | 变换 | cost |
-|---|---|---|---|
-| 🟢3 | **Gmin3** | (omit5 add3) | 0.5 |
-| 🟠5 | **Gaug3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Gmaj3** | (omit5 add♯2) | 3 |
-| 🟠5 | **Gmaj3add9** | (♯9 omit5) | 3 |
-| 🟠5 | **Gmin3add11** | (♭11 omit5) | 3 |
 
 # 🟡 Tier 4 — 组合变换(多重省略+扩展)
 
