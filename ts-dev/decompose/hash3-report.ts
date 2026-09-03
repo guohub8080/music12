@@ -72,6 +72,6 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
   }
 }
 
-writeFileSync(resolve(ROOT, "ts-dev", "hash3-report.md"), lines.join("\n"), "utf-8")
-console.log(`写入 ts-dev/hash3-report.md:${inputs.length} 组`)
+writeFileSync(resolve(ROOT, "ts-dev/decompose", "hash3-report.md"), lines.join("\n"), "utf-8")
+console.log(`写入 ts-dev/decompose/hash3-report.md:${inputs.length} 组`)
 console.log(`分布: ${Object.entries(tierCounts).sort().map(([t, n]) => `tier${t}=${n}`).join(" / ")}`)

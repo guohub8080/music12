@@ -1,6 +1,6 @@
 // @ts-nocheck
 // 修正版:omit/extra/alter 变换表达的真实输出(字段是 transform,不是 chordAlteration)
-import { findChord } from "../../src/Find"
+import { findChord } from "../../../src/Find"
 
 const cases: Array<[string, number[]]> = [
   ["C-E-B    (maj7 省五音)", [60, 64, 71]],

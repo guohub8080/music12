@@ -1,6 +1,6 @@
 // @ts-nocheck
 // 证明:omit 标注永远不会出现在特征音(3/7/sus替代/变化音)上——硬性限制
-import { findChord } from "../../src/Find"
+import { findChord } from "../../../src/Find"
 
 // 各种省略形态的输入,检查返回结果的 alteration(omit 位置)
 const cases: Array<[string, number[]]> = [

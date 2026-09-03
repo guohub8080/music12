@@ -1,6 +1,6 @@
 // @ts-nocheck
 // 随机四音测试:随机 pianoKeyId 四元组,看 findChord 能找出什么
-import { findChord } from "../../src/Find"
+import { findChord } from "../../../src/Find"
 
 const rand = (seed) => () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648
 const r = rand(20260902)
@@ -11,7 +11,7 @@ const pick = () => {
   return [...s]
 }
 
-import { PianoKey } from "../../src/PianoKey"
+import { PianoKey } from "../../../src/PianoKey"
 const nameOf = (id) => PianoKey.SYMBOLS[id]
 
 let exact = 0, fuzzy = 0, none = 0

@@ -1,8 +1,8 @@
 // @ts-nocheck
 // 三全音 × 减和弦的数学关系演示(用本库的 KeyMask/transposeFamily 实证)
-import { transposeFamily, keyMaskFromIds, rotate, canonicalForm, idsFromKeyMask } from "../../src/common/keyMask"
+import { transposeFamily, keyMaskFromIds, rotate, canonicalForm, idsFromKeyMask } from "../../../src/common/keyMask"
 
-import { PianoKey } from "../../src/PianoKey"
+import { PianoKey } from "../../../src/PianoKey"
 const NAMES = PianoKey.SYMBOLS
 
 console.log("=== 1. 减七和弦的自对称:一组键,四个名字 ===")

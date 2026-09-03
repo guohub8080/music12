@@ -1,7 +1,7 @@
 // @ts-nocheck
 // 演示:模糊搜索(省略音)在两层架构中的走向
-import { findChord } from "../../src/Find"
-import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../src/Chord/static/chord-instance-data"
+import { findChord } from "../../../src/Find"
+import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../../src/Chord/static/chord-instance-data"
 
 const cases: Array<[string, number[]]> = [
   ["C-E-B  (Cmaj7 省五音 G)", [60, 64, 71]],

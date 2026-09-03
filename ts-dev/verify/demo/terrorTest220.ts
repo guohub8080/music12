@@ -1,10 +1,10 @@
 // @ts-nocheck
 // 恐怖测试:C(12,3)=220 种三音组合 × 四个引擎,100% 覆盖率检验 + 无匹配解剖
-import { findChord } from "../../src/Find"
-import { transposeFamily } from "../../src/common/keyMask"
-import ALL from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
+import { findChord } from "../../../src/Find"
+import { transposeFamily } from "../../../src/common/keyMask"
+import ALL from "../../../src/Chord/static/ALL_CHORD_INSTANCE_META"
 
-import { PianoKey } from "../../src/PianoKey"
+import { PianoKey } from "../../../src/PianoKey"
 const NAMES = PianoKey.SYMBOLS
 const combo = (arr: number[], k: number): number[][] =>
   k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))

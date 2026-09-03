@@ -1,7 +1,7 @@
 // @ts-nocheck
 // 基准:findPresetChord 线性扫描 vs 音集哈希索引
 import { performance } from "perf_hooks"
-import ALL from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
+import ALL from "../../../src/Chord/static/ALL_CHORD_INSTANCE_META"
 import { isEqual } from "es-toolkit/predicate"
 
 // 模拟旧实现:collect().filter(isEqual) 的核心成本(线性扫描 + 数组深比较)

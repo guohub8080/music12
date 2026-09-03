@@ -1,8 +1,8 @@
 // @ts-nocheck
 // 演示:从输入数组到和弦结果的完整数据流(含每一步的中间值)
-import { findChord } from "../../src/Find"
-import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../src/Chord/static/chord-instance-data"
-import { findPresetChord } from "../../src/Find/findChord/methods/findPresetChord"
+import { findChord } from "../../../src/Find"
+import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../../src/Chord/static/chord-instance-data"
+import { findPresetChord } from "../../../src/Find/findChord/methods/findPresetChord"
 
 const input = [7, 4, 0]  // 用户手里的 pianoKeyId 数组(顺序随意,含重复也行)
 

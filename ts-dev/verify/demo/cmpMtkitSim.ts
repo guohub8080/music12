@@ -3,8 +3,8 @@
 // mtkit findChord 模糊层源码逻辑:
 //   isEqual(input, cand) → true
 //   cand.length > input.length 且 intersection(input, cand).length === input.length → true
-import { findChord } from "../../src/Find"
-import ALL from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
+import { findChord } from "../../../src/Find"
+import ALL from "../../../src/Chord/static/ALL_CHORD_INSTANCE_META"
 
 // mtkit 规则模拟(在 v4 的同一份实例数据上——同源 v1 数据 + dom9b5,对结论无影响)
 const mtkitFind = (input: number[]): any[] => {

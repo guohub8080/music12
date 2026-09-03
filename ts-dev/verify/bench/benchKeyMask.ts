@@ -1,9 +1,9 @@
 // @ts-nocheck
 // 基准:transposeFamily(循环移位×pattern表) vs 哈希桶查询
 import { performance } from "perf_hooks"
-import { transposeFamily } from "../../src/common/keyMask"
-import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../src/Chord/static/chord-instance-data"
-import ALL from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
+import { transposeFamily } from "../../../src/common/keyMask"
+import { CHORD_INSTANCE_SOUNDSET_MAP } from "../../../src/Chord/static/chord-instance-data"
+import ALL from "../../../src/Chord/static/ALL_CHORD_INSTANCE_META"
 
 const queries = ALL.map(x => x.pianoKeyIdsSorted)
 

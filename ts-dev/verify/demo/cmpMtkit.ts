@@ -1,7 +1,7 @@
 // @ts-nocheck
 // 对照测试:同一批「无匹配」输入,mtkit(v1 引擎) vs music12 v4 各返回什么
 import * as mtkit from "/Users/guo/WebstormProjects/mtkit/src/music12/index.js"
-import { findChord as findV4 } from "../../src/Find"
+import { findChord as findV4 } from "../../../src/Find"
 
 const cases: Array<[string, number[]]> = [
   ["D-E-F-F♯   (v4 无匹配案例1)", [2, 4, 5, 6]],

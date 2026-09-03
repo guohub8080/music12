@@ -1,6 +1,6 @@
 // @ts-nocheck
 // 演示:特征音规则如何裁决省略音匹配
-import { findChord } from "../../src/Find"
+import { findChord } from "../../../src/Find"
 
 const cases: Array<[string, number[]]> = [
   ["C-E-G    (有3度,无7音)", [60, 64, 67]],

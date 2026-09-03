@@ -1,6 +1,6 @@
 // @ts-nocheck
 // 恐怖测试终章:220 三音 + 495 四音,开 fallback:"pcset" 后覆盖率必须 100%
-import { findChord } from "../../src/Find"
+import { findChord } from "../../../src/Find"
 
 const combo = (arr, k) => k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
 

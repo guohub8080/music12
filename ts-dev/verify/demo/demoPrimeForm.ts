@@ -2,9 +2,9 @@
 // 「找不出来的音是什么」——用音级集合论(prime form)给 220 种三音集分类
 // prime form = min(canonical(mask), canonical(inversion(mask)))
 // 反转:bit i → bit (12-i) mod 12
-import { keyMaskFromIds, idsFromKeyMask, rotate, canonicalForm } from "../../src/common/keyMask"
-import { transposeFamily } from "../../src/common/keyMask"
-import { findChord } from "../../src/Find"
+import { keyMaskFromIds, idsFromKeyMask, rotate, canonicalForm } from "../../../src/common/keyMask"
+import { transposeFamily } from "../../../src/common/keyMask"
+import { findChord } from "../../../src/Find"
 
 const invertMask = (m: number): number => {
   let r = 0
@@ -18,7 +18,7 @@ const primeForm = (ids: number[]): number => {
 
 const combo = (arr: number[], k: number): number[][] =>
   k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
-import { PianoKey } from "../../src/PianoKey"
+import { PianoKey } from "../../../src/PianoKey"
 const NAMES = PianoKey.SYMBOLS
 
 // 全部 220 种三音 → prime form 分类
