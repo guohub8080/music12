@@ -55,13 +55,13 @@ for (const ids of inputs) {
           if (ts === "(完全一致)") {
             lines.push(`  - **${fullSymbol}**(完全一致)`)
           } else if (ts.includes("needRoot") && extraSym) {
-            lines.push(`  - **${fullSymbol}** — 把 ${extraSym} 换成 ${NAMES[n.root]} 就是`)
+            lines.push(`  - **${fullSymbol}** — 你弹的不是这个;把 ${extraSym} 移到 ${NAMES[n.root]} 就弹出了 ${fullSymbol}`)
           } else if (ts.includes("needRoot")) {
-            lines.push(`  - **${fullSymbol}** — 补弹 ${NAMES[n.root]} 就是`)
+            lines.push(`  - **${fullSymbol}** — 你弹的不是这个;再加 ${NAMES[n.root]} 就是 ${fullSymbol}`)
           } else if (omitMatch && extraSym) {
-            lines.push(`  - **${fullSymbol}(${omitMatch[0]})** — 把 ${extraSym} 换成缺的音就是`)
+            lines.push(`  - **${fullSymbol}(${omitMatch[0]})** — 你弹的不是这个;把 ${extraSym} 换掉就弹出了 ${fullSymbol}`)
           } else if (omitMatch) {
-            lines.push(`  - **${fullSymbol}** — 补弹缺的音就是`)
+            lines.push(`  - **${fullSymbol}** — 你弹的不是这个;补上缺的音就是 ${fullSymbol}`)
           } else {
             lines.push(`  - **${fullSymbol}**(${ts})`)
           }
