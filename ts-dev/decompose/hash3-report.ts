@@ -43,40 +43,20 @@ for (const ids of inputs) {
     continue
   }
 
-  // 分组展示(按 tier 1-6)
-  const TIER_LABELS: Record<number, string> = {
-    1: "✅ 第一组:完全命中(零变换,你弹的就是这个和弦)",
-    2: "🔵 第二组:预期省略(省五度/去 avoid note——和弦本身不变)",
-    3: "🟢 第三组:自然扩展(加 9/11/13 色彩音或属七合法变化)",
-    4: "🟡 第四组:组合变换(多重省略+扩展,仍然合理)",
-    5: "🟠 第五组:边缘(涉及 avoid note,乐理上勉强)",
-    6: "🔴 第六组:极端(双变化/多重冲突——几乎不会这样解释)",
-  }
+  // 单表格,tier 作为一列(emoji + 编号)
+  const TIER_EMOJI: Record<number, string> = { 1: "✅", 2: "🔵", 3: "🟢", 4: "🟡", 5: "🟠", 6: "🔴" }
 
-  // 按 tier 分组
-  const byTier: Map<number, typeof results> = new Map()
-  for (const r of results) {
-    const t = (r as any).t ?? 6
-    if (!byTier.has(t)) byTier.set(t, [])
-    byTier.get(t)!.push(r)
-  }
+  lines.push(`| # | tier | 和弦 | 变换 | cost |`)
+  lines.push(`|---|---|---|---|---|`)
 
-  for (const [tier, group] of [...byTier.entries()].sort((a, b) => a[0] - b[0])) {
-    lines.push(`### ${TIER_LABELS[tier] ?? `Tier ${tier}`}`)
-    lines.push("")
-    lines.push(`| 和弦 | 变换 | cost |`)
-    lines.push(`|---|---|---|`)
-
-    for (const r of group) {
-      let fullSymbol = `${r.s}${r.f}`
-      try {
-        const c = new Chord(r.r, r.f)
-        fullSymbol = `${r.s}${c.scoreSymbol}`
-      } catch {}
-      lines.push(`| **${fullSymbol}** | ${r.n || "—"} | ${r.c} |`)
-    }
-    lines.push("")
-  }
+  results.forEach((r: any, i) => {
+    let fullSymbol = `${r.s}${r.f}`
+    try {
+      const c = new Chord(r.r, r.f)
+      fullSymbol = `${r.s}${c.scoreSymbol}`
+    } catch {}
+    lines.push(`| ${i + 1} | ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${fullSymbol}** | ${r.n || "—"} | ${r.c} |`)
+  })
   lines.push("")
 }
 
