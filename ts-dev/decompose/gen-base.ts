@@ -51,6 +51,7 @@ for (const [formulaId, formula] of Object.entries(formulas)) {
       rootSymbol: SYMBOLS[root],
       chordFormulaId: formulaId,
       pianoKeyIds,
+      pianoKeySymbols: pianoKeyIds.map(k => SYMBOLS[k]),
       pianoKeyIdsSorted: [...pianoKeyIds].sort((a, b) => a - b),
       notesNum: intervalList.length + 1,
       pianoKeyIdToInterval,
@@ -59,10 +60,27 @@ for (const [formulaId, formula] of Object.entries(formulas)) {
   }
 }
 
+// 自定义序列化:数组单行(≤80字符内),对象多行缩进
+function pretty(value, indent = 0) {
+  const pad = " ".repeat(indent)
+  if (Array.isArray(value)) {
+    const items = value.map(v => pretty(v, indent + 2))
+    const oneLine = `[${value.map(v => JSON.stringify(v)).join(", ")}]`
+    if (oneLine.length <= 80) return oneLine
+    return `[\n${pad}  ${items.join(`,\n${pad}  `)}\n${pad}]`
+  }
+  if (typeof value === "object" && value !== null) {
+    const entries = Object.entries(value)
+      .map(([k, v]) => `${pad}  ${JSON.stringify(k)}: ${pretty(v, indent + 2)}`)
+    return `{\n${entries.join(",\n")}\n${pad}}`
+  }
+  return JSON.stringify(value)
+}
+
 const outPath = resolve(__dirname, "base-instances.json")
-writeFileSync(outPath, JSON.stringify(instances, null, 2) + "\n", "utf-8")
+writeFileSync(outPath, pretty(instances) + "\n", "utf-8")
 
 console.log(`基座数据生成完成:${instances.length} 个实例(88 × 12)`)
 console.log(`输出:${outPath}`)
-console.log(`文件大小:${(JSON.stringify(instances).length / 1024).toFixed(1)}KB`)
-console.log(`字段:pianoKeyIdRoot/rootSymbol/chordFormulaId/pianoKeyIds/pianoKeyIdsSorted/notesNum/pianoKeyIdToInterval/intervalToPianoKeyId`)
+console.log(`文件大小:${(require("fs").statSync(outPath).size / 1024).toFixed(1)}KB`)
+console.log(`字段:pianoKeyIdRoot/rootSymbol/chordFormulaId/pianoKeyIds/pianoKeySymbols/pianoKeyIdsSorted/notesNum/pianoKeyIdToInterval/intervalToPianoKeyId`)
