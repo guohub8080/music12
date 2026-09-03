@@ -61,15 +61,23 @@ export const findPcset = (sortedIds: number[]): I_PcsetResult => {
   const inputMask = keyMaskFromIds(sortedIds)
   const SYMBOLS = PianoKey.SYMBOLS
   const describe = (inst: (typeof ALL_CHORD_INSTANCE_META)[number], d: number) => {
-    // 差异 = 输入多弹的 + 少弹的;变换记号按 omit/extra 语义拼接。
-    // 记号约定:omit 后是「度数」(候选和弦里该音的度),extra 后是「键 symbol」
-    // (输入多弹的音不在和弦里,无度数可标,用 pianoKeySymbol 避免与度数混淆)
-    const omitted = inst.pianoKeyIdsSorted.filter(k => !sortedIds.includes(k))
-      .map(k => inst.pianoKeyIdToInterval[k]?.intervalNum).filter(isNumber)
+    // 差异 = 输入多弹的 + 少弹的;变换记号按 omit/extra/needRoot 语义拼接。
+    // 记号约定:
+    //   omit{度数}   = 候选和弦里该度的音你没弹到(可省的非身份音)
+    //   needRoot     = 候选和弦的根音你没弹到——不用 omit1(omit 根音在和声上不成立,
+    //                  根音定义和弦身份;正确语义是「换/补一个键当根」)
+    //   extra{键}    = 你多弹的键(pianoKeySymbol,与度数区分)
+    const omittedDegrees = inst.pianoKeyIdsSorted
+      .filter(k => !sortedIds.includes(k))
+      .map(k => inst.pianoKeyIdToInterval[k]?.intervalNum)
+      .filter(isNumber)
+    const needsRoot = omittedDegrees.includes(1)
+    const omitDegrees = omittedDegrees.filter(deg => deg !== 1)
     const extra = sortedIds.filter(k => !inst.pianoKeyIdsSorted.includes(k))
       .map(k => SYMBOLS[k])
     const parts: string[] = []
-    if (omitted.length) parts.push(`omit${omitted.join(",")}`)
+    if (needsRoot) parts.push("needRoot")
+    if (omitDegrees.length) parts.push(`omit${omitDegrees.join(",")}`)
     if (extra.length) parts.push(`extra${extra.join(",")}`)
     return {
       chordFormulaId: inst.chordFormulaId,

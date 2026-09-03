@@ -11,7 +11,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Yb5(omit1) ←换P / Csus2(omit5) ←换P / Gsus4(omit1) ←换P / Pmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Yb5 ←补根Y ←换P / Csus2(omit5) ←换P / Gsus4 ←补根G ←换P / Pmaj7b9(omit3,5)) |
 
 ## C-P-Q  `{0,1,3}`
 
@@ -83,7 +83,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Gb5(omit1) ←换C / Bsus2(omit5) ←换C / Xsus4(omit1) ←换C / Cmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Gb5 ←补根G ←换C / Bsus2(omit5) ←换C / Xsus4 ←补根X ←换C / Cmaj7b9(omit3,5)) |
 
 ## C-D-Q  `{0,2,3}`
 
@@ -451,7 +451,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Xb5(omit1) ←换B / Zsus2(omit5) ←换B / Fsus4(omit1) ←换B / Bmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Xb5 ←补根X ←换B / Zsus2(omit5) ←换B / Fsus4 ←补根F ←换B / Bmaj7b9(omit3,5)) |
 
 ## P-D-Q  `{1,2,3}`
 
@@ -459,7 +459,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Ab5(omit1) ←换D / Psus2(omit5) ←换D / Ysus4(omit1) ←换D / Dmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Ab5 ←补根A ←换D / Psus2(omit5) ←换D / Ysus4 ←补根Y ←换D / Dmaj7b9(omit3,5)) |
 
 ## P-D-E  `{1,2,4}`
 
@@ -827,7 +827,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Zb5(omit1) ←换Q / Dsus2(omit5) ←换Q / Asus4(omit1) ←换Q / Qmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Zb5 ←补根Z ←换Q / Dsus2(omit5) ←换Q / Asus4 ←补根A ←换Q / Qmaj7b9(omit3,5)) |
 
 ## D-Q-F  `{2,3,5}`
 
@@ -1120,7 +1120,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Bb5(omit1) ←换E / Qsus2(omit5) ←换E / Zsus4(omit1) ←换E / Emaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Bb5 ←补根B ←换E / Qsus2(omit5) ←换E / Zsus4 ←补根Z ←换E / Emaj7b9(omit3,5)) |
 
 ## Q-E-X  `{3,4,6}`
 
@@ -1349,7 +1349,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Cb5(omit1) ←换F / Esus2(omit5) ←换F / Bsus4(omit1) ←换F / Fmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Cb5 ←补根C ←换F / Esus2(omit5) ←换F / Bsus4 ←补根B ←换F / Fmaj7b9(omit3,5)) |
 
 ## E-F-G  `{4,5,7}`
 
@@ -1520,7 +1520,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Pb5(omit1) ←换X / Fsus2(omit5) ←换X / Csus4(omit1) ←换X / Xmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Pb5 ←补根P ←换X / Fsus2(omit5) ←换X / Csus4 ←补根C ←换X / Xmaj7b9(omit3,5)) |
 
 ## F-X-Y  `{5,6,8}`
 
@@ -1641,7 +1641,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Db5(omit1) ←换G / Xsus2(omit5) ←换G / Psus4(omit1) ←换G / Gmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Db5 ←补根D ←换G / Xsus2(omit5) ←换G / Psus4 ←补根P ←换G / Gmaj7b9(omit3,5)) |
 
 ## X-G-A  `{6,7,9}`
 
@@ -1722,7 +1722,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Qb5(omit1) ←换Y / Gsus2(omit5) ←换Y / Dsus4(omit1) ←换Y / Ymaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Qb5 ←补根Q ←换Y / Gsus2(omit5) ←换Y / Dsus4 ←补根D ←换Y / Ymaj7b9(omit3,5)) |
 
 ## G-Y-Z  `{7,8,10}`
 
@@ -1771,7 +1771,7 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Eb5(omit1) ←换A / Ysus2(omit5) ←换A / Qsus4(omit1) ←换A / Amaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Eb5 ←补根E ←换A / Ysus2(omit5) ←换A / Qsus4 ←补根Q ←换A / Amaj7b9(omit3,5)) |
 
 ## Y-A-B  `{8,9,11}`
 
@@ -1795,4 +1795,4 @@
 
 | prime form | Forte | 名称 | 等距最近(全部 4 方案) |
 |---|---|---|---|
-| [0,1,2] | 3-1 | 半音簇 | 2 音(Fb5(omit1) ←换Z / Asus2(omit5) ←换Z / Esus4(omit1) ←换Z / Zmaj7b9(omit3,5)) |
+| [0,1,2] | 3-1 | 半音簇 | 2 音(Fb5 ←补根F ←换Z / Asus2(omit5) ←换Z / Esus4 ←补根E ←换Z / Zmaj7b9(omit3,5)) |

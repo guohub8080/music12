@@ -37,17 +37,18 @@ for (const ids of inputs) {
     const p = r[0]
     const nearStr = p.nearests && p.nearests.length
       ? p.nearests.map(n => {
-          // 用 Chord 类 transform 引擎生成完整记谱符号 + 补弹的键
+          // 用 Chord transform 引擎生成记谱符号;needRoot 方案不对根音做 setOmit(乐理不成立)
           try {
             const c = new Chord(n.root, n.chordFormulaId)
             const omitMatch = n.transformString.match(/omit([\d,]+)/)
             if (omitMatch) {
               for (const d of omitMatch[1].split(",")) c.setOmit(Number(d) as any)
             }
-            // scoreSymbol 含 omit 记法;extra 键(需要换的键)追加在后
+            const rootPart = n.transformString.includes("needRoot")
+              ? ` ←补根${NAMES[n.root]}` : ""
             const extraPart = n.transformString.includes("extra")
               ? ` ←换${n.transformString.match(/extra(\S+)/)?.[1] ?? ""}` : ""
-            return `${NAMES[n.root]}${c.scoreSymbol}${extraPart}`
+            return `${NAMES[n.root]}${c.scoreSymbol}${rootPart}${extraPart}`
           } catch { return `${n.chordFormulaId}@${NAMES[n.root]} ${n.transformString}` }
         }).join(" / ")
       : "太远,不给参考"
