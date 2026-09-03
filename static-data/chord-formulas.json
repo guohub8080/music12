@@ -194,7 +194,7 @@
   "maj7": {
     "chordFormulaId": "maj7",
     "cnName": "大七",
-    "scoreDisplay": "M7",
+    "scoreDisplay": "maj7",
     "intervalList": [["maj", 3], ["p", 5], ["maj", 7]],
     "tags": ["chord7", "maj7"],
     "degreeToIntervalMap": {
