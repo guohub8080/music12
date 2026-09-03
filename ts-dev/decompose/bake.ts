@@ -23,13 +23,13 @@ const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
 
 // ===== 加权 cost 函数(乐理依据:ts-dev/decompose/theory.md) =====
 
-/** 判断公式是否属七家族 */
+/** 判断公式是否真属七家族(只有 dom 开头的才是;maj7sus4 不是属七) */
 const isDom7Family = (formulaId: string): boolean =>
-  formulaId.startsWith("dom") || formulaId.includes("sus") && formulaId.includes("7")
+  formulaId.startsWith("dom")
 
-/** 判断公式是否大七/小七/半减七等非属七七和弦 */
-const isSeventhChord = (formulaId: string): boolean =>
-  /maj7|min7|dim7|halfdim|minmaj/.test(formulaId)
+/** 判断公式是否挂留类(sus2/sus4/含 sus)——挂留上没有三度,升降不构成 avoid note 冲突 */
+const isSusType = (formulaId: string): boolean =>
+  formulaId.includes("sus")
 
 /** 从公式 id 提取命名度数(最高数字)——如 "maj13" → 13,"dom9#11" → [9,11],"sus4" → [4] */
 const getNamedDegrees = (formulaId: string): number[] => {
@@ -54,11 +54,10 @@ export const omitCost = (degree: number, formulaId: string): number => {
 export const alterCost = (offset: number, formulaId: string): number => {
   if (offset === 0) return 0
   if (Math.abs(offset) >= 2) return Infinity    // 单次步长≥2:硬性排除(只允许±1半音)
-  if (isDom7Family(formulaId)) return 1         // 属七上的变化:合法张力
-  // 非属七:检查是否自然扩展
-  // ♯11 在 maj7 上是合法的(利底亚色彩)
-  // ♭13 在 m7b5 上是合法的(洛克里亚色彩)
-  return 3                                       // avoid note 冲突
+  if (isDom7Family(formulaId)) return 1         // 真属七上的变化:合法张力(dom 开头)
+  if (isSusType(formulaId)) return 1.5          // 挂留上的变化:无三度,不构成经典 avoid note 冲突,
+                                                // 但也不如属七上的变化常见(比 avoid note 轻,比属七重)
+  return 3                                       // 其他非属七:avoid note 冲突(有三度,升降会冲突)
 }
 
 /** add 的加权 cost(同 alter 逻辑) */
