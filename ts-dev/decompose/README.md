@@ -14,11 +14,12 @@ ts-dev/raw-static/chord-formulas.json5     ← 一切的起点:手编乐理源
         ▼
 static-data/chord-formulas.json            ← 88 个公式的标准 JSON(35KB)
         │
-        │  实例生成器:ts-dev/generateChordInstances.ts
-        │  · 每个公式 × 12 个根音 = 1056 个实例
-        │  · 每个实例含记谱层(notes:根音拼法变体 + 每键拼写)
+        │  基座生成器:ts-dev/decompose/gen-base.ts
+        │  · 读 chord-formulas.json(不依赖 src,自给自足)
+        │  · 88 公式 × 12 根 = 1056 个实例
+        │  · 含全部音集字段(pianoKeyIds/sorted/双映射/notesNum)
         ▼
-static-data/chord-instances.json           ← 1056 个实例(1.1MB,记谱层)
+ts-dev/decompose/base-instances.json       ← 烘焙管线的基座(634KB,含音集)
         │
         │  倒推引擎:ts-dev/decompose/engine.ts + bake.ts
         │  · 穷举 C(12,3) = 220 种三音组合
@@ -263,6 +264,8 @@ findByHash([0, 1, 2])   // C-P-D → [{ t:3, f:"maj7sus2", n:"(♭2 omit5)", c:1
 ts-dev/raw-static/chord-formulas.json5   ← 第 1 步:手编源(88 个公式)
 ts-dev/compileStaticData.ts              ← 第 2 步:编译器(json5 → json)
 ts-dev/generateChordInstances.ts         ← 第 3 步:实例生成器(1056 个)
+ts-dev/decompose/gen-base.ts             ← 第 3 步:基座生成器(1056 个,含音集,自给自足)
+ts-dev/decompose/base-instances.json      ← 第 3 步产物(烘焙管线的基座)
 ts-dev/decompose/engine.ts               ← 第 4 步:倒推引擎(搜索 + 变换)
 ts-dev/decompose/bake.ts                 ← 第 4 步:烘焙器(C(12,3) → 哈希表)
 ts-dev/decompose/hash3-report.ts         ← 第 5 步:报告生成器

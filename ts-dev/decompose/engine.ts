@@ -11,7 +11,9 @@
  *   - omit+add 若恰好是同度数的升降 → 合并为 ♯/♭(一个变换而非两个)
  *   - 排序: 变换数最少优先;平手取公式 id 字典序(确定性)
  */
-import ALL_CHORD_INSTANCE_META from "../../src/Chord/static/ALL_CHORD_INSTANCE_META"
+// 基座数据:ts-dev/decompose/base-instances.json(gen-base.ts 产出,含全部音集字段)
+// 不依赖 src 模块——烘焙管线自给自足
+import ALL_CHORD_INSTANCE_META from "./base-instances.json"
 import { isNil, isNotNil } from "es-toolkit/predicate"
 
 const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
