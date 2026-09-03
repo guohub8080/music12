@@ -63,6 +63,9 @@ export const alterCost = (offset: number, formulaId: string): number => {
 
 /** add 的加权 cost(同 alter 逻辑) */
 export const addCost = (degree: number, offset: number, formulaId: string): number => {
+  // sus 规定:挂留和弦没有三度(2/4 度替代了三度的位置)
+  // sus + add3 = 违反 sus 的定义——正确解释应该是 maj3add2 或 min3add2
+  if (degree === 3 && formulaId.includes("sus")) return Infinity
   if (offset === 0) return 0.5                   // 自然扩展(9/11/13)
   if (Math.abs(offset) >= 2) return 4
   if (isDom7Family(formulaId)) return 1

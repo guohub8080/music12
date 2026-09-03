@@ -116,14 +116,14 @@
 |---|---|---|---|---|
 | 1 | **Yadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **Y+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Ysus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Yb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Ymadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Y** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **Csus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
-| 8 | **Cm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
-| 9 | **Ym** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 10 | **C°** | (♭♭3 ♯♯5) | 8 | avoid note / 双变化 |
+| 3 | **Yb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Ymadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **Y** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **Csus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
+| 7 | **Cm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 8 | **Ym** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 9 | **C°** | (♭♭3 ♯♯5) | 8 | avoid note / 双变化 |
+| 10 | **Y°** | (♭♭5 ♯♯3) | 8 | avoid note / 双变化 |
 
 ## C-P-A  `{0,1,9}`
 
@@ -136,11 +136,11 @@
 | 3 | **A** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Aadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Amadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Asus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **A°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **C°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Aadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Cmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **A°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **C°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Aadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Cmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Amadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## C-P-Z  `{0,1,10}`
 
@@ -203,12 +203,12 @@
 | 2 | **Cadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **C+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **C** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Csus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Dmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Dø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Cmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Dm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Dsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Dmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Dø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Cmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Dm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Dsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Cm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## C-D-F  `{0,2,5}`
 
@@ -305,12 +305,12 @@
 | 2 | **Zadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **Z+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **Z** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Zsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Cmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Cø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Zmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Cm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Csus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Cmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Cø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Zmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Cm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Csus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Zm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## C-D-B  `{0,2,11}`
 
@@ -341,10 +341,10 @@
 | 4 | **C** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 5 | **Cadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 6 | **Cmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 7 | **Csus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 8 | **C°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 9 | **Q°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Cadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 7 | **C°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 8 | **Q°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Cadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Qmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
 
 ## C-Q-F  `{0,3,5}`
 
@@ -473,14 +473,14 @@
 |---|---|---|---|---|
 | 1 | **Cadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **C+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Csus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Cb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Cmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **C** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **E7sus2** | (♭♭7 ♭2 omit5) | 5 | avoid note / 双变化 |
-| 8 | **C°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 9 | **Esus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 10 | **E°7** | (♭7 ♭♭3 omit5) | 7 | avoid note / 双变化 |
+| 3 | **Cb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Cmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **C** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **E7sus2** | (♭♭7 ♭2 omit5) | 5 | avoid note / 双变化 |
+| 7 | **C°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 8 | **Esus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 9 | **E°7** | (♭7 ♭♭3 omit5) | 7 | avoid note / 双变化 |
+| 10 | **Cm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
 
 ## C-E-X  `{0,4,6}`
 
@@ -830,14 +830,14 @@
 |---|---|---|---|---|
 | 1 | **Gadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **G+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Gsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Gb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Gmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **G** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **G°** | (♭5 ♯3) | 6 | avoid note / 双变化 |
-| 8 | **Bsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
-| 9 | **Gm** | (♭♭5 ♯3) | 7 | avoid note / 双变化 |
-| 10 | **Bm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 3 | **Gb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Gmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **G** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **G°** | (♭5 ♯3) | 6 | avoid note / 双变化 |
+| 7 | **Bsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
+| 8 | **Gm** | (♭♭5 ♯3) | 7 | avoid note / 双变化 |
+| 9 | **Bm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 10 | **B°** | (♭♭3 ♯♯5) | 8 | avoid note / 双变化 |
 
 ## C-Y-A  `{0,8,9}`
 
@@ -866,12 +866,12 @@
 | 2 | **Yadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **Y+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **Y** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Ysus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Zmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Zø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Ymadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Zm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Zsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Zmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Zø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Ymadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Zm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Zsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Ym** | (♯3 omit5 add2) | 3.5 | avoid note / 双变化 |
 
 ## C-Y-B  `{0,8,11}`
 
@@ -1051,14 +1051,14 @@
 |---|---|---|---|---|
 | 1 | **Aadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **A+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Asus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Ab5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Amadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **A** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **A°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Psus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
-| 9 | **Pm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
-| 10 | **Am** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 3 | **Ab5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Amadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **A** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **A°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Psus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
+| 8 | **Pm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 9 | **Am** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 10 | **P°** | (♭♭3 ♯♯5) | 8 | avoid note / 双变化 |
 
 ## P-D-Z  `{1,2,10}`
 
@@ -1071,11 +1071,11 @@
 | 3 | **Z** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Zadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Zmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Zsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **Z°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **P°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Zadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Pmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **Z°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **P°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Zadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Pmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Zmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## P-D-B  `{1,2,11}`
 
@@ -1121,12 +1121,12 @@
 | 2 | **Padd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **P+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **P** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Psus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Qmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Qø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Pmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Qm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Qsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Qmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Qø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Pmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Qm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Qsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Pm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## P-Q-X  `{1,3,6}`
 
@@ -1223,12 +1223,12 @@
 | 2 | **Badd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **B+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **B** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Bsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Pmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Pø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Bmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Pm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Psus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Pmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Pø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Bmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Pm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Psus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Bm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## P-E-F  `{1,4,5}`
 
@@ -1242,10 +1242,10 @@
 | 4 | **P** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 5 | **Padd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 6 | **Pmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 7 | **Psus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 8 | **P°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 9 | **E°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Padd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 7 | **P°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 8 | **E°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Padd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Emadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
 
 ## P-E-X  `{1,4,6}`
 
@@ -1357,14 +1357,14 @@
 |---|---|---|---|---|
 | 1 | **Padd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **P+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Psus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Pb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Pmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **P** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **P°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Fsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 9 | **F°7** | (♭7 ♭♭3 omit5) | 7 | avoid note / 双变化 |
-| 10 | **Pm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 3 | **Pb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Pmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **P** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **P°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Fsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 8 | **F°7** | (♭7 ♭♭3 omit5) | 7 | avoid note / 双变化 |
+| 9 | **Pm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 10 | **Fm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
 
 ## P-F-G  `{1,5,7}`
 
@@ -1600,9 +1600,9 @@
 | 5 | **G** | (♭5) | 3 | avoid note / 双变化 |
 | 6 | **Gadd11** | (♯11 omit5) | 3 | avoid note / 双变化 |
 | 7 | **Bsus2** | (♯5) | 3 | avoid note / 双变化 |
-| 8 | **Gsus4** | (♯4 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 9 | **G+** | (♭♭5) | 4 | avoid note / 双变化 |
-| 10 | **B+** | (♭♭3) | 4 | avoid note / 双变化 |
+| 8 | **G+** | (♭♭5) | 4 | avoid note / 双变化 |
+| 9 | **B+** | (♭♭3) | 4 | avoid note / 双变化 |
+| 10 | **P7** | (♯♯3 omit5) | 4 | avoid note / 双变化 |
 
 ## P-Y-A  `{1,8,9}`
 
@@ -1682,12 +1682,12 @@
 | 2 | **Aadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **A+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **A** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Asus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Bmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Bø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Amadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Bm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Bsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Bmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Bø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Amadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Bm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Bsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **A°** | (♯3 omit5 add2) | 3.5 | avoid note / 双变化 |
 
 ## P-Z-B  `{1,10,11}`
 
@@ -1816,14 +1816,14 @@
 |---|---|---|---|---|
 | 1 | **Zadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **Z+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Zsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Zb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Zmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Z** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **D7sus2** | (♭2 ♭♭7 omit5) | 5 | avoid note / 双变化 |
-| 8 | **Z°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 9 | **Dsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
-| 10 | **Dm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 3 | **Zb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Zmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **Z** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **D7sus2** | (♭2 ♭♭7 omit5) | 5 | avoid note / 双变化 |
+| 7 | **Z°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 8 | **Dsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
+| 9 | **Dm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
+| 10 | **Zm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
 
 ## D-Q-B  `{2,3,11}`
 
@@ -1837,10 +1837,10 @@
 | 4 | **B** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 5 | **Badd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 6 | **Bmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 7 | **Bsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 8 | **B°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 9 | **D°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Badd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 7 | **B°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 8 | **D°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Badd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Dmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
 
 ## D-E-F  `{2,4,5}`
 
@@ -1869,12 +1869,12 @@
 | 2 | **Dadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **D+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **D** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Dsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Emaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Eø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Dmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Em7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Esus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Emaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Eø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Dmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Em7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Esus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Dm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## D-E-G  `{2,4,7}`
 
@@ -1972,11 +1972,11 @@
 | 3 | **D** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Dadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Dmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Dsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **D°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **F°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Dadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Fmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **D°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **F°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Dadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Fmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Dmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## D-F-G  `{2,5,7}`
 
@@ -2071,14 +2071,14 @@
 |---|---|---|---|---|
 | 1 | **Dadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **D+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Dsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Db5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Dmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **D** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **D°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Xsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 9 | **Dm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 10 | **Xm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 3 | **Db5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Dmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **D** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **D°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Xsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 8 | **Dm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 9 | **Xm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 10 | **X°** | (♯♯5 ♭♭3) | 8 | avoid note / 双变化 |
 
 ## D-X-Y  `{2,6,8}`
 
@@ -2428,14 +2428,14 @@
 |---|---|---|---|---|
 | 1 | **Badd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **B+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Bsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Bb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Bmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **B** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **Q7sus2** | (♭2 ♭♭7 omit5) | 5 | avoid note / 双变化 |
-| 8 | **B°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 9 | **Qsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
-| 10 | **Q°7** | (♭♭3 ♭7 omit5) | 7 | avoid note / 双变化 |
+| 3 | **Bb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Bmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **B** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **Q7sus2** | (♭2 ♭♭7 omit5) | 5 | avoid note / 双变化 |
+| 7 | **B°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 8 | **Qsus2** | (♭2 ♯5) | 6 | avoid note / 双变化 |
+| 9 | **Q°7** | (♭♭3 ♭7 omit5) | 7 | avoid note / 双变化 |
+| 10 | **Qm** | (♭♭3 ♯5) | 7 | avoid note / 双变化 |
 
 ## Q-F-X  `{3,5,6}`
 
@@ -2464,12 +2464,12 @@
 | 2 | **Qadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **Q+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **Q** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Qsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Fmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Fø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Qmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Fm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Fsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Fmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Fø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Qmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Fm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Fsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Qm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## Q-F-Y  `{3,5,8}`
 
@@ -2550,11 +2550,11 @@
 | 3 | **Q** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Qadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Qmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Qsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **Q°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **X°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Qadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Xmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **Q°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **X°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Qadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Xmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Qmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## Q-X-Y  `{3,6,8}`
 
@@ -2632,14 +2632,14 @@
 |---|---|---|---|---|
 | 1 | **Qadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **Q+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Qsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Qb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Qmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Q** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **Q°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Gsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 9 | **Qm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 10 | **Gm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 3 | **Qb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Qmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **Q** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **Q°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Gsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 8 | **Qm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 9 | **Gm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 10 | **G°** | (♯♯5 ♭♭3) | 8 | avoid note / 双变化 |
 
 ## Q-G-A  `{3,7,9}`
 
@@ -2923,12 +2923,12 @@
 | 2 | **Eadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **E+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **E** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Esus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Xmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Xø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Emadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Xm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Xsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Xmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Xø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Emadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Xm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Xsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Em** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## E-X-A  `{4,6,9}`
 
@@ -2992,11 +2992,11 @@
 | 3 | **E** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Eadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Emadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Esus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **E°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **G°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Eadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Gmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **E°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **G°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Eadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Gmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Emadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## E-G-A  `{4,7,9}`
 
@@ -3057,14 +3057,14 @@
 |---|---|---|---|---|
 | 1 | **Eadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **E+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Esus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Eb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Emadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **E** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **E°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Ysus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 9 | **Em** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 10 | **Ym** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 3 | **Eb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Emadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **E** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **E°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Ysus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 8 | **Em** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 9 | **Ym** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 10 | **Y°** | (♯♯5 ♭♭3) | 8 | avoid note / 双变化 |
 
 ## E-Y-Z  `{4,8,10}`
 
@@ -3263,12 +3263,12 @@
 | 2 | **Fadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **F+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **F** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Fsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Gmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Gø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Fmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Gm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Gsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Gmaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Gø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Fmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Gm7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Gsus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Fm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## F-G-Z  `{5,7,10}`
 
@@ -3315,11 +3315,11 @@
 | 3 | **F** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Fadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Fmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Fsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **F°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **Y°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Fadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Ymadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **F°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **Y°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Fadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Ymadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Fmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## F-Y-Z  `{5,8,10}`
 
@@ -3363,14 +3363,14 @@
 |---|---|---|---|---|
 | 1 | **Fadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **F+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Fsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Fb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Fmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **F** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **F°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
-| 8 | **Asus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 9 | **Fm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 10 | **Am** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 3 | **Fb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Fmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **F** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **F°** | (♯3 ♭5) | 6 | avoid note / 双变化 |
+| 7 | **Asus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 8 | **Fm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 9 | **Am** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 10 | **A°** | (♯♯5 ♭♭3) | 8 | avoid note / 双变化 |
 
 ## F-A-B  `{5,9,11}`
 
@@ -3501,12 +3501,12 @@
 | 2 | **Xadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **X+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **X** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Xsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Ymaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Yø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Xmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Ym7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Ysus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Ymaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Yø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Xmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Ym7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Ysus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Xm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## X-Y-B  `{6,8,11}`
 
@@ -3536,11 +3536,11 @@
 | 3 | **X** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Xadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Xmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Xsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **X°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **A°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Xadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Amadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **X°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **A°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Xadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Amadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Xmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## X-A-B  `{6,9,11}`
 
@@ -3567,14 +3567,14 @@
 |---|---|---|---|---|
 | 1 | **Xadd11** | (omit5) | 0 | 纯 omit(预期行为) |
 | 2 | **X+** | (omit5 add4) | 0.5 | 自然扩展(色彩音) |
-| 3 | **Xsus4** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 4 | **Xb5** | (♭5) | 3 | avoid note / 双变化 |
-| 5 | **Xmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 6 | **X** | (♭♭5) | 4 | avoid note / 双变化 |
-| 7 | **Zsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
-| 8 | **Xm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
-| 9 | **Zm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
-| 10 | **X°** | (♭♭5 ♯♯3) | 8 | avoid note / 双变化 |
+| 3 | **Xb5** | (♭5) | 3 | avoid note / 双变化 |
+| 4 | **Xmadd11** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 5 | **X** | (♭♭5) | 4 | avoid note / 双变化 |
+| 6 | **Zsus2** | (♯5 ♭2) | 6 | avoid note / 双变化 |
+| 7 | **Xm** | (♯3 ♭♭5) | 7 | avoid note / 双变化 |
+| 8 | **Zm** | (♯5 ♭♭3) | 7 | avoid note / 双变化 |
+| 9 | **X°** | (♭♭5 ♯♯3) | 8 | avoid note / 双变化 |
+| 10 | **Z°** | (♯♯5 ♭♭3) | 8 | avoid note / 双变化 |
 
 ## G-Y-A  `{7,8,9}`
 
@@ -3654,12 +3654,12 @@
 | 2 | **Gadd9** | (omit5) | 0 | 纯 omit(预期行为) |
 | 3 | **G+** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
 | 4 | **G** | (omit5 add2) | 0.5 | 自然扩展(色彩音) |
-| 5 | **Gsus2** | (omit5 add3) | 0.5 | 自然扩展(色彩音) |
-| 6 | **Amaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
-| 7 | **Aø** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 8 | **Gmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
-| 9 | **Am7** | (♭3 omit5) | 3 | avoid note / 双变化 |
-| 10 | **Asus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 5 | **Amaj7sus2** | (♭7 omit5) | 1 | 属七变化(张力) |
+| 6 | **Aø** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 7 | **Gmadd9** | (♯3 omit5) | 3 | avoid note / 双变化 |
+| 8 | **Am7** | (♭3 omit5) | 3 | avoid note / 双变化 |
+| 9 | **Asus2** | (omit5 add♯6) | 3 | avoid note / 双变化 |
+| 10 | **Gm** | (♭3 omit5 add3) | 3.5 | avoid note / 双变化 |
 
 ## G-Z-B  `{7,10,11}`
 
@@ -3672,11 +3672,11 @@
 | 3 | **G** | (omit5 add♯2) | 3 | avoid note / 双变化 |
 | 4 | **Gadd9** | (♯9 omit5) | 3 | avoid note / 双变化 |
 | 5 | **Gmadd11** | (♭11 omit5) | 3 | avoid note / 双变化 |
-| 6 | **Gsus2** | (♯2 omit5 add3) | 3.5 | avoid note / 双变化 |
-| 7 | **G°** | (♭♭5) | 4 | avoid note / 双变化 |
-| 8 | **Z°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
-| 9 | **Gadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
-| 10 | **Zmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 6 | **G°** | (♭♭5) | 4 | avoid note / 双变化 |
+| 7 | **Z°7** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 8 | **Gadd11** | (♭♭11 omit5) | 4 | avoid note / 双变化 |
+| 9 | **Zmadd6** | (♭♭3 omit5) | 4 | avoid note / 双变化 |
+| 10 | **Gmadd9** | (♯♯9 omit5) | 4 | avoid note / 双变化 |
 
 ## Y-A-Z  `{8,9,10}`
 
