@@ -79,3 +79,51 @@ addCost(degree, offset, formulaFamily): 同 alterCost
 - [PianoWithJonny – Chord Voicings Guide](https://pianowithjonny.com/piano-lessons/jazz-piano-chord-voicings-the-complete-guide/)
 - [Wikipedia – Extended chord](https://en.wikipedia.org/wiki/Extended_chord)
 - [Wikipedia – Upper structure](https://en.wikipedia.org/wiki/Upper_structure)
+
+---
+
+## 减七和弦的对称性与省略特性
+
+> 来源：Wikipedia "Diminished seventh chord"、Reddit r/musictheory、
+> Hoffman Academy、Milne Publishing《Fundamentals, Function, and Form》。
+> 发现于用户审核 hash3-report 时(2024-09-04)。
+
+### 核心事实
+
+dim7 = {0, 3, 6, 9} 是**完全对称**结构(四个音等距排列,每个间隔 3 个半音)。
+
+**省掉任何一个音,剩下的三个音永远构成某个根音上的减三和弦(dim3)。**
+
+```
+Cdim7 = C - E♭ - G♭ - A = {0, 3, 6, 9}
+
+省掉根音 C(0)   → {3, 6, 9} = E♭dim3 (E♭-G♭-A)
+省掉三度 E♭(3)  → {0, 6, 9} = Adim3   (A-C-E♭,等音 G♯dim3)
+省掉五度 G♭(6)  → {0, 3, 9} = Adim3   (A-C-E♭,重新排列)
+省掉七度 A(9)   → {0, 3, 6} = Cdim3   (C-E♭-G♭)
+```
+
+### 对引擎的启示
+
+当引擎给出 `dim7(omit5)` 时,**这不是真正的省略——是等和弦**。
+那个被「省掉」的减五度不是可有可无的纯五度,而是减和弦的身份音;
+但省掉它之后的结果不是「不完整的 dim7」,而是一个换了根音的**完整 dim3**。
+
+在 hash 表中,这两种解释同时出现(如 C-Q-X 键集同时命中 Cdim3 tier1 和 Qdim7(omit5) tier2)
+——这不是 bug,是对称性的必然结果。
+
+### dim7 的四重名字(补充)
+
+由于 dim7 的完全对称性,同一组键有四个合法的根音解释:
+```
+Cdim7 = E♭dim7 = G♭dim7 = Adim7 = {0, 3, 6, 9}
+```
+这导致 dim7 只有 3 个真正不同的移调(12 ÷ 4 = 3),与增三和弦(12 ÷ 3 = 4)同属对称家族。
+
+### 来源
+
+- [Wikipedia – Diminished seventh chord](https://en.wikipedia.org/wiki/Diminished_seventh_chord)
+- [Reddit r/musictheory – "If you remove any one of a diminished seventh's four notes..."](https://www.reddit.com/r/musictheory/comments/smlhgf/)
+- [Reddit r/musictheory – Omitting notes in dim7](https://www.reddit.com/r/musictheory/comments/oef7qq/)
+- [Milne Publishing – Fully-Diminished Seventh Chords](https://milnepublishing.geneseo.edu/fundamentals-function-form/chapter/20-fully-diminished-seventh-chords/)
+- [Hoffman Academy – Diminished Chords](https://www.hoffmanacademy.com/blog/diminished-chords-on-piano)
