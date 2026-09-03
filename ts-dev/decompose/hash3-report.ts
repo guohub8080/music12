@@ -43,36 +43,40 @@ for (const ids of inputs) {
     continue
   }
 
-  // 判定标签
-  const tag = best.isExact ? "✅ 完全匹配"
-    : best.c <= 0.5 ? "🔵 简单(省略/扩展)"
-    : best.c <= 1 ? "🟡 合理(属七变化/组合变换)"
-    : "🔴 复杂(avoid note/双变化)"
-  lines.push(`**最佳解释:${tag}**`)
-  lines.push("")
+  // 分组展示(按 tier 1-6)
+  const TIER_LABELS: Record<number, string> = {
+    1: "✅ 第一组:完全命中(零变换,你弹的就是这个和弦)",
+    2: "🔵 第二组:预期省略(省五度/去 avoid note——和弦本身不变)",
+    3: "🟢 第三组:自然扩展(加 9/11/13 色彩音或属七合法变化)",
+    4: "🟡 第四组:组合变换(多重省略+扩展,仍然合理)",
+    5: "🟠 第五组:边缘(涉及 avoid note,乐理上勉强)",
+    6: "🔴 第六组:极端(双变化/多重冲突——几乎不会这样解释)",
+  }
 
-  lines.push(`| # | 和弦 | 变换 | cost | 说明 |`)
-  lines.push(`|---|---|---|---|---|`)
+  // 按 tier 分组
+  const byTier: Map<number, typeof results> = new Map()
+  for (const r of results) {
+    const t = (r as any).t ?? 6
+    if (!byTier.has(t)) byTier.set(t, [])
+    byTier.get(t)!.push(r)
+  }
 
-  results.forEach((r, i) => {
-    // 用 Chord 类获取完整记谱符号
-    let fullSymbol = `${r.s}${r.f}`
-    try {
-      const c = new Chord(r.r, r.f)
-      fullSymbol = `${r.s}${c.scoreSymbol}`
-    } catch {}
+  for (const [tier, group] of [...byTier.entries()].sort((a, b) => a[0] - b[0])) {
+    lines.push(`### ${TIER_LABELS[tier] ?? `Tier ${tier}`}`)
+    lines.push("")
+    lines.push(`| 和弦 | 变换 | cost |`)
+    lines.push(`|---|---|---|`)
 
-    const notation = r.n || "—"
-    const note = r.isExact ? "零变换"
-      : r.c === 0 ? "纯 omit(预期行为)"
-      : r.c <= 0.5 ? "自然扩展(色彩音)"
-      : r.c <= 1 ? "属七变化(张力)"
-      : r.c <= 1.5 ? "组合变换(省略+扩展)"
-      : r.c < 3 ? "多重变换"
-      : "avoid note / 双变化"
-
-    lines.push(`| ${i + 1} | **${fullSymbol}** | ${notation} | ${r.c} | ${note} |`)
-  })
+    for (const r of group) {
+      let fullSymbol = `${r.s}${r.f}`
+      try {
+        const c = new Chord(r.r, r.f)
+        fullSymbol = `${r.s}${c.scoreSymbol}`
+      } catch {}
+      lines.push(`| **${fullSymbol}** | ${r.n || "—"} | ${r.c} |`)
+    }
+    lines.push("")
+  }
   lines.push("")
 }
 

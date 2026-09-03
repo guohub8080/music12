@@ -97,9 +97,18 @@ const bake = () => {
           return sum
         }, 0),
       }))
-      // 过滤掉含 Infinity(omit3/omit7)的方案
       .filter((r: any) => r.weightedCost < Infinity)
       .sort((a: any, b: any) => a.weightedCost - b.weightedCost || a.chordFormulaId.localeCompare(b.chordFormulaId))
+
+    // 分组:按 cost 与变换内容划入 6 个 tier(乐理依据 theory.md)
+    const tierOf = (cost: number, notation: string): number => {
+      if (cost === 0 && notation === "") return 1        // 完全命中:零变换
+      if (cost === 0) return 2                           // 预期省略:纯 omit5/omit11
+      if (cost <= 1) return 3                            // 自然扩展:add9/11/13 或属七变化
+      if (cost <= 2) return 4                            // 组合变换:多重省略+扩展
+      if (cost <= 3) return 5                            // 边缘:avoid note 单个出现
+      return 6                                           // 极端:双变化/多重 avoid note
+    }
 
     // 精简存储:只保留必要字段
     table[key] = weighted.slice(0, 10).map((r: any) => ({
@@ -108,6 +117,7 @@ const bake = () => {
       f: r.chordFormulaId,  // 公式 id
       n: r.notation,        // 变换记号
       c: r.weightedCost,    // 加权 cost
+      t: tierOf(r.weightedCost, r.notation),  // 分组 tier 1-6
     }))
     totalSolutions += table[key].length
   }
