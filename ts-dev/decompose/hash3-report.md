@@ -19,7 +19,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Cspset-chromatic_cluster** | — | 0 |
+| ✅1 | **C·半音簇** | — | 0 |
 | 🟡4 | **Pmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Pdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Psus2** | (♭2 omit5 add7) | 2 |
@@ -29,7 +29,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Cspset-phrygian** | — | 0 |
+| ✅1 | **C·Phrygian三音** | — | 0 |
 | 🔵2 | **Pmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Psus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Pdom7sus2** | (♯7 omit5) | 1 |
@@ -45,7 +45,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Aspset-split_third** | — | 0 |
+| ✅1 | **A·分叉三和弦** | — | 0 |
 | 🟢3 | **Amin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Aaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Amaj3** | (omit5 add♯2) | 3 |
@@ -56,7 +56,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Bspset-chromatic_cluster** | — | 0 |
+| ✅1 | **B·半音簇** | — | 0 |
 | 🟡4 | **Cmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Cdom7sus2** | (♭2 ♯7 omit5) | 2 |
 | 🟡4 | **Csus2** | (♭2 omit5 add7) | 2 |
@@ -81,7 +81,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Bspset-phrygian** | — | 0 |
+| ✅1 | **B·Phrygian三音** | — | 0 |
 | 🔵2 | **Cmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Csus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Cdom7sus2** | (♯7 omit5) | 1 |
@@ -97,7 +97,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Cspset-split_third** | — | 0 |
+| ✅1 | **C·分叉三和弦** | — | 0 |
 | 🟢3 | **Cmin3** | (omit5 add3) | 0.5 |
 | 🟡4 | **Qdom7sus2** | (♭7 ♭2 omit5) | 2 |
 | 🟠5 | **Caug3** | (omit5 add♯2) | 3 |
@@ -244,7 +244,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Yspset-split_third** | — | 0 |
+| ✅1 | **Y·分叉三和弦** | — | 0 |
 | 🟢3 | **Ymin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Yaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Ymaj3** | (omit5 add♯2) | 3 |
@@ -256,7 +256,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Aspset-phrygian** | — | 0 |
+| ✅1 | **A·Phrygian三音** | — | 0 |
 | 🔵2 | **Zmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Zsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Zdom7sus2** | (♯7 omit5) | 1 |
@@ -272,7 +272,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Zspset-chromatic_cluster** | — | 0 |
+| ✅1 | **Z·半音簇** | — | 0 |
 | 🟡4 | **Bmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Bdom7sus2** | (♭2 ♯7 omit5) | 2 |
 | 🟡4 | **Bsus2** | (♭2 omit5 add7) | 2 |
@@ -284,7 +284,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Pspset-chromatic_cluster** | — | 0 |
+| ✅1 | **P·半音簇** | — | 0 |
 | 🟡4 | **Dmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Ddom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Dsus2** | (♭2 omit5 add7) | 2 |
@@ -294,7 +294,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Pspset-phrygian** | — | 0 |
+| ✅1 | **P·Phrygian三音** | — | 0 |
 | 🔵2 | **Dmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Dsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Ddom7sus2** | (♯7 omit5) | 1 |
@@ -310,7 +310,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Zspset-split_third** | — | 0 |
+| ✅1 | **Z·分叉三和弦** | — | 0 |
 | 🟢3 | **Zmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Zaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Zmaj3** | (omit5 add♯2) | 3 |
@@ -336,7 +336,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Pspset-split_third** | — | 0 |
+| ✅1 | **P·分叉三和弦** | — | 0 |
 | 🟢3 | **Pmin3** | (omit5 add3) | 0.5 |
 | 🟡4 | **Edom7sus2** | (♭7 ♭2 omit5) | 2 |
 | 🟠5 | **Paug3** | (omit5 add♯2) | 3 |
@@ -483,7 +483,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Zspset-phrygian** | — | 0 |
+| ✅1 | **Z·Phrygian三音** | — | 0 |
 | 🔵2 | **Bmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Bsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Bdom7sus2** | (♯7 omit5) | 1 |
@@ -499,7 +499,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Dspset-chromatic_cluster** | — | 0 |
+| ✅1 | **D·半音簇** | — | 0 |
 | 🟡4 | **Qmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Qdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Qsus2** | (♭2 omit5 add7) | 2 |
@@ -509,7 +509,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Dspset-phrygian** | — | 0 |
+| ✅1 | **D·Phrygian三音** | — | 0 |
 | 🔵2 | **Qmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Qsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Qdom7sus2** | (♯7 omit5) | 1 |
@@ -525,7 +525,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Bspset-split_third** | — | 0 |
+| ✅1 | **B·分叉三和弦** | — | 0 |
 | 🟢3 | **Bmin3** | (omit5 add3) | 0.5 |
 | 🟡4 | **Ddom7sus2** | (♭2 ♭7 omit5) | 2 |
 | 🟠5 | **Baug3** | (omit5 add♯2) | 3 |
@@ -552,7 +552,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Dspset-split_third** | — | 0 |
+| ✅1 | **D·分叉三和弦** | — | 0 |
 | 🟢3 | **Dmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Daug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Dmaj3** | (omit5 add♯2) | 3 |
@@ -683,7 +683,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Qspset-chromatic_cluster** | — | 0 |
+| ✅1 | **Q·半音簇** | — | 0 |
 | 🟡4 | **Emaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Edom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Esus2** | (♭2 omit5 add7) | 2 |
@@ -693,7 +693,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Qspset-phrygian** | — | 0 |
+| ✅1 | **Q·Phrygian三音** | — | 0 |
 | 🔵2 | **Emaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Esus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Edom7sus2** | (♯7 omit5) | 1 |
@@ -724,7 +724,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Qspset-split_third** | — | 0 |
+| ✅1 | **Q·分叉三和弦** | — | 0 |
 | 🟢3 | **Qmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Qaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Qmaj3** | (omit5 add♯2) | 3 |
@@ -810,7 +810,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Espset-chromatic_cluster** | — | 0 |
+| ✅1 | **E·半音簇** | — | 0 |
 | 🟡4 | **Fmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Fdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Fsus2** | (♭2 omit5 add7) | 2 |
@@ -820,7 +820,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Espset-phrygian** | — | 0 |
+| ✅1 | **E·Phrygian三音** | — | 0 |
 | 🔵2 | **Fmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Fsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Fdom7sus2** | (♯7 omit5) | 1 |
@@ -836,7 +836,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Espset-split_third** | — | 0 |
+| ✅1 | **E·分叉三和弦** | — | 0 |
 | 🟢3 | **Emin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Eaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Emaj3** | (omit5 add♯2) | 3 |
@@ -892,7 +892,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Fspset-chromatic_cluster** | — | 0 |
+| ✅1 | **F·半音簇** | — | 0 |
 | 🟡4 | **Xmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Xdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Xsus2** | (♭2 omit5 add7) | 2 |
@@ -902,7 +902,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Fspset-phrygian** | — | 0 |
+| ✅1 | **F·Phrygian三音** | — | 0 |
 | 🔵2 | **Xmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Xsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Xdom7sus2** | (♯7 omit5) | 1 |
@@ -918,7 +918,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Fspset-split_third** | — | 0 |
+| ✅1 | **F·分叉三和弦** | — | 0 |
 | 🟢3 | **Fmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Faug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Fmaj3** | (omit5 add♯2) | 3 |
@@ -959,7 +959,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Xspset-chromatic_cluster** | — | 0 |
+| ✅1 | **X·半音簇** | — | 0 |
 | 🟡4 | **Gmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Gdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Gsus2** | (♭2 omit5 add7) | 2 |
@@ -969,7 +969,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Xspset-phrygian** | — | 0 |
+| ✅1 | **X·Phrygian三音** | — | 0 |
 | 🔵2 | **Gmaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Gsus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Gdom7sus2** | (♯7 omit5) | 1 |
@@ -985,7 +985,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Xspset-split_third** | — | 0 |
+| ✅1 | **X·分叉三和弦** | — | 0 |
 | 🟢3 | **Xmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Xaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Xmaj3** | (omit5 add♯2) | 3 |
@@ -996,7 +996,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Gspset-chromatic_cluster** | — | 0 |
+| ✅1 | **G·半音簇** | — | 0 |
 | 🟡4 | **Ymaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Ydom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Ysus2** | (♭2 omit5 add7) | 2 |
@@ -1006,7 +1006,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Gspset-phrygian** | — | 0 |
+| ✅1 | **G·Phrygian三音** | — | 0 |
 | 🔵2 | **Ymaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Ysus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Ydom7sus2** | (♯7 omit5) | 1 |
@@ -1022,7 +1022,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Gspset-split_third** | — | 0 |
+| ✅1 | **G·分叉三和弦** | — | 0 |
 | 🟢3 | **Gmin3** | (omit5 add3) | 0.5 |
 | 🟠5 | **Gaug3** | (omit5 add♯2) | 3 |
 | 🟠5 | **Gmaj3** | (omit5 add♯2) | 3 |
@@ -1033,7 +1033,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Yspset-chromatic_cluster** | — | 0 |
+| ✅1 | **Y·半音簇** | — | 0 |
 | 🟡4 | **Amaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Adom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Asus2** | (♭2 omit5 add7) | 2 |
@@ -1043,7 +1043,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Yspset-phrygian** | — | 0 |
+| ✅1 | **Y·Phrygian三音** | — | 0 |
 | 🔵2 | **Amaj7sus2** | (omit5) | 0 |
 | 🟢3 | **Asus2** | (omit5 add7) | 0.5 |
 | 🟢3 | **Adom7sus2** | (♯7 omit5) | 1 |
@@ -1059,7 +1059,7 @@
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| ✅1 | **Aspset-chromatic_cluster** | — | 0 |
+| ✅1 | **A·半音簇** | — | 0 |
 | 🟡4 | **Zmaj7sus2** | (♭2 omit5) | 1.5 |
 | 🟡4 | **Zdom7sus2** | (♯7 ♭2 omit5) | 2 |
 | 🟡4 | **Zsus2** | (♭2 omit5 add7) | 2 |

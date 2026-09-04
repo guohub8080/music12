@@ -66,7 +66,9 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     lines.push(`|---|---|---|---|`)
 
     for (const r of results) {
-      lines.push(`| ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${r.s}${r.f}** | ${r.n || "—"} | ${r.c} |`)
+      // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
+      const display = r.set ? `${r.s}·${r.cn}` : `${r.s}${r.f}`
+      lines.push(`| ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${display}** | ${r.n || "—"} | ${r.c} |`)
     }
     lines.push("")
   }
