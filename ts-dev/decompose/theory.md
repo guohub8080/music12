@@ -127,3 +127,43 @@ Cdim7 = E♭dim7 = G♭dim7 = Adim7 = {0, 3, 6, 9}
 - [Reddit r/musictheory – Omitting notes in dim7](https://www.reddit.com/r/musictheory/comments/oef7qq/)
 - [Milne Publishing – Fully-Diminished Seventh Chords](https://milnepublishing.geneseo.edu/fundamentals-function-form/chapter/20-fully-diminished-seventh-chords/)
 - [Hoffman Academy – Diminished Chords](https://www.hoffmanacademy.com/blog/diminished-chords-on-piano)
+
+---
+
+## 半音簇(Tone Cluster):非功能和声,不可用三度体系解释
+
+> 来源：Wikipedia "Tone cluster"、Kostka & Payne 教科书、
+> Reddit r/edmproduction / r/classicalmusic 共识。
+> 发现于用户审核 hash3-report 的 tier4 键集(2024-09-04)。
+
+### 定义
+
+三个或以上**相邻半音**同时发声 = 音簇(原型: C-D♭-D 或 C-C♯-D)。
+
+### 核心事实
+
+1. **非功能性(non-functional)**:音簇在传统和声体系中没有功能——
+   它的存在理由是**音色/色彩效果**,而非调性解决
+2. **二度堆叠(secundal)**:结构上是二度音程的堆叠,
+   与三度堆叠(tertian)的和弦体系属于不同世界
+3. **后调性理论的处理**:用集合论分析——pitch-class set [0,1,2] = Forte 3-1,
+   不用罗马数字和声分析
+4. **历史关联**:Henry Cowell 的钢琴音簇技法(用手掌/前臂按键),
+   以及 20 世纪现代音乐(Penderecki、Ligeti)的音块写法
+
+### 对引擎的启示
+
+tier4 中出现的半音簇键集(如 C-P-D = {0,1,2})的所有 chord 解释
+(如 `Pmaj7sus2(♭2 omit5)`)都是**强行用三度体系解释二度结构**——
+技术上凑得出,但乐理上没有意义。
+
+**审核结论:半音簇的 12 个移调应该全部判定为 set(pcset),不是 chord。**
+
+### 来源
+
+- [Wikipedia – Tone cluster](https://en.wikipedia.org/wiki/Tone_cluster)
+- [Kostka & Payne – Tonal Harmony](https://dokumen.pub/tonal-harmony-9nbsped-9781266276750-1266276750-9781264094752.html)
+- [Reddit r/edmproduction – 共识:non-functional](https://www.reddit.com/r/edmproduction/comments/898ha8/)
+- [Reddit r/classicalmusic – 三相邻半音讨论](https://www.reddit.com/r/classicalmusic/comments/126r9u0/)
+- [The Jazz Piano Site – Secundal Harmony](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chord-voicings/tone-clusters-secundal-harmony/)
+- [Chromatone – Tone clusters](https://chromatone.center/theory/chords/clusters/)
