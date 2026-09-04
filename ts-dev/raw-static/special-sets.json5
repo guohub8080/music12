@@ -49,5 +49,19 @@
     "scoreDisplay": "♭2·2",
     "offsets": [1, 2],
     "tags": ["cluster", "secundal", "non-functional"]
+  },
+
+  // Phrygian 特征组 · root + 1半音(♭2) + 3半音(♭3) · 弗拉门戈/变化属的核心音响
+  // 安达卢西亚终止式的灵魂(E-F-G over E pedal);7♭9 和弦中 ♭9+♭3 张力的三音浓缩
+  // Forte 3-2(音程向量 <111000>);中东 hicaz tetrachord 的三音子集
+  // 引擎的 chord 解释(Pmaj7sus2 omit5)技术上成立但丢失音乐身份
+  // 来源:Ian Ring Scale Database / Flamenco Explained / Open Music Theory
+  // 审核:用户 2024-09-04
+  "spset-phrygian": {
+    "cnName": "Phrygian 特征组",
+    "name": "Phrygian Trichord",
+    "scoreDisplay": "♭2·♭3",
+    "offsets": [1, 3],
+    "tags": ["modal", "phrygian", "flamenco", "altered-dominant"]
   }
 }
