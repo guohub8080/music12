@@ -58,7 +58,7 @@
   // 来源:Ian Ring Scale Database / Flamenco Explained / Open Music Theory
   // 审核:用户 2024-09-04
   "spset-phrygian": {
-    "cnName": "Phrygian 特征组",
+    "cnName": "Phrygian三音",
     "name": "Phrygian Trichord",
     "scoreDisplay": "♭2·♭3",
     "offsets": [1, 3],
