@@ -104,6 +104,15 @@ const bake = () => {
   const table: Record<string, any[]> = {}
   const filteredSidecar: Record<string, any[]> = {}
   const RULES = loadBakeRules(resolve(ROOT, "static-data"))
+
+  // verdicts 键自检:统一按 prime form 索引。手写成 C 根形态等非规范键
+  // 自动归位并警告(否则永远匹配不到任何键集,裁决静默失效)
+  const VERDICTS: Record<string, any> = {}
+  for (const [vk, v] of Object.entries(RULES.verdicts)) {
+    const pf = primeForm(vk.split(",").map(Number))
+    if (pf !== vk) console.warn(`⚠ verdicts 键 "${vk}" 不是 prime form,已按 "${pf}" 归位(请修正 bake-rules.json5)`)
+    VERDICTS[pf] = v
+  }
   let totalSolutions = 0
   let setHits = 0
   let verdictHits = 0
@@ -200,7 +209,7 @@ const bake = () => {
 
     // ── 第三层 verdicts:人工裁决,prime form 为键(移调自动对称)──
     const pf = primeForm(ids)
-    const verdict = RULES.verdicts[pf]
+    const verdict = VERDICTS[pf]
     if (isNotNil(verdict)) {
       const anchored = isNil(verdict.anchor)
         ? void 0
