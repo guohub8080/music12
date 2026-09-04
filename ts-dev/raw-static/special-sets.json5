@@ -32,5 +32,18 @@
     "name": "Split Third",
     "offsets": [0, 3, 4],
     "tags": ["blues", "non-tertian", "added-tone"]
+  },
+
+  // 半音簇 · root + 1半音 + 2半音 · 三个相邻半音同时发声
+  // 非功能和声(secundal),存在理由是音色/色彩效果而非调性解决
+  // Henry Cowell 钢琴音簇技法;20 世纪现代音乐(Penderecki/Ligeti)的音块写法
+  // Forte 3-1;审核结论:不可用三度体系解释,12 个移调全部为 set
+  // 来源:Wikipedia "Tone cluster" / Kostka & Payne / Reddit 共识
+  // 审核:用户 2024-09-04
+  "spset-chromatic_cluster": {
+    "cnName": "半音簇",
+    "name": "Chromatic Cluster",
+    "offsets": [0, 1, 2],
+    "tags": ["cluster", "secundal", "non-functional"]
   }
 }
