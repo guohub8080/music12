@@ -85,6 +85,14 @@ const SPECIAL_SETS: Array<{ setId: string; cnName: string; name: string; scoreDi
   }))
 })()
 
+// 公式 scoreDisplay 查找表(chord 条目的 sd 字段从这里取)
+const FORMULA_DISPLAY: Record<string, string> = (() => {
+  const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "chord-formulas.json"), "utf-8"))
+  const m: Record<string, string> = {}
+  for (const [id, f] of Object.entries(raw)) m[id] = (f as any).scoreDisplay ?? ""
+  return m
+})()
+
 const bake = () => {
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], 3)
   const table: Record<string, any[]> = {}
@@ -157,10 +165,12 @@ const bake = () => {
     }
 
     // 精简存储:set 命中排最前(完全命中),chord 方案按 tier 排后
+    // sd(scoreDisplay):chord 条目从公式表取,set 条目从 special-sets 取——字段名统一
     const chordEntries = weighted.slice(0, 10).map((r: any) => ({
       r: r.root,
       s: SYMBOLS[r.root],
       f: r.chordFormulaId,
+      sd: FORMULA_DISPLAY[r.chordFormulaId] ?? "",
       n: r.notation,
       c: r.weightedCost,
       t: tierOf(r.weightedCost, r.notation),
