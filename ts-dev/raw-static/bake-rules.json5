@@ -91,5 +91,25 @@
       ],
       "filterRest": true,
     },
+
+    // 半音簇形(Forte 3-1):C-P-D / P-D-Q / ... 共 12 个移调
+    //
+    // set(半音簇)为主解释不变;额外保留 maj7sus2(♭2 omit5)(cost=1.5,
+    // 被滤条目中最低)——与 Phrygian 形一脉相承:maj7sus2 减五度子集
+    // 天然覆盖小二度空间,♭2(3→2) 是 sus 上的合法单变化(tier4),
+    // 作为半音簇在记谱体系内的平行读法保留供参考。
+    // 其余(cost≥2 的 dom7sus2 双变化等)仍过滤。
+    //
+    // 审核:用户 2026-09-04
+    "0,1,2": {
+      "date": "2026-09-04",
+      "comment": "半音簇为主解释(非功能,音色效果);maj7sus2(♭2 omit5) 为 cost 最低的 sus 系平行读法,保留供记谱参考",
+      "anchor": "spset-chromatic_cluster",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7sus2", "rootShift": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
