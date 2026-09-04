@@ -10,11 +10,13 @@
 ```
 第一步:机器穷举(220 组 × 1056 基座,穷尽一切可能的解释)
           ↓
-第二步:人工审核(翻阅穷举报告,逐组判断)
-  ├── 「这组确实是一个和弦的省略/变化」→ 保留 chord 解释
-  └── 「这组硬解释成和弦很牵强,它有自己的音响身份」→ 升格为命名 set(pcset)
+第二步:人工审核(翻阅穷举报告,逐组判断,产物写进两个 json5)
+  ├── 「这组硬解释成和弦很牵强,它有自己的音响身份」
+  │     → 升格为命名 set:raw-static/special-sets.json5
+  └── 「这组该保留哪些解释、什么顺序」
+        → 模式化的写规则 / 个案的写裁决:raw-static/bake-rules.json5
           ↓
-第三步:烘焙(人工判断固化进哈希表,运行时 O(1) 查询)
+第三步:烘焙(机器结果 + 人工规则,经三层保留管线固化进哈希表,运行时 O(1) 查询)
 ```
 
 **穷举报告不是最终产品,是给人类做审核的工具。**
@@ -23,7 +25,8 @@
 
 **最终判定权不在 cost 函数手里,在人类手里。**
 cost 函数只是候选提案者,人类是裁决者。
-穷举报告就是给裁决者用的「案卷」。
+穷举报告就是给裁决者用的「案卷」——报告里每条都标注来源
+(✋ 人工裁决 / ⚙ 类型化规则 / 🗑 被过滤),被滤掉的条目灰显可见,裁决可追溯。
 
 典型案例:C-E♭-E(根音+小三度+大三度)
 - 引擎说:min3(omit5 add3) cost=0.5——技术上成立
@@ -53,8 +56,9 @@ ts-dev/decompose/base-instances.json       ← 烘焙管线的基座(634KB,含�
         │  · 穷举 C(12,3) = 220 种三音组合
         │  · 每种组合在 1056 个基座中穷尽搜索
         │  · 硬性排除 + 加权 cost → tier 分组
+        │  · 三层保留管线(policy/rules/verdicts,定义在 bake-rules.json5)
         ▼
-static-data/chord-hash-3.json              ← 预计算查询表(111KB)
+static-data/chord-hash-3.json              ← 预计算查询表(120KB)
         │
         │  报告生成:ts-dev/decompose/hash3-report.ts
         ▼
@@ -255,16 +259,62 @@ tier 5 🟠 边缘:    cost≤3(涉及 avoid note,乐理上勉强)
 tier 6 🔴 极端:    cost>3(多重冲突——几乎不会这样解释)
 ```
 
+### 保留管线(三层,定义在 bake-rules.json5)
+
+倒推+cost+tier 是**机器提案**;哪些提案最终进哈希表,由三层保留管线决定。
+规则的正式定义在 `ts-dev/raw-static/bake-rules.json5`(数据,不是文档),
+bake.ts 逐层执行:
+
+```
+机器产物:全量条目池(set 条目 + 全部 chord 解释,带 tier)
+   ↓ 第一层 policy     机械截断:maxEntries / tierCeiling(最后执行)
+   ↓ 第二层 rules      类型化规则:when/then 声明式过滤,管 99% 的模式化噪音
+   ↓ 第三层 verdicts   人工裁决:prime form 为键,逐键集钦定保留(优先级最高)
+   → 固化:chord-hash-3.json(verdict 条目带 src:"v" 标记)
+   → 审核 sidecar:filtered-3.json(被过滤条目清单,报告灰显)
+```
+
+| 层 | 谁决定 | 管什么 | 改动生效方式 |
+|---|---|---|---|
+| policy | 通用参数 | 每键集条数上限、tier 上限 | 改 json5 → 重跑 bake |
+| rules | 模式化判断 | 如 set-exclusive:set 命中时 chord 只留 cost=0 平行解释 | 改一处全表生效 |
+| verdicts | 人工逐例 | 规则覆盖不了的争议/顺序钦定 | 改一处,12 个移调全生效 |
+
+**verdicts 的键是 prime form(移调规范形)**——`ts-dev/decompose/keyset.ts` 提供:
+键集内每个音轮流当起点 0,取数值字典序最小的形态(不做倒影等价,大小三和弦必须区分)。
+如 {0,2,11}(C-D-B)的 prime form 是 "0,1,3"(Forte 3-2,Phrygian 三音形),
+人工裁决写一次,自动对称作用于全部 12 个移调——与 special-sets 用 offsets 的精神一致。
+
+verdict 条目结构(以 Phrygian 形为例):
+```json5
+"0,1,3": {
+  "anchor": "spset-phrygian",          // 锚点 set:在该键集上唯一确定根音
+  "keep": [
+    { "type": "anchor" },              // 锚点 set 条目本身
+    { "type": "chord", "formula": "maj7sus2", "rootShift": 1 },  // 根音=锚点根音+1
+  ],
+  "filterRest": true,                  // 未列入 keep 的全部过滤
+}
+```
+锚点根音 + rootShift 表达「相对偏移」,保证移调后匹配依然精确
+(C-D-B 上是 Cmaj7sus2,D-E-C# 上自动变成 Dmaj7sus2)。
+
+**人工审核工作流**:看 hash3-report.md(标注+灰显)→ 判断 → 改
+`bake-rules.json5`(或 special-sets.json5)→ `pnpm gen:static-data` → 重跑 bake + report。
+keep 条目匹配不到时 bake 会警告(人工数据过期的信号,不静默)。
+
 ---
 
 ## 第 5 步:生成 tier 分组报告
 
 **命令**: `npx tsx ts-dev/decompose/hash3-report.ts`
 
-**输出**: `ts-dev/hash3-report.md`
+**输出**: `ts-dev/decompose/hash3-report.md`
 
 - 按 tier 1→6 分大区(Tier 1 的键集在最前面)
 - 区内每个键集一张表(tier 列 + 公式 id + 变换记号 + cost)
+- 来源标注:✋ = 人工裁决钦定(附审核注释)/ ⚙ = 该组被类型化规则处理
+- 被保留管线过滤的条目灰显(读 filtered-3.json sidecar)——审核的依据
 - 顶部统计表(各 tier 键集数)
 
 ---
@@ -275,7 +325,7 @@ tier 6 🔴 极端:    cost>3(多重冲突——几乎不会这样解释)
 import { findByHash } from "music12/find"
 
 findByHash([0, 4, 7])   // C-E-G → [{ t:1, f:"maj3", n:"", c:0 }]
-findByHash([0, 1, 2])   // C-P-D → [{ t:3, f:"maj7sus2", n:"(♭2 omit5)", c:1 }]
+findByHash([0, 1, 2])   // C-P-D → [{ t:1, f:"spset-chromatic_cluster", set:true, cn:"半音簇" }]
 ```
 
 一次 O(1) 哈希查找,返回按 tier 排序的全部解释。
@@ -290,19 +340,25 @@ findByHash([0, 1, 2])   // C-P-D → [{ t:3, f:"maj7sus2", n:"(♭2 omit5)", c:1
 
 ```
 ts-dev/raw-static/chord-formulas.json5   ← 第 1 步:手编源(88 个公式)
+ts-dev/raw-static/special-sets.json5     ← 第 1 步:人工审核的 set 定义(分叉三和弦等)
+ts-dev/raw-static/bake-rules.json5       ← 第 1 步:保留管线规则定义(policy/rules/verdicts)
 ts-dev/compileStaticData.ts              ← 第 2 步:编译器(json5 → json)
 ts-dev/generateChordInstances.ts         ← 第 3 步:实例生成器(1056 个)
 ts-dev/decompose/gen-base.ts             ← 第 3 步:基座生成器(1056 个,含音集,自给自足)
 ts-dev/decompose/base-instances.json      ← 第 3 步产物(烘焙管线的基座)
 ts-dev/decompose/engine.ts               ← 第 4 步:倒推引擎(搜索 + 变换)
-ts-dev/decompose/bake.ts                 ← 第 4 步:烘焙器(C(12,3) → 哈希表)
-ts-dev/decompose/hash3-report.ts         ← 第 5 步:报告生成器
+ts-dev/decompose/keyset.ts               ← 第 4 步:键集工具(prime form 移调规范形)
+ts-dev/decompose/bake.ts                 ← 第 4 步:烘焙器(C(12,3) + 三层保留管线 → 哈希表)
+ts-dev/decompose/hash3-report.ts         ← 第 5 步:报告生成器(来源标注 + 灰显过滤)
+ts-dev/decompose/filtered-3.json          ← 第 4 步 sidecar(被过滤条目,审核用)
 ts-dev/decompose/theory.md               ← 乐理依据(cost/tier 规则)
 ts-dev/decompose/README.md               ← 本文件(管线文档)
 static-data/chord-formulas.json          ← 第 2 步产物
+static-data/special-sets.json            ← 第 2 步产物
+static-data/bake-rules.json              ← 第 2 步产物
 static-data/chord-instances.json         ← 第 3 步产物
 static-data/chord-hash-3.json            ← 第 4 步产物(运行时查这个)
-ts-dev/hash3-report.md                   ← 第 5 步产物(人类可读)
+ts-dev/decompose/hash3-report.md         ← 第 5 步产物(人类可读)
 ```
 
 ## 下一步(待做)

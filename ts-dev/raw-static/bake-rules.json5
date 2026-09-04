@@ -1,0 +1,95 @@
+/**
+ * bake-rules — 烘焙保留规则的正式定义(人工可改的唯一源头)
+ *
+ * 在此之前,「哈希表里保留哪些条目」的规则散落在 bake.ts 代码与
+ * theory.md/README.md 的文字描述里,没有真正可审计的定义。
+ * 本文件把保留逻辑数据化为三层管线,bake.ts 逐层执行:
+ *
+ *   ┌─ 机器 ─────────────────────────────────────────────────┐
+ *   │ 穷举 C(12,n) → 倒推引擎 → 加权 cost → tier 分组          │
+ *   └──────────────────────┬────────────────────────────────┘
+ *                          ▼
+ *   第一层 policy     通用策略:每键集最多几条、tier 上限(机械截断)
+ *   第二层 rules      类型化规则:声明式 when/then,机器自动套用
+ *   第三层 verdicts   人工裁决:逐键集钦定保留,优先级最高
+ *                          ▼
+ *   固化 → static-data/chord-hash-*.json + 报告标注来源
+ *
+ * 三层与人机协作的关系:
+ *   - rules 管 99% 的情况(模式化噪音过滤),改一处全表生效
+ *   - verdicts 管机器模式覆盖不了的特殊判断(乐理争议/顺序钦定),
+ *     是人工审核 hash3-report.md 之后的正式产物
+ *   - verdicts 的键是移调规范形(prime form),如 "0,1,3" ——
+ *     人工审核一次,自动对称作用于全部 12 个移调
+ *
+ * ── 字段说明 ─────────────────────────────────────────────
+ * policy.maxEntries   每键集最多保留条数(截断,顺序在截断前已定)
+ * policy.tierCeiling  tier 上限,超过的条目不进哈希表(查询走 pcset 降级)
+ *
+ * rules[].id          规则 id(报告引用;bake.ts 按字段直读,非 DSL 解释器)
+ * rules[].enabled     开关(false = 保留定义但不生效,留作历史)
+ * rules[].when        触发条件(目前支持 hasSetHit:该键集有 set 完全命中)
+ * rules[].then        动作(目前支持 filterChords.costMax:
+ *                      过滤加权 cost 超过该值的 chord 条目)
+ *
+ * verdicts[key]       key = prime form(移调规范形),工具函数 keyset.ts
+ * verdicts[key].anchor    锚点 set id(spset-xxx):在该键集上唯一确定根音,
+ *                          keep 里的 chord 根音以锚点根音为基准
+ * verdicts[key].keep[]    人工钦定保留列表:顺序即最终顺序
+ *   { type: "anchor" }                          锚点 set 条目本身
+ *   { type: "chord", formula, rootShift }       公式 + 根音偏移
+ *                                                (根音 = 锚点根音 + rootShift)
+ * verdicts[key].filterRest  true = 未列入 keep 的全部过滤
+ *                           false = keep 置顶,其余按机器顺序殿后
+ *
+ * 运行:改本文件 → pnpm gen:static-data → npx tsx ts-dev/decompose/bake.ts
+ * 匹配不到的 keep 条目会在 bake 时警告(人工数据过期的信号,不静默)。
+ */
+{
+  // ── 第一层:通用策略(机械截断)──────────────────────────────
+  "policy": {
+    // 三音空间条目密度不高,10 条足够;tier 上限 6 = 全保留(占位,收紧时改这里)
+    "maxEntries": 10,
+    "tierCeiling": 6,
+  },
+
+  // ── 第二层:类型化规则(机器自动套用)────────────────────────
+  "rules": [
+    {
+      // set 独占规则:set 完全命中时,chord 只保留 cost=0 的平行解释
+      //
+      // 乐理依据(theory.md):当键集被人工审核认定为独立 set(如 Phrygian 三音),
+      // 该键集已有「最强解释」——set 本身。cost=0 的 chord 解释(如 Phrygian ≡
+      // maj7sus2 减五度子集)是数学恒等,保留供记谱参考;cost>0 的 chord 解释
+      // 是为了凑数而扭曲的弱解释,在强解释面前是噪音。
+      //
+      // 审定:用户 2026-09-04(C-D-B 案例:保留 B·Phrygian + Cmaj7sus2(omit5),
+      // 过滤 sus2(omit5 add7) 及以下的 tier3+ 解释)
+      "id": "set-exclusive",
+      "enabled": true,
+      "when": { "hasSetHit": true },
+      "then": { "filterChords": { "costMax": 0 } },
+    },
+  ],
+
+  // ── 第三层:人工裁决(优先级最高)────────────────────────────
+  "verdicts": {
+    // Phrygian 三音形(Forte 3-2):C-D-B / C#-D-E / ... 共 12 个移调
+    //
+    // 本形已由 set-exclusive 规则覆盖(set + maj7sus2(omit5) 平行解释),
+    // 此处显式钦定为示范条目:固化讨论结论 + 锁定顺序(set 在前,平行解释在后),
+    // 并留下审核痕迹。规则覆盖不了的争议键集,才真正需要 verdict 出场。
+    //
+    // 审核:用户 2026-09-04
+    "0,1,3": {
+      "date": "2026-09-04",
+      "comment": "Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考",
+      "anchor": "spset-phrygian",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7sus2", "rootShift": 1 },
+      ],
+      "filterRest": true,
+    },
+  },
+}

@@ -3,19 +3,28 @@
  * 三音哈希表烘焙器
  *
  * 遍历 C(12,3)=220 种三音组合,对每个键集运行倒推引擎,
- * 按加权 cost 排序后烘焙为 JSON 查询表。
+ * 经「三层保留管线」过滤后烘焙为 JSON 查询表。
+ *
+ * 保留管线(规则定义在 ts-dev/raw-static/bake-rules.json5,正式数据非文档):
+ *   机器   穷举 → 倒推 → 加权 cost → tier 分组
+ *   policy 通用策略:maxEntries / tierCeiling(机械截断,最后执行)
+ *   rules  类型化规则:when/then 声明式过滤(如 set-exclusive,管 99% 的情况)
+ *   verdicts 人工裁决:prime form 为键,人工钦定保留(优先级最高,
+ *           一处裁决自动对称作用于全部 12 个移调)
  *
  * 产出: static-data/chord-hash-3.json
  *   键 = 排序键集 join(","),如 "0,1,6"
- *   值 = 按加权 cost 排序的分解方案数组
+ *   值 = 保留管线过滤后的分解方案数组(人工钦定条目带 src:"v" 标记)
  *
  * 运行: npx tsx ts-dev/decompose/bake.ts
+ *   (前置: pnpm gen:static-data 编译 bake-rules.json5)
  */
 import { writeFileSync, readFileSync } from "fs"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
-import { isNil } from "es-toolkit/predicate"
+import { isNil, isNotNil } from "es-toolkit/predicate"
 import { decompose } from "./engine"
+import { combo, primeForm, loadBakeRules } from "./keyset"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
@@ -73,9 +82,6 @@ export const addCost = (degree: number, offset: number, formulaId: string): numb
 
 // ===== 主流程:烘焙 =====
 
-const combo = (arr: number[], k: number): number[][] =>
-  k === 0 ? [[]] : arr.flatMap((x, i) => combo(arr.slice(i + 1), k - 1).map(c => [x, ...c]))
-
 // ===== 特殊 set 加载(special-sets.json5 编译产物) =====
 // 人工审核后命名的非 tertian 音集;set 命中 = 与 chord tier1 完全命中同级的「set 完全命中」
 const SPECIAL_SETS: Array<{ setId: string; cnName: string; name: string; scoreDisplay: string; offsets: number[] }> = (() => {
@@ -96,8 +102,11 @@ const FORMULA_DISPLAY: Record<string, string> = (() => {
 const bake = () => {
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], 3)
   const table: Record<string, any[]> = {}
+  const filteredSidecar: Record<string, any[]> = {}
+  const RULES = loadBakeRules(resolve(ROOT, "static-data"))
   let totalSolutions = 0
   let setHits = 0
+  let verdictHits = 0
 
   for (const ids of inputs) {
     const key = ids.join(",")
@@ -164,9 +173,9 @@ const bake = () => {
       return 6                                           // 极端:双变化/多重 avoid note
     }
 
-    // 精简存储:set 命中排最前(完全命中),chord 方案按 tier 排后
+    // ── 机器产物:全量条目池(截断推迟到 policy 层)──
     // sd(scoreDisplay):chord 条目从公式表取,set 条目从 special-sets 取——字段名统一
-    const chordEntries = weighted.slice(0, 10).map((r: any) => ({
+    const chordEntries = weighted.map((r: any) => ({
       r: r.root,
       s: SYMBOLS[r.root],
       f: r.chordFormulaId,
@@ -175,15 +184,72 @@ const bake = () => {
       c: r.weightedCost,
       t: tierOf(r.weightedCost, r.notation),
     }))
-    // set 条目在前的条件:该键集被人工审核为 set → set 完全命中替代 chord 解释的第一名
-    // 但 chord 解释仍保留在后面(供参考)
-    table[key] = [...setEntries, ...chordEntries]
-    totalSolutions += table[key].length
+    let entries: any[] = [...setEntries, ...chordEntries]
+    const hasSetHit = setEntries.length > 0
+
+    // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
+    for (const rule of RULES.rules) {
+      if (!rule.enabled) continue
+      if (rule.when?.hasSetHit === true && !hasSetHit) continue
+      const filter = rule.then?.filterChords
+      if (isNotNil(filter) && isNotNil(filter.costMax)) {
+        // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
+        entries = entries.filter(e => e.set || e.c <= filter.costMax)
+      }
+    }
+
+    // ── 第三层 verdicts:人工裁决,prime form 为键(移调自动对称)──
+    const pf = primeForm(ids)
+    const verdict = RULES.verdicts[pf]
+    if (isNotNil(verdict)) {
+      const anchored = isNil(verdict.anchor)
+        ? void 0
+        : setEntries.find(e => e.f === verdict.anchor)
+      if (isNil(anchored) && isNotNil(verdict.anchor)) {
+        console.warn(`⚠ verdict "${pf}"(${key}):锚点 ${verdict.anchor} 未在该键集命中`)
+      }
+      const kept: any[] = []
+      for (const k of verdict.keep) {
+        if (k.type === "anchor") {
+          if (isNotNil(anchored)) kept.push({ ...anchored, src: "v" })
+        } else if (k.type === "chord") {
+          const root = isNil(anchored) ? -1 : (anchored.r + (k.rootShift ?? 0)) % 12
+          const hit = chordEntries.find(e => e.f === k.formula && e.r === root)
+          if (isNotNil(hit)) kept.push({ ...hit, src: "v" })
+          else console.warn(`⚠ verdict "${pf}"(${key}):keep ${k.formula} 未匹配(人工数据过期?)`)
+        }
+      }
+      // filterRest=true → 只留人工钦定;false → 钦定置顶,其余按机器顺序殿后(去重)
+      entries = verdict.filterRest
+        ? kept
+        : [...kept, ...entries.filter(e => !kept.some(k2 => k2.set === e.set && k2.f === e.f && k2.r === e.r))]
+      verdictHits++
+    }
+
+    // ── 第一层 policy:机械截断(最后执行)──
+    entries = entries
+      .filter(e => e.t <= RULES.policy.tierCeiling)
+      .slice(0, RULES.policy.maxEntries)
+
+    table[key] = entries
+    totalSolutions += entries.length
+
+    // 审核用 sidecar:记录被 rules/verdict/policy 过滤掉的条目
+    // (人工审核 hash3-report 时需要看到「滤掉了什么」才能判断规则对错)
+    const machineAll = [...setEntries, ...chordEntries]
+    filteredSidecar[key] = machineAll.filter(
+      e => !entries.some(k => k.set === e.set && k.f === e.f && k.r === e.r),
+    )
   }
 
   const outPath = resolve(ROOT, "static-data", "chord-hash-3.json")
   writeFileSync(outPath, JSON.stringify(table, null, 2) + "\n", "utf-8")
-  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中)`)
+  // sidecar 写进 ts-dev(进 git,审核痕迹;非 static-data 产物)
+  const sidecarPath = resolve(ROOT, "ts-dev/decompose", "filtered-3.json")
+  writeFileSync(sidecarPath, JSON.stringify(filteredSidecar, null, 2) + "\n", "utf-8")
+  const filteredTotal = Object.values(filteredSidecar).reduce((s, v) => s + v.length, 0)
+  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中,${verdictHits} 个键集被人工裁决覆盖)`)
+  console.log(`被保留管线过滤(审核 sidecar):${filteredTotal} 条 → ${sidecarPath}`)
   console.log(`输出:${outPath}`)
   console.log(`文件大小:${(JSON.stringify(table).length / 1024).toFixed(1)}KB`)
 }
