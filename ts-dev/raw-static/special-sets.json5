@@ -9,17 +9,19 @@
  * 用半音数定义最干净:根音 + [半音偏移量],无歧义、无记谱争议。
  *
  * ── 定义规则 ─────────────────────────────────────────────
- * 每条 set 用半音偏移量定义,相对于根音(偏移 0):
- *   "offsets": [0, 3, 4]  = 根音 + 3半音(小三度) + 4半音(大三度)
+ * offsets 只写根音之外的半音偏移量(不含 0,根音由引擎自动补):
+ *   "offsets": [3, 4]  = 根音 + 3半音(小三度) + 4半音(大三度)
+ * 与 chord 的 intervalList 不含根音一致。
  *
- * 生成实例时:for root in 0..11: 键集 = offsets.map(o => (root + o) % 12)
+ * 生成实例时:for root in 0..11: 键集 = [root, ...offsets.map(o => (root + o) % 12)]
  *
  * ── 字段说明 ─────────────────────────────────────────────
- * setId    唯一标识(小写下划线),即对象的键
- * cnName   中文名
- * name     英文名
- * offsets  半音偏移量数组(含 0,升序)——原子的,一切的起点
- * tags     检索标签
+ * setId         唯一标识(spset- 前缀),即对象的键
+ * cnName        中文名
+ * name          英文名
+ * scoreDisplay  记谱符号(度数体系,非和弦符号——set 不是和弦,不用和弦记法)
+ * offsets       半音偏移量数组(不含 0,升序)——原子的,一切的起点
+ * tags          检索标签
  */
 {
   // 分叉三和弦 · root + 3半音 + 4半音 · 布鲁斯「蓝调三度」的和声化表达
@@ -30,7 +32,8 @@
   "spset-split_third": {
     "cnName": "分叉三和弦",
     "name": "Split Third",
-    "offsets": [0, 3, 4],
+    "scoreDisplay": "♭3·3",
+    "offsets": [3, 4],
     "tags": ["blues", "non-tertian", "added-tone"]
   },
 
@@ -43,7 +46,8 @@
   "spset-chromatic_cluster": {
     "cnName": "半音簇",
     "name": "Chromatic Cluster",
-    "offsets": [0, 1, 2],
+    "scoreDisplay": "♭2·2",
+    "offsets": [1, 2],
     "tags": ["cluster", "secundal", "non-functional"]
   }
 }
