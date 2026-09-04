@@ -56,7 +56,8 @@ lines.push(`# 三音哈希表完整报告(C(12,3) = ${inputs.length})`)
 lines.push("")
 lines.push(`> 按 tier 分大区:Tier 1(完全命中)在最前 → Tier 6(极端)在最后。`)
 lines.push(`> tier 语义:1=零变换 / 2=纯省略 / 3=自然扩展 / 4=组合变换 / 5=avoid note / 6=双变化`)
-lines.push(`> 来源标注:✋ = 人工裁决钦定(bake-rules.verdicts) / ⚙ = 类型化规则 / 🗑 = 被保留管线过滤(灰显)`)
+lines.push(`> 来源标注:✋ = 人工裁决钦定(bake-rules.verdicts) / ⚙ = 类型化规则`)
+lines.push(`> 🗑 每组下方完整列出被保留管线过滤的条目(tier/变换/cost)——想捞回某条就改 bake-rules.json5`)
 lines.push(`> 审核流:看完报告 → 改 ts-dev/raw-static/bake-rules.json5 → 重新 bake`)
 lines.push(`> 生成:\`npx tsx ts-dev/decompose/hash3-report.ts\``)
 lines.push("")
@@ -103,16 +104,19 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       const handMark = r.src === "v" ? " ✋" : ""
       lines.push(`| ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${display}**${handMark} | ${r.n || "—"} | ${r.c} |`)
     }
-    // 被过滤条目灰显(审核依据:确认该滤的才进 bake-rules)
+    // 被过滤条目完整列表(审核参考:判断哪条该捞回 → 改 bake-rules.json5)
+    // 与主表同列格式,机器 cost 升序——审核时主表/过滤表上下对照
     const dropped = FILTERED[ids.join(",")] ?? []
     if (dropped.length > 0) {
-      const items = dropped
-        .map(e => (e.set ? `${e.s}·${e.cn}` : `${e.s}${e.f}${e.n ? `(${e.n.replace(/[()]/g, "")})` : ""}`))
-        .slice(0, 6)
-        .join(" / ")
-      const more = dropped.length > 6 ? ` …等 ${dropped.length} 条` : ""
-      lines.push(``)
-      lines.push(`> 🗑 已过滤(保留管线):~~${items}${more}~~`)
+      lines.push("")
+      lines.push(`🗑 已过滤 ${dropped.length} 条(未进哈希表):`)
+      lines.push("")
+      lines.push(`| tier | 和弦 | 变换 | cost |`)
+      lines.push(`|---|---|---|---|`)
+      for (const e of dropped) {
+        const display = e.set ? `${e.s}·${e.cn}` : `${e.s}${e.f}`
+        lines.push(`| ${TIER_EMOJI[e.t] ?? "🔴"}${e.t} | ~~${display}~~ | ${e.n || "—"} | ${e.c} |`)
+      }
     }
     lines.push("")
   }
