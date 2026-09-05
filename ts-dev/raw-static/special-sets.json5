@@ -62,7 +62,7 @@
   // 来源:Ian Ring Scale Database / Flamenco Explained / Open Music Theory
   // 审核:用户 2024-09-04
   "spset-phrygian": {
-    "cnName": "Phrygian三音",
+    "cnName": "Phrygian特征前三音",
     "name": "Phrygian Trichord",
     "scoreDisplay": { "2": -1, "3": -1 },
     "offsets": [1, 3],
@@ -78,7 +78,7 @@
   // 来源:Open Music Theory set class 表 / Hijaz-Freygish 音阶文献 / Bartók-Schoenberg 014 集合
   // 审核:用户 2026-09-05(「C 是根音 Hijaz 对,P 是根音 minmaj7 也对,同时保留」)
   "spset-hijaz": {
-    "cnName": "Hijaz三音",
+    "cnName": "Hijaz特征前三音",
     "name": "Hijaz Trichord",
     "scoreDisplay": { "2": -1, "3": 0 },
     "offsets": [1, 4],
@@ -95,7 +95,7 @@
   // 来源:Music Theory Online(Jack Boss)/ Cambridge 勋伯格研究 / Forte 名录
   // 审核:用户 2026-09-05
   "spset-viennese": {
-    "cnName": "Viennese三音",
+    "cnName": "Viennese特征前三音",
     "name": "Viennese Trichord",
     "scoreDisplay": { "2": -1, "5": -1 },
     "offsets": [1, 6],
@@ -112,10 +112,36 @@
   // 双根音用法:set 根 = 半音对低音(摩擦挂身),maj7 壳根 = 半音对高音
   // 审核:用户 2026-09-05(命名功能化:突出「Phrygian+挂留」的调式功能)
   "spset-phrygian_sus": {
-    "cnName": "Phrygian挂留三音",
+    "cnName": "Phrygian挂留前三音",
     "name": "Phrygian Suspended Trichord",
     "scoreDisplay": { "2": -1, "4": 0 },
     "offsets": [1, 5],
     "tags": ["phrygian", "sus", "altered-dominant", "flamenco"]
+  },
+
+  // 四度碎片 · root + 2半音(♮2) + 5半音(纯四) · C-D-F 型(Forte 3-7 正形)
+  // 「set 根=二度对低音」规律推广:min7 壳形的 set 视角——
+  // 全音对(C-D)低音 C 领 set 身份(♮2+♮4,大调 1-2-4 挂留声响),
+  // 高音 D 领 chord 身份(min7(omit5) 壳)。全自然音级,无 ♭2 基因。
+  // 审核:用户 2026-09-05
+  "spset-fourth_fragment": {
+    "cnName": "四度碎片",
+    "name": "Fourth Fragment",
+    "scoreDisplay": { "2": 0, "4": 0 },
+    "offsets": [2, 5],
+    "tags": ["quartal", "sus", "diatonic"]
+  },
+
+  // 全音叠三全音 · root + 2半音(♮2) + 6半音(♭5) · F♯-G♯-C 型(Forte 3-8 正形)
+  // 「set 根=二度对低音」规律推广:dom7 壳形的 set 视角——
+  // 全音对低音领 set 身份(♮2+♭5),高音领 chord 身份(dom7(omit5) 壳)。
+  // 与 maj3b5({0,2,8} 倒影形)分领 3-8 一类。无 ♭2 基因(♮2 对)。
+  // 审核:用户 2026-09-05
+  "spset-tone_tritone": {
+    "cnName": "全音叠三全音",
+    "name": "Tone-Tritone",
+    "scoreDisplay": { "2": 0, "5": -1 },
+    "offsets": [2, 6],
+    "tags": ["tritone", "dominant", "symmetrical"]
   }
 }

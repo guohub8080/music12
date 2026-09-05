@@ -222,11 +222,20 @@
     // 纯省略零扭曲;tier3+ 挂尾全滤。无锚模式:根音 = 起点 + 2。
     //
     // 审核:用户 2026-09-05
+    // 全音叠三全音形(dom7 壳形):F♯-G♯-C / ... 共 12 个移调(prime form 0,2,6,Forte 3-8 正形)
+    //
+    // 双根音双保留(「set 根=二度对低音」规律推广,用户 2026-09-05 确认):
+    //   set 根 = 全音对低音:X·全音叠三全音(♮2+♭5)
+    //   dom7 壳根 = 全音对高音:Ydom7(omit5)(cost=0,guide tones 壳)
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双保留)
     "0,2,6": {
       "date": "2026-09-05",
-      "comment": "dom7(omit5) 为唯一解释(硬规则):guide tones 三音壳零扭曲,挂尾全滤",
+      "comment": "全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留",
+      "anchor": "spset-tone_tritone",
       "keep": [
-        { "type": "chord", "formula": "dom7", "rootRel": 2 },
+        { "type": "anchor" },
+        { "type": "chord", "formula": "dom7", "rootShift": 2 },
       ],
       "filterRest": true,
     },
@@ -297,11 +306,21 @@
     // 无锚模式:min7 根音 = 起点 + 2。
     //
     // 审核:用户 2026-09-05
+    // 四度碎片形(min7 壳形):C-D-F / ... 共 12 个移调(prime form 0,2,5,Forte 3-7 正形)
+    //
+    // 双根音双保留(「set 根=二度对低音」规律推广,用户 2026-09-05 确认):
+    //   set 根 = 全音对低音:C·四度碎片(♮2+♮4,大调 1-2-4)
+    //   min7 壳根 = 全音对高音:Dmin7(omit5)(cost=0,guide tones 壳)
+    // ★类 3-7 正形半边就此收官(倒影半边 {0,2,9} 为 min3add11 壳单解释)。
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双保留)
     "0,2,5": {
       "date": "2026-09-05",
-      "comment": "min7(omit5) 为唯一解释(硬规则):小七 guide tones 壳(与 dom7 壳同构),挂尾全滤;★类 3-7 收官",
+      "comment": "四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留",
+      "anchor": "spset-fourth_fragment",
       "keep": [
-        { "type": "chord", "formula": "min7", "rootRel": 2 },
+        { "type": "anchor" },
+        { "type": "chord", "formula": "min7", "rootShift": 2 },
       ],
       "filterRest": true,
     },
