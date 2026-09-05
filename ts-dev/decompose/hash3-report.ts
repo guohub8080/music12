@@ -29,6 +29,16 @@ const FILTERED: Record<string, any[]> = (() => {
   }
 })()
 
+// ===== scoreDisplay 原子渲染:{"2":-1,"4":0} → "♭2·4" =====
+// 变化量 -1=♭ +1=♯ ±2=重升重降;0=还原,自然音省略符号直接写度数(爵士记谱习惯)。
+// 同度多音({"3":[-1,0]})扁平化后 · 连接 → "♭3·3"。
+const renderSd = (sd: Record<string, number | number[]>): string =>
+  Object.entries(sd)
+    .flatMap(([deg, alt]) => (Array.isArray(alt) ? alt : [alt]).map(a =>
+      a === -1 ? `♭${deg}` : a === 1 ? `♯${deg}` : a === -2 ? `♭♭${deg}` : a === 2 ? `♯♯${deg}` : deg,
+    ))
+    .join("·")
+
 // ===== 计算全部结果 =====
 const sections: Array<{ ids: number[]; results: any[]; bestTier: number }> = []
 for (const ids of inputs) {
@@ -106,8 +116,10 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     for (const r of results) {
       // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
       const display = r.set ? `${r.s}·${r.cn}` : `${r.s}${r.f}`
+      // set 条目的变换列显示度数音记谱(sd 原子渲染,如 ♭2·4);chord 条目显示变换记号
+      const trans = r.set ? renderSd(r.sd) : defaultTo(r.n, "—")
       const handMark = r.src === "v" ? " ✋" : ""
-      lines.push(`| ${defaultTo(TIER_EMOJI[r.t], "🔴")}${r.t} | **${display}**${handMark} | ${defaultTo(r.n, "—")} | ${r.c} |`)
+      lines.push(`| ${defaultTo(TIER_EMOJI[r.t], "🔴")}${r.t} | **${display}**${handMark} | ${trans} | ${r.c} |`)
     }
     // 被过滤条目完整列表(审核参考:判断哪条该捞回 → 改 bake-rules.json5)
     // 与主表同列格式,机器 cost 升序——审核时主表/过滤表上下对照
