@@ -283,5 +283,24 @@
       ],
       "filterRest": true,
     },
+
+    // 四度碎片正形(Forte 3-7 正半边,★类最后一形):F♯-G♯-B / C-D-F / ...
+    // 共 12 个移调(prime form 0,2,5;与倒影半边 {0,2,9} 互为倒影——
+    // 倒影半边已裁 min3add11(omit5),本形收编 min7 壳,★类就此收官)
+    //
+    // 硬规则:只保留 min7(omit5)。输入 = 小七的三音壳
+    // (root+m3+b7,guide tones 齐全,与 \"0,2,6\" 形的 dom7(omit5) 壳
+    // 同构——一个是小七壳一个是属七壳);其余挂尾全滤。
+    // 无锚模式:min7 根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,5": {
+      "date": "2026-09-05",
+      "comment": "min7(omit5) 为唯一解释(硬规则):小七 guide tones 壳(与 dom7 壳同构),挂尾全滤;★类 3-7 收官",
+      "keep": [
+        { "type": "chord", "formula": "min7", "rootRel": 2 },
+      ],
+      "filterRest": true,
+    },
   },
 }
