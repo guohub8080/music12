@@ -247,5 +247,23 @@
       ],
       "filterRest": true,
     },
+
+    // 四度碎片倒影形(Forte 3-7 的另一半):F-A♭-B♭ / ... 共 12 个移调
+    // (prime form 0,2,9;与 {0,2,5} 形互为倒影,同 3-7 类分裂,
+    // 如同 hijaz/split_third 之于 3-3)
+    //
+    // 硬规则:只保留 min3add11(omit5)。F-A♭-B♭ = 小三 + 纯四
+    // (min11 省五度三音壳,也是 F 小五声的特征碎片);其余挂尾全滤。
+    // 无锚模式:min3add11 根音 = 起点 + 9。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,9": {
+      "date": "2026-09-05",
+      "comment": "min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "min3add11", "rootRel": 9 },
+      ],
+      "filterRest": true,
+    },
   },
 }
