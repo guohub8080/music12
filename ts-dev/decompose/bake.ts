@@ -53,6 +53,10 @@ export const omitCost = (degree: number, formulaId: string): number => {
   // 命名度数不可省(省掉 = 名不副实,退化为更简单和弦——那个更简单和弦已独立存在)
   // 如 maj13 omit13 → 退化为 maj7/9/11(已在列表);dom9 omit9 → 退化为 dom7
   if (getNamedDegrees(formulaId).includes(degree)) return Infinity
+  // 变音度数不可省:aug/dim 前缀编码的身份度数与命名数字同罪
+  // (数字提取抓不到文字前缀:augmaj7 的 ♯5 省掉即退化成 maj7(omit5)——后者已在列表)
+  const itv = FORMULA_DEGREE_INTERVAL[formulaId]?.[String(degree)]
+  if (itv === "aug" || itv === "dim") return Infinity
   if (degree === 5) return 0                    // 纯五度:不定义性质,预期可省
   if (degree === 11) return 0                   // avoid note 冲突,省掉是预期
   if ([9, 13].includes(degree)) return 0.5      // 扩展音:色彩音(但不是命名度数时才算)
@@ -97,6 +101,16 @@ const FORMULA_DISPLAY: Record<string, string> = (() => {
   const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "chord-formulas.json"), "utf-8"))
   const m: Record<string, string> = {}
   for (const [id, f] of Object.entries(raw)) m[id] = (f as any).scoreDisplay ?? ""
+  return m
+})()
+
+// 公式度数性质查找表(id → degree → interval type)
+// 「变音度数不可省」的判据:aug/dim 前缀编码的身份度数(augmaj7 的 ♯5、
+// halfdim7/dim7 的 ♭5、dom7#11 的 ♯11)——与命名数字度数同罪
+const FORMULA_DEGREE_INTERVAL: Record<string, Record<string, string>> = (() => {
+  const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "chord-formulas.json"), "utf-8"))
+  const m: Record<string, Record<string, string>> = {}
+  for (const [id, f] of Object.entries(raw)) m[id] = (f as any).degreeToIntervalMap
   return m
 })()
 

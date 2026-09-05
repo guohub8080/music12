@@ -15,6 +15,8 @@
 | omit11（有三度时） | **0** | 11 度与 3 度形成半音冲突（avoid note），省掉是预期行为 |
 | omit9 / omit13 | **0.5** | 扩展音本就是色彩音，省掉减少色彩但不改变身份 |
 | omit3 / omit7 | **排除** | guide tones 定义和弦身份（大/小、属/大七），不可省 |
+| omit 命名数字度数 | **排除** | id 里的数字是命名音：maj13 omit13、dom9 omit9 名不副实，退化的简单和弦已独立存在 |
+| omit 变音度数（aug/dim） | **排除** | 文字前缀编码的身份度数：augmaj7 的 ♯5、halfdim7/dim7 的 ♭5、dom7#11 的 ♯11——省掉即名不副实（augmaj7(omit5) 实为 maj7(omit5)，后者已独立存在）。数字提取抓不到文字前缀，判据用 degreeToIntervalMap 的 interval type ∈ {aug, dim}。审定：用户 2026-09-05（C-P-F {0,1,5} 案例：Pmaj7(omit5) 对、Paugmaj7(omit5) 假解释） |
 
 ### 2. 变化（♯/♭）的简单度——取决于和弦性质
 
