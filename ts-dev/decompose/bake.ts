@@ -13,7 +13,8 @@
  *           一处裁决自动对称作用于全部 12 个移调)
  *
  * 产出: static-data/chord-hash-3.json
- *   键 = 排序键集 join(","),如 "0,1,6"
+ *   键 = 键集的 pianoKeySymbol 串,按字母序排列({0,2,11} → "BCD"),
+ *       与 src/Find/.../findByHash.ts 的 hashKey 构造契约一致
  *   值 = 保留管线过滤后的分解方案数组(人工钦定条目带 src:"v" 标记)
  *
  * 运行: npx tsx ts-dev/decompose/bake.ts
@@ -134,7 +135,9 @@ const bake = () => {
   let verdictHits = 0
 
   for (const ids of inputs) {
-    const key = ids.join(",")
+    // 键 = pianoKeySymbol 串,按字母序排列({0,2,11} → [C,D,B] → "BCD")——
+    // 跨语言规范形(字典序),与 src findByHash.hashKey 的构造契约一致
+    const key = ids.map(i => SYMBOLS[i]).sort().join("")
     const inputSet = new Set(ids)
 
     // ── set 完全命中:匹配 special-sets 的 offsets ──
@@ -274,7 +277,7 @@ const bake = () => {
     // 审核用 sidecar:记录被 rules/verdict/policy 过滤掉的条目
     // (人工审核 hash3-report 时需要看到「滤掉了什么」才能判断规则对错)
     const machineAll = [...setEntries, ...chordEntries]
-    filteredSidecar[key] = machineAll.filter(
+    filteredSidecar[ids.map(i => SYMBOLS[i]).sort().join("")] = machineAll.filter(
       e => !entries.some(k => k.set === e.set && k.f === e.f && k.r === e.r),
     )
   }

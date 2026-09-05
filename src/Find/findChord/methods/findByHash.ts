@@ -1,39 +1,48 @@
 import chordHash3 from "@static-data/chord-hash-3.json"
+import { isNil } from "es-toolkit/predicate"
+import { PianoKey } from "@pianokey"
 
 /**
  * 三音哈希查找器
  *
  * 从预烘焙的 chord-hash-3.json(C(12,3)=220 全量)直接查找,
  * 替代 L0 哈希桶 + L1 省略音扫描 + pcset 降级的三层管线——
- * 一次 O(1) 查找返回全部解释,按加权 cost 排序(奥卡姆剃刀)。
+ * 一次 O(1) 查找返回全部解释,按优先级排序(奥卡姆剃刀)。
  *
- * 数据结构(烘焙时预计算):
- *   键 = 排序键集 join(","),如 "0,4,7"
- *   值 = 按加权 cost 升序的方案数组,每条 {r:根音, s:symbol, f:公式, n:变换记号, c:cost}
+ * 数据结构(烘焙时预计算,契约与 ts-dev/decompose/bake.ts 一致):
+ *   键 = 键集的 pianoKeySymbol 串,**按字母序排列**(跨语言规范形),
+ *       如 {0,2,11} → 符号 [C,D,B] → 字母序 → "BCD"
+ *   值 = 优先级排序的方案数组,每条 {r,s,f,sd,n,c,t};
+ *        set 条目额外带 {set:true, cn:中文名};人工裁决条目额外带 {src:"v"}
  *
- * cost 语义(乐理依据:ts-dev/decompose/theory.md):
- *   0   = 完全匹配(零变换)或纯 omit5/omit11(预期行为)
- *   0.5 = 自然扩展(add9/11/13)
- *   1   = 属七上的合法变化(♭9/♯9/♯11/♭13)
- *   3   = avoid note 冲突(非属七上的变化)
- *   4   = 双变化(♯♯/♭♭)
+ * 键构造三步(消费端与烘焙端完全一致,缺一不可):
+ *   去重 → 数字排序 → 符号映射(PianoKey.SYMBOLS) → 字母排序 → join("")
  */
-
 export type I_HashEntry = {
   /** 根音 pianoKeyId (0-11) */
   r: number
   /** 根音 symbol(C P D Q E F X G Y A Z B) */
   s: string
-  /** 和弦公式 id */
+  /** 和弦公式 id 或 set id(spset- 前缀) */
   f: string
-  /** 变换记号,如 "(♭2 omit5)";空串 = 完全匹配 */
+  /** 记谱原子:chord 条目为公式 scoreDisplay 字符串;set 条目为 {度数: 变化量|变化量[]} */
+  sd: string | Record<string, number | number[]>
+  /** 变换记号,如 "(omit5)";空串 = 完全匹配 */
   n: string
   /** 加权 cost(越低越合理) */
   c: number
+  /** tier(1 完全命中 … 6 极端) */
+  t: number
+  /** 仅 set 条目:是否为 special-set 命中 */
+  set?: boolean
+  /** 仅 set 条目:中文名(如 "Phrygian特征前三音") */
+  cn?: string
+  /** 仅人工裁决条目:"v" = verdicts 钦定(可追溯) */
+  src?: string
 }
 
 export type I_HashResult = I_HashEntry & {
-  /** 完整和弦名:根音 symbol + 公式 scoreSymbol(运行时从 Chord 类取) */
+  /** 完整和弦名:根音 symbol + 公式 id(set 条目为 根音·中文名) */
   chordName: string
   /** 是否为完全匹配(cost=0 且无变换) */
   isExact: boolean
@@ -41,29 +50,33 @@ export type I_HashResult = I_HashEntry & {
 
 const HASH_TABLE = chordHash3 as Record<string, I_HashEntry[]>
 
+/** 键集 → 字母序符号键(与 bake.ts 的烘焙键构造一致) */
+const hashKey = (ids: number[]): string =>
+  [...new Set(ids)]
+    .sort((a, b) => a - b)
+    .map(i => PianoKey.SYMBOLS[i])
+    .sort()
+    .join("")
+
 /**
- * 从三音哈希表查找:一次 O(1)
+ * 从三音哈希表查找:一次 O(1)。输入顺序无关(内部去重排序)
  *
- * @param sortedIds 排序去重的 pianoKeyId 数组(0-11),长度必须为 3
- * @returns 按加权 cost 排序的全部方案;键集不存在返回空数组
+ * @param ids pianoKeyId 数组(0-11),去重后长度必须为 3
+ * @returns 按优先级排序的全部方案;键集不存在返回空数组
  *
  * @example
- * findByHash([0, 4, 7])
- * // → [{ r:0, s:"C", f:"maj3", n:"", c:0, chordName:"Cmaj3", isExact:true }, ...]
- *
- * findByHash([0, 1, 2])  // C-P-D 半音簇
- * // → [{ r:1, s:"P", f:"maj7sus2", n:"(♭2 omit5)", c:1, ... }, ...]
+ * findByHash([0, 4, 7])   // C-E-G → [{ r:0, s:"C", f:"maj3", n:"", c:0, isExact:true }]
+ * findByHash([2, 11, 0])  // 乱序输入,同 [0,2,11] → B·Phrygian特征前三音 + Cmaj7sus2(omit5)
  */
-export const findByHash = (sortedIds: number[]): I_HashResult[] => {
-  if (sortedIds.length !== 3) return []
-  const entries = HASH_TABLE[sortedIds.join(",")]
-  if (!entries) return []
+export const findByHash = (ids: number[]): I_HashResult[] => {
+  const entries = HASH_TABLE[hashKey(ids)]
+  if (isNil(entries)) return []
 
   return entries.map(e => ({
     ...e,
-    // chordName 延迟计算:调用方需要时才从 Chord 类取 scoreSymbol
-    // 这里先给简化版(根音+公式id),完整版由消费端用 new Chord(r, f).scoreSymbol 获取
-    chordName: `${e.s}${e.f}`,
+    // chordName 延迟计算:set 条目给 根音·中文名,chord 条目给 根音+公式id;
+    // 完整记谱版由消费端用 new Chord(r, f).scoreSymbol 或渲染 sd 原子获取
+    chordName: e.set === true ? `${e.s}·${e.cn}` : `${e.s}${e.f}`,
     isExact: e.c === 0 && e.n === "",
   }))
 }

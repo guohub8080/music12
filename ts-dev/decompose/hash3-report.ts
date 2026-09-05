@@ -123,7 +123,8 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     }
     // 被过滤条目完整列表(审核参考:判断哪条该捞回 → 改 bake-rules.json5)
     // 与主表同列格式,机器 cost 升序——审核时主表/过滤表上下对照
-    const dropped = defaultTo(FILTERED[ids.join(",")], [])
+    // (sidecar 键为字母序符号串,与 bake.ts 键构造一致)
+    const dropped = defaultTo(FILTERED[ids.map(i => SYMBOLS[i]).sort().join("")], [])
     if (dropped.length > 0) {
       lines.push("")
       lines.push(`🗑 已过滤 ${dropped.length} 条(未进哈希表):`)
