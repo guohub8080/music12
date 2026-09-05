@@ -173,5 +173,23 @@
       ],
       "filterRest": true,
     },
+
+    // maj7 减五形:C-C♯-F / ... 共 12 个移调(prime form 0,1,5 自规范)
+    //
+    // 硬规则:只保留 maj7(omit5)。tier2 纯省略(cost=0)是零扭曲解释,
+    // 够格;tier3+ 挂尾(maj3(omit5 add7)/dom7(♯7 omit5)/maj7sus4(♭4
+    // omit5) 等)全是凑数,滤。Paugmaj7(omit5)/Paug3(omit5 add7) 已由
+    // 「变音度数不可省」引擎规则消灭,本 verdict 只需钦定幸存者。
+    // 无锚模式:maj7 根音 = prime form 起点音 + 1(C-P-F 形里是 P)。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,5": {
+      "date": "2026-09-05",
+      "comment": "maj7(omit5) 为唯一解释(硬规则):零扭曲纯省略够格,tier3+ 凑数挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj7", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
