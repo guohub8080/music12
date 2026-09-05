@@ -226,7 +226,7 @@ findChord([60, 61, 62], { fallback: "pcset" })
 ```
 
 - **prime form**：移调+反转等价类的规范代表（`src/common/keyMask` 的 `primeFormMask`），三音全集 220 种恰收敛为 Forte 3-1~3-12 十二类
-- **命名表**：`ts-dev/raw-static/pcset-names.json5`（手编源，三音 12 类齐全，四音 29 类可续编；缺键降级为「未命名 + prime form」照常可用）
+- **类档案表**：`ts-dev/raw-static/pcset-formulas.json5`（手编源，三音 12 类齐全，四音 29 类可续编；缺键降级为「未命名 + prime form」照常可用）
 - **nearest**：`maskDistance`（对称差位运算）扫 1056 实例取最近，距离 ≤4 才给参考
 - **记号约定**：`omit{度数}`（候选和弦里该度的音没弹到）与 `extra{键 symbol}`（多弹了 PQXYZ 哪个键）——两种数字语义严格区分
 
@@ -276,12 +276,12 @@ findChord([60, 61, 62], { fallback: "pcset" })
 
 ```
 ts-dev/raw-static/chord-formulas.json5   公式极简源(88 个,基座 DSL,手改这里)
-ts-dev/raw-static/pcset-names.json5      集合命名源(Forte 分类,手编)
+ts-dev/raw-static/pcset-formulas.json5     集合类档案源(Forte 分类,手编)
 ts-dev/compileStaticData.ts              编译器(json5 → static-data,展开+回填)
 ts-dev/generateChordInstances.ts         实例生成器(只产记谱层)
 static-data/chord-formulas.json          公式产物(编译产物,勿手改)
 static-data/chord-instances.json         实例产物(1.1MB,记谱层)
-static-data/pcset-names.json             集合命名产物
+static-data/pcset-formulas.json            集合类档案产物
 src/Chord/static/chord-instance-data.ts  加载器(enrich + 音集哈希桶)
 src/common/keyMask/                      12-bit 位模式引擎(pattern 表/转位族/prime form)
 src/Find/findChord/                      两层匹配引擎 + pcset 降级层

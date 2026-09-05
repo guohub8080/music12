@@ -4,7 +4,7 @@
  * 产出 static-data/ 全部 7 个 JSON,分两路:
  *   [编译] 6 个定义表 ← ts-dev/raw-static/*.json5 极简源(compileStaticData 展开)
  *     notes(35) / intervals(39) / fifth(42) / chord-formulas(88)
- *     / scale-modes(46) / pcset-names(Forte 分类)
+ *     / scale-modes(46) / pcset-formulas(Forte 分类)
  *   [生成] 2 个表 ← 用 src 乐理类实时计算
  *     chord-instances(1056=88×12) / scale-instances(552=46×12)
  *

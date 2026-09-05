@@ -1,4 +1,4 @@
-import pcsetNamesJson from "@static-data/pcset-names.json"
+import pcsetFormulasJson from "@static-data/pcset-formulas.json"
 import { isNumber } from "es-toolkit/predicate"
 import { keyMaskFromIds, idsFromKeyMask, primeFormMask, maskDistance } from "@common/keyMask"
 import { PianoKey } from "@pianokey"
@@ -8,7 +8,7 @@ import ALL_CHORD_INSTANCE_META from "@chord/static/ALL_CHORD_INSTANCE_META"
  * 音级集合(pcset)降级识别
  *
  * findChord 的和弦层无匹配时的 fallback:给出音集的「集合论身份」——
- * prime form(Forte 分类键)+ 命名表(ts-dev/raw-static/pcset-names.json5 编译)
+ * prime form(Forte 分类键)+ 类档案表(ts-dev/raw-static/pcset-formulas.json5 编译)
  * + 离最近标准和弦的距离。让任何输入都有诚实的输出。
  */
 
@@ -43,7 +43,7 @@ export type I_PcsetResult = {
   }>
 }
 
-const NAME_TABLE = pcsetNamesJson as Record<string, {
+const NAME_TABLE = pcsetFormulasJson as Record<string, {
   forte: string; cnName: string; name: string; description: string; tags: string[]
 }>
 

@@ -12,7 +12,7 @@
  *   chord-formulas.json5 → chord-formulas.json 展开 $base/$set/$add;回填 chordFormulaId/
  *                                               semitonesList/notesNum/degreeToIntervalMap/tags(deriveTags)/scoreDisplay("")
  *   scale-modes.json5    → scale-modes.json    回填 intervalMap/semitonesList/degreeAlterations*
- *   pcset-names.json5    → pcset-names.json    透传(纯复制)
+ *   pcset-formulas.json5 → pcset-formulas.json  透传(纯复制)
  *   special-sets.json5   → special-sets.json   透传(纯复制,人工审核的 set 定义)
  *   bake-rules.json5     → bake-rules.json     透传(纯复制,烘焙保留规则,见 decompose/bake.ts)
  *
@@ -200,7 +200,7 @@ export function compileAll(write: boolean): boolean {
         { srcFile: "fifth.json5", dstFile: "fifth.json", compile: () => compilePassThrough("fifth.json5") },
         { srcFile: "chord-formulas.json5", dstFile: "chord-formulas.json", compile: compileChordFormulas },
         { srcFile: "scale-modes.json5", dstFile: "scale-modes.json", compile: compileScaleModes },
-        { srcFile: "pcset-names.json5", dstFile: "pcset-names.json", compile: () => compilePassThrough("pcset-names.json5") },
+        { srcFile: "pcset-formulas.json5", dstFile: "pcset-formulas.json", compile: () => compilePassThrough("pcset-formulas.json5") },
         { srcFile: "special-sets.json5", dstFile: "special-sets.json", compile: () => compilePassThrough("special-sets.json5") },
         { srcFile: "bake-rules.json5", dstFile: "bake-rules.json", compile: () => compilePassThrough("bake-rules.json5") },
     ];

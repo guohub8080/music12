@@ -1,7 +1,7 @@
 /**
- * pcset-names — 音级集合(prime form)命名表
+ * pcset-formulas — 音级集合(prime form)类档案表
  *
- * 本文件是 JSON5 源头,编译产物为 static-data/pcset-names.json(gen:static-data 透传)。
+ * 本文件是 JSON5 源头,编译产物为 static-data/pcset-formulas.json(gen:static-data 透传)。
  * 手改只改这里;产物永不手改。
  *
  * ── 用途 ─────────────────────────────────────────────────
