@@ -12,7 +12,7 @@ import { PianoKey } from "@pianokey"
  * 数据结构(烘焙时预计算,契约与 ts-dev/decompose/bake.ts 一致):
  *   键 = 键集的 pianoKeySymbol 串,**按字母序排列**(跨语言规范形),
  *       如 {0,2,11} → 符号 [C,D,B] → 字母序 → "BCD"
- *   值 = 优先级排序的方案数组,每条 {pianoKeyIdRoot,rootSymbol,formulaId,
+ *   值 = 优先级排序的方案数组,每条 {pianoKeyIdRoot,pianoKeySymbolRoot,formulaId,
  *        scoreDisplay,notation,cost,tier};set 条目额外带 {isSet:true,
  *        cnName:中文名};人工裁决条目额外带 {source:"v"}
  *
@@ -23,7 +23,7 @@ export type I_HashEntry = {
   /** 根音 pianoKeyId (0-11) */
   pianoKeyIdRoot: number
   /** 根音 symbol(C P D Q E F X G Y A Z B) */
-  rootSymbol: string
+  pianoKeySymbolRoot: string
   /** 和弦公式 id 或 set id(spset- 前缀) */
   formulaId: string
   /** 记谱原子:chord 条目为公式 scoreDisplay 字符串;set 条目为 {度数: 变化量|变化量[]} */
@@ -77,7 +77,7 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
     ...e,
     // chordName 延迟计算:set 条目给 根音·中文名,chord 条目给 根音+公式id;
     // 完整记谱版由消费端用 new Chord(r, f).scoreSymbol 或渲染 sd 原子获取
-    chordName: e.isSet === true ? `${e.rootSymbol}·${e.cnName}` : `${e.rootSymbol}${e.formulaId}`,
+    chordName: e.isSet === true ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
     isExact: e.cost === 0 && e.notation === "",
   }))
 }

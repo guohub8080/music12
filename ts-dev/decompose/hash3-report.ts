@@ -115,7 +115,7 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
 
     for (const r of results) {
       // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
-      const display = r.isSet ? `${r.rootSymbol}·${r.cnName}` : `${r.rootSymbol}${r.formulaId}`
+      const display = r.isSet ? `${r.pianoKeySymbolRoot}·${r.cnName}` : `${r.pianoKeySymbolRoot}${r.formulaId}`
       // set 条目的变换列显示度数音记谱(scoreDisplay 原子渲染,如 ♭2·4);chord 条目显示变换记号
       const trans = r.isSet ? renderSd(r.scoreDisplay) : defaultTo(r.notation, "—")
       const handMark = r.source === "v" ? " ✋" : ""
@@ -132,7 +132,7 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       lines.push(`| tier | 和弦 | 变换 | cost |`)
       lines.push(`|---|---|---|---|`)
       for (const e of dropped) {
-        const display = e.isSet ? `${e.rootSymbol}·${e.cnName}` : `${e.rootSymbol}${e.formulaId}`
+        const display = e.isSet ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`
         lines.push(`| ${defaultTo(TIER_EMOJI[e.tier], "🔴")}${e.tier} | ~~${display}~~ | ${defaultTo(e.notation, "—")} | ${e.cost} |`)
       }
     }

@@ -151,7 +151,7 @@ const bake = () => {
         if (keySet.size === inputSet.size && [...keySet].every(k => inputSet.has(k))) {
           setEntries.push({
             pianoKeyIdRoot: root,
-            rootSymbol: SYMBOLS[root],
+            pianoKeySymbolRoot: SYMBOLS[root],
             formulaId: ss.setId,           // spset-xxx 前缀
             scoreDisplay: ss.scoreDisplay, // set 记谱原子({度数:变化量})
             notation: "",                  // set 无变换(完全命中)
@@ -205,7 +205,7 @@ const bake = () => {
     // sd(scoreDisplay):chord 条目从公式表取,set 条目从 special-sets 取——字段名统一
     const chordEntries = weighted.map((r: any) => ({
       pianoKeyIdRoot: r.root,
-      rootSymbol: SYMBOLS[r.root],
+      pianoKeySymbolRoot: SYMBOLS[r.root],
       formulaId: r.chordFormulaId,
       scoreDisplay: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
       notation: r.notation,
