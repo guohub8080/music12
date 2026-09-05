@@ -265,5 +265,23 @@
       ],
       "filterRest": true,
     },
+
+    // 半音叠纯四倒影形(Forte 3-4 的另一半):F-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,8;与 {0,1,5} 形互为倒影——正形半边已裁
+    // maj7(omit5),本形两半对称收编:maj7 壳 vs maj3add11 壳)
+    //
+    // 硬规则:只保留 maj3add11(omit5)。F-A-B♭ = 大三 + 纯四
+    // (maj3add11 省五度三音壳,大调 1-3-4 音组);其余挂尾全滤。
+    // 无锚模式:maj3add11 根音 = 起点 + 8。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,8": {
+      "date": "2026-09-05",
+      "comment": "maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3add11", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
   },
 }
