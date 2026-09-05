@@ -150,15 +150,15 @@ const bake = () => {
         // 键集完全相同(排序后比较)
         if (keySet.size === inputSet.size && [...keySet].every(k => inputSet.has(k))) {
           setEntries.push({
-            r: root,
-            s: SYMBOLS[root],
-            f: ss.setId,           // spset-xxx 前缀
-            sd: ss.scoreDisplay,   // set 记谱符号(度数体系,非和弦记法)
-            n: "",                 // set 无变换(完全命中)
-            c: 0,                  // cost = 0(与 tier1 同级)
-            t: 1,                  // tier 1(set 完全命中)
-            set: true,             // 标记为 set 类型(与 chord 区分)
-            cn: ss.cnName,         // 中文名(仅 set 条目)
+            pianoKeyIdRoot: root,
+            rootSymbol: SYMBOLS[root],
+            formulaId: ss.setId,           // spset-xxx 前缀
+            scoreDisplay: ss.scoreDisplay, // set 记谱原子({度数:变化量})
+            notation: "",                  // set 无变换(完全命中)
+            cost: 0,                       // cost = 0(与 tier1 同级)
+            tier: 1,                       // tier 1(set 完全命中)
+            isSet: true,                   // 标记为 set 类型(与 chord 区分)
+            cnName: ss.cnName,             // 中文名(仅 set 条目)
           })
           setHits++
         }
@@ -204,18 +204,18 @@ const bake = () => {
     // ── 机器产物:全量条目池(截断推迟到 policy 层)──
     // sd(scoreDisplay):chord 条目从公式表取,set 条目从 special-sets 取——字段名统一
     const chordEntries = weighted.map((r: any) => ({
-      r: r.root,
-      s: SYMBOLS[r.root],
-      f: r.chordFormulaId,
-      sd: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
-      n: r.notation,
-      c: r.weightedCost,
-      t: tierOf(r.weightedCost, r.notation),
+      pianoKeyIdRoot: r.root,
+      rootSymbol: SYMBOLS[r.root],
+      formulaId: r.chordFormulaId,
+      scoreDisplay: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
+      notation: r.notation,
+      cost: r.weightedCost,
+      tier: tierOf(r.weightedCost, r.notation),
     }))
     let entries: any[] = [...setEntries, ...chordEntries]
     const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
-    const hasExactMatch = chordEntries.some(e => e.t === 1 && e.n === "")
+    const hasExactMatch = chordEntries.some(e => e.tier === 1 && e.notation === "")
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
     for (const rule of RULES.rules) {
@@ -225,11 +225,11 @@ const bake = () => {
       const filter = rule.then?.filterChords
       if (isNotNil(filter) && isNotNil(filter.costMax)) {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
-        entries = entries.filter(e => e.set || e.c <= filter.costMax)
+        entries = entries.filter(e => e.isSet || e.cost <= filter.costMax)
       }
       if (rule.then?.keepOnly === "exactMatch") {
         // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
-        entries = entries.filter(e => e.set || (e.t === 1 && e.n === ""))
+        entries = entries.filter(e => e.isSet || (e.tier === 1 && e.notation === ""))
       }
     }
 
@@ -241,7 +241,7 @@ const bake = () => {
       //            / prime form 起点音(纯 chord 键集,无 set 命中)
       const anchored = isNil(verdict.anchor)
         ? void 0
-        : setEntries.find(e => e.f === verdict.anchor)
+        : setEntries.find(e => e.formulaId === verdict.anchor)
       if (isNil(anchored) && isNotNil(verdict.anchor)) {
         console.warn(`⚠ verdict "${pf}"(${key}):锚点 ${verdict.anchor} 未在该键集命中`)
       }
@@ -249,26 +249,26 @@ const bake = () => {
       const kept: any[] = []
       for (const k of verdict.keep) {
         if (k.type === "anchor") {
-          if (isNotNil(anchored)) kept.push({ ...anchored, src: "v" })
+          if (isNotNil(anchored)) kept.push({ ...anchored, source: "v" })
         } else if (k.type === "chord") {
           const root = isNotNil(anchored)
-            ? (anchored.r + defaultTo(k.rootShift, 0)) % 12
+            ? (anchored.pianoKeyIdRoot + defaultTo(k.rootShift, 0)) % 12
             : (primeStart + defaultTo(k.rootRel, 0)) % 12
-          const hit = chordEntries.find(e => e.f === k.formula && e.r === root)
-          if (isNotNil(hit)) kept.push({ ...hit, src: "v" })
+          const hit = chordEntries.find(e => e.formulaId === k.formula && e.pianoKeyIdRoot === root)
+          if (isNotNil(hit)) kept.push({ ...hit, source: "v" })
           else console.warn(`⚠ verdict "${pf}"(${key}):keep ${k.formula} 未匹配(人工数据过期?)`)
         }
       }
       // filterRest=true → 只留人工钦定;false → 钦定置顶,其余按机器顺序殿后(去重)
       entries = verdict.filterRest
         ? kept
-        : [...kept, ...entries.filter(e => !kept.some(k2 => k2.set === e.set && k2.f === e.f && k2.r === e.r))]
+        : [...kept, ...entries.filter(e => !kept.some(k2 => k2.isSet === e.isSet && k2.formulaId === e.formulaId && k2.pianoKeyIdRoot === e.pianoKeyIdRoot))]
       verdictHits++
     }
 
     // ── 第一层 policy:机械截断(最后执行)──
     entries = entries
-      .filter(e => e.t <= RULES.policy.tierCeiling)
+      .filter(e => e.tier <= RULES.policy.tierCeiling)
       .slice(0, RULES.policy.maxEntries)
 
     table[key] = entries
@@ -278,7 +278,7 @@ const bake = () => {
     // (人工审核 hash3-report 时需要看到「滤掉了什么」才能判断规则对错)
     const machineAll = [...setEntries, ...chordEntries]
     filteredSidecar[ids.map(i => SYMBOLS[i]).sort().join("")] = machineAll.filter(
-      e => !entries.some(k => k.set === e.set && k.f === e.f && k.r === e.r),
+      e => !entries.some(k => k.isSet === e.isSet && k.formulaId === e.formulaId && k.pianoKeyIdRoot === e.pianoKeyIdRoot),
     )
   }
 
