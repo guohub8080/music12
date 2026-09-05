@@ -207,5 +207,22 @@
       ],
       "filterRest": true,
     },
+
+    // dom7 减五形:C-F♯-G♯ / ... 共 12 个移调(prime form 0,2,6,起点是三全音音;
+    // C 根形态 [0,6,8] 非规范键)
+    //
+    // 硬规则:只保留 dom7(omit5)。输入 = 属七的三音壳(root+M3+b7,
+    // guide tones 齐全的 rootless 前身,爵士 shell voicing 的本体),
+    // 纯省略零扭曲;tier3+ 挂尾全滤。无锚模式:根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,6": {
+      "date": "2026-09-05",
+      "comment": "dom7(omit5) 为唯一解释(硬规则):guide tones 三音壳零扭曲,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7", "rootRel": 2 },
+      ],
+      "filterRest": true,
+    },
   },
 }
