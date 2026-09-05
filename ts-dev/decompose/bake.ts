@@ -15,7 +15,7 @@
  * 产出: static-data/chord-hash-3.json
  *   键 = 键集的 pianoKeySymbol 串,按字母序排列({0,2,11} → "BCD"),
  *       与 src/Find/.../findByHash.ts 的 hashKey 构造契约一致
- *   值 = 保留管线过滤后的分解方案数组(人工钦定条目带 src:"v" 标记)
+ *   值 = 保留管线过滤后的分解方案数组(set 条目带 isSet/cnName 与 chord 区分)
  *
  * 运行: npx tsx ts-dev/decompose/bake.ts
  *   (前置: pnpm gen:static-data 编译 bake-rules.json5)
@@ -249,13 +249,13 @@ const bake = () => {
       const kept: any[] = []
       for (const k of verdict.keep) {
         if (k.type === "anchor") {
-          if (isNotNil(anchored)) kept.push({ ...anchored, source: "v" })
+          if (isNotNil(anchored)) kept.push(anchored)
         } else if (k.type === "chord") {
           const root = isNotNil(anchored)
             ? (anchored.pianoKeyIdRoot + defaultTo(k.rootShift, 0)) % 12
             : (primeStart + defaultTo(k.rootRel, 0)) % 12
           const hit = chordEntries.find(e => e.formulaId === k.formula && e.pianoKeyIdRoot === root)
-          if (isNotNil(hit)) kept.push({ ...hit, source: "v" })
+          if (isNotNil(hit)) kept.push(hit)
           else console.warn(`⚠ verdict "${pf}"(${key}):keep ${k.formula} 未匹配(人工数据过期?)`)
         }
       }

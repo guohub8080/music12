@@ -14,7 +14,7 @@ import { PianoKey } from "@pianokey"
  *       如 {0,2,11} → 符号 [C,D,B] → 字母序 → "BCD"
  *   值 = 优先级排序的方案数组,每条 {pianoKeyIdRoot,pianoKeySymbolRoot,formulaId,
  *        scoreDisplay,notation,cost,tier};set 条目额外带 {isSet:true,
- *        cnName:中文名};人工裁决条目额外带 {source:"v"}
+ *        cnName:中文名}
  *
  * 键构造三步(消费端与烘焙端完全一致,缺一不可):
  *   去重 → 数字排序 → 符号映射(PianoKey.SYMBOLS) → 字母排序 → join("")
@@ -38,8 +38,6 @@ export type I_HashEntry = {
   isSet?: boolean
   /** 仅 set 条目:中文名(如 "Phrygian特征前三音") */
   cnName?: string
-  /** 仅人工裁决条目:"v" = verdicts 钦定(可追溯) */
-  source?: string
 }
 
 export type I_HashResult = I_HashEntry & {

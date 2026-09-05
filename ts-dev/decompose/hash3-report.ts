@@ -118,8 +118,8 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       const display = r.isSet ? `${r.pianoKeySymbolRoot}·${r.cnName}` : `${r.pianoKeySymbolRoot}${r.formulaId}`
       // set 条目的变换列显示度数音记谱(scoreDisplay 原子渲染,如 ♭2·4);chord 条目显示变换记号
       const trans = r.isSet ? renderSd(r.scoreDisplay) : defaultTo(r.notation, "—")
-      const handMark = r.source === "v" ? " ✋" : ""
-      lines.push(`| ${defaultTo(TIER_EMOJI[r.tier], "🔴")}${r.tier} | **${display}**${handMark} | ${trans} | ${r.cost} |`)
+      // 条目级 ✋ 已省略:组头的 ✋ verdict(prime form) 标注即裁决来源
+      lines.push(`| ${defaultTo(TIER_EMOJI[r.tier], "🔴")}${r.tier} | **${display}** | ${trans} | ${r.cost} |`)
     }
     // 被过滤条目完整列表(审核参考:判断哪条该捞回 → 改 bake-rules.json5)
     // 与主表同列格式,机器 cost 升序——审核时主表/过滤表上下对照
