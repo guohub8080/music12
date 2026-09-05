@@ -89,7 +89,7 @@ export const addCost = (degree: number, offset: number, formulaId: string): numb
 
 // ===== 特殊 set 加载(special-sets.json5 编译产物) =====
 // 人工审核后命名的非 tertian 音集;set 命中 = 与 chord tier1 完全命中同级的「set 完全命中」
-const SPECIAL_SETS: Array<{ setId: string; cnName: string; name: string; scoreDisplay: string; offsets: number[] }> = (() => {
+const SPECIAL_SETS: Array<{ setId: string; cnName: string; name: string; scoreDisplay: number[][]; offsets: number[] }> = (() => {
   const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "special-sets.json"), "utf-8"))
   return Object.entries(raw).map(([setId, s]: [string, any]) => ({
     setId, cnName: s.cnName, name: s.name, scoreDisplay: s.scoreDisplay, offsets: s.offsets,

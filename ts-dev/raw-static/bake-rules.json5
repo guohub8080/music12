@@ -174,20 +174,23 @@
       "filterRest": true,
     },
 
-    // maj7 减五形:C-C♯-F / ... 共 12 个移调(prime form 0,1,5 自规范)
+    // 半音叠纯四形:C-C♯-F / C-E-B / ... 共 12 个移调(prime form 0,1,5,Forte 3-4 正形)
     //
-    // 硬规则:只保留 maj7(omit5)。tier2 纯省略(cost=0)是零扭曲解释,
-    // 够格;tier3+ 挂尾(maj3(omit5 add7)/dom7(♯7 omit5)/maj7sus4(♭4
-    // omit5) 等)全是凑数,滤。Paugmaj7(omit5)/Paug3(omit5 add7) 已由
-    // 「变音度数不可省」引擎规则消灭,本 verdict 只需钦定幸存者。
-    // 无锚模式:maj7 根音 = prime form 起点音 + 1(C-P-F 形里是 P)。
+    // 双根音双保留(set 角度解释和弦现象——用户「创新」裁决):
+    //   set 根 = 半音对低音:C·Phrygian挂留三音(♭2+纯四,7sus4♭9 张力浓缩,
+    //           R+♭2+X 家族 X=5,家族就此补全)
+    //   maj7 壳根 = 半音对高音:Pmaj7(omit5)(cost=0,纯省略零扭曲)
+    // 二度对两音各领一个身份:低音挂摩擦(set),高音展度数(chord)。
+    // tier3+ 挂尾仍全滤;Paugmaj7 等已由变音度数引擎规则消灭。
     //
-    // 审核:用户 2026-09-05
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级 set+maj7 壳双保留)
     "0,1,5": {
       "date": "2026-09-05",
-      "comment": "maj7(omit5) 为唯一解释(硬规则):零扭曲纯省略够格,tier3+ 凑数挂尾全滤",
+      "comment": "Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留",
+      "anchor": "spset-phrygian_sus",
       "keep": [
-        { "type": "chord", "formula": "maj7", "rootRel": 1 },
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7", "rootShift": 1 },
       ],
       "filterRest": true,
     },

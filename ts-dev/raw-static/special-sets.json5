@@ -19,7 +19,10 @@
  * setId         唯一标识(spset- 前缀),即对象的键
  * cnName        中文名
  * name          英文名
- * scoreDisplay  记谱符号(度数体系,非和弦符号——set 不是和弦,不用和弦记法)
+ * scoreDisplay  记谱原子(度数体系,非和弦符号——set 不是和弦,不用和弦记法):
+ *               [[度数, 变化量], ...] 列表形式,变化量 -1=♭ 0=♮ +1=♯。
+ *               原子化设计:消费端自行渲染升降号(♭2·♮4 等任意风格),
+ *               列表避免同度双音的键冲突(半音簇 ♭2·♮2、分叉三和弦 ♭3·♮3)。
  * offsets       半音偏移量数组(不含 0,升序)——原子的,一切的起点
  * tags          检索标签
  */
@@ -32,7 +35,7 @@
   "spset-split_third": {
     "cnName": "分叉三和弦",
     "name": "Split Third",
-    "scoreDisplay": "♭3·3",
+    "scoreDisplay": [[3, -1], [3, 0]],
     "offsets": [3, 4],
     "tags": ["blues", "non-tertian", "added-tone"]
   },
@@ -46,7 +49,7 @@
   "spset-chromatic_cluster": {
     "cnName": "半音簇",
     "name": "Chromatic Cluster",
-    "scoreDisplay": "♭2·2",
+    "scoreDisplay": [[2, -1], [2, 0]],
     "offsets": [1, 2],
     "tags": ["cluster", "secundal", "non-functional"]
   },
@@ -60,7 +63,7 @@
   "spset-phrygian": {
     "cnName": "Phrygian三音",
     "name": "Phrygian Trichord",
-    "scoreDisplay": "♭2·♭3",
+    "scoreDisplay": [[2, -1], [3, -1]],
     "offsets": [1, 3],
     "tags": ["modal", "phrygian", "flamenco", "altered-dominant"]
   },
@@ -76,7 +79,7 @@
   "spset-hijaz": {
     "cnName": "Hijaz三音",
     "name": "Hijaz Trichord",
-    "scoreDisplay": "♭2·3",
+    "scoreDisplay": [[2, -1], [3, 0]],
     "offsets": [1, 4],
     "tags": ["modal", "phrygian-dominant", "hijaz", "flamenco", "altered-dominant"]
   },
@@ -93,8 +96,25 @@
   "spset-viennese": {
     "cnName": "Viennese三音",
     "name": "Viennese Trichord",
-    "scoreDisplay": "♭2·♭5",
+    "scoreDisplay": [[2, -1], [5, -1]],
     "offsets": [1, 6],
     "tags": ["atonal", "second-viennese-school", "tritone", "post-tonal"]
+  },
+
+  // Phrygian 挂留三音 · root + 1半音(♭2) + 5半音(纯四) · B-C-E / C-D♭-F 型
+  // 功能:7sus4♭9 的张力浓缩(root+sus4+♭9,变化属的挂留形)——Phrygian 调式
+  // 的 1-♭2-4,弗拉门戈安达卢西亚终止的挂留版,与 spset-phrygian(特征版
+  // ♭2+♭3)配对:Phrygian 和声的挂留/张力两浓缩。
+  // R+♭2+X 家族 X=5 员,家族就此补全(X=2..6 连续):
+  //   半音簇 ♭2·2 / Phrygian特征 ♭2·♭3 / Hijaz ♭2·3 / 本条 ♭2·4 / Viennese ♭2·♭5
+  // Forte 3-4 正形(与倒影形 {0,1,8} maj3add11 壳分领一类);
+  // 双根音用法:set 根 = 半音对低音(摩擦挂身),maj7 壳根 = 半音对高音
+  // 审核:用户 2026-09-05(命名功能化:突出「Phrygian+挂留」的调式功能)
+  "spset-phrygian_sus": {
+    "cnName": "Phrygian挂留三音",
+    "name": "Phrygian Suspended Trichord",
+    "scoreDisplay": [[2, -1], [4, 0]],
+    "offsets": [1, 5],
+    "tags": ["phrygian", "sus", "altered-dominant", "flamenco"]
   }
 }
