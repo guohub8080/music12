@@ -1,6 +1,8 @@
 import chordHash3 from "@static-data/chord-hash-3.json"
 import { isNil } from "es-toolkit/predicate"
 import { PianoKey } from "@pianokey"
+import { Chord } from "@chord"
+import { restoreChord, parseNotation, type I_HashOp } from "./restoreChord"
 
 /**
  * 三音哈希查找器
@@ -45,6 +47,10 @@ export type I_HashResult = I_HashEntry & {
   chordName: string
   /** 是否为完全匹配(cost=0 且无变换) */
   isExact: boolean
+  /** 结构化变换操作(notation 的原子化形态,完全命中为空数组) */
+  ops: I_HashOp[]
+  /** 惰性反推的 Chord 实例(getter:首次访问才构造,结果缓存;set 条目为 null) */
+  readonly chord: Chord | null
 }
 
 const HASH_TABLE = chordHash3 as Record<string, I_HashEntry[]>
@@ -71,13 +77,24 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
   const entries = HASH_TABLE[hashKey(ids)]
   if (isNil(entries)) return []
 
-  return entries.map(e => ({
-    ...e,
-    // chordName 延迟计算:set 条目给 根音·中文名,chord 条目给 根音+公式id;
-    // 完整记谱版由消费端用 new Chord(r, f).scoreSymbol 或渲染 sd 原子获取
-    chordName: e.isChordFormula === false ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
-    isExact: e.cost === 0 && e.notation === "",
-  }))
+  return entries.map(e => {
+    // chord 实例惰性构造:首次访问才 restoreChord(闭包缓存),
+    // findByHash 保持 O(1) 纯查表——不用实例的消费端零开销
+    let cached: Chord | null | undefined
+    return {
+      ...e,
+      // chordName: set 条目给 根音·中文名,chord 条目给 根音+公式id;
+      // 完整记谱由 entry.chord.scoreSymbol 或渲染 scoreDisplay 原子获取
+      chordName: e.isChordFormula === false ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
+      isExact: e.cost === 0 && e.notation === "",
+      // notation 的原子化:消费端直接读结构化操作,无需再解析字符串
+      ops: parseNotation(e.notation),
+      get chord(): Chord | null {
+        if (isNil(cached) && cached !== null) cached = restoreChord(e)
+        return cached
+      },
+    }
+  })
 }
 
 export default findByHash
