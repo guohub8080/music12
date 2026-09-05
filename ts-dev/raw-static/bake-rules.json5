@@ -302,5 +302,23 @@
       ],
       "filterRest": true,
     },
+
+    // Phrygian 倒影形(Forte 3-2 倒影半边):G-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,10;与 {0,1,3} 形互为倒影——正形半边是
+    // spset-phrygian + maj7sus2(omit5) 双保留,倒影半边收编 min 系壳)
+    //
+    // 硬规则:只保留 min3add9(omit5)。G-A-B♭ = 小三 + 大二/九
+    // (min3add9 省五度壳,小调 1-♭3-9 音组,Phrygian 音响的倒影
+    // 紧凑);其余挂尾全滤。无锚模式:min3add9 根音 = 起点 + 10。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,10": {
+      "date": "2026-09-05",
+      "comment": "min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "min3add9", "rootRel": 10 },
+      ],
+      "filterRest": true,
+    },
   },
 }
