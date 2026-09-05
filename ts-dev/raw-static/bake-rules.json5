@@ -342,5 +342,20 @@
       ],
       "filterRest": true,
     },
+    // Phrygian 五度形(Forte 3-5 倒影形,★类最后一形):C-D♭-G / E-F-B / ...
+    // 共 12 个移调(prime form 0,1,7 自规范)
+    //
+    // 硬规则:纯 set。该形无 cost=0 chord 壳(最优 Csus2(♭2)/Gsus4(♭5)/
+    // Pmaj7sus4(♯4 omit5) 并列 cost=1.5 全是扭曲),与半音簇/分叉三和弦
+    // 同款「体系解释不动它」;Phrygian pedal 声响自成身份。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,7": {
+      "date": "2026-09-05",
+      "comment": "Phrygian五度为唯一解释(硬规则):R+♭2+纯五 pedal 声响,chord 解释全扭曲,纯 set",
+      "anchor": "spset-phrygian_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

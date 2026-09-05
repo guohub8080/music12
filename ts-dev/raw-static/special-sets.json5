@@ -143,5 +143,20 @@
     "scoreDisplay": { "2": 0, "5": -1 },
     "offsets": [2, 6],
     "tags": ["tritone", "dominant", "symmetrical"]
+  },
+
+  // Phrygian 五度 · root + 1半音(♭2) + 7半音(纯五) · C-D♭-G / E-F-B 型
+  // 功能:Phrygian pedal 声响——root 上挂 ♭2 加纯五度支撑,弗拉门戈/金属
+  // Phrygian riff 的低音骨架(E5+F 型,Metallica《Wherever I May Roam》等);
+  // 也是 7♭9 骨架的一半(root+P5+♭9,三音七音缺由 guide tone 规则正确排除)。
+  // R+♭2+X 家族 X=7 延伸;Forte 3-5 倒影形(正形半边 Viennese 已入库)。
+  // 硬规则纯 set:该形无 cost=0 chord 壳(最优 1.5 全是扭曲)。
+  // 审核:用户 2026-09-05——★类(含两半)就此全部收官
+  "spset-phrygian_fifth": {
+    "cnName": "Phrygian五度",
+    "name": "Phrygian Fifth",
+    "scoreDisplay": { "2": -1, "5": 0 },
+    "offsets": [1, 7],
+    "tags": ["phrygian", "flamenco", "metal", "pedal"]
   }
 }
