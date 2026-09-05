@@ -196,15 +196,22 @@ const bake = () => {
     }))
     let entries: any[] = [...setEntries, ...chordEntries]
     const hasSetHit = setEntries.length > 0
+    // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
+    const hasExactMatch = chordEntries.some(e => e.t === 1 && e.n === "")
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
     for (const rule of RULES.rules) {
       if (!rule.enabled) continue
       if (rule.when?.hasSetHit === true && !hasSetHit) continue
+      if (rule.when?.hasExactMatch === true && !hasExactMatch) continue
       const filter = rule.then?.filterChords
       if (isNotNil(filter) && isNotNil(filter.costMax)) {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
         entries = entries.filter(e => e.set || e.c <= filter.costMax)
+      }
+      if (rule.then?.keepOnly === "exactMatch") {
+        // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
+        entries = entries.filter(e => e.set || (e.t === 1 && e.n === ""))
       }
     }
 

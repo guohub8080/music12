@@ -277,7 +277,7 @@ bake.ts 逐层执行:
 | 层 | 谁决定 | 管什么 | 改动生效方式 |
 |---|---|---|---|
 | policy | 通用参数 | 每键集条数上限、tier 上限 | 改 json5 → 重跑 bake |
-| rules | 模式化判断 | 如 set-exclusive:set 命中时 chord 只留 cost=0 平行解释 | 改一处全表生效 |
+| rules | 模式化判断 | exact-exclusive:完全命中即唯一解释(等和弦多名全保留);set-exclusive:set 命中时 chord 只留 cost=0 平行解释 | 改一处全表生效 |
 | verdicts | 人工逐例 | 规则覆盖不了的争议/顺序钦定 | 改一处,12 个移调全生效 |
 
 **verdicts 的键是 prime form(移调规范形)**——`ts-dev/decompose/keyset.ts` 提供:

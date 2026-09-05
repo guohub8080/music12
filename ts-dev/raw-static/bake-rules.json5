@@ -28,9 +28,11 @@
  *
  * rules[].id          规则 id(报告引用;bake.ts 按字段直读,非 DSL 解释器)
  * rules[].enabled     开关(false = 保留定义但不生效,留作历史)
- * rules[].when        触发条件(目前支持 hasSetHit:该键集有 set 完全命中)
- * rules[].then        动作(目前支持 filterChords.costMax:
- *                      过滤加权 cost 超过该值的 chord 条目)
+ * rules[].when        触发条件:hasSetHit(有 set 完全命中)
+ *                      / hasExactMatch(有零变换完全命中条目,tier1 且 n="")
+ * rules[].then        动作:filterChords.costMax(过滤 cost 超过该值的 chord 条目)
+ *                      / keepOnly="exactMatch"(只留完全命中条目,其余全滤;
+ *                        set 条目不受规则影响,等和弦的多名全保留)
  *
  * verdicts[key]       key = prime form(移调规范形),工具函数 keyset.ts
  * verdicts[key].anchor    锚点 set id(spset-xxx):在该键集上唯一确定根音,
@@ -57,6 +59,24 @@
 
   // ── 第二层:类型化规则(机器自动套用)────────────────────────
   "rules": [
+    {
+      // 完全命中即唯一解释:存在零变换完全命中条目(tier1,n="")时,
+      // 其余 chord 解释全部过滤。
+      //
+      // 乐理依据:tier1 完全命中(键集恰好等于某公式的音集)已是完美答案,
+      // 其余条目全是噪音——dim7 对称性副产品(Qdim7(omit5))、换根音凑数
+      // (min3add6)、sus 上的变形(sus4(♭4))等。等和弦的多个完全命中
+      // 全部保留(sus2/sus4 同类互为移调,{0,2,7} 既是 Csus2 又是 Gsus4;
+      // aug3 三重对称,一键集 3 个根名)——滤掉的是 tier3+ 凑数解释。
+      //
+      // 审定:用户 2026-09-05 两例确认——C-Q-X {0,3,6}(Cdim3)、
+      // C-Q-Y {0,3,8}(A♭maj3)均只保留完全命中;影响 76 组 472 条噪音
+      // (maj3/min3/sus/sus4/aug3 各形)。set 命中组由 verdicts 接管,优先级更高。
+      "id": "exact-exclusive",
+      "enabled": true,
+      "when": { "hasExactMatch": true },
+      "then": { "keepOnly": "exactMatch" },
+    },
     {
       // set 独占规则:set 完全命中时,chord 只保留 cost=0 的平行解释
       //

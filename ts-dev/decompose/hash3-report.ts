@@ -82,8 +82,12 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     const pf = primeForm(ids)
     const verdict = RULES.verdicts[pf]
     const hasSetHit = results.some(r => r.set)
+    const hasExactMatch = results.some(r => !r.set && r.t === 1 && r.n === "")
     const appliedRules = RULES.rules.filter(
-      (rule: any) => rule.enabled && rule.when?.hasSetHit === true && hasSetHit,
+      (rule: any) => rule.enabled && (
+        (rule.when?.hasSetHit === true && hasSetHit) ||
+        (rule.when?.hasExactMatch === true && hasExactMatch)
+      ),
     ).map((rule: any) => rule.id)
     const badges = [
       ...(isNotNil(verdict) ? [`✋ verdict(${pf})`] : []),
