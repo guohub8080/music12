@@ -227,5 +227,25 @@
       ],
       "filterRest": true,
     },
+
+    // 全音对形(Forte 3-6):C-D-E / ... 共 12 个移调(prime form 0,2,4 自规范)
+    //
+    // 双根音双保留(不升 set——「全音三音」身份未采纳,★类 3-6 裁决):
+    //   C 根 = maj3(omit5 add2):add2 记法而非 add9——三音语境无八度
+    //   支撑,D 距 C 是大二度不是九度,add2 更诚实(cost 0.5 用户钦定)
+    //   D 根 = dom7sus2(omit5)(cost=0)
+    // Cmaj3add9(omit5) 同事实的 add9 记法条目不保留(名不副实)。
+    // 无锚模式:maj3 根音 = 起点 + 0,dom7sus2 根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,4": {
+      "date": "2026-09-05",
+      "comment": "双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3", "rootRel": 0 },
+        { "type": "chord", "formula": "dom7sus2", "rootRel": 2 },
+      ],
+      "filterRest": true,
+    },
   },
 }
