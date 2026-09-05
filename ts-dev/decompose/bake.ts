@@ -15,7 +15,8 @@
  * 产出: static-data/chord-hash-3.json
  *   键 = 键集的 pianoKeySymbol 串,按字母序排列({0,2,11} → "BCD"),
  *       与 src/Find/.../findByHash.ts 的 hashKey 构造契约一致
- *   值 = 保留管线过滤后的分解方案数组(set 条目带 isSet/cnName 与 chord 区分)
+ *   值 = 保留管线过滤后的分解方案数组,每条带 isChordFormula(true=chord 公式/
+ *   false=special-set),set 条目额外带 cnName
  *
  * 运行: npx tsx ts-dev/decompose/bake.ts
  *   (前置: pnpm gen:static-data 编译 bake-rules.json5)
@@ -157,7 +158,7 @@ const bake = () => {
             notation: "",                  // set 无变换(完全命中)
             cost: 0,                       // cost = 0(与 tier1 同级)
             tier: 1,                       // tier 1(set 完全命中)
-            isSet: true,                   // 标记为 set 类型(与 chord 区分)
+            isChordFormula: false,         // set 条目(与 chord 公式区分)
             cnName: ss.cnName,             // 中文名(仅 set 条目)
           })
           setHits++
@@ -206,6 +207,7 @@ const bake = () => {
     const chordEntries = weighted.map((r: any) => ({
       pianoKeyIdRoot: r.root,
       pianoKeySymbolRoot: SYMBOLS[r.root],
+      isChordFormula: true,
       formulaId: r.chordFormulaId,
       scoreDisplay: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
       notation: r.notation,
@@ -225,11 +227,11 @@ const bake = () => {
       const filter = rule.then?.filterChords
       if (isNotNil(filter) && isNotNil(filter.costMax)) {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
-        entries = entries.filter(e => e.isSet || e.cost <= filter.costMax)
+        entries = entries.filter(e => !e.isChordFormula || e.cost <= filter.costMax)
       }
       if (rule.then?.keepOnly === "exactMatch") {
         // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
-        entries = entries.filter(e => e.isSet || (e.tier === 1 && e.notation === ""))
+        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && e.notation === ""))
       }
     }
 
@@ -262,7 +264,7 @@ const bake = () => {
       // filterRest=true → 只留人工钦定;false → 钦定置顶,其余按机器顺序殿后(去重)
       entries = verdict.filterRest
         ? kept
-        : [...kept, ...entries.filter(e => !kept.some(k2 => k2.isSet === e.isSet && k2.formulaId === e.formulaId && k2.pianoKeyIdRoot === e.pianoKeyIdRoot))]
+        : [...kept, ...entries.filter(e => !kept.some(k2 => k2.isChordFormula === e.isChordFormula && k2.formulaId === e.formulaId && k2.pianoKeyIdRoot === e.pianoKeyIdRoot))]
       verdictHits++
     }
 
@@ -278,7 +280,7 @@ const bake = () => {
     // (人工审核 hash3-report 时需要看到「滤掉了什么」才能判断规则对错)
     const machineAll = [...setEntries, ...chordEntries]
     filteredSidecar[ids.map(i => SYMBOLS[i]).sort().join("")] = machineAll.filter(
-      e => !entries.some(k => k.isSet === e.isSet && k.formulaId === e.formulaId && k.pianoKeyIdRoot === e.pianoKeyIdRoot),
+      e => !entries.some(k => k.isChordFormula === e.isChordFormula && k.formulaId === e.formulaId && k.pianoKeyIdRoot === e.pianoKeyIdRoot),
     )
   }
 

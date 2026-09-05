@@ -13,8 +13,8 @@ import { PianoKey } from "@pianokey"
  *   键 = 键集的 pianoKeySymbol 串,**按字母序排列**(跨语言规范形),
  *       如 {0,2,11} → 符号 [C,D,B] → 字母序 → "BCD"
  *   值 = 优先级排序的方案数组,每条 {pianoKeyIdRoot,pianoKeySymbolRoot,formulaId,
- *        scoreDisplay,notation,cost,tier};set 条目额外带 {isSet:true,
- *        cnName:中文名}
+ *        scoreDisplay,notation,cost,tier,isChordFormula};set 条目(isChordFormula:
+ *        false)额外带 cnName
  *
  * 键构造三步(消费端与烘焙端完全一致,缺一不可):
  *   去重 → 数字排序 → 符号映射(PianoKey.SYMBOLS) → 字母排序 → join("")
@@ -34,8 +34,8 @@ export type I_HashEntry = {
   cost: number
   /** tier(1 完全命中 … 6 极端) */
   tier: number
-  /** 仅 set 条目:是否为 special-set 命中 */
-  isSet?: boolean
+  /** true=chord 公式条目 / false=special-set 条目(显式布尔,两态都有) */
+  isChordFormula: boolean
   /** 仅 set 条目:中文名(如 "Phrygian特征前三音") */
   cnName?: string
 }
@@ -75,7 +75,7 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
     ...e,
     // chordName 延迟计算:set 条目给 根音·中文名,chord 条目给 根音+公式id;
     // 完整记谱版由消费端用 new Chord(r, f).scoreSymbol 或渲染 sd 原子获取
-    chordName: e.isSet === true ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
+    chordName: e.isChordFormula === false ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
     isExact: e.cost === 0 && e.notation === "",
   }))
 }
