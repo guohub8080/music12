@@ -79,5 +79,22 @@
     "scoreDisplay": "♭2·3",
     "offsets": [1, 4],
     "tags": ["modal", "phrygian-dominant", "hijaz", "flamenco", "altered-dominant"]
+  },
+
+  // Viennese 三音 · root + 1半音(♭2) + 6半音(♭5) · 第二维也纳乐派的标志细胞
+  // Schoenberg op.11/3 终止处、Berg、Webern 高频;无调性张力音响(半音+三全音)。
+  // 与 Phrygian(♭2·♭3)/Hijaz(♭2·3) 构成 R+♭2+X 特征音组家族,X=♭5。
+  // 身份性质略异:名字来自学院集合论分析(作曲家用此音响但不这么叫),
+  // 但用户裁决采纳——它给 C-P-X 形补上 C 根音视角,与 P 根的 maj7sus4
+  // 壳构成双根音双保留(set[C 根] + maj7sus4(omit5)[P 根])。
+  // Forte 3-5,音程向量 [100011];★类第 4 个裁决(3-1/3-2/3-3 之后)。
+  // 来源:Music Theory Online(Jack Boss)/ Cambridge 勋伯格研究 / Forte 名录
+  // 审核:用户 2026-09-05
+  "spset-viennese": {
+    "cnName": "Viennese三音",
+    "name": "Viennese Trichord",
+    "scoreDisplay": "♭2·♭5",
+    "offsets": [1, 6],
+    "tags": ["atonal", "second-viennese-school", "tritone", "post-tonal"]
   }
 }

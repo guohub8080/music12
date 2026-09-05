@@ -192,18 +192,21 @@
       "filterRest": true,
     },
 
-    // maj7sus4 减五形:C-C♯-F♯ / ... 共 12 个移调(prime form 0,1,6 自规范,Forte 3-5)
+    // Viennese + maj7sus4 双根音形:C-C♯-F♯ / ... 共 12 个移调(prime form 0,1,6,Forte 3-5)
     //
-    // 硬规则:只保留 maj7sus4(omit5)。输入 = maj7sus4 的三音壳
-    // (root+sus4+M7,现代爵士 quartal voicing 的骨架,McCoy Tyner 系),
-    // 纯省略零扭曲;tier3+ 挂尾全滤。无锚模式:根音 = 起点 + 1(C-P-X 里是 P)。
+    // 软保留(双根音双身份):C 根 = Viennese三音(set,♭2+♭5 集合身份,
+    // 第二维也纳乐派标志细胞);P 根 = maj7sus4(omit5)(cost=0,quartal
+    // 爵士壳)。用户裁决理由:「按 Viennese 的话就是 C 根音了」——多根音
+    // 解释都公认时全保留(与 Hijaz 形同款)。tier3+ 挂尾仍全滤。
     //
-    // 审核:用户 2026-09-05
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双根音软保留)
     "0,1,6": {
       "date": "2026-09-05",
-      "comment": "maj7sus4(omit5) 为唯一解释(硬规则):quartal 三音壳零扭曲,挂尾全滤",
+      "comment": "Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留",
+      "anchor": "spset-viennese",
       "keep": [
-        { "type": "chord", "formula": "maj7sus4", "rootRel": 1 },
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7sus4", "rootShift": 1 },
       ],
       "filterRest": true,
     },
