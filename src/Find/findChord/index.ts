@@ -115,3 +115,5 @@ export const findChord = (
 
   return results
 }
+export { findByHash, type I_HashEntry, type I_HashResult } from "./methods/findByHash"
+export { restoreChord } from "./methods/restoreChord"
