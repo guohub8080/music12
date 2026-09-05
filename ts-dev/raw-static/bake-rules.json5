@@ -191,5 +191,21 @@
       ],
       "filterRest": true,
     },
+
+    // maj7sus4 减五形:C-C♯-F♯ / ... 共 12 个移调(prime form 0,1,6 自规范,Forte 3-5)
+    //
+    // 硬规则:只保留 maj7sus4(omit5)。输入 = maj7sus4 的三音壳
+    // (root+sus4+M7,现代爵士 quartal voicing 的骨架,McCoy Tyner 系),
+    // 纯省略零扭曲;tier3+ 挂尾全滤。无锚模式:根音 = 起点 + 1(C-P-X 里是 P)。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,6": {
+      "date": "2026-09-05",
+      "comment": "maj7sus4(omit5) 为唯一解释(硬规则):quartal 三音壳零扭曲,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj7sus4", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
