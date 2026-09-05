@@ -37,8 +37,10 @@
  *                          keep 里的 chord 根音以锚点根音为基准
  * verdicts[key].keep[]    人工钦定保留列表:顺序即最终顺序
  *   { type: "anchor" }                          锚点 set 条目本身
- *   { type: "chord", formula, rootShift }       公式 + 根音偏移
- *                                                (根音 = 锚点根音 + rootShift)
+ *   { type: "chord", formula, rootShift }       有 anchor:根音 = 锚点根音 + rootShift
+ *   { type: "chord", formula, rootRel }         无 anchor(纯 chord 键集):
+ *                                                根音 = prime form 起点音 + rootRel
+ * (两种偏移都保持移调对称:一处裁决,12 个移调各自命中正确的根音)
  * verdicts[key].filterRest  true = 未列入 keep 的全部过滤
  *                           false = keep 置顶,其余按机器顺序殿后
  *
@@ -131,6 +133,26 @@
       "comment": "分叉三和弦为唯一解释(硬规则):大/小三度并存本质不可 tertian 表达,任何 chord 解释都是扭曲,全滤",
       "anchor": "spset-split_third",
       "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 减三和弦形:C-E♭-G♭ / ... 共 12 个移调(prime form 0,3,6 自规范)
+    //
+    // 硬规则:完全命中即唯一解释。Cdim3(tier1,cost=0 零变换)已是完美
+    // 答案;其余条目全是噪音——Qdim7(omit5) 是 dim7 对称性的副产品
+    // (C-E♭-G♭ 恰为 E♭dim7 减五度),min3add6/dom7 系是换根音的凑数
+    // 解释,在完美答案面前没有参考价值。
+    //
+    // 本条同时示范无锚模式:键集无 set 命中,不用 anchor,
+    // chord 条目用 rootRel(相对 prime form 起点的偏移)定根音。
+    //
+    // 审核:用户 2026-09-05
+    "0,3,6": {
+      "date": "2026-09-05",
+      "comment": "减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤",
+      "keep": [
+        { "type": "chord", "formula": "dim3", "rootRel": 0 },
+      ],
       "filterRest": true,
     },
   },

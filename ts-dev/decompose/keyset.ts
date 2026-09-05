@@ -16,19 +16,30 @@ import { isNil } from "es-toolkit/predicate"
 import { readFileSync } from "fs"
 import { resolve } from "path"
 
-/** 键集 → 移调规范形字符串(逗号分隔),如 [0,2,11] → "0,1,3" */
-export const primeForm = (ids: number[]): string => {
-  const forms: number[][] = ids.map(start =>
-    ids.map(i => (i - start + 12) % 12).sort((a, b) => a - b),
-  )
-  forms.sort((a, b) => {
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] !== b[i]) return a[i] - b[i]
+/** 键集 → 移调规范形 + 起点音(规范形的 0 对应键集中的哪个音) */
+export const primeFormInfo = (ids: number[]): { form: string; root: number } => {
+  let best: { form: number[]; root: number } | undefined
+  for (const start of ids) {
+    const form = ids.map(i => (i - start + 12) % 12).sort((a, b) => a - b)
+    if (isNil(best)) {
+      best = { form, root: start }
+      continue
     }
-    return 0
-  })
-  return forms[0].join(",")
+    for (let i = 0; i < form.length; i++) {
+      if (form[i] !== best.form[i]) {
+        if (form[i] < best.form[i]) best = { form, root: start }
+        break
+      }
+    }
+  }
+  return { form: best!.form.join(","), root: best!.root }
 }
+
+/** 键集 → 移调规范形字符串(逗号分隔),如 [0,2,11] → "0,1,3" */
+export const primeForm = (ids: number[]): string => primeFormInfo(ids).form
+
+/** 键集 → 规范形起点音(无锚 verdict 的根音基准),如 [0,3,6] → 0 */
+export const primeFormRoot = (ids: number[]): number => primeFormInfo(ids).root
 
 /** 组合枚举 C(n,k),升序字典序 */
 export const combo = (arr: number[], k: number): number[][] =>
@@ -38,12 +49,13 @@ export const combo = (arr: number[], k: number): number[][] =>
 export interface KeepRule {
   type: string            // "anchor" | "chord"
   formula?: string        // type=chord:公式 id
-  rootShift?: number      // type=chord:根音 = 锚点 set 根音 + 偏移(半音)
+  rootShift?: number      // 根音锚二选一:有 anchor 时,根音 = 锚点根音 + rootShift
+  rootRel?: number        // 无 anchor 时:根音 = prime form 起点音 + rootRel
 }
 export interface Verdict {
   date: string
   comment: string
-  anchor?: string         // 锚点 set id(spset-xxx):在该键集上确定根音
+  anchor?: string         // 锚点 set id(spset-xxx):该键集有 set 命中时用
   keep: KeepRule[]        // 人工钦定保留列表,顺序即最终顺序
   filterRest: boolean     // true=未列入 keep 的全部过滤;false=keep 提前,其余殿后
 }

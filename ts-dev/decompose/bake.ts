@@ -23,8 +23,9 @@ import { writeFileSync, readFileSync } from "fs"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
 import { isNil, isNotNil } from "es-toolkit/predicate"
+import { defaultTo } from "es-toolkit/compat"
 import { decompose } from "./engine"
-import { combo, primeForm, loadBakeRules } from "./keyset"
+import { combo, primeForm, primeFormRoot, loadBakeRules } from "./keyset"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
@@ -188,7 +189,7 @@ const bake = () => {
       r: r.root,
       s: SYMBOLS[r.root],
       f: r.chordFormulaId,
-      sd: FORMULA_DISPLAY[r.chordFormulaId] ?? "",
+      sd: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
       n: r.notation,
       c: r.weightedCost,
       t: tierOf(r.weightedCost, r.notation),
@@ -211,18 +212,23 @@ const bake = () => {
     const pf = primeForm(ids)
     const verdict = VERDICTS[pf]
     if (isNotNil(verdict)) {
+      // 根音锚二选一:anchor set 根音(有 set 命中的键集)
+      //            / prime form 起点音(纯 chord 键集,无 set 命中)
       const anchored = isNil(verdict.anchor)
         ? void 0
         : setEntries.find(e => e.f === verdict.anchor)
       if (isNil(anchored) && isNotNil(verdict.anchor)) {
         console.warn(`⚠ verdict "${pf}"(${key}):锚点 ${verdict.anchor} 未在该键集命中`)
       }
+      const primeStart = primeFormRoot(ids)
       const kept: any[] = []
       for (const k of verdict.keep) {
         if (k.type === "anchor") {
           if (isNotNil(anchored)) kept.push({ ...anchored, src: "v" })
         } else if (k.type === "chord") {
-          const root = isNil(anchored) ? -1 : (anchored.r + (k.rootShift ?? 0)) % 12
+          const root = isNotNil(anchored)
+            ? (anchored.r + defaultTo(k.rootShift, 0)) % 12
+            : (primeStart + defaultTo(k.rootRel, 0)) % 12
           const hit = chordEntries.find(e => e.f === k.formula && e.r === root)
           if (isNotNil(hit)) kept.push({ ...hit, src: "v" })
           else console.warn(`⚠ verdict "${pf}"(${key}):keep ${k.formula} 未匹配(人工数据过期?)`)

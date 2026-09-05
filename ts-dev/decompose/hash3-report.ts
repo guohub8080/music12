@@ -5,6 +5,7 @@ import { writeFileSync, readFileSync } from "fs"
 import { resolve, dirname } from "path"
 import { fileURLToPath } from "url"
 import { isNotNil } from "es-toolkit/predicate"
+import { defaultTo } from "es-toolkit/compat"
 import { findByHash } from "../../src/Find/findChord/methods/findByHash"
 import { combo, primeForm } from "./keyset"
 
@@ -49,7 +50,7 @@ const TIER_EMOJI = { 1: "✅", 2: "🔵", 3: "🟢", 4: "🟡", 5: "🟠", 6: "�
 
 // 统计
 const tierCounts: Record<number, number> = {}
-for (const s of sections) tierCounts[s.bestTier] = (tierCounts[s.bestTier] ?? 0) + 1
+for (const s of sections) tierCounts[s.bestTier] = defaultTo(tierCounts[s.bestTier], 0) + 1
 
 const lines: string[] = []
 lines.push(`# 三音哈希表完整报告(C(12,3) = ${inputs.length})`)
@@ -64,7 +65,7 @@ lines.push("")
 lines.push(`| tier | 含义 | 键集数 |`)
 lines.push(`|---|---|---|`)
 for (const t of [1,2,3,4,5,6]) {
-  lines.push(`| ${TIER_EMOJI[t]}${t} | ${TIER_HEADERS[t].replace(/^# .+? — /, "")} | ${tierCounts[t] ?? 0} |`)
+  lines.push(`| ${TIER_EMOJI[t]}${t} | ${TIER_HEADERS[t].replace(/^# .+? — /, "")} | ${defaultTo(tierCounts[t], 0)} |`)
 }
 lines.push("")
 
@@ -102,11 +103,11 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
       const display = r.set ? `${r.s}·${r.cn}` : `${r.s}${r.f}`
       const handMark = r.src === "v" ? " ✋" : ""
-      lines.push(`| ${TIER_EMOJI[r.t] ?? "🔴"}${r.t} | **${display}**${handMark} | ${r.n || "—"} | ${r.c} |`)
+      lines.push(`| ${defaultTo(TIER_EMOJI[r.t], "🔴")}${r.t} | **${display}**${handMark} | ${defaultTo(r.n, "—")} | ${r.c} |`)
     }
     // 被过滤条目完整列表(审核参考:判断哪条该捞回 → 改 bake-rules.json5)
     // 与主表同列格式,机器 cost 升序——审核时主表/过滤表上下对照
-    const dropped = FILTERED[ids.join(",")] ?? []
+    const dropped = defaultTo(FILTERED[ids.join(",")], [])
     if (dropped.length > 0) {
       lines.push("")
       lines.push(`🗑 已过滤 ${dropped.length} 条(未进哈希表):`)
@@ -115,7 +116,7 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       lines.push(`|---|---|---|---|`)
       for (const e of dropped) {
         const display = e.set ? `${e.s}·${e.cn}` : `${e.s}${e.f}`
-        lines.push(`| ${TIER_EMOJI[e.t] ?? "🔴"}${e.t} | ~~${display}~~ | ${e.n || "—"} | ${e.c} |`)
+        lines.push(`| ${defaultTo(TIER_EMOJI[e.t], "🔴")}${e.t} | ~~${display}~~ | ${defaultTo(e.n, "—")} | ${e.c} |`)
       }
     }
     lines.push("")
