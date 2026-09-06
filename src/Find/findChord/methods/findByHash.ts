@@ -3,6 +3,7 @@ import { isNil } from "es-toolkit/predicate"
 import { PianoKey } from "@pianokey"
 import { Chord } from "@chord"
 import { restoreChord, type I_HashTransform } from "./restoreChord"
+import { restoreSet, type I_SetEntity } from "./restoreSet"
 
 /**
  * 三音哈希查找器
@@ -51,6 +52,8 @@ export type I_HashResult = I_HashEntry & {
   ops: I_HashOp[]
   /** 惰性反推的 Chord 实例(getter:首次访问才构造,结果缓存;set 条目为 null) */
   readonly chord: Chord | null
+  /** 惰性还原的 set 实体(getter,与 chord 对称;chord 条目为 null) */
+  readonly setEntity: I_SetEntity | null
 }
 
 const HASH_TABLE = chordHash3 as Record<string, I_HashEntry[]>
@@ -80,7 +83,8 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
   return entries.map(e => {
     // chord 实例惰性构造:首次访问才 restoreChord(闭包缓存),
     // findByHash 保持 O(1) 纯查表——不用实例的消费端零开销
-    let cached: Chord | null | undefined
+    let cachedChord: Chord | null | undefined
+    let cachedSet: I_SetEntity | null | undefined
     return {
       ...e,
       // chordName: set 条目给 根音·中文名,chord 条目给 根音+公式id;
@@ -88,8 +92,12 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
       chordName: e.isChordFormula === false ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
       isExact: e.cost === 0 && Object.keys(e.transform).length === 0,
       get chord(): Chord | null {
-        if (isNil(cached) && cached !== null) cached = restoreChord(e)
-        return cached
+        if (isNil(cachedChord) && cachedChord !== null) cachedChord = restoreChord(e)
+        return cachedChord
+      },
+      get setEntity(): I_SetEntity | null {
+        if (isNil(cachedSet) && cachedSet !== null) cachedSet = restoreSet(e)
+        return cachedSet
       },
     }
   })

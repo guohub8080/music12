@@ -117,3 +117,4 @@ export const findChord = (
 }
 export { findByHash, type I_HashEntry, type I_HashResult } from "./methods/findByHash"
 export { restoreChord } from "./methods/restoreChord"
+export { restoreSet, type I_SetEntity } from "./methods/restoreSet"
