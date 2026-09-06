@@ -60,9 +60,9 @@
   // ── 第二层:类型化规则(机器自动套用)────────────────────────
   "rules": [
     {
-      // 零成本独占:存在完全命中时,保留全部零成本条目(完全命中 + 纯省略
-      // cost=0 并列),滤掉 cost>0 的扭曲解释。
-      // 触发面保持「有完全命中」(纯省略组不触发,保留审核素材给人工)。
+      // 零成本独占(普适):存在 cost=0 的 chord 解释(完全命中或纯省略)时,
+      // 保留全部零成本条目,滤掉 cost>0 的扭曲解释——Tier2 纯省略组同样
+      // 适用(144 组的 1296 条挂尾一次清掉)。
       //
       // 乐理依据:cost=0 是「零扭曲」线——完全命中(键集恰等于公式音集)
       // 与纯省略(omit5/omit11 预期行为)都不扭曲和弦身份;cost>0 的
@@ -76,7 +76,7 @@
       // set 命中组由 set-exclusive/verdicts 接管,优先级更高。
       "id": "zero-cost-exclusive",
       "enabled": true,
-      "when": { "hasExactMatch": true },
+      "when": { "hasZeroCostChord": true },
       "then": { "keepOnly": "zeroCost" },
     },
     {

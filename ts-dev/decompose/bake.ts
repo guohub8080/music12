@@ -280,12 +280,15 @@ const bake = () => {
     const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且零变换)
     const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
+    // 零成本 chord 条目:完全命中或纯省略(cost=0,omit5/omit11 预期行为)
+    const hasZeroCostChord = chordEntries.some(e => e.cost === 0)
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
     for (const rule of RULES.rules) {
       if (!rule.enabled) continue
       if (rule.when?.hasSetHit === true && !hasSetHit) continue
       if (rule.when?.hasExactMatch === true && !hasExactMatch) continue
+      if (rule.when?.hasZeroCostChord === true && !hasZeroCostChord) continue
       const filter = rule.then?.filterChords
       if (isNotNil(filter) && isNotNil(filter.costMax)) {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)

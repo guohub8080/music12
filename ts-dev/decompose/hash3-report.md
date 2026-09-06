@@ -34,7 +34,7 @@
 | 🟡4 | ~~Pdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Psus2~~ | omit5 ♭2 add7 | 2 |
 
-## C-P-Q  `{0,1,3}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## C-P-Q  `{0,1,3}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -57,7 +57,7 @@
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Pmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## C-P-E  `{0,1,4}`  ⚙ set-exclusive
+## C-P-E  `{0,1,4}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -81,7 +81,7 @@
 | 🔴6 | ~~Csus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Cmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## C-P-F  `{0,1,5}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## C-P-F  `{0,1,5}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -106,7 +106,7 @@
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Pmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## C-P-X  `{0,1,6}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## C-P-X  `{0,1,6}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -179,7 +179,7 @@
 | 🟡4 | ~~Cdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Csus2~~ | omit5 ♭2 add7 | 2 |
 
-## C-D-F  `{0,2,5}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## C-D-F  `{0,2,5}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -207,7 +207,7 @@
 | 🔴6 | ~~Dmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Dmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## C-D-X  `{0,2,6}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## C-D-X  `{0,2,6}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -280,7 +280,7 @@
 | 🔴6 | ~~Cmin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Ymin3~~ | ♭5 ♯3 | 6 |
 
-## C-D-B  `{0,2,11}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## C-D-B  `{0,2,11}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -415,7 +415,7 @@
 | 🔴6 | ~~Amaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Amaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## C-Q-Z  `{0,3,10}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## C-Q-Z  `{0,3,10}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -443,7 +443,7 @@
 | 🔴6 | ~~Cmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Cmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## C-Q-B  `{0,3,11}`  ⚙ set-exclusive
+## C-Q-B  `{0,3,11}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -557,7 +557,7 @@
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭6 ♯3 | 6 |
 | 🔴6 | ~~Amaj3b5~~ | ♭3 ♯5 | 6 |
 
-## C-E-Z  `{0,4,10}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## C-E-Z  `{0,4,10}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -587,7 +587,7 @@
 | 🔴6 | ~~Cmin3add6~~ | omit5 ♯3 ♯6 | 6 |
 | 🔴6 | ~~Cminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-E-B  `{0,4,11}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## C-E-B  `{0,4,11}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -717,7 +717,7 @@
 | 🔴6 | ~~Fmaj3b5~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Cmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-F-B  `{0,5,11}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## C-F-B  `{0,5,11}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -739,7 +739,7 @@
 | 🔴6 | ~~Cmaj3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Bsus4~~ | omit5 ♭2 ♯4 | 4.5 |
 
-## C-X-G  `{0,6,7}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## C-X-G  `{0,6,7}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -757,7 +757,7 @@
 | 🟡4 | ~~Csus4~~ | ♯4 | 1.5 |
 | 🟠5 | ~~Xsus2~~ | ♭5 ♭2 | 3 |
 
-## C-X-Y  `{0,6,8}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## C-X-Y  `{0,6,8}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -845,7 +845,7 @@
 | 🟠5 | ~~Xmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Xmaj3~~ | ♭5 ♯3 | 6 |
 
-## C-G-Y  `{0,7,8}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## C-G-Y  `{0,7,8}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -868,7 +868,7 @@
 | 🔴6 | ~~Ymin3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Ymin7~~ | omit5 ♯3 ♯7 | 6 |
 
-## C-G-A  `{0,7,9}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## C-G-A  `{0,7,9}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -895,7 +895,7 @@
 | 🔴6 | ~~Amaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Amaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## C-Y-A  `{0,8,9}`  ⚙ set-exclusive
+## C-Y-A  `{0,8,9}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -936,7 +936,7 @@
 | 🟠5 | ~~Ymin3add11~~ | omit5 ♭11 | 3 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♭4 ♯2 | 4.5 |
 
-## C-A-Z  `{0,9,10}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## C-A-Z  `{0,9,10}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -992,7 +992,7 @@
 | 🟡4 | ~~Ddom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Dsus2~~ | omit5 ♭2 add7 | 2 |
 
-## P-D-E  `{1,2,4}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## P-D-E  `{1,2,4}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -1015,7 +1015,7 @@
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Dmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## P-D-F  `{1,2,5}`  ⚙ set-exclusive
+## P-D-F  `{1,2,5}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1039,7 +1039,7 @@
 | 🔴6 | ~~Psus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Pmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## P-D-X  `{1,2,6}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## P-D-X  `{1,2,6}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -1064,7 +1064,7 @@
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Dmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## P-D-G  `{1,2,7}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## P-D-G  `{1,2,7}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -1122,7 +1122,7 @@
 | 🟠5 | ~~Zmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Zmin3add11~~ | omit5 ♭11 | 3 |
 
-## P-Q-X  `{1,3,6}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## P-Q-X  `{1,3,6}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -1150,7 +1150,7 @@
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Qmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## P-Q-G  `{1,3,7}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## P-Q-G  `{1,3,7}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -1340,7 +1340,7 @@
 | 🔴6 | ~~Zmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Zmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## P-E-B  `{1,4,11}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## P-E-B  `{1,4,11}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -1456,7 +1456,7 @@
 | 🔴6 | ~~Fmaj3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Zmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## P-F-B  `{1,5,11}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## P-F-B  `{1,5,11}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -1598,7 +1598,7 @@
 | 🔴6 | ~~Xmaj3b5~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Pmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-G-Y  `{1,7,8}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## P-G-Y  `{1,7,8}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -1620,7 +1620,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♭2 ♯4 | 4.5 |
 
-## P-G-A  `{1,7,9}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## P-G-A  `{1,7,9}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -1694,7 +1694,7 @@
 | 🔴6 | ~~Bmin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Gmin3add11~~ | omit5 ♯11 ♯3 | 6 |
 
-## P-Y-A  `{1,8,9}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## P-Y-A  `{1,8,9}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -1719,7 +1719,7 @@
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Amin7~~ | omit5 ♯3 ♯7 | 6 |
 
-## P-Y-Z  `{1,8,10}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## P-Y-Z  `{1,8,10}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -1748,7 +1748,7 @@
 | 🔴6 | ~~Zmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Zmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## P-A-Z  `{1,9,10}`  ⚙ set-exclusive
+## P-A-Z  `{1,9,10}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1773,7 +1773,7 @@
 | 🔴6 | ~~Amin3~~ | omit5 ♭2 ♯3 | 6 |
 | 🔴6 | ~~Amin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## P-Z-B  `{1,10,11}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## P-Z-B  `{1,10,11}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -1811,7 +1811,7 @@
 | 🟡4 | ~~Qdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Qsus2~~ | omit5 ♭2 add7 | 2 |
 
-## D-Q-F  `{2,3,5}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## D-Q-F  `{2,3,5}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -1834,7 +1834,7 @@
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Qmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## D-Q-X  `{2,3,6}`  ⚙ set-exclusive
+## D-Q-X  `{2,3,6}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1858,7 +1858,7 @@
 | 🔴6 | ~~Dsus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Dmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## D-Q-G  `{2,3,7}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## D-Q-G  `{2,3,7}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -1883,7 +1883,7 @@
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Qmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## D-Q-Y  `{2,3,8}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## D-Q-Y  `{2,3,8}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -1942,7 +1942,7 @@
 | 🟠5 | ~~Bmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Bmin3add11~~ | omit5 ♭11 | 3 |
 
-## D-E-G  `{2,4,7}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## D-E-G  `{2,4,7}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -1970,7 +1970,7 @@
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Emaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## D-E-Y  `{2,4,8}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## D-E-Y  `{2,4,8}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -2333,7 +2333,7 @@
 | 🔴6 | ~~Gdim3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♯5 | 6 |
 
-## D-Y-A  `{2,8,9}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## D-Y-A  `{2,8,9}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -2355,7 +2355,7 @@
 | 🔴6 | ~~Amaj3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♭2 ♯4 | 4.5 |
 
-## D-Y-Z  `{2,8,10}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## D-Y-Z  `{2,8,10}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -2407,7 +2407,7 @@
 | 🔴6 | ~~Ysus4~~ | omit5 ♯4 ♯2 | 4.5 |
 | 🔴6 | ~~Baug3~~ | ♭3 ♯5 | 6 |
 
-## D-A-Z  `{2,9,10}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## D-A-Z  `{2,9,10}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -2432,7 +2432,7 @@
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Zmin7~~ | omit5 ♯3 ♯7 | 6 |
 
-## D-A-B  `{2,9,11}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## D-A-B  `{2,9,11}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -2460,7 +2460,7 @@
 | 🔴6 | ~~Bmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Bmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## D-Z-B  `{2,10,11}`  ⚙ set-exclusive
+## D-Z-B  `{2,10,11}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2500,7 +2500,7 @@
 | 🟡4 | ~~Edom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Esus2~~ | omit5 ♭2 add7 | 2 |
 
-## Q-E-X  `{3,4,6}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## Q-E-X  `{3,4,6}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -2523,7 +2523,7 @@
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Emin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## Q-E-G  `{3,4,7}`  ⚙ set-exclusive
+## Q-E-G  `{3,4,7}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2547,7 +2547,7 @@
 | 🔴6 | ~~Qsus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Qmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## Q-E-Y  `{3,4,8}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## Q-E-Y  `{3,4,8}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -2572,7 +2572,7 @@
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Emin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## Q-E-A  `{3,4,9}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## Q-E-A  `{3,4,9}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -2614,7 +2614,7 @@
 | 🟠5 | ~~Zmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Zmaj3~~ | ♭5 ♯3 | 6 |
 
-## Q-F-Y  `{3,5,8}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## Q-F-Y  `{3,5,8}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -2642,7 +2642,7 @@
 | 🔴6 | ~~Fmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Fmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## Q-F-A  `{3,5,9}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## Q-F-A  `{3,5,9}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -2930,7 +2930,7 @@
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♭6 ♯3 | 6 |
 | 🔴6 | ~~Ymaj3b5~~ | ♭3 ♯5 | 6 |
 
-## Q-A-Z  `{3,9,10}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## Q-A-Z  `{3,9,10}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -2952,7 +2952,7 @@
 | 🔴6 | ~~Zmaj3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♭2 ♯4 | 4.5 |
 
-## Q-A-B  `{3,9,11}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## Q-A-B  `{3,9,11}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -2982,7 +2982,7 @@
 | 🔴6 | ~~Bmin3add6~~ | omit5 ♯3 ♯6 | 6 |
 | 🔴6 | ~~Bminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## Q-Z-B  `{3,10,11}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## Q-Z-B  `{3,10,11}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -3023,7 +3023,7 @@
 | 🟡4 | ~~Fdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Fsus2~~ | omit5 ♭2 add7 | 2 |
 
-## E-F-G  `{4,5,7}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## E-F-G  `{4,5,7}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -3046,7 +3046,7 @@
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Fmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## E-F-Y  `{4,5,8}`  ⚙ set-exclusive
+## E-F-Y  `{4,5,8}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3070,7 +3070,7 @@
 | 🔴6 | ~~Esus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Emin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## E-F-A  `{4,5,9}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## E-F-A  `{4,5,9}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -3095,7 +3095,7 @@
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭9 ♯3 | 6 |
 | 🔴6 | ~~Fmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## E-F-Z  `{4,5,10}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## E-F-Z  `{4,5,10}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -3131,7 +3131,7 @@
 | 🟠5 | ~~Bmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Bmaj3~~ | ♭5 ♯3 | 6 |
 
-## E-X-A  `{4,6,9}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## E-X-A  `{4,6,9}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -3159,7 +3159,7 @@
 | 🔴6 | ~~Xmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Xmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## E-X-Z  `{4,6,10}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## E-X-Z  `{4,6,10}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -3357,7 +3357,7 @@
 | 🔴6 | ~~Emaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Bmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## E-Z-B  `{4,10,11}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## E-Z-B  `{4,10,11}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -3395,7 +3395,7 @@
 | 🟡4 | ~~Xdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Xsus2~~ | omit5 ♭2 add7 | 2 |
 
-## F-X-Y  `{5,6,8}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## F-X-Y  `{5,6,8}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -3418,7 +3418,7 @@
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Xmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## F-X-A  `{5,6,9}`  ⚙ set-exclusive
+## F-X-A  `{5,6,9}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3442,7 +3442,7 @@
 | 🔴6 | ~~Fsus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Fmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## F-X-Z  `{5,6,10}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## F-X-Z  `{5,6,10}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -3465,7 +3465,7 @@
 | 🔴6 | ~~Xmin3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Xmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## F-X-B  `{5,6,11}`  ✋ verdict(0,1,6) ⚙ set-exclusive
+## F-X-B  `{5,6,11}`  ✋ verdict(0,1,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留
 
@@ -3483,7 +3483,7 @@
 | 🟡4 | ~~Bsus4~~ | ♯4 | 1.5 |
 | 🟠5 | ~~Fsus2~~ | ♭2 ♭5 | 3 |
 
-## F-G-Z  `{5,7,10}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## F-G-Z  `{5,7,10}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -3510,7 +3510,7 @@
 | 🔴6 | ~~Gmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Gmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## F-G-B  `{5,7,11}`  ✋ verdict(0,2,6) ⚙ set-exclusive
+## F-G-B  `{5,7,11}`  ✋ verdict(0,2,6) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留
 
@@ -3629,7 +3629,7 @@
 | 🟡4 | ~~Gdom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Gsus2~~ | omit5 ♭2 add7 | 2 |
 
-## X-G-A  `{6,7,9}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## X-G-A  `{6,7,9}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -3652,7 +3652,7 @@
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Gmin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## X-G-Z  `{6,7,10}`  ⚙ set-exclusive
+## X-G-Z  `{6,7,10}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3676,7 +3676,7 @@
 | 🔴6 | ~~Xsus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Xmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## X-G-B  `{6,7,11}`  ✋ verdict(0,1,5) ⚙ set-exclusive
+## X-G-B  `{6,7,11}`  ✋ verdict(0,1,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留
 
@@ -3699,7 +3699,7 @@
 | 🔴6 | ~~Gmin3~~ | omit5 ♯3 add7 | 3.5 |
 | 🔴6 | ~~Gmin7~~ | omit5 ♯7 ♯3 | 6 |
 
-## X-Y-B  `{6,8,11}`  ✋ verdict(0,2,5) ⚙ set-exclusive
+## X-Y-B  `{6,8,11}`  ✋ verdict(0,2,5) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-05):四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留
 
@@ -3758,7 +3758,7 @@
 | 🟡4 | ~~Ydom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Ysus2~~ | omit5 ♭2 add7 | 2 |
 
-## G-Y-Z  `{7,8,10}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## G-Y-Z  `{7,8,10}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -3781,7 +3781,7 @@
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♭9 ♭3 | 6 |
 | 🔴6 | ~~Ymin7~~ | omit5 ♭3 ♯7 | 6 |
 
-## G-Y-B  `{7,8,11}`  ⚙ set-exclusive
+## G-Y-B  `{7,8,11}`  ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3837,7 +3837,7 @@
 | 🟡4 | ~~Adom7sus2~~ | omit5 ♭2 ♯7 | 2 |
 | 🟡4 | ~~Asus2~~ | omit5 ♭2 add7 | 2 |
 
-## Y-A-B  `{8,9,11}`  ✋ verdict(0,1,3) ⚙ set-exclusive
+## Y-A-B  `{8,9,11}`  ✋ verdict(0,1,3) ⚙ zero-cost-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-04):Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考
 
@@ -3878,7 +3878,7 @@
 
 # 🔵 Tier 2 — 预期省略(纯 omit5/omit11)
 
-## C-P-Y  `{0,1,8}`  ✋ verdict(0,1,8)
+## C-P-Y  `{0,1,8}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -3894,7 +3894,7 @@
 | 🟠5 | ~~Ymin3add11~~ | omit5 ♯3 | 3 |
 | 🟠5 | ~~Csus2~~ | ♭2 ♯5 | 3 |
 
-## C-P-Z  `{0,1,10}`  ✋ verdict(0,1,10)
+## C-P-Z  `{0,1,10}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -3912,7 +3912,7 @@
 | 🟠5 | ~~Cmaj7sus2~~ | omit5 ♭2 ♭7 | 3 |
 | 🔴6 | ~~Csus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## C-D-Q  `{0,2,3}`  ✋ verdict(0,1,10)
+## C-D-Q  `{0,2,3}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -3930,7 +3930,7 @@
 | 🟠5 | ~~Dmaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Dsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## C-D-E  `{0,2,4}`  ✋ verdict(0,2,4)
+## C-D-E  `{0,2,4}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -3954,7 +3954,7 @@
 | 🔴6 | ~~Dmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Dminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## C-D-A  `{0,2,9}`  ✋ verdict(0,2,9)
+## C-D-A  `{0,2,9}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -3972,7 +3972,7 @@
 | 🟠5 | ~~Asus4~~ | omit5 ♯2 | 3 |
 | 🔴6 | ~~Amaj3b5~~ | ♭3 ♭5 | 6 |
 
-## C-D-Z  `{0,2,10}`  ✋ verdict(0,2,4)
+## C-D-Z  `{0,2,10}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -3996,7 +3996,7 @@
 | 🔴6 | ~~Cmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Cminmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## C-Q-F  `{0,3,5}`  ✋ verdict(0,2,9)
+## C-Q-F  `{0,3,5}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4017,7 +4017,7 @@
 | 🔴6 | ~~Cmaj3b5~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Qmin7~~ | omit5 ♭7 ♭3 | 6 |
 
-## C-E-F  `{0,4,5}`  ✋ verdict(0,1,8)
+## C-E-F  `{0,4,5}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4034,7 +4034,7 @@
 | 🟠5 | ~~Esus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Cdim3~~ | ♭5 ♯3 | 6 |
 
-## C-G-Z  `{0,7,10}`  ✋ verdict(0,2,9)
+## C-G-Z  `{0,7,10}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4052,7 +4052,7 @@
 | 🟠5 | ~~Gsus4~~ | omit5 ♯2 | 3 |
 | 🔴6 | ~~Gmaj3b5~~ | ♭5 ♭3 | 6 |
 
-## C-G-B  `{0,7,11}`  ✋ verdict(0,1,8)
+## C-G-B  `{0,7,11}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4069,7 +4069,7 @@
 | 🟠5 | ~~Bsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Gdim3~~ | ♭5 ♯3 | 6 |
 
-## C-Y-Z  `{0,8,10}`  ✋ verdict(0,2,4)
+## C-Y-Z  `{0,8,10}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4094,7 +4094,7 @@
 | 🔴6 | ~~Zmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Zminmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## C-A-B  `{0,9,11}`  ✋ verdict(0,1,10)
+## C-A-B  `{0,9,11}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4113,7 +4113,7 @@
 | 🔴6 | ~~Amaj3~~ | omit5 ♭3 add2 | 3.5 |
 | 🔴6 | ~~Bsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## P-D-A  `{1,2,9}`  ✋ verdict(0,1,8)
+## P-D-A  `{1,2,9}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4130,7 +4130,7 @@
 | 🟠5 | ~~Psus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Adim3~~ | ♭5 ♯3 | 6 |
 
-## P-D-B  `{1,2,11}`  ✋ verdict(0,1,10)
+## P-D-B  `{1,2,11}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4148,7 +4148,7 @@
 | 🟠5 | ~~Pmaj7sus2~~ | omit5 ♭2 ♭7 | 3 |
 | 🔴6 | ~~Psus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## P-Q-E  `{1,3,4}`  ✋ verdict(0,1,10)
+## P-Q-E  `{1,3,4}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4166,7 +4166,7 @@
 | 🟠5 | ~~Qmaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Qsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## P-Q-F  `{1,3,5}`  ✋ verdict(0,2,4)
+## P-Q-F  `{1,3,5}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4190,7 +4190,7 @@
 | 🔴6 | ~~Qmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Qminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## P-Q-Z  `{1,3,10}`  ✋ verdict(0,2,9)
+## P-Q-Z  `{1,3,10}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4209,7 +4209,7 @@
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♯9 ♯3 | 6 |
 | 🔴6 | ~~Zmaj3b5~~ | ♭3 ♭5 | 6 |
 
-## P-Q-B  `{1,3,11}`  ✋ verdict(0,2,4)
+## P-Q-B  `{1,3,11}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4233,7 +4233,7 @@
 | 🔴6 | ~~Pmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Pminmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## P-E-X  `{1,4,6}`  ✋ verdict(0,2,9)
+## P-E-X  `{1,4,6}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4254,7 +4254,7 @@
 | 🔴6 | ~~Pmaj3b5~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Emin7~~ | omit5 ♭7 ♭3 | 6 |
 
-## P-F-X  `{1,5,6}`  ✋ verdict(0,1,8)
+## P-F-X  `{1,5,6}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4271,7 +4271,7 @@
 | 🟠5 | ~~Fsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Pdim3~~ | ♭5 ♯3 | 6 |
 
-## P-Y-B  `{1,8,11}`  ✋ verdict(0,2,9)
+## P-Y-B  `{1,8,11}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4290,7 +4290,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♯3 ♯2 | 6 |
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♯3 ♯9 | 6 |
 
-## P-A-B  `{1,9,11}`  ✋ verdict(0,2,4)
+## P-A-B  `{1,9,11}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4314,7 +4314,7 @@
 | 🔴6 | ~~Bmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Bminmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## D-Q-Z  `{2,3,10}`  ✋ verdict(0,1,8)
+## D-Q-Z  `{2,3,10}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4331,7 +4331,7 @@
 | 🟠5 | ~~Dsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Zdim3~~ | ♭5 ♯3 | 6 |
 
-## D-E-F  `{2,4,5}`  ✋ verdict(0,1,10)
+## D-E-F  `{2,4,5}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4349,7 +4349,7 @@
 | 🟠5 | ~~Emaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Esus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## D-E-X  `{2,4,6}`  ✋ verdict(0,2,4)
+## D-E-X  `{2,4,6}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4373,7 +4373,7 @@
 | 🔴6 | ~~Emin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Eminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## D-E-B  `{2,4,11}`  ✋ verdict(0,2,9)
+## D-E-B  `{2,4,11}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4394,7 +4394,7 @@
 | 🔴6 | ~~Bmaj3b5~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Dmin7~~ | omit5 ♭3 ♭7 | 6 |
 
-## D-F-G  `{2,5,7}`  ✋ verdict(0,2,9)
+## D-F-G  `{2,5,7}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4413,7 +4413,7 @@
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♯9 ♯3 | 6 |
 | 🔴6 | ~~Dmaj3b5~~ | ♭3 ♭5 | 6 |
 
-## D-X-G  `{2,6,7}`  ✋ verdict(0,1,8)
+## D-X-G  `{2,6,7}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4430,7 +4430,7 @@
 | 🟠5 | ~~Xsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Ddim3~~ | ♭5 ♯3 | 6 |
 
-## Q-E-B  `{3,4,11}`  ✋ verdict(0,1,8)
+## Q-E-B  `{3,4,11}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4447,7 +4447,7 @@
 | 🟠5 | ~~Qsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Bdim3~~ | ♭5 ♯3 | 6 |
 
-## Q-F-X  `{3,5,6}`  ✋ verdict(0,1,10)
+## Q-F-X  `{3,5,6}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4465,7 +4465,7 @@
 | 🟠5 | ~~Fmaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Fsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## Q-F-G  `{3,5,7}`  ✋ verdict(0,2,4)
+## Q-F-G  `{3,5,7}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4489,7 +4489,7 @@
 | 🔴6 | ~~Fmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Fminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## Q-X-Y  `{3,6,8}`  ✋ verdict(0,2,9)
+## Q-X-Y  `{3,6,8}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4508,7 +4508,7 @@
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♯9 ♯3 | 6 |
 | 🔴6 | ~~Qmaj3b5~~ | ♭3 ♭5 | 6 |
 
-## Q-G-Y  `{3,7,8}`  ✋ verdict(0,1,8)
+## Q-G-Y  `{3,7,8}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4525,7 +4525,7 @@
 | 🟠5 | ~~Gsus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Qdim3~~ | ♭5 ♯3 | 6 |
 
-## E-X-G  `{4,6,7}`  ✋ verdict(0,1,10)
+## E-X-G  `{4,6,7}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4543,7 +4543,7 @@
 | 🟠5 | ~~Xmaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Xsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## E-X-Y  `{4,6,8}`  ✋ verdict(0,2,4)
+## E-X-Y  `{4,6,8}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4567,7 +4567,7 @@
 | 🔴6 | ~~Xmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Xminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## E-G-A  `{4,7,9}`  ✋ verdict(0,2,9)
+## E-G-A  `{4,7,9}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4586,7 +4586,7 @@
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♯9 ♯3 | 6 |
 | 🔴6 | ~~Emaj3b5~~ | ♭3 ♭5 | 6 |
 
-## E-Y-A  `{4,8,9}`  ✋ verdict(0,1,8)
+## E-Y-A  `{4,8,9}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4603,7 +4603,7 @@
 | 🟠5 | ~~Ysus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Edim3~~ | ♭5 ♯3 | 6 |
 
-## F-G-Y  `{5,7,8}`  ✋ verdict(0,1,10)
+## F-G-Y  `{5,7,8}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4621,7 +4621,7 @@
 | 🟠5 | ~~Gmaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Gsus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## F-G-A  `{5,7,9}`  ✋ verdict(0,2,4)
+## F-G-A  `{5,7,9}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4645,7 +4645,7 @@
 | 🔴6 | ~~Gmin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Gminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## F-Y-Z  `{5,8,10}`  ✋ verdict(0,2,9)
+## F-Y-Z  `{5,8,10}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4663,7 +4663,7 @@
 | 🟠5 | ~~Fsus4~~ | omit5 ♯2 | 3 |
 | 🔴6 | ~~Fmaj3b5~~ | ♭3 ♭5 | 6 |
 
-## F-A-Z  `{5,9,10}`  ✋ verdict(0,1,8)
+## F-A-Z  `{5,9,10}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4680,7 +4680,7 @@
 | 🟠5 | ~~Asus2~~ | ♭2 ♯5 | 3 |
 | 🔴6 | ~~Fdim3~~ | ♭5 ♯3 | 6 |
 
-## X-Y-A  `{6,8,9}`  ✋ verdict(0,1,10)
+## X-Y-A  `{6,8,9}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4698,7 +4698,7 @@
 | 🟠5 | ~~Ymaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Ysus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## X-Y-Z  `{6,8,10}`  ✋ verdict(0,2,4)
+## X-Y-Z  `{6,8,10}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4722,7 +4722,7 @@
 | 🔴6 | ~~Ymin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Yminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## X-A-B  `{6,9,11}`  ✋ verdict(0,2,9)
+## X-A-B  `{6,9,11}`  ✋ verdict(0,2,9) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤
 
@@ -4740,7 +4740,7 @@
 | 🟠5 | ~~Xsus4~~ | omit5 ♯2 | 3 |
 | 🔴6 | ~~Xmaj3b5~~ | ♭3 ♭5 | 6 |
 
-## X-Z-B  `{6,10,11}`  ✋ verdict(0,1,8)
+## X-Z-B  `{6,10,11}`  ✋ verdict(0,1,8) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤
 
@@ -4756,7 +4756,7 @@
 | 🟠5 | ~~Xmin3add11~~ | omit5 ♯3 | 3 |
 | 🟠5 | ~~Zsus2~~ | ♭2 ♯5 | 3 |
 
-## G-A-Z  `{7,9,10}`  ✋ verdict(0,1,10)
+## G-A-Z  `{7,9,10}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
@@ -4774,7 +4774,7 @@
 | 🟠5 | ~~Amaj7sus2~~ | omit5 ♭7 ♭2 | 3 |
 | 🔴6 | ~~Asus2~~ | omit5 ♭2 ♯6 | 4.5 |
 
-## G-A-B  `{7,9,11}`  ✋ verdict(0,2,4)
+## G-A-B  `{7,9,11}`  ✋ verdict(0,2,4) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤
 
@@ -4798,7 +4798,7 @@
 | 🔴6 | ~~Amin3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Aminmaj7~~ | omit5 ♭7 ♭3 | 6 |
 
-## Y-Z-B  `{8,10,11}`  ✋ verdict(0,1,10)
+## Y-Z-B  `{8,10,11}`  ✋ verdict(0,1,10) ⚙ zero-cost-exclusive
 
 > ✋ 人工裁决(2026-09-05):min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤
 
