@@ -222,5 +222,21 @@
     "scoreDisplay": { "2": [-1, 0], "3": 0 },
     "offsets": [1, 2, 4],
     "tags": ["cluster", "non-tertian", "non-functional", "forte-4-2"]
+  },
+
+  // 梦之和弦 · root + 1半音(♭2) + 2半音(♮2) + 7半音(纯五) · C-C♯-D-G 型
+  // 正式昵称 Dream chord(Wikipedia 集合类列表收录,源自 John Cage《Dream》
+  // 1948,minimalism 先声标志音响);Forte 4-6,音程向量 ⟨210021⟩
+  // (两个半音簇基因 + 两个纯五度 + 三全音)。Straus 标注 TC 属性:
+  // {0,1}+{0,7} 移调组合体(半音对与纯五对)。
+  // 簇家族四音延伸第三例(簇+纯五,与 +三全音/+大三度成三兄弟);
+  // 亦 = Phrygian五度(spset-phrygian_fifth)夹一个 ♮2。♭2♮2 同度并存。
+  // 审核:用户 2026-09-06(四音审核「没有合适的和弦解释」,裁决 set)
+  "spset-dream": {
+    "cnName": "梦之和弦",
+    "name": "Dream Chord",
+    "scoreDisplay": { "2": [-1, 0], "5": 0 },
+    "offsets": [1, 2, 7],
+    "tags": ["cluster", "cage", "minimalism", "forte-4-6"]
   }
 }
