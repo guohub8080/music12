@@ -459,5 +459,22 @@
       ],
       "filterRest": true,
     },
+
+    // 分叉加六形(四音):A-C-C♯-F♯ / C-C♯-F♯-A / ... 共 12 个移调
+    // (prime form 0,1,6,9 自规范,Forte 4-18 倒影方向)
+    //
+    // 硬规则:纯 set。分叉三和弦(♭3♮3 并存,blues 标志)+ 大六度;
+    // 最优 chord 解释 dom7#9(omit5 ♭7) 把 Hendrix 的 ♭7 降成 M6
+    // (变形核心音),全场别扭。Forte 4-18 正形 {0,1,4,7} 同类,
+    // 将来审到同款处理。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,6,9": {
+      "date": "2026-09-06",
+      "comment": "分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set",
+      "anchor": "spset-split_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

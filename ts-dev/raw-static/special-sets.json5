@@ -191,5 +191,22 @@
     "scoreDisplay": { "2": -1, "3": 0, "4": 0 },
     "offsets": [1, 4, 5],
     "tags": ["hijaz", "maqam", "phrygian-dominant", "harmonic-minor"]
+  },
+
+  // 分叉加六 · root + 3半音(♭3) + 4半音(♮3) + 9半音(♮6) · A-C-C♯-F♯ 型
+  // 分叉三和弦(♭3♮3 并存,blues 标志音响)的四音延伸——加大六度,
+  // blues/rock 和声常见张力堆(双 bend 场景的音高内容)。
+  // Forte 4-18(prime form (0,1,4,7) 为正形,本形 0,1,6,9 为倒影方向,
+  // 同类两半边将来同款处理);音程向量 ⟨102111⟩。无流通别名,
+  // 学院标签级身份(Viennese 先例)+ split_third 家族原班人马。
+  // 最优 chord 解释 dom7#9(omit5 ♭7) 把 Hendrix 的 ♭7 降成 M6
+  // (变形核心音),全场别扭。
+  // 审核:用户 2026-09-06(四音审核「怎么解释都别扭」,A 根视角裁决)
+  "spset-split_sixth": {
+    "cnName": "分叉加六",
+    "name": "Split-Sixth",
+    "scoreDisplay": { "3": [-1, 0], "6": 0 },
+    "offsets": [3, 4, 9],
+    "tags": ["blues", "split-third", "non-tertian", "forte-4-18"]
   }
 }
