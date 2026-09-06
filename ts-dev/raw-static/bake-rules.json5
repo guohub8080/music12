@@ -492,5 +492,20 @@
       ],
       "filterRest": true,
     },
+
+    // 半音簇大三度形(四音):C-C♯-D-E / ... 共 12 个移调(prime form 0,1,2,4 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸第二例(半音簇+大三度,
+    // cluster_tritone 兄弟形,♭2♮2 同度并存);最优 chord 解释
+    // maj13sus2(omit5 ♯13) cost 1.5 变形记法,全场凑数。
+    //
+    // 审核:用户 2026-09-06(同意 set 为唯一解释)
+    "0,1,2,4": {
+      "date": "2026-09-06",
+      "comment": "半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

@@ -208,5 +208,19 @@
     "scoreDisplay": { "3": [-1, 0], "6": 0 },
     "offsets": [3, 4, 9],
     "tags": ["blues", "split-third", "non-tertian", "forte-4-18"]
+  },
+
+  // 半音簇大三度 · root + 1半音(♭2) + 2半音(♮2) + 4半音(♮3) · C-C♯-D-E 型
+  // 簇家族四音延伸第二例(半音簇 + 大三度,spset-cluster_tritone 的兄弟形):
+  // 三个连续半音的摩擦 + 一个有方向感的大三度;♭2♮2 同度并存。
+  // Forte 4-2(音程向量 ⟨221100⟩,两个半音簇基因);无流通别名,学院标签级。
+  // 最优 chord 解释 maj13sus2(omit5 ♯13) cost 1.5 变形记法,全场凑数。
+  // 审核:用户 2026-09-06(四音审核「怎么解释都不行」,同意 set 唯一)
+  "spset-cluster_third": {
+    "cnName": "半音簇大三度",
+    "name": "Cluster-Third",
+    "scoreDisplay": { "2": [-1, 0], "3": 0 },
+    "offsets": [1, 2, 4],
+    "tags": ["cluster", "non-tertian", "non-functional", "forte-4-2"]
   }
 }
