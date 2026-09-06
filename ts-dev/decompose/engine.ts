@@ -35,21 +35,22 @@ export type I_Decomposition = {
   cost: number
 }
 
-/** 半音距离 → {度数, 偏移};优先自然音级(offset=0) */
+/** 半音距离 → {度数, 偏移};优先自然音级(offset=0),变化音级取 |偏移| 最小 */
 function gapToDegree(gap: number): { degree: number; offset: number } | null {
-  const BASES: Array<[number, number]> = [[1,0],[2,2],[3,4],[4,5],[5,7],[6,9],[7,11],[9,14],[11,17],[13,21]]
+  // 无 1 度:根音不可加不可变(小二度记 ♭2 而非 ♯1——1 度不在 Chord 面板白名单)
+  const BASES: Array<[number, number]> = [[2,2],[3,4],[4,5],[5,7],[6,9],[7,11],[9,14],[11,17],[13,21]]
   // 先找自然音级(offset=0)
   for (const [deg, base] of BASES) {
     if (base === gap) return { degree: deg, offset: 0 }
   }
-  // 再找变化音级(±1, ±2)
+  // 变化音级:全表取 |diff| 最小(平手表序优先)——gap=13 落 ♭9(|−1|)而非 ♯♯7(|+2|,步长超限)
+  let best: { degree: number; offset: number } | null = null
   for (const [deg, base] of BASES) {
     const diff = gap - base
-    if (diff === 1 || diff === -1 || diff === 2 || diff === -2) {
-      return { degree: deg, offset: diff }
-    }
+    if (Math.abs(diff) !== 1) continue
+    if (isNil(best) || Math.abs(diff) < Math.abs(best.offset)) best = { degree: deg, offset: diff }
   }
-  return null
+  return best
 }
 
 export const decompose = (sortedIds: number[]): I_Decomposition[] => {

@@ -12,7 +12,8 @@
  *   verdicts 人工裁决:prime form 为键,人工钦定保留(优先级最高,
  *           一处裁决自动对称作用于全部 12 个移调)
  *
- * 产出: static-data/chord-hash-3.json
+ * 产出: static-data/chord-hash-{K}.json(K=键集音数,命令行第一参数,默认 3;
+ *   K=4 → C(12,4)=495,K=5 → 792,管线/规则/校验全自动复用)
  *   键 = 键集的 pianoKeySymbol 串,按字母序排列({0,2,11} → "BCD"),
  *       与 src/Find/.../findByHash.ts 的 hashKey 构造契约一致
  *   值 = 保留管线过滤后的分解方案数组,每条带 isChordFormula(true=chord 公式/
@@ -147,7 +148,8 @@ const toTransform = (ops: any[]): Record<string, number | number[]> => {
 }
 
 const bake = () => {
-  const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], 3)
+  const K = Number(defaultTo(process.argv[2], 3))
+  const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], K)
   const table: Record<string, any[]> = {}
   const filteredSidecar: Record<string, any[]> = {}
   const RULES = loadBakeRules(resolve(ROOT, "static-data"))
@@ -344,12 +346,12 @@ const bake = () => {
     )
   }
 
-  const outPath = resolve(ROOT, "static-data", "chord-hash-3.json")
+  const outPath = resolve(ROOT, "static-data", `chord-hash-${K}.json`)
   // 紧凑序列化(复用编译器的 pretty):scoreDisplay/transform 的
   // 小数组({"3":[-1,0]})单行,不被 JSON.stringify 炸成逐元素换行
   writeFileSync(outPath, serialize(table), "utf-8")
   // sidecar 写进 ts-dev(进 git,审核痕迹;非 static-data 产物)
-  const sidecarPath = resolve(ROOT, "ts-dev/decompose", "filtered-3.json")
+  const sidecarPath = resolve(ROOT, "ts-dev/decompose", `filtered-${K}.json`)
   writeFileSync(sidecarPath, serialize(filteredSidecar), "utf-8")
   const filteredTotal = Object.values(filteredSidecar).reduce((s, v) => s + v.length, 0)
   console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中,${verdictHits} 个键集被人工裁决覆盖)`)
