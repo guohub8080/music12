@@ -20459,25 +20459,27 @@
 | 🔴6 | ~~Ymin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Cmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## C-P-E-X  `{0,1,4,6}`
+## C-P-E-X  `{0,1,4,6}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Pmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Pminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Pminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Xdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Pmin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Pmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Pdom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Edom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Pdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Pdom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Pmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Pminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Xdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Pmin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Pmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Pdom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Edom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Pdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Pdom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Pmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Esus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Pdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -20673,25 +20675,27 @@
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Dsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## C-D-Y-A  `{0,2,8,9}`
+## C-D-Y-A  `{0,2,8,9}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Amin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Aminmaj11** | omit5 omit9 | 0.5 |
-| 🟢3 | **Aminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Ddom7sus4** | ♯4 | 1 |
-| 🟢3 | **Amin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Amaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Adom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Cdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Adom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Adom9sus4** | omit5 ♯9 ♯7 | 2 |
 
-🗑 已过滤 37 条(未进哈希表):
+🗑 已过滤 46 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Amin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Aminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Ddom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Amin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Amaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Adom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Cdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Adom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Adom9sus4~~ | omit5 ♯9 ♯7 | 2 |
 | 🟡4 | ~~Amaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Csus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Adom11~~ | omit5 omit9 ♭3 ♯7 | 2.5 |
@@ -20781,25 +20785,27 @@
 | 🔴6 | ~~Cmin11~~ | omit9 omit5 ♭11 ♭7 | 6.5 |
 | 🔴6 | ~~Aaug3~~ | ♭3 ♭5 ♯4 | 9 |
 
-## C-Q-F-B  `{0,3,5,11}`
+## C-Q-F-B  `{0,3,5,11}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Cmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Cminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Cminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Fdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Cmin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Cmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Cdom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Qdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Cdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Cdom9sus4** | omit5 ♯9 ♯7 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Cmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Cminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Fdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Cmin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Cmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Cdom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Qdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Cdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Cdom9sus4~~ | omit5 ♯9 ♯7 | 2 |
 | 🟡4 | ~~Cmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Qsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Cdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -21035,25 +21041,27 @@
 | 🔴6 | ~~Amaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Bsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## C-X-G-Z  `{0,6,7,10}`
+## C-X-G-Z  `{0,6,7,10}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Gmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Gminmaj11** | omit5 omit9 | 0.5 |
-| 🟢3 | **Gminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Cdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Gmin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Gmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Gdom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Zdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Gdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Gdom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 37 条(未进哈希表):
+🗑 已过滤 46 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Gmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Gminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Cdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Gmin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Gmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Gdom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Zdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Gdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Gdom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Gmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Zsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Gdom7sus2~~ | omit5 ♯7 ♯2 add4 | 2.5 |
@@ -21142,25 +21150,27 @@
 | 🔴6 | ~~Amin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Pmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## P-D-F-G  `{1,2,5,7}`
+## P-D-F-G  `{1,2,5,7}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Dmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Dminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Dminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Gdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Dmin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Dmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Ddom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Fdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Ddom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Ddom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Dmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Dminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Gdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Dmin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Dmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Ddom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Fdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Ddom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Ddom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Dmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Fsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Ddom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -21334,25 +21344,27 @@
 | 🔴6 | ~~Pmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Qsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-Q-A-Z  `{1,3,9,10}`
+## P-Q-A-Z  `{1,3,9,10}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Zmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Zminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Zminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Qdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Zmin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Zmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Zdom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Pdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Zdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Zdom9sus4** | omit5 ♯9 ♯7 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Zmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Zminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Qdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Zmin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Zmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Zdom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Pdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Zdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Zdom9sus4~~ | omit5 ♯9 ♯7 | 2 |
 | 🟡4 | ~~Zmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Psus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Zdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -21554,25 +21566,27 @@
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-G-Y-B  `{1,7,8,11}`
+## P-G-Y-B  `{1,7,8,11}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Ymin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Yminmaj11** | omit5 omit9 | 0.5 |
-| 🟢3 | **Yminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Pdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Ymin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Ymaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Ydom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Bdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Ydom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Ydom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 35 条(未进哈希表):
+🗑 已过滤 44 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Ymin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Yminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Pdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Ymin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Ymaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Ydom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Bdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Ydom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Ydom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Ymaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Bsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Ydom11~~ | omit5 omit9 ♭3 ♯7 | 2.5 |
@@ -21634,25 +21648,27 @@
 | 🔴6 | ~~Zmin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Dmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## D-Q-X-Y  `{2,3,6,8}`
+## D-Q-X-Y  `{2,3,6,8}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Qmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Qminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Qminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Ydom7sus4** | ♯4 | 1 |
-| 🟢3 | **Qmin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Qmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Qdom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Xdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Qdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Qdom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Qmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Qminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Ydom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Qmin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Qmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Qdom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Xdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Qdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Qdom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Qmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Xsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Qdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -21786,25 +21802,27 @@
 | 🔴6 | ~~Dmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Esus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## D-E-Z-B  `{2,4,10,11}`
+## D-E-Z-B  `{2,4,10,11}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Bmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Bminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Bminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Edom7sus4** | ♯4 | 1 |
-| 🟢3 | **Bmin3** | omit5 add4 add7 | 1 |
-| 🟡4 | **Bmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Bdom7#9** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Ddom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Bdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Bdom9sus4** | omit5 ♯9 ♯7 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Bmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Bminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Edom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Bmin3~~ | omit5 add4 add7 | 1 |
+| 🟡4 | ~~Bmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Bdom7#9~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Ddom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Bdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Bdom9sus4~~ | omit5 ♯9 ♯7 | 2 |
 | 🟡4 | ~~Bmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Dsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Bdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -22025,25 +22043,27 @@
 | 🔴6 | ~~Qmin3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Qmin3add6~~ | omit5 ♭3 ♭6 ♭2 | 9 |
 
-## Q-E-G-A  `{3,4,7,9}`
+## Q-E-G-A  `{3,4,7,9}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Emin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Eminmaj11** | omit9 omit5 | 0.5 |
-| 🟢3 | **Eminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Adom7sus4** | ♯4 | 1 |
-| 🟢3 | **Emin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Emaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Edom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Gdom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Edom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Edom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Emin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Eminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Adom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Emin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Emaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Edom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Gdom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Edom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Edom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Emaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Gsus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Edom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -22238,25 +22258,27 @@
 | 🔴6 | ~~Gmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## E-F-Y-Z  `{4,5,8,10}`
+## E-F-Y-Z  `{4,5,8,10}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Fmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Fminmaj11** | omit5 omit9 | 0.5 |
-| 🟢3 | **Fminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Zdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Fmin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Fmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Fdom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Ydom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Fdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Fdom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 39 条(未进哈希表):
+🗑 已过滤 48 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Fmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Fminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Zdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Fmin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Fmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Fdom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Ydom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Fdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Fdom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Fmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Ysus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Fdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |
@@ -22411,25 +22433,27 @@
 | 🔴6 | ~~Ymaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Zsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## F-X-A-B  `{5,6,9,11}`
+## F-X-A-B  `{5,6,9,11}`  ✋ verdict(0,1,4,6)
+
+> ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
-| 🟢3 | **Xmin3add11** | omit5 add7 | 0.5 |
 | 🟢3 | **Xminmaj11** | omit5 omit9 | 0.5 |
-| 🟢3 | **Xminmaj7** | omit5 add4 | 0.5 |
-| 🟢3 | **Bdom7sus4** | ♯4 | 1 |
-| 🟢3 | **Xmin3** | omit5 add7 add4 | 1 |
-| 🟡4 | **Xmaj9sus4** | omit5 ♯9 | 1.5 |
-| 🟡4 | **Xdom7#9** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Adom7sus2** | ♭7 ♯5 | 2 |
-| 🟡4 | **Xdom7sus4** | omit5 ♯7 ♯2 | 2 |
-| 🟡4 | **Xdom9sus4** | omit5 ♯7 ♯9 | 2 |
 
-🗑 已过滤 37 条(未进哈希表):
+🗑 已过滤 46 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Xmin3add11~~ | omit5 add7 | 0.5 |
+| 🟢3 | ~~Xminmaj7~~ | omit5 add4 | 0.5 |
+| 🟢3 | ~~Bdom7sus4~~ | ♯4 | 1 |
+| 🟢3 | ~~Xmin3~~ | omit5 add7 add4 | 1 |
+| 🟡4 | ~~Xmaj9sus4~~ | omit5 ♯9 | 1.5 |
+| 🟡4 | ~~Xdom7#9~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Adom7sus2~~ | ♭7 ♯5 | 2 |
+| 🟡4 | ~~Xdom7sus4~~ | omit5 ♯7 ♯2 | 2 |
+| 🟡4 | ~~Xdom9sus4~~ | omit5 ♯7 ♯9 | 2 |
 | 🟡4 | ~~Xmaj7sus2~~ | omit5 ♯2 add4 | 2 |
 | 🟡4 | ~~Asus2~~ | ♯5 add6 | 2 |
 | 🟠5 | ~~Xdom7~~ | omit5 ♭3 ♯7 add4 | 2.5 |

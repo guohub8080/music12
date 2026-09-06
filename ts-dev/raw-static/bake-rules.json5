@@ -441,5 +441,23 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // minmaj11 减五六形:C-C♯-E-F♯ / ... 共 12 个移调(prime form 0,1,4,6 自规范)
+    //
+    // 硬规则:只保留 minmaj11(omit9 omit5)。结构 = 小大十一和弦骨架
+    // (root+m3+P11+M7,Forte 4-z15 全音程四音组 ⟨111111⟩)。同根同 cost
+    // 三条并列中用户选 minmaj11:11 度(F♯)作为公式正式度数纳入本体,
+    // 优于 minmaj7(add4) 的外挂记法与 min3add11(add7) 的绕路。
+    // 无锚模式:minmaj11 根音 = 起点 + 1(C-C♯-E-F♯ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-06(「希望只保留 minmaj11 omit5 omit9」)
+    "0,1,4,6": {
+      "date": "2026-09-06",
+      "comment": "minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤",
+      "keep": [
+        { "type": "chord", "formula": "minmaj11", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
