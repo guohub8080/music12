@@ -236,7 +236,7 @@
 | 🔴6 | ~~Dmin3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Dminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-D-G  `{0,2,7}`  ⚙ zero-cost-exclusive
+## C-D-G  `{0,2,7}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -259,7 +259,7 @@
 | 🔴6 | ~~Dmaj3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Dmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-D-Y  `{0,2,8}`  ⚙ zero-cost-exclusive
+## C-D-Y  `{0,2,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -320,7 +320,7 @@
 | 🟠5 | ~~Cmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Cmin3add11~~ | omit5 ♭11 | 3 |
 
-## C-Q-X  `{0,3,6}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## C-Q-X  `{0,3,6}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -345,7 +345,7 @@
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Cmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## C-Q-G  `{0,3,7}`  ⚙ zero-cost-exclusive
+## C-Q-G  `{0,3,7}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -369,7 +369,7 @@
 | 🔴6 | ~~Cmaj3b5~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Qmin7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-Q-Y  `{0,3,8}`  ⚙ zero-cost-exclusive
+## C-Q-Y  `{0,3,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -392,7 +392,7 @@
 | 🔴6 | ~~Qaug3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♯5 | 6 |
 
-## C-Q-A  `{0,3,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## C-Q-A  `{0,3,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -467,7 +467,7 @@
 | 🔴6 | ~~Bsus4~~ | omit5 ♭4 ♭2 | 4.5 |
 | 🔴6 | ~~Bmin3add9~~ | omit5 ♭9 ♯3 | 6 |
 
-## C-E-X  `{0,4,6}`  ⚙ zero-cost-exclusive
+## C-E-X  `{0,4,6}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -487,7 +487,7 @@
 | 🔴6 | ~~Cmin3add11~~ | omit5 ♯3 ♯11 | 6 |
 | 🔴6 | ~~Emin3add6~~ | omit5 ♭6 ♭3 | 6 |
 
-## C-E-G  `{0,4,7}`  ⚙ zero-cost-exclusive
+## C-E-G  `{0,4,7}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -510,7 +510,7 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭6 ♭3 | 6 |
 
-## C-E-Y  `{0,4,8}`  ⚙ zero-cost-exclusive
+## C-E-Y  `{0,4,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -534,7 +534,7 @@
 | 🔴6 | ~~Ymin3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Emin3add6~~ | omit5 ♭6 ♯3 | 6 |
 
-## C-E-A  `{0,4,9}`  ⚙ zero-cost-exclusive
+## C-E-A  `{0,4,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -629,7 +629,7 @@
 | 🟠5 | ~~Cmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Cmaj3~~ | ♭5 ♯3 | 6 |
 
-## C-F-G  `{0,5,7}`  ⚙ zero-cost-exclusive
+## C-F-G  `{0,5,7}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -649,7 +649,7 @@
 | 🔴6 | ~~Fdim3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Cmaj3b5~~ | ♯3 ♯5 | 6 |
 
-## C-F-Y  `{0,5,8}`  ⚙ zero-cost-exclusive
+## C-F-Y  `{0,5,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -671,7 +671,7 @@
 | 🔴6 | ~~Cmaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Fmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## C-F-A  `{0,5,9}`  ⚙ zero-cost-exclusive
+## C-F-A  `{0,5,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -693,7 +693,7 @@
 | 🔴6 | ~~Fdim3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Amaj3~~ | ♭3 ♯5 | 6 |
 
-## C-F-Z  `{0,5,10}`  ⚙ zero-cost-exclusive
+## C-F-Z  `{0,5,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -785,7 +785,7 @@
 | 🔴6 | ~~Ymin3add6~~ | omit5 ♯3 ♯6 | 6 |
 | 🔴6 | ~~Yminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## C-X-A  `{0,6,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## C-X-A  `{0,6,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -805,7 +805,7 @@
 | 🔴6 | ~~Aaug3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Xmaj3~~ | ♭5 ♭3 | 6 |
 
-## C-X-Z  `{0,6,10}`  ⚙ zero-cost-exclusive
+## C-X-Z  `{0,6,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1180,7 +1180,7 @@
 | 🔴6 | ~~Qmin3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Qminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-Q-Y  `{1,3,8}`  ⚙ zero-cost-exclusive
+## P-Q-Y  `{1,3,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1204,7 +1204,7 @@
 | 🔴6 | ~~Ymaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Qmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-Q-A  `{1,3,9}`  ⚙ zero-cost-exclusive
+## P-Q-A  `{1,3,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1243,7 +1243,7 @@
 | 🟠5 | ~~Pmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Pmin3add11~~ | omit5 ♭11 | 3 |
 
-## P-E-G  `{1,4,7}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## P-E-G  `{1,4,7}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -1268,7 +1268,7 @@
 | 🔴6 | ~~Pmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Pmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## P-E-Y  `{1,4,8}`  ⚙ zero-cost-exclusive
+## P-E-Y  `{1,4,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1293,7 +1293,7 @@
 | 🔴6 | ~~Pmaj3b5~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Emin7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-E-A  `{1,4,9}`  ⚙ zero-cost-exclusive
+## P-E-A  `{1,4,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1317,7 +1317,7 @@
 | 🔴6 | ~~Adim3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Pmaj3~~ | ♭3 ♯5 | 6 |
 
-## P-E-Z  `{1,4,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## P-E-Z  `{1,4,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -1368,7 +1368,7 @@
 | 🔴6 | ~~Pmaj3add6~~ | omit5 ♭3 ♯6 | 6 |
 | 🔴6 | ~~Pmaj7~~ | omit5 ♭3 ♭7 | 6 |
 
-## P-F-G  `{1,5,7}`  ⚙ zero-cost-exclusive
+## P-F-G  `{1,5,7}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1390,7 +1390,7 @@
 | 🔴6 | ~~Fmin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Pmin3add11~~ | omit5 ♯3 ♯11 | 6 |
 
-## P-F-Y  `{1,5,8}`  ⚙ zero-cost-exclusive
+## P-F-Y  `{1,5,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1412,7 +1412,7 @@
 | 🔴6 | ~~Pdim3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♯5 | 6 |
 
-## P-F-A  `{1,5,9}`  ⚙ zero-cost-exclusive
+## P-F-A  `{1,5,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1434,7 +1434,7 @@
 | 🔴6 | ~~Fmin3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Amin3~~ | ♯3 ♯5 | 6 |
 
-## P-F-Z  `{1,5,10}`  ⚙ zero-cost-exclusive
+## P-F-Z  `{1,5,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1506,7 +1506,7 @@
 | 🟠5 | ~~Pmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Pmaj3~~ | ♭5 ♯3 | 6 |
 
-## P-X-Y  `{1,6,8}`  ⚙ zero-cost-exclusive
+## P-X-Y  `{1,6,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1530,7 +1530,7 @@
 | 🔴6 | ~~Pmaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Ymaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-X-A  `{1,6,9}`  ⚙ zero-cost-exclusive
+## P-X-A  `{1,6,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1552,7 +1552,7 @@
 | 🔴6 | ~~Pmaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Xmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## P-X-Z  `{1,6,10}`  ⚙ zero-cost-exclusive
+## P-X-Z  `{1,6,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1574,7 +1574,7 @@
 | 🔴6 | ~~Xdim3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Zmaj3~~ | ♭3 ♯5 | 6 |
 
-## P-X-B  `{1,6,11}`  ⚙ zero-cost-exclusive
+## P-X-B  `{1,6,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -1650,7 +1650,7 @@
 | 🔴6 | ~~Amin3add6~~ | omit5 ♯3 ♯6 | 6 |
 | 🔴6 | ~~Aminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## P-G-Z  `{1,7,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## P-G-Z  `{1,7,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -1673,7 +1673,7 @@
 | 🔴6 | ~~Gmaj3~~ | ♭5 ♭3 | 6 |
 | 🔴6 | ~~Gmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## P-G-B  `{1,7,11}`  ⚙ zero-cost-exclusive
+## P-G-B  `{1,7,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2000,7 +2000,7 @@
 | 🔴6 | ~~Emin3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Eminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## D-E-A  `{2,4,9}`  ⚙ zero-cost-exclusive
+## D-E-A  `{2,4,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2024,7 +2024,7 @@
 | 🔴6 | ~~Amaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Emaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## D-E-Z  `{2,4,10}`  ⚙ zero-cost-exclusive
+## D-E-Z  `{2,4,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2062,7 +2062,7 @@
 | 🟠5 | ~~Dmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Dmin3add11~~ | omit5 ♭11 | 3 |
 
-## D-F-Y  `{2,5,8}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## D-F-Y  `{2,5,8}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -2084,7 +2084,7 @@
 | 🔴6 | ~~Dmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Dmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## D-F-A  `{2,5,9}`  ⚙ zero-cost-exclusive
+## D-F-A  `{2,5,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2106,7 +2106,7 @@
 | 🔴6 | ~~Amaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Dmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## D-F-Z  `{2,5,10}`  ⚙ zero-cost-exclusive
+## D-F-Z  `{2,5,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2127,7 +2127,7 @@
 | 🔴6 | ~~Zdim3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Dmaj3~~ | ♭3 ♯5 | 6 |
 
-## D-F-B  `{2,5,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## D-F-B  `{2,5,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -2152,7 +2152,7 @@
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Bmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## D-X-Y  `{2,6,8}`  ⚙ zero-cost-exclusive
+## D-X-Y  `{2,6,8}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2174,7 +2174,7 @@
 | 🔴6 | ~~Xmin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Dmin3add11~~ | omit5 ♯3 ♯11 | 6 |
 
-## D-X-A  `{2,6,9}`  ⚙ zero-cost-exclusive
+## D-X-A  `{2,6,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2196,7 +2196,7 @@
 | 🔴6 | ~~Ddim3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Xmaj3~~ | ♭3 ♯5 | 6 |
 
-## D-X-Z  `{2,6,10}`  ⚙ zero-cost-exclusive
+## D-X-Z  `{2,6,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2218,7 +2218,7 @@
 | 🔴6 | ~~Xmin3~~ | ♯5 ♯3 | 6 |
 | 🔴6 | ~~Zmin3~~ | ♯3 ♯5 | 6 |
 
-## D-X-B  `{2,6,11}`  ⚙ zero-cost-exclusive
+## D-X-B  `{2,6,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2263,7 +2263,7 @@
 | 🟠5 | ~~Dmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Dmaj3~~ | ♭5 ♯3 | 6 |
 
-## D-G-A  `{2,7,9}`  ⚙ zero-cost-exclusive
+## D-G-A  `{2,7,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2287,7 +2287,7 @@
 | 🔴6 | ~~Dmaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Amaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## D-G-Z  `{2,7,10}`  ⚙ zero-cost-exclusive
+## D-G-Z  `{2,7,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2309,7 +2309,7 @@
 | 🔴6 | ~~Dmaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Gmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## D-G-B  `{2,7,11}`  ⚙ zero-cost-exclusive
+## D-G-B  `{2,7,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2385,7 +2385,7 @@
 | 🔴6 | ~~Zmin3add6~~ | omit5 ♯3 ♯6 | 6 |
 | 🔴6 | ~~Zminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## D-Y-B  `{2,8,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## D-Y-B  `{2,8,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -2672,7 +2672,7 @@
 | 🔴6 | ~~Fmin3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Fminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## Q-F-Z  `{3,5,10}`  ⚙ zero-cost-exclusive
+## Q-F-Z  `{3,5,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2692,7 +2692,7 @@
 | 🔴6 | ~~Qdim3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Zmaj3b5~~ | ♯3 ♯5 | 6 |
 
-## Q-F-B  `{3,5,11}`  ⚙ zero-cost-exclusive
+## Q-F-B  `{3,5,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2728,7 +2728,7 @@
 | 🟠5 | ~~Qmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Qmin3add11~~ | omit5 ♭11 | 3 |
 
-## Q-X-A  `{3,6,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## Q-X-A  `{3,6,9}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -2750,7 +2750,7 @@
 | 🔴6 | ~~Qmaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Qmaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## Q-X-Z  `{3,6,10}`  ⚙ zero-cost-exclusive
+## Q-X-Z  `{3,6,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2772,7 +2772,7 @@
 | 🔴6 | ~~Zmaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Qmaj3b5~~ | ♭3 ♯5 | 6 |
 
-## Q-X-B  `{3,6,11}`  ⚙ zero-cost-exclusive
+## Q-X-B  `{3,6,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2795,7 +2795,7 @@
 | 🔴6 | ~~Qmaj3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♭3 ♭6 | 6 |
 
-## Q-G-A  `{3,7,9}`  ⚙ zero-cost-exclusive
+## Q-G-A  `{3,7,9}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2817,7 +2817,7 @@
 | 🔴6 | ~~Gmin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Qmin3add11~~ | omit5 ♯3 ♯11 | 6 |
 
-## Q-G-Z  `{3,7,10}`  ⚙ zero-cost-exclusive
+## Q-G-Z  `{3,7,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2839,7 +2839,7 @@
 | 🔴6 | ~~Qdim3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Gmaj3~~ | ♭3 ♯5 | 6 |
 
-## Q-G-B  `{3,7,11}`  ⚙ zero-cost-exclusive
+## Q-G-B  `{3,7,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2883,7 +2883,7 @@
 | 🟠5 | ~~Qmaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Qmaj3~~ | ♭5 ♯3 | 6 |
 
-## Q-Y-Z  `{3,8,10}`  ⚙ zero-cost-exclusive
+## Q-Y-Z  `{3,8,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -2907,7 +2907,7 @@
 | 🔴6 | ~~Qmaj3b5~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Zmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## Q-Y-B  `{3,8,11}`  ⚙ zero-cost-exclusive
+## Q-Y-B  `{3,8,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3189,7 +3189,7 @@
 | 🔴6 | ~~Xmin3add6~~ | omit5 ♯6 ♯3 | 6 |
 | 🔴6 | ~~Xminmaj7~~ | omit5 ♭7 ♯3 | 6 |
 
-## E-X-B  `{4,6,11}`  ⚙ zero-cost-exclusive
+## E-X-B  `{4,6,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3225,7 +3225,7 @@
 | 🟠5 | ~~Emaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Emin3add11~~ | omit5 ♭11 | 3 |
 
-## E-G-Z  `{4,7,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## E-G-Z  `{4,7,10}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -3247,7 +3247,7 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♭5 | 6 |
 | 🔴6 | ~~Emaj3add11~~ | omit5 ♭3 ♯11 | 6 |
 
-## E-G-B  `{4,7,11}`  ⚙ zero-cost-exclusive
+## E-G-B  `{4,7,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3269,7 +3269,7 @@
 | 🔴6 | ~~Bmaj3~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Emaj3b5~~ | ♭3 ♯5 | 6 |
 
-## E-Y-Z  `{4,8,10}`  ⚙ zero-cost-exclusive
+## E-Y-Z  `{4,8,10}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3291,7 +3291,7 @@
 | 🔴6 | ~~Ymin3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Emin3add11~~ | omit5 ♯3 ♯11 | 6 |
 
-## E-Y-B  `{4,8,11}`  ⚙ zero-cost-exclusive
+## E-Y-B  `{4,8,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3333,7 +3333,7 @@
 | 🟠5 | ~~Emaj3b5~~ | ♯3 | 3 |
 | 🔴6 | ~~Emaj3~~ | ♭5 ♯3 | 6 |
 
-## E-A-B  `{4,9,11}`  ⚙ zero-cost-exclusive
+## E-A-B  `{4,9,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3554,7 +3554,7 @@
 | 🟠5 | ~~Fmaj3add9~~ | omit5 ♯9 | 3 |
 | 🟠5 | ~~Fmin3add11~~ | omit5 ♭11 | 3 |
 
-## F-Y-B  `{5,8,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive
+## F-Y-B  `{5,8,11}`  ✋ verdict(0,3,6) ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 > ✋ 人工裁决(2026-09-05):减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤
 
@@ -3574,7 +3574,7 @@
 | 🔴6 | ~~Yaug3~~ | ♭3 ♯5 | 6 |
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♭5 | 6 |
 
-## F-A-B  `{5,9,11}`  ⚙ zero-cost-exclusive
+## F-A-B  `{5,9,11}`  ⚙ zero-cost-exclusive ⚙ same-root-exact-preferred
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|

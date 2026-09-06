@@ -296,6 +296,21 @@ const bake = () => {
         // 省略并列解释都是零扭曲),滤掉 cost>0 的扭曲解释
         entries = entries.filter(e => !e.isChordFormula || e.cost === 0)
       }
+      if (rule.then?.prefer === "transformless-per-root") {
+        // 同根音完全命中优先:该根音已有零变换条目时,滤掉它的带变换条目
+        // (同根冗余记法);不同根音的条目不受影响(等和弦多视角)
+        const exactRoots = new Set(
+          entries
+            .filter(e => e.isChordFormula && e.tier === 1 && Object.keys(e.transform).length === 0)
+            .map(e => e.pianoKeyIdRoot),
+        )
+        entries = entries.filter(
+          e =>
+            e.isChordFormula === false ||                        // set 条目不动
+            !exactRoots.has(e.pianoKeyIdRoot) ||                 // 根音无完全命中(等和弦多视角,保留)
+            Object.keys(e.transform).length === 0,               // 自身即无变换条目(保留)
+        )
+      }
     }
 
     // ── 第三层 verdicts:人工裁决,prime form 为键(移调自动对称)──

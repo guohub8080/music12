@@ -80,6 +80,21 @@
       "then": { "keepOnly": "zeroCost" },
     },
     {
+      // 同根音完全命中优先:cost=0 并列中,同一根音既有完全命中(零变换)
+      // 又有带变换条目时,只留无变换的——省略记法还原后与完全命中等价,
+      // 同根音下是冗余记法(不同根音的 cost=0 全保留,那是等和弦多视角)。
+      //
+      // 典型:BCEX {0,4,6,11} 同为 C 根的 Cmaj7b5(完全命中)与
+      // Cmaj7#11(omit5)(#11≡b5 等音,omit5 后音集相同)→ 留 maj7b5。
+      //
+      // 审定:用户 2026-09-06(四音审核;「再次提醒:只有同根音才滤,
+      // 根音不同就都保留」)
+      "id": "same-root-exact-preferred",
+      "enabled": true,
+      "when": { "hasExactMatch": true },
+      "then": { "prefer": "transformless-per-root" },
+    },
+    {
       // set 独占规则:set 完全命中时,chord 只保留 cost=0 的平行解释
       //
       // 乐理依据(theory.md):当键集被人工审核认定为独立 set(如 Phrygian 三音),
