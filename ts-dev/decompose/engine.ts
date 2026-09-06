@@ -85,7 +85,10 @@ export const decompose = (sortedIds: number[]): I_Decomposition[] => {
         const akGap = (ak - root + 12) % 12
         const okGap = (ok - root + 12) % 12
         const diff = akGap - okGap
-        if (diff === 1 || diff === -1 || diff === 2 || diff === -2) {
+        // 只配 ±1(半音升降):±2 的 alter 是重升重降,步长规则必然排除——
+        // 配对它等于谋杀合法的独立 add+omit 路径(如输入纯四度+公式省五度
+        // 本应解读为 add4+omit5,被误并成 ♭♭5 后整条方案死亡)
+        if (diff === 1 || diff === -1) {
           // 是升降变换!公式中 ok 键的度数
           const formulaInterval = inst.pianoKeyIdToInterval[ok]
           if (isNil(formulaInterval)) continue
