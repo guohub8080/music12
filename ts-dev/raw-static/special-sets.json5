@@ -174,5 +174,22 @@
     "scoreDisplay": { "2": [-1, 0], "5": -1 },
     "offsets": [1, 2, 6],
     "tags": ["cluster", "tritone", "non-functional", "forte-4-5"]
+  },
+
+  // Hijaz 四音组 · root + 1半音(♭2) + 4半音(♮3) + 5半音(♮4) · C-C♯-E-F 型
+  // maqam 理论正式构件(jins Hijaz):签名音程 = 半音→增二度→半音,
+  // 拼法 1-♭2-3-4;同时出现在和声小调 5 级(= Phrygian dominant 头四音),
+  // 中东传统 + 西方和声小调双血统。spset-hijaz(特征前三音)的四音完整版
+  // ——三音版是 jins 的截断,四音版是完整 jins。
+  // 最优 chord 解释 dom7#9(omit5 ♯7) 把 Hendrix 的 ♭7 升成 M7(本质变形),
+  // 全场凑数,功能和声无法收编。
+  // 来源:Offtonic Theory §7.9 Maqamat / maqam 理论 jins 体系
+  // 审核:用户 2026-09-06(四音 Tier3 区「怎么解释都解释不通」)
+  "spset-hijaz_tetrachord": {
+    "cnName": "Hijaz四音组",
+    "name": "Hijaz Tetrachord",
+    "scoreDisplay": { "2": -1, "3": 0, "4": 0 },
+    "offsets": [1, 4, 5],
+    "tags": ["hijaz", "maqam", "phrygian-dominant", "harmonic-minor"]
   }
 }

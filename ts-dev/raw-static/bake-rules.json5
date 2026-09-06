@@ -425,5 +425,21 @@
       ],
       "filterRest": true,
     },
+
+    // Hijaz 四音组形:C-C♯-E-F / ... 共 12 个移调(prime form 0,1,4,5 自规范)
+    //
+    // 硬规则:纯 set。jins Hijaz(半音→增二度→半音,1-♭2-3-4)是 maqam
+    // 理论正式构件 + 和声小调 5 级双血统;spset-hijaz(特征前三音)的
+    // 四音完整版。最优 chord 解释 dom7#9(omit5 ♯7) 把 Hendrix 的 ♭7
+    // 升成 M7(本质变形),全场凑数。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,4,5": {
+      "date": "2026-09-06",
+      "comment": "Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set",
+      "anchor": "spset-hijaz_tetrachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
