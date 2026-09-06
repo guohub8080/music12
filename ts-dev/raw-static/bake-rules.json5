@@ -510,9 +510,9 @@
 
     // 梦之和弦形(四音):C-C♯-D-G / ... 共 12 个移调(prime form 0,1,2,7 自规范)
     //
-    // 硬规则:纯 set。Dream chord(John Cage《Dream》出身,Wikipedia
-    // 收录昵称)——簇家族四音延伸第三例(簇+纯五);亦 = Phrygian五度
-    // 夹 ♮2。无 cost=0 解释,chord 全凑数。
+    // 硬规则:纯 set。Dream chord(La Monte Young 出身,标准音高恰为
+    // G-C-C♯-D,源自童年电话线嗡鸣)——簇家族四音延伸第三例(簇+纯五);
+    // 亦 = Phrygian五度夹 ♮2。无 cost=0 解释,chord 全凑数。
     //
     // 审核:用户 2026-09-06(裁决 set)
     "0,1,2,7": {

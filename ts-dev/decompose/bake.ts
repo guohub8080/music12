@@ -208,6 +208,18 @@ const bake = () => {
         (op.kind === "alter" || op.kind === "add") && Math.abs(op.offset) >= 2
       )
 
+    // alter 的度数若在公式中为 min/dim/aug 性质,升降档位在 Chord 面板
+    // 无定义(只有 maj/p 基准有映射:maj♯→aug,maj♭→min,p♯→aug,p♭→dim;
+    // min 再降 → dim3 等档位不存在)——面板不可达,restore 必然错音。
+    // 终检曾兜底暴露(四连半音组的 minmaj7(flat:[3,2])),事前排除。
+    const ALTERABLE_BASE: Record<string, boolean> = { maj: true, p: true }
+    const hasUnsupportedAlter = (r: any): boolean =>
+      r.ops.some((op: any) => {
+        if (op.kind !== "alter") return false
+        const base = FORMULA_DEGREE_INTERVAL[r.chordFormulaId]?.[String(op.degree)]
+        return isNotNil(base) && ALTERABLE_BASE[base] !== true
+      })
+
     // add 到公式已有度数 = 覆盖公式的音(Chord 面板单态静默丢音):
     // 如 maj3(omit5 add♭3) 的 set("b3") 会把公式自带 ♮3 改成 ♭3——替换非并存。
     // alter(♯/♭) 改已有度数是合法语义,只有 add 撞已有度数是冲突;
@@ -231,6 +243,7 @@ const bake = () => {
       .filter((r: any) => r.weightedCost < Infinity)
       .filter((r: any) => !hasStepTooLarge(r))  // 单次升降步长 ≥2 排除
       .filter((r: any) => !hasAddOverFormula(r)) // add 撞公式已有度数(同度双音)排除
+      .filter((r: any) => !hasUnsupportedAlter(r)) // alter 非 maj/p 基准度数(面板不可达)排除
       .sort((a: any, b: any) => a.weightedCost - b.weightedCost || a.chordFormulaId.localeCompare(b.chordFormulaId))
 
     // 分组:按 cost 与变换内容划入 6 个 tier(乐理依据 theory.md)
