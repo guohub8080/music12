@@ -156,10 +156,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -228,10 +225,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -461,10 +455,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -491,10 +482,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -547,10 +535,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -576,10 +561,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -605,10 +587,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -660,10 +639,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          7,
-          4
-        ],
+        "sharp": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -824,10 +800,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          2,
-          7
-        ],
+        "flat": [2, 7],
         "omit": 5
       },
       "cost": 3,
@@ -951,10 +924,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -1075,10 +1045,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -1105,10 +1072,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -1241,10 +1205,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -1257,10 +1218,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -1300,10 +1258,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -1408,10 +1363,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -1451,10 +1403,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -1466,10 +1415,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -1496,10 +1442,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -1629,10 +1572,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -1645,10 +1585,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -1753,10 +1690,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -1768,10 +1702,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -1863,10 +1794,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -1972,10 +1900,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -2002,10 +1927,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -2113,10 +2035,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -2145,10 +2064,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -2266,10 +2182,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -2282,10 +2195,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -2297,10 +2207,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -2327,10 +2234,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -2446,10 +2350,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -2526,10 +2427,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -2603,10 +2501,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -2759,10 +2654,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -2774,10 +2666,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -2906,10 +2795,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3055,10 +2941,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -3071,10 +2954,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3114,10 +2994,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -3172,10 +3049,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          2,
-          7
-        ],
+        "sharp": [2, 7],
         "omit": 5
       },
       "cost": 2,
@@ -3400,10 +3274,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -3441,10 +3312,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -3457,10 +3325,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "flat": [
-          6,
-          3
-        ],
+        "flat": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -3560,10 +3425,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          5,
-          2
-        ]
+        "sharp": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -3575,10 +3437,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3590,10 +3449,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3618,10 +3474,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "flat": [
-          6,
-          3
-        ],
+        "flat": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -3724,10 +3577,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3739,10 +3589,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -3754,10 +3601,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3882,10 +3726,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -3897,10 +3738,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -4031,10 +3869,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -4060,10 +3895,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          5,
-          4
-        ]
+        "sharp": [5, 4]
       },
       "cost": 3,
       "tier": 5
@@ -4089,10 +3921,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -4104,10 +3933,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -4134,10 +3960,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -4273,10 +4096,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -4303,10 +4123,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -4460,10 +4277,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -4574,10 +4388,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -4589,10 +4400,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -4704,10 +4512,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -4719,10 +4524,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -4734,10 +4536,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -4865,10 +4664,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -4881,10 +4677,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -4897,10 +4690,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -4966,10 +4756,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -4995,10 +4782,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -5024,10 +4808,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -5080,10 +4861,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          5,
-          2
-        ]
+        "flat": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -5173,10 +4951,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -5202,10 +4977,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -5231,10 +5003,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -5246,10 +5015,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -5262,10 +5028,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -5369,10 +5132,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -5449,10 +5209,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          5,
-          4
-        ]
+        "flat": [5, 4]
       },
       "cost": 3,
       "tier": 5
@@ -5464,10 +5221,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -5545,10 +5299,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -5709,10 +5460,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -5832,10 +5580,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -5848,10 +5593,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -5891,10 +5633,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -5960,10 +5699,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -6070,10 +5806,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          2,
-          7
-        ],
+        "sharp": [2, 7],
         "omit": 5
       },
       "cost": 2,
@@ -6180,10 +5913,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -6304,10 +6034,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          11,
-          3
-        ],
+        "flat": [11, 3],
         "omit": 5
       },
       "cost": 6,
@@ -6334,10 +6061,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -6486,10 +6210,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          1
-        ],
+        "sharp": [2, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -6516,10 +6237,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          3,
-          9
-        ],
+        "flat": [3, 9],
         "omit": 5
       },
       "cost": 6,
@@ -6587,10 +6305,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          2,
-          7
-        ],
+        "flat": [2, 7],
         "omit": 5
       },
       "cost": 3,
@@ -6852,10 +6567,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -6924,10 +6636,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -7157,10 +6866,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -7187,10 +6893,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -7243,10 +6946,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -7272,10 +6972,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -7301,10 +6998,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -7356,10 +7050,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          7,
-          4
-        ],
+        "sharp": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -7546,10 +7237,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          2,
-          7
-        ],
+        "flat": [2, 7],
         "omit": 5
       },
       "cost": 3,
@@ -7617,10 +7305,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -7741,10 +7426,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -7771,10 +7453,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -7907,10 +7586,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -7923,10 +7599,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -7966,10 +7639,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8074,10 +7744,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -8103,10 +7770,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -8132,10 +7796,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -8147,10 +7808,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -8177,10 +7835,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8310,10 +7965,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -8326,10 +7978,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8342,10 +7991,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -8449,10 +8095,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -8464,10 +8107,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -8506,10 +8146,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -8575,10 +8212,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8591,10 +8225,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -8700,10 +8331,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -8730,10 +8358,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -8748,10 +8373,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -8869,10 +8491,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8885,10 +8504,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -8900,10 +8516,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -8930,10 +8543,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -9049,10 +8659,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9129,10 +8736,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -9206,10 +8810,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9221,10 +8822,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9377,10 +8975,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -9392,10 +8987,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -9407,10 +8999,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9539,10 +9128,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9688,10 +9274,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -9704,10 +9287,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -9747,10 +9327,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -9894,10 +9471,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -9909,10 +9483,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -9951,10 +9522,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -10054,10 +9622,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          5,
-          2
-        ]
+        "sharp": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -10069,10 +9634,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10084,10 +9646,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10189,10 +9748,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10204,10 +9760,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -10219,10 +9772,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10333,10 +9883,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10348,10 +9895,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -10468,10 +10012,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -10497,10 +10038,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          5,
-          4
-        ]
+        "sharp": [5, 4]
       },
       "cost": 3,
       "tier": 5
@@ -10526,10 +10064,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10541,10 +10076,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -10571,10 +10103,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -10640,10 +10169,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -10798,10 +10324,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -10814,10 +10337,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -10830,10 +10350,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -10958,10 +10475,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -10973,10 +10487,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -11088,10 +10599,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -11103,10 +10611,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -11118,10 +10623,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -11249,10 +10751,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -11265,10 +10764,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -11281,10 +10777,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -11350,10 +10843,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -11379,10 +10869,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          5,
-          2
-        ]
+        "flat": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -11408,10 +10895,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -11516,10 +11000,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -11545,10 +11026,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -11574,10 +11052,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -11589,10 +11064,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -11619,10 +11091,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -11726,10 +11195,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          2
-        ],
+        "sharp": [4, 2],
         "omit": 5
       },
       "cost": 4.5,
@@ -11755,10 +11221,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -11862,10 +11325,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -11904,10 +11364,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          11,
-          3
-        ],
+        "sharp": [11, 3],
         "omit": 5
       },
       "cost": 6,
@@ -12029,10 +11486,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -12059,10 +11513,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -12209,10 +11660,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -12225,10 +11673,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -12268,10 +11713,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -12337,10 +11779,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          2
-        ],
+        "sharp": [3, 2],
         "omit": 5
       },
       "cost": 6,
@@ -12353,10 +11792,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          3,
-          9
-        ],
+        "sharp": [3, 9],
         "omit": 5
       },
       "cost": 6,
@@ -12411,10 +11847,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          2,
-          7
-        ],
+        "sharp": [2, 7],
         "omit": 5
       },
       "cost": 2,
@@ -12521,10 +11954,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -12673,10 +12103,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -12770,10 +12197,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          1
-        ],
+        "sharp": [2, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -12965,10 +12389,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -13037,10 +12458,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -13270,10 +12688,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -13300,10 +12715,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -13356,10 +12768,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -13385,10 +12794,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -13414,10 +12820,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -13469,10 +12872,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          7,
-          4
-        ],
+        "sharp": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -13579,10 +12979,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "flat": [
-          2,
-          7
-        ],
+        "flat": [2, 7],
         "omit": 5
       },
       "cost": 2,
@@ -13675,10 +13072,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -13799,10 +13193,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -13829,10 +13220,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -13965,10 +13353,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -13981,10 +13366,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -14024,10 +13406,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -14132,10 +13511,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -14161,10 +13537,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -14190,10 +13563,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -14205,10 +13575,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -14235,10 +13602,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -14368,10 +13732,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -14384,10 +13745,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -14400,10 +13758,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -14507,10 +13862,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -14522,10 +13874,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -14564,10 +13913,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -14646,10 +13992,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -14662,10 +14005,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -14677,10 +14017,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -14787,10 +14124,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -14803,10 +14137,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -14908,10 +14239,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15036,10 +14364,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15051,10 +14376,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15153,10 +14475,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -15168,10 +14487,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -15183,10 +14499,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15225,10 +14538,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -15344,10 +14654,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15504,10 +14811,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -15519,10 +14823,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -15561,10 +14862,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -15664,10 +14962,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          5,
-          2
-        ]
+        "sharp": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -15679,10 +14974,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15694,10 +14986,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15799,10 +15088,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15814,10 +15100,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -15829,10 +15112,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15895,10 +15175,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -15972,10 +15249,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -15987,10 +15261,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -16068,10 +15339,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -16226,10 +15494,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -16242,10 +15507,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -16258,10 +15520,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -16386,10 +15645,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -16401,10 +15657,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -16543,10 +15796,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -16558,10 +15808,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -16573,10 +15820,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -16641,10 +15885,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -16670,10 +15911,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          5,
-          2
-        ]
+        "flat": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -16699,10 +15937,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -16807,10 +16042,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -16836,10 +16068,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -16865,10 +16094,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -16880,10 +16106,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -16910,10 +16133,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -17031,10 +16251,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          2
-        ],
+        "sharp": [4, 2],
         "omit": 5
       },
       "cost": 4.5,
@@ -17169,10 +16386,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -17199,10 +16413,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -17349,10 +16560,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -17393,10 +16601,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          3,
-          7
-        ],
+        "flat": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -17451,10 +16656,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          2,
-          7
-        ],
+        "sharp": [2, 7],
         "omit": 5
       },
       "cost": 2,
@@ -17561,10 +16763,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -17728,10 +16927,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -17800,10 +16996,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -18033,10 +17226,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -18063,10 +17253,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -18119,10 +17306,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 2,
@@ -18148,10 +17332,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -18177,10 +17358,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -18232,10 +17410,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          7,
-          4
-        ],
+        "sharp": [7, 4],
         "omit": 5
       },
       "cost": 2,
@@ -18381,10 +17556,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -18505,10 +17677,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -18535,10 +17704,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -18671,10 +17837,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -18687,10 +17850,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -18730,10 +17890,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -18838,10 +17995,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -18867,10 +18021,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -18896,10 +18047,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -18911,10 +18059,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -18941,10 +18086,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -19061,10 +18203,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19127,10 +18266,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -19168,10 +18304,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -19184,10 +18317,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "flat": [
-          3,
-          6
-        ],
+        "flat": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -19294,10 +18424,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -19310,10 +18437,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19415,10 +18539,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19543,10 +18664,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19558,10 +18676,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19673,10 +18788,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          5
-        ]
+        "sharp": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -19688,10 +18800,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -19703,10 +18812,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -19731,10 +18837,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "flat": [
-          3,
-          6
-        ],
+        "flat": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -19878,10 +18981,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -19893,10 +18993,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -19935,10 +19032,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -20038,10 +19132,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          5,
-          2
-        ]
+        "sharp": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -20053,10 +19144,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20068,10 +19156,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20186,10 +19271,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20201,10 +19283,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          5,
-          3
-        ]
+        "sharp": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -20216,10 +19295,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20284,10 +19360,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -20442,10 +19515,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -20458,10 +19528,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -20474,10 +19541,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20602,10 +19666,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -20617,10 +19678,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -20699,10 +19757,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -20728,10 +19783,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          5,
-          2
-        ]
+        "flat": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -20757,10 +19809,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -20865,10 +19914,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          4,
-          7
-        ],
+        "flat": [4, 7],
         "omit": 5
       },
       "cost": 3,
@@ -20894,10 +19940,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -20923,10 +19966,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          5,
-          3
-        ]
+        "flat": [5, 3]
       },
       "cost": 6,
       "tier": 6
@@ -20938,10 +19978,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -20968,10 +20005,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -21107,10 +20141,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -21137,10 +20168,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 6,
@@ -21304,10 +20332,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -21376,10 +20401,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -21609,10 +20631,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          1
-        ],
+        "sharp": [3, 1],
         "omit": 5
       },
       "cost": 6,
@@ -21639,10 +20658,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -21695,10 +20711,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -21710,10 +20723,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -21818,10 +20828,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -21942,10 +20949,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -21972,10 +20976,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -22108,10 +21109,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -22124,10 +21122,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22167,10 +21162,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -22275,10 +21267,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -22304,10 +21293,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -22333,10 +21319,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22348,10 +21331,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -22378,10 +21358,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -22498,10 +21475,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22607,10 +21581,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "sharp": [
-          9,
-          3
-        ],
+        "sharp": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -22623,10 +21594,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22728,10 +21696,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22856,10 +21821,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -22871,10 +21833,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -23030,10 +21989,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -23045,10 +22001,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -23087,10 +22040,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "sharp": [
-          3,
-          11
-        ],
+        "sharp": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -23190,10 +22140,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          5,
-          2
-        ]
+        "sharp": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -23205,10 +22152,7 @@
       "formulaId": "aug3",
       "scoreDisplay": "+",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -23220,10 +22164,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -23287,10 +22228,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -23445,10 +22383,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -23461,10 +22396,7 @@
       "formulaId": "maj3add6",
       "scoreDisplay": "add6",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -23477,10 +22409,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "sharp": [
-          3,
-          5
-        ]
+        "sharp": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -23546,10 +22475,7 @@
       "formulaId": "dom7",
       "scoreDisplay": "7",
       "transform": {
-        "sharp": [
-          3,
-          7
-        ],
+        "sharp": [3, 7],
         "omit": 5
       },
       "cost": 2,
@@ -23575,10 +22501,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          5,
-          2
-        ]
+        "flat": [5, 2]
       },
       "cost": 3,
       "tier": 5
@@ -23604,10 +22527,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          1
-        ],
+        "sharp": [4, 1],
         "omit": 5
       },
       "cost": 4.5,
@@ -23771,10 +22691,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -23843,10 +22760,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -24076,10 +22990,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -24132,10 +23043,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "flat": [
-          2,
-          5
-        ]
+        "flat": [2, 5]
       },
       "cost": 3,
       "tier": 5
@@ -24188,10 +23096,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -24312,10 +23217,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -24342,10 +23244,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -24465,10 +23364,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -24481,10 +23377,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -24524,10 +23417,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -24618,10 +23508,7 @@
       "formulaId": "maj7sus4",
       "scoreDisplay": "maj7sus4",
       "transform": {
-        "flat": [
-          7,
-          4
-        ],
+        "flat": [7, 4],
         "omit": 5
       },
       "cost": 3,
@@ -24647,10 +23534,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          5
-        ]
+        "sharp": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -24676,10 +23560,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -24691,10 +23572,7 @@
       "formulaId": "min3",
       "scoreDisplay": "m",
       "transform": {
-        "sharp": [
-          3,
-          6
-        ],
+        "sharp": [3, 6],
         "omit": 5
       },
       "cost": 6,
@@ -24707,10 +23585,7 @@
       "formulaId": "min3add6",
       "scoreDisplay": "madd6",
       "transform": {
-        "sharp": [
-          6,
-          3
-        ],
+        "sharp": [6, 3],
         "omit": 5
       },
       "cost": 6,
@@ -24831,10 +23706,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -24923,10 +23795,7 @@
       "formulaId": "maj3",
       "scoreDisplay": "",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -25056,10 +23925,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "flat": [
-          4,
-          5
-        ]
+        "flat": [4, 5]
       },
       "cost": 3,
       "tier": 5
@@ -25071,10 +23937,7 @@
       "formulaId": "sus4",
       "scoreDisplay": "sus4",
       "transform": {
-        "sharp": [
-          4,
-          6
-        ],
+        "sharp": [4, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -25152,10 +24015,7 @@
       "formulaId": "dom7sus4",
       "scoreDisplay": "7sus4",
       "transform": {
-        "sharp": [
-          4,
-          7
-        ],
+        "sharp": [4, 7],
         "omit": 5
       },
       "cost": 2,
@@ -25345,10 +24205,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -25417,10 +24274,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -25650,10 +24504,7 @@
       "formulaId": "min7",
       "scoreDisplay": "m7",
       "transform": {
-        "sharp": [
-          7,
-          3
-        ],
+        "sharp": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -25707,10 +24558,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -25831,10 +24679,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -25861,10 +24706,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -25984,10 +24826,7 @@
       "formulaId": "sus2",
       "scoreDisplay": "sus2",
       "transform": {
-        "sharp": [
-          2,
-          6
-        ],
+        "sharp": [2, 6],
         "omit": 5
       },
       "cost": 4.5,
@@ -26000,10 +24839,7 @@
       "formulaId": "dim3",
       "scoreDisplay": "°",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -26043,10 +24879,7 @@
       "formulaId": "maj7",
       "scoreDisplay": "M7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -26153,10 +24986,7 @@
       "formulaId": "maj3b5",
       "scoreDisplay": "b5",
       "transform": {
-        "flat": [
-          3,
-          5
-        ]
+        "flat": [3, 5]
       },
       "cost": 6,
       "tier": 6
@@ -26359,10 +25189,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -26431,10 +25258,7 @@
       "formulaId": "dom7sus2",
       "scoreDisplay": "7sus2",
       "transform": {
-        "sharp": [
-          7,
-          2
-        ],
+        "sharp": [7, 2],
         "omit": 5
       },
       "cost": 2,
@@ -26596,10 +25420,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,
@@ -26720,10 +25541,7 @@
       "formulaId": "min3add11",
       "scoreDisplay": "madd11",
       "transform": {
-        "flat": [
-          3,
-          11
-        ],
+        "flat": [3, 11],
         "omit": 5
       },
       "cost": 6,
@@ -26750,10 +25568,7 @@
       "formulaId": "minmaj7",
       "scoreDisplay": "mM7",
       "transform": {
-        "flat": [
-          7,
-          3
-        ],
+        "flat": [7, 3],
         "omit": 5
       },
       "cost": 6,
@@ -26958,10 +25773,7 @@
       "formulaId": "maj3add9",
       "scoreDisplay": "add9",
       "transform": {
-        "flat": [
-          9,
-          3
-        ],
+        "flat": [9, 3],
         "omit": 5
       },
       "cost": 6,
@@ -27029,10 +25841,7 @@
       "formulaId": "maj7sus2",
       "scoreDisplay": "maj7sus2",
       "transform": {
-        "flat": [
-          7,
-          2
-        ],
+        "flat": [7, 2],
         "omit": 5
       },
       "cost": 3,

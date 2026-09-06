@@ -30,6 +30,7 @@ import { decompose } from "./engine"
 import { combo, primeForm, primeFormRoot, loadBakeRules } from "./keyset"
 import { restoreChord } from "../../src/Find/findChord/methods/restoreChord"
 import { restoreSet } from "../../src/Find/findChord/methods/restoreSet"
+import { serialize } from "../compileStaticData"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
@@ -344,10 +345,12 @@ const bake = () => {
   }
 
   const outPath = resolve(ROOT, "static-data", "chord-hash-3.json")
-  writeFileSync(outPath, JSON.stringify(table, null, 2) + "\n", "utf-8")
+  // 紧凑序列化(复用编译器的 pretty):scoreDisplay/transform 的
+  // 小数组({"3":[-1,0]})单行,不被 JSON.stringify 炸成逐元素换行
+  writeFileSync(outPath, serialize(table), "utf-8")
   // sidecar 写进 ts-dev(进 git,审核痕迹;非 static-data 产物)
   const sidecarPath = resolve(ROOT, "ts-dev/decompose", "filtered-3.json")
-  writeFileSync(sidecarPath, JSON.stringify(filteredSidecar, null, 2) + "\n", "utf-8")
+  writeFileSync(sidecarPath, serialize(filteredSidecar), "utf-8")
   const filteredTotal = Object.values(filteredSidecar).reduce((s, v) => s + v.length, 0)
   console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中,${verdictHits} 个键集被人工裁决覆盖)`)
   console.log(`被保留管线过滤(审核 sidecar):${filteredTotal} 条 → ${sidecarPath}`)
