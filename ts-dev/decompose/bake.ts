@@ -204,6 +204,15 @@ const bake = () => {
         (op.kind === "alter" || op.kind === "add") && Math.abs(op.offset) >= 2
       )
 
+    // add 到公式已有度数 = 覆盖公式的音(Chord 面板单态静默丢音):
+    // 如 maj3(omit5 add♭3) 的 set("b3") 会把公式自带 ♮3 改成 ♭3——替换非并存。
+    // alter(♯/♭) 改已有度数是合法语义,只有 add 撞已有度数是冲突;
+    // 这类键集(同度双音)是 set 领地,scoreDisplay {"3":[-1,0]} 才是正确表达。
+    const hasAddOverFormula = (r: any): boolean =>
+      r.ops.some((op: any) =>
+        op.kind === "add" && isNotNil(FORMULA_DEGREE_INTERVAL[r.chordFormulaId]?.[String(op.degree)]),
+      )
+
     // 按加权 cost 重排序
     const weighted = raw
       .map(r => ({
@@ -217,6 +226,7 @@ const bake = () => {
       }))
       .filter((r: any) => r.weightedCost < Infinity)
       .filter((r: any) => !hasStepTooLarge(r))  // 单次升降步长 ≥2 排除
+      .filter((r: any) => !hasAddOverFormula(r)) // add 撞公式已有度数(同度双音)排除
       .sort((a: any, b: any) => a.weightedCost - b.weightedCost || a.chordFormulaId.localeCompare(b.chordFormulaId))
 
     // 分组:按 cost 与变换内容划入 6 个 tier(乐理依据 theory.md)
