@@ -242,6 +242,27 @@ const bake = () => {
       tier: tierOf(r.weightedCost, r.notation),
     }))
     let entries: any[] = [...setEntries, ...chordEntries]
+
+    // ── 同度双音硬排除(第 0 层,先于 rules)──
+    // 同一度数出现在 transform 的两个不同键(add/sharp/flat)里 = ♮N 与 ♯N/♭N 并存,
+    // 如 ♭3·♮3(分叉三和弦)。Chord 度数面板单态,set(N) 后 set(♭N) 静默覆盖丢音——
+    // 这类结构 Chord 体系不可表达,是 set 的领地(「大/小三度并存本质不可 tertian
+    // 表达」裁决的管线化)。条目不进主表,但留在 sidecar 供审核取证。
+    const hasDegreeConflict = (t: Record<string, number | number[]>): boolean => {
+      const seen = new Map<number, string>()
+      for (const kind of ["add", "sharp", "flat"]) {
+        const arr = Array.isArray(t[kind]) ? t[kind] : isNil(t[kind]) ? [] : [t[kind]]
+        for (const d of arr) {
+          if (seen.has(d) && seen.get(d) !== kind) return true
+          seen.set(d, kind)
+        }
+      }
+      return false
+    }
+    entries = entries.filter(
+      e => e.isChordFormula === false || !hasDegreeConflict(e.transform as Record<string, number | number[]>),
+    )
+
     const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
     const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
