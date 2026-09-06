@@ -517,8 +517,23 @@
     // 审核:用户 2026-09-06(裁决 set)
     "0,1,2,7": {
       "date": "2026-09-06",
-      "comment": "梦之和弦为唯一解释(硬规则):Dream chord 正名(Cage 出身),簇+纯五自成身份,纯 set",
+      "comment": "梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set",
       "anchor": "spset-dream",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇小七度形(四音):C-C♯-D-B♭ / ... 共 12 个移调(prime form 0,1,2,10 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸第四例(簇+小七度);音程向量
+    // ⟨221100⟩ 与半音簇大三度(4-2)相同——Z 关系伙伴。无 cost=0
+    // 解释,chord 全凑数。
+    //
+    // 审核:用户 2026-09-06(授权直接更新)
+    "0,1,2,10": {
+      "date": "2026-09-06",
+      "comment": "半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set",
+      "anchor": "spset-cluster_minor7",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
