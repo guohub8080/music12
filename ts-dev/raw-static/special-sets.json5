@@ -269,5 +269,22 @@
     "scoreDisplay": { "2": -1, "3": -1, "6": 0 },
     "offsets": [1, 3, 9],
     "tags": ["phrygian", "dorian-b2", "melodic-minor", "modal"]
+  },
+
+  // 双三全音 · root + 1半音(♭2) + 6半音(♭5) + 7半音(纯五) · C-C♯-F♯-G 型
+  // 全对称集合:Forte 4-9,音程向量 ⟨200022⟩(全偶数——每类音程恰 0/2 个),
+  // +6 移调自映射(仅 6 个独立移调,每键集两个对称根名)。
+  // 结构 = 两组三全音对(C-F♯ 与 C♯-G)相互咬合——Petrushka 和弦
+  // (C 对 F♯ 双调性对峙,Stravinsky)的矛盾浓缩骨架;♭5♮5 同度并存。
+  // 最优 chord 解释多重变换凑数,功能和声无法收编。
+  // 对称双根名由 set-exclusive 规则自动保留(aug3/dim7 同款多名机制),
+  // 无需 verdict。
+  // 审核:用户 2026-09-06(四音审核「怎么都不好解释」,裁决 set)
+  "spset-double_tritone": {
+    "cnName": "双三全音",
+    "name": "Double Tritone",
+    "scoreDisplay": { "2": -1, "5": [-1, 0] },
+    "offsets": [1, 6, 7],
+    "tags": ["tritone", "symmetrical", "bitonality", "petrushka", "forte-4-9"]
   }
 }
