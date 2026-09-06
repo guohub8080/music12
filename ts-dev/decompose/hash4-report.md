@@ -21120,25 +21120,27 @@
 | 🔴6 | ~~Cmin3add9~~ | ♭9 ♭5 ♯3 | 9 |
 | 🔴6 | ~~Emin7~~ | ♭7 ♭3 ♯5 | 9 |
 
-## C-P-X-Z  `{0,1,6,10}`
+## C-P-X-Z  `{0,1,6,10}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Pmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Pmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Cdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Psus4** | omit5 add7 add6 | 1 |
-| 🟡4 | **Pdom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Pdom7sus4** | omit5 ♯7 add6 | 1.5 |
-| 🟡4 | **Pdom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Cdom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Cdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Cdom9sus4** | omit5 ♭9 ♯4 | 2 |
 
-🗑 已过滤 24 条(未进哈希表):
+🗑 已过滤 33 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Pmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Cdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Psus4~~ | omit5 add7 add6 | 1 |
+| 🟡4 | ~~Pdom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Pdom7sus4~~ | omit5 ♯7 add6 | 1.5 |
+| 🟡4 | ~~Pdom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Cdom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Cdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Cdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
 | 🟠5 | ~~Pdom7~~ | omit5 ♯7 ♯3 add6 | 2.5 |
 | 🟠5 | ~~Pdom7#5~~ | ♯7 ♯3 ♯5 | 3 |
 | 🟠5 | ~~Pdom7b13~~ | omit5 ♯7 ♯3 ♯13 | 3 |
@@ -21189,25 +21191,27 @@
 | 🔴6 | ~~Gmin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Bmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## C-D-Q-Y  `{0,2,3,8}`
+## C-D-Q-Y  `{0,2,3,8}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Qmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Qmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Ddom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Qsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Qdom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Qdom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Ddom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Ddom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Ddom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Ymaj3** | ♯4 | 3 |
 
-🗑 已过滤 19 条(未进哈希表):
+🗑 已过滤 28 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Qmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Ddom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Qsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Qdom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Qdom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Ddom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Ddom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Ddom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Ymaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Ymaj3add11~~ | ♯11 | 3 |
 | 🟠5 | ~~Cmin3add9~~ | ♯5 | 3 |
 | 🔴6 | ~~Caug3~~ | ♭3 add2 | 3.5 |
@@ -21371,25 +21375,27 @@
 | 🔴6 | ~~Emin3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Emin3add6~~ | omit5 ♭6 ♭3 ♭2 | 9 |
 
-## C-E-X-G  `{0,4,6,7}`
+## C-E-X-G  `{0,4,6,7}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Gmaj13sus4** | omit5 omit9 | 0.5 |
-| 🟢3 | **Gmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Gsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Gdom13sus4** | omit5 omit9 ♯7 | 1.5 |
-| 🟡4 | **Gdom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Xdom7sus2** | ♭5 ♭2 | 2 |
-| 🟠5 | **Gdom7#5** | ♯3 ♯5 ♯7 | 3 |
-| 🟠5 | **Gdom7b13** | omit5 ♯3 ♯13 ♯7 | 3 |
-| 🟠5 | **Cmaj3** | ♯4 | 3 |
-| 🟠5 | **Cmaj3add11** | ♯11 | 3 |
 
-🗑 已过滤 20 条(未进哈希表):
+🗑 已过滤 29 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Gmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Gsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Gdom13sus4~~ | omit5 omit9 ♯7 | 1.5 |
+| 🟡4 | ~~Gdom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Xdom7sus2~~ | ♭5 ♭2 | 2 |
+| 🟠5 | ~~Gdom7#5~~ | ♯3 ♯5 ♯7 | 3 |
+| 🟠5 | ~~Gdom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
+| 🟠5 | ~~Cmaj3~~ | ♯4 | 3 |
+| 🟠5 | ~~Cmaj3add11~~ | ♯11 | 3 |
 | 🟠5 | ~~Emin3add6add9~~ | omit5 ♭6 | 3 |
 | 🟠5 | ~~Emin3add9~~ | ♯5 | 3 |
 | 🔴6 | ~~Eaug3~~ | ♭3 add2 | 3.5 |
@@ -21411,25 +21417,27 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭6 ♭3 add2 | 6.5 |
 
-## C-F-A-B  `{0,5,9,11}`
+## C-F-A-B  `{0,5,9,11}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Cmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Cmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Bdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Csus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Cdom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Cdom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Bdom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Bdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Bdom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Cdom7#5** | ♯3 ♯5 ♯7 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Cmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Bdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Csus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Cdom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Cdom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Bdom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Bdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Bdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Cdom7#5~~ | ♯3 ♯5 ♯7 | 3 |
 | 🟠5 | ~~Cdom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
 | 🟠5 | ~~Fmaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Fmaj3add11~~ | ♯11 | 3 |
@@ -21623,25 +21631,27 @@
 | 🔴6 | ~~Pmin3add9~~ | ♭9 ♭5 ♯3 | 9 |
 | 🔴6 | ~~Fmin7~~ | ♭7 ♭3 ♯5 | 9 |
 
-## P-D-G-B  `{1,2,7,11}`
+## P-D-G-B  `{1,2,7,11}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Dmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Dmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Pdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Dsus4** | omit5 add7 add6 | 1 |
-| 🟡4 | **Ddom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Ddom7sus4** | omit5 ♯7 add6 | 1.5 |
-| 🟡4 | **Ddom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Pdom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Pdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Pdom9sus4** | omit5 ♭9 ♯4 | 2 |
 
-🗑 已过滤 24 条(未进哈希表):
+🗑 已过滤 33 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Dmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Pdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Dsus4~~ | omit5 add7 add6 | 1 |
+| 🟡4 | ~~Ddom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Ddom7sus4~~ | omit5 ♯7 add6 | 1.5 |
+| 🟡4 | ~~Ddom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Pdom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Pdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Pdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
 | 🟠5 | ~~Ddom7~~ | omit5 ♯7 ♯3 add6 | 2.5 |
 | 🟠5 | ~~Ddom7#5~~ | ♯7 ♯3 ♯5 | 3 |
 | 🟠5 | ~~Ddom7b13~~ | omit5 ♯7 ♯3 ♯13 | 3 |
@@ -21667,25 +21677,27 @@
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Psus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-Q-E-A  `{1,3,4,9}`
+## P-Q-E-A  `{1,3,4,9}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Emaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Emaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Qdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Esus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Edom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Edom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Qdom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Qdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Qdom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Edom7#5** | ♯5 ♯7 ♯3 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Emaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Qdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Esus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Edom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Edom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Qdom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Qdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Qdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Edom7#5~~ | ♯5 ♯7 ♯3 | 3 |
 | 🟠5 | ~~Edom7b13~~ | omit5 ♯13 ♯7 ♯3 | 3 |
 | 🟠5 | ~~Amaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Amaj3add11~~ | ♯11 | 3 |
@@ -21795,25 +21807,27 @@
 | 🔴6 | ~~Pmin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Fmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## P-F-G-Y  `{1,5,7,8}`
+## P-F-G-Y  `{1,5,7,8}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Ymaj13sus4** | omit5 omit9 | 0.5 |
-| 🟢3 | **Ymaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Gdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Ysus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Ydom13sus4** | omit5 omit9 ♯7 | 1.5 |
-| 🟡4 | **Ydom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Gdom7sus2** | ♭5 ♭2 | 2 |
-| 🟡4 | **Gdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Gdom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Ydom7#5** | ♯3 ♯5 ♯7 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Ymaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Gdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Ysus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Ydom13sus4~~ | omit5 omit9 ♯7 | 1.5 |
+| 🟡4 | ~~Ydom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Gdom7sus2~~ | ♭5 ♭2 | 2 |
+| 🟡4 | ~~Gdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Gdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Ydom7#5~~ | ♯3 ♯5 ♯7 | 3 |
 | 🟠5 | ~~Ydom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
 | 🟠5 | ~~Pmaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Pmaj3add11~~ | ♯11 | 3 |
@@ -21980,25 +21994,27 @@
 | 🔴6 | ~~Dmin3add9~~ | ♭9 ♭5 ♯3 | 9 |
 | 🔴6 | ~~Xmin7~~ | ♭7 ♭3 ♯5 | 9 |
 
-## D-E-F-Z  `{2,4,5,10}`
+## D-E-F-Z  `{2,4,5,10}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Fmaj13sus4** | omit5 omit9 | 0.5 |
-| 🟢3 | **Fmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Edom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Fsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Fdom13sus4** | omit5 omit9 ♯7 | 1.5 |
-| 🟡4 | **Fdom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Edom7sus2** | ♭2 ♭5 | 2 |
-| 🟡4 | **Edom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Edom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Fdom7#5** | ♯5 ♯7 ♯3 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Fmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Edom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Fsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Fdom13sus4~~ | omit5 omit9 ♯7 | 1.5 |
+| 🟡4 | ~~Fdom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Edom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟡4 | ~~Edom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Edom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Fdom7#5~~ | ♯5 ♯7 ♯3 | 3 |
 | 🟠5 | ~~Fdom7b13~~ | omit5 ♯13 ♯7 ♯3 | 3 |
 | 🟠5 | ~~Zmaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Zmaj3add11~~ | ♯11 | 3 |
@@ -22108,25 +22124,27 @@
 | 🔴6 | ~~Dmin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Xmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## D-X-Y-A  `{2,6,8,9}`
+## D-X-Y-A  `{2,6,8,9}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Amaj13sus4** | omit5 omit9 | 0.5 |
-| 🟢3 | **Amaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Ydom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Asus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Adom13sus4** | omit5 omit9 ♯7 | 1.5 |
-| 🟡4 | **Adom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Ydom7sus2** | ♭5 ♭2 | 2 |
-| 🟡4 | **Ydom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Ydom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Adom7#5** | ♯3 ♯5 ♯7 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Amaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Ydom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Asus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Adom13sus4~~ | omit5 omit9 ♯7 | 1.5 |
+| 🟡4 | ~~Adom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Ydom7sus2~~ | ♭5 ♭2 | 2 |
+| 🟡4 | ~~Ydom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Ydom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Adom7#5~~ | ♯3 ♯5 ♯7 | 3 |
 | 🟠5 | ~~Adom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
 | 🟠5 | ~~Dmaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Dmaj3add11~~ | ♯11 | 3 |
@@ -22234,25 +22252,27 @@
 | 🔴6 | ~~Qmin3add9~~ | ♭9 ♭5 ♯3 | 9 |
 | 🔴6 | ~~Gmin7~~ | ♭7 ♭3 ♯5 | 9 |
 
-## Q-F-X-B  `{3,5,6,11}`
+## Q-F-X-B  `{3,5,6,11}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Xmaj13sus4** | omit5 omit9 | 0.5 |
-| 🟢3 | **Xmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Xsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Xdom13sus4** | omit5 omit9 ♯7 | 1.5 |
-| 🟡4 | **Xdom7add6** | omit5 ♯7 ♯3 | 2 |
-| 🟡4 | **Fdom7sus2** | ♭2 ♭5 | 2 |
-| 🟠5 | **Xdom7#5** | ♯5 ♯7 ♯3 | 3 |
-| 🟠5 | **Xdom7b13** | omit5 ♯13 ♯7 ♯3 | 3 |
-| 🟠5 | **Bmaj3** | ♯4 | 3 |
-| 🟠5 | **Bmaj3add11** | ♯11 | 3 |
 
-🗑 已过滤 20 条(未进哈希表):
+🗑 已过滤 29 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Xmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Xsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Xdom13sus4~~ | omit5 omit9 ♯7 | 1.5 |
+| 🟡4 | ~~Xdom7add6~~ | omit5 ♯7 ♯3 | 2 |
+| 🟡4 | ~~Fdom7sus2~~ | ♭2 ♭5 | 2 |
+| 🟠5 | ~~Xdom7#5~~ | ♯5 ♯7 ♯3 | 3 |
+| 🟠5 | ~~Xdom7b13~~ | omit5 ♯13 ♯7 ♯3 | 3 |
+| 🟠5 | ~~Bmaj3~~ | ♯4 | 3 |
+| 🟠5 | ~~Bmaj3add11~~ | ♯11 | 3 |
 | 🟠5 | ~~Qmin3add6add9~~ | omit5 ♭6 | 3 |
 | 🟠5 | ~~Qmin3add9~~ | ♯5 | 3 |
 | 🔴6 | ~~Qaug3~~ | ♭3 add2 | 3.5 |
@@ -22299,25 +22319,27 @@
 | 🔴6 | ~~Qmin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Gmin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## Q-G-A-Z  `{3,7,9,10}`
+## Q-G-A-Z  `{3,7,9,10}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Zmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Zmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Adom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Zsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Zdom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Zdom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Adom7sus2** | ♭5 ♭2 | 2 |
-| 🟡4 | **Adom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Adom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Zdom7#5** | ♯3 ♯5 ♯7 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Zmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Adom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Zsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Zdom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Zdom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Adom7sus2~~ | ♭5 ♭2 | 2 |
+| 🟡4 | ~~Adom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Adom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Zdom7#5~~ | ♯3 ♯5 ♯7 | 3 |
 | 🟠5 | ~~Zdom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
 | 🟠5 | ~~Qmaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Qmaj3add11~~ | ♯11 | 3 |
@@ -22427,25 +22449,27 @@
 | 🔴6 | ~~Emin3~~ | ♭5 ♯3 add4 | 6.5 |
 | 🔴6 | ~~Ymin3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## E-Y-Z-B  `{4,8,10,11}`
+## E-Y-Z-B  `{4,8,10,11}`  ✋ verdict(0,1,6,10)
+
+> ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Bmaj13sus4** | omit9 omit5 | 0.5 |
-| 🟢3 | **Bmaj7sus4** | omit5 add6 | 0.5 |
-| 🟢3 | **Zdom7sus4b9** | omit5 ♯4 | 1 |
-| 🟢3 | **Bsus4** | omit5 add6 add7 | 1 |
-| 🟡4 | **Bdom13sus4** | omit9 omit5 ♯7 | 1.5 |
-| 🟡4 | **Bdom7add6** | omit5 ♯3 ♯7 | 2 |
-| 🟡4 | **Zdom7sus2** | ♭5 ♭2 | 2 |
-| 🟡4 | **Zdom7sus4** | omit5 ♭2 ♯4 | 2 |
-| 🟡4 | **Zdom9sus4** | omit5 ♭9 ♯4 | 2 |
-| 🟠5 | **Bdom7#5** | ♯3 ♯5 ♯7 | 3 |
 
-🗑 已过滤 22 条(未进哈希表):
+🗑 已过滤 31 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Bmaj7sus4~~ | omit5 add6 | 0.5 |
+| 🟢3 | ~~Zdom7sus4b9~~ | omit5 ♯4 | 1 |
+| 🟢3 | ~~Bsus4~~ | omit5 add6 add7 | 1 |
+| 🟡4 | ~~Bdom13sus4~~ | omit9 omit5 ♯7 | 1.5 |
+| 🟡4 | ~~Bdom7add6~~ | omit5 ♯3 ♯7 | 2 |
+| 🟡4 | ~~Zdom7sus2~~ | ♭5 ♭2 | 2 |
+| 🟡4 | ~~Zdom7sus4~~ | omit5 ♭2 ♯4 | 2 |
+| 🟡4 | ~~Zdom9sus4~~ | omit5 ♭9 ♯4 | 2 |
+| 🟠5 | ~~Bdom7#5~~ | ♯3 ♯5 ♯7 | 3 |
 | 🟠5 | ~~Bdom7b13~~ | omit5 ♯3 ♯13 ♯7 | 3 |
 | 🟠5 | ~~Emaj3~~ | ♯4 | 3 |
 | 🟠5 | ~~Emaj3add11~~ | ♯11 | 3 |

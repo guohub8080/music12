@@ -476,5 +476,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // maj13sus4 减五六形:C-C♯-F♯-B♭ / ... 共 12 个移调(prime form 0,1,6,10 自规范)
+    //
+    // 硬规则:只保留 maj13sus4(omit9 omit5)。结构 = 大十三挂四和弦
+    // 骨架(root+P4+M7+13,quartal 爵士的现代 voicing 惯用形)。
+    // 无锚模式:maj13sus4 根音 = 起点 + 1(C-C♯-F♯-B♭ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-06(四音 Tier3 区)
+    "0,1,6,10": {
+      "date": "2026-09-06",
+      "comment": "maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj13sus4", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
