@@ -60,22 +60,24 @@
   // ── 第二层:类型化规则(机器自动套用)────────────────────────
   "rules": [
     {
-      // 完全命中即唯一解释:存在零变换完全命中条目(tier1,n="")时,
-      // 其余 chord 解释全部过滤。
+      // 零成本独占:存在完全命中时,保留全部零成本条目(完全命中 + 纯省略
+      // cost=0 并列),滤掉 cost>0 的扭曲解释。
+      // 触发面保持「有完全命中」(纯省略组不触发,保留审核素材给人工)。
       //
-      // 乐理依据:tier1 完全命中(键集恰好等于某公式的音集)已是完美答案,
-      // 其余条目全是噪音——dim7 对称性副产品(Qdim7(omit5))、换根音凑数
-      // (min3add6)、sus 上的变形(sus4(♭4))等。等和弦的多个完全命中
-      // 全部保留(sus2/sus4 同类互为移调,{0,2,7} 既是 Csus2 又是 Gsus4;
-      // aug3 三重对称,一键集 3 个根名)——滤掉的是 tier3+ 凑数解释。
+      // 乐理依据:cost=0 是「零扭曲」线——完全命中(键集恰等于公式音集)
+      // 与纯省略(omit5/omit11 预期行为)都不扭曲和弦身份;cost>0 的
+      // add/alter 才开始扭曲。等和弦多名(C6/Am7、sus2/sus4、dim7 四重名)
+      // 与省略并列解释(如 CDEG 的 Ddom9sus4(omit5),sus 声部视角)
+      // 全部零扭曲,全部保留;滤掉的是 tier3+ 凑数解释。
       //
-      // 审定:用户 2026-09-05 两例确认——C-Q-X {0,3,6}(Cdim3)、
-      // C-Q-Y {0,3,8}(A♭maj3)均只保留完全命中;影响 76 组 472 条噪音
-      // (maj3/min3/sus/sus4/aug3 各形)。set 命中组由 verdicts 接管,优先级更高。
-      "id": "exact-exclusive",
+      // 演化:2026-09-05 初版 exact-exclusive(只留完全命中)→ 同日用户
+      // 四音审核 CDEG 案例放宽——Ddom9sus4(omit5) cost=0 是准确的
+      // sus 声部解释,「cost0 的都纳入不过滤的范围」。
+      // set 命中组由 set-exclusive/verdicts 接管,优先级更高。
+      "id": "zero-cost-exclusive",
       "enabled": true,
       "when": { "hasExactMatch": true },
-      "then": { "keepOnly": "exactMatch" },
+      "then": { "keepOnly": "zeroCost" },
     },
     {
       // set 独占规则:set 完全命中时,chord 只保留 cost=0 的平行解释

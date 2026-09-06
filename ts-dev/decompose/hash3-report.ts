@@ -99,7 +99,7 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     const pf = primeForm(ids)
     const verdict = RULES.verdicts[pf]
     const hasSetHit = results.some(r => !r.isChordFormula)
-    const hasExactMatch = results.some(r => r.isChordFormula && r.tier === 1 && r.notation === "")
+    const hasExactMatch = results.some(r => r.isChordFormula && r.tier === 1 && Object.keys(r.transform).length === 0)
     const appliedRules = RULES.rules.filter(
       (rule: any) => rule.enabled && (
         (rule.when?.hasSetHit === true && hasSetHit) ||

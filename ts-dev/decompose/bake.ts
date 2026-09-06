@@ -278,7 +278,7 @@ const bake = () => {
     )
 
     const hasSetHit = setEntries.length > 0
-    // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
+    // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且零变换)
     const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
@@ -291,9 +291,10 @@ const bake = () => {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
         entries = entries.filter(e => !e.isChordFormula || e.cost <= filter.costMax)
       }
-      if (rule.then?.keepOnly === "exactMatch") {
-        // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
-        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && Object.keys(e.transform).length === 0))
+      if (rule.then?.keepOnly === "zeroCost") {
+        // 零成本独占:完全命中 + 纯省略(cost=0)全保留(等和弦多名、
+        // 省略并列解释都是零扭曲),滤掉 cost>0 的扭曲解释
+        entries = entries.filter(e => !e.isChordFormula || e.cost === 0)
       }
     }
 
@@ -330,8 +331,9 @@ const bake = () => {
       verdictHits++
     }
 
-    // ── 第一层 policy:机械截断(最后执行)──
+    // ── 第一层 policy:机械截断(最后执行;先按 tier/cost 定序,完全命中在前)──
     entries = entries
+      .sort((a, b) => a.tier - b.tier || a.cost - b.cost)
       .filter(e => e.tier <= RULES.policy.tierCeiling)
       .slice(0, RULES.policy.maxEntries)
 
