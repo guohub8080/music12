@@ -409,5 +409,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // maj3b5 加四形:C-C♯-D-G♯ / ... 共 12 个移调(prime form 0,1,2,8 自规范)
+    //
+    // 硬规则:只保留 maj3b5(add4)。结构 = maj3b5 三音壳 + 纯四度
+    // (add4 是 offset=0 自然扩展,cost 0.5 全场最优);其余挂尾全滤。
+    // 无锚模式:maj3b5 根音 = 起点 + 8(C-C♯-D-G♯ 形里是 G♯)。
+    //
+    // 审核:用户 2026-09-06(四音 Tier3 区)
+    "0,1,2,8": {
+      "date": "2026-09-06",
+      "comment": "maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
   },
 }
