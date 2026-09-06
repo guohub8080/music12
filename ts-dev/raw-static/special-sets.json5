@@ -254,5 +254,20 @@
     "scoreDisplay": { "2": [-1, 0], "7": 0 },
     "offsets": [1, 2, 10],
     "tags": ["cluster", "non-tertian", "non-functional", "z-related-4-2"]
+  },
+
+  // Phrygian 加六 · root + 1半音(♭2) + 3半音(♭3) + 9半音(♮6) · C-C♯-E♭-A 型
+  // Phrygian特征前三音(spset-phrygian 原班)的四音延伸——加大六度,
+  // 与「分叉加六」对仗(+6 延伸第二例)。音阶身份:♭2♭3 并存 + ♮6 =
+  // Dorian ♭2(旋律小调第 6 调式)区别于 Phrygian(♭6)/Dorian(♮2)
+  // 的两个特征音齐备。最优 chord 解释 maj7sus2(♯5) 是 sus 上变形
+  // 记法,全场凑数,功能和声无法收编。
+  // 审核:用户 2026-09-06(四音审核,「感觉用 set 解释更合适」)
+  "spset-phrygian_sixth": {
+    "cnName": "Phrygian加六",
+    "name": "Phrygian Sixth",
+    "scoreDisplay": { "2": -1, "3": -1, "6": 0 },
+    "offsets": [1, 3, 9],
+    "tags": ["phrygian", "dorian-b2", "melodic-minor", "modal"]
   }
 }

@@ -537,5 +537,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // Phrygian 加六形(四音):C-C♯-E♭-A / ... 共 12 个移调(prime form 0,1,3,9 自规范)
+    //
+    // 硬规则:纯 set。Phrygian特征前三音(库内 set 原班)+ 大六度,
+    // 与「分叉加六」对仗;音阶身份 = Dorian ♭2(旋律小调第 6 调式)
+    // 的两个特征音(♭2♭3 并存 + ♮6)。最优 maj7sus2(♯5) 是 sus
+    // 变形记法,全场凑数。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,3,9": {
+      "date": "2026-09-06",
+      "comment": "Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set",
+      "anchor": "spset-phrygian_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
