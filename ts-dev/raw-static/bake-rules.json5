@@ -392,5 +392,22 @@
       ],
       "filterRest": true,
     },
+
+    // 半音簇三全音形(四音 set 首例):C-C♯-D-F♯ / ... 共 12 个移调
+    // (prime form 0,1,2,6 自规范,Forte 4-5 正形)
+    //
+    // 硬规则:纯 set。该形无 cost=0 解释(最优 dom7sus4b9(omit5 ♯7)
+    // cost=1 双变换凑数),chord 体系无法收编;「摩擦+悬浮」自成身份,
+    // 半音簇(spset-chromatic_cluster)的四音长子。倒影半边 4-5B
+    // {0,4,5,6} 同类,待审后同款处理。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,2,6": {
+      "date": "2026-09-06",
+      "comment": "半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

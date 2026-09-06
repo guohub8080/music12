@@ -158,5 +158,21 @@
     "scoreDisplay": { "2": -1, "5": 0 },
     "offsets": [1, 7],
     "tags": ["phrygian", "flamenco", "metal", "pedal"]
+  },
+
+  // 半音簇三全音 · root + 1半音(♭2) + 2半音(♮2) + 6半音(♭5) · C-C♯-D-F♯ 型
+  // 结构 = 半音簇(前三个音,spset-chromatic_cluster 原班) + 一颗三全音位置的音:
+  // 「摩擦 + 悬浮」两高紧张元素的叠加,紧张度顶格,功能和声无法收编
+  // (最优 chord 解释 dom7sus4b9(omit5 ♯7) cost=1 已是引擎榨到极限的凑数)。
+  // Forte 4-5(音程向量 ⟨210111⟩,两个半音 + ic2/4/5/6 各一);
+  // 倒影形 4-5B {0,4,5,6} 同类待审,将来同款处理。
+  // 四音 set 首例;scoreDisplay 同度双音数组(♭2·♮2)格式原生支持。
+  // 审核:用户 2026-09-06(四音 Tier3 区「很难解释」首形)
+  "spset-cluster_tritone": {
+    "cnName": "半音簇三全音",
+    "name": "Cluster-Tritone",
+    "scoreDisplay": { "2": [-1, 0], "5": -1 },
+    "offsets": [1, 2, 6],
+    "tags": ["cluster", "tritone", "non-functional", "forte-4-5"]
   }
 }
