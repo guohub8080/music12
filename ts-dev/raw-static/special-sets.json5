@@ -286,5 +286,35 @@
     "scoreDisplay": { "2": -1, "5": [-1, 0] },
     "offsets": [1, 6, 7],
     "tags": ["tritone", "symmetrical", "bitonality", "petrushka", "forte-4-9"]
+  },
+
+  // 四连半音簇 · root + 1半音(♭2) + 2半音(♮2) + 3半音(♯2) · C-C♯-D-D♯ 型
+  // 半音簇(spset-chromatic_cluster,Forte 3-1)的直系四音完整版;
+  // Forte 4-1,音程向量 ⟨321000⟩(三个半音——全库最高半音密度)。
+  // 集群作曲法(tone cluster)标准材料:Cowell 音块技法、Penderecki
+  // 《广岛受难者之歌》、Ligeti 微复调的基础声能单位;非功能 secundal,
+  // 存在理由是音色/色彩效果。scoreDisplay 首次三态数组(♭2·♮2·♯2
+  // 同度三音并存)。最优 chord 解释多重变换凑数,功能和声无法收编。
+  // 审核:用户 2026-09-06(四音 Tier5 收官形,簇家族最后一块拼图)
+  "spset-chromatic_tetrachord": {
+    "cnName": "四连半音簇",
+    "name": "Chromatic Tetrachord",
+    "scoreDisplay": { "2": [-1, 0, 1] },
+    "offsets": [1, 2, 3],
+    "tags": ["cluster", "secundal", "non-functional", "forte-4-1", "penderecki", "ligeti"]
+  },
+
+  // 半音簇大六度 · root + 1半音(♭2) + 2半音(♮2) + 9半音(♮6) · C-C♯-D-A 型
+  // 簇家族四音延伸收官位(+三全音/+大三度/+纯五/+小七度之后的 +大六度);
+  // 音程向量 ⟨211110⟩(两个半音簇基因+各音程各一)。♭2♮2 同度并存。
+  // 最优 chord 解释 maj3add11(omit5 ♯2) tier5 多重变换凑数,
+  // 功能和声无法收编。
+  // 审核:用户 2026-09-06(四音收官清查:tier5 残留 12 组即本形)
+  "spset-cluster_sixth": {
+    "cnName": "半音簇大六度",
+    "name": "Cluster-Sixth",
+    "scoreDisplay": { "2": [-1, 0], "6": 0 },
+    "offsets": [1, 2, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }

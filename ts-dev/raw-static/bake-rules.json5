@@ -553,5 +553,34 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // 四连半音簇形(四音收官形):C-C♯-D-D♯ / ... 共 12 个移调(prime form 0,1,2,3 自规范)
+    //
+    // 硬规则:纯 set。半音簇(3-1)的四音完整版(Forte 4-1,⟨321000⟩
+    // 全库最高半音密度),集群技法标准材料(Cowell/Penderecki/Ligeti);
+    // 非功能 secundal,最优 chord 解释多重变换凑数。
+    //
+    // 审核:用户 2026-09-06(Tier5 收官)
+    "0,1,2,3": {
+      "date": "2026-09-06",
+      "comment": "四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set",
+      "anchor": "spset-chromatic_tetrachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大六度形(四音最后待审形):C-C♯-D-A / ... 共 12 个移调(prime form 0,1,2,9 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸收官位(簇+大六度);最优 chord
+    // 解释 maj3add11(omit5 ♯2) tier5 凑数,功能和声无法收编。
+    //
+    // 审核:用户 2026-09-06(收官清查,同家族同判据)
+    "0,1,2,9": {
+      "date": "2026-09-06",
+      "comment": "半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set",
+      "anchor": "spset-cluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
