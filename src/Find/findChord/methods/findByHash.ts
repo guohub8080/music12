@@ -2,7 +2,7 @@ import chordHash3 from "@static-data/chord-hash-3.json"
 import { isNil } from "es-toolkit/predicate"
 import { PianoKey } from "@pianokey"
 import { Chord } from "@chord"
-import { restoreChord, type I_HashOp } from "./restoreChord"
+import { restoreChord, type I_HashTransform } from "./restoreChord"
 
 /**
  * 三音哈希查找器
@@ -30,8 +30,8 @@ export type I_HashEntry = {
   formulaId: string
   /** 记谱原子:chord 条目为公式 scoreDisplay 字符串;set 条目为 {度数: 变化量|变化量[]} */
   scoreDisplay: string | Record<string, number | number[]>
-  /** 结构化变换操作(原子化,完全命中为空数组) */
-  ops: I_HashOp[]
+  /** 变换分组对象(原子化:{"omit":5,"flat":[2]};完全命中为 {}) */
+  transform: I_HashTransform
   /** 加权 cost(越低越合理) */
   cost: number
   /** tier(1 完全命中 … 6 极端) */
@@ -86,7 +86,7 @@ export const findByHash = (ids: number[]): I_HashResult[] => {
       // chordName: set 条目给 根音·中文名,chord 条目给 根音+公式id;
       // 完整记谱由 entry.chord.scoreSymbol 或渲染 scoreDisplay 原子获取
       chordName: e.isChordFormula === false ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`,
-      isExact: e.cost === 0 && e.ops.length === 0,
+      isExact: e.cost === 0 && Object.keys(e.transform).length === 0,
       get chord(): Chord | null {
         if (isNil(cached) && cached !== null) cached = restoreChord(e)
         return cached

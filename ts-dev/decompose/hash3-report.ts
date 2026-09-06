@@ -8,7 +8,7 @@ import { isNotNil } from "es-toolkit/predicate"
 import { defaultTo } from "es-toolkit/compat"
 import { findByHash } from "../../src/Find/findChord/methods/findByHash"
 import { combo, primeForm } from "./keyset"
-import { renderOps } from "../../src/Find/findChord/methods/restoreChord"
+import { renderTransform } from "../../src/Find/findChord/methods/restoreChord"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
@@ -118,8 +118,8 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
       const display = !r.isChordFormula ? `${r.pianoKeySymbolRoot}·${r.cnName}` : `${r.pianoKeySymbolRoot}${r.formulaId}`
       // set 条目的变换列显示度数音记谱(scoreDisplay 原子渲染,如 ♭2·4);chord 条目显示变换记号
-      const opsText = renderOps(r.ops)
-      const trans = !r.isChordFormula ? renderSd(r.scoreDisplay) : (opsText === "" ? "—" : opsText)
+      const transformText = renderTransform(r.transform)
+      const trans = !r.isChordFormula ? renderSd(r.scoreDisplay) : (transformText === "" ? "—" : transformText)
       // 条目级 ✋ 已省略:组头的 ✋ verdict(prime form) 标注即裁决来源
       lines.push(`| ${defaultTo(TIER_EMOJI[r.tier], "🔴")}${r.tier} | **${display}** | ${trans} | ${r.cost} |`)
     }
@@ -135,8 +135,8 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       lines.push(`|---|---|---|---|`)
       for (const e of dropped) {
         const display = !e.isChordFormula ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`
-        const dropOps = renderOps(e.ops)
-        lines.push(`| ${defaultTo(TIER_EMOJI[e.tier], "🔴")}${e.tier} | ~~${display}~~ | ${dropOps === "" ? "—" : dropOps} | ${e.cost} |`)
+        const dropTransform = renderTransform(e.transform)
+        lines.push(`| ${defaultTo(TIER_EMOJI[e.tier], "🔴")}${e.tier} | ~~${display}~~ | ${dropTransform === "" ? "—" : dropTransform} | ${e.cost} |`)
       }
     }
     lines.push("")

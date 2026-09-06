@@ -117,6 +117,32 @@ const FORMULA_DEGREE_INTERVAL: Record<string, Record<string, string>> = (() => {
   return m
 })()
 
+/**
+ * engine ops → transform 分组对象(用户 schema):
+ *   {"omit": 5, "sharp": [7], "flat": [5,3], "add": 2}
+ * 键 = 操作类型(add/omit/sharp/flat),值 = 度数(int 或 int[]);
+ * 只写有操作的键,完全命中为 {}。
+ * alter 与带升降的 add 同归 sharp/flat——两者在 Chord 应用层等价(set 度数面板)。
+ */
+const toTransform = (ops: any[]): Record<string, number | number[]> => {
+  const t: Record<string, number | number[]> = {}
+  const push = (key: string, degree: number) => {
+    const cur = t[key]
+    if (isNil(cur)) t[key] = degree
+    else if (Array.isArray(cur)) cur.push(degree)
+    else t[key] = [cur, degree]
+  }
+  for (const op of ops) {
+    if (op.kind === "omit") push("omit", op.degree)
+    else if (op.kind === "add") {
+      if (op.offset === 1) push("sharp", op.degree)
+      else if (op.offset === -1) push("flat", op.degree)
+      else push("add", op.degree)
+    } else push(op.offset === 1 ? "sharp" : "flat", op.degree)
+  }
+  return t
+}
+
 const bake = () => {
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], 3)
   const table: Record<string, any[]> = {}
@@ -155,7 +181,7 @@ const bake = () => {
             pianoKeySymbolRoot: SYMBOLS[root],
             formulaId: ss.setId,           // spset-xxx 前缀
             scoreDisplay: ss.scoreDisplay, // set 记谱原子({度数:变化量})
-            ops: [],                       // set 无变换(完全命中)
+            transform: {},                 // set 无变换(完全命中)
             cost: 0,                       // cost = 0(与 tier1 同级)
             tier: 1,                       // tier 1(set 完全命中)
             isChordFormula: false,         // set 条目(与 chord 公式区分)
@@ -210,14 +236,14 @@ const bake = () => {
       isChordFormula: true,
       formulaId: r.chordFormulaId,
       scoreDisplay: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
-      ops: r.ops.map((op: any) => ({ kind: op.kind, degree: op.degree, offset: op.offset })),
+      transform: toTransform(r.ops),
       cost: r.weightedCost,
       tier: tierOf(r.weightedCost, r.notation),
     }))
     let entries: any[] = [...setEntries, ...chordEntries]
     const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
-    const hasExactMatch = chordEntries.some(e => e.tier === 1 && e.ops.length === 0)
+    const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
     for (const rule of RULES.rules) {
@@ -231,7 +257,7 @@ const bake = () => {
       }
       if (rule.then?.keepOnly === "exactMatch") {
         // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
-        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && e.ops.length === 0))
+        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && Object.keys(e.transform).length === 0))
       }
     }
 
