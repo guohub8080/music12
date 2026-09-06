@@ -28,6 +28,7 @@ import { isNil, isNotNil } from "es-toolkit/predicate"
 import { defaultTo } from "es-toolkit/compat"
 import { decompose } from "./engine"
 import { combo, primeForm, primeFormRoot, loadBakeRules } from "./keyset"
+import { restoreChord } from "../../src/Find/findChord/methods/restoreChord"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
@@ -320,6 +321,26 @@ const bake = () => {
   console.log(`被保留管线过滤(审核 sidecar):${filteredTotal} 条 → ${sidecarPath}`)
   console.log(`输出:${outPath}`)
   console.log(`文件大小:${(JSON.stringify(table).length / 1024).toFixed(1)}KB`)
+
+  // ── restore 安全校验:主表每条 chord 条目必须可无损反推 ──
+  // 同度双音(如 ♭3·♮3 并存,Chord 度数面板单态会静默覆盖)等不可达条目
+  // 在此当场炸掉烘焙——「主表零冲突」从数据巧合升级为构建保证,
+  // 四音表开跑时引擎若产出此类解释且未被规则滤掉,这里就是防线。
+  let checked = 0
+  for (const [key, entries] of Object.entries(table)) {
+    const ids = key.split("").map(ch => SYMBOLS.indexOf(ch)).sort((a, b) => a - b).join(",")
+    for (const e of entries) {
+      if (e.isChordFormula === false) continue
+      const chord = restoreChord(e)
+      checked++
+      const rebuilt = [...chord!.pianoKeyIds].sort((a, b) => a - b).join(",")
+      if (rebuilt !== ids) {
+        console.error(`✗ restore 不一致 [${key}] ${e.pianoKeySymbolRoot}${e.formulaId} ${JSON.stringify(e.transform)} → 反推音集 ${rebuilt}(同度双音不可达?)`)
+        process.exit(1)
+      }
+    }
+  }
+  console.log(`restore 安全校验:${checked} 条 chord 条目全部 round-trip 可达`)
 }
 
 bake()
