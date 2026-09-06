@@ -155,7 +155,7 @@ const bake = () => {
             pianoKeySymbolRoot: SYMBOLS[root],
             formulaId: ss.setId,           // spset-xxx 前缀
             scoreDisplay: ss.scoreDisplay, // set 记谱原子({度数:变化量})
-            notation: "",                  // set 无变换(完全命中)
+            ops: [],                       // set 无变换(完全命中)
             cost: 0,                       // cost = 0(与 tier1 同级)
             tier: 1,                       // tier 1(set 完全命中)
             isChordFormula: false,         // set 条目(与 chord 公式区分)
@@ -210,14 +210,14 @@ const bake = () => {
       isChordFormula: true,
       formulaId: r.chordFormulaId,
       scoreDisplay: defaultTo(FORMULA_DISPLAY[r.chordFormulaId], ""),
-      notation: r.notation,
+      ops: r.ops.map((op: any) => ({ kind: op.kind, degree: op.degree, offset: op.offset })),
       cost: r.weightedCost,
       tier: tierOf(r.weightedCost, r.notation),
     }))
     let entries: any[] = [...setEntries, ...chordEntries]
     const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且无变换记号)
-    const hasExactMatch = chordEntries.some(e => e.tier === 1 && e.notation === "")
+    const hasExactMatch = chordEntries.some(e => e.tier === 1 && e.ops.length === 0)
 
     // ── 第二层 rules:类型化规则,按声明顺序应用(字段直读,非 DSL)──
     for (const rule of RULES.rules) {
@@ -231,7 +231,7 @@ const bake = () => {
       }
       if (rule.then?.keepOnly === "exactMatch") {
         // 完全命中即唯一解释:等和弦多名(全命中)全保留,其余 chord 全滤
-        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && e.notation === ""))
+        entries = entries.filter(e => !e.isChordFormula || (e.tier === 1 && e.ops.length === 0))
       }
     }
 
