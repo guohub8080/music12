@@ -698,12 +698,11 @@
     //   规范键 0,1,2,5,10——键自检机制暴露后修正)
     "0,1,2,5,10": {
       "date": "2026-09-07",
-      "comment": "双根音捞回:maj7b9(omit5 add6) + dom7sus4b9(omit5 add2) 置顶,cost0 殿后,不升 set",
+      "comment": "maj13b9(omit11 omit5) 为唯一解释(硬规则):E 记 13 度入公式本体(七和弦语境 6→13,add6 是语境化不足的冗余记法),全滤",
       "keep": [
-        { "type": "chord", "formula": "maj7b9", "rootRel": 1 },
-        { "type": "chord", "formula": "dom7sus4b9", "rootRel": 0 },
+        { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
       ],
-      "filterRest": false,
+      "filterRest": true,
     },
   },
 }
