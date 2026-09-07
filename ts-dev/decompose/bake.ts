@@ -119,28 +119,6 @@ const FORMULA_DEGREE_INTERVAL: Record<string, Record<string, string>> = (() => {
   return m
 })()
 
-// 五声音阶调式表(scale 身份条目的数据源;五音表专属——七声调式 7 音不匹配)
-// 五声五调式(宫商角徵羽)共享同一音集的五个起点 → 同键集五重调式名
-// (如大五声 {0,2,4,7,9} = C宫/D商/E角/G徵/A羽,同 aug3 三重名的调式版)
-const PENTATONIC_MODES: Array<{ scaleModeId: string; cnName: string; semitones: number[]; degrees: Record<string, number> }> = (() => {
-  const GAP: Record<string, Record<number, number>> = {
-    maj: { 2: 2, 3: 4, 6: 9, 7: 11 }, min: { 2: 1, 3: 3, 6: 8, 7: 10 },
-    p: { 4: 5, 5: 7 }, aug: { 2: 3, 4: 6, 5: 8 }, dim: { 3: 2, 4: 4, 5: 6 },
-  }
-  const ALTER: Record<string, number> = { maj: 0, min: -1, p: 0, aug: 1, dim: -1 }
-  const raw = JSON.parse(readFileSync(resolve(ROOT, "static-data", "scale-modes.json"), "utf-8"))
-  const out: typeof PENTATONIC_MODES = []
-  for (const [id, m] of Object.entries(raw) as [string, any][]) {
-    const il = (m.intervalList as any[]).filter(x => x !== null)
-    if (il.length !== 4) continue  // 根音 + 4 度 = 5 音(五声系)
-    const semitones = il.map(([t, n]) => GAP[t][n]).sort((a, b) => a - b)
-    const degrees: Record<string, number> = {}
-    for (const [t, n] of il) degrees[String(n)] = ALTER[t]
-    out.push({ scaleModeId: id, cnName: m.name, semitones, degrees })
-  }
-  return out
-})()
-
 /**
  * engine ops → transform 分组对象(用户 schema):
  *   {"omit": 5, "sharp": [7], "flat": [5,3], "add": 2}
@@ -187,7 +165,6 @@ const bake = () => {
   }
   let totalSolutions = 0
   let setHits = 0
-  let scaleHits = 0
   let verdictHits = 0
 
   for (const ids of inputs) {
@@ -195,31 +172,6 @@ const bake = () => {
     // 跨语言规范形(字典序),与 src findByHash.hashKey 的构造契约一致
     const key = ids.map(i => SYMBOLS[i]).sort().join("")
     const inputSet = new Set(ids)
-
-    // ── scale 完全命中:匹配五声音阶调式(五音表专属)──
-    // 五声五调式共享音集 → 同键集五重调式名(C宫/D商/E角/G徵/A羽);
-    // scale 身份排序最高(音阶 > 音集 > 和弦等价视角),全 t1/cost0
-    const scaleEntries: any[] = []
-    for (const mode of PENTATONIC_MODES) {
-      for (let root = 0; root < 12; root++) {
-        const modeKeys = new Set([root, ...mode.semitones.map(s => (root + s) % 12)])
-        if (modeKeys.size === inputSet.size && [...modeKeys].every(k => inputSet.has(k))) {
-          scaleHits++
-          scaleEntries.push({
-            pianoKeyIdRoot: root,
-            pianoKeySymbolRoot: SYMBOLS[root],
-            formulaId: mode.scaleModeId,        // GONG/SHANG/...(scaleModeId)
-            scoreDisplay: mode.degrees,         // 度数原子({"2":0,...} 渲染 2·3·5·6)
-            transform: {},
-            cost: 0,
-            tier: 1,
-            isChordFormula: false,
-            isScale: true,                      // scale 身份标记(与 set 区分)
-            cnName: mode.cnName,                // 宫调式/商调式/...
-          })
-        }
-      }
-    }
 
     // ── set 完全命中:匹配 special-sets 的 offsets ──
     // offsets 不含 0(根音由引擎补):键集 = [root, ...offsets.map(o => (root+o)%12)]
@@ -317,7 +269,7 @@ const bake = () => {
       cost: r.weightedCost,
       tier: tierOf(r.weightedCost, r.notation),
     }))
-    let entries: any[] = [...scaleEntries, ...setEntries, ...chordEntries]
+    let entries: any[] = [...setEntries, ...chordEntries]
 
     // ── 同度双音硬排除(第 0 层,先于 rules)──
     // 同一度数出现在 transform 的两个不同键(add/sharp/flat)里 = ♮N 与 ♯N/♭N 并存,
@@ -339,7 +291,7 @@ const bake = () => {
       e => e.isChordFormula === false || !hasDegreeConflict(e.transform as Record<string, number | number[]>),
     )
 
-    const hasSetHit = setEntries.length + scaleEntries.length > 0
+    const hasSetHit = setEntries.length > 0
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且零变换)
     const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
     // 零成本 chord 条目:完全命中或纯省略(cost=0,omit5/omit11 预期行为)
@@ -436,7 +388,7 @@ const bake = () => {
   const sidecarPath = resolve(ROOT, "ts-dev/decompose", `filtered-${K}.json`)
   writeFileSync(sidecarPath, serialize(filteredSidecar), "utf-8")
   const filteredTotal = Object.values(filteredSidecar).reduce((s, v) => s + v.length, 0)
-  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set + ${scaleHits} 个 scale 完全命中,${verdictHits} 个键集被人工裁决覆盖)`)
+  console.log(`烘焙完成:${inputs.length} 个键集,共 ${totalSolutions} 个方案(含 ${setHits} 个 set 完全命中,${verdictHits} 个键集被人工裁决覆盖)`)
   console.log(`被保留管线过滤(审核 sidecar):${filteredTotal} 条 → ${sidecarPath}`)
   console.log(`输出:${outPath}`)
   console.log(`文件大小:${(JSON.stringify(table).length / 1024).toFixed(1)}KB`)
