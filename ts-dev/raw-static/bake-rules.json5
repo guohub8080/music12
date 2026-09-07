@@ -683,5 +683,27 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // maj7b9/dom7sus4b9 双根音形(五音):E-F♯-G-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,2,5,10,起点 F♯)
+    //
+    // 多根音捞回(用户裁决,set 价值评估后维持 chord):zero-cost 规则
+    // 滤掉的两条 0.5 双根音视角捞回置顶——maj7b9(omit5 add6)(G 根)+
+    // dom7sus4b9(omit5 add2)(X 根);主表 cost0(maj13b9(omit11,5))
+    // 殿后。解释皆标准件无变形核心音,三音簇+纯四+♭7 混合无正名,
+    // 不升 set。
+    // 无锚模式:maj7b9 根 = 起点 + 1,dom7sus4b9 根 = 起点 + 0。
+    //
+    // 审核:用户 2026-09-07(首版 prime form 键误写 0,1,2,4,5,
+    //   规范键 0,1,2,5,10——键自检机制暴露后修正)
+    "0,1,2,5,10": {
+      "date": "2026-09-07",
+      "comment": "双根音捞回:maj7b9(omit5 add6) + dom7sus4b9(omit5 add2) 置顶,cost0 殿后,不升 set",
+      "keep": [
+        { "type": "chord", "formula": "maj7b9", "rootRel": 1 },
+        { "type": "chord", "formula": "dom7sus4b9", "rootRel": 0 },
+      ],
+      "filterRest": false,
+    },
   },
 }
