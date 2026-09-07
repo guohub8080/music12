@@ -582,5 +582,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // 四连簇纯四度形(五音审核第一形):C-C♯-D-E♭-F / ... 共 12 个移调
+    // (prime form 0,1,2,3,5 自规范)
+    //
+    // 硬规则:纯 set。Forte 5-2(第二紧致五音簇,仅次于 5-1),
+    // 勋伯格 Op.26 集合回文中心;簇家族五音延伸第一位(四连簇+X)。
+    // 无 cost=0 解释,chord 全凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,3,5": {
+      "date": "2026-09-07",
+      "comment": "四连簇纯四度为唯一解释(硬规则):Forte 5-2 紧致簇,chromatic genus 极值,纯 set",
+      "anchor": "spset-tetracluster_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

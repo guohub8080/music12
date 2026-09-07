@@ -316,5 +316,21 @@
     "scoreDisplay": { "2": [-1, 0], "6": 0 },
     "offsets": [1, 2, 9],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇纯四度 · root + 1+2+3半音(四连半音簇) + 5半音(纯四) · C-C♯-D-E♭-F 型
+  // Forte 5-2,音程向量 ⟨332110⟩——仅次于纯五连半音(5-1)的第二紧致五音簇;
+  // 文献别名 Pentacluster.2 / Chromatic Pentamirror(Scribd 集合表系)。
+  // 勋伯格《木管五重奏》Op.26 集合回文序列中心(5-9→5-8→5-2→5-8→5-9);
+  // Samplaski(MTO)归为 chromatic genus 极值。簇家族五音延伸第一位
+  // (四连簇+X 系列)。最优 chord 解释 maj7b9(omit5 add2) 0.5 凑数。
+  // scoreDisplay 2 度双态(♭2·♮2)+♭3+♮4。
+  // 审核:用户 2026-09-07(五音 Tier3 第一形「一个一个来」)
+  "spset-tetracluster_fourth": {
+    "cnName": "四连簇纯四度",
+    "name": "Tetracluster-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "3": -1, "4": 0 },
+    "offsets": [1, 2, 3, 5],
+    "tags": ["cluster", "secundal", "non-functional", "forte-5-2"]
   }
 }
