@@ -652,5 +652,21 @@
       ],
       "filterRest": true,
     },
+
+    // maj7b9 加四形:C-C♯-D-F-F♯ / ... 共 12 个移调(prime form 0,1,2,5,6 自规范)
+    //
+    // 硬规则:只保留 maj7b9(omit5 add4)。maj7b9 正式公式(和声/旋律
+    // 小调系的 maj7 降九),omit5 预期省略 + add4 自然扩展。
+    // 无锚模式:maj7b9 根音 = 起点 + 1(C-C♯-D-F-F♯ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,5,6": {
+      "date": "2026-09-07",
+      "comment": "maj7b9(omit5 add4) 为唯一解释(硬规则):正式公式+标准省略扩展,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj7b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
   },
 }
