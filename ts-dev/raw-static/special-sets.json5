@@ -332,5 +332,20 @@
     "scoreDisplay": { "2": [-1, 0], "3": -1, "4": 0 },
     "offsets": [1, 2, 3, 5],
     "tags": ["cluster", "secundal", "non-functional", "forte-5-2"]
+  },
+
+  // 梦之和弦加四 · root + 1+2半音(簇) + 5半音(纯四) + 7半音(纯五) · C-C♯-D-F-G 型
+  // 梦之和弦(spset-dream,{0,1,2,7})的直系五音扩展——挂纯四度:
+  // 三音簇的半音摩擦 + 纯四纯五两个空灵纯音程,dream 气质的加宽版
+  // (La Monte Young 血统延续)。♭2♮2 同度双音。
+  // 最优 chord 解释 dom7#11(♯3) 把属七三度(guide tone)升半音,
+  // 变形核心音(Hijaz 形 ♭7→M6 同款病),全场凑数。
+  // 审核:用户 2026-09-07(五音审核「解释得有点丑」,裁决 set)
+  "spset-dream_fourth": {
+    "cnName": "梦之和弦加四",
+    "name": "Dream-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "5": 0 },
+    "offsets": [1, 2, 5, 7],
+    "tags": ["cluster", "cage-minimalism-lineage", "non-functional"]
   }
 }

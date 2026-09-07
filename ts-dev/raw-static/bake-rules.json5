@@ -668,5 +668,20 @@
       ],
       "filterRest": true,
     },
+
+    // 梦之和弦加四形(五音):C-C♯-D-F-G / ... 共 12 个移调(prime form 0,1,2,5,7 自规范)
+    //
+    // 硬规则:纯 set。梦之和弦(dream 家族)的直系五音扩展——挂纯四度,
+    // 半音摩擦+两个纯音程空灵;最优 dom7#11(♯3) 把 guide tone 三度
+    // 升半音(变形核心音),全场凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,5,7": {
+      "date": "2026-09-07",
+      "comment": "梦之和弦加四为唯一解释(硬规则):dream 家族直系扩展,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-dream_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
