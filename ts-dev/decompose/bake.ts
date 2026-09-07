@@ -29,8 +29,6 @@ import { isNil, isNotNil } from "es-toolkit/predicate"
 import { defaultTo } from "es-toolkit/compat"
 import { decompose } from "./engine"
 import { combo, primeForm, primeFormRoot, loadBakeRules } from "./keyset"
-import { restoreChord } from "../../src/Find/findChord/methods/restoreChord"
-import { restoreSet } from "../../src/Find/findChord/methods/restoreSet"
 import { serialize } from "../compileStaticData"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -170,7 +168,10 @@ const toTransform = (ops: any[]): Record<string, number | number[]> => {
 }
 
 const bake = () => {
-  const K = Number(defaultTo(process.argv[2], 3))
+  // K 解析容错:非纯数字参数(--silent 等 flag)回退 3,
+  // 防止 pretest 链上的 --silent 被当成 K=NaN 烘出 chord-hash-NaN.json 空表
+  const parsedK = Number(process.argv[2])
+  const K = Number.isFinite(parsedK) && parsedK >= 2 ? parsedK : 3
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], K)
   const table: Record<string, any[]> = {}
   const filteredSidecar: Record<string, any[]> = {}
@@ -440,49 +441,11 @@ const bake = () => {
   console.log(`输出:${outPath}`)
   console.log(`文件大小:${(JSON.stringify(table).length / 1024).toFixed(1)}KB`)
 
-  // ── restore 安全校验:主表全部条目(chord + set)必须可无损反推 ──
-  // chord 条目:同度双音(♭3·♮3 并存,Chord 度数面板单态会静默覆盖)等
-  // 不可达条目在此当场炸掉烘焙;set 条目:restoreSet 重算音集(根音+
-  // offsets)比对键集,定义表(special-sets)数据错误在此暴露。
-  // 「主表零冲突」从数据巧合升级为构建保证——自验最终 JSON 本身,
-  // 不依赖上游任何过滤层的正确性。
-  let checkedChord = 0
-  let checkedSet = 0
-  let checkedScale = 0
-  for (const [key, entries] of Object.entries(table)) {
-    const ids = key.split("").map(ch => SYMBOLS.indexOf(ch)).sort((a, b) => a - b).join(",")
-    for (const e of entries) {
-      if (e.isScale === true) {
-        // scale 条目:root + semitones 重算音集比对键(scale-modes 数据错误的防线)
-        const mode = PENTATONIC_MODES.find(m => m.scaleModeId === e.formulaId)
-        const rebuilt = [e.pianoKeyIdRoot, ...mode!.semitones.map(x => (e.pianoKeyIdRoot + x) % 12)].sort((a, b) => a - b).join(",")
-        checkedScale++
-        if (isNil(mode) || rebuilt !== ids) {
-          console.error(`✗ scale restore 不一致 [${key}] ${e.pianoKeySymbolRoot}·${e.cnName}`)
-          process.exit(1)
-        }
-        continue
-      }
-      if (e.isChordFormula === false) {
-        const setEntity = restoreSet(e)
-        checkedSet++
-        const rebuilt = setEntity!.pianoKeyIds.join(",")
-        if (isNil(setEntity) || rebuilt !== ids) {
-          console.error(`✗ set restore 不一致 [${key}] ${e.pianoKeySymbolRoot}·${e.cnName} → ${isNil(setEntity) ? "定义表失配" : `反推音集 ${rebuilt}`}`)
-          process.exit(1)
-        }
-        continue
-      }
-      const chord = restoreChord(e)
-      checkedChord++
-      const rebuilt = [...chord!.pianoKeyIds].sort((a, b) => a - b).join(",")
-      if (rebuilt !== ids) {
-        console.error(`✗ restore 不一致 [${key}] ${e.pianoKeySymbolRoot}${e.formulaId} ${JSON.stringify(e.transform)} → 反推音集 ${rebuilt}(同度双音不可达?)`)
-        process.exit(1)
-      }
-    }
-  }
-  console.log(`restore 安全校验:${checkedChord} chord + ${checkedSet} set + ${checkedScale} scale 全部 round-trip 可达`)
+  // restore 安全校验已移至 ts-dev/decompose/verify-hash.ts(独立后置脚本):
+  // 它 import src 的 restoreChord/restoreSet 做真实 round-trip——
+  // bake 本体若依赖 src,而 src 的 @chord 出口链静态 import 本产物
+  // (chord-hash-*.json),产物缺失时 bake 无法启动 → 鸡生蛋死锁
+  // (fresh clone 场景实测)。pretest/prebuild 链:gen → bake → verify。
 }
 
 bake()
