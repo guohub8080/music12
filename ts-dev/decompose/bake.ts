@@ -356,6 +356,15 @@ const bake = () => {
           else console.warn(`⚠ verdict "${pf}"(${key}):keep ${k.formula} 未匹配(人工数据过期?)`)
         }
       }
+      // keep 全部未匹配 = 人工数据过期到完全失配 → 致命(否则 filterRest:true
+      // 会产出空组静默损坏数据;部分未匹配仍为警告,容忍手写漂移)
+      const matchedCount = kept.length
+      const wantedCount = verdict.keep.length
+      if (matchedCount === 0 && wantedCount > 0) {
+        console.error(`✗ verdict "${pf}" keep 全部未匹配(${wantedCount} 条)——键或 rootRel 错误,拒绝烘焙`)
+        process.exit(1)
+      }
+
       // filterRest=true → 只留人工钦定;false → 钦定置顶,其余按机器顺序殿后(去重)
       entries = verdict.filterRest
         ? kept
