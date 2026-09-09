@@ -818,5 +818,25 @@
       ],
       "filterRest": true,
     },
+
+    // dom7#9/maj3b5 双根音形(五音):C-C♯-G-A-B / ... 共 12 个移调
+    // (prime form 0,1,2,8,10,起点 B)
+    //
+    // 硬规则:双根音双视角——A 根 dom7#9(omit5 add2)(0.5,变化属
+    // 张力侧,7♯9 的 add2=♯9? 不,add2 是 M9——7#9 公式带 ♯9,
+    // add2 是额外的自然九度)+ G 根 maj3b5(add4 add2)(1,增五侧
+    // 三音壳加双挂)。不同根音的公认解释并存(多根音原则)。
+    // 无锚模式:dom7#9 根 = 起点 + 10,maj3b5 根 = 起点 + 8。
+    //
+    // 审核:用户 2026-09-07(「保留这两个」)
+    "0,1,2,8,10": {
+      "date": "2026-09-07",
+      "comment": "双根音双视角:dom7#9(omit5 add2)(A 根)+ maj3b5(add4 add2)(G 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#9", "rootRel": 10 },
+        { "type": "chord", "formula": "maj3b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
   },
 }
