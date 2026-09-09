@@ -838,5 +838,26 @@
       ],
       "filterRest": true,
     },
+
+    // dom7#5/minmaj7/aug3 三根音形(五音):C-D-E-G♯-A / ... 共 12 个移调
+    // (prime form 0,1,4,6,8,起点 G♯)
+    //
+    // 硬规则:三根音三视角——E 根 dom7#5(add4)(0.5,属七增五侧)
+    // + A 根 minmaj7(add4)(0.5,小大七侧)+ C 根 aug3(add2 add6)
+    // (1,增三侧)。三根音的公认解释并存(多根音原则,库内首例
+    // 三根音 verdict)。
+    // 无锚模式:dom7#5 根 = 起点+8,minmaj7 根 = 起点+1,aug3 根 = 起点+4。
+    //
+    // 审核:用户 2026-09-07(「保留如下几个」)
+    "0,1,4,6,8": {
+      "date": "2026-09-07",
+      "comment": "三根音三视角:dom7#5(add4)(E 根)+ minmaj7(add4)(A 根)+ aug3(add2 add6)(C 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#5", "rootRel": 8 },
+        { "type": "chord", "formula": "minmaj7", "rootRel": 1 },
+        { "type": "chord", "formula": "aug3", "rootRel": 4 },
+      ],
+      "filterRest": true,
+    },
   },
 }
