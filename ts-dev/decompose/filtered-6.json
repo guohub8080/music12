@@ -24966,6 +24966,128 @@
   ],
   "CDEGPX": [
     {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 4,
+      "pianoKeySymbolRoot": "E",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 6,
       "pianoKeySymbolRoot": "X",
       "isChordFormula": true,
@@ -92096,6 +92218,128 @@
     }
   ],
   "BCFPQX": [
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 3,
+      "pianoKeySymbolRoot": "Q",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
     {
       "pianoKeyIdRoot": 5,
       "pianoKeySymbolRoot": "F",
@@ -179648,6 +179892,128 @@
   ],
   "CGPXYZ": [
     {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 10,
+      "pianoKeySymbolRoot": "Z",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 0,
       "pianoKeySymbolRoot": "C",
       "isChordFormula": true,
@@ -245403,6 +245769,128 @@
   ],
   "ACDQYZ": [
     {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 0,
+      "pianoKeySymbolRoot": "C",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 2,
       "pianoKeySymbolRoot": "D",
       "isChordFormula": true,
@@ -266808,6 +267296,128 @@
     }
   ],
   "BCDEFZ": [
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 2,
+      "pianoKeySymbolRoot": "D",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
     {
       "pianoKeyIdRoot": 4,
       "pianoKeySymbolRoot": "E",
@@ -445159,6 +445769,128 @@
   ],
   "ABCFGX": [
     {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 9,
+      "pianoKeySymbolRoot": "A",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 11,
       "pianoKeySymbolRoot": "B",
       "isChordFormula": true,
@@ -477138,6 +477870,128 @@
     }
   ],
   "DFGPQY": [
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 5,
+      "pianoKeySymbolRoot": "F",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
     {
       "pianoKeyIdRoot": 7,
       "pianoKeySymbolRoot": "G",
@@ -576913,6 +577767,128 @@
   ],
   "ABDGPY": [
     {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 11,
+      "pianoKeySymbolRoot": "B",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 1,
       "pianoKeySymbolRoot": "P",
       "isChordFormula": true,
@@ -619934,6 +620910,128 @@
     }
   ],
   "ABEPQZ": [
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [2, 6]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "flat": 3,
+        "sharp": 5
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 1,
+      "pianoKeySymbolRoot": "P",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "flat": 3,
+        "sharp": 5,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
     {
       "pianoKeyIdRoot": 3,
       "pianoKeySymbolRoot": "Q",
@@ -739355,6 +740453,128 @@
   ],
   "ADEQXY": [
     {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 6,
+      "pianoKeySymbolRoot": "X",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 8,
       "pianoKeySymbolRoot": "Y",
       "isChordFormula": true,
@@ -855874,6 +857094,128 @@
   ],
   "AEFGQZ": [
     {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 7,
+      "pianoKeySymbolRoot": "G",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
       "pianoKeyIdRoot": 9,
       "pianoKeySymbolRoot": "A",
       "isChordFormula": true,
@@ -898435,6 +899777,128 @@
     }
   ],
   "BEFXYZ": [
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom13#5",
+      "scoreDisplay": "13#5",
+      "transform": {
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 1,
+      "tier": 3
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom9#5",
+      "scoreDisplay": "9#5",
+      "transform": {
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom9b13",
+      "scoreDisplay": "9b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": 6
+      },
+      "cost": 1.5,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom13",
+      "scoreDisplay": "13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "omit": 11
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom7#5",
+      "scoreDisplay": "7#5",
+      "transform": {
+        "flat": 3,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom7b13",
+      "scoreDisplay": "7b13",
+      "transform": {
+        "flat": 3,
+        "omit": 5,
+        "add": [6, 2]
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom9add13",
+      "scoreDisplay": "9add13",
+      "transform": {
+        "sharp": 5,
+        "flat": 3
+      },
+      "cost": 2,
+      "tier": 4
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom7add6",
+      "scoreDisplay": "7add6",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 2
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
+    {
+      "pianoKeyIdRoot": 8,
+      "pianoKeySymbolRoot": "Y",
+      "isChordFormula": true,
+      "formulaId": "dom9",
+      "scoreDisplay": "9",
+      "transform": {
+        "sharp": 5,
+        "flat": 3,
+        "add": 6
+      },
+      "cost": 2.5,
+      "tier": 5
+    },
     {
       "pianoKeyIdRoot": 10,
       "pianoKeySymbolRoot": "Z",

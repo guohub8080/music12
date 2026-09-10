@@ -1501,6 +1501,19 @@
       "anchor": "spset-z13_cluster",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // min7#5 双加形(六音 t3 例外区):prime form 0,1,2,4,6,7,起点 E
+    // 硬规则:只保留 min7#5(add6 add2)。公式本体四音在场+双自然
+    // 外挂(add6/add2,cost 1);五音 min7#5(add6) 形(钉死过)的
+    // 加二六音版。审核:用户 2026-09-08(「只保留这一个」)
+    "0,1,2,4,6,7": {
+      "date": "2026-09-08",
+      "comment": "min7#5(add6 add2) 为唯一解释(硬规则):本体在场+双自然外挂,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "min7#5", "rootRel": 4 },
+      ],
+      "filterRest": true,
     }
   },
 }
