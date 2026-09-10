@@ -1176,6 +1176,24 @@
         { "type": "chord", "formula": "minmaj7#5", "rootRel": 1 },
       ],
       "filterRest": true,
+    },
+
+    // maj13b9 加二形(六音):C-D-E♭-E-F-G / ... 共 12 个移调
+    // (prime form 0,1,2,3,5,10,起点 D)
+    //
+    // 硬规则:只保留 maj13b9(omit11 omit5 add2)。双预期省略(11/5)
+    // +add2 唯一外挂,cost 0.5;非单 add 形态(三操作),lone-add
+    // 恰一条语义不触发,由 verdict 接管。
+    // 无锚模式:maj13b9 根音 = 起点 + 1。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,5,10": {
+      "date": "2026-09-08",
+      "comment": "maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
     }
   },
 }

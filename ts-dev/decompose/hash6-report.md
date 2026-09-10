@@ -28276,30 +28276,32 @@
 | 🔴6 | ~~Amaj3add6add9~~ | ♭5 ♭6 ♯9 add4 | 9.5 |
 | 🔴6 | ~~Dmaj3add9~~ | ♭9 ♭3 ♯6 add7 | 9.5 |
 
-## C-P-D-Q-F-Z  `{0,1,2,3,5,10}`  ⚙ lone-natural-add-exclusive
+## C-P-D-Q-F-Z  `{0,1,2,3,5,10}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Pmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Pmaj7b9** | omit5 add2 add6 | 1 |
-| 🟡4 | **Cdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Fdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Cdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Cdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Cdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Pmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Qmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Cmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Pmaj7b9~~ | omit5 add2 add6 | 1 |
+| 🟡4 | ~~Cdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Fdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Cdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Cdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Cdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Cdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Cdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Cdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Cdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Cdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Pmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Qmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Cmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Zmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Pmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Zmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -29851,30 +29853,32 @@
 | 🔴6 | ~~Emaj3~~ | ♯5 ♯3 ♯6 ♯4 add6 | 12.5 |
 | 🔴6 | ~~Emaj7~~ | ♭7 ♯5 ♯3 ♯4 add6 | 12.5 |
 
-## C-P-D-E-A-B  `{0,1,2,4,9,11}`  ⚙ lone-natural-add-exclusive
+## C-P-D-E-A-B  `{0,1,2,4,9,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Cmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Cmaj7b9** | omit5 add2 add6 | 1 |
-| 🟡4 | **Bdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Edom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Bdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Bdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Bdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Cmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Dmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Bmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Cmaj7b9~~ | omit5 add2 add6 | 1 |
+| 🟡4 | ~~Bdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Edom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Bdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Bdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Bdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Bdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Bdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Bdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Bdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Bdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Cmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Dmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Bmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Amaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Cmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Amaj3add9~~ | ♯2 add4 | 3.5 |
@@ -33309,30 +33313,32 @@
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Cmaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## C-P-Q-Y-Z-B  `{0,1,3,8,10,11}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-Y-Z-B  `{0,1,3,8,10,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Bmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Bmaj7b9** | omit5 add2 add6 | 1 |
-| 🟡4 | **Zdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Qdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Zdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Zdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Zdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Bmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Pmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Zmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Bmaj7b9~~ | omit5 add2 add6 | 1 |
+| 🟡4 | ~~Zdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Qdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Zdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Zdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Zdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Zdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Zdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Zdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Zdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Zdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Bmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Pmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Zmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Ymaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Bmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Ymaj3add9~~ | ♯2 add4 | 3.5 |
@@ -35848,30 +35854,32 @@
 | 🔴6 | ~~Gmaj3add9~~ | ♭5 ♭2 ♯3 ♯2 | 12 |
 | 🔴6 | ~~Gmaj3~~ | ♭5 ♭2 ♯3 ♯2 add2 | 12.5 |
 
-## C-D-Q-E-F-G  `{0,2,3,4,5,7}`  ⚙ lone-natural-add-exclusive
+## C-D-Q-E-F-G  `{0,2,3,4,5,7}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Qmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Qmaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Ddom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Gdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Ddom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Ddom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Ddom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Qmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Fmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Dmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 63 条(未进哈希表):
+🗑 已过滤 72 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Qmaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Ddom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Gdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Ddom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Ddom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Ddom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Ddom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Ddom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Ddom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Ddom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Ddom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Qmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Fmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Dmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Cmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Qmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Cmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -40839,30 +40847,32 @@
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Bmaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## C-D-G-A-Z-B  `{0,2,7,9,10,11}`  ⚙ lone-natural-add-exclusive
+## C-D-G-A-Z-B  `{0,2,7,9,10,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Zmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Zmaj7b9** | omit5 add2 add6 | 1 |
-| 🟡4 | **Adom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Ddom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Adom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Adom7b9** | omit5 ♭3 add4 add2 | 2 |
-| 🟠5 | **Adom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Zmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Cmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Amin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Zmaj7b9~~ | omit5 add2 add6 | 1 |
+| 🟡4 | ~~Adom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Ddom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Adom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Adom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Adom7b9~~ | omit5 ♭3 add4 add2 | 2 |
 | 🟡4 | ~~Adom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Adom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Adom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Adom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Adom7~~ | omit5 ♭3 ♭2 add4 add2 | 3 |
+| 🟠5 | ~~Zmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Cmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Amin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Gmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Zmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Gmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -45627,33 +45637,35 @@
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♭2 ♯4 add4 | 9.5 |
 | 🔴6 | ~~Fmaj3add9~~ | ♭9 ♭3 ♯4 add4 | 9.5 |
 
-## C-F-G-Y-A-Z  `{0,5,7,8,9,10}`  ⚙ lone-natural-add-exclusive
+## C-F-G-Y-A-Z  `{0,5,7,8,9,10}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Ymaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Ymaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Gdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Cdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Gdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟠5 | **Ymaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Zmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Gmin11** | omit5 ♭2 | 3 |
-| 🔴6 | **Ymaj3add6add9** | omit5 ♭2 add7 | 3.5 |
-| 🔴6 | **Fmaj3add9** | ♯2 add4 | 3.5 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Ymaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Gdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Cdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Gdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Gdom11~~ | omit5 ♭3 ♭2 | 2 |
 | 🟡4 | ~~Gdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Gdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Gdom7b9~~ | omit5 ♯3 ♯2 add2 | 2.5 |
 | 🟠5 | ~~Gdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
 | 🟠5 | ~~Gdom9~~ | omit5 ♭2 ♯3 ♯2 | 3 |
+| 🟠5 | ~~Ymaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Zmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Gmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Gdom7~~ | omit5 ♭2 ♯3 ♯2 add2 | 3.5 |
 | 🔴6 | ~~Fmaj3add11~~ | ♯2 add2 | 3.5 |
+| 🔴6 | ~~Ymaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
+| 🔴6 | ~~Fmaj3add9~~ | ♯2 add4 | 3.5 |
 | 🔴6 | ~~Zmaj7sus2~~ | ♯6 add6 | 3.5 |
 | 🔴6 | ~~Ymaj9~~ | omit5 ♭2 add6 | 3.5 |
 | 🔴6 | ~~Gmin9~~ | omit5 ♭2 add4 | 3.5 |
@@ -46155,30 +46167,32 @@
 | 🔴6 | ~~Zmaj3add6add9~~ | ♭5 ♭6 ♯9 add4 | 9.5 |
 | 🔴6 | ~~Qmaj3add9~~ | ♭9 ♭3 ♯6 add7 | 9.5 |
 
-## P-D-Q-E-X-B  `{1,2,3,4,6,11}`  ⚙ lone-natural-add-exclusive
+## P-D-Q-E-X-B  `{1,2,3,4,6,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Dmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Dmaj7b9** | omit5 add2 add6 | 1 |
-| 🟡4 | **Pdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Xdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Pdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Pdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Pdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Dmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Emaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Pmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Dmaj7b9~~ | omit5 add2 add6 | 1 |
+| 🟡4 | ~~Pdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Xdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Pdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Pdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Pdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Pdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Pdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Pdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Pdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Pdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Dmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Emaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Pmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Bmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Dmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Bmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -51040,30 +51054,32 @@
 | 🔴6 | ~~Ymaj3add9~~ | ♭5 ♭2 ♯3 ♯2 | 12 |
 | 🔴6 | ~~Ymaj3~~ | ♭5 ♭2 ♯3 ♯2 add2 | 12.5 |
 
-## P-Q-E-F-X-Y  `{1,3,4,5,6,8}`  ⚙ lone-natural-add-exclusive
+## P-Q-E-F-X-Y  `{1,3,4,5,6,8}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Emaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Emaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Qdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Ydom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Qdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Qdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Qdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Emaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Xmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Qmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Emaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Qdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Ydom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Qdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Qdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Qdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Qdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Qdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Qdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Qdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Qdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Emaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Xmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Qmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Pmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Emaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Pmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -56009,33 +56025,35 @@
 | 🔴6 | ~~Pmaj7b13~~ | ♭5 ♭7 ♯3 add6 | 9.5 |
 | 🔴6 | ~~Zmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 
-## P-X-Y-A-Z-B  `{1,6,8,9,10,11}`  ⚙ lone-natural-add-exclusive
+## P-X-Y-A-Z-B  `{1,6,8,9,10,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Amaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Amaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Ydom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Pdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Ydom11** | omit5 ♭3 ♭2 | 2 |
-| 🟠5 | **Amaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Bmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Ymin11** | omit5 ♭2 | 3 |
-| 🔴6 | **Amaj3add6add9** | omit5 ♭2 add7 | 3.5 |
-| 🔴6 | **Xmaj3add9** | ♯2 add4 | 3.5 |
 
-🗑 已过滤 60 条(未进哈希表):
+🗑 已过滤 69 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Amaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Ydom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Pdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Ydom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Ydom11~~ | omit5 ♭3 ♭2 | 2 |
 | 🟡4 | ~~Ydom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Ydom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Ydom7b9~~ | omit5 ♯3 ♯2 add2 | 2.5 |
 | 🟠5 | ~~Ydom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
 | 🟠5 | ~~Ydom9~~ | omit5 ♭2 ♯3 ♯2 | 3 |
+| 🟠5 | ~~Amaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Bmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Ymin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Ydom7~~ | omit5 ♭2 ♯3 ♯2 add2 | 3.5 |
 | 🔴6 | ~~Xmaj3add11~~ | ♯2 add2 | 3.5 |
+| 🔴6 | ~~Amaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
+| 🔴6 | ~~Xmaj3add9~~ | ♯2 add4 | 3.5 |
 | 🔴6 | ~~Bmaj7sus2~~ | ♯6 add6 | 3.5 |
 | 🔴6 | ~~Amaj9~~ | omit5 ♭2 add6 | 3.5 |
 | 🔴6 | ~~Ymin9~~ | omit5 ♭2 add4 | 3.5 |
@@ -58703,30 +58721,32 @@
 | 🔴6 | ~~Amaj3add6~~ | ♭5 ♯3 ♯6 add7 add2 | 10 |
 | 🔴6 | ~~Bminmaj11~~ | omit9 ♭11 ♭7 ♯5 add6 | 10 |
 
-## D-E-F-X-G-A  `{2,4,5,6,7,9}`  ⚙ lone-natural-add-exclusive
+## D-E-F-X-G-A  `{2,4,5,6,7,9}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Fmaj13b9** | omit5 omit11 add2 | 0.5 |
-| 🟢3 | **Fmaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Edom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Adom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Edom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Edom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Edom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Fmaj13** | omit5 omit11 ♭2 | 3 |
-| 🟠5 | **Gmaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Emin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Fmaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Edom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Adom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Edom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Edom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Edom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Edom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Edom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Edom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Edom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Edom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Fmaj13~~ | omit5 omit11 ♭2 | 3 |
+| 🟠5 | ~~Gmaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Emin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Dmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Fmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Dmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -62288,30 +62308,32 @@
 | 🔴6 | ~~Zmaj3add6add9~~ | ♭5 ♭9 ♯3 ♯6 add7 | 12.5 |
 | 🔴6 | ~~Zmaj3add9~~ | ♭5 ♭9 ♯3 ♯6 add7 | 12.5 |
 
-## Q-F-X-G-Y-Z  `{3,5,6,7,8,10}`  ⚙ lone-natural-add-exclusive
+## Q-F-X-G-Y-Z  `{3,5,6,7,8,10}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Xmaj13b9** | omit5 omit11 add2 | 0.5 |
-| 🟢3 | **Xmaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Fdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Zdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Fdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Fdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Fdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Xmaj13** | omit5 omit11 ♭2 | 3 |
-| 🟠5 | **Ymaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Fmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Xmaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Fdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Zdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Fdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Fdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Fdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Fdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Fdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Fdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Fdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Fdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Xmaj13~~ | omit5 omit11 ♭2 | 3 |
+| 🟠5 | ~~Ymaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Fmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Qmaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Xmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Qmaj3add9~~ | ♯2 add4 | 3.5 |
@@ -63449,30 +63471,32 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♭2 ♯4 add4 | 9.5 |
 | 🔴6 | ~~Emaj3add9~~ | ♭9 ♭3 ♯4 add4 | 9.5 |
 
-## E-X-G-Y-A-B  `{4,6,7,8,9,11}`  ⚙ lone-natural-add-exclusive
+## E-X-G-Y-A-B  `{4,6,7,8,9,11}`  ✋ verdict(0,1,2,3,5,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
 | 🟢3 | **Gmaj13b9** | omit11 omit5 add2 | 0.5 |
-| 🟢3 | **Gmaj7b9** | omit5 add6 add2 | 1 |
-| 🟡4 | **Xdom11b9** | omit5 ♭3 add2 | 1.5 |
-| 🟡4 | **Bdom7b13** | ♯3 add6 | 1.5 |
-| 🟡4 | **Xdom11** | omit5 ♭3 ♭2 | 2 |
-| 🟡4 | **Xdom7b9** | omit5 ♭3 add2 add4 | 2 |
-| 🟠5 | **Xdom9** | omit5 ♭3 ♭2 add4 | 2.5 |
-| 🟠5 | **Gmaj13** | omit11 omit5 ♭2 | 3 |
-| 🟠5 | **Amaj13sus2** | ♯6 | 3 |
-| 🟠5 | **Xmin11** | omit5 ♭2 | 3 |
 
-🗑 已过滤 67 条(未进哈希表):
+🗑 已过滤 76 条(未进哈希表):
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
+| 🟢3 | ~~Gmaj7b9~~ | omit5 add6 add2 | 1 |
+| 🟡4 | ~~Xdom11b9~~ | omit5 ♭3 add2 | 1.5 |
+| 🟡4 | ~~Bdom7b13~~ | ♯3 add6 | 1.5 |
 | 🟡4 | ~~Xdom7sus4b9~~ | omit5 ♯2 add2 | 1.5 |
+| 🟡4 | ~~Xdom11~~ | omit5 ♭3 ♭2 | 2 |
+| 🟡4 | ~~Xdom7b9~~ | omit5 ♭3 add2 add4 | 2 |
 | 🟡4 | ~~Xdom9sus4~~ | omit5 ♭2 ♯2 | 2 |
 | 🟠5 | ~~Xdom7#9~~ | omit5 ♭2 ♯3 add2 | 2.5 |
 | 🟠5 | ~~Xdom7sus4~~ | omit5 ♭2 ♯2 add2 | 2.5 |
+| 🟠5 | ~~Xdom9~~ | omit5 ♭3 ♭2 add4 | 2.5 |
 | 🟠5 | ~~Xdom7~~ | omit5 ♭3 ♭2 add2 add4 | 3 |
+| 🟠5 | ~~Gmaj13~~ | omit11 omit5 ♭2 | 3 |
+| 🟠5 | ~~Amaj13sus2~~ | ♯6 | 3 |
+| 🟠5 | ~~Xmin11~~ | omit5 ♭2 | 3 |
 | 🔴6 | ~~Emaj3add11~~ | ♯2 add2 | 3.5 |
 | 🔴6 | ~~Gmaj3add6add9~~ | omit5 ♭2 add7 | 3.5 |
 | 🔴6 | ~~Emaj3add9~~ | ♯2 add4 | 3.5 |
