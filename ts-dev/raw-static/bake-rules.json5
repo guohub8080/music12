@@ -1344,6 +1344,94 @@
       "anchor": "spset-cluster_fourth_sixth_b5",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 五连簇三全音形(六音 t5 批量):prime form 0,1,2,3,4,6
+    // 五连半音簇+三全音;三态二度+大三+三全音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,6": {
+      "date": "2026-09-08",
+      "comment": "五连簇三全音为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇纯五度形(六音 t5 批量):prime form 0,1,2,3,4,7
+    // 五连半音簇+纯五度;五连簇+X 系第三位。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,7": {
+      "date": "2026-09-08",
+      "comment": "五连簇纯五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇小六度形(六音 t5 批量):prime form 0,1,2,3,4,8
+    // 五连半音簇+小六度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,8": {
+      "date": "2026-09-08",
+      "comment": "五连簇小六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_flat6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇小七度形(六音 t5 批量):prime form 0,1,2,3,4,10
+    // 五连半音簇+小七度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,10": {
+      "date": "2026-09-08",
+      "comment": "五连簇小七度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音五度形(六音 t5 批量):prime form 0,1,2,3,6,7
+    // 四连簇+♭5♮5 五度同度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,7": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音大六度形(六音 t5 批量):prime form 0,1,2,3,6,9
+    // 四连簇+三全音+大六度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,9": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音大六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度双六度形(六音 t5 批量):prime form 0,1,2,5,8,9
+    // 三音簇+纯四+♭6♮6 六度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,8,9": {
+      "date": "2026-09-08",
+      "comment": "半音簇四度双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_fourth_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Hijaz双六度形(六音 t5 批量):prime form 0,1,4,5,8,9
+    // Hijaz四音组+♭6♮6 双六度;对称类 4 组。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,4,5,8,9": {
+      "date": "2026-09-08",
+      "comment": "Hijaz双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-hijaz_flat6_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }

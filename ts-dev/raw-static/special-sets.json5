@@ -664,5 +664,87 @@
     "scoreDisplay": { "2": [-1, 0], "4": 0, "5": -1, "6": 0 },
     "offsets": [1, 2, 5, 6, 9],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier5 区批量升格(用户授权「tie5、6 的都入 hash6 的 set」)════════
+
+  // 五连簇三全音 · prime form 0,1,2,3,4,6 · 五连半音簇+三全音;三态二度+大三+三全音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_tritone": {
+    "cnName": "五连簇三全音",
+    "name": "Pentacluster-Tritone",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"5":-1},
+    "offsets": [1, 2, 3, 4, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇纯五度 · prime form 0,1,2,3,4,7 · 五连半音簇+纯五度;五连簇+X 系第三位
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_fifth": {
+    "cnName": "五连簇纯五度",
+    "name": "Pentacluster-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"5":0},
+    "offsets": [1, 2, 3, 4, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇小六度 · prime form 0,1,2,3,4,8 · 五连半音簇+小六度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_flat6": {
+    "cnName": "五连簇小六度",
+    "name": "Pentacluster-Flat6",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"6":-1},
+    "offsets": [1, 2, 3, 4, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇小七度 · prime form 0,1,2,3,4,10 · 五连半音簇+小七度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_minor7": {
+    "cnName": "五连簇小七度",
+    "name": "Pentacluster-Minor7",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"7":-1},
+    "offsets": [1, 2, 3, 4, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音五度 · prime form 0,1,2,3,6,7 · 四连簇+♭5♮5 五度同度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_fifth": {
+    "cnName": "四连簇三全音五度",
+    "name": "Tetracluster-Tritone-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"5":[-1,0]},
+    "offsets": [1, 2, 3, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音大六度 · prime form 0,1,2,3,6,9 · 四连簇+三全音+大六度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_sixth": {
+    "cnName": "四连簇三全音大六度",
+    "name": "Tetracluster-Tritone-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1,"6":0},
+    "offsets": [1, 2, 3, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度双六度 · prime form 0,1,2,5,8,9 · 三音簇+纯四+♭6♮6 六度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_fourth_double_sixth": {
+    "cnName": "半音簇四度双六度",
+    "name": "Cluster-Fourth-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"6":[-1,0]},
+    "offsets": [1, 2, 5, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // Hijaz双六度 · prime form 0,1,4,5,8,9 · Hijaz四音组+♭6♮6 双六度;对称类 4 组
+  // 审核:用户 2026-09-08 批量授权
+  "spset-hijaz_flat6_sixth": {
+    "cnName": "Hijaz双六度",
+    "name": "Hijaz-Double-Sixth",
+    "scoreDisplay": {"2":-1,"3":0,"4":0,"6":[-1,0]},
+    "offsets": [1, 4, 5, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }
