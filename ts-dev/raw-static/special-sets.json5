@@ -759,5 +759,38 @@
     "scoreDisplay": { "2": [-1, 0], "5": -1, "6": 0, "7": -1 },
     "offsets": [1, 2, 6, 9, 10],
     "tags": ["cluster", "tritone", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier4 区批量升格(用户授权「所有的 tie4 也分析 set」)════════
+  // 三类全部 guide tone 变形病(♯3/♭3),簇家族六音延伸
+
+  // 四连簇纯四纯五度 · prime form 0,1,2,3,5,7 · 四连簇+纯四+纯五(四连簇纯四度 {0,1,2,3,5} 的挂五延伸);最优 dom7b13(♯3♯4) 双 guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_fourth_fifth": {
+    "cnName": "四连簇纯四纯五度",
+    "name": "Tetracluster-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"4":0,"5":0},
+    "offsets": [1, 2, 3, 5, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音小七度 · prime form 0,1,2,3,6,10 · 四连簇+三全音+小七(五音 set 四连簇三全音挂 ♭7);最优 dom7b5b9(♭3 add2) 的 ♭3 guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_minor7": {
+    "cnName": "四连簇三全音小七度",
+    "name": "Tetracluster-Tritone-Minor7",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1,"7":-1},
+    "offsets": [1, 2, 3, 6, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度四度五度 · prime form 0,1,2,4,5,7 · 三音簇+大三+纯四+纯五(Hijaz四音组+♮2+纯五);最优 dom13#11(♯3) guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_third_fourth_fifth": {
+    "cnName": "半音簇大三度四度五度",
+    "name": "Cluster-Third-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0],"3":0,"4":0,"5":0},
+    "offsets": [1, 2, 4, 5, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }

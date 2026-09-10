@@ -1444,6 +1444,39 @@
       "anchor": "spset-cluster_tritone_sixth_seventh",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 四连簇纯四纯五度形(六音 t4 批量):prime form 0,1,2,3,5,7
+    // 四连簇+纯四+纯五(四连簇纯四度 {0,1,2,3,5} 的挂五延伸);最优 dom7b13(♯3♯4) 双 guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,5,7": {
+      "date": "2026-09-08",
+      "comment": "四连簇纯四纯五度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音小七度形(六音 t4 批量):prime form 0,1,2,3,6,10
+    // 四连簇+三全音+小七(五音 set 四连簇三全音挂 ♭7);最优 dom7b5b9(♭3 add2) 的 ♭3 guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,10": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音小七度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_tritone_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度四度五度形(六音 t4 批量):prime form 0,1,2,4,5,7
+    // 三音簇+大三+纯四+纯五(Hijaz四音组+♮2+纯五);最优 dom13#11(♯3) guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,4,5,7": {
+      "date": "2026-09-08",
+      "comment": "半音簇大三度四度五度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_third_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }
