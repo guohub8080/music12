@@ -289,16 +289,16 @@ const bakeMain = (K: number) => {
 
     const hasSetHit = setEntries.length > 0
     const noZeroCostChord = !chordEntries.some(e => e.cost === 0)
-    // 「唯一自然 add」检测:恰有一条 0.5 解释,其 transform 仅含单个
-    // add 键、值为纯数字(不带升降——sharp/flat 是变形,不触发)
+    // 「纯自然操作」检测:最优解释恰有一条,其 transform 只含
+    // omit/add 键(值可为数组,同度多 add 仍自然;不含 sharp/flat——变形不触发)
     const loneAddEntry = (() => {
-      const c05 = chordEntries.filter(e => e.cost === 0.5)
-      if (c05.length !== 1) return null
-      const t = c05[0].transform
-      const keys = Object.keys(t)
-      if (keys.length !== 1 || keys[0] !== "add") return null
-      const v = t.add
-      return typeof v === "number" ? c05[0] : null
+      const best = chordEntries[0]
+      if (isNil(best)) return null
+      const sameBest = chordEntries.filter(e => e.cost === best.cost)
+      if (sameBest.length !== 1) return null
+      const keys = Object.keys(best.transform)
+      if (keys.length === 0 || keys.some(k => k !== "omit" && k !== "add")) return null
+      return best
     })()
     // 完全命中:零变换 chord 条目(键集恰好等于某公式音集,tier1 且零变换)
     const hasExactMatch = chordEntries.some(e => e.tier === 1 && Object.keys(e.transform).length === 0)
@@ -317,7 +317,7 @@ const bakeMain = (K: number) => {
         // 只滤 chord 条目(set 条目是人工审核产物,规则不动它们)
         entries = entries.filter(e => !e.isChordFormula || e.cost <= filter.costMax)
       }
-      if (rule.then?.keepOnly === "loneNaturalAdd") {
+      if (rule.then?.keepOnly === "naturalOpsOnly") {
         // 唯一自然 add 即答案(动作前提:检测到 loneAddEntry;0.5 有多条
         // 或无 0.5 时 loneAddEntry=null,规则不动作,组留给其他规则/人工
         // ——when 只查「无 cost0」,此处必须补查自身前提,否则 filter 清空整组)
