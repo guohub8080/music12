@@ -1432,6 +1432,18 @@
       "anchor": "spset-hijaz_flat6_sixth",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 半音簇三全音加六减七形(六音 t5 清查补遗):prime form 0,1,2,6,9,10
+    // 半音簇三全音加六(库内五音 set)挂 ♭7 六音延伸。
+    // (set 匹配自动生效,本 verdict 补审核痕迹;首版插入锚串失配被断言拦下)
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,6,9,10": {
+      "date": "2026-09-08",
+      "comment": "半音簇三全音加六减七为唯一解释(硬规则):簇家族六音延伸,纯 set",
+      "anchor": "spset-cluster_tritone_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }
