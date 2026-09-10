@@ -1479,6 +1479,17 @@
       "anchor": "spset-cluster_third_fourth_fifth",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // Z11簇形(六音 t3 例外区):prime form 0,1,2,7,9,10
+    // Forte 6-Z11 倒影半边;dom11#9(♭2)/dom11b9(♯2) 9 度等音对
+    // 并列 = 变形记号病(新病种)。纯 set。审核:用户 2026-09-08
+    "0,1,2,7,9,10": {
+      "date": "2026-09-08",
+      "comment": "Z11簇为唯一解释(硬规则):Forte 6-Z11 倒影,9 度等音对变形解释全滤,纯 set",
+      "anchor": "spset-z11_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }
