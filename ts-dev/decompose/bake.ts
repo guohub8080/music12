@@ -318,11 +318,15 @@ const bakeMain = (K: number) => {
         entries = entries.filter(e => !e.isChordFormula || e.cost <= filter.costMax)
       }
       if (rule.then?.keepOnly === "loneNaturalAdd") {
-        // 唯一自然 add 即答案:钉死该条(精确身份比对,非对象相等)
-        entries = entries.filter(e =>
-          e.isChordFormula === false ||
-          (isNotNil(loneAddEntry) && e.pianoKeyIdRoot === loneAddEntry.pianoKeyIdRoot && e.formulaId === loneAddEntry.formulaId),
-        )
+        // 唯一自然 add 即答案(动作前提:检测到 loneAddEntry;0.5 有多条
+        // 或无 0.5 时 loneAddEntry=null,规则不动作,组留给其他规则/人工
+        // ——when 只查「无 cost0」,此处必须补查自身前提,否则 filter 清空整组)
+        if (isNotNil(loneAddEntry)) {
+          entries = entries.filter(e =>
+            e.isChordFormula === false ||
+            (e.pianoKeyIdRoot === loneAddEntry.pianoKeyIdRoot && e.formulaId === loneAddEntry.formulaId),
+          )
+        }
       }
       if (rule.then?.keepOnly === "zeroCost") {
         // 零成本独占:完全命中 + 纯省略(cost=0)全保留(等和弦多名、
@@ -344,6 +348,14 @@ const bakeMain = (K: number) => {
             Object.keys(e.transform).length === 0,               // 自身即无变换条目(保留)
         )
       }
+    }
+
+    // ── 规则层空组防线:机器池有货但规则后 entries 为空 = 规则语义缺陷
+    // (曾发生:lone-natural-add 的 when 与动作前提脱节,无 0.5 时滤空
+    //  整组,456 个空组静默产出;verdict 空组防线只管 verdict 层)
+    if (entries.length === 0 && (chordEntries.length > 0 || setEntries.length > 0)) {
+      console.error(`✗ 规则把 [${key}] 滤成空组(机器池 ${chordEntries.length} chord)——规则语义缺陷,拒绝烘焙`)
+      process.exit(1)
     }
 
     // ── 第三层 verdicts:人工裁决,prime form 为键(移调自动对称)──
