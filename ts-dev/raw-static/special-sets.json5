@@ -375,5 +375,18 @@
     "scoreDisplay": { "2": [-1, 0], "3": 0, "6": 0 },
     "offsets": [1, 2, 4, 9],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇小七度加三 · root + 1+2半音(簇) + 3半音(小三) + 10半音(小七) · B-C-C♯-D-A 型
+  // 半音簇小七度(spset-cluster_minor7,{0,1,2,10})的五音延伸——挂小三度;
+  // = 三音簇 + 小三度 + 小七度。最优 dom7b9(omit5 ♭3 add2) 的 ♭3
+  // 是 guide tone 变形(降半音——与 ♯3 升半音两方向都齐),全场凑数。
+  // 审核:用户 2026-09-07(五音 t4 区)
+  "spset-cluster_minor7_third": {
+    "cnName": "半音簇小七度加三",
+    "name": "Cluster-Minor7-Third",
+    "scoreDisplay": { "2": [-1, 0], "3": -1, "7": -1 },
+    "offsets": [1, 2, 3, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }

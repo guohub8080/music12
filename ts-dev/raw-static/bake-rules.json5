@@ -929,5 +929,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // 半音簇小七度加三形(五音):B-C-C♯-D-A / ... 共 12 个移调
+    // (prime form 0,1,2,3,10,起点 B)
+    //
+    // 硬规则:纯 set。半音簇小七度(库内四音 set)的五音延伸
+    // (挂小三度);最优 dom7b9(omit5 ♭3 add2) 的 ♭3 是 guide
+    // tone 变形(降半音——与 ♯3 两方向都齐,第七次同症)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,3,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇小七度加三为唯一解释(硬规则):cluster_minor7 家族五音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_minor7_third",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
