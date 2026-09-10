@@ -33,19 +33,25 @@ function writeJson(name: string, data: unknown) {
     console.log(`  ✓ ${name} (${count} 条)`);
 }
 
-console.log("=== music12 数据生产(编译 + 生成) ===");
-console.log(`输出目录: ${OUT_DIR}\n`);
+/** 数据生产主流程(供 build-all 函数式调用与直接执行共用) */
+export const generateAll = () => {
+  console.log("=== music12 数据生产(编译 + 生成) ===");
+  console.log(`输出目录: ${OUT_DIR}\n`);
 
-console.log("[1/2] 定义表编译(json5 源 → 产物)...");
-compileAll(true);
+  console.log("[1/2] 定义表编译(json5 源 → 产物)...");
+  compileAll(true);
 
-console.log("\n[2/2] 生成表(实例表用乐理类计算)...");
-// 动态 require:必须在 compileAll 写盘之后加载 src 模块——
-// 静态 import 会被提升到编译之前执行,读到旧的 chord-formulas.json(时序坑实测)
-const { exportChordInstances } = require("./generateChordInstances");
-const { exportScaleInstances } = require("./generateScaleInstances");
+  console.log("\n[2/2] 生成表(实例表用乐理类计算)...");
+  // 动态 require:必须在 compileAll 写盘之后加载 src 模块——
+  // 静态 import 会被提升到编译之前执行,读到旧的 chord-formulas.json(时序坑实测)
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { exportChordInstances } = require("./generateChordInstances");
+  const { exportScaleInstances } = require("./generateScaleInstances");
 
-writeJson("chord-instances.json", exportChordInstances());
-writeJson("scale-instances.json", exportScaleInstances());
+  writeJson("chord-instances.json", exportChordInstances());
+  writeJson("scale-instances.json", exportScaleInstances());
 
-console.log("\n✅ 全部完成。JSON 已写入 static-data/");
+  console.log("\n✅ 全部完成。JSON 已写入 static-data/");
+}
+
+generateAll()

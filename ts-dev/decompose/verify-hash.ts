@@ -28,45 +28,47 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
 const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
 
-// K 参数容错(非纯数字回退默认组)
-const args = process.argv.slice(2).map(Number).filter(n => Number.isFinite(n) && n >= 2)
-const KS = args.length > 0 ? args : [3, 4, 5]
+/** 校验主流程(供 build-all 函数式调用;process.exit 改异常抛出) */
+export const runVerify = (ksParam: number[] = [3, 4, 5]): void => {
+  let total = { chord: 0, set: 0 }
 
-let total = { chord: 0, set: 0 }
+  for (const K of ksParam) {
+    const tablePath = resolve(ROOT, "static-data", `chord-hash-${K}.json`)
+    let table: Record<string, any[]>
+    try {
+      table = JSON.parse(readFileSync(tablePath, "utf-8"))
+    } catch {
+      throw new Error(`[K=${K}] 缺少 ${tablePath}(先跑 bake ${K})`)
+    }
 
-for (const K of KS) {
-  const tablePath = resolve(ROOT, "static-data", `chord-hash-${K}.json`)
-  let table: Record<string, any[]>
-  try {
-    table = JSON.parse(readFileSync(tablePath, "utf-8"))
-  } catch {
-    console.error(`✗ [K=${K}] 缺少 ${tablePath}(先跑 bake.ts ${K})`)
-    process.exit(1)
-  }
-
-  for (const [key, entries] of Object.entries(table)) {
-    const ids = key.split("").map(ch => SYMBOLS.indexOf(ch)).sort((a, b) => a - b).join(",")
-    for (const e of entries) {
-      if (e.isChordFormula === false) {
-        const setEntity = restoreSet(e)
-        total.set++
-        const rebuilt = setEntity?.pianoKeyIds.join(",")
-        if (isNil(setEntity) || rebuilt !== ids) {
-          console.error(`✗ [K=${K}] set restore 不一致 [${key}] ${e.pianoKeySymbolRoot}·${e.cnName}`)
-          process.exit(1)
+    for (const [key, entries] of Object.entries(table)) {
+      const ids = key.split("").map(ch => SYMBOLS.indexOf(ch)).sort((a, b) => a - b).join(",")
+      for (const e of entries) {
+        if (e.isChordFormula === false) {
+          const setEntity = restoreSet(e)
+          total.set++
+          const rebuilt = setEntity?.pianoKeyIds.join(",")
+          if (isNil(setEntity) || rebuilt !== ids) {
+            throw new Error(`[K=${K}] set restore 不一致 [${key}] ${e.pianoKeySymbolRoot}·${e.cnName}`)
+          }
+          continue
         }
-        continue
-      }
-      const chord = restoreChord(e)
-      total.chord++
-      const rebuilt = [...(chord?.pianoKeyIds ?? [])].sort((a, b) => a - b).join(",")
-      if (isNil(chord) || rebuilt !== ids) {
-        console.error(`✗ [K=${K}] chord restore 不一致 [${key}] ${e.pianoKeySymbolRoot}${e.formulaId} ${JSON.stringify(e.transform)} → ${rebuilt}(同度双音不可达?)`)
-        process.exit(1)
+        const chord = restoreChord(e)
+        total.chord++
+        const rebuilt = [...(chord?.pianoKeyIds ?? [])].sort((a, b) => a - b).join(",")
+        if (isNil(chord) || rebuilt !== ids) {
+          throw new Error(`[K=${K}] chord restore 不一致 [${key}] ${e.pianoKeySymbolRoot}${e.formulaId} ${JSON.stringify(e.transform)} → ${rebuilt}(同度双音不可达?)`)
+        }
       }
     }
+    console.log(`[K=${K}] 校验通过:${Object.keys(table).length} 键集`)
   }
-  console.log(`[K=${K}] 校验通过:${Object.keys(table).length} 键集`)
+
+  console.log(`restore 安全校验(全部):${total.chord} chord + ${total.set} set 全部 round-trip 可达`)
 }
 
-console.log(`restore 安全校验(全部):${total.chord} chord + ${total.set} set 全部 round-trip 可达`)
+// 直接执行(非被 import):K 列表取命令行参数(容错回退 3,4,5)
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const args = process.argv.slice(2).map(Number).filter(n => Number.isFinite(n) && n >= 2)
+  runVerify(args.length > 0 ? args : [3, 4, 5])
+}

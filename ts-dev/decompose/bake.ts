@@ -145,11 +145,7 @@ const toTransform = (ops: any[]): Record<string, number | number[]> => {
   return t
 }
 
-const bake = () => {
-  // K 解析容错:非纯数字参数(--silent 等 flag)回退 3,
-  // 防止 pretest 链上的 --silent 被当成 K=NaN 烘出 chord-hash-NaN.json 空表
-  const parsedK = Number(process.argv[2])
-  const K = Number.isFinite(parsedK) && parsedK >= 2 ? parsedK : 3
+const bakeMain = (K: number) => {
   const inputs = combo([0,1,2,3,4,5,6,7,8,9,10,11], K)
   const table: Record<string, any[]> = {}
   const filteredSidecar: Record<string, any[]> = {}
@@ -409,4 +405,10 @@ const bake = () => {
   // (fresh clone 场景实测)。pretest/prebuild 链:gen → bake → verify。
 }
 
-bake()
+export const runBake = bakeMain
+
+// 直接执行(非被 import):K 取命令行参数(容错回退 3)
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const parsedK = Number(process.argv[2])
+  bakeMain(Number.isFinite(parsedK) && parsedK >= 2 ? parsedK : 3)
+}

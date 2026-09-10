@@ -945,5 +945,137 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // 五连半音簇形(五音 t5 区批量):prime form 0,1,2,3,4
+    // 五连半音 · 纯簇完全体(Forte 5-1,音程向量 ⟨432100⟩ 全库最高半音密度);集群技法终极材料。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,4": {
+      "date": "2026-09-07",
+      "comment": "五连半音簇为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-chromatic_pentachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音形(五音 t5 区批量):prime form 0,1,2,3,6
+    // 四连半音簇+三全音;摩擦顶格+悬浮。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,6": {
+      "date": "2026-09-07",
+      "comment": "四连簇三全音为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇纯五度形(五音 t5 区批量):prime form 0,1,2,3,7
+    // 四连半音簇+纯五度;摩擦+空灵(dream 气质重装版)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,7": {
+      "date": "2026-09-07",
+      "comment": "四连簇纯五度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇小六度形(五音 t5 区批量):prime form 0,1,2,3,8
+    // 四连半音簇+小六度(♭6)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,8": {
+      "date": "2026-09-07",
+      "comment": "四连簇小六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_flat6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇大六度形(五音 t5 区批量):prime form 0,1,2,3,9
+    // 四连半音簇+大六度(♮6)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,9": {
+      "date": "2026-09-07",
+      "comment": "四连簇大六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度加四形(五音 t5 区批量):prime form 0,1,2,4,5
+    // 半音簇大三度(库内四音 set)的五音延伸——挂纯四度;亦 = Hijaz四音组+♮2 双视角。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,4,5": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度加四为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度六度形(五音 t5 区批量):prime form 0,1,2,5,9
+    // 三音簇+纯四度+大六度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,5,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇四度六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_fourth_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音五度形(五音 t5 区批量):prime form 0,1,2,6,7
+    // 三音簇+三全音+纯五度(♭5♮5 同度双音);cluster_tritone 的五音延伸。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,6,7": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音五度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音加六形(五音 t5 区批量):prime form 0,1,2,6,9
+    // 半音簇三全音(库内四音 set)的五音延伸——挂大六度;用户逐形审核后并入批量。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,6,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音加六为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 梦之和弦加七形(五音 t5 区批量):prime form 0,1,2,7,10
+    // 梦之和弦(库内四音 set,La Monte Young)的五音延伸——挂小七度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,7,10": {
+      "date": "2026-09-07",
+      "comment": "梦之和弦加七为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-dream_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇双六度形(五音 t5 区批量):prime form 0,1,2,8,9
+    // 三音簇+♭6♮6 同度双音(小调式双六度交汇)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,8,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇双六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大六度加七形(五音 t5 区批量):prime form 0,1,2,9,10
+    // 半音簇大六度(库内四音 set)的五音延伸——挂小七度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,9,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇大六度加七为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    }
   },
 }

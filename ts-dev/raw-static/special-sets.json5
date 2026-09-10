@@ -388,5 +388,130 @@
     "scoreDisplay": { "2": [-1, 0], "3": -1, "7": -1 },
     "offsets": [1, 2, 3, 10],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 五音 Tier5 区批量升格(用户授权「tie5 的都能解释为 set 了,请你更新」)════════
+  // 全部为簇家族五音延伸:0,1,2,x,y 系(三音簇+两音)与 0,1,2,3,x 系(四连簇+单音)
+  // 判据:无 cost0(t5 起点最优已 3+)/chord 全凑数/簇家族直系
+  // 审核:用户 2026-09-07 批量授权(每个仍走结构拆解+家族身份+命名流程)
+
+  // 五连半音簇 · 五连半音 · 纯簇完全体(Forte 5-1,音程向量 ⟨432100⟩ 全库最高半音密度);集群技法终极材料
+  // prime form 0,1,2,3,4
+  "spset-chromatic_pentachord": {
+    "cnName": "五连半音簇",
+    "name": "Chromatic Pentachord",
+    "scoreDisplay": {"2":[-1,0,1],"3":0},
+    "offsets": [1, 2, 3, 4],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音 · 四连半音簇+三全音;摩擦顶格+悬浮
+  // prime form 0,1,2,3,6
+  "spset-tetracluster_tritone": {
+    "cnName": "四连簇三全音",
+    "name": "Tetracluster-Tritone",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1},
+    "offsets": [1, 2, 3, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇纯五度 · 四连半音簇+纯五度;摩擦+空灵(dream 气质重装版)
+  // prime form 0,1,2,3,7
+  "spset-tetracluster_fifth": {
+    "cnName": "四连簇纯五度",
+    "name": "Tetracluster-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"5":0},
+    "offsets": [1, 2, 3, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇小六度 · 四连半音簇+小六度(♭6)
+  // prime form 0,1,2,3,8
+  "spset-tetracluster_flat6": {
+    "cnName": "四连簇小六度",
+    "name": "Tetracluster-Flat6",
+    "scoreDisplay": {"2":[-1,0,1],"6":-1},
+    "offsets": [1, 2, 3, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇大六度 · 四连半音簇+大六度(♮6)
+  // prime form 0,1,2,3,9
+  "spset-tetracluster_sixth": {
+    "cnName": "四连簇大六度",
+    "name": "Tetracluster-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"6":0},
+    "offsets": [1, 2, 3, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度加四 · 半音簇大三度(库内四音 set)的五音延伸——挂纯四度;亦 = Hijaz四音组+♮2 双视角
+  // prime form 0,1,2,4,5
+  "spset-cluster_third_fourth": {
+    "cnName": "半音簇大三度加四",
+    "name": "Cluster-Third-Fourth",
+    "scoreDisplay": {"2":[-1,0],"3":0,"4":0},
+    "offsets": [1, 2, 4, 5],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度六度 · 三音簇+纯四度+大六度
+  // prime form 0,1,2,5,9
+  "spset-cluster_fourth_sixth": {
+    "cnName": "半音簇四度六度",
+    "name": "Cluster-Fourth-Sixth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"6":0},
+    "offsets": [1, 2, 5, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音五度 · 三音簇+三全音+纯五度(♭5♮5 同度双音);cluster_tritone 的五音延伸
+  // prime form 0,1,2,6,7
+  "spset-cluster_tritone_fifth": {
+    "cnName": "半音簇三全音五度",
+    "name": "Cluster-Tritone-Fifth",
+    "scoreDisplay": {"2":[-1,0],"5":[-1,0]},
+    "offsets": [1, 2, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音加六 · 半音簇三全音(库内四音 set)的五音延伸——挂大六度;用户逐形审核后并入批量
+  // prime form 0,1,2,6,9
+  "spset-cluster_tritone_sixth": {
+    "cnName": "半音簇三全音加六",
+    "name": "Cluster-Tritone-Sixth",
+    "scoreDisplay": {"2":[-1,0],"5":-1,"6":0},
+    "offsets": [1, 2, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 梦之和弦加七 · 梦之和弦(库内四音 set,La Monte Young)的五音延伸——挂小七度
+  // prime form 0,1,2,7,10
+  "spset-dream_seventh": {
+    "cnName": "梦之和弦加七",
+    "name": "Dream-Seventh",
+    "scoreDisplay": {"2":[-1,0],"5":0,"7":-1},
+    "offsets": [1, 2, 7, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇双六度 · 三音簇+♭6♮6 同度双音(小调式双六度交汇)
+  // prime form 0,1,2,8,9
+  "spset-cluster_double_sixth": {
+    "cnName": "半音簇双六度",
+    "name": "Cluster-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0],"6":[-1,0]},
+    "offsets": [1, 2, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大六度加七 · 半音簇大六度(库内四音 set)的五音延伸——挂小七度
+  // prime form 0,1,2,9,10
+  "spset-cluster_sixth_seventh": {
+    "cnName": "半音簇大六度加七",
+    "name": "Cluster-Sixth-Seventh",
+    "scoreDisplay": {"2":[-1,0],"6":0,"7":-1},
+    "offsets": [1, 2, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }
