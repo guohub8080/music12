@@ -513,5 +513,33 @@
     "scoreDisplay": {"2":[-1,0],"6":0,"7":-1},
     "offsets": [1, 2, 9, 10],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 五音 Tier4 区收官两形(用户指出 t4 也应 set 化)════════
+
+  // 半音簇大三度三全音 · root + 1+2+4+6半音 · C-C♯-D-E-F♯ 型
+  // Hijaz四音组({0,1,4,5} 库内 set)+♮2 的五音延伸;亦 = 半音簇大三度
+  // (库内 set)+三全音。三音簇+大三度+三全音(Hijaz 家族第二位)。
+  // 最优 dom7sus2(♯5 add6) 多重变换(♯5 变形五度),全场凑数。
+  // 审核:用户 2026-09-07(t4 收官)
+  "spset-cluster_third_tritone": {
+    "cnName": "半音簇大三度三全音",
+    "name": "Cluster-Third-Tritone",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "5": -1 },
+    "offsets": [1, 2, 4, 6],
+    "tags": ["cluster", "hijaz", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音小七度 · root + 1+2+6+10半音 · C-C♯-D-F♯-B♭ 型
+  // 半音簇三全音(库内四音 set {0,1,2,6})的五音延伸——挂小七度;
+  // 三音簇+三全音+小七度。最优 dom7sus4b9(♯4 omit5 add2) 的 ♯4
+  // 是 guide tone 系变形(sus 骨架音升半音),全场凑数。
+  // 审核:用户 2026-09-07(t4 收官)
+  "spset-cluster_tritone_minor7": {
+    "cnName": "半音簇三全音小七度",
+    "name": "Cluster-Tritone-Minor7",
+    "scoreDisplay": { "2": [-1, 0], "5": -1, "7": -1 },
+    "offsets": [1, 2, 6, 10],
+    "tags": ["cluster", "tritone", "non-tertian", "non-functional"]
   }
 }

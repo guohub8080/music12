@@ -1076,6 +1076,29 @@
       "anchor": "spset-cluster_sixth_seventh",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 半音簇大三度三全音形(五音 t4 收官):prime form 0,1,2,4,6
+    // Hijaz四音组+♮2;三音簇+大三度+三全音。最优 dom7sus2(♯5 add6)
+    // 变形五度,纯 set。审核:用户 2026-09-07
+    "0,1,2,4,6": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度三全音为唯一解释(硬规则):Hijaz 家族五音延伸,纯 set",
+      "anchor": "spset-cluster_third_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音小七度形(五音 t4 收官):prime form 0,1,2,6,10
+    // 半音簇三全音(库内 set)挂小七度;最优 dom7sus4b9(♯4 ...) 的
+    // ♯4 是 guide tone 系变形(sus 骨架音升半音),纯 set。
+    // 审核:用户 2026-09-07
+    "0,1,2,6,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音小七度为唯一解释(硬规则):cluster_tritone 家族五音延伸,纯 set",
+      "anchor": "spset-cluster_tritone_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }
