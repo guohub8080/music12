@@ -101,11 +101,13 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     const hasSetHit = results.some(r => !r.isChordFormula)
     const hasExactMatch = results.some(r => r.isChordFormula && r.tier === 1 && Object.keys(r.transform).length === 0)
     const hasZeroCostChord = results.some(r => r.isChordFormula && r.cost === 0)
+    const noZeroCostChord = !hasZeroCostChord
     const appliedRules = RULES.rules.filter(
       (rule: any) => rule.enabled && (
         (rule.when?.hasSetHit === true && hasSetHit) ||
         (rule.when?.hasExactMatch === true && hasExactMatch) ||
-        (rule.when?.hasZeroCostChord === true && hasZeroCostChord)
+        (rule.when?.hasZeroCostChord === true && hasZeroCostChord) ||
+        (rule.when?.noZeroCostChord === true && noZeroCostChord)
       ),
     ).map((rule: any) => rule.id)
     const badges = [
