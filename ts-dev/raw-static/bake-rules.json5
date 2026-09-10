@@ -913,5 +913,21 @@
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
     },
+
+    // 半音簇大三度加六形(五音):B-C-C♯-E♭-A♭ / ... 共 12 个移调
+    // (prime form 0,1,2,4,9,起点 B)
+    //
+    // 硬规则:纯 set。半音簇大三度(库内四音 set)的五音延伸
+    // (挂大六度);最优 dom7#5(♯3 add6) 变形 guide tone
+    // (第六次同症),全场 1.5 多重变换凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,4,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度加六为唯一解释(硬规则):cluster_third 家族五音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_third_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }

@@ -362,5 +362,18 @@
     "scoreDisplay": { "2": -1, "3": -1, "6": [-1, 0] },
     "offsets": [1, 3, 8, 9],
     "tags": ["phrygian", "dorian", "modal", "non-tertian"]
+  },
+
+  // 半音簇大三度加六 · root + 1+2半音(簇) + 4半音(大三) + 9半音(大六) · B-C-C♯-E♭-A♭ 型
+  // 半音簇大三度(spset-cluster_third,{0,1,2,4})的五音延伸——挂大六度;
+  // = 三音簇 + 大三度 + 大六度。最优 dom7#5(♯3 add6) 变形 guide tone
+  // (三度升半音,第六次同症),全场 1.5 多重变换凑数。
+  // 审核:用户 2026-09-07(五音 t4 区)
+  "spset-cluster_third_sixth": {
+    "cnName": "半音簇大三度加六",
+    "name": "Cluster-Third-Sixth",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "6": 0 },
+    "offsets": [1, 2, 4, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }
