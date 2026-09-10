@@ -896,5 +896,22 @@
       ],
       "filterRest": true,
     },
+
+    // Phrygian双六度形(五音):A-B♭-C-E♭-E / ... 共 12 个移调
+    // (prime form 0,1,3,8,9,起点 A)
+    //
+    // 硬规则:纯 set。Phrygian加六(库内 set)+♭6 的五音延伸,
+    // ♭6♮6 同度双音(phrygian/dorian 六度交汇);最优 dom13#11
+    // (omit9,5 ♯3) 变形 guide tone(三度升半音,第五次同症),
+    // dom13sus4(♭5) 变形五度,全场凑数。phrygian 家族第五位。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,3,8,9": {
+      "date": "2026-09-07",
+      "comment": "Phrygian双六度为唯一解释(硬规则):phrygian 家族五音延伸,♭6♮6 同度双音,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-phrygian_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
   },
 }
