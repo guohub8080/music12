@@ -1215,6 +1215,24 @@
         { "type": "chord", "formula": "dom7b5#9", "rootRel": 10 },
       ],
       "filterRest": true,
+    },
+
+    // ════════ 六音 set 升格 ════════
+
+    // 梦之和弦加七升二形(六音):C♯-D-D♯-E-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,2,3,7,10,起点 C♯)
+    //
+    // 硬规则:纯 set。dream_seventh(库内五音 set)挂 ♯2 的六音延伸
+    // (四连簇+纯五+小七);最优 dom7b9(♭3 add2) 的 ♭3 是 guide
+    // tone 变形(第八次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,7,10": {
+      "date": "2026-09-08",
+      "comment": "梦之和弦加七升二为唯一解释(硬规则):dream 家族六音版,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-dream_seventh_sharp2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }

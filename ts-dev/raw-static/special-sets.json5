@@ -541,5 +541,21 @@
     "scoreDisplay": { "2": [-1, 0], "5": -1, "7": -1 },
     "offsets": [1, 2, 6, 10],
     "tags": ["cluster", "tritone", "non-tertian", "non-functional"]
+  },
+
+  // 梦之和弦加七升二 · root + 1+2+3半音(四连簇) + 7半音(纯五) + 10半音(小七)
+  // · C♯-D-D♯-E-G♯-B 型(prime form 0,1,2,3,7,10,起点 C♯)
+  // 梦之和弦加七(spset-dream_seventh,{0,1,2,7,10})的六音延伸——挂 ♯2;
+  // = 四连半音簇 + 纯五 + 小七。dream 家族第四代(梦之和弦→加四→加七
+  // →完整六音版)。scoreDisplay 首次三态二度+五七度位组合(♭2·2·♯2·5·♭7)。
+  // 最优 chord 解释 dom7b9(♭3 add2) 的 ♭3 是 guide tone 变形
+  // (三度降半音,第八次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「是不是用 set 解释更好」)
+  "spset-dream_seventh_sharp2": {
+    "cnName": "梦之和弦加七升二",
+    "name": "Dream-Seventh-Sharp2",
+    "scoreDisplay": { "2": [-1, 0, 1], "5": 0, "7": -1 },
+    "offsets": [1, 2, 3, 7, 10],
+    "tags": ["cluster", "dream-lineage", "non-tertian", "non-functional"]
   }
 }
