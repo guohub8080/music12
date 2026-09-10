@@ -1194,6 +1194,27 @@
         { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
       ],
       "filterRest": true,
+    },
+
+    // dom7#5b9/dom7b5#9 三全音双根形(六音):C-C♯-D-E-G♯-B♭ / ... 共 12 个移调
+    // (prime form 0,1,2,4,8,10 自规范,起点 C;含两个三全音对,C/Z 互为 +6
+    //  镜像根——dom7b5 三全音双名机制的六音版)
+    //
+    // 硬规则:双根音双视角——C 根 dom7#5b9(add2) + Z 根 dom7b5#9(add2),
+    // 皆公式本体四音在场+唯一自然 add2,cost 0.5 并列(lone-add 恰一条
+    // 语义不触发,verdict 双保留)。♯5 与 ♭5 各在一条里合法:各自公式
+    // 的五度位改写,且另一条的视角不冲突。
+    // 无锚模式:dom7#5b9 根 = 起点+0,dom7b5#9 根 = 起点+10。
+    //
+    // 审核:用户 2026-09-08(「好神奇啊?都保留」)
+    "0,1,2,4,8,10": {
+      "date": "2026-09-08",
+      "comment": "三全音双根视角:dom7#5b9(add2)(C 根)+ dom7b5#9(add2)(Z 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#5b9", "rootRel": 0 },
+        { "type": "chord", "formula": "dom7b5#9", "rootRel": 10 },
+      ],
+      "filterRest": true,
     }
   },
 }
