@@ -1249,6 +1249,23 @@
       "anchor": "spset-tetracluster_sixth_seventh",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 半音簇三全音五度加七形(六音):F-G♭-G-C♯-D-E♭ / ... 共 12 个移调
+    // (prime form 0,1,2,6,7,10,起点 F)
+    //
+    // 硬规则:纯 set。半音簇三全音五度(库内五音 set)挂 ♭7 的六音延伸;
+    // 双血统(双三全音 Petrushka 骨架+♮2+♭7)。sd 双同度双音
+    // (♭2·2·♭5·5·♭7)。最优 dom7sus4b9(♯4 add2) 的 ♯4 变形
+    // sus 骨架音(第十次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,6,7,10": {
+      "date": "2026-09-08",
+      "comment": "半音簇三全音五度加七为唯一解释(硬规则):簇家族六音延伸+Petrushka 双血统,纯 set",
+      "anchor": "spset-cluster_tritone_fifth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }

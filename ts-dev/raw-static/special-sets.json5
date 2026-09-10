@@ -572,5 +572,21 @@
     "scoreDisplay": { "2": [-1, 0, 1], "6": 0, "7": -1 },
     "offsets": [1, 2, 3, 9, 10],
     "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音五度加七 · root + 1+2半音(三音簇) + 6半音(♭5) + 7半音(♮5)
+  // + 10半音(♭7) · F-G♭-G-C♯-D-E♭ 型(prime form 0,1,2,6,7,10,起点 F)
+  // 半音簇三全音五度(库内五音 set {0,1,2,6,7})的六音延伸——挂小七度;
+  // 双血统:亦是双三全音(四音 set {0,1,6,7},Petrushka 骨架)+♮2+♭7。
+  // scoreDisplay 双同度双音(2 度与 5 度皆数组:♭2·2·♭5·5·♭7)。
+  // 最优 chord 解释 dom7sus4b9(♯4 add2) 的 ♯4 变形 sus 骨架音
+  // (4 度升半音,guide tone 系第十次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「这个也是用 set 解释吧」)
+  "spset-cluster_tritone_fifth_seventh": {
+    "cnName": "半音簇三全音五度加七",
+    "name": "Cluster-Tritone-Fifth-Seventh",
+    "scoreDisplay": { "2": [-1, 0], "5": [-1, 0], "7": -1 },
+    "offsets": [1, 2, 6, 7, 10],
+    "tags": ["cluster", "tritone", "petrushka", "non-tertian", "non-functional"]
   }
 }
