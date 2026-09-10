@@ -1233,6 +1233,22 @@
       "anchor": "spset-dream_seventh_sharp2",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 四连簇大六度加七形(六音):C♯-D-D♯-E-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,2,3,9,10,起点 C♯)
+    //
+    // 硬规则:纯 set。四连簇大六度(库内五音 set)的六音延伸(挂小七);
+    // 最优 dom13b9(omit11,5 ♭3 add2) 四重操作,♭3 是 guide tone
+    // 变形(第九次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,9,10": {
+      "date": "2026-09-08",
+      "comment": "四连簇大六度加七为唯一解释(硬规则):四连簇系六音第三位,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }

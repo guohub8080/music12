@@ -557,5 +557,20 @@
     "scoreDisplay": { "2": [-1, 0, 1], "5": 0, "7": -1 },
     "offsets": [1, 2, 3, 7, 10],
     "tags": ["cluster", "dream-lineage", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇大六度加七 · root + 1+2+3半音(四连簇) + 9半音(大六) + 10半音(小七)
+  // · C♯-D-D♯-E-A-B♭ 型(prime form 0,1,2,3,9,10,起点 C♯)
+  // 四连簇大六度(库内五音 set {0,1,2,3,9})的六音延伸——挂小七度;
+  // 四连簇系第三位六音成员(纯五度系=梦之和弦加七升二之后)。
+  // 最优 chord 解释 dom13b9(omit11,5 ♭3 add2) 四重操作,♭3 是
+  // guide tone 变形(三度降半音,第九次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「怎么解释都不对,用 set」)
+  "spset-tetracluster_sixth_seventh": {
+    "cnName": "四连簇大六度加七",
+    "name": "Tetracluster-Sixth-Seventh",
+    "scoreDisplay": { "2": [-1, 0, 1], "6": 0, "7": -1 },
+    "offsets": [1, 2, 3, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }
