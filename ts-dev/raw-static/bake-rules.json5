@@ -1266,6 +1266,84 @@
       "anchor": "spset-cluster_tritone_fifth_seventh",
       "keep": [{ "type": "anchor" }],
       "filterRest": true,
+    },
+
+    // 四连簇双七度形(六音 t6 批量):prime form 0,1,2,3,4,5
+    // (键自检归位:原写 0,1,2,3,10,11,B♭ 起点收缩更紧)
+    // 四连簇+♭7♮7 相邻七度对;七度同度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,5": {
+      "date": "2026-09-08",
+      "comment": "四连簇双七度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_double_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇大六度形(六音 t6 批量):prime form 0,1,2,3,4,9
+    // 五连半音簇(Forte 5-1 系)+大六度;三态二度+大三+大六。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,9": {
+      "date": "2026-09-08",
+      "comment": "五连簇大六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇双六度形(六音 t6 批量):prime form 0,1,2,3,8,9
+    // 四连簇+♭6♮6 相邻六度对;六度同度双音(Phrygian双六度的四连簇版)。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,8,9": {
+      "date": "2026-09-08",
+      "comment": "四连簇双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度双四度形(六音 t6 批量):prime form 0,1,2,4,5,6
+    // 三音簇+大三度+♮4♭4 四度同度双音;Hijaz四音组+♮2+♭4。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,4,5,6": {
+      "date": "2026-09-08",
+      "comment": "半音簇大三度双四度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third_double_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇双四度五度形(六音 t6 批量):prime form 0,1,2,5,6,7
+    // 三音簇+纯四+♭5♮5 五度同度双音;cluster_fourth_fifth 系。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,6,7": {
+      "date": "2026-09-08",
+      "comment": "半音簇双四度五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_double_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 彼氏簇形(六音 t6 批量):prime form 0,1,2,6,7,8
+    // 双三全音(Petrushka 骨架 {0,1,6,7})+三音簇尾(6,7,8);对称类仅 6 组。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,6,7,8": {
+      "date": "2026-09-08",
+      "comment": "彼氏簇为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-petrushka_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度六度减五形(六音 t6 批量清查补遗):prime form 0,1,2,5,6,9
+    // 半音簇四度六度(库内五音 set)挂 ♭5 六音延伸;t6 起点全凑数。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,6,9": {
+      "date": "2026-09-08",
+      "comment": "半音簇四度六度减五为唯一解释(硬规则):簇家族六音延伸,纯 set",
+      "anchor": "spset-cluster_fourth_sixth_b5",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
     }
   },
 }

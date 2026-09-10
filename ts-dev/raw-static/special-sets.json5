@@ -588,5 +588,81 @@
     "scoreDisplay": { "2": [-1, 0], "5": [-1, 0], "7": -1 },
     "offsets": [1, 2, 6, 7, 10],
     "tags": ["cluster", "tritone", "petrushka", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier6 区批量升格(用户授权「tie6 的全部用 set 解释」)════════
+  // 全部为簇家族六音延伸;判据:无 cost0/t6 起点全凑数/簇家族直系
+
+  // 四连簇双七度 · prime form 0,1,2,3,10,11 · 四连簇+♭7♮7 相邻七度对;七度同度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_double_seventh": {
+    "cnName": "四连簇双七度",
+    "name": "Tetracluster-Double-Seventh",
+    "scoreDisplay": {"2":[-1,0,1],"7":[-1,0]},
+    "offsets": [1, 2, 3, 10, 11],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇大六度 · prime form 0,1,2,3,4,9 · 五连半音簇(Forte 5-1 系)+大六度;三态二度+大三+大六
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_sixth": {
+    "cnName": "五连簇大六度",
+    "name": "Pentacluster-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"6":0},
+    "offsets": [1, 2, 3, 4, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇双六度 · prime form 0,1,2,3,8,9 · 四连簇+♭6♮6 相邻六度对;六度同度双音(Phrygian双六度的四连簇版)
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_double_sixth": {
+    "cnName": "四连簇双六度",
+    "name": "Tetracluster-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"6":[-1,0]},
+    "offsets": [1, 2, 3, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度双四度 · prime form 0,1,2,4,5,6 · 三音簇+大三度+♮4♭4 四度同度双音;Hijaz四音组+♮2+♭4
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_third_double_fourth": {
+    "cnName": "半音簇大三度双四度",
+    "name": "Cluster-Third-Double-Fourth",
+    "scoreDisplay": {"2":[-1,0],"3":0,"4":[0,-1]},
+    "offsets": [1, 2, 4, 5, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇双四度五度 · prime form 0,1,2,5,6,7 · 三音簇+纯四+♭5♮5 五度同度双音;cluster_fourth_fifth 系
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_double_fourth_fifth": {
+    "cnName": "半音簇双四度五度",
+    "name": "Cluster-Double-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"5":[-1,0]},
+    "offsets": [1, 2, 5, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 彼氏簇 · prime form 0,1,2,6,7,8 · 双三全音(Petrushka 骨架 {0,1,6,7})+三音簇尾(6,7,8);对称类仅 6 组
+  // 审核:用户 2026-09-08 批量授权
+  "spset-petrushka_cluster": {
+    "cnName": "彼氏簇",
+    "name": "Petrushka-Cluster",
+    "scoreDisplay": {"2":[-1,0,1],"5":[0,-1]},
+    "offsets": [1, 2, 6, 7, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度六度减五 · root + 1+2半音(簇) + 5半音(纯四) + 6半音(♭5)
+  // + 9半音(大六) · prime form 0,1,2,5,6,9
+  // 半音簇四度六度(库内五音 set {0,1,2,5,9})挂 ♭5 的六音延伸
+  // (三音簇+纯四+♭5+大六)。t6 起点全凑数。批量清查补遗。
+  // 审核:用户 2026-09-08 批量授权(t6 残留清查)
+  "spset-cluster_fourth_sixth_b5": {
+    "cnName": "半音簇四度六度减五",
+    "name": "Cluster-Fourth-Sixth-B5",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "5": -1, "6": 0 },
+    "offsets": [1, 2, 5, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
   }
 }
