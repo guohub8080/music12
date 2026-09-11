@@ -25,23 +25,25 @@ describe("findByScaleHash", () => {
     const maj = r.find(x => x.scaleModeId === "NATURAL_MAJOR")!
     expect(maj.spellings).toHaveLength(2)
     const [cs, db] = maj.spellings
-    expect(cs.root).toBe("C♯")
+    expect(cs.rootStep).toBe("C")
+    expect(cs.rootAlter).toBe(1)
     expect(cs.keySignature).toBe(7)
     expect(cs.isTheoretical).toBe(false)
-    expect(db.root).toBe("D♭")
+    expect(db.rootStep).toBe("D")
+    expect(db.rootAlter).toBe(-1)
     expect(db.keySignature).toBe(-5)
-    expect(db.notes).toEqual(["D♭", "E♭", "F", "G♭", "A♭", "B♭", "C"])
+    expect(db.notes).toEqual([["D", -1], ["E", -1], ["F", 0], ["G", -1], ["A", -1], ["B", -1], ["C", 0]])
   })
 
   it("读法级理论调:C♯ Lydian 的 F♯♯ 标记理论并建议 D♭", () => {
     // C♯ Lydian 集合 = {0,1,3,5,7,8,10}(C♯ D♯ E♯ F♯♯ G♯ A♯ B♯)
     const r = findByScaleHash([0, 1, 3, 5, 7, 8, 10])
     const lyd = r.find(x => x.scaleModeId === "LYDIAN")!
-    const cs = lyd.spellings.find(s => s.root === "C♯")!
+    const cs = lyd.spellings.find(s => s.rootStep === "C" && s.rootAlter === 1)!
     expect(cs.isTheoretical).toBe(true)
-    expect(cs.notes).toContain("F♯♯")
-    expect(cs.enharmonicRoot).toBe("D♭")
-    const db = lyd.spellings.find(s => s.root === "D♭")!
+    expect(cs.notes).toContainEqual(["F", 2])  // F♯♯
+    expect(cs.enharmonicRoot).toEqual(["D", -1])
+    const db = lyd.spellings.find(s => s.rootStep === "D" && s.rootAlter === -1)!
     expect(db.isTheoretical).toBe(false)
     expect(db.keySignature).toBe(-4)
   })
@@ -51,8 +53,8 @@ describe("findByScaleHash", () => {
     const hm = r.find(x => x.scaleModeId === "HARMONIC_MINOR")!
     const [s] = hm.spellings
     expect(s.keySignature).toBe(-3)
-    expect(s.accidentals).toEqual(["B♮"])
-    expect(s.notes).toEqual(["C", "D", "E♭", "F", "G", "A♭", "B"])
+    expect(s.accidentals).toEqual([["B", 0]])  // B♮
+    expect(s.notes).toEqual([["C", 0], ["D", 0], ["E", -1], ["F", 0], ["G", 0], ["A", -1], ["B", 0]])
   })
 
   it("五声音集 → 5 条读法(宫商角徵羽)", () => {

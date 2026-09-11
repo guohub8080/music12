@@ -7,20 +7,24 @@ import { Scale } from "@scale"
  * 等音拼写变体:根音拼写 → 全套拼写数据
  */
 export type I_ScaleSpelling = {
-  /** 根音拼写名(如 "C♯" / "D♭") */
-  root: string
-  /** 度数序拼写音名(根音起;五声 5 个,七声 7 个) */
-  notes: string[]
+  /** 根音拼写字母(如 "C";与 rootAlter 配对构成拼写 "C♯") */
+  rootStep: string
+  /** 根音拼写变音(1=♯ -1=♭ 2=♯♯ -2=♭♭) */
+  rootAlter: number
+  /** 度数序原子拼写对 [step, alter](根音起;五声 5 对,七声 7 对) */
+  notes: Array<[string, number]>
   /** 最佳吻合调号(有符号,♯ 正 ♭ 负,如 +7 / -5) */
   keySignature: number
-  /** 调号之外的临时记号(如 C 和声小调的 ["B♮"]) */
-  accidentals: string[]
+  /** 调号之外的偏离音 [[step, 实际变音]](多个偏离音即多对,
+   *  如 C 匈牙利大调在 1♯ 调号下 [["D",1],["B",-1]];相对调号的还原/升降
+   *  由消费端用调号变音与实际变音相减渲染) */
+  accidentals: Array<[string, number]>
   /** 理论调标记:任何音需要重升降(♯♯/♭♭)即 true。
    *  用户裁决(2026-09-11):超过重升重降(≥3 重)的拼写变体已在烘焙时排除,
    *  必有等音根音可代——上限就是 ♯♯/♭♭ */
   isTheoretical: boolean
-  /** 理论调的等音建议(同键另一根音拼写中实用者) */
-  enharmonicRoot: string | null
+  /** 理论调的等音建议(同键另一根音拼写中实用者,原子对) */
+  enharmonicRoot: [string, number] | null
 }
 
 /**
@@ -53,7 +57,8 @@ export type I_ScaleHashResult = I_ScaleHashEntry & {
   readonly scale: Scale
 }
 
-const TABLE = scaleHashJson as Record<string, I_ScaleHashEntry[]>
+// JSON 导入推断为字面量键+普通数组形态,经 unknown 断言(原子对元组在 JSON 形态下推不成元组)
+const TABLE = scaleHashJson as unknown as Record<string, I_ScaleHashEntry[]>
 
 /** 键集 → 字母序符号键(与烘焙器键构造一致) */
 const hashKey = (ids: number[]): string =>

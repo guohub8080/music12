@@ -31,14 +31,11 @@ const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
 /** 度数原子的自然半音基数(2度=2半音…7度=11半音;9/11/13 为翻八度) */
 const DEG_SEMI: Record<number, number> = { 2: 2, 3: 4, 4: 5, 5: 7, 6: 9, 7: 11, 9: 14, 11: 17, 13: 21 }
 
-/** 拼写音名 → pianoKeyId(校验用:"C♯"→1;非法规格返回 null) */
-const spelledNameToKeyId = (name: string): number | null => {
-  const m = name.match(/^([A-G])(♯{1,2}|♭{1,2}|♯♯|♭♭)?$/)
-  if (isNil(m)) return null
+/** 原子拼写对 → pianoKeyId(校验用:[step, alter] → 键;字母/变音超界返回 null) */
+const spelledPairToKeyId = (pair: [string, number]): number | null => {
   const base: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }
-  const acc = m[2] ?? ""
-  const alter = (acc.match(/♯/g) ?? []).length - (acc.match(/♭/g) ?? []).length
-  return (base[m[1]] + alter + 12) % 12
+  if (isNil(base[pair[0]]) || Math.abs(pair[1]) > 2) return null
+  return (base[pair[0]] + pair[1] + 12) % 12
 }
 
 /**
@@ -69,14 +66,20 @@ const verifyScaleHash = (): void => {
       if ([...e.pianoKeyIds].sort((a, b) => a - b).join(",") !== ids) {
         throw new Error(`scale-hash round-trip 不一致 [${key}] ${e.rootPianoKeySymbol}·${e.scaleModeId}`)
       }
-      // 2) 拼写语义防线:每个变体的拼写音换算半音多重集 = 键集
+      // 2) 拼写语义防线:每个变体的原子对换算半音多重集 = 键集;根音对 = 根音键
       for (const s of e.spellings) {
-        const got = s.notes.map(spelledNameToKeyId).sort((a, b) => a - b).join(",")
-        if (s.notes.some(n => spelledNameToKeyId(n) === null) || got !== ids) {
-          throw new Error(`scale-hash 拼写语义防线 [${key}] ${s.root}·${e.scaleModeId} notes=${s.notes}`)
+        const got = s.notes.map(spelledPairToKeyId).sort((a, b) => a - b).join(",")
+        if (s.notes.some(n => spelledPairToKeyId(n) === null) || got !== ids) {
+          throw new Error(`scale-hash 拼写语义防线 [${key}] ${s.rootStep}${s.rootAlter}·${e.scaleModeId} notes=${JSON.stringify(s.notes)}`)
         }
-        if (spelledNameToKeyId(s.root) !== e.rootPianoKeyId) {
-          throw new Error(`scale-hash 根音拼写不符 [${key}] ${s.root} vs id=${e.rootPianoKeyId}`)
+        if (spelledPairToKeyId([s.rootStep, s.rootAlter]) !== e.rootPianoKeyId) {
+          throw new Error(`scale-hash 根音拼写不符 [${key}] ${s.rootStep}${s.rootAlter} vs id=${e.rootPianoKeyId}`)
+        }
+        // 偏离音也必须能换算回键集内的键
+        for (const acc of s.accidentals) {
+          if (!ids.split(",").includes(String(spelledPairToKeyId(acc)))) {
+            throw new Error(`scale-hash 偏离音不在键集 [${key}] ${JSON.stringify(acc)}`)
+          }
         }
       }
       // 3) 别名一致:aliasModeIds 的 intervalList 必须与 canonical 完全同形

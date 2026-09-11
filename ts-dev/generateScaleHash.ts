@@ -53,9 +53,6 @@ const ROOT_SPELLINGS: Record<number, Array<[string, number]>> = {
     8: [["G", 1], ["A", -1]], 10: [["A", 1], ["B", -1]],
 };
 
-const accidentalStr = (a: number): string =>
-    a === 0 ? "" : a === 1 ? "♯" : a === -1 ? "♭" : a === 2 ? "♯♯" : a === -2 ? "♭♭" : (a > 0 ? "♯" : "♭").repeat(Math.abs(a));
-
 /** 实用大调调号 n(有符号,♯正♭负)→ 字母变音表 */
 const sigLetterAlters = (n: number): Record<string, number> => {
     const m: Record<string, number> = {};
@@ -65,24 +62,28 @@ const sigLetterAlters = (n: number): Record<string, number> => {
 };
 
 /**
- * 等音拼写变体:根音 (step, alter) + 调式各度半音 → 拼写音名 + 最佳调号。
- * 度数 d 的目标字母 = 根字母 + (d-1) 个字母位;变音 = 根变音 + 半音 - 字母自然距离。
+ * 等音拼写变体:根音 (step, alter) + 调式各度半音 → 原子拼写数据 + 最佳调号。
+ * 度数 d 的目标字母 = 根字母 + (d-1) 个字母位;变电 = 根变音 + 半音 - 字母自然距离。
+ *
+ * 原子约定(2026-09-11 用户指出):拼写一律 step/alter 对,不用 "C♯" 展示串——
+ * 与 notes.json / fifth.json(rawNoteStep+rawNoteAlter) / intervalList([type,num]) 同族。
+ * notes = [[step, alter], ...] 度数序(根音起);accidentals 多个偏离音即多对。
  */
 const buildSpelling = (
     step: string, alter: number,
     semis: Array<number | null>,
 ): {
-    root: string
-    notes: string[]
+    rootStep: string
+    rootAlter: number
+    notes: Array<[string, number]>
     keySignature: number
-    accidentals: string[]
+    accidentals: Array<[string, number]>
     isTheoretical: boolean
-    enharmonicRoot: string | null
+    enharmonicRoot: [string, number] | null
 } | null => {
     const stepIdx = LETTERS.indexOf(step);
-    const notes: string[] = [];
+    const notes: Array<[string, number]> = [[step, alter]];
     const letterAlters: Record<string, number> = { [step]: alter };
-    notes.push(step + accidentalStr(alter));
     let doubleAccidental = false;
 
     for (let i = 0; i < 6; i++) {
@@ -97,7 +98,7 @@ const buildSpelling = (
         if (Math.abs(targetAlter) > 2) return null;
         if (Math.abs(targetAlter) >= 2) doubleAccidental = true;
         letterAlters[target] = targetAlter;
-        notes.push(target + accidentalStr(targetAlter));
+        notes.push([target, targetAlter]);
     }
 
     // 最佳吻合调号:实用范围 [-7,+7],吻合度=字母变音一致数;平手先取根音大调位,再取偏离更少
@@ -120,13 +121,17 @@ const buildSpelling = (
         ) best = cand;
     }
     const sigAlt = sigLetterAlters(best!.sig);
-    const accidentals: string[] = [];
+    // 偏离音 = 实际拼写变音 ≠ 调号变音的字母,原子对 [step, 实际变音]
+    // (相对调号的还原/升/降由消费端用两值相减渲染;多个偏离音即多对,如
+    //  C 匈牙利大调在 1♯ 调号下 accidentals = [["D",1],["B",-1]])
+    const accidentals: Array<[string, number]> = [];
     for (const [letter, a] of Object.entries(letterAlters)) {
-        if ((sigAlt[letter] ?? 0) !== a) accidentals.push(letter + (a === 0 ? "♮" : accidentalStr(a)));
+        if ((sigAlt[letter] ?? 0) !== a) accidentals.push([letter, a]);
     }
 
     return {
-        root: step + accidentalStr(alter),
+        rootStep: step,
+        rootAlter: alter,
         notes,
         keySignature: best!.sig,
         accidentals,
@@ -181,11 +186,11 @@ export const generateScaleHash = (): Record<string, unknown> => {
             if (spellings.length === 0) {
                 throw new Error(`scale-hash: ${sid}@${root} 两个根音拼写全部超重升降——理论上有等音可代,不应发生`);
             }
-            // 理论调的等音建议 = 同键另一根音拼写中实用者
+            // 理论调的等音建议 = 同键另一根音拼写中实用者(原子对 [step, alter])
             for (const sp of spellings) {
                 if (!sp.isTheoretical) continue;
                 const other = spellings.find(o => o !== sp && !o.isTheoretical);
-                sp.enharmonicRoot = other ? other.root : null;
+                sp.enharmonicRoot = other ? [other.rootStep, other.rootAlter] : null;
             }
 
             perKey.push({
