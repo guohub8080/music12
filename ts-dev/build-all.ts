@@ -7,7 +7,7 @@
  * 手动逐步跑全过,仅 pnpm 多命令链必挂)。改为本单入口:直接函数调用
  * 各生成器(零子进程零 shell),一个进程内顺序完成:
  *
- *   gen(定义表+实例表) → bake 3/4/5(三张哈希表) → verify(全量 round-trip)
+ *   gen(定义表+实例表) → bake 3~7(五张哈希表) → verify(全量 round-trip)
  *
  * 运行: npx tsx ts-dev/build-all.ts(package.json 的 pretest/prebuild 调用)
  */
@@ -29,7 +29,7 @@ const main = async () => {
   console.log("[build-all] gen:static-data")
   await generateAll()
 
-  for (const k of [3, 4, 5]) {
+  for (const k of [3, 4, 5, 6, 7]) {
     console.log(`[build-all] bake K=${k}`)
     await runBake(k)
   }

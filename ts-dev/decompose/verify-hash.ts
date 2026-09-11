@@ -14,7 +14,7 @@
  * 「主表零冲突」从数据巧合升级为构建保证——自验最终 JSON 本身,
  * 不依赖上游任何过滤层的正确性。
  *
- * 运行: npx tsx ts-dev/decompose/verify-hash.ts [K ...](默认 3 4 5;
+ * 运行: npx tsx ts-dev/decompose/verify-hash.ts [K ...](默认 3..7;
  *   pretest/prebuild 在 gen+bake 之后调用)
  */
 import { readFileSync } from "fs"
@@ -28,8 +28,36 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, "../..")
 const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
 
+/** 度数原子的自然半音基数(2度=2半音…7度=11半音;9/11/13 为翻八度) */
+const DEG_SEMI: Record<number, number> = { 2: 2, 3: 4, 4: 5, 5: 7, 6: 9, 7: 11, 9: 14, 11: 17, 13: 21 }
+
+/**
+ * special-sets 语义防线:scoreDisplay 度数原子换算半音后与 offsets 多重集相等。
+ *
+ * 历史病灶(2026-09-11 用户发现「♯2 与 ♭3 同键却并列」揪出,共 16 处):
+ *   幽灵原子(♯2+♭3 双计同一琴键)、错位拼写(8半音记成 6 度=9半音)、
+ *   计数对但拼写错(♭7 写成 7)——atom 计数校验抓不到,必须换算半音比对。
+ */
+const verifySetSemantics = (): number => {
+  const defs: Record<string, any> = JSON.parse(
+    readFileSync(resolve(ROOT, "static-data", "special-sets.json"), "utf-8"),
+  )
+  for (const [setId, def] of Object.entries(defs)) {
+    const want = [...def.offsets as number[]].sort((a, b) => a - b).join(",")
+    const got = Object.entries(def.scoreDisplay as Record<string, number | number[]>)
+      .flatMap(([deg, alt]) => (Array.isArray(alt) ? alt : [alt]).map(a => (DEG_SEMI[Number(deg)] + a) % 12))
+      .sort((a, b) => a - b).join(",")
+    if (got !== want) {
+      throw new Error(`special-sets 语义防线:${setId} scoreDisplay 原子半音(${got})≠offsets(${want})`)
+    }
+  }
+  console.log(`special-sets 语义防线:${Object.keys(defs).length} 个 set 度数原子↔offsets 全部一致`)
+  return Object.keys(defs).length
+}
+
 /** 校验主流程(供 build-all 函数式调用;process.exit 改异常抛出) */
-export const runVerify = (ksParam: number[] = [3, 4, 5]): void => {
+export const runVerify = (ksParam: number[] = [3, 4, 5, 6, 7]): void => {
+  verifySetSemantics()
   let total = { chord: 0, set: 0 }
 
   for (const K of ksParam) {
@@ -67,8 +95,8 @@ export const runVerify = (ksParam: number[] = [3, 4, 5]): void => {
   console.log(`restore 安全校验(全部):${total.chord} chord + ${total.set} set 全部 round-trip 可达`)
 }
 
-// 直接执行(非被 import):K 列表取命令行参数(容错回退 3,4,5)
+// 直接执行(非被 import):K 列表取命令行参数(容错回退 3..7)
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2).map(Number).filter(n => Number.isFinite(n) && n >= 2)
-  runVerify(args.length > 0 ? args : [3, 4, 5])
+  runVerify(args.length > 0 ? args : [3, 4, 5, 6, 7])
 }

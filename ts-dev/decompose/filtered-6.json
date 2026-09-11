@@ -53561,8 +53561,9 @@
       "pianoKeySymbolRoot": "X",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
@@ -143595,7 +143596,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -166205,8 +166206,9 @@
       "pianoKeySymbolRoot": "B",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
@@ -233036,7 +233038,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -277220,7 +277222,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -277235,7 +277239,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -277250,7 +277256,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -277265,7 +277273,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -277280,7 +277290,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -382956,7 +382968,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -422130,8 +422142,9 @@
       "pianoKeySymbolRoot": "Z",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
@@ -501531,8 +501544,9 @@
       "pianoKeySymbolRoot": "G",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
@@ -561603,7 +561617,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -618831,7 +618845,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -646429,7 +646443,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -646444,7 +646460,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -646459,7 +646477,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -646474,7 +646494,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -646489,7 +646511,9 @@
       "scoreDisplay": {
         "2": 0,
         "3": 0,
-        "5": 0
+        "5": -1,
+        "6": -1,
+        "7": -1
       },
       "transform": {},
       "cost": 0,
@@ -757657,8 +757681,9 @@
       "pianoKeySymbolRoot": "Y",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
@@ -813444,7 +813469,7 @@
       "scoreDisplay": {
         "2": -1,
         "3": 0,
-        "5": -1,
+        "5": [-1, 0],
         "7": -1
       },
       "transform": {},
@@ -869582,8 +869607,9 @@
       "pianoKeySymbolRoot": "A",
       "formulaId": "spset-petrushka_cluster",
       "scoreDisplay": {
-        "2": [-1, 0, 1],
-        "5": [0, -1]
+        "2": [-1, 0],
+        "5": [-1, 0],
+        "6": -1
       },
       "transform": {},
       "cost": 0,
