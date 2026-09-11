@@ -48,8 +48,6 @@ export type I_HashResult = I_HashEntry & {
   chordName: string
   /** 是否为完全匹配(cost=0 且无变换) */
   isExact: boolean
-  /** 结构化变换操作(notation 的原子化形态,完全命中为空数组) */
-  ops: I_HashOp[]
   /** 惰性反推的 Chord 实例(getter:首次访问才构造,结果缓存;set 条目为 null) */
   readonly chord: Chord | null
   /** 惰性还原的 set 实体(getter,与 chord 对称;chord 条目为 null) */

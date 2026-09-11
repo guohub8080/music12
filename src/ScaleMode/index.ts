@@ -7,3 +7,4 @@ export { default as SCALE_MODE_ID } from './static/SCALE_MODE_ID'
 
 // 方法函数
 export { getScaleModeMetaById, getAllScaleModeMetaList } from './methods/getScaleModeMetaById'
+export { getScaleModeByTags } from './methods/getScaleModeByTags'

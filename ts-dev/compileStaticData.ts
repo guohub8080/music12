@@ -186,7 +186,51 @@ function compileScaleModes(): Record<string, unknown> {
             degreeAlterationsList,
             degreeAlterationsMap,
             name: m.name,
+            tags: m.tags,
+            forte: m.forte,
         };
+    }
+
+    // ── B 项防线/派生(2026-09-11 用户批准)─────────────────────────
+    // 1) type 断言:七声(无 null 槽)必须有 3 度且 type 与主和弦结构一致
+    //    (dim7=♭3♭5♭♭7 / halfdim7=♭3♭5♭7 / major=♮3 / minor=♭3)。
+    //    五声缺 3 度者(商/徵)是手写约定,放行——七声可机器判定,不让手写漂移静默通过。
+    for (const sid of Object.keys(out)) {
+        const m = out[sid];
+        if (m.semitonesList.includes(null)) continue;
+        const s3 = m.semitonesMap["3"], s5 = m.semitonesMap["5"], s7 = m.semitonesMap["7"];
+        if (isNil(s3)) throw new Error(`[scale-modes] ${sid}: 七声缺 3 度`);
+        const expect = `${s3},${s5},${s7}` === "3,6,9" ? "dim7"
+            : `${s3},${s5},${s7}` === "3,6,10" ? "halfdim7"
+            : s3 === 4 ? "major" : "minor";
+        if (m.type !== expect) {
+            throw new Error(`[scale-modes] ${sid}: type=${m.type} 与主和弦结构(${s3},${s5},${s7})不符,应为 ${expect}`);
+        }
+    }
+    // 2) 特征标签:变音(b2/#4/…,重变 bb7)+ 缺度(no4/no7)+ 音数(pentatonic/heptatonic),
+    //    追加到源手写家族标签后(镜像 chord-formulas 的 deriveTags 编译期推导)
+    for (const sid of Object.keys(out)) {
+        const m = out[sid];
+        const feat: string[] = [];
+        for (let d = 2; d <= 7; d++) {
+            const da = m.degreeAlterationsMap[String(d)];
+            if (da === null) feat.push(`no${d}`);
+            else if (da === -2) feat.push(`bb${d}`);
+            else if (da === -1) feat.push(`b${d}`);
+            else if (da === 1) feat.push(`#${d}`);
+        }
+        const noteCount = 1 + m.semitonesList.filter((s: number | null) => s !== null).length;
+        feat.push(noteCount === 5 ? "pentatonic" : noteCount === 6 ? "hexatonic" : "heptatonic");
+        m.tags = [...(m.tags ?? []), ...feat];
+    }
+    // 3) sameShapeAs:同 intervalList 形状组内指向首个(源顺序),独形/自身为 null。
+    //    同形是客观事实(60 键仅 31 形),编译算最不易错;别名键(IONIAN/雅清燕)由此可查
+    const shapeFirst: Record<string, string> = {};
+    for (const sid of Object.keys(out)) {
+        const shape = JSON.stringify(out[sid].intervalList);
+        const first = shapeFirst[shape];
+        out[sid].sameShapeAs = isNil(first) || first === sid ? null : first;
+        if (isNil(first)) shapeFirst[shape] = sid;
     }
     return out;
 }

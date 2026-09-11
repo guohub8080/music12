@@ -127,13 +127,19 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 完整列表用 `getChordFormulaByTags([])` 查询（返回全部 88 个）。
 
-## 46 个调式 ID（含 IONIAN/AEOLIAN 两个别名键）
+## 60 个调式 ID（含 IONIAN/AEOLIAN 等别名键）
 
 自然调式：`NATURAL_MAJOR` `DORIAN` `PHRYGIAN` `LYDIAN` `MIXOLYDIAN` `NATURAL_MINOR` `LOCRIAN`
 
-和声/旋律：`HARMONIC_MINOR` `HARMONIC_MAJOR` `MELODIC_MINOR_ASCENDING` `MELODIC_MAJOR_DESCENDING` 及衍生模式
+和声/旋律（七调式制补全 2026-09-11）：`HARMONIC_MINOR` 全 7（含 `ULTRA_LOCRIAN`）、`HARMONIC_MAJOR` 全 7（`DORIAN_FLAT5` `PHRYGIAN_FLAT4` `LYDIAN_FLAT3` `MIXOLYDIAN_FLAT2` `LYDIAN_AUGMENTED_SHARP2` `LOCRIAN_DOUBLE_FLAT7`）、`MELODIC_MINOR_ASCENDING` 全 7（含爵士关键的 `ALTERED` 与 `MIXOLYDIAN_FLAT6`）、`MELODIC_MAJOR_DESCENDING`（I 级）
+
+双重和声：`DOUBLE_HARMONIC_MAJOR` 等 6 个（含 `LYDIAN_SHARP2_SHARP6` `ULTRAPHRYGIAN`）
+
+其他常用：`NEAPOLITAN_MAJOR` `NEAPOLITAN_MINOR` `HUNGARIAN_MAJOR`
 
 中国调式：`GONG` `SHANG` `JUE` `ZHI` `YU`（五声）；`YA_YUE_GONG` `QING_YUE_GONG` `YAN_YUE_GONG` 等（七声）
+
+调式元数据带 `tags`（家族 + 编译派生变音/缺度特征,查询用 `getScaleModeByTags`）、`forte`（Forte 音级集合编号）、`sameShapeAs`（同形别名键指向）。注意 dim4/dim7/aug6 音程记法（♭4/♭♭7/♯6 系调式）已入表;blues 与 bebop 因同度双音（♭5+♮5 / ♭7+♮7 并存）不可用 6 槽单音模型表达,见 ts-dev/scale-research.md
 
 ## 开发规范
 

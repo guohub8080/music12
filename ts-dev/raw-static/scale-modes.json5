@@ -5,12 +5,17 @@
  * 手改只改这里;产物永不手改。
  *
  * ── 极简原则 ─────────────────────────────────────────────
- * 每条只写:键(scaleModeId)+ type(调式主和弦性质:major/minor/halfdim7——
- *   Locrian 系一级七和弦即半减七,燕乐角调式同)+ name(中文名)+ intervalList(6 槽)。
+ * 每条只写:键(scaleModeId)+ type(调式主和弦性质:major/minor/halfdim7/dim7——
+ *   Locrian 系一级七和弦即半减七,燕乐角调式同;♭♭7 系一级为减七)+ name(中文名)
+ *   + tags(家族/用途标签)+ forte(Forte 音级集合编号,2026-09-11 全 60 形查证)
+ *   + intervalList(6 槽)。
  * 派生字段一律编译时算回:
  *   intervalMap/semitonesList/semitonesMap     intervalList 的 map/半音形态
  *   degreeAlterationsList/Map                  相对自然大调同度数的半音差
  *   scaleModeId                                从键回填
+ *   tags                                       源手写家族标签 + 编译时追加特征标签
+ *                                              (b2/#4/… 变音 + no4/no7 缺度 + pentatonic/heptatonic)
+ *   sameShapeAs                                编译时算(同 intervalList 组内指向首个,自形为 null)
  * 已删化石:family(分段信息保留在注释)/description(由每条第二行注释承载)
  *
  * ── intervalList 语义 ────────────────────────────────────
@@ -35,6 +40,8 @@
   "NATURAL_MAJOR": {
   "type": "major",
   "name": "自然大调",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // 自然大调(= NATURAL_MAJOR 的别名键,同形异名) · (=自然大调)
@@ -42,6 +49,8 @@
   "IONIAN": {
   "type": "major",
   "name": "自然大调",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // Lydian · #4
@@ -49,6 +58,8 @@
   "LYDIAN": {
   "type": "major",
   "name": "Lydian",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // Mixolydian · ♭7
@@ -56,6 +67,8 @@
   "MIXOLYDIAN": {
   "type": "major",
   "name": "Mixolydian",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 自然小调(= NATURAL_MINOR 的别名键,同形异名) · ♭3 ♭6 ♭7
@@ -63,6 +76,8 @@
   "NATURAL_MINOR": {
   "type": "minor",
   "name": "自然小调",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // 自然小调(= NATURAL_MINOR 的别名键,同形异名) · ♭3 ♭6 ♭7
@@ -70,6 +85,8 @@
   "AEOLIAN": {
   "type": "minor",
   "name": "自然小调",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // Dorian · ♭3 ♭7
@@ -77,6 +94,8 @@
   "DORIAN": {
   "type": "minor",
   "name": "Dorian",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // Phrygian · ♭2 ♭3 ♭6 ♭7
@@ -84,6 +103,8 @@
   "PHRYGIAN": {
   "type": "minor",
   "name": "Phrygian",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // Locrian · ♭2 ♭3 ♭5 ♭6 ♭7
@@ -91,6 +112,8 @@
   "LOCRIAN": {
   "type": "halfdim7",
   "name": "Locrian",
+  "tags": ["diatonic"],
+  "forte": "7-35",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
   },
 
@@ -101,8 +124,71 @@
   "HARMONIC_MAJOR": {
   "type": "major",
   "name": "和声大调",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
   },
+  // Dorian ♭5 · ♭3 ♭5 ♭7
+  //   和声大调的 II 级音阶,构成音分别为:1 2 b3 4 b5 6 b7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "DORIAN_FLAT5": {
+  "type": "halfdim7",
+  "name": "Dorian ♭5",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["dim", 5], ["maj", 6], ["min", 7]]
+  },
+  // Phrygian ♭4 · ♭2 ♭3 ♭4 ♭6 ♭7
+  //   和声大调的 III 级音阶,构成音分别为:1 b2 b3 b4 5 b6 b7 1;♭4(dim4) 记法
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "PHRYGIAN_FLAT4": {
+  "type": "minor",
+  "name": "Phrygian ♭4",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["min", 2], ["min", 3], ["dim", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // Lydian ♭3 · ♭3 ♯4
+  //   和声大调的 IV 级音阶,构成音分别为:1 2 b3 #4 5 6 7 1;Wikipedia 称 Lydian diminished
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "LYDIAN_FLAT3": {
+  "type": "minor",
+  "name": "Lydian ♭3",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["maj", 2], ["min", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Mixolydian ♭2 · ♭2 ♭7
+  //   和声大调的 V 级音阶,构成音分别为:1 b2 3 4 5 6 b7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "MIXOLYDIAN_FLAT2": {
+  "type": "major",
+  "name": "Mixolydian ♭2",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
+  },
+  // Lydian Augmented ♯2 · ♯2 ♯4 ♯5
+  //   和声大调的 VI 级音阶,构成音分别为:1 #2 3 #4 #5 6 7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "LYDIAN_AUGMENTED_SHARP2": {
+  "type": "major",
+  "name": "Lydian Augmented ♯2",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["aug", 2], ["maj", 3], ["aug", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Locrian ♭♭7 · ♭2 ♭3 ♭5 ♭6 ♭♭7
+  //   和声大调的 VII 级音阶,构成音分别为:1 b2 b3 4 b5 b6 bb7 1;一级为减七和弦
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "LOCRIAN_DOUBLE_FLAT7": {
+  "type": "dim7",
+  "name": "Locrian ♭♭7",
+  "tags": ["harmonic-major"],
+  "forte": "7-32A",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["dim", 7]]
+  },
+
 
   // ══════ 和声小调系(harmonic-minor) ══════
 
@@ -111,6 +197,8 @@
   "HARMONIC_MINOR": {
   "type": "minor",
   "name": "和声小调",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
   },
   // Phrygian Dominant · ♭2 ♭6 ♭7
@@ -118,6 +206,8 @@
   "PHRYGIAN_DOMINANT": {
   "type": "major",
   "name": "Phrygian Dominant",
+  "tags": ["harmonic-minor", "flamenco"],
+  "forte": "7-32A",
   "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // Locrian #6 · ♭2 ♭3 ♭5 ♭7
@@ -125,6 +215,8 @@
   "LOCRIAN_SHARP6": {
   "type": "halfdim7",
   "name": "Locrian #6",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["maj", 6], ["min", 7]]
   },
   // Ionian #5 · #5
@@ -132,6 +224,8 @@
   "IONIAN_SHARP5": {
   "type": "major",
   "name": "Ionian #5",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
   },
   // Dorian #4 · ♭3 #4 ♭7
@@ -139,6 +233,8 @@
   "DORIAN_SHARP4": {
   "type": "minor",
   "name": "Dorian #4",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
   "intervalList": [["maj", 2], ["min", 3], ["aug", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // Lydian #2 · #2 #4
@@ -146,8 +242,21 @@
   "LYDIAN_SHARP2": {
   "type": "major",
   "name": "Lydian #2",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
   "intervalList": [["aug", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
+  // Ultra Locrian · ♭2 ♭3 ♭4 ♭5 ♭6 ♭♭7
+  //   和声小调的 VII 级音阶,构成音分别为:1 b2 b3 b4 b5 b6 bb7 1;一级为减七和弦(type=dim7 首例),又称 Altered Diminished
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "ULTRA_LOCRIAN": {
+  "type": "dim7",
+  "name": "Ultra Locrian",
+  "tags": ["harmonic-minor"],
+  "forte": "7-32A",
+  "intervalList": [["min", 2], ["min", 3], ["dim", 4], ["dim", 5], ["min", 6], ["dim", 7]]
+  },
+
 
   // ══════ 旋律大调系(melodic-major) ══════
 
@@ -156,6 +265,8 @@
   "MELODIC_MAJOR_DESCENDING": {
   "type": "major",
   "name": "旋律大调（下行）",
+  "tags": ["melodic-major"],
+  "forte": "7-34",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
 
@@ -166,6 +277,8 @@
   "MELODIC_MINOR_ASCENDING": {
   "type": "minor",
   "name": "旋律小调（上行）",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // Lydian Dominant · #4 ♭7
@@ -173,6 +286,8 @@
   "LYDIAN_DOMINANT": {
   "type": "major",
   "name": "Lydian Dominant",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
   "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // Dorian b2 · ♭2 ♭3 ♭7
@@ -180,6 +295,8 @@
   "DORIAN_FLAT2": {
   "type": "minor",
   "name": "Dorian b2",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // Lydian Augmented · #4 #5
@@ -187,6 +304,8 @@
   "LYDIAN_AUGMENTED": {
   "type": "major",
   "name": "Lydian Augmented",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
   "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
   },
   // Locrian #2 · ♭3 ♭5 ♭6 ♭7
@@ -194,8 +313,31 @@
   "LOCRIAN_SHARP2": {
   "type": "halfdim7",
   "name": "Locrian #2",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
   },
+  // Mixolydian ♭6 · ♭6 ♭7
+  //   旋律小调的 V 级音阶,构成音分别为:1 2 3 4 5 b6 b7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "MIXOLYDIAN_FLAT6": {
+  "type": "major",
+  "name": "Mixolydian ♭6",
+  "tags": ["melodic-minor"],
+  "forte": "7-34",
+  "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
+  },
+  // Altered · ♭2 ♭3 ♭4 ♭5 ♭6 ♭7
+  //   旋律小调的 VII 级音阶,构成音分别为:1 b2 b3 b4 b5 b6 b7 1;爵士 7alt 和弦的标准对应调式(即 1 b9 #9 3 b5 #5 b7),又称 Super Locrian。♭4(dim4) 为本表首次使用的音程记法
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "ALTERED": {
+  "type": "halfdim7",
+  "name": "Altered",
+  "tags": ["melodic-minor", "jazz"],
+  "forte": "7-34",
+  "intervalList": [["min", 2], ["min", 3], ["dim", 4], ["dim", 5], ["min", 6], ["min", 7]]
+  },
+
 
   // ══════ 双重和声系(double-harmonic) ══════
 
@@ -204,6 +346,8 @@
   "DOUBLE_HARMONIC_MAJOR": {
   "type": "major",
   "name": "Double Harmonic Major",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
   "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
   },
   // Hungarian Minor · ♭3 #4 ♭6
@@ -211,6 +355,8 @@
   "HUNGARIAN_MINOR": {
   "type": "minor",
   "name": "Hungarian Minor",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
   "intervalList": [["maj", 2], ["min", 3], ["aug", 4], ["p", 5], ["min", 6], ["maj", 7]]
   },
   // Oriental · ♭2 ♭5 ♭7
@@ -218,6 +364,8 @@
   "ORIENTAL": {
   "type": "major",
   "name": "Oriental",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
   "intervalList": [["min", 2], ["maj", 3], ["p", 4], ["dim", 5], ["maj", 6], ["min", 7]]
   },
   // Ionian #2 #5 · #2 #5
@@ -225,7 +373,64 @@
   "IONIAN_SHARP2_SHARP5": {
   "type": "major",
   "name": "Ionian #2 #5",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
   "intervalList": [["aug", 2], ["maj", 3], ["p", 4], ["aug", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Lydian ♯2♯6 · ♯2 ♯4 ♯6
+  //   双重和声大调的 II 级音阶,构成音分别为:1 #2 3 #4 5 #6 7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "LYDIAN_SHARP2_SHARP6": {
+  "type": "major",
+  "name": "Lydian ♯2♯6",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
+  "intervalList": [["aug", 2], ["maj", 3], ["aug", 4], ["p", 5], ["aug", 6], ["maj", 7]]
+  },
+  // Ultraphrygian · ♭2 ♭3 ♭4 ♭6 ♭♭7
+  //   双重和声大调的 III 级音阶,构成音分别为:1 b2 b3 b4 5 b6 bb7 1;Wikipedia 又称 Ultralocrian ♮5;一级为减七和弦
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "ULTRAPHRYGIAN": {
+  "type": "minor",
+  "name": "Ultraphrygian",
+  "tags": ["double-harmonic"],
+  "forte": "7-22",
+  "intervalList": [["min", 2], ["min", 3], ["dim", 4], ["p", 5], ["min", 6], ["dim", 7]]
+  },
+
+
+
+  // ══════ 其他常用系(misc) ══════
+
+  // Neapolitan 大调 · ♭2 ♭3
+  //   那不勒斯大调,构成音分别为:1 b2 b3 4 5 6 7 1;那不勒斯六和弦(N6=♭II6)的音阶来源
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "NEAPOLITAN_MAJOR": {
+  "type": "minor",
+  "name": "Neapolitan 大调",
+  "tags": ["neapolitan"],
+  "forte": "7-33",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
+  },
+  // Neapolitan 小调 · ♭2 ♭3 ♭6
+  //   那不勒斯小调,构成音分别为:1 b2 b3 4 5 b6 7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "NEAPOLITAN_MINOR": {
+  "type": "minor",
+  "name": "Neapolitan 小调",
+  "tags": ["neapolitan"],
+  "forte": "7-30A",
+  "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["maj", 7]]
+  },
+  // Hungarian Major · ♯2 ♯4 ♭7
+  //   匈牙利大调(又称 Gypsy Major),构成音分别为:1 #2 3 #4 5 6 b7 1
+  // 来源:Wikipedia「List of musical scales and modes」/家族调式名查证(2026-09-11,ts-dev/scale-research.md) · 审核:用户 2026-09-11 全案批准
+  "HUNGARIAN_MAJOR": {
+  "type": "major",
+  "name": "Hungarian Major",
+  "tags": ["hungarian"],
+  "forte": "7-31A",
+  "intervalList": [["aug", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
 
   // ══════ 中国五声(pentatonic) ══════
@@ -235,6 +440,8 @@
   "GONG": {
   "type": "major",
   "name": "宫调式",
+  "tags": ["pentatonic", "chinese"],
+  "forte": "5-35",
   "intervalList": [["maj", 2], ["maj", 3], null, ["p", 5], ["maj", 6], null]
   },
   // 商调式 · ♭7 缺4、7度
@@ -242,6 +449,8 @@
   "SHANG": {
   "type": "minor",
   "name": "商调式",
+  "tags": ["pentatonic", "chinese"],
+  "forte": "5-35",
   "intervalList": [["maj", 2], null, ["p", 4], ["p", 5], null, ["min", 7]]
   },
   // 角调式 · ♭3 ♭6 ♭7 缺4、7度
@@ -249,6 +458,8 @@
   "JUE": {
   "type": "minor",
   "name": "角调式",
+  "tags": ["pentatonic", "chinese"],
+  "forte": "5-35",
   "intervalList": [null, ["min", 3], ["p", 4], null, ["min", 6], ["min", 7]]
   },
   // 徵调式 · 缺4、7度
@@ -256,6 +467,8 @@
   "ZHI": {
   "type": "major",
   "name": "徵调式",
+  "tags": ["pentatonic", "chinese"],
+  "forte": "5-35",
   "intervalList": [["maj", 2], null, ["p", 4], ["p", 5], ["maj", 6], null]
   },
   // 羽调式 · ♭3 ♭7 缺4、7度
@@ -263,6 +476,8 @@
   "YU": {
   "type": "minor",
   "name": "羽调式",
+  "tags": ["pentatonic", "chinese"],
+  "forte": "5-35",
   "intervalList": [null, ["min", 3], ["p", 4], ["p", 5], null, ["min", 7]]
   },
 
@@ -273,6 +488,8 @@
   "YA_YUE_GONG": {
   "type": "major",
   "name": "雅乐宫调式",
+  "tags": ["chinese", "yayue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["aug", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // 雅乐商调式 · ♭7
@@ -280,6 +497,8 @@
   "YA_YUE_SHANG": {
   "type": "major",
   "name": "雅乐商调式",
+  "tags": ["chinese", "yayue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 雅乐角调式 · ♭3 ♭6 ♭7
@@ -287,6 +506,8 @@
   "YA_YUE_JUE": {
   "type": "minor",
   "name": "雅乐角调式",
+  "tags": ["chinese", "yayue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // 雅乐徵调式 · (=自然大调)
@@ -294,6 +515,8 @@
   "YA_YUE_ZHI": {
   "type": "major",
   "name": "雅乐徵调式",
+  "tags": ["chinese", "yayue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // 雅乐羽调式 · ♭3 ♭7
@@ -301,6 +524,8 @@
   "YA_YUE_YU": {
   "type": "minor",
   "name": "雅乐羽调式",
+  "tags": ["chinese", "yayue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
 
@@ -311,6 +536,8 @@
   "QING_YUE_GONG": {
   "type": "major",
   "name": "清乐宫调式",
+  "tags": ["chinese", "qingyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["maj", 7]]
   },
   // 清乐商调式 · ♭3 ♭7
@@ -318,6 +545,8 @@
   "QING_YUE_SHANG": {
   "type": "minor",
   "name": "清乐商调式",
+  "tags": ["chinese", "qingyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 清乐角调式 · ♭2 ♭3 ♭6 ♭7
@@ -325,6 +554,8 @@
   "QING_YUE_JUE": {
   "type": "minor",
   "name": "清乐角调式",
+  "tags": ["chinese", "qingyue"],
+  "forte": "7-35",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // 清乐徵调式 · ♭7
@@ -332,6 +563,8 @@
   "QING_YUE_ZHI": {
   "type": "major",
   "name": "清乐徵调式",
+  "tags": ["chinese", "qingyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 清乐羽调式 · ♭3 ♭6 ♭7
@@ -339,6 +572,8 @@
   "QING_YUE_YU": {
   "type": "minor",
   "name": "清乐羽调式",
+  "tags": ["chinese", "qingyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
 
@@ -349,6 +584,8 @@
   "YAN_YUE_GONG": {
   "type": "major",
   "name": "燕乐宫调式",
+  "tags": ["chinese", "yanyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["maj", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 燕乐商调式 · ♭3 ♭6 ♭7
@@ -356,6 +593,8 @@
   "YAN_YUE_SHANG": {
   "type": "minor",
   "name": "燕乐商调式",
+  "tags": ["chinese", "yanyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   },
   // 燕乐角调式 · ♭2 ♭3 ♭5 ♭6 ♭7
@@ -363,6 +602,8 @@
   "YAN_YUE_JUE": {
   "type": "halfdim7",
   "name": "燕乐角调式",
+  "tags": ["chinese", "yanyue"],
+  "forte": "7-35",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["dim", 5], ["min", 6], ["min", 7]]
   },
   // 燕乐徵调式 · ♭3 ♭7
@@ -370,6 +611,8 @@
   "YAN_YUE_ZHI": {
   "type": "minor",
   "name": "燕乐徵调式",
+  "tags": ["chinese", "yanyue"],
+  "forte": "7-35",
   "intervalList": [["maj", 2], ["min", 3], ["p", 4], ["p", 5], ["maj", 6], ["min", 7]]
   },
   // 燕乐羽调式 · ♭2 ♭3 ♭6 ♭7
@@ -377,6 +620,8 @@
   "YAN_YUE_YU": {
   "type": "minor",
   "name": "燕乐羽调式",
+  "tags": ["chinese", "yanyue"],
+  "forte": "7-35",
   "intervalList": [["min", 2], ["min", 3], ["p", 4], ["p", 5], ["min", 6], ["min", 7]]
   }
 }
