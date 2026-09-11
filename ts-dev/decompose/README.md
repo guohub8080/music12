@@ -410,19 +410,22 @@ ts-dev/decompose/engine.ts               ← 第 4 步:倒推引擎(搜索 + 变
 ts-dev/decompose/keyset.ts               ← 第 4 步:键集工具(prime form 移调规范形)
 ts-dev/decompose/bake.ts                 ← 第 4 步:烘焙器(C(12,3) + 三层保留管线 → 哈希表)
 ts-dev/decompose/hash3-report.ts         ← 第 5 步:报告生成器(来源标注 + 灰显过滤)
-ts-dev/decompose/filtered-3.json          ← 第 4 步 sidecar(被过滤条目,审核用)
+ts-dev/decompose/filtered-{3,4,5,6}.json   ← 第 4 步 sidecar(被过滤条目,审核用,按 K)
+ts-dev/decompose/verify-hash.ts           ← 烘焙后置校验(全量 round-trip,独立于 bake)
+ts-dev/build-all.ts                       ← 全量构建单入口(gen → bake 3/4/5 → verify)
 ts-dev/decompose/theory.md               ← 乐理依据(cost/tier 规则)
 ts-dev/decompose/README.md               ← 本文件(管线文档)
 static-data/chord-formulas.json          ← 第 2 步产物
 static-data/special-sets.json            ← 第 2 步产物
 static-data/bake-rules.json              ← 第 2 步产物
 static-data/chord-instances.json         ← 第 3 步产物
-static-data/chord-hash-3.json            ← 第 4 步产物(运行时查这个)
-ts-dev/decompose/hash3-report.md         ← 第 5 步产物(人类可读)
+static-data/chord-hash-{3,4,5,6}.json       ← 第 4 步产物(运行时查这个,K=音数)
+ts-dev/decompose/hash{K}-report.md         ← 第 5 步产物(人类可读,按 K)
 ```
 
 ## 下一步(待做)
 
-- 四音 C(12,4)=495 穷举(chord-hash-4.json)
-- 五音 C(12,5)=792 穷举(chord-hash-5.json)
+- 六音 t3 例外区 7 类(60 组)待裁决(9 度等音对/双 0.5 并列系)
 - findByHash 接入 findChord 主路径
+- pnpm test 壳层 OOM 根治(环境层;vitest 直跑正常)
+- C++ 侧适配(chord-hash 读取)

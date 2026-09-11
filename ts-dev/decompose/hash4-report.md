@@ -18,7 +18,7 @@
 
 # ✅ Tier 1 — 完全命中(零变换)
 
-## C-P-D-Q  `{0,1,2,3}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## C-P-D-Q  `{0,1,2,3}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -38,7 +38,7 @@
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Cmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## C-P-D-E  `{0,1,2,4}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## C-P-D-E  `{0,1,2,4}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -66,7 +66,7 @@
 | 🔴6 | ~~Pmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## C-P-D-X  `{0,1,2,6}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## C-P-D-X  `{0,1,2,6}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -97,7 +97,7 @@
 | 🔴6 | ~~Pmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## C-P-D-G  `{0,1,2,7}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## C-P-D-G  `{0,1,2,7}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -122,7 +122,7 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Dmaj3add6~~ | omit5 ♯6 ♯3 add7 | 6.5 |
 
-## C-P-D-A  `{0,1,2,9}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## C-P-D-A  `{0,1,2,9}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -140,7 +140,7 @@
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Psus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## C-P-D-Z  `{0,1,2,10}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## C-P-D-Z  `{0,1,2,10}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -160,7 +160,7 @@
 | 🔴6 | ~~Zmin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Zsus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## C-P-D-B  `{0,1,2,11}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## C-P-D-B  `{0,1,2,11}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -208,7 +208,7 @@
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Cmaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## C-P-Q-A  `{0,1,3,9}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## C-P-Q-A  `{0,1,3,9}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -242,7 +242,7 @@
 | 🔴6 | ~~Cmaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭9 ♭3 add6 | 6.5 |
 
-## C-P-Q-B  `{0,1,3,11}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## C-P-Q-B  `{0,1,3,11}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -270,7 +270,7 @@
 | 🔴6 | ~~Cmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## C-P-E-F  `{0,1,4,5}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## C-P-E-F  `{0,1,4,5}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -529,7 +529,7 @@
 | 🔴6 | ~~Cmaj7~~ | omit5 ♭7 ♭2 ♯3 | 9 |
 | 🔴6 | ~~Cmaj9~~ | omit5 ♭9 ♭7 ♯3 | 9 |
 
-## C-P-F-B  `{0,1,5,11}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## C-P-F-B  `{0,1,5,11}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -560,7 +560,7 @@
 | 🔴6 | ~~Cmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## C-P-X-G  `{0,1,6,7}`  ⚙ set-exclusive
+## C-P-X-G  `{0,1,6,7}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -615,7 +615,7 @@
 | 🔴6 | ~~Ymaj7~~ | omit5 ♭7 add4 | 3.5 |
 | 🔴6 | ~~Csus4~~ | ♭2 ♯4 ♯5 | 6 |
 
-## C-P-X-A  `{0,1,6,9}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## C-P-X-A  `{0,1,6,9}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -649,7 +649,7 @@
 | 🔴6 | ~~Pmaj7~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Pmaj3~~ | ♯3 ♯5 add7 | 6.5 |
 
-## C-P-X-B  `{0,1,6,11}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## C-P-X-B  `{0,1,6,11}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -674,7 +674,7 @@
 | 🔴6 | ~~Pmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Pmaj3add6~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 
-## C-P-Y-A  `{0,1,8,9}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## C-P-Y-A  `{0,1,8,9}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -700,7 +700,7 @@
 | 🔴6 | ~~Amaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## C-P-Y-B  `{0,1,8,11}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## C-P-Y-B  `{0,1,8,11}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -718,7 +718,7 @@
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Csus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## C-P-A-B  `{0,1,9,11}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## C-P-A-B  `{0,1,9,11}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -738,7 +738,7 @@
 | 🔴6 | ~~Amin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## C-P-Z-B  `{0,1,10,11}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## C-P-Z-B  `{0,1,10,11}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -758,7 +758,7 @@
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Zmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## C-D-Q-E  `{0,2,3,4}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## C-D-Q-E  `{0,2,3,4}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -1419,7 +1419,7 @@
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Bmaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## C-D-Y-B  `{0,2,8,11}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## C-D-Y-B  `{0,2,8,11}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -1453,7 +1453,7 @@
 | 🔴6 | ~~Bmaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Bmaj3add9~~ | omit5 ♭9 ♭3 add6 | 6.5 |
 
-## C-D-Z-B  `{0,2,10,11}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## C-D-Z-B  `{0,2,10,11}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -1481,7 +1481,7 @@
 | 🔴6 | ~~Bmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Bmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## C-Q-E-F  `{0,3,4,5}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## C-Q-E-F  `{0,3,4,5}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -1500,7 +1500,7 @@
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Esus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## C-Q-E-X  `{0,3,4,6}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## C-Q-E-X  `{0,3,4,6}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -1601,7 +1601,7 @@
 | 🔴6 | ~~Qmaj3~~ | omit5 ♭2 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭9 ♯3 add6 | 6.5 |
 
-## C-Q-E-A  `{0,3,4,9}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## C-Q-E-A  `{0,3,4,9}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -1637,7 +1637,7 @@
 | 🔴6 | ~~Emaj3~~ | ♯5 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭6 ♯3 add7 | 6.5 |
 
-## C-Q-E-B  `{0,3,4,11}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## C-Q-E-B  `{0,3,4,11}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -1821,7 +1821,7 @@
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♯9 ♯3 ♯6 | 9 |
 | 🔴6 | ~~Cmaj9~~ | omit5 ♭7 ♯9 ♯3 | 9 |
 
-## C-Q-X-G  `{0,3,6,7}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## C-Q-X-G  `{0,3,6,7}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -2847,7 +2847,7 @@
 | 🔴6 | ~~Bmaj7~~ | omit5 ♭7 ♭2 ♯3 | 9 |
 | 🔴6 | ~~Bmaj9~~ | omit5 ♭9 ♭7 ♯3 | 9 |
 
-## C-E-Z-B  `{0,4,10,11}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## C-E-Z-B  `{0,4,10,11}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -2878,7 +2878,7 @@
 | 🔴6 | ~~Bmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Bmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## C-F-X-G  `{0,5,6,7}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## C-F-X-G  `{0,5,6,7}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -2967,7 +2967,7 @@
 | 🔴6 | ~~Cmaj3add6~~ | ♭5 ♯3 ♯6 | 9 |
 | 🔴6 | ~~Cmaj7~~ | ♭5 ♭7 ♯3 | 9 |
 
-## C-F-X-B  `{0,5,6,11}`  ⚙ set-exclusive
+## C-F-X-B  `{0,5,6,11}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -3231,7 +3231,7 @@
 | 🔴6 | ~~Cmaj3add6~~ | ♯3 ♯5 ♯6 | 9 |
 | 🔴6 | ~~Cmaj7~~ | ♭7 ♯3 ♯5 | 9 |
 
-## C-F-Y-B  `{0,5,8,11}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## C-F-Y-B  `{0,5,8,11}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -3293,7 +3293,7 @@
 | 🔴6 | ~~Amaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Amaj3add9~~ | ♭3 ♭9 ♯5 | 9 |
 
-## C-F-Z-B  `{0,5,10,11}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## C-F-Z-B  `{0,5,10,11}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -3318,7 +3318,7 @@
 | 🔴6 | ~~Cmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Cmaj3add6~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 
-## C-X-G-Y  `{0,6,7,8}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## C-X-G-Y  `{0,6,7,8}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -3348,7 +3348,7 @@
 | 🔴6 | ~~Gmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## C-X-A-Z  `{0,6,9,10}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## C-X-A-Z  `{0,6,9,10}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -3381,7 +3381,7 @@
 | 🔴6 | ~~Amaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♭3 ♭9 add6 | 6.5 |
 
-## C-G-Y-B  `{0,7,8,11}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## C-G-Y-B  `{0,7,8,11}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -3407,7 +3407,7 @@
 | 🔴6 | ~~Ymaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## C-G-Z-B  `{0,7,10,11}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## C-G-Z-B  `{0,7,10,11}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -3425,7 +3425,7 @@
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Bsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## C-Y-A-Z  `{0,8,9,10}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## C-Y-A-Z  `{0,8,9,10}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -3453,7 +3453,7 @@
 | 🔴6 | ~~Amaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♭3 ♭9 add7 | 6.5 |
 
-## C-Y-Z-B  `{0,8,10,11}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## C-Y-Z-B  `{0,8,10,11}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -3473,7 +3473,7 @@
 | 🔴6 | ~~Ymin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## C-A-Z-B  `{0,9,10,11}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## C-A-Z-B  `{0,9,10,11}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -3493,7 +3493,7 @@
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Amaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## P-D-Q-E  `{1,2,3,4}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## P-D-Q-E  `{1,2,3,4}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -3513,7 +3513,7 @@
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Pmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## P-D-Q-F  `{1,2,3,5}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## P-D-Q-F  `{1,2,3,5}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -3541,7 +3541,7 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## P-D-Q-G  `{1,2,3,7}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## P-D-Q-G  `{1,2,3,7}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -3572,7 +3572,7 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## P-D-Q-Y  `{1,2,3,8}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## P-D-Q-Y  `{1,2,3,8}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -3597,7 +3597,7 @@
 | 🔴6 | ~~Qmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♯6 ♯3 add7 | 6.5 |
 
-## P-D-Q-Z  `{1,2,3,10}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## P-D-Q-Z  `{1,2,3,10}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -3615,7 +3615,7 @@
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Dsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## P-D-Q-B  `{1,2,3,11}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## P-D-Q-B  `{1,2,3,11}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -3663,7 +3663,7 @@
 | 🔴6 | ~~Pmaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Pmaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## P-D-E-Z  `{1,2,4,10}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## P-D-E-Z  `{1,2,4,10}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -3697,7 +3697,7 @@
 | 🔴6 | ~~Pmaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♭9 ♭3 add6 | 6.5 |
 
-## P-D-F-X  `{1,2,5,6}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## P-D-F-X  `{1,2,5,6}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -3956,7 +3956,7 @@
 | 🔴6 | ~~Pmaj7~~ | omit5 ♭7 ♭2 ♯3 | 9 |
 | 🔴6 | ~~Pmaj9~~ | omit5 ♭9 ♭7 ♯3 | 9 |
 
-## P-D-G-Y  `{1,2,7,8}`  ⚙ set-exclusive
+## P-D-G-Y  `{1,2,7,8}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -4011,7 +4011,7 @@
 | 🔴6 | ~~Amaj7~~ | omit5 ♭7 add4 | 3.5 |
 | 🔴6 | ~~Psus4~~ | ♭2 ♯4 ♯5 | 6 |
 
-## P-D-G-Z  `{1,2,7,10}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## P-D-G-Z  `{1,2,7,10}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -4045,7 +4045,7 @@
 | 🔴6 | ~~Dmaj7~~ | ♯3 ♯5 | 6 |
 | 🔴6 | ~~Dmaj3~~ | ♯3 ♯5 add7 | 6.5 |
 
-## P-D-A-Z  `{1,2,9,10}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## P-D-A-Z  `{1,2,9,10}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -4071,7 +4071,7 @@
 | 🔴6 | ~~Zmaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Zsus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## P-Q-E-F  `{1,3,4,5}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## P-Q-E-F  `{1,3,4,5}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -4715,7 +4715,7 @@
 | 🔴6 | ~~Qmaj3add6~~ | ♯6 ♯3 ♯5 | 9 |
 | 🔴6 | ~~Qmaj7~~ | ♭7 ♯3 ♯5 | 9 |
 
-## P-E-F-X  `{1,4,5,6}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## P-E-F-X  `{1,4,5,6}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -4733,7 +4733,7 @@
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Fsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## P-E-F-G  `{1,4,5,7}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## P-E-F-G  `{1,4,5,7}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -4831,7 +4831,7 @@
 | 🔴6 | ~~Emaj3~~ | omit5 ♭2 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭9 ♯3 add6 | 6.5 |
 
-## P-E-F-Z  `{1,4,5,10}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## P-E-F-Z  `{1,4,5,10}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -5023,7 +5023,7 @@
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♯9 ♯3 ♯6 | 9 |
 | 🔴6 | ~~Pmaj9~~ | omit5 ♭7 ♯9 ♯3 | 9 |
 
-## P-E-G-Y  `{1,4,7,8}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## P-E-G-Y  `{1,4,7,8}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -5813,7 +5813,7 @@
 | 🔴6 | ~~Pmaj7~~ | ♭7 ♯5 | 6 |
 | 🔴6 | ~~Psus4~~ | ♭4 ♯5 ♯6 | 6 |
 
-## P-X-G-Y  `{1,6,7,8}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## P-X-G-Y  `{1,6,7,8}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -6151,7 +6151,7 @@
 | 🔴6 | ~~Pmaj7~~ | omit5 ♭7 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Zmaj3~~ | ♭3 ♭2 ♯5 | 9 |
 
-## P-G-Y-A  `{1,7,8,9}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## P-G-Y-A  `{1,7,8,9}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -6182,7 +6182,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## P-G-Z-B  `{1,7,10,11}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## P-G-Z-B  `{1,7,10,11}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -6212,7 +6212,7 @@
 | 🔴6 | ~~Gmaj3add9~~ | ♭5 ♯9 | 6 |
 | 🔴6 | ~~Zmaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 
-## P-A-Z-B  `{1,9,10,11}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## P-A-Z-B  `{1,9,10,11}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -6238,7 +6238,7 @@
 | 🔴6 | ~~Zmaj7~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Zmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 
-## D-Q-E-F  `{2,3,4,5}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## D-Q-E-F  `{2,3,4,5}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -6258,7 +6258,7 @@
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## D-Q-E-X  `{2,3,4,6}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## D-Q-E-X  `{2,3,4,6}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -6286,7 +6286,7 @@
 | 🔴6 | ~~Qmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## D-Q-E-Y  `{2,3,4,8}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## D-Q-E-Y  `{2,3,4,8}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -6317,7 +6317,7 @@
 | 🔴6 | ~~Qmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## D-Q-E-A  `{2,3,4,9}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## D-Q-E-A  `{2,3,4,9}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -6342,7 +6342,7 @@
 | 🔴6 | ~~Emaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♯6 ♯3 add7 | 6.5 |
 
-## D-Q-E-B  `{2,3,4,11}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## D-Q-E-B  `{2,3,4,11}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -6389,7 +6389,7 @@
 | 🔴6 | ~~Dmaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Dmaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## D-Q-F-B  `{2,3,5,11}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## D-Q-F-B  `{2,3,5,11}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -6419,7 +6419,7 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♭3 add6 | 6.5 |
 
-## D-Q-X-G  `{2,3,6,7}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## D-Q-X-G  `{2,3,6,7}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -6644,7 +6644,7 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭2 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♭9 ♯3 add6 | 6.5 |
 
-## D-Q-Y-A  `{2,3,8,9}`  ⚙ set-exclusive
+## D-Q-Y-A  `{2,3,8,9}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -6699,7 +6699,7 @@
 | 🔴6 | ~~Zmaj7~~ | omit5 ♭7 add4 | 3.5 |
 | 🔴6 | ~~Dsus4~~ | ♭2 ♯4 ♯5 | 6 |
 
-## D-Q-Y-B  `{2,3,8,11}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## D-Q-Y-B  `{2,3,8,11}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -6735,7 +6735,7 @@
 | 🔴6 | ~~Qmaj3~~ | ♯3 ♯5 add7 | 6.5 |
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♭6 ♯3 add7 | 6.5 |
 
-## D-Q-Z-B  `{2,3,10,11}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## D-Q-Z-B  `{2,3,10,11}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -6761,7 +6761,7 @@
 | 🔴6 | ~~Bmaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Bsus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## D-E-F-X  `{2,4,5,6}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## D-E-F-X  `{2,4,5,6}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -7274,7 +7274,7 @@
 | 🔴6 | ~~Bmaj3add9~~ | omit5 ♯9 ♯3 ♯6 | 9 |
 | 🔴6 | ~~Bmaj9~~ | omit5 ♭7 ♯9 ♯3 | 9 |
 
-## D-F-X-G  `{2,5,6,7}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## D-F-X-G  `{2,5,6,7}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -7292,7 +7292,7 @@
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Xsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## D-F-X-Y  `{2,5,6,8}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## D-F-X-Y  `{2,5,6,8}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -7390,7 +7390,7 @@
 | 🔴6 | ~~Fmaj3~~ | omit5 ♭2 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♭9 ♯3 add6 | 6.5 |
 
-## D-F-X-B  `{2,5,6,11}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## D-F-X-B  `{2,5,6,11}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -7532,7 +7532,7 @@
 | 🔴6 | ~~Bmaj3add11~~ | ♭3 ♯11 ♯5 | 9 |
 | 🔴6 | ~~Bmaj3add6~~ | ♭3 ♭5 ♭6 | 9 |
 
-## D-F-Y-A  `{2,5,8,9}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## D-F-Y-A  `{2,5,8,9}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -8038,7 +8038,7 @@
 | 🔴6 | ~~Zmaj3add9~~ | ♭9 ♯5 | 6 |
 | 🔴6 | ~~Zsus4~~ | ♭4 ♭2 ♯5 | 6 |
 
-## D-G-Y-A  `{2,7,8,9}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## D-G-Y-A  `{2,7,8,9}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -8229,7 +8229,7 @@
 | 🔴6 | ~~Dmaj3~~ | ♯3 ♯5 add6 | 6.5 |
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♯5 add7 | 6.5 |
 
-## D-Y-A-Z  `{2,8,9,10}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## D-Y-A-Z  `{2,8,9,10}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -8260,7 +8260,7 @@
 | 🔴6 | ~~Amaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Amaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## Q-E-F-X  `{3,4,5,6}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## Q-E-F-X  `{3,4,5,6}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -8280,7 +8280,7 @@
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Qmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## Q-E-F-G  `{3,4,5,7}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## Q-E-F-G  `{3,4,5,7}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -8308,7 +8308,7 @@
 | 🔴6 | ~~Emaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## Q-E-F-A  `{3,4,5,9}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## Q-E-F-A  `{3,4,5,9}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -8339,7 +8339,7 @@
 | 🔴6 | ~~Emaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## Q-E-F-Z  `{3,4,5,10}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## Q-E-F-Z  `{3,4,5,10}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -8396,7 +8396,7 @@
 | 🔴6 | ~~Qmaj3add6add9~~ | omit5 ♭9 ♭3 ♭6 | 9 |
 | 🔴6 | ~~Qmaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## Q-E-G-Y  `{3,4,7,8}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## Q-E-G-Y  `{3,4,7,8}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -8554,7 +8554,7 @@
 | 🔴6 | ~~Qmaj3add6add9~~ | omit5 ♭9 ♭6 ♯3 | 9 |
 | 🔴6 | ~~Qmaj3add9~~ | ♭9 ♯3 ♯5 | 9 |
 
-## Q-E-A-Z  `{3,4,9,10}`  ⚙ set-exclusive
+## Q-E-A-Z  `{3,4,9,10}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -8609,7 +8609,7 @@
 | 🔴6 | ~~Bmaj7~~ | omit5 ♭7 add4 | 3.5 |
 | 🔴6 | ~~Qsus4~~ | ♭2 ♯4 ♯5 | 6 |
 
-## Q-F-X-G  `{3,5,6,7}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## Q-F-X-G  `{3,5,6,7}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -8949,7 +8949,7 @@
 | 🔴6 | ~~Fmaj3add6~~ | ♭5 ♯6 ♯3 | 9 |
 | 🔴6 | ~~Fmaj7~~ | ♭7 ♭5 ♯3 | 9 |
 
-## Q-X-G-Y  `{3,6,7,8}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## Q-X-G-Y  `{3,6,7,8}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -8967,7 +8967,7 @@
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Gsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## Q-X-G-A  `{3,6,7,9}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## Q-X-G-A  `{3,6,7,9}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -9145,7 +9145,7 @@
 | 🔴6 | ~~Qmaj3add6add9~~ | omit5 ♭6 ♯9 ♯3 | 9 |
 | 🔴6 | ~~Qmaj3add9~~ | ♯9 ♯3 ♯5 | 9 |
 
-## Q-X-A-Z  `{3,6,9,10}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## Q-X-A-Z  `{3,6,9,10}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -9362,7 +9362,7 @@
 | 🔴6 | ~~Zmaj3~~ | omit5 ♭2 ♯3 add6 | 6.5 |
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♭9 ♯3 add6 | 6.5 |
 
-## Q-Y-A-Z  `{3,8,9,10}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## Q-Y-A-Z  `{3,8,9,10}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -9428,7 +9428,7 @@
 | 🔴6 | ~~Zmaj7~~ | omit5 ♭7 ♭2 ♯3 | 9 |
 | 🔴6 | ~~Zmaj9~~ | omit5 ♭7 ♭9 ♯3 | 9 |
 
-## Q-A-Z-B  `{3,9,10,11}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## Q-A-Z-B  `{3,9,10,11}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -9459,7 +9459,7 @@
 | 🔴6 | ~~Zmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## E-F-X-G  `{4,5,6,7}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## E-F-X-G  `{4,5,6,7}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -9479,7 +9479,7 @@
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Emaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## E-F-X-Y  `{4,5,6,8}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## E-F-X-Y  `{4,5,6,8}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -9507,7 +9507,7 @@
 | 🔴6 | ~~Fmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## E-F-X-Z  `{4,5,6,10}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## E-F-X-Z  `{4,5,6,10}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -9538,7 +9538,7 @@
 | 🔴6 | ~~Fmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## E-F-X-B  `{4,5,6,11}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## E-F-X-B  `{4,5,6,11}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -9560,7 +9560,7 @@
 | 🔴6 | ~~Xmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Xmaj3add6~~ | omit5 ♯6 ♯3 add7 | 6.5 |
 
-## E-F-Y-A  `{4,5,8,9}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## E-F-Y-A  `{4,5,8,9}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -9653,7 +9653,7 @@
 | 🔴6 | ~~Bmaj3add6~~ | ♭5 ♯3 ♯6 | 9 |
 | 🔴6 | ~~Bmaj7~~ | ♭5 ♭7 ♯3 | 9 |
 
-## E-F-Z-B  `{4,5,10,11}`  ⚙ set-exclusive
+## E-F-Z-B  `{4,5,10,11}`  ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -9683,7 +9683,7 @@
 | 🔴6 | ~~Fmaj3~~ | ♭5 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Bmaj3~~ | ♭5 ♯3 add7 | 6.5 |
 
-## E-X-G-Y  `{4,6,7,8}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## E-X-G-Y  `{4,6,7,8}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -9867,7 +9867,7 @@
 | 🔴6 | ~~Xmaj7~~ | omit5 ♭7 add4 | 3.5 |
 | 🔴6 | ~~Zsus4~~ | ♭2 ♯4 ♯5 | 6 |
 
-## E-G-Y-A  `{4,7,8,9}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## E-G-Y-A  `{4,7,8,9}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -9885,7 +9885,7 @@
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Ysus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## E-G-Y-Z  `{4,7,8,10}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## E-G-Y-Z  `{4,7,8,10}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -9989,7 +9989,7 @@
 | 🔴6 | ~~Bmaj3add6~~ | ♯3 ♯5 ♯6 | 9 |
 | 🔴6 | ~~Bmaj7~~ | ♭7 ♯3 ♯5 | 9 |
 
-## E-G-Z-B  `{4,7,10,11}`  ✋ verdict(0,1,6,9) ⚙ set-exclusive
+## E-G-Z-B  `{4,7,10,11}`  ✋ verdict(0,1,6,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set
 
@@ -10051,7 +10051,7 @@
 | 🔴6 | ~~Ymaj3~~ | ♭3 ♭2 ♯5 | 9 |
 | 🔴6 | ~~Ymaj3add9~~ | ♭9 ♭3 ♯5 | 9 |
 
-## E-A-Z-B  `{4,9,10,11}`  ✋ verdict(0,1,2,7) ⚙ set-exclusive
+## E-A-Z-B  `{4,9,10,11}`  ✋ verdict(0,1,2,7) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set
 
@@ -10076,7 +10076,7 @@
 | 🔴6 | ~~Bmaj3~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 | 🔴6 | ~~Bmaj3add6~~ | omit5 ♯3 ♯6 add7 | 6.5 |
 
-## F-X-G-Y  `{5,6,7,8}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## F-X-G-Y  `{5,6,7,8}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -10096,7 +10096,7 @@
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Fmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## F-X-G-A  `{5,6,7,9}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## F-X-G-A  `{5,6,7,9}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -10124,7 +10124,7 @@
 | 🔴6 | ~~Xmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## F-X-G-B  `{5,6,7,11}`  ✋ verdict(0,1,2,6) ⚙ set-exclusive
+## F-X-G-B  `{5,6,7,11}`  ✋ verdict(0,1,2,6) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set
 
@@ -10154,7 +10154,7 @@
 | 🔴6 | ~~Xmaj3~~ | omit5 ♭2 ♯3 add7 | 6.5 |
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♭9 ♯3 add7 | 6.5 |
 
-## F-X-A-Z  `{5,6,9,10}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## F-X-A-Z  `{5,6,9,10}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -10180,7 +10180,7 @@
 | 🔴6 | ~~Xmaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Xsus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## F-G-Y-A  `{5,7,8,9}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## F-G-Y-A  `{5,7,8,9}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -10200,7 +10200,7 @@
 | 🔴6 | ~~Fmin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Fsus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## F-Y-A-Z  `{5,8,9,10}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## F-Y-A-Z  `{5,8,9,10}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -10218,7 +10218,7 @@
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Asus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## F-Y-A-B  `{5,8,9,11}`  ✋ verdict(0,1,3,9) ⚙ set-exclusive
+## F-Y-A-B  `{5,8,9,11}`  ✋ verdict(0,1,3,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set
 
@@ -10251,7 +10251,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♭3 ♭2 add6 | 6.5 |
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♭9 ♭3 add6 | 6.5 |
 
-## X-G-Y-A  `{6,7,8,9}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## X-G-Y-A  `{6,7,8,9}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -10271,7 +10271,7 @@
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Xmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## X-G-Y-Z  `{6,7,8,10}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## X-G-Y-Z  `{6,7,8,10}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -10299,7 +10299,7 @@
 | 🔴6 | ~~Gmaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## X-G-Z-B  `{6,7,10,11}`  ✋ verdict(0,1,4,5) ⚙ set-exclusive
+## X-G-Z-B  `{6,7,10,11}`  ✋ verdict(0,1,4,5) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set
 
@@ -10325,7 +10325,7 @@
 | 🔴6 | ~~Gmaj7sus4~~ | omit5 ♭4 ♯2 | 4.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♭4 ♯2 add7 | 5 |
 
-## X-Y-A-Z  `{6,8,9,10}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## X-Y-A-Z  `{6,8,9,10}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -10345,7 +10345,7 @@
 | 🔴6 | ~~Xmin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Xsus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## X-A-Z-B  `{6,9,10,11}`  ✋ verdict(0,1,2,9) ⚙ set-exclusive
+## X-A-Z-B  `{6,9,10,11}`  ✋ verdict(0,1,2,9) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set
 
@@ -10363,7 +10363,7 @@
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♯9 add4 | 3.5 |
 | 🔴6 | ~~Zsus2~~ | ♭2 ♯5 add7 | 3.5 |
 
-## G-Y-A-Z  `{7,8,9,10}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## G-Y-A-Z  `{7,8,9,10}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -10383,7 +10383,7 @@
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♭3 ♭2 | 6 |
 | 🔴6 | ~~Gmaj3~~ | omit5 ♭3 ♭2 add2 | 6.5 |
 
-## G-Y-A-B  `{7,8,9,11}`  ✋ verdict(0,1,2,4) ⚙ set-exclusive
+## G-Y-A-B  `{7,8,9,11}`  ✋ verdict(0,1,2,4) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set
 
@@ -10411,7 +10411,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♭3 ♭2 add7 | 6.5 |
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♭9 ♭3 add7 | 6.5 |
 
-## G-A-Z-B  `{7,9,10,11}`  ✋ verdict(0,1,2,10) ⚙ set-exclusive
+## G-A-Z-B  `{7,9,10,11}`  ✋ verdict(0,1,2,10) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set
 
@@ -10431,7 +10431,7 @@
 | 🔴6 | ~~Gmin3add11~~ | omit5 ♭11 add2 | 3.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♭4 ♯2 add2 | 5 |
 
-## Y-A-Z-B  `{8,9,10,11}`  ✋ verdict(0,1,2,3) ⚙ set-exclusive
+## Y-A-Z-B  `{8,9,10,11}`  ✋ verdict(0,1,2,3) ⚙ lone-natural-add-exclusive ⚙ set-exclusive
 
 > ✋ 人工裁决(2026-09-06):四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set
 
@@ -15219,7 +15219,7 @@
 
 # 🟢 Tier 3 — 自然扩展(色彩音/属七变化)
 
-## C-P-D-Y  `{0,1,2,8}`  ✋ verdict(0,1,2,8)
+## C-P-D-Y  `{0,1,2,8}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15239,7 +15239,7 @@
 | 🔴6 | ~~Dmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Dsus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## C-P-E-X  `{0,1,4,6}`  ✋ verdict(0,1,4,6)
+## C-P-E-X  `{0,1,4,6}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15275,7 +15275,7 @@
 | 🔴6 | ~~Csus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Pmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## C-P-X-Z  `{0,1,6,10}`  ✋ verdict(0,1,6,10)
+## C-P-X-Z  `{0,1,6,10}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15309,7 +15309,7 @@
 | 🔴6 | ~~Zmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Csus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## C-P-G-B  `{0,1,7,11}`  ✋ verdict(0,1,2,8)
+## C-P-G-B  `{0,1,7,11}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15329,7 +15329,7 @@
 | 🔴6 | ~~Pmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Psus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## C-D-Q-Y  `{0,2,3,8}`  ✋ verdict(0,1,6,10)
+## C-D-Q-Y  `{0,2,3,8}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15363,7 +15363,7 @@
 | 🔴6 | ~~Cmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Dsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## C-D-Y-A  `{0,2,8,9}`  ✋ verdict(0,1,4,6)
+## C-D-Y-A  `{0,2,8,9}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15398,7 +15398,7 @@
 | 🔴6 | ~~Ymaj3add9~~ | ♭5 ♭9 | 6 |
 | 🔴6 | ~~Ysus4~~ | ♭4 ♭5 ♭2 | 6 |
 
-## C-Q-F-B  `{0,3,5,11}`  ✋ verdict(0,1,4,6)
+## C-Q-F-B  `{0,3,5,11}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15434,7 +15434,7 @@
 | 🔴6 | ~~Bsus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Cmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## C-E-F-X  `{0,4,5,6}`  ✋ verdict(0,1,2,8)
+## C-E-F-X  `{0,4,5,6}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15451,7 +15451,7 @@
 | 🟠5 | ~~Cmaj3add11~~ | ♭5 | 3 |
 | 🔴6 | ~~Cmaj3~~ | ♭5 add4 | 3.5 |
 
-## C-E-X-G  `{0,4,6,7}`  ✋ verdict(0,1,6,10)
+## C-E-X-G  `{0,4,6,7}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15483,7 +15483,7 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Emaj3add6~~ | omit5 ♭6 ♭3 add2 | 6.5 |
 
-## C-F-A-B  `{0,5,9,11}`  ✋ verdict(0,1,6,10)
+## C-F-A-B  `{0,5,9,11}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15517,7 +15517,7 @@
 | 🔴6 | ~~Amaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Bsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## C-X-G-Z  `{0,6,7,10}`  ✋ verdict(0,1,4,6)
+## C-X-G-Z  `{0,6,7,10}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15552,7 +15552,7 @@
 | 🔴6 | ~~Gmaj3~~ | omit5 ♯3 ♯2 add7 | 6.5 |
 | 🔴6 | ~~Gmaj3add9~~ | omit5 ♯3 ♯9 add7 | 6.5 |
 
-## C-X-Z-B  `{0,6,10,11}`  ✋ verdict(0,1,2,8)
+## C-X-Z-B  `{0,6,10,11}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15572,7 +15572,7 @@
 | 🔴6 | ~~Cmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Csus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## P-D-Q-A  `{1,2,3,9}`  ✋ verdict(0,1,2,8)
+## P-D-Q-A  `{1,2,3,9}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15592,7 +15592,7 @@
 | 🔴6 | ~~Qmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Qsus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## P-D-F-G  `{1,2,5,7}`  ✋ verdict(0,1,4,6)
+## P-D-F-G  `{1,2,5,7}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15628,7 +15628,7 @@
 | 🔴6 | ~~Psus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Dmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## P-D-G-B  `{1,2,7,11}`  ✋ verdict(0,1,6,10)
+## P-D-G-B  `{1,2,7,11}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15662,7 +15662,7 @@
 | 🔴6 | ~~Bmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Psus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-Q-E-A  `{1,3,4,9}`  ✋ verdict(0,1,6,10)
+## P-Q-E-A  `{1,3,4,9}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15696,7 +15696,7 @@
 | 🔴6 | ~~Pmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Qsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-Q-A-Z  `{1,3,9,10}`  ✋ verdict(0,1,4,6)
+## P-Q-A-Z  `{1,3,9,10}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15732,7 +15732,7 @@
 | 🔴6 | ~~Asus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Zmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## P-F-X-G  `{1,5,6,7}`  ✋ verdict(0,1,2,8)
+## P-F-X-G  `{1,5,6,7}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15752,7 +15752,7 @@
 | 🔴6 | ~~Gmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## P-F-G-Y  `{1,5,7,8}`  ✋ verdict(0,1,6,10)
+## P-F-G-Y  `{1,5,7,8}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15786,7 +15786,7 @@
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Gsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## P-G-Y-B  `{1,7,8,11}`  ✋ verdict(0,1,4,6)
+## P-G-Y-B  `{1,7,8,11}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15822,7 +15822,7 @@
 | 🔴6 | ~~Ymaj3~~ | omit5 ♯3 ♯2 add7 | 6.5 |
 | 🔴6 | ~~Ymaj3add9~~ | omit5 ♯3 ♯9 add7 | 6.5 |
 
-## D-Q-E-Z  `{2,3,4,10}`  ✋ verdict(0,1,2,8)
+## D-Q-E-Z  `{2,3,4,10}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15842,7 +15842,7 @@
 | 🔴6 | ~~Emaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Esus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## D-Q-X-Y  `{2,3,6,8}`  ✋ verdict(0,1,4,6)
+## D-Q-X-Y  `{2,3,6,8}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15878,7 +15878,7 @@
 | 🔴6 | ~~Dsus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Qmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## D-E-F-Z  `{2,4,5,10}`  ✋ verdict(0,1,6,10)
+## D-E-F-Z  `{2,4,5,10}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -15912,7 +15912,7 @@
 | 🔴6 | ~~Dmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Esus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## D-E-Z-B  `{2,4,10,11}`  ✋ verdict(0,1,4,6)
+## D-E-Z-B  `{2,4,10,11}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -15948,7 +15948,7 @@
 | 🔴6 | ~~Zsus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Bmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## D-X-G-Y  `{2,6,7,8}`  ✋ verdict(0,1,2,8)
+## D-X-G-Y  `{2,6,7,8}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -15968,7 +15968,7 @@
 | 🔴6 | ~~Ymaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## D-X-Y-A  `{2,6,8,9}`  ✋ verdict(0,1,6,10)
+## D-X-Y-A  `{2,6,8,9}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -16002,7 +16002,7 @@
 | 🔴6 | ~~Xmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Ysus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## Q-E-F-B  `{3,4,5,11}`  ✋ verdict(0,1,2,8)
+## Q-E-F-B  `{3,4,5,11}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -16019,7 +16019,7 @@
 | 🟠5 | ~~Bmaj3add11~~ | ♭5 | 3 |
 | 🔴6 | ~~Bmaj3~~ | ♭5 add4 | 3.5 |
 
-## Q-E-G-A  `{3,4,7,9}`  ✋ verdict(0,1,4,6)
+## Q-E-G-A  `{3,4,7,9}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -16055,7 +16055,7 @@
 | 🔴6 | ~~Qsus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Emaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## Q-F-X-B  `{3,5,6,11}`  ✋ verdict(0,1,6,10)
+## Q-F-X-B  `{3,5,6,11}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -16087,7 +16087,7 @@
 | 🔴6 | ~~Qmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Qmaj3add6~~ | omit5 ♭3 ♭6 add2 | 6.5 |
 
-## Q-G-Y-A  `{3,7,8,9}`  ✋ verdict(0,1,2,8)
+## Q-G-Y-A  `{3,7,8,9}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -16107,7 +16107,7 @@
 | 🔴6 | ~~Amaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## Q-G-A-Z  `{3,7,9,10}`  ✋ verdict(0,1,6,10)
+## Q-G-A-Z  `{3,7,9,10}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -16141,7 +16141,7 @@
 | 🔴6 | ~~Gmaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Asus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## E-F-Y-Z  `{4,5,8,10}`  ✋ verdict(0,1,4,6)
+## E-F-Y-Z  `{4,5,8,10}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -16177,7 +16177,7 @@
 | 🔴6 | ~~Esus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Fmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## E-Y-A-Z  `{4,8,9,10}`  ✋ verdict(0,1,2,8)
+## E-Y-A-Z  `{4,8,9,10}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
@@ -16197,7 +16197,7 @@
 | 🔴6 | ~~Zmaj7sus4~~ | omit5 ♯4 ♯6 | 4.5 |
 | 🔴6 | ~~Zsus4~~ | omit5 ♯4 ♯6 add7 | 5 |
 
-## E-Y-Z-B  `{4,8,10,11}`  ✋ verdict(0,1,6,10)
+## E-Y-Z-B  `{4,8,10,11}`  ✋ verdict(0,1,6,10) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤
 
@@ -16231,7 +16231,7 @@
 | 🔴6 | ~~Ymaj3~~ | ♭3 ♯5 add2 | 6.5 |
 | 🔴6 | ~~Zsus4~~ | omit5 ♭2 ♯4 ♯6 | 7.5 |
 
-## F-X-A-B  `{5,6,9,11}`  ✋ verdict(0,1,4,6)
+## F-X-A-B  `{5,6,9,11}`  ✋ verdict(0,1,4,6) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤
 
@@ -16266,7 +16266,7 @@
 | 🔴6 | ~~Fsus4~~ | ♭4 ♭5 ♭2 | 6 |
 | 🔴6 | ~~Xmaj3add9~~ | omit5 ♯9 ♯3 add7 | 6.5 |
 
-## F-A-Z-B  `{5,9,10,11}`  ✋ verdict(0,1,2,8)
+## F-A-Z-B  `{5,9,10,11}`  ✋ verdict(0,1,2,8) ⚙ lone-natural-add-exclusive
 
 > ✋ 人工裁决(2026-09-06):maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤
 
