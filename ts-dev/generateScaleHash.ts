@@ -32,6 +32,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
+import { serialize } from "./compileStaticData";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -205,11 +206,8 @@ export const generateScaleHash = (): Record<string, unknown> => {
         }
     }
 
-    writeFileSync(
-        resolve(ROOT, "static-data", "scale-hash.json"),
-        JSON.stringify(table, null, 2) + "\n",
-        "utf-8",
-    );
+    // 紧凑序列化(复用编译器 pretty):≤80 字符的数组(pianoKeyIds/notes/tags 等)单行
+    writeFileSync(resolve(ROOT, "static-data", "scale-hash.json"), serialize(table), "utf-8");
 
     // ── 自检:覆盖完整性(keep-all-unmatched 的 scale 版)────────
     let covered = 0;
