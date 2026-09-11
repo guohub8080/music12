@@ -400,7 +400,7 @@ findByHash([0, 1, 2])   // C-P-D → [{ t:1, f:"spset-chromatic_cluster", set:tr
 
 ```
 ts-dev/raw-static/chord-formulas.json5   ← 第 1 步:手编源(88 个公式)
-ts-dev/raw-static/special-sets.json5     ← 第 1 步:人工审核的 set 定义(分叉三和弦等)
+ts-dev/raw-static/special-sets.json5     ← 第 1 步:人工审核的 set 定义(分叉三和弦等;114 形全带 forte 编号)
 ts-dev/raw-static/bake-rules.json5       ← 第 1 步:保留管线规则定义(policy/rules/verdicts)
 ts-dev/compileStaticData.ts              ← 第 2 步:编译器(json5 → json)
 ts-dev/generateChordInstances.ts         ← 第 3 步:实例生成器(1056 个)

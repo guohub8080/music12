@@ -16,6 +16,8 @@ import type { I_HashTransform } from "./restoreChord"
 interface I_SpecialSetDef {
   cnName: string
   name: string
+  /** Forte 音级集合编号(如 "6-Z11A";2026-09-11 全 114 形逐一查证) */
+  forte: string
   scoreDisplay: Record<string, number | number[]>
   offsets: number[]
   tags: string[]
@@ -35,6 +37,8 @@ export type I_SetEntity = {
   setId: string
   cnName: string
   name: string
+  /** Forte 音级集合编号(Rahn 素数形约定;A/B 后缀 = 倒影对中的代表素数形) */
+  forte: string
   /** 度数原子(渲染升降号的唯一数据源,如 {"3":[-1,0]} = ♭3·♮3 并存) */
   scoreDisplay: Record<string, number | number[]>
   /** 根音之外的半音偏移量(不含 0,升序) */
@@ -76,6 +80,7 @@ export const restoreSet = (entry: I_HashSetEntryShape): I_SetEntity | null => {
     setId: entry.formulaId,
     cnName: def.cnName,
     name: def.name,
+    forte: def.forte,
     scoreDisplay: def.scoreDisplay,
     offsets: def.offsets,
     tags: def.tags,

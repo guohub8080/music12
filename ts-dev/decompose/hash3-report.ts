@@ -27,6 +27,8 @@ const hashKey = (ids) => [...new Set(ids)].sort((a, b) => a - b).map(i => SYMBOL
 // bake-rules.json(gen:static-data 从 raw-static/bake-rules.json5 编译)
 // 用于报告标注:该组是否被规则/人工裁决处理过(与 bake.ts 的执行保持一致)
 const RULES = JSON.parse(readFileSync(resolve(ROOT, "static-data", "bake-rules.json"), "utf-8"))
+// special-sets 定义(set 行显示 Forte 编号;2026-09-11 全 114 形逐一查证)
+const SET_DEFS: Record<string, any> = JSON.parse(readFileSync(resolve(ROOT, "static-data", "special-sets.json"), "utf-8"))
 // 被保留管线过滤的条目(bake 顺手输出的审核 sidecar;无此文件则跳过灰显)
 const FILTERED: Record<string, any[]> = (() => {
   try {
@@ -75,6 +77,7 @@ lines.push("")
 lines.push(`> 按 tier 分大区:Tier 1(完全命中)在最前 → Tier 6(极端)在最后。`)
 lines.push(`> tier 语义:1=零变换 / 2=纯省略 / 3=自然扩展 / 4=组合变换 / 5=avoid note / 6=双变化`)
 lines.push(`> 来源标注:✋ = 人工裁决钦定(bake-rules.verdicts) / ⚙ = 类型化规则`)
+lines.push(`> set 条目方括号 = Forte 音级集合编号(2026-09-11 全 114 形逐一查证:素数形匹配 + 音程向量双校验 100%)`)
 lines.push(`> 🗑 每组下方完整列出被保留管线过滤的条目(tier/变换/cost)——想捞回某条就改 bake-rules.json5`)
 lines.push(`> 审核流:看完报告 → 改 ts-dev/raw-static/bake-rules.json5 → 重新 bake`)
 lines.push(`> 生成:\`npx tsx ts-dev/decompose/hash3-report.ts ${K}\``)
@@ -125,8 +128,8 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
     lines.push(`|---|---|---|---|`)
 
     for (const r of results) {
-      // set 条目显示「根音 + cnName」(如 C·Phrygian三音),chord 条目显示「根音 + 公式id」
-      const display = !r.isChordFormula ? `${r.pianoKeySymbolRoot}·${r.cnName}` : `${r.pianoKeySymbolRoot}${r.formulaId}`
+      // set 条目显示「根音 + cnName + [Forte编号]」(如 C·半音簇[3-1]),chord 条目显示「根音 + 公式id」
+      const display = !r.isChordFormula ? `${r.pianoKeySymbolRoot}·${r.cnName}[${defaultTo(SET_DEFS[r.formulaId]?.forte, "?")}]` : `${r.pianoKeySymbolRoot}${r.formulaId}`
       // set 条目的变换列显示度数音记谱(scoreDisplay 原子渲染,如 ♭2·4);chord 条目显示变换记号
       const transformText = renderTransform(r.transform)
       const trans = !r.isChordFormula ? renderSd(r.scoreDisplay) : (transformText === "" ? "—" : transformText)
@@ -144,7 +147,7 @@ for (const tier of [1, 2, 3, 4, 5, 6]) {
       lines.push(`| tier | 和弦 | 变换 | cost |`)
       lines.push(`|---|---|---|---|`)
       for (const e of dropped) {
-        const display = !e.isChordFormula ? `${e.pianoKeySymbolRoot}·${e.cnName}` : `${e.pianoKeySymbolRoot}${e.formulaId}`
+        const display = !e.isChordFormula ? `${e.pianoKeySymbolRoot}·${e.cnName}[${defaultTo(SET_DEFS[e.formulaId]?.forte, "?")}]` : `${e.pianoKeySymbolRoot}${e.formulaId}`
         const dropTransform = renderTransform(e.transform)
         lines.push(`| ${defaultTo(TIER_EMOJI[e.tier], "🔴")}${e.tier} | ~~${display}~~ | ${dropTransform === "" ? "—" : dropTransform} | ${e.cost} |`)
       }
