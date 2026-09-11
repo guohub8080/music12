@@ -23,6 +23,7 @@
  *   npx tsx ts-dev/compileStaticData.ts            # dry-run:编译并对比现有产物,不写盘
  *   npx tsx ts-dev/compileStaticData.ts --write    # 写盘覆盖 static-data/
  */
+import { uniq } from "es-toolkit/compat";
 import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
@@ -221,7 +222,8 @@ function compileScaleModes(): Record<string, unknown> {
         }
         const noteCount = 1 + m.semitonesList.filter((s: number | null) => s !== null).length;
         feat.push(noteCount === 5 ? "pentatonic" : noteCount === 6 ? "hexatonic" : "heptatonic");
-        m.tags = [...(m.tags ?? []), ...feat];
+        // uniq:家族手写标签与音数派生标签可能撞名(如 pentatonic 家族 × 5 音派生)
+        m.tags = uniq([...(m.tags ?? []), ...feat]);
     }
     // 3) sameShapeAs:同 intervalList 形状组内指向首个(源顺序),独形/自身为 null。
     //    同形是客观事实(60 键仅 43 形),编译算最不易错;别名键(IONIAN/雅清燕)由此可查
