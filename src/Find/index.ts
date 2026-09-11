@@ -12,3 +12,7 @@ export { findNotesInScales, areNotesInScale } from "./notes/findNotesInScales"
 export type { I_NotesInScale, INoteDegree } from "./notes/findNotesInScales"
 export { findNoteDegreeInAllScales, findNoteDegreeInScale } from "./notes/findNoteDegreeInScales"
 export type { I_NoteDegreeInScale } from "./notes/findNoteDegreeInScales"
+
+// ==================== Scale Hash ====================
+export { findByScaleHash, filterBySpelling } from "./notes/findByScaleHash"
+export type { I_ScaleHashEntry, I_ScaleHashResult, I_ScaleSpelling } from "./notes/findByScaleHash"

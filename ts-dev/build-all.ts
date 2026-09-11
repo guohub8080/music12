@@ -29,6 +29,10 @@ const main = async () => {
   console.log("[build-all] gen:static-data")
   await generateAll()
 
+  console.log("[build-all] scale-hash")
+  const { generateScaleHash } = await import("./generateScaleHash")
+  generateScaleHash()
+
   for (const k of [3, 4, 5, 6, 7]) {
     console.log(`[build-all] bake K=${k}`)
     await runBake(k)

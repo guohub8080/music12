@@ -224,7 +224,7 @@ function compileScaleModes(): Record<string, unknown> {
         m.tags = [...(m.tags ?? []), ...feat];
     }
     // 3) sameShapeAs:同 intervalList 形状组内指向首个(源顺序),独形/自身为 null。
-    //    同形是客观事实(60 键仅 31 形),编译算最不易错;别名键(IONIAN/雅清燕)由此可查
+    //    同形是客观事实(60 键仅 43 形),编译算最不易错;别名键(IONIAN/雅清燕)由此可查
     const shapeFirst: Record<string, string> = {};
     for (const sid of Object.keys(out)) {
         const shape = JSON.stringify(out[sid].intervalList);

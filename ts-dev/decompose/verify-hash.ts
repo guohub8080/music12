@@ -31,6 +31,75 @@ const SYMBOLS = ["C","P","D","Q","E","F","X","G","Y","A","Z","B"]
 /** 度数原子的自然半音基数(2度=2半音…7度=11半音;9/11/13 为翻八度) */
 const DEG_SEMI: Record<number, number> = { 2: 2, 3: 4, 4: 5, 5: 7, 6: 9, 7: 11, 9: 14, 11: 17, 13: 21 }
 
+/** 拼写音名 → pianoKeyId(校验用:"C♯"→1;非法规格返回 null) */
+const spelledNameToKeyId = (name: string): number | null => {
+  const m = name.match(/^([A-G])(♯{1,2}|♭{1,2}|♯♯|♭♭)?$/)
+  if (isNil(m)) return null
+  const base: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }
+  const acc = m[2] ?? ""
+  const alter = (acc.match(/♯/g) ?? []).length - (acc.match(/♭/g) ?? []).length
+  return (base[m[1]] + alter + 12) % 12
+}
+
+/**
+ * scale-hash 校验:round-trip + 拼写语义防线 + 别名一致 + 覆盖完整。
+ *
+ * 拼写语义防线是 scoreDisplay 语义防线的同款思路——拼写的音名换算回
+ * pianoKeyIds 必须与键集多重集相等,防「拼写出琴键不在键集里的音」
+ * 或「等音双计」(♯2 与 ♭3 同键并列那类病)。
+ */
+const verifyScaleHash = (): void => {
+  const table: Record<string, any[]> = JSON.parse(
+    readFileSync(resolve(ROOT, "static-data", "scale-hash.json"), "utf-8"),
+  )
+  const modes: Record<string, any> = JSON.parse(
+    readFileSync(resolve(ROOT, "static-data", "scale-modes.json"), "utf-8"),
+  )
+  let readings = 0
+  let covered = 0
+
+  for (const [key, entries] of Object.entries(table)) {
+    const ids = key.split("").map(ch => SYMBOLS.indexOf(ch)).sort((a, b) => a - b).join(",")
+    readings += entries.length
+
+    for (const e of entries) {
+      covered += 1 + e.aliasModeIds.length
+
+      // 1) round-trip:读法音集(排序)必须等于键集
+      if ([...e.pianoKeyIds].sort((a, b) => a - b).join(",") !== ids) {
+        throw new Error(`scale-hash round-trip 不一致 [${key}] ${e.rootPianoKeySymbol}·${e.scaleModeId}`)
+      }
+      // 2) 拼写语义防线:每个变体的拼写音换算半音多重集 = 键集
+      for (const s of e.spellings) {
+        const got = s.notes.map(spelledNameToKeyId).sort((a, b) => a - b).join(",")
+        if (s.notes.some(n => spelledNameToKeyId(n) === null) || got !== ids) {
+          throw new Error(`scale-hash 拼写语义防线 [${key}] ${s.root}·${e.scaleModeId} notes=${s.notes}`)
+        }
+        if (spelledNameToKeyId(s.root) !== e.rootPianoKeyId) {
+          throw new Error(`scale-hash 根音拼写不符 [${key}] ${s.root} vs id=${e.rootPianoKeyId}`)
+        }
+      }
+      // 3) 别名一致:aliasModeIds 的 intervalList 必须与 canonical 完全同形
+      for (const a of e.aliasModeIds) {
+        if (JSON.stringify(modes[a].intervalList) !== JSON.stringify(modes[e.scaleModeId].intervalList)) {
+          throw new Error(`scale-hash 别名不同形 [${key}] ${a} ≢ ${e.scaleModeId}`)
+        }
+      }
+      // 4) 度数语义:pianoKeyIdToDegree 的值域必须在键集内且根音为 1 度
+      if (e.pianoKeyIdToDegree[String(e.rootPianoKeyId)] !== 1) {
+        throw new Error(`scale-hash 根音非 1 度 [${key}] ${e.scaleModeId}`)
+      }
+    }
+  }
+
+  // 5) 覆盖完整:canonical + 别名 = 调式数 × 12(keep-all-unmatched 的 scale 版)
+  const expected = Object.keys(modes).length * 12
+  if (covered !== expected) {
+    throw new Error(`scale-hash 覆盖不完整:${covered}/${expected}`)
+  }
+  console.log(`scale-hash 校验通过:${Object.keys(table).length} 键集 ${readings} 读法,拼写语义/别名/覆盖全一致`)
+}
+
 /**
  * special-sets 语义防线:scoreDisplay 度数原子换算半音后与 offsets 多重集相等。
  *
@@ -58,6 +127,7 @@ const verifySetSemantics = (): number => {
 /** 校验主流程(供 build-all 函数式调用;process.exit 改异常抛出) */
 export const runVerify = (ksParam: number[] = [3, 4, 5, 6, 7]): void => {
   verifySetSemantics()
+  verifyScaleHash()
   let total = { chord: 0, set: 0 }
 
   for (const K of ksParam) {

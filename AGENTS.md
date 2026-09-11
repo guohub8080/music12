@@ -101,6 +101,21 @@ cMajor.getScaleDegreeChord7(5)  // G7（5 级七和弦）
 cMajor.getScaleDegreeChord7(1)  // Cmaj7（1 级）
 ```
 
+### 键集 → 调式（哈希 O(1)，区分升降号）
+
+```ts
+import { findByScaleHash, filterBySpelling } from "music12"
+
+// 琴键输入：返回全部调式读法（每条自带度数语义 + 等音拼写层）
+findByScaleHash([0, 1, 3, 5, 6, 8, 10])
+// → C♯ 大调读法，拼写 C♯(7♯) / D♭(5♭) 双变体并列；
+//   理论调（如 C♯ Lydian 的 F♯♯）显式标记并附等音建议
+
+// 记谱输入（度数序、根音在首位）：升降号消歧出唯一读法
+filterBySpelling(findByScaleHash([0, 1, 3, 5, 6, 8, 10]), ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"])
+// → D♭ 大调唯一
+```
+
 ### 标签查询
 
 ```ts
