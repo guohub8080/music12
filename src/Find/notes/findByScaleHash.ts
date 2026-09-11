@@ -63,28 +63,14 @@ const hashKey = (ids: number[]): string =>
     .sort()
     .join("")
 
-/** 拼写音名归一:C♯/C#/cx 等输入统一为 (字母, 变音) 再回 pianoKeyId */
-const spelledToKeyId = (name: string): number | null => {
-  const m = name.trim().match(/^([A-Ga-g])([#♯b♭𝄪𝄫x]*)$/)
-  if (isNil(m)) return null
-  const base: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }
-  const alter = [...m[2]].reduce((acc, ch) => {
-    if (ch === "#" || ch === "♯") return acc + 1
-    if (ch === "b" || ch === "♭") return acc - 1
-    if (ch === "x") return acc + 2
-    if (ch === "𝄪") return acc + 2
-    if (ch === "𝄫") return acc - 2
-    return acc
-  }, 0)
-  return (base[m[1].toUpperCase()] + alter + 12) % 12
-}
 
 /**
  * 键集 → 全部调式读法(含等音拼写层),一次 O(1)
  *
  * 与 chord 侧 findByHash 对偶:琴键输入查这张表得到「这是什么调式」的全部
  * 解释——每条读法自带度数语义(音→级数)与等音拼写(C♯/D♭ 并列、理论调显式
- * 标记)。记谱输入(带拼法)用 filterBySpelling 消歧。
+ * 标记)。用户裁决(2026-09-11):输入永远走 symbol(pianoKeyId),
+ * 拼写只是输出层信息——消费端从 spellings 里按上下文自选,不做输入消歧。
  *
  * @param ids pianoKeyId 数组(0-11),内部去重排序,顺序无关
  * @param options.scaleModeIds 限定调式范围(含别名键;如 ["melodic-minor"] 不支持——
@@ -124,52 +110,4 @@ export const findByScaleHash = (
     })
 }
 
-/** 拼写音名 → 规范形("D♭"/"Db" → "D-1"),拼写比对用(琴键比对无法区分等音变体) */
-const spelledCanonical = (name: string): string | null => {
-  const m = name.trim().match(/^([A-Ga-g])([#♯b♭𝄪𝄫x]*)$/)
-  if (isNil(m)) return null
-  const alter = [...m[2]].reduce((acc, ch) => {
-    if (ch === "#" || ch === "♯") return acc + 1
-    if (ch === "b" || ch === "♭") return acc - 1
-    if (ch === "x" || ch === "𝄪") return acc + 2
-    if (ch === "𝄫") return acc - 2
-    return acc
-  }, 0)
-  return `${m[1].toUpperCase()}${alter > 0 ? "+" : ""}${alter}`
-}
 
-/**
- * 拼写消歧:用带记谱的音名从读法中筛出拼写吻合的变体
- *
- * 同一集合的全部 modal 读法在自然拼写下音名集合相同(F Lydian 与 C 大调
- * 都拼作 C D E F G A B)——音名集合消歧不了调式,根音信息是必需的。
- * 因此约定输入为**度数序、根音在首位**(与读法的 notes/pianoKeyIds 同构)。
- * 拼写比对用规范化音名(琴键比对无法区分 C♯/D♭ 等音变体——那正是要区分的)。
- *
- * 琴键输入返回全部等音读法(C♯ 大调 / D♭ 大调并列);记谱输入(乐谱软件、
- * 用户手输)经此过滤得唯一拼写——升降号在输入端消歧,这是 scale-hash
- * 区分升降号的另一半闭环。
- *
- * @param results findByScaleHash 的返回值
- * @param noteNames 拼写音名,度数序、根音在首位(兼容 ♯/♭/#/b/x/𝄪/𝄫 记法)
- * @returns 每条读法附上命中的 spelling;根音或拼写不符的读法被滤除
- *
- * @example
- * const r = findByScaleHash([0, 1, 3, 5, 6, 8, 10])
- * filterBySpelling(r, ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"])  // → D♭ 大调唯一读法
- * filterBySpelling(r, ["C#", "D#", "E#", "F#", "G#", "A#", "B#"]) // → C♯ 大调唯一读法
- */
-export const filterBySpelling = (
-  results: I_ScaleHashResult[],
-  noteNames: string[],
-): Array<I_ScaleHashResult & { spelling: I_ScaleSpelling }> => {
-  const rootId = spelledToKeyId(noteNames[0])
-  const inputCanonical = noteNames.map(spelledCanonical).sort().join(",")
-  const out: Array<I_ScaleHashResult & { spelling: I_ScaleSpelling }> = []
-  for (const r of results) {
-    if (r.rootPianoKeyId !== rootId) continue // 根音先决:modal 消歧的必需信息
-    const spelling = r.spellings.find(s => s.notes.map(spelledCanonical).sort().join(",") === inputCanonical)
-    if (isNotNil(spelling)) out.push({ ...r, spelling })
-  }
-  return out
-}

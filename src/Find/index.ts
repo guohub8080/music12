@@ -14,5 +14,5 @@ export { findNoteDegreeInAllScales, findNoteDegreeInScale } from "./notes/findNo
 export type { I_NoteDegreeInScale } from "./notes/findNoteDegreeInScales"
 
 // ==================== Scale Hash ====================
-export { findByScaleHash, filterBySpelling } from "./notes/findByScaleHash"
+export { findByScaleHash } from "./notes/findByScaleHash"
 export type { I_ScaleHashEntry, I_ScaleHashResult, I_ScaleSpelling } from "./notes/findByScaleHash"
