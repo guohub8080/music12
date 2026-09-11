@@ -879,5 +879,490 @@
     "scoreDisplay": { "2": -1, "3": 0, "5": -1, "7": -1 },
     "offsets": [1, 4, 6, 7, 10],
     "tags": ["hijaz", "cluster", "non-tertian"]
+  },
+
+  // ════════ 七音表批量升格(用户授权「你自己先判断」;带升降系全 set 化)════════
+  // 七音=最终层;结构语义命名(offsets 注释即身份),Forte 编号未逐一查证
+  // 判据:无 cost0 或最优变形记号/簇家族直系(0,1,2,x,y,z 与 0,1,2,3,x,y 系)
+
+  // 五连簇五九度 · prime form 0,1,2,3,4,7,9 · 五连簇+纯五+大六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a1": {
+    "cnName": "五连簇五九度",
+    "name": "hepta-a1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "6": 0},
+    "offsets": [1,2,3,4,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇六七度 · prime form 0,1,2,3,4,8,10 · 五连簇+小六+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a2": {
+    "cnName": "五连簇六七度",
+    "name": "hepta-a2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": -1, "7": -1},
+    "offsets": [1,2,3,4,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇双三全音 · prime form 0,1,2,3,6,7,9 · 四连簇+♭5♮5+大六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a3": {
+    "cnName": "四连簇双三全音",
+    "name": "hepta-a3",
+    "scoreDisplay": {"2": [-1,0,1], "5": [-1,0], "6": 0},
+    "offsets": [1,2,3,6,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音六度 · prime form 0,1,2,3,6,8,9 · 四连簇+♭5+♭6♮6
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a4": {
+    "cnName": "四连簇三全音六度",
+    "name": "hepta-a4",
+    "scoreDisplay": {"2": [-1,0,1], "5": -1, "6": [-1,0]},
+    "offsets": [1,2,3,6,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度双四度六度 · prime form 0,1,2,4,5,6,8 · 簇+大三+♮4+♭5+小六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a5": {
+    "cnName": "簇三度双四度六度",
+    "name": "hepta-a5",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "6": -1},
+    "offsets": [1,2,4,5,6,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度双四五七度 · prime form 0,1,2,4,5,6,10 · 簇+大三+♮4+♭5+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a6": {
+    "cnName": "簇三度双四五七度",
+    "name": "hepta-a6",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "7": -1},
+    "offsets": [1,2,4,5,6,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz双六度 · prime form 0,1,2,4,5,8,9 · Hijaz四音组+簇尾+双六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a7": {
+    "cnName": "簇Hijaz双六度",
+    "name": "hepta-a7",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "6": [-1,0]},
+    "offsets": [1,2,4,5,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz六七度 · prime form 0,1,2,4,5,8,10 · Hijaz四音组+小六+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a8": {
+    "cnName": "簇Hijaz六七度",
+    "name": "hepta-a8",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "6": -1, "7": -1},
+    "offsets": [1,2,4,5,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音五度簇 · prime form 0,1,2,4,6,7,8 · 复杂并集
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a9": {
+    "cnName": "簇三度三全音五度簇",
+    "name": "hepta-a9",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": [-1,0], "6": 0},
+    "offsets": [1,2,4,6,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音五七度 · prime form 0,1,2,4,6,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a10": {
+    "cnName": "簇三度三全音五七度",
+    "name": "hepta-a10",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": [-1,0], "7": -1},
+    "offsets": [1,2,4,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音度系 · prime form 0,1,2,4,6,8,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a11": {
+    "cnName": "簇三度三全音度系",
+    "name": "hepta-a11",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": -1, "6": -1, "7": -1},
+    "offsets": [1,2,4,6,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音六七 · prime form 0,1,2,4,6,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a12": {
+    "cnName": "簇三度三全音六七",
+    "name": "hepta-a12",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,4,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度双六度 · prime form 0,1,2,4,7,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a13": {
+    "cnName": "簇三度五度双六度",
+    "name": "hepta-a13",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": [-1,0]},
+    "offsets": [1,2,4,7,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度六七度 · prime form 0,1,2,4,7,8,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a14": {
+    "cnName": "簇三度五度六七度",
+    "name": "hepta-a14",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": -1, "7": -1},
+    "offsets": [1,2,4,7,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度六七度b · prime form 0,1,2,4,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a15": {
+    "cnName": "簇三度五度六七度b",
+    "name": "hepta-a15",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,4,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度五度双六度 · prime form 0,1,2,5,6,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a16": {
+    "cnName": "簇四度五度双六度",
+    "name": "hepta-a16",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": -1, "6": [-1,0]},
+    "offsets": [1,2,5,6,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四五度六七度 · prime form 0,1,2,5,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a17": {
+    "cnName": "簇四五度六七度",
+    "name": "hepta-a17",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,5,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三全音五度六七 · prime form 0,1,2,6,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a18": {
+    "cnName": "簇三全音五度六七",
+    "name": "hepta-a18",
+    "scoreDisplay": {"2": [-1,0], "5": [-1,0], "6": 0, "7": -1},
+    "offsets": [1,2,6,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音六度 · prime form 0,1,2,3,4,6,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b1": {
+    "cnName": "五连簇三全音六度",
+    "name": "hepta-b1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "6": -1},
+    "offsets": [1,2,3,4,6,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音七度 · prime form 0,1,2,3,4,6,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b2": {
+    "cnName": "五连簇三全音七度",
+    "name": "hepta-b2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "7": -1},
+    "offsets": [1,2,3,4,6,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度六度 · prime form 0,1,2,3,5,6,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b3": {
+    "cnName": "四连簇四度六度",
+    "name": "hepta-b3",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "5": -1, "6": 0},
+    "offsets": [1,2,3,5,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度五七度 · prime form 0,1,2,3,5,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b4": {
+    "cnName": "四连簇四度五七度",
+    "name": "hepta-b4",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "5": 0, "7": -1},
+    "offsets": [1,2,3,5,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度双六度 · prime form 0,1,2,3,5,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b5": {
+    "cnName": "四连簇四度双六度",
+    "name": "hepta-b5",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "6": [-1,0]},
+    "offsets": [1,2,3,5,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音五七 · prime form 0,1,2,3,6,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b6": {
+    "cnName": "四连簇三全音五七",
+    "name": "hepta-b6",
+    "scoreDisplay": {"2": [-1,0,1], "5": [-1,0], "7": -1},
+    "offsets": [1,2,3,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音六七 · prime form 0,1,2,3,6,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b7": {
+    "cnName": "四连簇三全音六七",
+    "name": "hepta-b7",
+    "scoreDisplay": {"2": [-1,0,1], "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,3,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇五度六七度 · prime form 0,1,2,3,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b8": {
+    "cnName": "四连簇五度六七度",
+    "name": "hepta-b8",
+    "scoreDisplay": {"2": [-1,0,1], "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,3,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇双六七度 · prime form 0,1,2,3,8,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b9": {
+    "cnName": "四连簇双六七度",
+    "name": "hepta-b9",
+    "scoreDisplay": {"2": [-1,0,1], "6": [-1,0], "7": -1},
+    "offsets": [1,2,3,8,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音大六 · prime form 0,1,2,3,4,6,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b10": {
+    "cnName": "五连簇三全音大六",
+    "name": "hepta-b10",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "6": 0},
+    "offsets": [1,2,3,4,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇五度小六 · prime form 0,1,2,3,4,7,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b11": {
+    "cnName": "五连簇五度小六",
+    "name": "hepta-b11",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "6": -1},
+    "offsets": [1,2,3,4,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇五度七度 · prime form 0,1,2,3,4,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b12": {
+    "cnName": "五连簇五度七度",
+    "name": "hepta-b12",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "7": -1},
+    "offsets": [1,2,3,4,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇五度 · prime form 0,1,2,3,4,5,7 · 六连簇+纯五(6音连续半音)
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b13": {
+    "cnName": "六连簇五度",
+    "name": "hepta-b13",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": 0, "5": 0},
+    "offsets": [1,2,3,4,5,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇小六度 · prime form 0,1,2,3,4,5,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c1": {
+    "cnName": "六连簇小六度",
+    "name": "hepta-c1",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": 0, "6": -1},
+    "offsets": [1,2,3,4,5,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇大六度 · prime form 0,1,2,3,4,5,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c2": {
+    "cnName": "六连簇大六度",
+    "name": "hepta-c2",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": 0, "6": 0},
+    "offsets": [1,2,3,4,5,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇小七度 · prime form 0,1,2,3,4,5,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c3": {
+    "cnName": "六连簇小七度",
+    "name": "hepta-c3",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": 0, "7": -1},
+    "offsets": [1,2,3,4,5,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 七连半音簇 · prime form 0,1,2,3,4,5,6 · 七个连续半音!Forte 7-1,极致簇
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c4": {
+    "cnName": "七连半音簇",
+    "name": "hepta-c4",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": [0,-1]},
+    "offsets": [1,2,3,4,5,6],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音五度 · prime form 0,1,2,3,4,6,7
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d1": {
+    "cnName": "五连簇三全音五度",
+    "name": "hepta-d1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": [-1,0]},
+    "offsets": [1,2,3,4,6,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇双六度 · prime form 0,1,2,3,4,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d2": {
+    "cnName": "五连簇双六度",
+    "name": "hepta-d2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": [-1,0]},
+    "offsets": [1,2,3,4,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇六七度b · prime form 0,1,2,3,4,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d3": {
+    "cnName": "五连簇六七度b",
+    "name": "hepta-d3",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": 0, "7": -1},
+    "offsets": [1,2,3,4,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+
+  // 六连簇大七度 · prime form 0,1,2,3,4,5,11
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d5": {
+    "cnName": "六连簇大七度",
+    "name": "hepta-d5",
+    "scoreDisplay": {"2": [-1,0,1], "3": [0,-1], "4": 0, "7": 0},
+    "offsets": [1,2,3,4,5,11],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度五度簇 · prime form 0,1,2,3,5,6,7 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e1": {
+    "cnName": "四连簇四度五度簇",
+    "name": "hepta-e1",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "5": 0},
+    "offsets": [1,2,3,5,6,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音五度簇 · prime form 0,1,2,3,6,7,8 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e2": {
+    "cnName": "四连簇三全音五度簇",
+    "name": "hepta-e2",
+    "scoreDisplay": {"2": [-1,0,1], "5": [-1,0], "6": 0},
+    "offsets": [1,2,3,6,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇五度双六度 · prime form 0,1,2,3,7,8,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e3": {
+    "cnName": "四连簇五度双六度",
+    "name": "hepta-e3",
+    "scoreDisplay": {"2": [-1,0,1], "5": 0, "6": [-1,0]},
+    "offsets": [1,2,3,7,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度四度三全音六度 · prime form 0,1,2,4,5,6,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e4": {
+    "cnName": "簇三度四度三全音六度",
+    "name": "hepta-e4",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "6": 0},
+    "offsets": [1,2,4,5,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz五度小六 · prime form 0,1,2,4,5,7,8 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e5": {
+    "cnName": "簇Hijaz五度小六",
+    "name": "hepta-e5",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": 0, "6": -1},
+    "offsets": [1,2,4,5,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度五度三全音七 · prime form 0,1,2,5,6,7,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e6": {
+    "cnName": "簇四度五度三全音七",
+    "name": "hepta-e6",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": [-1,0], "7": -1},
+    "offsets": [1,2,5,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度三全音六七度 · prime form 0,1,2,5,6,9,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e7": {
+    "cnName": "簇四度三全音六七度",
+    "name": "hepta-e7",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,5,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // Hijaz三全音五度六度 · prime form 0,1,3,4,6,7,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e8": {
+    "cnName": "Hijaz三全音五度六度",
+    "name": "hepta-e8",
+    "scoreDisplay": {"2": -1, "3": 0, "4": 0, "5": [-1,0], "6": 0},
+    "offsets": [1,3,4,6,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // Hijaz三全音五度七度 · prime form 0,1,3,4,6,7,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e9": {
+    "cnName": "Hijaz三全音五度七度",
+    "name": "hepta-e9",
+    "scoreDisplay": {"2": -1, "3": 0, "4": 0, "5": [-1,0], "7": -1},
+    "offsets": [1,3,4,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
   }
 }
