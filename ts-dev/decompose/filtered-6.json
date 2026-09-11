@@ -106443,18 +106443,6 @@
       "pianoKeyIdRoot": 3,
       "pianoKeySymbolRoot": "Q",
       "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
-    {
-      "pianoKeyIdRoot": 3,
-      "pianoKeySymbolRoot": "Q",
-      "isChordFormula": true,
       "formulaId": "dom13#11",
       "scoreDisplay": "13#11",
       "transform": {
@@ -304262,18 +304250,6 @@
   ],
   "BCDFXY": [
     {
-      "pianoKeyIdRoot": 8,
-      "pianoKeySymbolRoot": "Y",
-      "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
-    {
       "pianoKeyIdRoot": 2,
       "pianoKeySymbolRoot": "D",
       "isChordFormula": true,
@@ -359968,18 +359944,6 @@
     }
   ],
   "ACEQXZ": [
-    {
-      "pianoKeyIdRoot": 6,
-      "pianoKeySymbolRoot": "X",
-      "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
     {
       "pianoKeyIdRoot": 0,
       "pianoKeySymbolRoot": "C",
@@ -537916,18 +537880,6 @@
       "pianoKeyIdRoot": 4,
       "pianoKeySymbolRoot": "E",
       "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
-    {
-      "pianoKeyIdRoot": 4,
-      "pianoKeySymbolRoot": "E",
-      "isChordFormula": true,
       "formulaId": "dom13#11",
       "scoreDisplay": "13#11",
       "transform": {
@@ -688596,18 +688548,6 @@
   ],
   "BEFGPZ": [
     {
-      "pianoKeyIdRoot": 7,
-      "pianoKeySymbolRoot": "G",
-      "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
-    {
       "pianoKeyIdRoot": 1,
       "pianoKeySymbolRoot": "P",
       "isChordFormula": true,
@@ -777499,18 +777439,6 @@
     }
   ],
   "ABDFQY": [
-    {
-      "pianoKeyIdRoot": 5,
-      "pianoKeySymbolRoot": "F",
-      "isChordFormula": true,
-      "formulaId": "dom7b5#9",
-      "scoreDisplay": "7b5#9",
-      "transform": {
-        "add": 6
-      },
-      "cost": 0.5,
-      "tier": 3
-    },
     {
       "pianoKeyIdRoot": 5,
       "pianoKeySymbolRoot": "F",
