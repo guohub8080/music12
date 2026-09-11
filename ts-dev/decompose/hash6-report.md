@@ -46808,7 +46808,9 @@
 | 🔴6 | ~~Pmaj3add9~~ | ♭9 ♭3 ♭5 add7 add4 | 10 |
 | 🔴6 | ~~Emaj7~~ | ♭7 ♭3 ♯5 add6 add2 | 10 |
 
-## C-P-D-E-X-A  `{0,1,2,4,6,9}`  ⚙ lone-natural-add-exclusive
+## C-P-D-E-X-A  `{0,1,2,4,6,9}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -47728,7 +47730,9 @@
 | 🔴6 | ~~Pmaj3add6add9~~ | ♭9 ♭3 ♯5 ♯6 add7 | 12.5 |
 | 🔴6 | ~~Pmaj3add9~~ | ♭9 ♭3 ♯5 ♯6 add7 | 12.5 |
 
-## C-P-D-F-X-Y  `{0,1,2,5,6,8}`  ⚙ lone-natural-add-exclusive
+## C-P-D-F-X-Y  `{0,1,2,5,6,8}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -48150,7 +48154,9 @@
 | 🔴6 | ~~Bmaj3add11~~ | ♭3 ♭2 ♯11 ♯5 add2 | 12.5 |
 | 🔴6 | ~~Bmaj3add6~~ | ♭3 ♭5 ♭6 ♭2 add2 | 12.5 |
 
-## C-P-D-F-A-Z  `{0,1,2,5,9,10}`  ⚙ lone-natural-add-exclusive
+## C-P-D-F-A-Z  `{0,1,2,5,9,10}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -48404,7 +48410,9 @@
 | 🔴6 | ~~Ymaj7~~ | ♭5 ♭7 ♯2 add4 | 9.5 |
 | 🔴6 | ~~Ymaj9~~ | ♭5 ♭7 ♯9 add4 | 9.5 |
 
-## C-P-D-G-Y-Z  `{0,1,2,7,8,10}`  ⚙ lone-natural-add-exclusive
+## C-P-D-G-Y-Z  `{0,1,2,7,8,10}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -48620,7 +48628,9 @@
 | 🔴6 | ~~Emaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Emaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## C-P-Q-E-F-Y  `{0,1,3,4,5,8}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-E-F-Y  `{0,1,3,4,5,8}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -49342,7 +49352,9 @@
 | 🔴6 | ~~Cmaj7sus4~~ | omit5 ♭4 ♭2 ♯2 ♯6 | 10.5 |
 | 🔴6 | ~~Csus4~~ | omit5 ♭4 ♭2 ♯2 ♯6 add7 | 11 |
 
-## C-P-Q-F-X-G  `{0,1,3,5,6,7}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-F-X-G  `{0,1,3,5,6,7}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -49616,7 +49628,9 @@
 | 🔴6 | ~~Cmaj3add9~~ | ♭9 ♭3 ♭5 add4 add7 | 10 |
 | 🔴6 | ~~Qmaj7~~ | ♭7 ♭3 ♯5 add6 add2 | 10 |
 
-## C-P-Q-F-Y-B  `{0,1,3,5,8,11}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-F-Y-B  `{0,1,3,5,8,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -49810,7 +49824,9 @@
 | 🔴6 | ~~Bmaj7add11~~ | omit5 ♭7 ♭2 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Bsus4~~ | ♭4 ♭5 ♭2 ♯6 add2 | 9.5 |
 
-## C-P-Q-X-G-A  `{0,1,3,6,7,9}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-X-G-A  `{0,1,3,6,7,9}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -50393,7 +50409,9 @@
 | 🔴6 | ~~Cmaj3add6add9~~ | ♭9 ♭3 ♭5 ♯6 add7 | 12.5 |
 | 🔴6 | ~~Cmaj3add9~~ | ♭9 ♭3 ♭5 ♯6 add7 | 12.5 |
 
-## C-P-Q-G-Y-A  `{0,1,3,7,8,9}`  ⚙ lone-natural-add-exclusive
+## C-P-Q-G-Y-A  `{0,1,3,7,8,9}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -51083,7 +51101,9 @@
 | 🔴6 | ~~Gmaj7~~ | ♭5 ♭7 ♭2 ♯3 add6 | 12.5 |
 | 🔴6 | ~~Gmaj9~~ | ♭5 ♭7 ♭9 ♯3 add6 | 12.5 |
 
-## C-P-E-F-G-B  `{0,1,4,5,7,11}`  ⚙ lone-natural-add-exclusive
+## C-P-E-F-G-B  `{0,1,4,5,7,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -51253,7 +51273,9 @@
 | 🔴6 | ~~Zmaj7add11~~ | ♭3 ♭7 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Cmaj9~~ | ♭9 ♭7 ♯5 add4 | 9.5 |
 
-## C-P-E-X-G-Z  `{0,1,4,6,7,10}`  ⚙ lone-natural-add-exclusive
+## C-P-E-X-G-Z  `{0,1,4,6,7,10}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -52179,7 +52201,9 @@
 | 🔴6 | ~~Zmaj3add11~~ | omit5 ♭3 ♯11 ♯6 add2 add7 | 10 |
 | 🔴6 | ~~Zmaj3add6~~ | ♭3 ♭5 ♯6 add2 add7 | 10 |
 
-## C-P-E-Y-A-B  `{0,1,4,8,9,11}`  ⚙ lone-natural-add-exclusive
+## C-P-E-Y-A-B  `{0,1,4,8,9,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -52912,7 +52936,9 @@
 | 🔴6 | ~~Gmaj3~~ | ♭5 ♭2 ♯3 ♯2 add7 | 12.5 |
 | 🔴6 | ~~Gmaj3add9~~ | ♭5 ♭9 ♯3 ♯2 add7 | 12.5 |
 
-## C-P-X-G-A-B  `{0,1,6,7,9,11}`  ⚙ lone-natural-add-exclusive
+## C-P-X-G-A-B  `{0,1,6,7,9,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -53875,7 +53901,9 @@
 | 🔴6 | ~~Emaj9~~ | ♯5 ♯9 ♯3 ♯6 | 12 |
 | 🔴6 | ~~Emaj3add9~~ | ♯5 ♯9 ♯3 ♯6 add7 | 12.5 |
 
-## C-D-Q-E-G-B  `{0,2,3,4,7,11}`  ⚙ lone-natural-add-exclusive
+## C-D-Q-E-G-B  `{0,2,3,4,7,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -53938,7 +53966,9 @@
 | 🔴6 | ~~Dmaj3~~ | omit5 ♭2 ♯3 ♯6 add2 add6 | 10 |
 | 🔴6 | ~~Dmaj7~~ | omit5 ♭7 ♭2 ♯3 add2 add6 | 10 |
 
-## C-D-Q-E-A-Z  `{0,2,3,4,9,10}`  ⚙ lone-natural-add-exclusive
+## C-D-Q-E-A-Z  `{0,2,3,4,9,10}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -54318,7 +54348,9 @@
 | 🔴6 | ~~Cmaj7add11~~ | ♭3 ♭7 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Dmaj9~~ | ♭7 ♭9 ♯5 add4 | 9.5 |
 
-## C-D-Q-X-Y-A  `{0,2,3,6,8,9}`  ⚙ lone-natural-add-exclusive
+## C-D-Q-X-Y-A  `{0,2,3,6,8,9}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -55405,7 +55437,9 @@
 | 🔴6 | ~~Esus4~~ | ♭4 ♭2 ♯5 ♯6 add2 | 9.5 |
 | 🔴6 | ~~Ymaj11~~ | omit9 ♭7 ♯11 ♯5 add6 | 10 |
 
-## C-D-E-F-X-B  `{0,2,4,5,6,11}`  ⚙ lone-natural-add-exclusive
+## C-D-E-F-X-B  `{0,2,4,5,6,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -55781,7 +55815,9 @@
 | 🔴6 | ~~Bmaj3add9~~ | ♭9 ♭3 ♭5 add4 add7 | 10 |
 | 🔴6 | ~~Dmaj7~~ | ♭7 ♭3 ♯5 add2 add6 | 10 |
 
-## C-D-E-X-Y-Z  `{0,2,4,6,8,10}`  ⚙ lone-natural-add-exclusive
+## C-D-E-X-Y-Z  `{0,2,4,6,8,10}`  ✋ verdict(0,2,4,6,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):全音六音为唯一解释(硬规则):Forte 6-35 全音音阶本体,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -56041,7 +56077,9 @@
 | 🔴6 | ~~Emaj7~~ | ♭7 ♯5 ♯2 add4 | 9.5 |
 | 🔴6 | ~~Emaj9~~ | ♭7 ♯5 ♯9 add4 | 9.5 |
 
-## C-D-E-G-Z-B  `{0,2,4,7,10,11}`  ⚙ lone-natural-add-exclusive
+## C-D-E-G-Z-B  `{0,2,4,7,10,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -56517,7 +56555,9 @@
 | 🔴6 | ~~Ysus4~~ | ♭4 ♭5 ♭2 ♯6 add6 | 9.5 |
 | 🔴6 | ~~Xmaj3add6~~ | ♭5 ♭6 ♭3 add7 add2 | 10 |
 
-## C-D-F-X-Y-B  `{0,2,5,6,8,11}`  ⚙ lone-natural-add-exclusive
+## C-D-F-X-Y-B  `{0,2,5,6,8,11}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -56862,7 +56902,9 @@
 | 🔴6 | ~~Dmaj3add9~~ | ♯9 ♯3 ♯6 ♯4 | 12 |
 | 🔴6 | ~~Dmaj9~~ | ♭7 ♯9 ♯3 ♯4 | 12 |
 
-## C-D-F-Y-A-Z  `{0,2,5,8,9,10}`  ⚙ lone-natural-add-exclusive
+## C-D-F-Y-A-Z  `{0,2,5,8,9,10}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -57372,7 +57414,9 @@
 | 🔴6 | ~~Xmaj3add6add9~~ | ♭5 ♭6 ♭3 ♭2 | 12 |
 | 🔴6 | ~~Xmaj3add6~~ | ♭5 ♭6 ♭3 ♭2 add2 | 12.5 |
 
-## C-D-X-G-Y-B  `{0,2,6,7,8,11}`  ⚙ lone-natural-add-exclusive
+## C-D-X-G-Y-B  `{0,2,6,7,8,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -58177,7 +58221,9 @@
 | 🔴6 | ~~Gmaj7~~ | ♭7 ♭2 ♯3 ♯5 add6 | 12.5 |
 | 🔴6 | ~~Gmaj9~~ | ♭7 ♭9 ♯3 ♯5 add6 | 12.5 |
 
-## C-Q-E-F-G-A  `{0,3,4,5,7,9}`  ⚙ lone-natural-add-exclusive
+## C-Q-E-F-G-A  `{0,3,4,5,7,9}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -58985,7 +59031,9 @@
 | 🔴6 | ~~Qmaj3add9~~ | ♭9 ♭3 ♭5 add6 add4 | 10 |
 | 🔴6 | ~~Xmaj7~~ | ♭5 ♭7 ♭3 add6 add2 | 10 |
 
-## C-Q-E-X-A-Z  `{0,3,4,6,9,10}`  ⚙ lone-natural-add-exclusive
+## C-Q-E-X-A-Z  `{0,3,4,6,9,10}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -59129,7 +59177,9 @@
 | 🔴6 | ~~Cminmaj11~~ | omit9 ♭11 ♭5 ♭7 add6 | 10 |
 | 🔴6 | ~~Xminmaj11~~ | omit9 ♭5 ♭7 ♭11 add6 | 10 |
 
-## C-Q-E-X-Z-B  `{0,3,4,6,10,11}`  ⚙ lone-natural-add-exclusive
+## C-Q-E-X-Z-B  `{0,3,4,6,10,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -59622,7 +59672,9 @@
 | 🔴6 | ~~Gmaj3add6add9~~ | ♯3 ♯5 ♯6 ♯9 add7 | 12.5 |
 | 🔴6 | ~~Gmaj3add9~~ | ♯3 ♯5 ♯9 ♯6 add7 | 12.5 |
 
-## C-Q-F-X-A-B  `{0,3,5,6,9,11}`  ⚙ lone-natural-add-exclusive
+## C-Q-F-X-A-B  `{0,3,5,6,9,11}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -60317,7 +60369,9 @@
 | 🔴6 | ~~Amaj3add11~~ | ♭3 ♭2 ♯11 ♯5 add2 | 12.5 |
 | 🔴6 | ~~Amaj3add6~~ | ♭3 ♭5 ♭6 ♭2 add2 | 12.5 |
 
-## C-Q-X-G-Y-Z  `{0,3,6,7,8,10}`  ⚙ lone-natural-add-exclusive
+## C-Q-X-G-Y-Z  `{0,3,6,7,8,10}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -60963,7 +61017,9 @@
 | 🔴6 | ~~Amaj3add11~~ | omit5 ♭3 ♯11 ♯6 add7 add2 | 10 |
 | 🔴6 | ~~Amaj3add6~~ | ♭3 ♭5 ♯6 add7 add2 | 10 |
 
-## C-Q-G-Y-Z-B  `{0,3,7,8,10,11}`  ⚙ lone-natural-add-exclusive
+## C-Q-G-Y-Z-B  `{0,3,7,8,10,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -61409,7 +61465,9 @@
 | 🔴6 | ~~Xmaj3add6~~ | ♭5 ♯6 ♯3 add7 add2 | 10 |
 | 🔴6 | ~~Yminmaj11~~ | omit9 ♭11 ♭7 ♯5 add6 | 10 |
 
-## C-E-F-X-A-Z  `{0,4,5,6,9,10}`  ⚙ lone-natural-add-exclusive
+## C-E-F-X-A-Z  `{0,4,5,6,9,10}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -61555,7 +61613,9 @@
 | 🔴6 | ~~Xmaj3add6add9~~ | ♭5 ♯6 ♯9 ♯3 add7 | 12.5 |
 | 🔴6 | ~~Xmaj3add9~~ | ♭5 ♯9 ♯3 ♯6 add7 | 12.5 |
 
-## C-E-F-G-Y-A  `{0,4,5,7,8,9}`  ⚙ lone-natural-add-exclusive
+## C-E-F-G-Y-A  `{0,4,5,7,8,9}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -62489,7 +62549,9 @@
 | 🔴6 | ~~Amaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Amaj3add9~~ | ♭3 ♭9 ♯5 add6 add7 | 10 |
 
-## C-F-X-Y-Z-B  `{0,5,6,8,10,11}`  ⚙ lone-natural-add-exclusive
+## C-F-X-Y-Z-B  `{0,5,6,8,10,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -63728,7 +63790,9 @@
 | 🔴6 | ~~Dmaj3add9~~ | ♭9 ♭3 ♭5 add7 add4 | 10 |
 | 🔴6 | ~~Fmaj7~~ | ♭7 ♭3 ♯5 add6 add2 | 10 |
 
-## P-D-Q-F-G-Z  `{1,2,3,5,7,10}`  ⚙ lone-natural-add-exclusive
+## P-D-Q-F-G-Z  `{1,2,3,5,7,10}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -64418,7 +64482,9 @@
 | 🔴6 | ~~Fmaj3~~ | ♯5 ♯3 ♯6 ♯4 add6 | 12.5 |
 | 🔴6 | ~~Fmaj7~~ | ♭7 ♯5 ♯3 ♯4 add6 | 12.5 |
 
-## P-D-Q-X-G-A  `{1,2,3,6,7,9}`  ⚙ lone-natural-add-exclusive
+## P-D-Q-X-G-A  `{1,2,3,6,7,9}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -64765,7 +64831,9 @@
 | 🔴6 | ~~Qmaj3add6add9~~ | ♯6 ♯9 ♯3 ♯5 add7 | 12.5 |
 | 🔴6 | ~~Qmaj3add9~~ | ♯9 ♯3 ♯5 ♯6 add7 | 12.5 |
 
-## P-D-Q-X-Z-B  `{1,2,3,6,10,11}`  ⚙ lone-natural-add-exclusive
+## P-D-Q-X-Z-B  `{1,2,3,6,10,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -64892,7 +64960,9 @@
 | 🔴6 | ~~Amaj7~~ | ♭5 ♭7 ♭2 add4 | 9.5 |
 | 🔴6 | ~~Amaj9~~ | ♭5 ♭7 ♭9 add4 | 9.5 |
 
-## P-D-Q-Y-A-B  `{1,2,3,8,9,11}`  ⚙ lone-natural-add-exclusive
+## P-D-Q-Y-A-B  `{1,2,3,8,9,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -65041,7 +65111,9 @@
 | 🔴6 | ~~Fmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Fmaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## P-D-E-F-X-A  `{1,2,4,5,6,9}`  ⚙ lone-natural-add-exclusive
+## P-D-E-F-X-A  `{1,2,4,5,6,9}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -65464,7 +65536,9 @@
 | 🔴6 | ~~Emaj7~~ | ♭7 ♭5 ♭2 ♯3 add6 | 12.5 |
 | 🔴6 | ~~Emaj9~~ | ♭7 ♭9 ♭5 ♯3 add6 | 12.5 |
 
-## P-D-E-X-G-Y  `{1,2,4,6,7,8}`  ⚙ lone-natural-add-exclusive
+## P-D-E-X-G-Y  `{1,2,4,6,7,8}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -65650,7 +65724,9 @@
 | 🔴6 | ~~Emaj7~~ | ♭7 ♭3 ♭5 add6 add2 | 10 |
 | 🔴6 | ~~Emaj7add11~~ | omit5 ♭7 ♭3 ♯11 add6 add2 | 10 |
 
-## P-D-E-G-Y-Z  `{1,2,4,7,8,10}`  ⚙ lone-natural-add-exclusive
+## P-D-E-G-Y-Z  `{1,2,4,7,8,10}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -65941,7 +66017,9 @@
 | 🔴6 | ~~Pmaj7add11~~ | omit5 ♭3 ♭7 ♭2 ♯11 add6 | 12.5 |
 | 🔴6 | ~~Pmaj9~~ | ♭9 ♭3 ♭5 ♭7 add6 | 12.5 |
 
-## P-D-E-Y-A-Z  `{1,2,4,8,9,10}`  ⚙ lone-natural-add-exclusive
+## P-D-E-Y-A-Z  `{1,2,4,8,9,10}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -66321,7 +66399,9 @@
 | 🔴6 | ~~Bmaj7add11~~ | ♭3 ♭7 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Pmaj9~~ | ♭9 ♭7 ♯5 add4 | 9.5 |
 
-## P-D-F-G-Y-B  `{1,2,5,7,8,11}`  ⚙ lone-natural-add-exclusive
+## P-D-F-G-Y-B  `{1,2,5,7,8,11}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -68188,7 +68268,9 @@
 | 🔴6 | ~~Fmaj3add6add9~~ | ♯5 ♯6 ♯9 ♯3 add7 | 12.5 |
 | 🔴6 | ~~Fmaj3add9~~ | ♯5 ♯9 ♯3 ♯6 add7 | 12.5 |
 
-## P-Q-E-F-Z-B  `{1,3,4,5,10,11}`  ⚙ lone-natural-add-exclusive
+## P-Q-E-F-Z-B  `{1,3,4,5,10,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -68425,7 +68507,9 @@
 | 🔴6 | ~~Pmaj7add11~~ | ♭3 ♭7 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Qmaj9~~ | ♭7 ♭9 ♯5 add4 | 9.5 |
 
-## P-Q-E-G-A-Z  `{1,3,4,7,9,10}`  ⚙ lone-natural-add-exclusive
+## P-Q-E-G-A-Z  `{1,3,4,7,9,10}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -69102,7 +69186,9 @@
 | 🔴6 | ~~Qmaj7add11~~ | ♭7 ♭3 ♯11 add2 | 9.5 |
 | 🔴6 | ~~Fmaj9~~ | ♭7 ♭9 ♯5 add4 | 9.5 |
 
-## P-Q-F-G-A-B  `{1,3,5,7,9,11}`  ⚙ lone-natural-add-exclusive
+## P-Q-F-G-A-B  `{1,3,5,7,9,11}`  ✋ verdict(0,2,4,6,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):全音六音为唯一解释(硬规则):Forte 6-35 全音音阶本体,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -69760,7 +69846,9 @@
 | 🔴6 | ~~Zmaj3add6add9~~ | ♯9 ♯3 ♯5 ♯6 add7 | 12.5 |
 | 🔴6 | ~~Zmaj3add9~~ | ♯9 ♯3 ♯5 ♯6 add7 | 12.5 |
 
-## P-Q-X-A-Z-B  `{1,3,6,9,10,11}`  ⚙ lone-natural-add-exclusive
+## P-Q-X-A-Z-B  `{1,3,6,9,10,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -70239,7 +70327,9 @@
 | 🔴6 | ~~Ymaj7~~ | ♭7 ♭2 ♯3 ♯5 add6 | 12.5 |
 | 🔴6 | ~~Ymaj9~~ | ♭7 ♭9 ♯3 ♯5 add6 | 12.5 |
 
-## P-E-F-X-Y-Z  `{1,4,5,6,8,10}`  ⚙ lone-natural-add-exclusive
+## P-E-F-X-Y-Z  `{1,4,5,6,8,10}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -70821,7 +70911,9 @@
 | 🔴6 | ~~Gmaj7~~ | ♭5 ♭7 ♭3 add6 add2 | 10 |
 | 🔴6 | ~~Gmaj7add11~~ | omit5 ♭7 ♭3 ♯11 add6 add2 | 10 |
 
-## P-E-F-G-Z-B  `{1,4,5,7,10,11}`  ⚙ lone-natural-add-exclusive
+## P-E-F-G-Z-B  `{1,4,5,7,10,11}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -71272,7 +71364,9 @@
 | 🔴6 | ~~Ymaj3add6add9~~ | ♯3 ♯5 ♯6 ♯9 add7 | 12.5 |
 | 🔴6 | ~~Ymaj3add9~~ | ♯3 ♯5 ♯9 ♯6 add7 | 12.5 |
 
-## P-E-G-Y-A-B  `{1,4,7,8,9,11}`  ⚙ lone-natural-add-exclusive
+## P-E-G-Y-A-B  `{1,4,7,8,9,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -71912,7 +72006,9 @@
 | 🔴6 | ~~Gmaj3add11~~ | omit5 ♭3 ♯11 ♯6 add7 add2 | 10 |
 | 🔴6 | ~~Gmaj3add6~~ | ♭5 ♭3 ♯6 add7 add2 | 10 |
 
-## P-F-X-G-Z-B  `{1,5,6,7,10,11}`  ⚙ lone-natural-add-exclusive
+## P-F-X-G-Z-B  `{1,5,6,7,10,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -71972,7 +72068,9 @@
 | 🔴6 | ~~Fmaj3add9~~ | ♭2 ♯5 ♯3 ♯4 | 12 |
 | 🔴6 | ~~Fmaj3~~ | ♭2 ♯5 ♯3 ♯4 add2 | 12.5 |
 
-## P-F-X-Y-A-Z  `{1,5,6,8,9,10}`  ⚙ lone-natural-add-exclusive
+## P-F-X-Y-A-Z  `{1,5,6,8,9,10}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -73171,7 +73269,9 @@
 | 🔴6 | ~~Qmaj3add9~~ | ♭9 ♭3 ♭5 add7 add4 | 10 |
 | 🔴6 | ~~Xmaj7~~ | ♭7 ♭3 ♯5 add6 add2 | 10 |
 
-## D-Q-E-X-Y-B  `{2,3,4,6,8,11}`  ⚙ lone-natural-add-exclusive
+## D-Q-E-X-Y-B  `{2,3,4,6,8,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -73435,7 +73535,9 @@
 | 🔴6 | ~~Qmaj3add6add9~~ | ♭9 ♭3 ♭6 add7 | 9.5 |
 | 🔴6 | ~~Zmaj3add6add9~~ | ♭5 ♭6 ♭9 add4 | 9.5 |
 
-## D-Q-E-G-Y-Z  `{2,3,4,7,8,10}`  ⚙ lone-natural-add-exclusive
+## D-Q-E-G-Y-Z  `{2,3,4,7,8,10}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -73827,7 +73929,9 @@
 | 🔴6 | ~~Xmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Xmaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## D-Q-F-X-G-Z  `{2,3,5,6,7,10}`  ⚙ lone-natural-add-exclusive
+## D-Q-F-X-G-Z  `{2,3,5,6,7,10}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -74246,7 +74350,9 @@
 | 🔴6 | ~~Fmaj7~~ | ♭7 ♭5 ♭2 ♯3 add6 | 12.5 |
 | 🔴6 | ~~Fmaj9~~ | ♭7 ♭9 ♭5 ♯3 add6 | 12.5 |
 
-## D-Q-F-G-Y-A  `{2,3,5,7,8,9}`  ⚙ lone-natural-add-exclusive
+## D-Q-F-G-Y-A  `{2,3,5,7,8,9}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -74424,7 +74530,9 @@
 | 🔴6 | ~~Dmaj3add9~~ | ♭9 ♭3 ♭5 add4 add6 | 10 |
 | 🔴6 | ~~Fmaj7~~ | ♭7 ♭3 ♭5 add6 add2 | 10 |
 
-## D-Q-F-Y-A-B  `{2,3,5,8,9,11}`  ⚙ lone-natural-add-exclusive
+## D-Q-F-Y-A-B  `{2,3,5,8,9,11}`  ✋ verdict(0,1,3,6,7,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):对称双根双保留:dom7b5#9(add6)×2,变形系全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -74562,7 +74670,9 @@
 | 🔴6 | ~~Fminmaj11~~ | omit9 ♭7 ♭11 ♭5 add6 | 10 |
 | 🔴6 | ~~Bminmaj11~~ | omit9 ♭11 ♭5 ♭7 add6 | 10 |
 
-## D-Q-F-A-Z-B  `{2,3,5,9,10,11}`  ⚙ lone-natural-add-exclusive
+## D-Q-F-A-Z-B  `{2,3,5,9,10,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -75577,7 +75687,9 @@
 | 🔴6 | ~~Emaj7~~ | ♭7 ♭5 ♭2 add4 | 9.5 |
 | 🔴6 | ~~Emaj9~~ | ♭7 ♭9 ♭5 add4 | 9.5 |
 
-## D-E-F-Y-Z-B  `{2,4,5,8,10,11}`  ⚙ lone-natural-add-exclusive
+## D-E-F-Y-Z-B  `{2,4,5,8,10,11}`  ✋ verdict(0,1,4,6,7,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -76672,7 +76784,9 @@
 | 🔴6 | ~~Amaj7~~ | ♭7 ♭2 ♯3 ♯5 add6 | 12.5 |
 | 🔴6 | ~~Amaj9~~ | ♭7 ♭9 ♯3 ♯5 add6 | 12.5 |
 
-## D-F-X-G-A-B  `{2,5,6,7,9,11}`  ⚙ lone-natural-add-exclusive
+## D-F-X-G-A-B  `{2,5,6,7,9,11}`  ✋ verdict(0,1,2,4,6,9) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -77318,7 +77432,9 @@
 | 🔴6 | ~~Ymaj3add11~~ | omit5 ♭3 ♯11 ♯6 add7 add2 | 10 |
 | 🔴6 | ~~Ymaj3add6~~ | ♭5 ♭3 ♯6 add7 add2 | 10 |
 
-## D-X-G-A-Z-B  `{2,6,7,9,10,11}`  ⚙ lone-natural-add-exclusive
+## D-X-G-A-Z-B  `{2,6,7,9,10,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -77901,7 +78017,9 @@
 | 🔴6 | ~~Fmaj3add6~~ | ♭5 ♯6 ♯3 add7 add2 | 10 |
 | 🔴6 | ~~Gminmaj11~~ | omit9 ♭7 ♭11 ♯5 add6 | 10 |
 
-## Q-E-F-Y-A-B  `{3,4,5,8,9,11}`  ⚙ lone-natural-add-exclusive
+## Q-E-F-Y-A-B  `{3,4,5,8,9,11}`  ✋ verdict(0,1,2,5,6,8) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -78130,7 +78248,9 @@
 | 🔴6 | ~~Gmaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Gmaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## Q-E-X-G-Y-B  `{3,4,6,7,8,11}`  ⚙ lone-natural-add-exclusive
+## Q-E-X-G-Y-B  `{3,4,6,7,8,11}`  ✋ verdict(0,1,2,5,9,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -78196,7 +78316,9 @@
 | 🔴6 | ~~Xmaj3~~ | omit5 ♭2 ♯3 ♯6 add6 add2 | 10 |
 | 🔴6 | ~~Xmaj7~~ | omit5 ♭7 ♭2 ♯3 add6 add2 | 10 |
 
-## Q-E-X-Y-A-Z  `{3,4,6,8,9,10}`  ⚙ lone-natural-add-exclusive
+## Q-E-X-Y-A-Z  `{3,4,6,8,9,10}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|
@@ -79401,7 +79523,9 @@
 | 🔴6 | ~~Ymaj3~~ | ♭3 ♭2 ♯5 add6 add7 | 10 |
 | 🔴6 | ~~Ymaj3add9~~ | ♭9 ♭3 ♯5 add6 add7 | 10 |
 
-## E-F-G-A-Z-B  `{4,5,7,9,10,11}`  ⚙ lone-natural-add-exclusive
+## E-F-G-A-Z-B  `{4,5,7,9,10,11}`  ✋ verdict(0,1,2,7,8,10) ⚙ lone-natural-add-exclusive
+
+> ✋ 人工裁决(2026-09-08):maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接
 
 | tier | 和弦 | 变换 | cost |
 |---|---|---|---|

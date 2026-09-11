@@ -827,5 +827,57 @@
     "scoreDisplay": { "2": -1, "3": [-1, 0], "5": [-1, 0] },
     "offsets": [1, 3, 4, 6, 7],
     "tags": ["cluster", "forte-6-Z13", "z-related", "non-tertian"]
+  },
+
+  // ════════ 六音 t3 例外区 set 升格(带升降系,查证落地)════════
+
+  // 全音六音 · prime form 0,2,4,6,8,10 · Forte 6-35(02468T)
+  // 全音音阶本身(完整六音);音程向量 ⟨060603⟩——只含偶数音程类
+  // (六个全音+六个大三度+三个三全音),maximally even 极致均分;
+  // 仅 2 个独立移调(对称极致),Debussy/Messiaen 音色世界基石。
+  // 全库最著名的六音集合;最优 chord 解释 dom11#5(♯11) 变形。
+  // 审核:用户 2026-09-08 授权路线(带升降→查证→set)
+  "spset-whole_tone": {
+    "cnName": "全音六音",
+    "name": "Whole-Tone Hexachord",
+    "scoreDisplay": { "2": 0, "3": 0, "5": 0 },
+    "offsets": [2, 4, 6, 8, 10],
+    "tags": ["whole-tone", "symmetrical", "forte-6-35", "debussy"]
+  },
+
+  // 簇三全音六音 · prime form 0,1,2,4,6,9 · 向量 ⟨233331⟩
+  // 三音簇+大三+三全音+大六(半音簇大三度三全音的六音延伸);
+  // 最优 dom13sus4(♯5) 变形五度。无流通别名,簇系身份。
+  // 审核:用户 2026-09-08
+  "spset-cluster_wide": {
+    "cnName": "簇三全音六音",
+    "name": "Cluster-Wide",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "5": -1, "6": 0 },
+    "offsets": [1, 2, 4, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 簇双四度六音 · prime form 0,1,2,5,9,10 · 向量 ⟨323430⟩
+  // 三音簇+纯四+大六+小七(半音簇大六度加七的挂四六音延伸);
+  // 最优 dom13sus4(omit5 ♭2) 变形二度。
+  // 审核:用户 2026-09-08
+  "spset-cluster_sixth_seventh_fourth": {
+    "cnName": "簇双度六音",
+    "name": "Cluster-Sixth-Seventh-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "6": 0, "7": -1 },
+    "offsets": [1, 2, 5, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // Hijaz双三全音 · prime form 0,1,4,6,7,10 · 向量 ⟨224223⟩
+  // Hijaz特征前三音(♭2+♮3)+三全音+纯五+小七;dom11b9(♯11)
+  // 双根变形系最优。Hijaz 家族第四位。
+  // 审核:用户 2026-09-08
+  "spset-hijaz_tritone_pair": {
+    "cnName": "Hijaz双三全音",
+    "name": "Hijaz-Tritone-Pair",
+    "scoreDisplay": { "2": -1, "3": 0, "5": -1, "7": -1 },
+    "offsets": [1, 4, 6, 7, 10],
+    "tags": ["hijaz", "cluster", "non-tertian"]
   }
 }
