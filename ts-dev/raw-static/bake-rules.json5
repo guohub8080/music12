@@ -1544,16 +1544,17 @@
       "filterRest": true,
     },
 
-    // dom7b5#9 对称双根形:prime form 0,1,3,6,7,9,起点 A(9)
-    // 三全音系对称双根 0.5 并列双保留——Q/Adom7b5#9(add6)
-    // (本体+唯一外挂,双根各持;♯9 变形系 c=1 全滤)。
-    // 根 = 起点+1 / 起点+7。AI 代裁(纯自然授权)
+    // dom7b5#9 对称双根形:prime form 0,1,3,6,7,9 自规范起点 C
+    // 对称双根 0.5 并列双保留——Q(起点+1)/A(起点+9)dom7b5#9(add6)
+    // (本体+唯一外挂,双根各持;♯9 变形系 c=1 全滤;Q/A 互为三全音
+    // +b5#9 系对称)。首版 rootRel 算错被空组防线拦下。
+    // AI 代裁(纯自然授权)
     "0,1,3,6,7,9": {
       "date": "2026-09-08",
-      "comment": "对称双根双保留:dom7b5#9(add6)×2,变形系全滤",
+      "comment": "对称双根双保留:dom7b5#9(add6)×2(Q/A),变形系全滤",
       "keep": [
         { "type": "chord", "formula": "dom7b5#9", "rootRel": 1 },
-        { "type": "chord", "formula": "dom7b5#9", "rootRel": 7 },
+        { "type": "chord", "formula": "dom7b5#9", "rootRel": 9 },
       ],
       "filterRest": true,
     },
