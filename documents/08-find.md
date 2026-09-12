@@ -24,7 +24,7 @@ import { findChord } from "music12"
 
 // 你弹了 C-E-G-Bb（MIDI 60-64-67-70）
 const results = findChord([60, 64, 67, 70])
-console.log(results[0].chordFormulaId) // "dom7"（C7）
+console.log(results[0].formulaId)    // "dom7"（C7）
 console.log(results[0].isExact)         // true（完全命中,cost=0 无变换）
 ```
 
@@ -76,17 +76,21 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // 只返回 Am7（根是 A
 
 ```ts
 {
-  chordFormulaId: "dom7",       // 公式 ID
+  formulaId: "dom7",            // 公式 ID（set 读法为 spset- 前缀）
+  chordName: "Cdom7",           // 根音符号 + 公式 ID
   pianoKeyIdRoot: 0,            // 根音 pianoKeyId
-  pianoKeyIdsSorted: [0,4,7,10], // 音集（排序去重）
-  similarity: 1,                 // 相似度（完全匹配=1，省略音<1）
-  intersection: [0,4,7,10],     // 交集
-  transformString: "omit5",      // 变换描述（省略音匹配时才有）
-  isRootPosition: false          // 是否原位
+  isExact: true,                // 完全命中（cost=0 且无变换）
+  transform: {},                // 变换分组对象（omit/add/sharp/flat;完全命中为 {}）
+  cost: 0,                      // 加权变换成本（越低越合理）
+  tier: 1,                      // 1 完全命中 … 6 极端
+  isChordFormula: true,         // true=和弦公式 / false=special-set 读法
+  isRootPosition: false,        // 是否原位（仅 rootNoteLocation 指定时为 true）
+  chord: Chord | null,          // 惰性 Chord 实例（set 读法为 null）
+  setEntity: I_SetEntity | null // 惰性 set 实体（和弦读法为 null）
 }
 ```
 
-`transformString` 在省略音匹配时特别有用——它告诉你「相对标准和弦，你省了/加了什么」。如 `"omit5"` 表示省了五度，`"add9"` 表示多了九度。
+`transform` 是分组对象，省略音匹配时特别有用——如 `{ omit: 5 }` 表示省了五度，`{ add: 9 }` 多了九度，`{ sharp: 5 }` 升了五度。裁决已由烘焙管线固化进表（每个键集 1~4 条零噪音答案），运行时纯查表 O(1)。
 
 ### 至少要 3 个音
 
@@ -162,7 +166,7 @@ findScaleByDegreePositions([
 ```ts
 const userNotes = [60, 64, 67, 70, 74] // C-E-G-Bb-D
 const results = findChord(userNotes)
-console.log(results[0].chordFormulaId) // "dom9"（C9）
+console.log(results[0].formulaId)    // "dom9"（C9）
 // 用户弹的是 C9，findChord 识别出来了
 ```
 

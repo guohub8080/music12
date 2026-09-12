@@ -35,7 +35,7 @@ const g7 = new Chord(7, "dom7")
 g7.pianoKeyIds        // [7, 11, 2, 5] —— G-B-D-F（按度数序）
 g7.pianoKeyIdsSorted  // [2, 5, 7, 11]（升序）
 g7.notesNum           // 4
-g7.chordFormulaId     // "dom7"
+g7.formulaId     // "dom7"
 g7.cnName             // "属七"
 g7.scoreSymbol        // "7" —— 记谱符号
 g7.intervalList       // [["maj",3],["p",5],["min",7]] —— 构成音程
@@ -49,7 +49,7 @@ g7.intervalList       // [["maj",3],["p",5],["min",7]] —— 构成音程
 | 属性 | 类型 | 说明 | 示例（dom7@C） |
 |---|---|---|---|
 | `rootPianoKeyId` | `number` | 根音 pianoKeyId | `0` |
-| `chordFormulaId` | `string` | 公式 ID | `"dom7"` |
+| `formulaId` | `string` | 公式 ID（find 读法字段） | `"dom7"` |
 | `family` | `string` | 家族（旧分类） | `"chord7"` |
 | `baseSymbol` | `string` | 基础记谱符号 | `"7"` |
 | `cnName` | `string` | 中文名 | `"属七"` |
@@ -164,7 +164,7 @@ import { getChordTransformByPianoKeyIds } from "music12"
 
 // 标准是 C7 [0,4,7,10]，但用户弹了 [0,4,10]（省了五度 G）
 const result = getChordTransformByPianoKeyIds(
-  { rootPianoKeyId: 0, chordFormulaId: "dom7" },
+  { rootPianoKeyId: 0, formulaId: "dom7" },
   [0, 4, 10]
 )
 // result.omit = [5]（省略了五度）

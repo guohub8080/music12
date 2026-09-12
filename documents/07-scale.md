@@ -127,7 +127,7 @@ console.log(cGong.pianoKeyIds.length) // 5
 const cMajor = new Scale(0, "NATURAL_MAJOR")
 for (let i = 1; i <= 7; i++) {
   const chord = cMajor.getScaleDegreeChord7(i)[0]
-  console.log(`${i} 级: ${chord.chordFormulaId} @ ${chord.pianoKeyIdRoot}`)
+  console.log(`${i} 级: ${chord.formulaId} @ ${chord.pianoKeyIdRoot}`)
 }
 // 1: maj7 @ 0(C), 2: min7 @ 2(D), 3: min7 @ 4(E), 4: maj7 @ 5(F),
 // 5: dom7 @ 7(G), 6: min7 @ 9(A), 7: halfdim7 @ 11(B)

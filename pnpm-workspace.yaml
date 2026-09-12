@@ -1,0 +1,5 @@
+projects:
+  - .
+# 音乐库独立 workspace 根(2026-09-12):阻断 pnpm 向上搜索到 ~/pnpm-workspace.yaml,
+# 后者会把整个 HOME 当 workspace,run/exec 时 glob 进 ~/Music 的 Logic Pro
+# 苹果循环库(数十万文件)导致 4GB OOM。本文件使 music12 自成 workspace 根。

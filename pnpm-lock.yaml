@@ -11,9 +11,6 @@ importers:
       chinese-numbering:
         specifier: ^1.0.0
         version: 1.0.0
-      collect.js:
-        specifier: ^4.36.1
-        version: 4.36.1
       es-toolkit:
         specifier: ^1.49.0
         version: 1.49.0
@@ -830,9 +827,6 @@ packages:
 
   chinese-numbering@1.0.0:
     resolution: {integrity: sha512-CsGoI1oj4V9BaMsFzj4FRNP3Z2vlr5e/Pkdv6sXJcd5ce2Jtt6W/zMkvjP3TmxCsin+2nosuBYI7sx2uj9rxIg==}
-
-  collect.js@4.36.1:
-    resolution: {integrity: sha512-jd97xWPKgHn6uvK31V6zcyPd40lUJd7gpYxbN2VOVxGWO4tyvS9Li4EpsFjXepGTo2tYcOTC4a8YsbQXMJ4XUw==}
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
@@ -2347,8 +2341,6 @@ snapshots:
   chai@6.2.2: {}
 
   chinese-numbering@1.0.0: {}
-
-  collect.js@4.36.1: {}
 
   convert-source-map@2.0.0: {}
 
