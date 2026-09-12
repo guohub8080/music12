@@ -9,7 +9,7 @@
  *     chord-instances(1056=88×12) / scale-instances(720=60×12)
  *     / scale-instances-major-minor(24=大小调×12,常用切片)
  *
- * 单一真相源:json5 源 + 生成器逻辑;TS 版和 C++ 版都读这里产出的 JSON。
+ * 单一真相源:json5 源 + 生成器逻辑;消费方只读这里产出的 JSON(C++ 双实现暂缓,存档 git 历史)。
  * 产物幂等:重跑后 git diff 必须为零(验证兜底:ts-dev/verify/*)。
  */
 import { isNil, isNotNil } from 'es-toolkit/predicate'

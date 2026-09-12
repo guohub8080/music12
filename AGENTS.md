@@ -169,9 +169,8 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 ```
 src/           TS 库本体（发布 npm 的就是它）
-static-data/   编译产物：7 个 JSON（TS 和 C++ 只读这一份，永不手改）
+static-data/   编译产物：JSON（只读这份，永不手改；已移出版本控制，构建时生成）
 ts-dev/        TS 开发工具：数据生成器脚本 + raw-static/ 数据源头（手改、带注释）
-mono-repo/cpp/ C++20 实现（非 TS 的一律进 mono-repo）
 test/          单元测试（test/unit）+ 黄金向量（test/vectors）
 documents/     人类可读的分章文档
 ```
@@ -195,9 +194,8 @@ documents/     人类可读的分章文档
 ts-dev/raw-static/*.json5   ← 手改的数据源头：JSON5 格式，带 // 注释（仅 5 个定义表）
       │  pnpm gen:static-data 第 0 步：JSON5 → 标准 JSON 编译
       ▼
-static-data/*.json   ← 编译/生成产物（提交进仓库；TS 与 C++ 只读，永不手改）
+static-data/*.json   ← 编译/生成产物（gitignore，构建时生成；只读，永不手改）
       ├── src/ 各 data.ts 用 @static-data/xxx.json 导入
-      └── mono-repo/cpp 通过 MUSIC12_ROOT 指向仓库根读取
 
 chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计算产出
 ```
@@ -313,12 +311,10 @@ this._cache = void 0
 - **默认每次对话/任务完成后 commit 当前未提交的所有改动**：`git add -A`，提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范（中文，正文写清动机与验证结果）
 - **完成后绝对禁止执行 `git push` 或任何推送远程的命令**。推送是极为谨慎的事情——只允许在用户明确说「push」时执行，任何情况下都不得自动推送、不得顺带推送、不得推完 main 顺手推别的分支
 
-### 验证三件套（结构/数据改动后必跑）
+### 验证两件套（结构/数据改动后必跑；C++ 双实现 2026-09-12 用户裁决暂缓,存档 git 历史,恢复即 revert 摘除提交）
 
 ```bash
 pnpm test                 # TS 单元测试（当前 261 个）
-pnpm test:cpp             # C++ 测试（当前 32 个，需先 pnpm build:cpp）
-pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1723 条黄金向量，必须 100%）
 ```
 
 任何一个红了就不许提交。改动涉及数据或目录时，额外确认生成器重跑零差异。

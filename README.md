@@ -100,14 +100,13 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → 只 C6
 
 ## Monorepo 架构(v4.0+)
 
-music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄金测试向量保证幂等。
+music12 是 **TS 实现** 的乐理库(C++ 双实现暂缓存档于 git 历史),数据由 json5 单一真相源编译,黄金测试向量保留于 test/vectors。
 
 ### 双实现
 
 | 实现 | 语言 | 用途 |
 |---|---|---|
 | `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
-| `mono-repo/cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
 
 两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1699/1699 通过)。
 
@@ -125,13 +124,14 @@ static-data/          ← 单一真相源(7 个 JSON)
 
 数据由 `ts-dev/` 生成器产出,改数据只需重跑 `pnpm gen:static-data`。
 
-### 幂等验证
+### 验证
 
 ```bash
-pnpm verify:all   # TS 测试(213) + C++ 测试(32) + 黄金向量(1699)
+npx vitest run           # 313 个单元测试(全部公共出口 × 乐理断言)
+npx tsx ts-dev/build-all.ts  # 全链:编译幂等 + 五表烘焙 + 五道防线 round-trip
 ```
 
-1699 个黄金测试向量覆盖全调式 × 全和弦,TS 版和 C++ 版跑同样输入,输出必须一致。
+(C++ 双实现暂缓存档于 git 历史,恢复即 revert 摘除提交;黄金向量保留在 test/vectors 供回归复用。)
 
 ### Tree Shaking
 
