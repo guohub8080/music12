@@ -107,14 +107,19 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
 
             // alterSum = 整个调式的全部升降号单位之和(根音计一次;重升记 2,
             // 升号根音加重升可自然超过 7——这是合法值,消费端自行判断取舍);
-            // alterNoteCount = 有变音的音的个数(与 alterSum 是两个不同字段)
+            // alterNoteCount = 有变音的音的个数(与 alterSum 是两个不同字段);
+            // isTonicEnharmonic = 全部音都带变音(五声 5/5 也算,原硬编码 7 漏五声)
             let alterNoteCount = 0;
             let alterSum = 0;
+            let noteTotal = 0;
             for (const key of keys(notesMap)) {
                 const note = notesMap[Number(key)];
-                if (isNotNil(note) && note.alter !== 0) {
-                    alterNoteCount++;
-                    alterSum += note.alter;
+                if (isNotNil(note)) {
+                    noteTotal++;
+                    if (note.alter !== 0) {
+                        alterNoteCount++;
+                        alterSum += note.alter;
+                    }
                 }
             }
 
@@ -122,7 +127,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
                 tonicStep: n.step,
                 tonicAlter: n.alter,
                 isTonicNormal: rootNoteSpelling.isNormal,
-                isTonicEnharmonic: alterNoteCount === 7,
+                isTonicEnharmonic: alterNoteCount === noteTotal,
                 isValid: true,
                 alterNoteCount,
                 alterSum,
