@@ -70,13 +70,15 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
             }
         }
 
+        // 拼写生成(2026-09-12 用户裁决):全部可能都展示——不做实用/理论调之分,
+        // 消费端用 alterSum 等字段自行取舍;唯一排除规则:产生 ≥3 重升降的拼写
+        // 报错删除(必有等音根音可代,与 scale-hash 的拼写上限裁决一致)
         const scales = pianoKey.getNotes({ alterAbsLte: 1 }).map((n: Note) => {
             const rootNoteSpelling = new Note(n.step, n.alter, 4);
             // octaveOffset 不入产物(2026-09-12 用户裁决:运行时零消费,死数据)
             const notesMap: Record<number, { step: string; alter: number } | null> = {
                 1: { step: n.step, alter: n.alter },
             };
-            let isValid = true;
 
             for (let i = 0; i < intervalList.length; i++) {
                 const degree = i + 2;
@@ -85,37 +87,35 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
                     notesMap[degree] = null;
                 } else {
                     const [quality, num] = intervalItem;
+                    // ≥3 重升降 / 音程构造失败 → 该拼写整行删除(返回 null,下方过滤)
                     try {
                         const interval = new Interval(quality as T_IntervalType, num as number);
                         const targetNote = rootNoteSpelling.getNoteByInterval(interval);
+                        if (Math.abs(targetNote.alter) >= 3) return null;
                         notesMap[degree] = {
                             step: targetNote.step,
                             alter: targetNote.alter,
                         };
                     } catch {
-                        isValid = false;
-                        break;
+                        console.warn(
+                            `[scale-instances] 拼法超界删除: ${modeMeta.scaleModeId} 根音 ${n.step}${n.alter >= 0 ? "+" : ""}${n.alter} 度 ${degree}`,
+                        );
+                        return null;
                     }
                 }
             }
 
-            let alterNoteCount = n.alter !== 0 ? 1 : 0;
-            let alterSum = n.alter;
+            // alterSum = 整个调式的全部升降号单位之和(根音计一次;重升记 2,
+            // 升号根音加重升可自然超过 7——这是合法值,消费端自行判断取舍);
+            // alterNoteCount = 有变音的音的个数(与 alterSum 是两个不同字段)
+            let alterNoteCount = 0;
+            let alterSum = 0;
             for (const key of keys(notesMap)) {
                 const note = notesMap[Number(key)];
                 if (isNotNil(note) && note.alter !== 0) {
                     alterNoteCount++;
                     alterSum += note.alter;
                 }
-            }
-
-            if (!isValid) {
-                return {
-                    tonicStep: n.step,
-                    tonicAlter: n.alter,
-                    isTonicNormal: rootNoteSpelling.isNormal,
-                    isValid: false,
-                };
             }
 
             return {
@@ -128,7 +128,7 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
                 alterSum,
                 notesMap,
             };
-        });
+        }).filter((s): s is NonNullable<typeof s> => s !== null);
 
         return {
             pianoKeyIdRoot: rootPianoKey,
