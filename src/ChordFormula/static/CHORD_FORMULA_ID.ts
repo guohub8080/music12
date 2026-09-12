@@ -55,6 +55,7 @@ export const MIN9 = "min9"
 export const MIN_MAJ9 = "minmaj9"
 
 // ========== 属九变音 ==========
+export const DOM9_FLAT5 = "dom9b5"  // 全库测试补缺(2026-09-12):公式表有而字典漏
 export const DOM9_SHARP5 = "dom9#5"
 export const DOM9_SHARP11 = "dom9#11"
 export const DOM9_FLAT13 = "dom9b13"
@@ -170,6 +171,7 @@ export const CHORD_FORMULA_ID = {
   [DOM9]: DOM9,
   [MIN9]: MIN9,
   [MIN_MAJ9]: MIN_MAJ9,
+  [DOM9_FLAT5]: DOM9_FLAT5,
   [DOM9_SHARP5]: DOM9_SHARP5,
   [DOM9_SHARP11]: DOM9_SHARP11,
   [DOM9_FLAT13]: DOM9_FLAT13,
