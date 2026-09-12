@@ -316,9 +316,9 @@ this._cache = void 0
 ### 验证三件套（结构/数据改动后必跑）
 
 ```bash
-pnpm test                 # TS 单元测试（当前 213 个）
+pnpm test                 # TS 单元测试（当前 261 个）
 pnpm test:cpp             # C++ 测试（当前 32 个，需先 pnpm build:cpp）
-pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1699 条黄金向量，必须 100%）
+pnpm verify:equivalence   # TS↔C++ 幂等验证（当前 1723 条黄金向量，必须 100%）
 ```
 
 任何一个红了就不许提交。改动涉及数据或目录时，额外确认生成器重跑零差异。

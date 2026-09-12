@@ -1,6 +1,6 @@
 // @ts-nocheck
 // scale-modes.json5 编译验证器(独立第二重):json5 包解析 → 独立回填实现 → 与产物全等对拍
-// 另含行为契约:46 键 46 id(别名自名)、五声缺度 null、type 三值域
+// 另含行为契约:源产物键数对等(不锁具体数,防调式增删时哑火)、键即 id、五声缺度 null、type 四值域
 import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { readFileSync } from "fs";
 import { resolve, dirname } from "path";
@@ -20,8 +20,9 @@ let pass = 0, fail = 0;
 const errors = [];
 const check = (ok, msg) => { if (ok) pass++; else { fail++; errors.push(msg); } };
 
-check(Object.keys(src).length === 46, `源调式数 ${Object.keys(src).length} ≠ 46`);
-check(Object.keys(dst).length === 46, `产物调式数 ${Object.keys(dst).length} ≠ 46`);
+// 计数不硬编码(2026-09-12 教训:46→60 时此检查哑火)——只断言源产物对等且非空
+check(Object.keys(src).length > 0 && Object.keys(src).length === Object.keys(dst).length,
+    `源/产物调式数不对等: ${Object.keys(src).length} vs ${Object.keys(dst).length}`);
 
 for (const sid of Object.keys(dst)) {
     const s = src[sid], d = dst[sid];
@@ -51,10 +52,10 @@ for (const sid of Object.keys(dst)) {
     // 键即 id(别名自名)
     check(d.scaleModeId === sid, `${sid} scaleModeId=${d.scaleModeId} ≠ 键(键即 id 契约)`);
     // type 值域
-    check(["major", "minor", "halfdim7"].includes(d.type), `${sid} type=${d.type} 越界`);
+    check(["major", "minor", "halfdim7", "dim7"].includes(d.type), `${sid} type=${d.type} 越界`);
 }
 
 console.log("=== scale-modes.json5 编译验证(独立实现 + json5 包解析) ===");
 console.log(`断言: ${pass + fail} 通过: ${pass} 失败: ${fail}`);
 if (fail > 0) { for (const e of errors.slice(0, 10)) console.log(`  ✗ ${e}`); process.exit(1); }
-console.log("全部一致 ✓ 极简源(46 键:id/type/name/intervalList) → 派生回填 → 与产物逐字段等价");
+console.log(`全部一致 ✓ 极简源(${Object.keys(src).length} 键:id/type/name/tags/forte/intervalList) → 派生回填 → 与产物逐字段等价`);

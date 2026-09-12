@@ -37,14 +37,16 @@ export const SCALE_MODE = fromPairs(
  * 按调式族分组的调式 ID 列表
  */
 export const SCALE_MODE_GROUPS = {
-	// 自然大调族
+	// 自然大调族(含 IONIAN/AEOLIAN 别名键——按组过滤不应静默漏掉合法 id)
 	DIATONIC: [
 		"NATURAL_MAJOR",
+		"IONIAN",
 		"DORIAN",
 		"PHRYGIAN",
 		"LYDIAN",
 		"MIXOLYDIAN",
 		"NATURAL_MINOR",
+		"AEOLIAN",
 		"LOCRIAN",
 	] as const,
 

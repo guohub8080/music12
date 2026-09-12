@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { Scale, ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance } from "@scale"
+import { Scale, ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance, SCALE_MODE_GROUPS, SCALE_MODE_IDS } from "@scale"
 import { getScale } from "@factory/getScale"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 
@@ -229,5 +229,14 @@ describe("大小调实例切片(scale-instances-major-minor)", () => {
   it("a 小调:根音 9,自然小调音集", () => {
     const inst = getMajorMinorScaleInstance(9, "NATURAL_MINOR")
     expect(inst!.pianoKeyIds).toEqual([9, 11, 0, 2, 4, 5, 7])
+  })
+})
+
+describe("SCALE_MODE_GROUPS 漂移防线(手维护分组 × 数据驱动 id)", () => {
+  it("每个调式 id 都被某组收录(不漏),组内无未知 id(不多),无重复", () => {
+    const grouped = Object.values(SCALE_MODE_GROUPS).flat() as string[]
+    expect(SCALE_MODE_IDS.filter(id => !grouped.includes(id))).toEqual([])
+    expect(grouped.filter(id => !SCALE_MODE_IDS.includes(id))).toEqual([])
+    expect(grouped.filter((x, i) => grouped.indexOf(x) !== i)).toEqual([])
   })
 })

@@ -67,8 +67,9 @@ const gap = (t: string, N: number) =>
     SIMPLE_GAP[`${t}/${((N - 1) % 7) + 1}`] + 12 * Math.floor((N - 1) / 7);
 
 // ---- 逐条:展开 + 派生回填,与产物全等 ----
-check(Object.keys(src).length === 88, `源公式数 ${Object.keys(src).length} ≠ 88`);
-check(Object.keys(dst).length === 88, `产物公式数 ${Object.keys(dst).length} ≠ 88`);
+// 计数不硬编码(防公式增删时哑火)——只断言源产物对等且非空
+check(Object.keys(src).length > 0, "源公式数为空");
+check(Object.keys(dst).length === Object.keys(src).length, "源/产物公式数不对等");
 
 for (const cid of Object.keys(dst)) {
     const expect = dst[cid];
