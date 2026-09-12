@@ -72,8 +72,9 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
 
         const scales = pianoKey.getNotes({ alterAbsLte: 1 }).map((n: Note) => {
             const rootNoteSpelling = new Note(n.step, n.alter, 4);
-            const notesMap: Record<number, { step: string; alter: number; octaveOffset: number } | null> = {
-                1: { step: n.step, alter: n.alter, octaveOffset: 0 },
+            // octaveOffset 不入产物(2026-09-12 用户裁决:运行时零消费,死数据)
+            const notesMap: Record<number, { step: string; alter: number } | null> = {
+                1: { step: n.step, alter: n.alter },
             };
             let isValid = true;
 
@@ -90,7 +91,6 @@ function generateModeData(modeMeta: I_ScaleModeMeta): I_ScaleInstance[] {
                         notesMap[degree] = {
                             step: targetNote.step,
                             alter: targetNote.alter,
-                            octaveOffset: targetNote.octave - 4,
                         };
                     } catch {
                         isValid = false;

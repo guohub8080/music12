@@ -89,8 +89,7 @@ for (const inst of scaleInstances) {
             recomputedKeyIds.add(target.pianoKeyId);
             const expectNote = scaleEntry.notesMap[degree];
             check(
-                expectNote && expectNote.step === target.step && expectNote.alter === target.alter
-                    && expectNote.octaveOffset === target.octave - 4,
+                expectNote && expectNote.step === target.step && expectNote.alter === target.alter,
                 `${label} 拼法不符: 乐理=${target.step}${target.alter}/oct${target.octave} 数据=${JSON.stringify(expectNote)}`,
             );
             check(
