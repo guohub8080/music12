@@ -159,7 +159,9 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 中国调式：`GONG` `SHANG` `JUE` `ZHI` `YU`（五声）；`YA_YUE_GONG` `QING_YUE_GONG` `YAN_YUE_GONG` 等（七声）
 
-调式元数据带 `tags`（家族 + 编译派生变音/缺度特征,查询用 `getScaleModeByTags`）、`forte`（Forte 音级集合编号）、`sameShapeAs`（同形别名键指向）。注意 dim4/dim7/aug6 音程记法（♭4/♭♭7/♯6 系调式）已入表;blues 与 bebop 因同度双音（♭5+♮5 / ♭7+♮7 并存）不可用 6 槽单音模型表达,见 ts-dev/scale-research.md
+调式元数据带 `tags`（家族 + 编译派生变音/缺度特征,查询用 `getScaleModeByTags`）、`forte`（Forte 音级集合编号）、`sameShapeAs`（同形别名键指向）。注意 dim4/dim7/aug6 音程记法（♭4/♭♭7/♯6 系调式）已入表。
+
+**度数↔音 1:1 铁律（2026-09-12 用户原则）**：普通 scale 里一个度数只有一个音——五度要么纯五要么增五，不允许同一音阶并存纯五与增五；布鲁斯的 ♭2+♮2（两个二度）这类同度双音**不属于 scale 体系**（编译器有防线断言拒绝数组槽）。双音对象按需走 special-sets 通道（分叉三和弦 ♭3·♮3 先例）,甚至可以不实现——先弄基本的。
 
 ## 开发规范
 

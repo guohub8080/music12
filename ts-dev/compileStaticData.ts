@@ -192,6 +192,22 @@ function compileScaleModes(): Record<string, unknown> {
         };
     }
 
+    // ── 度数↔音 1:1 铁律(2026-09-12 用户原则)─────────────────────
+    // 普通 scale 一个度数只有一个音:五度要么纯五要么增五,不允许并存;
+    // 布鲁斯 ♭2+♮2 类同度双音不属于 scale 体系(走 special-sets 或不实现)。
+    // 结构上 intervalList 槽 = [type, num] | null;本断言拒绝任何未来的
+    // 数组槽"升级"(item 为 [[t,n],...])——破戒在这里当场炸,不静默通过。
+    for (const sid of Object.keys(out)) {
+        const il = out[sid].intervalList as unknown[];
+        for (let i = 0; i < il.length; i++) {
+            const item = il[i] as unknown;
+            if (isNil(item)) continue;
+            if (typeof (item as [string, number])[0] !== "string" || Array.isArray((item as [string, number])[0])) {
+                throw new Error(`[scale-modes] ${sid} 槽${i + 2} 违反度数↔音 1:1 铁律:${JSON.stringify(item)}`);
+            }
+        }
+    }
+
     // ── B 项防线/派生(2026-09-11 用户批准)─────────────────────────
     // 1) type 断言:七声(无 null 槽)必须有 3 度且 type 与主和弦结构一致
     //    (dim7=♭3♭5♭♭7 / halfdim7=♭3♭5♭7 / major=♮3 / minor=♭3)。
