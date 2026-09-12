@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { Scale } from "@scale"
+import { Scale, ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance } from "@scale"
 import { getScale } from "@factory/getScale"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 
@@ -209,5 +209,25 @@ describe("getScale 工厂函数", () => {
 
   it("无效 mode 抛错", () => {
     expect(() => getScale("C", 0, "BOGUS")).toThrow()
+  })
+})
+
+
+describe("大小调实例切片(scale-instances-major-minor)", () => {
+  it("24 条 = 两调 × 12 移调,只含 canonical 双调(别名键不重复)", () => {
+    expect(ALL_MAJOR_MINOR_SCALE_META).toHaveLength(24)
+    const ids = new Set(ALL_MAJOR_MINOR_SCALE_META.map(s => s.scaleModeId))
+    expect(ids).toEqual(new Set(["NATURAL_MAJOR", "NATURAL_MINOR"]))
+  })
+
+  it("切片数据与全量表同构(C 大调实例音集一致)", () => {
+    const inst = getMajorMinorScaleInstance(0, "NATURAL_MAJOR")
+    expect(inst).toBeDefined()
+    expect(inst!.pianoKeyIds).toEqual([0, 2, 4, 5, 7, 9, 11])
+  })
+
+  it("a 小调:根音 9,自然小调音集", () => {
+    const inst = getMajorMinorScaleInstance(9, "NATURAL_MINOR")
+    expect(inst!.pianoKeyIds).toEqual([9, 11, 0, 2, 4, 5, 7])
   })
 })

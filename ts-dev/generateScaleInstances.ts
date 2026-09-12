@@ -151,3 +151,23 @@ export function exportScaleInstances(): I_ScaleInstance[] {
     }
     return allInstances;
 }
+
+/**
+ * 大小调实例切片(24 条 = NATURAL_MAJOR/NATURAL_MINOR × 12 移调)。
+ *
+ * 用户需求(2026-09-12):大小调最常用,单独成表让只要大小调的消费端
+ * import KB 级小表,避开 720 条全量表的加载/解析/打包(查询速度本身
+ * 不是瓶颈——键集查询走 findByScaleHash O(1),此处优化的是加载面)。
+ * 别名键(IONIAN/AEOLIAN)同形不重复收录,canonical 双调为准。
+ */
+export function exportMajorMinorScaleInstances(): I_ScaleInstance[] {
+    const WANT = new Set(["NATURAL_MAJOR", "NATURAL_MINOR"]);
+    const out: I_ScaleInstance[] = [];
+    for (const modeMeta of values(SCALE_MODE_META_MAP) as I_ScaleModeMeta[]) {
+        if (WANT.has(modeMeta.scaleModeId)) out.push(...generateModeData(modeMeta));
+    }
+    if (out.length !== 24) {
+        throw new Error(`大小调切片应为 24 条(2 调式 × 12 移调),实际 ${out.length}`);
+    }
+    return out;
+}

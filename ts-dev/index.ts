@@ -6,7 +6,8 @@
  *     notes(35) / intervals(39) / fifth(42) / chord-formulas(88)
  *     / scale-modes(46) / pcset-formulas(Forte 分类)
  *   [生成] 2 个表 ← 用 src 乐理类实时计算
- *     chord-instances(1056=88×12) / scale-instances(552=46×12)
+ *     chord-instances(1056=88×12) / scale-instances(720=60×12)
+ *     / scale-instances-major-minor(24=大小调×12,常用切片)
  *
  * 单一真相源:json5 源 + 生成器逻辑;TS 版和 C++ 版都读这里产出的 JSON。
  * 产物幂等:重跑后 git diff 必须为零(验证兜底:ts-dev/verify/*)。
@@ -47,10 +48,11 @@ export const generateAll = () => {
   // 静态 import 会被提升到编译之前执行,读到旧的 chord-formulas.json(时序坑实测)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { exportChordInstances } = require("./generateChordInstances");
-  const { exportScaleInstances } = require("./generateScaleInstances");
+  const { exportScaleInstances, exportMajorMinorScaleInstances } = require("./generateScaleInstances");
 
   writeJson("chord-instances.json", exportChordInstances());
   writeJson("scale-instances.json", exportScaleInstances());
+  writeJson("scale-instances-major-minor.json", exportMajorMinorScaleInstances());
 
   console.log("\n✅ 全部完成。JSON 已写入 static-data/");
 }
