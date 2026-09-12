@@ -11,7 +11,7 @@ import cls_getNoteByDegree from "./classFn/cls_getNoteByDegree"
 import cls_getScaleDegreeChord3 from "./classFn/cls_getScaleDegreeChord3"
 import cls_getScaleDegreeChord7 from "./classFn/cls_getScaleDegreeChord7"
 import cls_getNoteByIntervalNum from "./classFn/cls_getNoteByIntervalNum"
-import type { I_AnalyzedChordResult } from "@find/findChord"
+import type { I_ChordFindResult } from "@find/findChord"
 
 /**
  * 调式类
@@ -215,7 +215,7 @@ export class Scale {
 	 * @param scaleDegree 音级（1-7）
 	 * @returns 匹配的和弦结果列表
 	 */
-	public getScaleDegreeChord3(scaleDegree: number): I_AnalyzedChordResult[] {
+	public getScaleDegreeChord3(scaleDegree: number): I_ChordFindResult[] {
 		return cls_getScaleDegreeChord3(this, scaleDegree)
 	}
 
@@ -224,7 +224,7 @@ export class Scale {
 	 * @param scaleDegree 音级（1-7）
 	 * @returns 匹配的和弦结果列表
 	 */
-	public getScaleDegreeChord7(scaleDegree: number): I_AnalyzedChordResult[] {
+	public getScaleDegreeChord7(scaleDegree: number): I_ChordFindResult[] {
 		return cls_getScaleDegreeChord7(this, scaleDegree)
 	}
 

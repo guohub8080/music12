@@ -149,7 +149,7 @@ describe("Chord find 反查", () => {
     const results = c.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
     expect(results.length).toBeGreaterThan(0)
     // 应包含完全匹配（similarity = 1）
-    const fullMatch = results.find((r) => r.similarity === 1)
+    const fullMatch = results.find(r => r.isExact)
     expect(fullMatch).toBeDefined()
     expect(fullMatch!.pianoKeyIdRoot).toBe(0)
   })
@@ -157,7 +157,7 @@ describe("Chord find 反查", () => {
   it("G7 反查应找到 dom7@G", () => {
     const g7 = new Chord(7, "dom7")
     const results = g7.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
-    const fullMatch = results.find((r) => r.similarity === 1)
+    const fullMatch = results.find(r => r.isExact)
     expect(fullMatch).toBeDefined()
     expect(fullMatch!.pianoKeyIdRoot).toBe(7)
   })

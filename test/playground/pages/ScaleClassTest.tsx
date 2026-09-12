@@ -1,7 +1,7 @@
 import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { toPairs } from "es-toolkit/compat"
 import { Scale, SCALE_MODE_IDS, type T_ScaleModeId } from "@scale/index"
-import type { I_AnalyzedChordResult } from "@find/findChord/index"
+import type { I_ChordFindResult } from "@find/findChord/index"
 import { useState } from "react"
 
 const PIANO_KEY_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
@@ -571,23 +571,23 @@ const ScaleClassTest = () => {
 												<tr key={degree} style={{ borderBottom: "1px solid #eee" }}>
 													<td style={{ padding: 8, fontWeight: "bold" }}>{PIANO_KEY_NAMES[rootId]}</td>
 													<td style={{ padding: 8 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<span key={i} style={{
 																display: "inline-block",
 																padding: "3px 8px",
 																marginRight: 4,
 																marginBottom: 2,
-																background: r.similarity === 1 ? "#d4edda" : "#fff3cd",
+																background: r.isExact ? "#d4edda" : "#fff3cd",
 																borderRadius: 4,
 																fontSize: 13,
 																fontWeight: "bold",
 															}}>
-																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}{r.chordFormulaId}
+																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}{r.isChordFormula === false ? `·${r.cnName}` : r.formulaId}
 															</span>
 														))}
 													</td>
 													<td style={{ padding: 8, fontFamily: "monospace" }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<span key={i} style={{ display: "block", fontSize: 13 }}>
 																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}
 																{!r.isRootPosition && <span style={{ color: "#999", marginLeft: 4 }}>(转位)</span>}
@@ -595,9 +595,9 @@ const ScaleClassTest = () => {
 														))}
 													</td>
 													<td style={{ padding: 8 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<div key={i} style={{ marginBottom: 2 }}>
-																{r.pianoKeyIdsSorted.map((id: number) => (
+																{(r.chord?.pianoKeyIdsSorted ?? []).map((id: number) => (
 																	<span key={id} style={{
 																		display: "inline-block",
 																		padding: "2px 6px",
@@ -615,16 +615,16 @@ const ScaleClassTest = () => {
 														))}
 													</td>
 													<td style={{ padding: 8, fontFamily: "monospace", fontSize: 13 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
-															<span key={i} style={{ display: "block", color: r.similarity === 1 ? "#28a745" : "#856404" }}>
-																{(r.similarity * 100).toFixed(0)}%
+														{results.map((r: I_ChordFindResult, i: number) => (
+															<span key={i} style={{ display: "block", color: r.isExact ? "#28a745" : "#856404" }}>
+																{r.isExact ? "100%" : `${(Math.max(0, 1 - r.cost * 0.15) * 100).toFixed(0)}%`}
 															</span>
 														))}
 													</td>
 													<td style={{ padding: 8, fontSize: 13 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
-															<span key={i} style={{ display: "block", color: r.transformCount === 0 ? "#28a745" : "#dc3545" }}>
-																{r.transformString || "\u2014"}
+														{results.map((r: I_ChordFindResult, i: number) => (
+															<span key={i} style={{ display: "block", color: Object.keys(r.transform).length === 0 ? "#28a745" : "#dc3545" }}>
+																{Object.entries(r.transform).map(([k, v]) => `${k}:${Array.isArray(v) ? v.join("/") : v}`).join(" ")}
 															</span>
 														))}
 													</td>
@@ -657,23 +657,23 @@ const ScaleClassTest = () => {
 												<tr key={degree} style={{ borderBottom: "1px solid #eee" }}>
 													<td style={{ padding: 8, fontWeight: "bold" }}>{PIANO_KEY_NAMES[rootId]}</td>
 													<td style={{ padding: 8 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<span key={i} style={{
 																display: "inline-block",
 																padding: "3px 8px",
 																marginRight: 4,
 																marginBottom: 2,
-																background: r.similarity === 1 ? "#d4edda" : "#fff3cd",
+																background: r.isExact ? "#d4edda" : "#fff3cd",
 																borderRadius: 4,
 																fontSize: 13,
 																fontWeight: "bold",
 															}}>
-																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}{r.chordFormulaId}
+																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}{r.isChordFormula === false ? `·${r.cnName}` : r.formulaId}
 															</span>
 														))}
 													</td>
 													<td style={{ padding: 8, fontFamily: "monospace" }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<span key={i} style={{ display: "block", fontSize: 13 }}>
 																{PIANO_KEY_NAMES[r.pianoKeyIdRoot]}
 																{!r.isRootPosition && <span style={{ color: "#999", marginLeft: 4 }}>(转位)</span>}
@@ -681,9 +681,9 @@ const ScaleClassTest = () => {
 														))}
 													</td>
 													<td style={{ padding: 8 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
+														{results.map((r: I_ChordFindResult, i: number) => (
 															<div key={i} style={{ marginBottom: 2 }}>
-																{r.pianoKeyIdsSorted.map((id: number) => (
+																{(r.chord?.pianoKeyIdsSorted ?? []).map((id: number) => (
 																	<span key={id} style={{
 																		display: "inline-block",
 																		padding: "2px 6px",
@@ -701,16 +701,16 @@ const ScaleClassTest = () => {
 														))}
 													</td>
 													<td style={{ padding: 8, fontFamily: "monospace", fontSize: 13 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
-															<span key={i} style={{ display: "block", color: r.similarity === 1 ? "#28a745" : "#856404" }}>
-																{(r.similarity * 100).toFixed(0)}%
+														{results.map((r: I_ChordFindResult, i: number) => (
+															<span key={i} style={{ display: "block", color: r.isExact ? "#28a745" : "#856404" }}>
+																{r.isExact ? "100%" : `${(Math.max(0, 1 - r.cost * 0.15) * 100).toFixed(0)}%`}
 															</span>
 														))}
 													</td>
 													<td style={{ padding: 8, fontSize: 13 }}>
-														{results.map((r: I_AnalyzedChordResult, i: number) => (
-															<span key={i} style={{ display: "block", color: r.transformCount === 0 ? "#28a745" : "#dc3545" }}>
-																{r.transformString || "\u2014"}
+														{results.map((r: I_ChordFindResult, i: number) => (
+															<span key={i} style={{ display: "block", color: Object.keys(r.transform).length === 0 ? "#28a745" : "#dc3545" }}>
+																{Object.entries(r.transform).map(([k, v]) => `${k}:${Array.isArray(v) ? v.join("/") : v}`).join(" ")}
 															</span>
 														))}
 													</td>

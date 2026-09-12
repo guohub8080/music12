@@ -1,6 +1,6 @@
 # Find（反向查找）
 
-你给 Find 一组音，它告诉你这是什么和弦、属于什么调。这是 music12 最「智能」的部分——`findChord` 能从一堆琴键里识别出和弦，还懂得区分等和弦、处理省略音。
+你给 Find 一组音，它告诉你这是什么和弦、属于什么调。这是 music12 最「智能」的部分——`findChord` 直查预烘焙哈希表（3~7 音 3223 键集全量，一次 O(1)），识别和弦、等和弦、省略音、变音、special-set——全部裁决已在烘焙时经人工审核固化进表。
 
 反向查找是音乐应用的高频需求：用户在键盘上弹了几个音，app 要识别「这是什么和弦」；用户哼了一段旋律，要分析「这是什么调」。Find 模块就是干这个的——从音（输入）推导出和弦/调式（输出）。
 
@@ -25,7 +25,7 @@ import { findChord } from "music12"
 // 你弹了 C-E-G-Bb（MIDI 60-64-67-70）
 const results = findChord([60, 64, 67, 70])
 console.log(results[0].chordFormulaId) // "dom7"（C7）
-console.log(results[0].similarity)     // 1（完全匹配）
+console.log(results[0].isExact)         // true（完全命中,cost=0 无变换）
 ```
 
 findChord 返回一个数组——因为同一组音可能有多种和弦解释（等和弦）。比如 C-E-G-A 既可能是 C6 也可能是 Am7，findChord 会把两种都返回，让你根据上下文选。
@@ -36,7 +36,8 @@ findChord 返回一个数组——因为同一组音可能有多种和弦解释�
 
 ```ts
 findChord([60, 64, 71]) // C-E-B
-// → [{ chordFormulaId: "maj7", similarity: 0.75, transformString: "omit5" }]
+// → [{ formulaId: "maj7", isExact: false, transform: { omit: 5 }, cost: 1, tier: 2 }]
+// transform 是分组对象(omit/add/sharp/flat,原子化);惰性 chord getter 可取完整实例
 // 告诉你：这是 Cmaj7，省略了五度 G
 ```
 

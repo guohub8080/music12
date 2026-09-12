@@ -383,6 +383,7 @@ const FindComplexChordTest = () => {
 	const getSimilarityColor = (similarity: number): string => {
 		if (similarity >= 0.9) return "#28a745" // 绿色
 		if (similarity >= 0.7) return "#ffc107" // 黄色
+		// 注:入参由 cost 映射(cost 0 → 1.0,cost 1 → 0.85,成本越高越低)
 		return "#dc3545" // 红色
 	}
 
@@ -503,29 +504,31 @@ const FindComplexChordTest = () => {
 							</thead>
 							<tbody>
 								{result.matches.map((match, matchIdx) => {
-									// 检查是否有 transform 字段（分析后的结果）
-									const hasTransform = "transform" in match && "transformString" in match
-									const transform = hasTransform ? (match as any).transform : null
-									const transformString = hasTransform ? (match as any).transformString : null
+									// 哈希读法:transform 分组对象(omit/add/sharp/flat);cost 越低越合理
+									const transform = "transform" in match ? (match as any).transform : null
+									const transformString = transform && Object.keys(transform).length > 0
+										? Object.entries(transform).map(([k, v]) => Array.isArray(v) ? v.map((x: any) => (k === "omit" ? "省" : k === "add" ? "加" : k === "sharp" ? "升" : "降") + x).join(",") : `${k === "omit" ? "省" : k === "add" ? "加" : k === "sharp" ? "升" : "降"}${v}`).join(",")
+										: null
+									const similarity = "cost" in match ? Math.max(0, 1 - (match as any).cost * 0.15) : 1
 									// 检查是否为原位和弦
 									const isRootPosition = "isRootPosition" in match ? (match as any).isRootPosition : undefined
 
 									return (
 										<tr key={matchIdx} style={{
-											background: getSimilarityBackground(match.similarity),
+											background: getSimilarityBackground(similarity),
 										}}>
 											<td style={{ padding: 8, border: "1px solid #ccc", fontWeight: 500 }}>
 												<code style={{ background: "#f0f0f0", padding: "2px 6px", borderRadius: 3, fontSize: 13 }}>
-													{getNoteName(match.pianoKeyIdRoot)} {match.chordFormulaId}
+													{getNoteName(match.pianoKeyIdRoot)} {match.isChordFormula === false ? `·${match.cnName}` : match.formulaId}
 												</code>
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc" }}>
 												<span style={{
-													color: getSimilarityColor(match.similarity),
-													fontWeight: match.similarity >= 0.9 ? "bold" : "normal",
-													fontSize: match.similarity >= 0.9 ? 14 : 13
+													color: getSimilarityColor(similarity),
+													fontWeight: similarity >= 0.9 ? "bold" : "normal",
+													fontSize: similarity >= 0.9 ? 14 : 13
 												}}>
-													{(match.similarity * 100).toFixed(1)}%
+													{(similarity * 100).toFixed(1)}%
 												</span>
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc", textAlign: "center" }}>
@@ -538,15 +541,15 @@ const FindComplexChordTest = () => {
 												)}
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc" }}>
-												[{renderNoteList(match.intersection, match.pianoKeyIdRoot)}]
+												[{renderNoteList(result.midiPitches.map((m: number) => m % 12), match.pianoKeyIdRoot)}]
 												<span style={{ marginLeft: 6 }}>
-													({renderIdList(match.intersection, match.pianoKeyIdRoot)})
+													({renderIdList(result.midiPitches.map((m: number) => m % 12), match.pianoKeyIdRoot)})
 												</span>
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc", fontSize: 11 }}>
-												[{renderNoteList(match.pianoKeyIdsSorted, match.pianoKeyIdRoot)}]
+												[{renderNoteList(match.chord?.pianoKeyIdsSorted ?? [], match.pianoKeyIdRoot)}]
 												<span style={{ marginLeft: 6 }}>
-													({renderIdList(match.pianoKeyIdsSorted, match.pianoKeyIdRoot)})
+													({renderIdList(match.chord?.pianoKeyIdsSorted ?? [], match.pianoKeyIdRoot)})
 												</span>
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc", fontSize: 11 }}>
@@ -587,12 +590,12 @@ const FindComplexChordTest = () => {
 												)}
 											</td>
 											<td style={{ padding: 8, border: "1px solid #ccc", textAlign: "center" }}>
-												{hasTransform && isNotNil((match as any).transformCount) ? (
+												{transform && Object.keys(transform).length > 0 ? (
 													<span style={{
-														fontWeight: (match as any).transformCount > 0 ? "bold" : "normal",
-														color: (match as any).transformCount > 0 ? "#6c757d" : "#ccc"
+														fontWeight: "bold",
+														color: "#6c757d"
 													}}>
-														{(match as any).transformCount}
+														{Object.values(transform as any).flat().length}
 													</span>
 												) : (
 													<span style={{ color: "#ccc" }}>-</span>
@@ -610,8 +613,8 @@ const FindComplexChordTest = () => {
 						找到 <strong>{result.matches.length}</strong> 个匹配结果
 						{result.matches.length > 0 && (
 							<span style={{ marginLeft: 10 }}>
-								最高相似度: <strong style={{ color: getSimilarityColor(result.matches[0].similarity) }}>
-									{(result.matches[0].similarity * 100).toFixed(1)}%
+								最高相似度: <strong style={{ color: getSimilarityColor(Math.max(0, 1 - result.matches[0].cost * 0.15)) }}>
+									{(Math.max(0, 1 - result.matches[0].cost * 0.15) * 100).toFixed(1)}%
 								</strong>
 							</span>
 						)}

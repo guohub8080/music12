@@ -67,27 +67,34 @@ chord.isTransformed // 是否被变换过
 chord.clearTransform() // 回到原始和弦
 ```
 
-### 反向查找（识别和弦）
+### 反向查找（识别和弦，哈希直查）
 
 ```ts
 import { findChord } from "music12"
 
-// 输入 MIDI 音符列表（60=C4, 64=E4, 67=G4...）
-findChord([60, 64, 67, 70]) // → [{ chordFormulaId: "dom7", ... }]
+// 输入 MIDI 音符列表（60=C4, 64=E4, 67=G4...），直查烘焙哈希表 O(1)
+findChord([60, 64, 67, 70]) // → [{ formulaId: "dom7", isExact: true, transform: {}, cost: 0, tier: 1, ... }]
 
-// 严格模式：只返回完全匹配
+// 严格模式：只返回完全匹配（isExact）
 findChord([60, 64, 67], { isStrict: true })
 
 // 指定根音：区分等和弦 C6 vs Am7
 findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → C6
 findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // → Am7
+
+// 省略音读法：C-E-B → maj7(omit5)，transform 原子化分组对象
+findChord([60, 64, 71]) // → [{ formulaId: "maj7", isExact: false, transform: { omit: 5 }, ... }]
+
+// 同度双音键集 → special-set 一等公民读法（非降级）
+findChord([60, 63, 64]) // → C·分叉三和弦（isChordFormula: false, setEntity getter）
 ```
 
-findChord 的匹配规则：
-- 默认：完全匹配优先；无完全匹配时返回省略音匹配（用户少弹了音）
-- 特征音不可省：七和弦必须有 3 度和 7 度，变和弦必须有变化音
-- 纯五度和扩展音（9/11/13）可省
-- 少于 3 个不同音会抛错
+findChord 的匹配裁决（已由烘焙管线固化进表，运行时零计算）：
+- 3~7 音五张哈希表（C(12,3)~C(12,7)=3223 键集全量），每键集 1~4 条零噪音答案
+- 完全匹配优先；省略音匹配带 transform 说明（五度/九度可省，特征音不可省）
+- 等和弦并列（C6/Am7）、对称家族（dim7 四重名）、special-set 都是表内读法
+- 结果带惰性 `chord`（Chord 实例）与 `setEntity`（set 实体）getter，不用实例零开销
+- 少于 3 个不同音抛错；>7 音返回空（可 `fallback: "pcset"` 降级集合论身份）
 
 ### 调式查询
 
@@ -126,7 +133,7 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 ## 常见误区
 
-1. **findChord 接收 MIDI 数（如 60），不是 pianoKeyId（如 0）**。findNotesInScales 等才接收 pianoKeyId。
+1. **findChord/findByHash 的输入域不同**：findChord 接收 MIDI 数（如 60），findByHash 接收 pianoKeyId（如 0）直查表。findNotesInScales 等也接收 pianoKeyId。
 2. **pianoKeyId 不带八度**。C4/C5/C3 的 pianoKeyId 都是 0。要绝对音高用 `pitchValue`（MIDI 编号）。
 3. **等和弦**：C6（C-E-G-A）和 Am7（A-C-E-G）是同一组键 `[0,4,7,9]`，findChord 会同时返回两者。
 4. **五声调式缺 4 度和 7 度**：`getNoteByIntervalNum(4)` 返回 null（不崩溃）。

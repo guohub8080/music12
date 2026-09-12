@@ -124,7 +124,7 @@ describe("Scale 调式和弦", () => {
     const c = C_MAJOR()
     const chord = c.getScaleDegreeChord3(1)
     expect(chord.length).toBeGreaterThan(0)
-    const full = chord.find((r) => r.similarity === 1)
+    const full = chord.find(r => r.isExact)
     expect(full).toBeDefined()
     expect(full!.pianoKeyIdRoot).toBe(0)
   })
@@ -132,7 +132,7 @@ describe("Scale 调式和弦", () => {
   it("C 大调 5 级三和弦 = G 大三", () => {
     const c = C_MAJOR()
     const chord = c.getScaleDegreeChord3(5)
-    const full = chord.find((r) => r.similarity === 1)
+    const full = chord.find(r => r.isExact)
     expect(full).toBeDefined()
     expect(full!.pianoKeyIdRoot).toBe(7)
   })
@@ -143,10 +143,10 @@ describe("Scale 调式和弦", () => {
     // 第一条应以该级音 B 为根，而非等和弦 Dm6（root=D）
     const first = chord[0]
     expect(first.pianoKeyIdRoot).toBe(11) // B
-    expect(first.chordFormulaId).toBe("halfdim7")
-    expect(first.pianoKeyIdsSorted).toEqual([2, 5, 9, 11])
+    expect(first.formulaId).toBe("halfdim7")
+    expect(first.chord!.pianoKeyIdsSorted).toEqual([2, 5, 9, 11])
     // Dm6 作为等和弦仍在结果里（排在后面）
-    const dm6 = chord.find((r) => r.chordFormulaId === "min3add6")
+    const dm6 = chord.find(r => r.formulaId === "min3add6")
     expect(dm6).toBeDefined()
   })
 

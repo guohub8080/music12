@@ -1,4 +1,4 @@
-import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
+import { findChord, type I_ChordFindResult } from "@find/findChord"
 
 /**
  * 获取指定音级的顺阶七和弦（通过 findChord 识别）
@@ -10,7 +10,7 @@ import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
  * @param scaleDegree 音级（1-7）
  * @returns 匹配的和弦结果列表（isRootPosition=true 优先）
  */
-export default function cls_getScaleDegreeChord7(scale: any, scaleDegree: number): I_AnalyzedChordResult[] {
+export default function cls_getScaleDegreeChord7(scale: any, scaleDegree: number): I_ChordFindResult[] {
 	if (scaleDegree < 1 || scaleDegree > 7) {
 		throw new RangeError("scaleDegree must be between 1 and 7")
 	}

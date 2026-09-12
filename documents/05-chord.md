@@ -41,7 +41,7 @@ g7.scoreSymbol        // "7" —— 记谱符号
 g7.intervalList       // [["maj",3],["p",5],["min",7]] —— 构成音程
 ```
 
-`pianoKeyIds` 按度数排列（根、三、五、七），`pianoKeyIdsSorted` 是排序后的——findChord 用后者做匹配。
+`pianoKeyIds` 按度数排列（根、三、五、七），`pianoKeyIdsSorted` 是排序后的——findChord 内部用 pianoKeyId 直查哈希表。
 
 <details>
 <summary>完整属性列表</summary>
@@ -149,11 +149,11 @@ cmaj7.simpleDescription // "C4,E4,G4,B4"
 ```ts
 const c9 = new Chord(0, "dom9")
 const results = c9.find()
-console.log(results[0].chordFormulaId) // "dom9"
-console.log(results[0].similarity)     // 1（完全匹配）
+console.log(results[0].formulaId)  // "dom9"
+console.log(results[0].isExact)    // true（完全命中）
 ```
 
-变换后的和弦也能查——查出来会带 `transformString` 说明省了/加了什么。详见 [Find 文档](./08-find.md)。
+变换后的和弦也能查——查出来会带 `transform` 分组对象（omit/add/sharp/flat）说明省了/加了/升降了什么。详见 [Find 文档](./08-find.md)。
 
 ## 工具函数
 

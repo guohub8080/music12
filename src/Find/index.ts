@@ -1,5 +1,6 @@
 // ==================== Chord ====================
-export { findChord } from "./findChord/index"
+export { findChord, findByHash } from "./findChord/index"
+export type { I_HashEntry, I_HashResult, I_ChordFindResult, I_FindResult } from "./findChord/index"
 
 // 从 Scale 模块重新导出调式类型
 export { SCALE_MODE, SCALE_MODE_IDS, SCALE_MODE_GROUPS } from "@scale/static/scaleModeTypes"
