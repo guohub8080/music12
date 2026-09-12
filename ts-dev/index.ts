@@ -15,7 +15,7 @@ import { isNil, isNotNil } from 'es-toolkit/predicate'
 import { writeFileSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
-import { compileAll } from "./compileStaticData";
+import { compileAll, serialize } from "./compileStaticData";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = resolve(__dirname, "../static-data");
@@ -24,7 +24,8 @@ mkdirSync(OUT_DIR, { recursive: true });
 
 function writeJson(name: string, data: unknown) {
     const path = resolve(OUT_DIR, name);
-    writeFileSync(path, JSON.stringify(data, null, 2) + "\n", "utf-8");
+    // 紧凑序列化(同编译器):≤80 字符的数组(intervalList/pianoKeyIds 等)单行
+    writeFileSync(path, serialize(data), "utf-8");
     const count = Array.isArray(data)
         ? data.length
         : (isNotNil(data) && typeof data === "object")
