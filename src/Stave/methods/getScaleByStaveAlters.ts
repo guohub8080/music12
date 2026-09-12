@@ -40,16 +40,14 @@ export const getScaleByStaveAlters = (staveAlter: number) => {
 
 	// 对于 -6 到 6 的调号，只返回常用调性（排除主音被替换的情况）
 	if (Math.abs(staveAlter) <= 6) {
-		return FIFTH_META
-			.where("circleID", ">=", 0)
-			.where("circleID", "<=", 12)
-			.where("rawStaveAlters", staveAlter)
-			.where("isTonicReplaced", false)
-			.all();
+		return FIFTH_META.filter(x =>
+			x.circleID >= 0 && x.circleID <= 12
+			&& x.rawStaveAlters === staveAlter
+			&& x.isTonicReplaced === false);
 	}
 
 	// 对于 ±7 的调号，返回所有调性（包括等音异名）
-	return FIFTH_META.where("rawStaveAlters", staveAlter).all();
+	return FIFTH_META.filter(x => x.rawStaveAlters === staveAlter);
 };
 
 export default getScaleByStaveAlters;

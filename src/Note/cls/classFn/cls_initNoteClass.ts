@@ -46,7 +46,7 @@ type I_NoteObj = {
  */
 export const cls_initNoteClass = (step: T_NoteStep = "C", alter: T_AlterValue = 0): I_NoteObj => {
     const noteStep = step.toString().toUpperCase().trim()
-    const noteObj = NOTE_META.where("step", noteStep).where("alter", alter).first()
+    const noteObj = NOTE_META.find(x => x.step === noteStep && x.alter === alter)
     if (noteObj) return noteObj as I_NoteObj
     throw new NoteError(`Note "${step}${alter}" not found in note metadata.`)
 }

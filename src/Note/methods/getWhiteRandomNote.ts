@@ -1,6 +1,8 @@
 import { defaultTo } from 'es-toolkit/compat'
+import { isNil } from 'es-toolkit/predicate'
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
+import { randomOf } from "@common/utils/randomOf";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 import normalizeOctave from "./normalizeOctave";
 
@@ -25,9 +27,11 @@ export default (options?: { octave?: number | number[], isNormal?: boolean }): I
   const isNormal = defaultTo(options?.isNormal, true)
   if (isNormal) {
     // alter === 0 即 7 个自然音 C, D, E, F, G, A, B(其余 28 条 |alter| 均 ≥ 1)
-    const noteObj = NOTE_META.where("alter", 0).random()
+    const noteObj = randomOf(NOTE_META.filter(x => x.alter === 0))
+    if (isNil(noteObj)) throw new Error("Random note source exhausted (data corruption?)")
     return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
   }
-  const noteObj = NOTE_META.where("isBlack", false).random()
+  const noteObj = randomOf(NOTE_META.filter(x => x.isBlack === false))
+  if (isNil(noteObj)) throw new Error("Random note source exhausted (data corruption?)")
   return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
 }

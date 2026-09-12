@@ -1,6 +1,6 @@
-import { isNumber } from 'es-toolkit/predicate';
+import { isNumber, isNotNil } from 'es-toolkit/predicate';
 import { isArray } from 'es-toolkit/compat'
-import collect from "collect.js";
+import { randomOf } from "@common/utils/randomOf";
 
 /**
  * 规范化八度参数
@@ -17,9 +17,9 @@ import collect from "collect.js";
 export default (octave: number | number[] = 4): number => {
   if (isNumber(octave)) return octave
   if (isArray(octave)) {
-    const a = collect(octave).random()
-    if (isNumber(a)) return a
-    throw new Error("Octave must be a number or an array of numbers.")
+    const a = randomOf(octave)
+    if (isNotNil(a)) return a
+    throw new Error("Octave array must not be empty.")
   }
   throw new Error("Octave must be a number or an array of numbers.")
 }

@@ -2,7 +2,6 @@
 
 import {PianoKey} from "@pianokey";
 import {Note} from "../NoteClass";
-import collect from "collect.js";
 
 /**
  * 获取所有等音异名
@@ -62,11 +61,9 @@ export default (givenNoteInstance: InstanceType<typeof Note>,
 	}
 
 	// 过滤掉与原始音符相同的音符（通过比较 step + alter + octave）
-	return collect(allNotes)
-		.filter(note =>
-			note.step !== givenNoteInstance.step ||
-			note.alter !== givenNoteInstance.alter ||
-			note.octave !== givenNoteInstance.octave
-		)
-		.all()
+	return allNotes.filter(note =>
+		note.step !== givenNoteInstance.step ||
+		note.alter !== givenNoteInstance.alter ||
+		note.octave !== givenNoteInstance.octave
+	)
 }

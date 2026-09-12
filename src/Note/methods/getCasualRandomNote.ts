@@ -1,5 +1,7 @@
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
+import { isNil } from "es-toolkit/predicate";
+import { randomOf } from "@common/utils/randomOf";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 import normalizeOctave from "./normalizeOctave";
 
@@ -18,6 +20,7 @@ import normalizeOctave from "./normalizeOctave";
  * getCasualRandomNote({ octave: [3, 4] }) // 随机音符，八度 3 或 4
  */
 export default (options?: { octave?: number | number[] }): InstanceType<typeof Note> => {
-  const noteObj = NOTE_META.random()
+  const noteObj = randomOf(NOTE_META)
+  if (isNil(noteObj)) throw new Error("Random note source exhausted (data corruption?)")
   return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
 }

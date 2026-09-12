@@ -64,11 +64,10 @@ export default (noteInstance: InstanceType<typeof Note>,
 		PianoKey.fromPitchInt(basePitchValue - intervalInstance.semitoneGap)
 
 	// 在 noteMeta 中查找同时满足音级和半音位置的音符
-	const findBaseNoteObj = NOTE_META.where("step", targetStepRadix.step)
-		.where("pianoKeyId", targetPianoKey.pianoKeyId)
-		.first()
+	const findBaseNoteObj = NOTE_META.find(x =>
+		x.step === targetStepRadix.step && x.pianoKeyId === targetPianoKey.pianoKeyId)
 
-	if (!Boolean(findBaseNoteObj)) {
+	if (isNil(findBaseNoteObj)) {
 		throw new NoteError("No matching note found for the given interval.")
 	}
 

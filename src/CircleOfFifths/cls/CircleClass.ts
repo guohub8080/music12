@@ -82,8 +82,8 @@ export class CircleOfFifths extends Base12Radix {
 	 * g.majCircle  // [{step: 'G', alter: 0, mode: 'major', staveAlters: 1, ...}]
 	 */
 	public get majCircle() {
-		return FIFTH_META.where("circleID", ">=", 0).where("circleID", "<=", 12)
-			.where("mode", "major").where("circleID", this.location).all()
+		return FIFTH_META.filter(x => x.circleID >= 0 && x.circleID <= 12
+			&& x.mode === "major" && x.circleID === this.location)
 	}
 
 	/**
@@ -98,8 +98,8 @@ export class CircleOfFifths extends Base12Radix {
 	 * c.minCircle  // [{step: 'A', alter: 0, mode: 'minor', ...}] (a 小调)
 	 */
 	public get minCircle() {
-		return FIFTH_META.where("circleID", ">=", 0).where("circleID", "<=", 12)
-			.where("mode", "minor").where("circleID", this.location).all()
+		return FIFTH_META.filter(x => x.circleID >= 0 && x.circleID <= 12
+			&& x.mode === "minor" && x.circleID === this.location)
 	}
 
 	/**
@@ -168,8 +168,8 @@ export class CircleOfFifths extends Base12Radix {
 	 * c.current  // [C 大调信息, a 小调信息]
 	 */
 	public get current() {
-		return FIFTH_META.where("circleID", ">=", 0).where("circleID", "<=", 12)
-			.where("circleID", this.location).all()
+		return FIFTH_META.filter(x => x.circleID >= 0 && x.circleID <= 12
+			&& x.circleID === this.location)
 	}
 
 	/**
@@ -206,13 +206,9 @@ export class CircleOfFifths extends Base12Radix {
 	 * CircleOfFifths.getNormalMajorStep(11)  // 'F' (位置 11 = F 大调)
 	 */
 	static getNormalMajorStep(circleID: number): string {
-		const result = FIFTH_META
-			.where("circleID", ">=", 0)
-			.where("circleID", "<=", 12)
-			.where("mode", "major")
-			.where("circleID", circleID)
-			.where("isTonicNormal", true)
-			.first()
+		const result = FIFTH_META.find(x => x.circleID >= 0 && x.circleID <= 12
+			&& x.mode === "major" && x.circleID === circleID
+			&& x.isTonicNormal === true)
 
 		if (isNil(result)) {
 			throw new CircleOfFifthsError(`No normal major scale found at circleID ${circleID}`)

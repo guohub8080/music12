@@ -5,19 +5,13 @@ import { getScaleByStaveAlters } from "@stave"
 
 export default function CircleOfFifthsTest() {
 	// 获取所有大调数据（按调号数量排序）
-	const majorScales = FIFTH_META.where("circleID", ">=", 0)
-		.where("circleID", "<=", 12)
-		.where("mode", "major")
-		.where("isTonicReplaced", false)
-		.all()
+	const majorScales = FIFTH_META.filter(x => x.circleID >= 0
+		&& x.circleID <= 12 && x.mode === "major" && x.isTonicReplaced === false)
 		.sort((a, b) => a.rawStaveAlters - b.rawStaveAlters)
 
 	// 获取所有小调数据
-	const minorScales = FIFTH_META.where("circleID", ">=", 0)
-		.where("circleID", "<=", 12)
-		.where("mode", "minor")
-		.where("isTonicReplaced", false)
-		.all()
+	const minorScales = FIFTH_META.filter(x => x.circleID >= 0
+		&& x.circleID <= 12 && x.mode === "minor" && x.isTonicReplaced === false)
 		.sort((a, b) => a.rawStaveAlters - b.rawStaveAlters)
 
 	// 获取 CircleOfFifths 定义的升降号顺序

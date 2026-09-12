@@ -17,20 +17,20 @@ export const cls_getNotes = (
   pianoKey: PianoKey,
   config?: { isNormal?: boolean, alterAbsLte?: 0 | 1 | 2 }
 ): InstanceType<typeof Note>[] => {
-  let handle = NOTE_META.where("pianoKeyId", pianoKey.pianoKeyId)
+  let list = NOTE_META.filter(x => x.pianoKeyId === pianoKey.pianoKeyId)
 
   const isNormal = defaultTo(config?.isNormal, false)
-  if (isNormal) handle = handle.where("isNormal", true)
+  if (isNormal) list = list.filter(x => x.isNormal === true)
 
   const alterLimit = config?.alterAbsLte
   if (isNotNil(alterLimit)) {
     if (alterLimit < 0 || alterLimit > 2) {
       throw new Error("alterAbsLte must be 0, 1, or 2.")
     }
-    handle = handle.filter(x => Math.abs(x.alter) <= alterLimit)
+    list = list.filter(x => Math.abs(x.alter) <= alterLimit)
   }
 
-  return handle.all().map(x => {
+  return list.map(x => {
     const octaveOffset = x.semitone >= 12 ? -1 : (x.semitone < 0 ? 1 : 0)
     return new Note(x.step as T_NoteStep, x.alter as T_AlterValue, pianoKey.octave + octaveOffset)
   })

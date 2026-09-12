@@ -1,6 +1,8 @@
 import { defaultTo } from 'es-toolkit/compat'
+import { isNil } from 'es-toolkit/predicate'
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
+import { randomOf } from "@common/utils/randomOf";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
 import normalizeOctave from "./normalizeOctave";
 
@@ -24,9 +26,11 @@ import normalizeOctave from "./normalizeOctave";
 export default (options?: { octave?: number | number[], isNormal?: boolean }): InstanceType<typeof Note> => {
   const isNormal = defaultTo(options?.isNormal, true)
   if (isNormal) {
-    const noteObj = NOTE_META.where("isBlack", true).where("isNormal", true).random()
+    const noteObj = randomOf(NOTE_META.filter(x => x.isBlack === true && x.isNormal === true))
+    if (isNil(noteObj)) throw new Error("Random note source exhausted (data corruption?)")
     return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
   }
-  const noteObj = NOTE_META.where("isBlack", true).random()
+  const noteObj = randomOf(NOTE_META.filter(x => x.isBlack === true))
+  if (isNil(noteObj)) throw new Error("Random note source exhausted (data corruption?)")
   return new Note(noteObj.step as T_NoteStep, noteObj.alter as T_AlterValue, normalizeOctave(options?.octave))
 }

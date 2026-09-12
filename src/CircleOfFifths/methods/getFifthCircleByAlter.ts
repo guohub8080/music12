@@ -22,7 +22,7 @@ import {CircleOfFifths} from "../cls/CircleClass";
  * @throws CircleOfFifthsError 当调号对应理论调(|alter| ≥ 8)或调号不存在时抛出
  */
 export const getFifthCircleByAlter = (alter: number) => {
-  const obj = FIFTH_META.where("rawStaveAlters", alter).first();
+  const obj = FIFTH_META.find(x => x.rawStaveAlters === alter);
   if (obj) {
     // 理论调:circleID=-1 是「无座位」哨兵值,不是合法圈位,直接喂给
     // CircleOfFifths 会被 Base12Radix 取模成 11(F 位),静默返回错误数据。

@@ -73,9 +73,9 @@ export default (intervalInstance: InstanceType<typeof Interval>,
     return result
   }
 
-  // 从元数据中查找相同半音位置的所有音程(collect.js 的 all() 返回弱类型,as 对齐)
-  const findIntervalOnSameLocation = INTERVAL_META.where("semitoneClockPosition",
-    intervalInstance.semitoneClockPosition).all() as I_IntervalObj[]
+  // 从元数据中查找相同半音位置的所有音程
+  const findIntervalOnSameLocation = INTERVAL_META.filter(x =>
+    x.semitoneClockPosition === intervalInstance.semitoneClockPosition) as I_IntervalObj[]
   if (isNil(findIntervalOnSameLocation)) throw new IntervalError("Internal error: no intervals found at this location.")
 
   // 过滤 → 计算实际度数 → 排除无效度数 → 构造 Interval

@@ -29,12 +29,9 @@ import { isEmpty } from 'es-toolkit/compat'
 import FIFTH_META from "@circle-of-fifths/static/FIFTH_META";
 import type { T_AlterValue, T_NoteStep } from "@common/static/NOTE_TYPES";
 export const getStaveAlterByNote = (step: T_NoteStep, alter: T_AlterValue) => {
-	const findObj = FIFTH_META
-		.where("circleID", ">=", 0)
-		.where("circleID", "<=", 12)
-		.where("rawNoteStep", step)
-		.where("rawNoteAlter", alter)
-		.all();
+	const findObj = FIFTH_META.filter(x =>
+		x.circleID >= 0 && x.circleID <= 12
+		&& x.rawNoteStep === step && x.rawNoteAlter === alter);
 
 	if (isEmpty(findObj)) {
 		throw new Error(`No matching scale found for the given note: ${step}${alter === 0 ? "" : alter > 0 ? "#" : "b"}`);

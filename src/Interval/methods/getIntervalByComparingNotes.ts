@@ -86,7 +86,7 @@ const getIntervalByComparingNotes = (note1: InstanceType<typeof Note>,
 		const intervalGap = Math.abs(note1StepRadix.getGap(note2StepRadix)) + 1
 
 		// 在音程元数据中查找半音为 0、度数匹配的音程
-		const findIntervalObj = INTERVAL_META.where("semitoneGap", 0).where("num", intervalGap).first()
+		const findIntervalObj = INTERVAL_META.find(x => x.semitoneGap === 0 && x.num === intervalGap)
 		if (findIntervalObj) return new Interval(findIntervalObj.type as T_IntervalType, findIntervalObj.num)
 		throw new IntervalError("Parallel notes but no matching interval found.")
 	}
@@ -116,7 +116,7 @@ const getIntervalByComparingNotes = (note1: InstanceType<typeof Note>,
 
 	// 在音程元数据中查找匹配的音程
 	// 条件：八度内半音数匹配 + 八度内度数匹配
-	const findIntervalObj = INTERVAL_META.where("semitoneGap", semitoneWithinOctave).where("num", stepGapArr[1] + 1).first()
+	const findIntervalObj = INTERVAL_META.find(x => x.semitoneGap === semitoneWithinOctave && x.num === stepGapArr[1] + 1)
 
 	if (findIntervalObj) {
 		// 计算实际度数：八度数 * 7 + 八度内度数 + 1

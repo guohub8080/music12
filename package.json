@@ -103,7 +103,6 @@
   ],
   "dependencies": {
     "chinese-numbering": "^1.0.0",
-    "collect.js": "^4.36.1",
     "es-toolkit": "^1.49.0"
   },
   "devDependencies": {
