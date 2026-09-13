@@ -39,6 +39,8 @@ v4 是一次**代际重构**：查询从「运行时计算」翻到「预烘焙�
 | `getNoteByLocation` | `getNoteByPianoKeyId` | 键位 → 音符 |
 | `getUpwardLocationGap` | `getUpwardPianoKeyGap` | 上行键距 |
 | `Note.locationId` | `Note.pianoKeyId` | 键位属性 |
+| `Note.stepIndex` | `Note.stepId` | 音级索引属性 |
+| `Interval.semitoneLocation` | `Interval.semitoneClockPosition` | 半音钟位属性 |
 | `Scale.getScaleDegreeNote` | `Scale.getNoteByDegree` | 度数 → 音符（返回等音数组） |
 | `Chord.chordKey` | `Chord.chordFormulaId` | 公式键 |
 | `findChord` 返回 `chordFormulaId` | `formulaId` | 见破坏性变更 1 |
