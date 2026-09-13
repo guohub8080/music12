@@ -277,15 +277,22 @@ describe('五度圈导航(2026-09-12 第一批四函数)', () => {
 		expect(`${n.subdominant.step}${n.subdominant.staveAlters}`).toBe('F-1')
 	})
 
-	it('调号距离:转调升降号增减量', () => {
-		expect(getKeySignatureDistance('C', 0, 'E', -1)).toBe(-3) // C→E♭ 加 3 降
-		expect(getKeySignatureDistance('C', 0, 'A', 0)).toBe(3)
-		expect(getKeySignatureDistance('C', 0, 'C', -1)).toBe(-7) // C→C♭
-		expect(getKeySignatureDistance('C', 0, 'C', 0)).toBe(0)
+	it('调号距离:对象签名,方向语义(默认升方向绕圈 0..11)', () => {
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'A',alter:0}})).toBe(3)
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'G',alter:0}})).toBe(1)
+		// C→E♭:降方向 3 步(加 3 个降号),升方向绕圈 9 步
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'E',alter:-1}, isAscending:false})).toBe(3)
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'E',alter:-1}})).toBe(9)
+		// C→C♭:降 7 升 5,两方向之和恒为 12
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'C',alter:-1}, isAscending:false})).toBe(7)
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'C',alter:-1}, isAscending:true})).toBe(5)
+		expect(getKeySignatureDistance({from:{step:'C',alter:0}, to:{step:'C',alter:0}})).toBe(0)
+		// G→C:降方向 1 步
+		expect(getKeySignatureDistance({from:{step:'G',alter:0}, to:{step:'C',alter:0}, isAscending:false})).toBe(1)
 	})
 
 	it('非法输入抛错', () => {
 		expect(() => getRelativeMinor('H' as never, 0)).toThrow()
-		expect(() => getKeySignatureDistance('C', 3, 'D', 0)).toThrow()
+		expect(() => getKeySignatureDistance({from:{step:'C',alter:3}, to:{step:'D',alter:0}})).toThrow()
 	})
 })

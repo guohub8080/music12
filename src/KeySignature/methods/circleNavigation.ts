@@ -1,5 +1,5 @@
 import { isNumber } from "es-toolkit/predicate"
-import { isInteger } from "es-toolkit/compat"
+import { defaultTo, isInteger } from "es-toolkit/compat"
 import type { T_NoteStep } from "@common/static/NOTE_TYPES"
 
 /**
@@ -96,16 +96,28 @@ export const getNeighborKeys = (
 }
 
 /**
- * 调号距离：两主音的圈位差（有符号,♯ 方向为正）——转调时升降号增减的数量。
- * C→E♭ = −3（加 3 个降）；C→A = +3；C→C♭ = −7。
+ * 调号距离：沿五度圈从 from 到 to 的步数（用户 2026-09-12 签名定稿）。
+ *
+ * @param config.from 起点 {step, alter}
+ * @param config.to 终点 {step, alter}
+ * @param config.isAscending 默认 true——沿升号方向（五度圈顺时针）取距,
+ *   绕圈恒为 0..11；false 沿降号方向取距。两个方向的距离之和恒为 12（或同为 0）。
+ *
+ * @example
+ * getKeySignatureDistance({from:{step:"C",alter:0}, to:{step:"A",alter:0}})                    // 3(升方向)
+ * getKeySignatureDistance({from:{step:"C",alter:0}, to:{step:"C",alter:-1}, isAscending:true})  // 5(C→C♭ 绕升方向)
+ * getKeySignatureDistance({from:{step:"C",alter:0}, to:{step:"C",alter:-1}, isAscending:false}) // 7(降方向,加 7 个降号)
  */
-export const getKeySignatureDistance = (
-  fromStep: T_NoteStep,
-  fromAlter: number,
-  toStep: T_NoteStep,
-  toAlter: number,
-): number => {
-  assertTonic(fromStep, fromAlter)
-  assertTonic(toStep, toAlter)
-  return posOf(toStep, toAlter) - posOf(fromStep, fromAlter)
+export const getKeySignatureDistance = (config: {
+  from: { step: T_NoteStep; alter: number }
+  to: { step: T_NoteStep; alter: number }
+  isAscending?: boolean
+}): number => {
+  const { from, to } = config
+  const isAscending = defaultTo(config.isAscending, true)
+  assertTonic(from.step, from.alter)
+  assertTonic(to.step, to.alter)
+  const diff = posOf(to.step, to.alter) - posOf(from.step, from.alter)
+  const wrapped = ((diff % 12) + 12) % 12
+  return isAscending ? wrapped : (12 - wrapped) % 12
 }
