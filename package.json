@@ -1,6 +1,6 @@
 {
   "name": "music12",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "TypeScript library for music theory calculations - notes, intervals, chords, scales",
   "author": "guohub8080",
   "license": "MIT",
@@ -88,6 +88,16 @@
       "types": "./dist/types/factory/index.d.ts",
       "import": "./dist/esm/factory.mjs",
       "require": "./dist/cjs/factory.cjs"
+    },
+    "./pianokey": {
+      "types": "./dist/types/PianoKey/index.d.ts",
+      "import": "./dist/esm/pianokey.mjs",
+      "require": "./dist/cjs/pianokey.cjs"
+    },
+    "./scale-mode": {
+      "types": "./dist/types/ScaleMode/index.d.ts",
+      "import": "./dist/esm/scale-mode.mjs",
+      "require": "./dist/cjs/scale-mode.cjs"
     }
   },
   "files": [

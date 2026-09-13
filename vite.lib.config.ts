@@ -50,6 +50,8 @@ export default defineConfig({
                 'stave': resolve(__dirname, 'src/Stave/index.ts'),
                 'radix': resolve(__dirname, 'src/common/radix/index.ts'),
                 'circle-of-fifths': resolve(__dirname, 'src/CircleOfFifths/index.ts'),
+                'pianokey': resolve(__dirname, 'src/PianoKey/index.ts'),
+                'scale-mode': resolve(__dirname, 'src/ScaleMode/index.ts'),
                 'factory': resolve(__dirname, 'src/factory/index.ts'),
             },
             formats: ['es', 'cjs'],
