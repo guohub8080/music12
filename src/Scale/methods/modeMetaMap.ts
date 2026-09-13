@@ -16,7 +16,7 @@ export interface I_ModeMetaEntry {
 /**
  * 调式元数据缓存（按 scaleModeId 全称索引）
  *
- * 模块加载时构建一次，覆盖全部 44 个调式
+ * 模块加载时构建一次，覆盖全部调式(SCALE_MODE_IDS 驱动,当前 60)
  * （用 C 为根音构造，因为 name/type/intervalList 与根音无关）。
  */
 const buildModeMetaMap = (): Record<string, I_ModeMetaEntry> => {
@@ -52,6 +52,12 @@ const ABBR_ALIAS: Record<string, string> = {
   MMAJ: "MELODIC_MAJOR_DESCENDING",
   HMIN: "HARMONIC_MINOR",
   MMIN: "MELODIC_MINOR_ASCENDING",
+  // 中国五声缩写(mtkit t_scaleMode 18 键补齐,2026-09-12)
+  CG: "GONG",
+  CS: "SHANG",
+  CJ: "JUE",
+  CZ: "ZHI",
+  CY: "YU",
 }
 
 /**
