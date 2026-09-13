@@ -14,6 +14,7 @@ import {
   getModeNameByModeKey, getModeTypeByModeKey, getIntervalListByModeKey, majorMinorScaleInstances,
 } from "@scale/index"
 import { getChordTransformByPianoKeyIds } from "@chord/index"
+import { SemitoneRadix } from "@common/radix"
 import { getNote, getChord, getScale, getInterval } from "@factory/index"
 
 /**
@@ -228,5 +229,41 @@ describe("factory 四件套(入口一致性)", () => {
     expect(c.pianoKeyIds).toEqual([0, 4, 7, 11])
     const s = getScale("C", 0, "NATURAL_MAJOR")
     expect(s.pianoKeyIds).toEqual([0, 2, 4, 5, 7, 9, 11])
+  })
+})
+
+describe("mtkit 对照补齐(SemitoneRadix + Scale 便利 getter)", () => {
+  it("SemitoneRadix:半音位置 [八度,键位] 分解", () => {
+    const sr = new SemitoneRadix(26)
+    expect(sr.octave).toBe(2)
+    expect(sr.location).toBe(2)  // D
+    expect(new SemitoneRadix(11).octave).toBe(0)
+    expect(new SemitoneRadix(11).location).toBe(11) // B
+  })
+
+  it("alterSum/alterTimesSum:调号代数和与方向计数(按根音拼写)", () => {
+    expect(getScale("C", 0, "NATURAL_MAJOR").alterSum).toBe(0)
+    expect(getScale("C", 0, "NATURAL_MINOR").alterSum).toBe(-3)
+    expect(getScale("C", 0, "NATURAL_MINOR").alterTimesSum).toBe(-3)
+    expect(getScale("D", -1, "NATURAL_MAJOR").alterSum).toBe(-5) // D♭ = 5♭
+    expect(getScale("E", -1, "NATURAL_MAJOR").alterSum).toBe(-3) // E♭ = 3♭
+    expect(getScale("F", 1, "NATURAL_MAJOR").alterSum).toBe(6)   // F♯ = 6♯
+    // C♯ 与 D♭ 同键集——类层取 |调号| 最小的实用拼写(D♭ 5♭)
+    expect(getScale("C", 1, "NATURAL_MAJOR").alterSum).toBe(-5)
+  })
+
+  it("equalRootNote:实用区返回根音,等音区给替换建议", () => {
+    expect(getScale("C", 0, "NATURAL_MAJOR").equalRootNote.artName).toBe("C")
+    // B 小调(2♯)实用 → 自身;理论区(全部拼写音带变音)才给等音
+    expect(getScale("B", 0, "NATURAL_MINOR").equalRootNote.artName).toBe("B")
+  })
+
+  it("chord3/7OfDegreesList:顺阶和弦全列表,五声缺度跳过", () => {
+    const c = getScale("C", 0, "NATURAL_MAJOR")
+    expect(c.chord3OfDegreesList).toEqual(["Cmaj3", "Dmin3", "Emin3", "Fmaj3", "Gmaj3", "Amin3", "Bdim3"])
+    expect(c.chord7OfDegreesList).toEqual(["Cmaj7", "Dmin7", "Emin7", "Fmaj7", "Gdom7", "Amin7", "Bhalfdim7"])
+    const gong = getScale("G", 0, "GONG")
+    expect(gong.chord3OfDegreesList.length).toBeLessThan(7) // 缺度跳过
+    expect(gong.chord3OfDegreesList.length).toBeGreaterThan(0)
   })
 })

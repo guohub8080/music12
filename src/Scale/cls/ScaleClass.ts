@@ -1,6 +1,8 @@
 import { isNil, isNotNil } from "es-toolkit/predicate";
 import { defaultTo, values } from "es-toolkit/compat";
 import { getNoteByPianoKeyId } from "@note"
+import type { Note } from "@note/cls/NoteClass"
+import { Interval } from "@interval"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
 import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 import type { T_ScaleModeId } from "../../Scale/static/scaleModeTypes"
@@ -134,6 +136,106 @@ export class Scale {
 	/** 是否所有音符都是变化音 */
 	public get isTonicReplaced(): boolean {
 		return this.alteredNotesNum === this.scale.pianoKeyIds.length
+	}
+
+	/**
+	 * 调号升降号代数和（mtkit 对照补齐,2026-09-12）
+	 *
+	 * 按根音拼写逐度取实际 Note 的变音累计（根音计一次）：C 大调 0、
+	 * C♯ 大调 7、D♭ 大调 -5、C 小调 -3——同模式不同根拼写调号不同。
+	 * 升号根音加重升可自然超 ±7（合法值,消费端自行取舍）。
+	 */
+	public get alterSum(): number {
+		return this.getAlterInfo().alterSum
+	}
+
+	/**
+	 * 升降号方向计数（mtkit 对照补齐）：升号音 +1、降号音 -1 累计（不计重数）。
+	 * 与 alterSum 是两个不同字段。
+	 */
+	public get alterTimesSum(): number {
+		return this.getAlterInfo().alterTimesSum
+	}
+
+	/**
+	 * 等音替换后的根音（mtkit 对照补齐）：理论调时给同键另一拼写（alterAbsLte 1）
+	 * 的第一个等音；实用调返回根音本身。
+	 */
+	public get equalRootNote() {
+		const notes = this.getSpelledNotes()
+		// 拼写级判定:全部音都带变音(等音区)才给替换建议;模式级 isTonicReplaced 是另一语义
+		const allAltered = notes.every(n => n.alter !== 0)
+		if (!allAltered) return notes[0]
+		return notes[0].getSamePitchNotes({ isSelfIncluded: false, alterAbsLte: 1 })[0]
+	}
+
+	/** 顺阶三和弦全列表（1~7 级,每级取根音优先读法；缺度跳过） */
+	public get chord3OfDegreesList(): string[] {
+		return this.getDegreeChordNames(3)
+	}
+
+	/** 顺阶七和弦全列表（1~7 级,每级取根音优先读法；缺度跳过） */
+	public get chord7OfDegreesList(): string[] {
+		return this.getDegreeChordNames(7)
+	}
+
+	private getDegreeChordNames(which: 3 | 7): string[] {
+		const out: string[] = []
+		for (let d = 1; d <= 7; d++) {
+			// 五声缺度直接跳过( getPianoKeyIdByDegree 对缺度抛错)
+			if (isNil(this.scale.degreeToPianoKeyId[d])) continue
+			const results = which === 3 ? this.getScaleDegreeChord3(d) : this.getScaleDegreeChord7(d)
+			const first = results.find(r => r.pianoKeyIdRoot === this.scale.degreeToPianoKeyId[d])
+			if (isNotNil(first)) out.push(first.chordName)
+		}
+		return out
+	}
+
+	/**
+	 * 按根音拼写沿度数音程推出的实际拼写音序列(mtkit 原实现同款)。
+	 * 这是 alterSum/alterTimesSum/equalRootNote 的语义基础——调号和
+	 * 依赖拼写而非键位(C♯大调 7♯ 与 D♭大调 5♭ 同键集不同拼写)。
+	 *
+	 * 类构造自 pianoKeyId(无拼写信息),黑键根音有两个常用拼写——
+	 * 取「|alterSum| 最小」的实用拼写(与五度圈实用调哲学一致):
+	 * 键 1 的大调取 D♭(5♭) 而非 C♯(7♯)。
+	 */
+	private getSpelledNotes(): Note[] {
+		const candidates = this.getRootNote()
+		let best: Note[] | undefined
+		let bestAbs = Number.POSITIVE_INFINITY
+		for (const rootNote of candidates) {
+			const notes: Note[] = [rootNote]
+			let valid = true
+			for (const item of this.scaleMode.intervalList) {
+				if (isNil(item)) continue
+				try {
+					notes.push(rootNote.getNoteByInterval(new Interval(item[0], item[1])))
+				} catch {
+					valid = false
+					break
+				}
+			}
+			if (!valid) continue
+			const abs = notes.reduce((acc, n) => acc + Math.abs(n.alter), 0)
+			if (abs < bestAbs) {
+				best = notes
+				bestAbs = abs
+			}
+		}
+		if (isNil(best)) throw new Error("No valid spelling for this root and mode")
+		return best
+	}
+
+	private getAlterInfo(): { alterSum: number; alterTimesSum: number } {
+		let alterSum = 0
+		let alterTimesSum = 0
+		for (const note of this.getSpelledNotes()) {
+			const a = note.alter
+			alterSum += a
+			alterTimesSum += a > 0 ? 1 : a < 0 ? -1 : 0
+		}
+		return { alterSum, alterTimesSum }
 	}
 
 

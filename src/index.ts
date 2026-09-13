@@ -54,4 +54,4 @@ export {getNote, getInterval, getChord, getScale} from "@factory"
 export * as circleOfFifths from "@circle-of-fifths"
 
 // ==================== 数学工具 ====================
-export {Radix, Base7Radix, Base12Radix, StepRadix, IntervalRadix, ScaleRadix} from "@common/radix"
+export {Radix, Base7Radix, Base12Radix, StepRadix, IntervalRadix, ScaleRadix, SemitoneRadix} from "@common/radix"

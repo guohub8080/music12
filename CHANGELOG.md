@@ -32,7 +32,18 @@ v4 是一次**代际重构**：查询从「运行时计算」翻到「预烘焙�
 
 `mono-repo/cpp` 摘除，`build:cpp` / `test:cpp` / `verify:equivalence` 脚本移除。git 历史完整保留，恢复即 revert 对应提交。黄金向量（1723 条）保留于 `test/vectors`。
 
-#### 4. 调式 type 枚举扩展
+#### 4. 命名迁移（location → pianoKeyId 系,mtkit 时代 API 改名）
+
+| mtkit/旧版名 | v4 名 | 说明 |
+|---|---|---|
+| `getNoteByLocation` | `getNoteByPianoKeyId` | 键位 → 音符 |
+| `getUpwardLocationGap` | `getUpwardPianoKeyGap` | 上行键距 |
+| `Note.locationId` | `Note.pianoKeyId` | 键位属性 |
+| `Scale.getScaleDegreeNote` | `Scale.getNoteByDegree` | 度数 → 音符（返回等音数组） |
+| `Chord.chordKey` | `Chord.chordFormulaId` | 公式键 |
+| `findChord` 返回 `chordFormulaId` | `formulaId` | 见破坏性变更 1 |
+
+#### 5. 调式 type 枚举扩展
 
 `"dim7"` 新增（♭♭7 系一级减七，如 Ultra Locrian）。`"major" | "minor" | "halfdim7" | "dim7"`。
 
@@ -57,6 +68,14 @@ v4 是一次**代际重构**：查询从「运行时计算」翻到「预烘焙�
 - 108 键集 504 读法，键集→调式读法 O(1)，别名收编（大调键集 7 条读法非 24）
 - 度数语义层（音→级数+变音）+ 等音拼写层（C♯7♯/D♭5♭ 并列、读法级理论调显式标记附等音建议）
 - 拼写原子化：step/alter 对（不用组合展示串）
+
+#### mtkit 对照补齐（乐理计算器 Pro 全功能覆盖）
+
+- `SemitoneRadix`（半音位置 [八度,键位] 分解）
+- `Scale.alterSum` / `alterTimesSum`：调号升降号代数和与方向计数（按根音拼写逐度累计;黑键根音自动取 |调号| 最小的实用拼写——C♯/D♭ 大调都给 -5 的 D♭ 读法）
+- `Scale.equalRootNote`：等音区根音替换建议（全拼写音带变音时给等音根音）
+- `Scale.chord3OfDegreesList` / `chord7OfDegreesList`：顺阶三/七和弦全列表（缺度跳过）
+- 修复 mtkit 已知病：五度圈理论调哨兵（`circleID=-1` 被 Base12Radix 取模成 11 静默返回 F 大调）→ v4 显式抛错附等音建议
 
 #### 数据架构
 
