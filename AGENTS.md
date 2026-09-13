@@ -216,7 +216,7 @@ chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计
 
 ### 短路径别名（四处配置必须同步）
 
-`tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@stave` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
+`tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@key-signature` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
 
 ### 工具库：es-toolkit（不是 lodash）
 
