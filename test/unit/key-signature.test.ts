@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { getAlterStepListByNum, getScaleByStaveAlters, getStaveAlterByNote } from '@stave/index';
+import { getAlterStepListByNum, getScaleByStaveAlters, getStaveAlterByNote,
+  getRelativeMinor, getRelativeMajor, getEnharmonicKey, getNeighborKeys, getKeySignatureDistance } from '@key-signature/index';
 
 describe('Stave - getAlterStepListByNum', () => {
 	describe('升号调性', () => {
@@ -241,3 +242,50 @@ describe('Stave - getStaveAlterByNote', () => {
 		});
 	});
 });
+
+describe('五度圈导航(2026-09-12 第一批四函数)', () => {
+	it('关系大小调互查,共享调号', () => {
+		const am = getRelativeMinor('C', 0)
+		expect(`${am.step}${am.alter}`).toBe('A0')
+		expect(am.staveAlters).toBe(0) // a 小调与 C 大调共享 0 调号
+		const C = getRelativeMajor('A', 0)
+		expect(`${C.step}${C.alter}`).toBe('C0')
+		expect(C.staveAlters).toBe(0)
+		const E = getRelativeMajor('C', 1) // c♯ 小调 → E 大调
+		expect(`${E.step}${E.alter}`).toBe('E0')
+		expect(E.staveAlters).toBe(4)
+	})
+
+	it('关系小调理论调优雅:D♯ 大调 → b♯ 小调共享 9♯', () => {
+		const bs = getRelativeMinor('D', 1)
+		expect(`${bs.step}${bs.alter}`).toBe('B1')
+		expect(bs.staveAlters).toBe(9)
+	})
+
+	it('等音调对:每个主音拼写恒有兄弟', () => {
+		const db = getEnharmonicKey('C', 1)
+		expect(`${db.step}${db.alter}`).toBe('D-1')
+		const cb = getEnharmonicKey('B', 0)
+		expect(`${cb.step}${cb.alter}`).toBe('C-1') // B ↔ C♭
+		const e = getEnharmonicKey('E', 0)
+		expect(`${e.step}${e.alter}`).toBe('F-1') // E ↔ F♭
+	})
+
+	it('相邻调:C 的属调 G(+1♯)/下属调 F(+1♭)', () => {
+		const n = getNeighborKeys('C', 0)
+		expect(`${n.dominant.step}${n.dominant.staveAlters}`).toBe('G1')
+		expect(`${n.subdominant.step}${n.subdominant.staveAlters}`).toBe('F-1')
+	})
+
+	it('调号距离:转调升降号增减量', () => {
+		expect(getKeySignatureDistance('C', 0, 'E', -1)).toBe(-3) // C→E♭ 加 3 降
+		expect(getKeySignatureDistance('C', 0, 'A', 0)).toBe(3)
+		expect(getKeySignatureDistance('C', 0, 'C', -1)).toBe(-7) // C→C♭
+		expect(getKeySignatureDistance('C', 0, 'C', 0)).toBe(0)
+	})
+
+	it('非法输入抛错', () => {
+		expect(() => getRelativeMinor('H' as never, 0)).toThrow()
+		expect(() => getKeySignatureDistance('C', 3, 'D', 0)).toThrow()
+	})
+})

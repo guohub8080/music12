@@ -69,11 +69,6 @@
       "import": "./dist/esm/find.mjs",
       "require": "./dist/cjs/find.cjs"
     },
-    "./stave": {
-      "types": "./dist/types/Stave/index.d.ts",
-      "import": "./dist/esm/stave.mjs",
-      "require": "./dist/cjs/stave.cjs"
-    },
     "./radix": {
       "types": "./dist/types/common/radix/index.d.ts",
       "import": "./dist/esm/radix.mjs",
@@ -98,6 +93,11 @@
       "types": "./dist/types/ScaleMode/index.d.ts",
       "import": "./dist/esm/scale-mode.mjs",
       "require": "./dist/cjs/scale-mode.cjs"
+    },
+    "./key-signature": {
+      "types": "./dist/types/KeySignature/index.d.ts",
+      "import": "./dist/esm/key-signature.mjs",
+      "require": "./dist/cjs/key-signature.cjs"
     }
   },
   "files": [

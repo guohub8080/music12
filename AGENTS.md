@@ -32,7 +32,7 @@ import { findChord } from "music12/find"
 import { Note, Chord, findChord } from "music12"
 ```
 
-可用子路径：`note` `interval` `scale` `chord` `chord-formula` `find` `stave` `radix` `circle-of-fifths` `factory`
+可用子路径：`note` `interval` `scale` `chord` `chord-formula` `find` `key-signature` `radix` `circle-of-fifths` `factory`
 
 ## API 速查
 
@@ -137,6 +137,7 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 2. **pianoKeyId 不带八度**。C4/C5/C3 的 pianoKeyId 都是 0。要绝对音高用 `pitchValue`（MIDI 编号）。
 3. **等和弦**：C6（C-E-G-A）和 Am7（A-C-E-G）是同一组键 `[0,4,7,9]`，findChord 会同时返回两者。
 4. **五声调式缺 4 度和 7 度**：`getNoteByIntervalNum(4)` 返回 null（不崩溃）。
+4b. **临时记号概念不存在（2026-09-12 用户裁决）**：音符永远是 (step, alter)，alter 0 就是还原——不存在「调内某音要不要升降」的判定问题；拼写是输出层信息,调号域只管调号本身（关系调/等音调/相邻调/调号距离,见 key-signature 模块）。
 5. **黑键有两个名字**：pianoKeyId=1 既是 C# 也是 Db。`getNoteByPianoKeyId(1)` 返回两者。
 
 ## 88 个和弦公式 ID

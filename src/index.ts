@@ -47,7 +47,9 @@ export {findNoteDegreeInAllScales, findNoteDegreeInScale} from "@find"
 export type {I_NoteDegreeInScale} from "@find"
 
 // ==================== Stave 模块 ====================
-export {getScaleByStaveAlters, getStaveAlterByNote, getAlterStepListByNum} from "@stave"
+export {getScaleByStaveAlters, getStaveAlterByNote, getAlterStepListByNum,
+  getRelativeMinor, getRelativeMajor, getEnharmonicKey, getNeighborKeys, getKeySignatureDistance} from "@key-signature"
+export type { I_KeyTonic } from "@key-signature"
 
 // ==================== Factory 模块 ====================
 export {getNote, getInterval, getChord, getScale} from "@factory"
