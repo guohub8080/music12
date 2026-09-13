@@ -37,7 +37,9 @@ export {getChordFormulaByTags, deriveTags} from "@chord-formula"
 export type {ChordTag} from "@chord-formula"
 
 // ==================== Find 模块 ====================
-export {findChord, findScaleByDegreePositions} from "@find"
+export {findChord, findScaleByDegreePositions, findByHash, findByScaleHash} from "@find"
+export type {I_HashEntry, I_HashResult, I_ChordFindResult, I_FindResult} from "@find"
+export type {I_ScaleHashEntry, I_ScaleHashResult, I_ScaleSpelling} from "@find"
 export type {I_DegreePositionConstraint, I_ScaleData} from "@find"
 export {findNotesInScales, areNotesInScale} from "@find"
 export type {I_NotesInScale, INoteDegree} from "@find"

@@ -96,6 +96,25 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // 只返回 Am7（根是 A
 
 少于 3 个不同的音，findChord 会抛错——2 个音没法构成和弦（连三和弦都不够）。重复的音也不算（`[60, 60, 60]` 只有 1 个独立音）。
 
+## findByHash / findByScaleHash：直查哈希表
+
+`findChord` 的底层是两张预烘焙哈希表，也可以直接用（pianoKeyId 输入，省去 MIDI 换算）：
+
+```ts
+import { findByHash, findByScaleHash } from "music12"
+
+// 和弦+set 识别：3~7 音五张表按音数自动路由
+findByHash([0, 4, 7])       // [{ formulaId: "maj3", isExact: true, ... }]
+findByHash([0, 3, 4])       // [{ formulaId: "spset-split_third", ... }]——同度双音给 set 读法
+
+// 音阶识别：键集 → 调式读法（含等音拼写层）
+findByScaleHash([0, 1, 3, 5, 6, 8, 10])
+// → 7 条 modal 读法，C♯ 大调读法自带拼写变体：
+//   C♯(7♯) / D♭(5♭) 并列；理论调显式标记附等音建议
+```
+
+`findByScaleHash` 的每条读法自带度数语义（哪个音是几度）和等音拼写（C♯ 还是 D♭ 的调号各是多少）——「区分升降号」在输出层完成，输入永远只需要琴键。
+
 ## findNotesInScales：这组音属于哪些调
 
 输入是 pianoKeyId（0-11）。返回所有「包含全部给定音」的调式：

@@ -25,21 +25,24 @@ getScale("G", 1, "DORIAN")         // G# 多利亚
 
 ## 有哪些调式
 
-music12 内置了 10 个家族、44 种调式。调式按家族分组，定义在 `SCALE_MODE_GROUPS` 里：
+music12 内置了 60 种调式，按家族分组在 `SCALE_MODE_GROUPS` 里（v4 把五个七声调式制家族全部补全到 7 个成员）：
 
 ```ts
 import { SCALE_MODE_GROUPS } from "music12"
 
 SCALE_MODE_GROUPS.DIATONIC
-// ["NATURAL_MAJOR", "DORIAN", "PHRYGIAN", "LYDIAN", "MIXOLYDIAN", "NATURAL_MINOR", "LOCRIAN"]
+// ["NATURAL_MAJOR", "IONIAN", "DORIAN", ..., "NATURAL_MINOR", "AEOLIAN", "LOCRIAN"]
 ```
 
-| 家族 | 内容 | 特色 |
+| 家族 | 成员 | 特色 |
 |---|---|---|
-| `DIATONIC` | 自然大调 + 6 个教会调式 | 西方音乐基础，7 个音 |
-| `HARMONIC_MINOR` | 和声小调 + 5 个衍生模式 | 含增二度，异域色彩 |
-| `MELODIC_MINOR` | 旋律小调 + 4 个衍生模式 | 爵士高级和声的基础 |
-| `DOUBLE_HARMONIC` | 双和声、匈牙利小调等 | 含两个增二度 |
+| `DIATONIC` | 自然大调 + 6 个教会调式（含 IONIAN/AEOLIAN 别名键） | 西方音乐基础，7 个音 |
+| `HARMONIC_MINOR` | 全 7 个：含 `ULTRA_LOCRIAN`（♭♭7 系） | 含增二度，异域色彩 |
+| `HARMONIC_MAJOR` | 全 7 个：`DORIAN_FLAT5` `PHRYGIAN_FLAT4` `LYDIAN_FLAT3` 等 | 大调骨架 + ♭6 的暗色 |
+| `MELODIC_MINOR` | 全 7 个：含爵士关键的 **`ALTERED`** 与 `MIXOLYDIAN_FLAT6` | 爵士高级和声的基础 |
+| `MELODIC_MAJOR` | 旋律大调（下行） | I 级 |
+| `DOUBLE_HARMONIC` | 6 个：含 `LYDIAN_SHARP2_SHARP6` `ULTRAPHRYGIAN` | 含两个增二度 |
+| `NEAPOLITAN` / `HUNGARIAN` | 那不勒斯大/小调、匈牙利大调 | 特色民族调式 |
 | `CHINESE_PENTATONIC` | 宫商角徵羽 | 5 声，无半音，中国风 |
 | `CHINESE_YAYUE` / `QINGYUE` / `YANYUE` | 雅乐/清乐/燕乐 | 中国传统七声 |
 
@@ -59,6 +62,41 @@ cMajor.naturalNotesNum  // 6（还原音数量，统计度数 2-7）
 ```
 
 `degreeToPianoKeyId` 是度数到音的映射表：`{1:0, 2:2, 3:4, 4:5, 5:7, 6:9, 7:11}`。反过来 `pianoKeyIdToDegree` 是音到位度的映射，不在调里的音映射到 null。
+
+### 调号升降号查询（v4 新增，直查烘焙数据）
+
+调号和**根音拼写**有关——C♯ 大调（7 个升号）和 D♭ 大调（5 个降号）是同一组琴键。所以查询要指定拼写的字母：
+
+```ts
+const k1 = new Scale(1, "NATURAL_MAJOR")  // 键 1 上的大调
+
+k1.getAlterSum("C")   // 7   —— 按 C♯ 读：C♯ D♯ E♯ F♯ G♯ A♯ B♯
+k1.getAlterSum("D")   // -5  —— 按 D♭ 读：D♭ E♭ F G♭ A♭ B♭ C
+k1.getAlterTimesSum("D") // -5（方向计数：升 +1 降 -1，不计重数）
+
+k1.getEqualRootNote("C").artName  // "D♭" —— C♯ 拼写全升（等音区），建议换 D♭
+```
+
+这些数字**全部直查预烘焙的拼写行**——某个拼写如果产生三个及以上重升/重降（比如 B♯ 的 Lydian♯2♯6），生成期就被排除了，查询会直接报错并附等音建议。
+
+### 顺阶和弦全列表（v4 新增）
+
+```ts
+cMajor.chord3OfDegreesList // ["Cmaj3", "Dmin3", "Emin3", "Fmaj3", "Gmaj3", "Amin3", "Bdim3"]
+cMajor.chord7OfDegreesList // ["Cmaj7", "Dmin7", "Emin7", "Fmaj7", "Gdom7", "Amin7", "Bhalfdim7"]
+```
+
+五声调式的缺度级自动跳过。
+
+### 大小调常用切片（加载优化）
+
+只需要大小调的应用（琴键高亮、调性检测 UI）可以导入 24 条的小表，避开 720 条全量数据的加载：
+
+```ts
+import { ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance } from "music12/scale"
+
+getMajorMinorScaleInstance(0, "NATURAL_MAJOR")  // C 大调实例
+```
 
 ## 查询：某个音在不在调里
 
