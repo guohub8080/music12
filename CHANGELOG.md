@@ -72,8 +72,8 @@ v4 是一次**代际重构**：查询从「运行时计算」翻到「预烘焙�
 #### mtkit 对照补齐（乐理计算器 Pro 全功能覆盖）
 
 - `SemitoneRadix`（半音位置 [八度,键位] 分解）
-- `Scale.alterSum` / `alterTimesSum`：调号升降号代数和与方向计数（按根音拼写逐度累计;黑键根音自动取 |调号| 最小的实用拼写——C♯/D♭ 大调都给 -5 的 D♭ 读法）
-- `Scale.equalRootNote`：等音区根音替换建议（全拼写音带变音时给等音根音）
+- `Scale.getAlterSum(step, alter?)` / `getAlterTimesSum(step, alter?)`：调号升降号代数和与方向计数——**直查烘焙拼写行**（指定 step 选等音读法,alter 可省由 step+键位推导;同键集 C♯ 拼写 7♯/D♭ 拼写 5♭ 各得其所;≥3 重拼写生成期已排除,查表即报错附等音提示）
+- `Scale.getEqualRootNote(step, alter?)`：等音区根音替换建议（烘焙 isTonicEnharmonic 标记,全拼写音带变音时给同键另一拼写根音）
 - `Scale.chord3OfDegreesList` / `chord7OfDegreesList`：顺阶三/七和弦全列表（缺度跳过）
 - 修复 mtkit 已知病：五度圈理论调哨兵（`circleID=-1` 被 Base12Radix 取模成 11 静默返回 F 大调）→ v4 显式抛错附等音建议
 

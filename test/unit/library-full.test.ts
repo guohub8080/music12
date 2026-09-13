@@ -241,21 +241,29 @@ describe("mtkit 对照补齐(SemitoneRadix + Scale 便利 getter)", () => {
     expect(new SemitoneRadix(11).location).toBe(11) // B
   })
 
-  it("alterSum/alterTimesSum:调号代数和与方向计数(按根音拼写)", () => {
-    expect(getScale("C", 0, "NATURAL_MAJOR").alterSum).toBe(0)
-    expect(getScale("C", 0, "NATURAL_MINOR").alterSum).toBe(-3)
-    expect(getScale("C", 0, "NATURAL_MINOR").alterTimesSum).toBe(-3)
-    expect(getScale("D", -1, "NATURAL_MAJOR").alterSum).toBe(-5) // D♭ = 5♭
-    expect(getScale("E", -1, "NATURAL_MAJOR").alterSum).toBe(-3) // E♭ = 3♭
-    expect(getScale("F", 1, "NATURAL_MAJOR").alterSum).toBe(6)   // F♯ = 6♯
-    // C♯ 与 D♭ 同键集——类层取 |调号| 最小的实用拼写(D♭ 5♭)
-    expect(getScale("C", 1, "NATURAL_MAJOR").alterSum).toBe(-5)
+  it("getAlterSum/getAlterTimesSum:直查烘焙拼写行,指定 step(可省 alter)", () => {
+    expect(getScale("C", 0, "NATURAL_MAJOR").getAlterSum("C")).toBe(0)
+    expect(getScale("C", 0, "NATURAL_MINOR").getAlterSum("C")).toBe(-3)
+    expect(getScale("C", 0, "NATURAL_MINOR").getAlterTimesSum("C")).toBe(-3)
+    expect(getScale("D", -1, "NATURAL_MAJOR").getAlterSum("D")).toBe(-5) // D♭ 拼写 = 5♭
+    expect(getScale("E", -1, "NATURAL_MAJOR").getAlterSum("E")).toBe(-3) // E♭ = 3♭
+    expect(getScale("F", 1, "NATURAL_MAJOR").getAlterSum("F")).toBe(6)   // F♯ = 6♯
+    // 同键集不同 step 不同调号:键 1 大调 C 拼写(C♯)=7,D 拼写(D♭)=-5
+    const k1 = getScale("D", -1, "NATURAL_MAJOR")
+    expect(k1.getAlterSum("C")).toBe(7)
+    expect(k1.getAlterSum("D")).toBe(-5)
+    expect(k1.getAlterSum("C", 1)).toBe(7) // 显式 alter 同值
   })
 
-  it("equalRootNote:实用区返回根音,等音区给替换建议", () => {
-    expect(getScale("C", 0, "NATURAL_MAJOR").equalRootNote.artName).toBe("C")
-    // B 小调(2♯)实用 → 自身;理论区(全部拼写音带变音)才给等音
-    expect(getScale("B", 0, "NATURAL_MINOR").equalRootNote.artName).toBe("B")
+  it("getEqualRootNote:isTonicEnharmonic 行给同键另一拼写根音,实用区返回自身", () => {
+    expect(getScale("C", 0, "NATURAL_MAJOR").getEqualRootNote("C").artName).toBe("C")
+    // 键 1 大调 C♯ 拼写全升(等音区)→ 建议 D♭
+    expect(getScale("D", -1, "NATURAL_MAJOR").getEqualRootNote("C").artName).toBe("D♭")
+  })
+
+  it("被生成期排除的拼写(≥3 重)查表报错", () => {
+    const bsharp = getScale("C", 0, "LYDIAN_SHARP2_SHARP6") // 键 0,B♯ 拼写已被排除
+    expect(() => bsharp.getAlterSum("B", 1)).toThrow(/excluded at generation/)
   })
 
   it("chord3/7OfDegreesList:顺阶和弦全列表,五声缺度跳过", () => {

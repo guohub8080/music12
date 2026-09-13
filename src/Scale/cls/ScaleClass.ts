@@ -1,7 +1,6 @@
 import { isNil, isNotNil } from "es-toolkit/predicate";
 import { defaultTo, values } from "es-toolkit/compat";
-import { getNoteByPianoKeyId } from "@note"
-import type { Note } from "@note/cls/NoteClass"
+import { getNoteByPianoKeyId, Note } from "@note"
 import { Interval } from "@interval"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
 import type { I_ScaleModeMeta } from "@scale-mode/static/types"
@@ -14,6 +13,10 @@ import cls_getScaleDegreeChord3 from "./classFn/cls_getScaleDegreeChord3"
 import cls_getScaleDegreeChord7 from "./classFn/cls_getScaleDegreeChord7"
 import cls_getNoteByIntervalNum from "./classFn/cls_getNoteByIntervalNum"
 import type { I_ChordFindResult } from "@find/findChord"
+import type { T_NoteStep } from "@common/static/NOTE_TYPES"
+
+/** 本位字母半音位(alter 推导用:step+键位 → 变音) */
+const SEMI_OF_STEP: Record<T_NoteStep, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }
 
 /**
  * 调式类
@@ -139,34 +142,79 @@ export class Scale {
 	}
 
 	/**
-	 * 调号升降号代数和（mtkit 对照补齐,2026-09-12）
+	 * 调号升降号代数和（mtkit 对照补齐,2026-09-12 用户裁决定稿）
 	 *
-	 * 按根音拼写逐度取实际 Note 的变音累计（根音计一次）：C 大调 0、
-	 * C♯ 大调 7、D♭ 大调 -5、C 小调 -3——同模式不同根拼写调号不同。
-	 * 升号根音加重升可自然超 ±7（合法值,消费端自行取舍）。
+	 * 直查烘焙实例表的拼写行（生成期已按 ≥3 重升降排除规则删过,查不到即报错）——
+	 * 不做任何运行时拼写计算。需指定根音拼写 step（alter 可省,由 step+键位推导）：
+	 * 同一键集不同拼写调号不同（键 1 大调:C♯ 拼写 7 / D♭ 拼写 -5）。
+	 *
+	 * @param step 根音拼写字母（如 "D" 选 D♭ 读法,"C" 选 C♯ 读法）
+	 * @param alter 可选变音（省略则由 step 与键位推导）
+	 * @returns 调号升降号代数和（升号根音加重升可自然超 ±7,合法值）
+	 * @throws 该拼写不在烘焙表（生成期因 ≥3 重升降被排除,必有等音根音可代）
 	 */
-	public get alterSum(): number {
-		return this.getAlterInfo().alterSum
+	public getAlterSum(step: T_NoteStep, alter?: number): number {
+		return this.findSpellingRow(step, alter).alterSum
 	}
 
 	/**
 	 * 升降号方向计数（mtkit 对照补齐）：升号音 +1、降号音 -1 累计（不计重数）。
-	 * 与 alterSum 是两个不同字段。
+	 * 从烘焙拼写行的 notesMap 读回累计——与 getAlterSum 是两个不同字段。
 	 */
-	public get alterTimesSum(): number {
-		return this.getAlterInfo().alterTimesSum
+	public getAlterTimesSum(step: T_NoteStep, alter?: number): number {
+		const row = this.findSpellingRow(step, alter)
+		return Object.values(row.notesMap).reduce(
+			(acc, n) => acc + (isNil(n) ? 0 : n.alter > 0 ? 1 : n.alter < 0 ? -1 : 0),
+			0,
+		)
 	}
 
 	/**
-	 * 等音替换后的根音（mtkit 对照补齐）：理论调时给同键另一拼写（alterAbsLte 1）
-	 * 的第一个等音；实用调返回根音本身。
+	 * 等音替换建议（mtkit 对照补齐）：该拼写行全部音带变音
+	 * （烘焙的 isTonicEnharmonic 标记）时，返回同键另一拼写行的根音；
+	 * 实用区返回该拼写自身根音。
 	 */
-	public get equalRootNote() {
-		const notes = this.getSpelledNotes()
-		// 拼写级判定:全部音都带变音(等音区)才给替换建议;模式级 isTonicReplaced 是另一语义
-		const allAltered = notes.every(n => n.alter !== 0)
-		if (!allAltered) return notes[0]
-		return notes[0].getSamePitchNotes({ isSelfIncluded: false, alterAbsLte: 1 })[0]
+	public getEqualRootNote(step: T_NoteStep, alter?: number) {
+		const row = this.findSpellingRow(step, alter)
+		if (!row.isTonicEnharmonic) {
+			return new Note(row.tonicStep as T_NoteStep, row.tonicAlter as never, 4)
+		}
+		const sibling = this.spellingRows().find(r => r !== row)
+		if (isNil(sibling)) return new Note(row.tonicStep as T_NoteStep, row.tonicAlter as never, 4)
+		return new Note(sibling.tonicStep as T_NoteStep, sibling.tonicAlter as never, 4)
+	}
+
+	/** 烘焙拼写行（实例表 scales 字段,生成期已排除 ≥3 重升降的拼写） */
+	private spellingRows(): Array<{
+		tonicStep: string
+		tonicAlter: number
+		isTonicNormal: boolean
+		isTonicEnharmonic: boolean
+		alterNoteCount: number
+		alterSum: number
+		notesMap: Record<number, { step: string; alter: number } | null>
+	}> {
+		return this.scale.scales as never
+	}
+
+	private findSpellingRow(step: T_NoteStep, alter?: number) {
+		let wantedAlter = alter
+		if (isNil(wantedAlter)) {
+			// alter 省略:由 step 与根音键位推导(差值归到 -2..+2,即等音拼写惯例)
+			const diff = (this.rootPianoKeyId - SEMI_OF_STEP[step] + 12) % 12
+			wantedAlter = diff > 6 ? diff - 12 : diff
+		}
+		const row = this.spellingRows().find(
+			r => r.tonicStep === step && r.tonicAlter === wantedAlter,
+		)
+		if (isNil(row)) {
+			throw new Error(
+				`Scale spelling ${step}${(wantedAlter ?? 0) > 0 ? "♯".repeat(wantedAlter ?? 0) : "♭".repeat(-(wantedAlter ?? 0))}` +
+					` not in baked instances (excluded at generation for ≥3 double accidentals; ` +
+					`an enharmonic root spelling exists — try another step letter)`,
+			)
+		}
+		return row
 	}
 
 	/** 顺阶三和弦全列表（1~7 级,每级取根音优先读法；缺度跳过） */
@@ -189,53 +237,6 @@ export class Scale {
 			if (isNotNil(first)) out.push(first.chordName)
 		}
 		return out
-	}
-
-	/**
-	 * 按根音拼写沿度数音程推出的实际拼写音序列(mtkit 原实现同款)。
-	 * 这是 alterSum/alterTimesSum/equalRootNote 的语义基础——调号和
-	 * 依赖拼写而非键位(C♯大调 7♯ 与 D♭大调 5♭ 同键集不同拼写)。
-	 *
-	 * 类构造自 pianoKeyId(无拼写信息),黑键根音有两个常用拼写——
-	 * 取「|alterSum| 最小」的实用拼写(与五度圈实用调哲学一致):
-	 * 键 1 的大调取 D♭(5♭) 而非 C♯(7♯)。
-	 */
-	private getSpelledNotes(): Note[] {
-		const candidates = this.getRootNote()
-		let best: Note[] | undefined
-		let bestAbs = Number.POSITIVE_INFINITY
-		for (const rootNote of candidates) {
-			const notes: Note[] = [rootNote]
-			let valid = true
-			for (const item of this.scaleMode.intervalList) {
-				if (isNil(item)) continue
-				try {
-					notes.push(rootNote.getNoteByInterval(new Interval(item[0], item[1])))
-				} catch {
-					valid = false
-					break
-				}
-			}
-			if (!valid) continue
-			const abs = notes.reduce((acc, n) => acc + Math.abs(n.alter), 0)
-			if (abs < bestAbs) {
-				best = notes
-				bestAbs = abs
-			}
-		}
-		if (isNil(best)) throw new Error("No valid spelling for this root and mode")
-		return best
-	}
-
-	private getAlterInfo(): { alterSum: number; alterTimesSum: number } {
-		let alterSum = 0
-		let alterTimesSum = 0
-		for (const note of this.getSpelledNotes()) {
-			const a = note.alter
-			alterSum += a
-			alterTimesSum += a > 0 ? 1 : a < 0 ? -1 : 0
-		}
-		return { alterSum, alterTimesSum }
 	}
 
 
