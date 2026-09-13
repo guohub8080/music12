@@ -100,14 +100,22 @@ function compilePassThrough(name: string): unknown {
 }
 
 // ==================== chord-formulas(展开 + 回填) ====================
-const SIMPLE_GAP: Record<string, number> = (() => {
-    const ivs = JSON.parse(readFileSync(resolve(OUT_DIR, "intervals.json"), "utf-8"));
-    const m: Record<string, number> = {};
-    for (const i of ivs) m[`${i.type}/${i.num}`] = i.semitoneGap;
-    return m;
-})();
+// 惰性读取(2026-09-13 引导 bug 修复):static-data 移出版本控制后,fresh
+// checkout 时 intervals.json 尚未编译出来——若在模块加载时就读会 ENOENT。
+// 首次 gap() 调用发生在 compileChordFormulas 内,此时 interval 透传目标
+// 已写盘(targets 顺序: interval 在 chord-formulas 之前),鸡生蛋解除。
+let SIMPLE_GAP_CACHE: Record<string, number> | null = null;
+const simpleGap = (): Record<string, number> => {
+    if (isNil(SIMPLE_GAP_CACHE)) {
+        const ivs = JSON.parse(readFileSync(resolve(OUT_DIR, "intervals.json"), "utf-8"));
+        const m: Record<string, number> = {};
+        for (const i of ivs) m[`${i.type}/${i.num}`] = i.semitoneGap;
+        SIMPLE_GAP_CACHE = m;
+    }
+    return SIMPLE_GAP_CACHE;
+};
 const gap = (t: string, N: number) =>
-    SIMPLE_GAP[`${t}/${((N - 1) % 7) + 1}`] + 12 * Math.floor((N - 1) / 7);
+    simpleGap()[`${t}/${((N - 1) % 7) + 1}`] + 12 * Math.floor((N - 1) / 7);
 
 function compileChordFormulas(): Record<string, unknown> {
     const src = readSrc("chord-formulas.json5") as Record<string, any>;
