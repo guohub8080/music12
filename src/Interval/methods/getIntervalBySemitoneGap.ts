@@ -52,8 +52,8 @@ export const getIntervalBySemitoneGap = (semitoneGap: number): InstanceType<type
 
 	// 在 intervalMeta 中查找八度内半音数匹配的自然音程
 	// isNatural = true 筛选大、小、纯音程（排除增、减音程）
-	const findResult = INTERVAL_META.where("isNatural", true)
-		.where("semitoneGap", semitoneGapRadix.lastDigit).all()
+	const findResult = INTERVAL_META.filter(x =>
+		x.isNatural === true && x.semitoneGap === semitoneGapRadix.lastDigit)
 
 	// 无匹配结果返回空数组
 	if (isEmpty(findResult)) return []

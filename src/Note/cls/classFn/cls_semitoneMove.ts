@@ -1,8 +1,6 @@
-import { isNil } from 'es-toolkit'
-import { isDefined } from "@common/utils/isDefined"
+import { isNil, isNotNil } from "es-toolkit/predicate";
 import {Note} from "../../index";
 import {PianoKey} from "@pianokey";
-import collect from "collect.js";
 
 /**
  * 半音移动
@@ -33,19 +31,19 @@ const cls_semitoneMove = (noteInstance: InstanceType<typeof Note>,
   const endPianoKey = PianoKey.fromPitchInt(noteInstance.pitchValue + moveStep)
 
   // 获取目标位置上所有变化音不超过 1 的常用音符
-  const handle = collect(endPianoKey.getNotes({ isNormal: true, alterAbsLte: 1 }))
+  const notes = endPianoKey.getNotes({ isNormal: true, alterAbsLte: 1 })
 
   // 优先找 alter === 0 的自然音
-  const zeroAlterNote = handle.where("alter", 0).first()
-  if (isDefined(zeroAlterNote)) return zeroAlterNote
+  const zeroAlterNote = notes.find(x => x.alter === 0)
+  if (isNotNil(zeroAlterNote)) return zeroAlterNote
 
   // 没有自然音：向上选升号，向下选降号
   if (moveStep > 0) {
-    const sharp = handle.where("alter", ">", 0).first()
+    const sharp = notes.find(x => x.alter > 0)
     if (isNil(sharp)) throw new Error("No sharp note found at this location.")
     return sharp
   }
-  const flat = handle.where("alter", "<", 0).first()
+  const flat = notes.find(x => x.alter < 0)
   if (isNil(flat)) throw new Error("No flat note found at this location.")
   return flat
 }

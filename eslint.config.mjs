@@ -5,7 +5,7 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ["src/**/*.ts", "test/**/*.ts", "web_test/**/*.ts", "web_test/**/*.tsx"],
+    files: ["src/**/*.ts", "test/**/*.ts"],
     ignores: ["node_modules", "dist"],
     rules: {
       "@typescript-eslint/no-unused-vars": "off",

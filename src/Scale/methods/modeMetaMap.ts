@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil, isNotNil } from 'es-toolkit/predicate';
 import { Scale } from "@scale/cls/ScaleClass"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 import type { T_IntervalType } from "@common/static/INTERVAL_TYPES"
@@ -10,13 +10,13 @@ import { SCALE_MODE_IDS } from "@scale/static/scaleModeTypes"
 export interface I_ModeMetaEntry {
   name: string
   type: string
-  intervalList: [T_IntervalType, number][]
+  intervalList: ([T_IntervalType, number] | null)[]
 }
 
 /**
  * 调式元数据缓存（按 scaleModeId 全称索引）
  *
- * 模块加载时构建一次，覆盖全部 44 个调式
+ * 模块加载时构建一次，覆盖全部调式(SCALE_MODE_IDS 驱动,当前 60)
  * （用 C 为根音构造，因为 name/type/intervalList 与根音无关）。
  */
 const buildModeMetaMap = (): Record<string, I_ModeMetaEntry> => {
@@ -52,6 +52,12 @@ const ABBR_ALIAS: Record<string, string> = {
   MMAJ: "MELODIC_MAJOR_DESCENDING",
   HMIN: "HARMONIC_MINOR",
   MMIN: "MELODIC_MINOR_ASCENDING",
+  // 中国五声缩写(mtkit t_scaleMode 18 键补齐,2026-09-12)
+  CG: "GONG",
+  CS: "SHANG",
+  CJ: "JUE",
+  CZ: "ZHI",
+  CY: "YU",
 }
 
 /**
@@ -59,8 +65,8 @@ const ABBR_ALIAS: Record<string, string> = {
  * @throws 无效 modeKey 时抛错
  */
 export const resolveModeKey = (modeKey: string): string => {
-  if (!isNil(MODE_META_MAP[modeKey])) return modeKey
+  if (isNotNil(MODE_META_MAP[modeKey])) return modeKey
   const full = ABBR_ALIAS[modeKey]
-  if (!isNil(full)) return full
+  if (isNotNil(full)) return full
   throw new Error(`Invalid modeKey: "${modeKey}".`)
 }

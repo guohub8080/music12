@@ -104,7 +104,7 @@ import { findChord } from "music12"
 
 // 输入 MIDI 音符列表（如 60=C4, 64=E4, 67=G4）
 const results = findChord([60, 64, 67, 70])   // C-E-G-Bb = C7
-console.log(results[0].chordFormulaId)        // "dom7"
+console.log(results[0].formulaId)        // "dom7"
 ```
 
 `findChord` 支持两种模式：
@@ -148,11 +148,11 @@ const cMajor = new Scale(0, "NATURAL_MAJOR")
 
 // C 大调 5 级的七和弦是什么？
 const chord = cMajor.getScaleDegreeChord7(5)
-console.log(chord[0].chordFormulaId) // "dom7"（G7）
+console.log(chord[0].formulaId) // "dom7"（G7）
 
 // 列出所有 7 个级数的七和弦
 for (let i = 1; i <= 7; i++) {
-  console.log(i, cMajor.getScaleDegreeChord7(i)[0].chordFormulaId)
+  console.log(i, cMajor.getScaleDegreeChord7(i)[0].formulaId)
 }
 // 1 maj7, 2 min7, 3 min7, 4 maj7, 5 dom7, 6 min7, 7 halfdim7
 ```

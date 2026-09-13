@@ -30,11 +30,10 @@ describe("Chord 构造与基础 getter", () => {
     expect(am7.pianoKeyIdsSorted).toEqual([0, 4, 7, 9])
   })
 
-  it("baseSymbol / cnName / family 可读", () => {
+  it("baseSymbol / cnName 可读", () => {
     const c = new Chord(0, "maj3")
     expect(typeof c.baseSymbol).toBe("string")
     expect(typeof c.cnName).toBe("string")
-    expect(typeof c.family).toBe("string")
   })
 
   it("intervalList 按度数升序", () => {
@@ -147,18 +146,18 @@ describe("Chord 音符方法", () => {
 describe("Chord find 反查", () => {
   it("C 大三和弦反查应找到 maj3@C", () => {
     const c = new Chord(0, "maj3")
-    const results = c.find()
+    const results = c.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
     expect(results.length).toBeGreaterThan(0)
     // 应包含完全匹配（similarity = 1）
-    const fullMatch = results.find((r) => r.similarity === 1)
+    const fullMatch = results.find(r => r.isExact)
     expect(fullMatch).toBeDefined()
     expect(fullMatch!.pianoKeyIdRoot).toBe(0)
   })
 
   it("G7 反查应找到 dom7@G", () => {
     const g7 = new Chord(7, "dom7")
-    const results = g7.find()
-    const fullMatch = results.find((r) => r.similarity === 1)
+    const results = g7.find().filter((r): r is Extract<typeof r, { type: "chord" }> => r.type === "chord")
+    const fullMatch = results.find(r => r.isExact)
     expect(fullMatch).toBeDefined()
     expect(fullMatch!.pianoKeyIdRoot).toBe(7)
   })

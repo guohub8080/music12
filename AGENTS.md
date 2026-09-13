@@ -32,7 +32,7 @@ import { findChord } from "music12/find"
 import { Note, Chord, findChord } from "music12"
 ```
 
-可用子路径：`note` `interval` `scale` `chord` `chord-formula` `find` `stave` `radix` `circle-of-fifths` `factory`
+可用子路径：`note` `interval` `scale` `chord` `chord-formula` `find` `key-signature` `radix` `circle-of-fifths` `factory`
 
 ## API 速查
 
@@ -67,27 +67,34 @@ chord.isTransformed // 是否被变换过
 chord.clearTransform() // 回到原始和弦
 ```
 
-### 反向查找（识别和弦）
+### 反向查找（识别和弦，哈希直查）
 
 ```ts
 import { findChord } from "music12"
 
-// 输入 MIDI 音符列表（60=C4, 64=E4, 67=G4...）
-findChord([60, 64, 67, 70]) // → [{ chordFormulaId: "dom7", ... }]
+// 输入 MIDI 音符列表（60=C4, 64=E4, 67=G4...），直查烘焙哈希表 O(1)
+findChord([60, 64, 67, 70]) // → [{ formulaId: "dom7", isExact: true, transform: {}, cost: 0, tier: 1, ... }]
 
-// 严格模式：只返回完全匹配
+// 严格模式：只返回完全匹配（isExact）
 findChord([60, 64, 67], { isStrict: true })
 
 // 指定根音：区分等和弦 C6 vs Am7
 findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → C6
 findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // → Am7
+
+// 省略音读法：C-E-B → maj7(omit5)，transform 原子化分组对象
+findChord([60, 64, 71]) // → [{ formulaId: "maj7", isExact: false, transform: { omit: 5 }, ... }]
+
+// 同度双音键集 → special-set 一等公民读法（非降级）
+findChord([60, 63, 64]) // → C·分叉三和弦（isChordFormula: false, setEntity getter）
 ```
 
-findChord 的匹配规则：
-- 默认：完全匹配优先；无完全匹配时返回省略音匹配（用户少弹了音）
-- 特征音不可省：七和弦必须有 3 度和 7 度，变和弦必须有变化音
-- 纯五度和扩展音（9/11/13）可省
-- 少于 3 个不同音会抛错
+findChord 的匹配裁决（已由烘焙管线固化进表，运行时零计算）：
+- 3~7 音五张哈希表（C(12,3)~C(12,7)=3223 键集全量），每键集 1~4 条零噪音答案
+- 完全匹配优先；省略音匹配带 transform 说明（五度/九度可省，特征音不可省）
+- 等和弦并列（C6/Am7）、对称家族（dim7 四重名）、special-set 都是表内读法
+- 结果带惰性 `chord`（Chord 实例）与 `setEntity`（set 实体）getter，不用实例零开销
+- 少于 3 个不同音抛错；>7 音返回空（可 `fallback: "pcset"` 降级集合论身份）
 
 ### 调式查询
 
@@ -99,6 +106,19 @@ cMajor.hasPianoKeyId(0)      // true（C 在 C 大调里）
 cMajor.getDegreeByPianoKeyId(4) // 3（E 是 3 度）
 cMajor.getScaleDegreeChord7(5)  // G7（5 级七和弦）
 cMajor.getScaleDegreeChord7(1)  // Cmaj7（1 级）
+```
+
+### 键集 → 调式（哈希 O(1)，区分升降号）
+
+```ts
+import { findByScaleHash } from "music12"
+
+// 琴键输入：返回全部调式读法（每条自带度数语义 + 等音拼写层）
+findByScaleHash([0, 1, 3, 5, 6, 8, 10])
+// → C♯ 大调读法，拼写 C♯(7♯) / D♭(5♭) 双变体并列；
+//   理论调（如 C♯ Lydian 的 F♯♯）显式标记并附等音建议
+
+// 拼写是输出层信息：消费端从 spellings 里按上下文自选（输入永远走 pianoKeyId）
 ```
 
 ### 标签查询
@@ -113,27 +133,194 @@ getChordFormulaByTags(["dim"])            // 所有减和弦 [dim3, dim7]
 
 ## 常见误区
 
-1. **findChord 接收 MIDI 数（如 60），不是 pianoKeyId（如 0）**。findNotesInScales 等才接收 pianoKeyId。
+1. **findChord/findByHash 的输入域不同**：findChord 接收 MIDI 数（如 60），findByHash 接收 pianoKeyId（如 0）直查表。findNotesInScales 等也接收 pianoKeyId。
 2. **pianoKeyId 不带八度**。C4/C5/C3 的 pianoKeyId 都是 0。要绝对音高用 `pitchValue`（MIDI 编号）。
 3. **等和弦**：C6（C-E-G-A）和 Am7（A-C-E-G）是同一组键 `[0,4,7,9]`，findChord 会同时返回两者。
 4. **五声调式缺 4 度和 7 度**：`getNoteByIntervalNum(4)` 返回 null（不崩溃）。
+4b. **临时记号概念不存在（2026-09-12 用户裁决）**：音符永远是 (step, alter)，alter 0 就是还原——不存在「调内某音要不要升降」的判定问题；拼写是输出层信息,调号域只管调号本身（关系调/等音调/相邻调/调号距离,见 key-signature 模块）。
 5. **黑键有两个名字**：pianoKeyId=1 既是 C# 也是 Db。`getNoteByPianoKeyId(1)` 返回两者。
 
-## 87 个和弦公式 ID
+## 88 个和弦公式 ID
 
 常用公式：`maj3` `min3` `dim3` `aug3` `sus2` `sus4` `maj7` `dom7` `min7` `dim7` `halfdim7` `minmaj7` `dom9` `maj9` `min9` `dom11` `maj11` `min11` `dom13` `maj13` `min13`
 
 变音和弦：`dom7#5` `dom7b5` `dom7b9` `dom7#9` `dom7#11` `dom9#5` `dom9#11` `maj7b5` `maj7#11` `min7b5` 等。
 
-完整列表用 `getChordFormulaByTags([])` 查询（返回全部 87 个）。
+完整列表用 `getChordFormulaByTags([])` 查询（返回全部 88 个）。
 
-## 44 个调式 ID
+## 60 个调式 ID（含 IONIAN/AEOLIAN 等别名键）
 
 自然调式：`NATURAL_MAJOR` `DORIAN` `PHRYGIAN` `LYDIAN` `MIXOLYDIAN` `NATURAL_MINOR` `LOCRIAN`
 
-和声/旋律：`HARMONIC_MINOR` `HARMONIC_MAJOR` `MELODIC_MINOR_ASCENDING` `MELODIC_MAJOR_DESCENDING` 及衍生模式
+和声/旋律（七调式制补全 2026-09-11）：`HARMONIC_MINOR` 全 7（含 `ULTRA_LOCRIAN`）、`HARMONIC_MAJOR` 全 7（`DORIAN_FLAT5` `PHRYGIAN_FLAT4` `LYDIAN_FLAT3` `MIXOLYDIAN_FLAT2` `LYDIAN_AUGMENTED_SHARP2` `LOCRIAN_DOUBLE_FLAT7`）、`MELODIC_MINOR_ASCENDING` 全 7（含爵士关键的 `ALTERED` 与 `MIXOLYDIAN_FLAT6`）、`MELODIC_MAJOR_DESCENDING`（I 级）
+
+双重和声：`DOUBLE_HARMONIC_MAJOR` 等 6 个（含 `LYDIAN_SHARP2_SHARP6` `ULTRAPHRYGIAN`）
+
+其他常用：`NEAPOLITAN_MAJOR` `NEAPOLITAN_MINOR` `HUNGARIAN_MAJOR`
 
 中国调式：`GONG` `SHANG` `JUE` `ZHI` `YU`（五声）；`YA_YUE_GONG` `QING_YUE_GONG` `YAN_YUE_GONG` 等（七声）
+
+调式元数据带 `tags`（家族 + 编译派生变音/缺度特征,查询用 `getScaleModeByTags`）、`forte`（Forte 音级集合编号）、`sameShapeAs`（同形别名键指向）。注意 dim4/dim7/aug6 音程记法（♭4/♭♭7/♯6 系调式）已入表。
+
+**度数↔音 1:1 铁律（2026-09-12 用户原则）**：普通 scale 里一个度数只有一个音——五度要么纯五要么增五，不允许同一音阶并存纯五与增五；布鲁斯的 ♭2+♮2（两个二度）这类同度双音**不属于 scale 体系**（编译器有防线断言拒绝数组槽）。双音对象按需走 special-sets 通道（分叉三和弦 ♭3·♮3 先例）,甚至可以不实现——先弄基本的。
+
+## 开发规范
+
+> 本节面向在 music12 仓库里做开发的 AI/人类，约定目录、数据流、分支与验证方式。
+
+### 目录结构（按语言归类，禁止无意义嵌套）
+
+```
+src/           TS 库本体（发布 npm 的就是它）
+static-data/   编译产物：JSON（只读这份，永不手改；已移出版本控制，构建时生成）
+ts-dev/        TS 开发工具：数据生成器脚本 + raw-static/ 数据源头（手改、带注释）
+test/          单元测试（test/unit）+ 黄金向量（test/vectors）
+documents/     人类可读的分章文档
+```
+
+原则：顶层目录必须装实际内容；只有一个模块时不许再套 `xxx/src/` 之类的空架子（ts-dev 曾因此拍平）。
+
+### 和弦识别管线（ts-dev/decompose/）
+
+和弦从「公式定义」到「任意输入全量识别」的完整管线在 `ts-dev/decompose/`，
+**必读 [ts-dev/decompose/README.md](./ts-dev/decompose/README.md)**——包含：
+- 5 步管线流程（公式源 json5 → 编译 → 12根实例 → C(12,3) 穷举倒推 → tier 报告）
+- 基座 DSL 语法与无环保证
+- 派生字段回填规则（gap 公式、tags 注入）
+- 4 条硬性排除规则 + 加权 cost 函数 + 6 级 tier 语义
+- 乐理依据（theory.md，Mark Levine/Berklee 体系）
+- 文件清单与运行时查找示例
+
+### 数据流（源头在 ts-dev/raw-static，产物在 static-data）
+
+```
+ts-dev/raw-static/*.json5   ← 手改的数据源头：JSON5 格式，带 // 注释（仅 5 个定义表）
+      │  pnpm gen:static-data 第 0 步：JSON5 → 标准 JSON 编译
+      ▼
+static-data/*.json   ← 编译/生成产物（gitignore，构建时生成；只读，永不手改）
+      ├── src/ 各 data.ts 用 @static-data/xxx.json 导入
+
+chord-instances / scale-instances 无 json5 源：生成器用乐理类实时计算产出
+```
+
+- **手改数据只改 `ts-dev/raw-static/*.json5`，然后跑 `pnpm gen:static-data`**；`static-data/*.json` 是编译产物，永远不手改（改了也会被下次编译覆盖，天然自愈）
+- json5 源支持 `//` 注释、尾逗号、单引号；编译用 devDependencies 的 `json5` 包，注释不进产物
+- 产出必须幂等：重跑 `pnpm gen:static-data` 和 `pnpm gen:golden` 后 `git diff` 必须为零
+
+### 数据表语义陷阱（历史 bug 教训）
+
+- **哨兵值不等于合法值**：fifth.json 里理论调（|调号|≥8，如 D♯大调 9♯）的 `circleID = -1` 是「无座位」标记，**不是合法圈位**。把它喂给 `CircleOfFifths` 会被 Base12Radix 取模成 11（F 位），静默返回错误数据（曾发生：用户问 9♯ 得到 F 大调）。消费端遇到哨兵值必须显式抛错并附等音建议（`getFifthCircleByAlter` 现行为：抛 `CircleOfFifthsError`，附 `alter - 12×sign(alter)` 的等音实用调号）
+- **数据与消费端是两层责任**：数据表经 `ts-dev/verify/verifyScales.ts`（12354 项乐理对拍）与规则断言双重验证后即为可信；此后若用户端拿到错误结果，**优先怀疑消费代码消化了哨兵值/边界值，而不是先改数据**（fifth.json 数据从未错过，bug 全在代码层）
+- **理论调的完整裁决仍在表里**：按主音拼法查询（`rawNoteStep + rawNoteAlter + mode`）永远安全，返回完整记录含 `actualNote*` 等音替换结果；只有「要圈位座位」这一诉求才会触发抛错
+- 改动数据消费逻辑后，跑 `ts-dev/verify/verifyScales.ts` 兜底（`npx tsx` 直跑，不依赖 vitest）
+
+### 短路径别名（四处配置必须同步）
+
+`tsconfig.json` 的 paths、`vite.lib.config.ts`、`vitest.config.ts`、`vite.config.ts` 四处的 alias 要保持一致。现有：`@note` `@interval` `@scale` `@chord` `@chord-formula` `@scale-mode` `@circle-of-fifths` `@find` `@pianokey` `@key-signature` `@common/*` `@factory` `@static-data/*` `@music12/*`。新增目录时四处一起加。
+
+### 工具库：es-toolkit（不是 lodash）
+
+已全部迁移到 es-toolkit，**禁止任何 lodash 导入**（代码与注释都不出现 lodash 字样）。
+
+**predicate vs compat 划分**（按 es-toolkit 1.49 实际 API）：
+
+```ts
+// isXxx 谓词统一从 predicate 子模块导（tree-shaking 最优）
+import { isString, isNumber, isBoolean, isFunction, isNil, isNotNil, isUndefined } from "es-toolkit/predicate"
+
+// 仅 predicate 没有的函数才用 compat
+import { isArray, isObject, defaultTo, values, keys, toPairs, range, uniq } from "es-toolkit/compat"
+```
+
+- `es-toolkit/predicate`：`isString` `isNumber` `isBoolean` `isFunction` `isNil` `isNotNil` `isNull` `isUndefined` `isSymbol` `isDate` `isRegExp` `isPromise` `isError` `isMap` `isSet` `isPlainObject` `isEmptyObject` `isEqual` 等
+- `es-toolkit/compat`（仅此有）：`isArray` `isObject` `defaultTo` `values` `keys` `toPairs` `range` `uniq` `isEmpty` `clamp` `sum` 等
+- 一个文件两类都用时分两行写（predicate 一行、compat 一行）
+- 旧代码存在 `from "es-toolkit"` 根导入的写法，新代码一律用子路径，触碰旧文件时顺手迁移
+
+**类型判断：绝对禁止 typeof。** `typeof x === "string"` 等原生判断一律不用，用 predicate 的 `isXxx`。
+
+**空值比较：`=== undefined` / `!== undefined` / `=== null` / `!== null` 永远不用，一律 isNil / isNotNil。** 判断「是 null 或 undefined」用 `isNil(x)`，判断「不是」用 `isNotNil(x)`——两者都是类型守卫，语义覆盖原生双等价的全部场景且能收窄类型。
+
+```ts
+// ❌ 禁止
+if (x === undefined) { ... }
+if (x !== undefined) { ... }
+if (x === null) { ... }
+while (node !== null) { ... }
+const valid = list.filter(x => x !== undefined)
+
+// ✅ 必须
+import { isNil, isNotNil } from "es-toolkit/predicate"
+if (isNil(x)) { ... }
+if (isNotNil(x)) { ... }
+const valid = list.filter(isNotNil)
+```
+
+```ts
+// ❌ 禁止
+if (x === undefined) { ... }
+if (x !== undefined) { ... }
+if (x === null) { ... }
+while (node !== null) { ... }
+const valid = list.filter(x => x !== undefined)
+```
+
+**无例外条款**：本库**不区分 undefined 与 null**（空值语义统一），因此 `typeof x === "undefined"` 的防御性写法同样禁止——不存在需要它防的场景，一律 isNil。
+
+**非空判断：用 isNotNil（predicate），禁止 `!isNil(x)`。** `isNotNil` 是类型守卫，收窄为非空类型，还能直接当 `filter(isNotNil)` 谓词传递；判断「为空」仍用 `isNil`。
+
+```ts
+// ❌ 禁止
+if (!isNil(x)) { ... }
+const valid = list.filter(x => !isNil(x))
+
+// ✅ 必须
+import { isNotNil } from "es-toolkit/predicate"
+if (isNotNil(x)) { ... }
+const valid = list.filter(isNotNil)
+```
+
+**空值默认：用 defaultTo（compat），禁止 `??` 和 `||` 兜底。**
+
+```ts
+// ❌ 禁止
+const octave = config.octave ?? 4
+const x = value || 0
+
+// ✅ 必须
+import { defaultTo } from "es-toolkit/compat"
+const octave = defaultTo(config.octave, 4)
+```
+
+**主动赋空值：用 void 0，禁止直接写 undefined。** 类型标注里的 `| undefined` 不受限（那是声明不是赋值）。
+
+```ts
+// ❌ 禁止
+this._cache = undefined
+
+// ✅ 必须
+this._cache = void 0
+```
+
+### 分支与发布流程
+
+- 开发在 `refactor/vX.Y` 分支上做，提交遵循 Conventional Commits（中文，正文写清动机和验证结果）
+- 发布时：切到 main → `git merge --squash` 压缩成一个提交（正文按「特性/修复/文档/结构/验证」分组写发布摘要）→ 打注解 tag `vX.Y.Z`（与 npm 版本号一致）
+- 开发分支**不删**，改名保留为存档（如 `refactor/v3.1`），细粒度历史全在里面
+- 推送时三样一起：`git push origin main vX.Y.Z refactor/vX.Y`
+
+### 提交与推送纪律
+
+- **默认每次对话/任务完成后 commit 当前未提交的所有改动**：`git add -A`，提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范（中文，正文写清动机与验证结果）
+- **完成后绝对禁止执行 `git push` 或任何推送远程的命令**。推送是极为谨慎的事情——只允许在用户明确说「push」时执行，任何情况下都不得自动推送、不得顺带推送、不得推完 main 顺手推别的分支
+
+### 验证两件套（结构/数据改动后必跑；C++ 双实现 2026-09-12 用户裁决暂缓,存档 git 历史,恢复即 revert 摘除提交）
+
+```bash
+pnpm test                 # TS 单元测试（当前 261 个）
+```
+
+任何一个红了就不许提交。改动涉及数据或目录时，额外确认生成器重跑零差异。
 
 ## 完整文档
 

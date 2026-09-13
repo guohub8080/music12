@@ -13,3 +13,7 @@ export type {T_ScaleModeId, T_ScaleModeGroup} from "./static/scaleModeTypes"
 export {getModeNameByModeKey} from "./methods/getModeNameByModeKey"
 export {getModeTypeByModeKey} from "./methods/getModeTypeByModeKey"
 export {getIntervalListByModeKey} from "./methods/getIntervalListByModeKey"
+
+// 大小调常用切片(24 条小表):只要大小调的消费端从此处 import,
+// 避开 allScaleInstances 全量表(720 条 2.3MB)的静态加载
+export { ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance, default as majorMinorScaleInstances } from "./static/majorMinorScaleInstances"

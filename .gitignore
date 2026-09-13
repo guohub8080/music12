@@ -2,7 +2,9 @@
 node_modules/
 .DS_Store
 **/.DS_Store
+# === 编译产物（从 ts-dev/ 源头重新生成，pretest/prebuild 自动触发）===
 dist/
+static-data/
 
 # === AI 工具本地状态（不进仓库）===
 .claude/

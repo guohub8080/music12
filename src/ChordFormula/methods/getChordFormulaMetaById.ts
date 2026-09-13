@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import { CHORD_FORMULA_META_MAP } from '../static/CHORD_FORMULA_META_MAP'
 import type { I_ChordFormulaMeta } from '../static/types'
 

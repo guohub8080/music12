@@ -1,4 +1,4 @@
-import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
+import { findChord, type I_ChordFindResult } from "@find/findChord"
 
 /**
  * 获取指定音级的顺阶三和弦（通过 findChord 识别）
@@ -10,7 +10,7 @@ import { findChord, type I_AnalyzedChordResult } from "@find/findChord"
  * @param scaleDegree 音级（1-7）
  * @returns 匹配的和弦结果列表（isRootPosition=true 优先）
  */
-export default function cls_getScaleDegreeChord3(scale: any, scaleDegree: number): I_AnalyzedChordResult[] {
+export default function cls_getScaleDegreeChord3(scale: any, scaleDegree: number): I_ChordFindResult[] {
 	if (scaleDegree < 1 || scaleDegree > 7) {
 		throw new RangeError("scaleDegree must be between 1 and 7")
 	}
@@ -24,7 +24,7 @@ export default function cls_getScaleDegreeChord3(scale: any, scaleDegree: number
 		ids[d(4)],  // 五度
 	]
 
-	const results = findChord(pianoKeyIds)
+	const results = findChord(pianoKeyIds).filter((x): x is import("@find/findChord").I_ChordFindResult => x.type === "chord")
 	// 调式和弦以该级音为根，优先返回根音 === 该级音的结果。
 	// 不用 isRootPosition（它判 mod12 最低音，对 0-11 音高类输入不可靠）。
 	const rootKeyId = ids[d(0)]

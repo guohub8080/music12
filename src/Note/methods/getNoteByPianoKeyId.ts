@@ -1,5 +1,4 @@
-import { range } from 'es-toolkit'
-import { defaultTo } from 'es-toolkit/compat'
+import { defaultTo, range } from 'es-toolkit/compat';
 import {Note} from "../cls/NoteClass";
 import NOTE_META from "../static/NOTE_META";
 import {T_AlterValue, T_NoteStep} from "@common/static/NOTE_TYPES";
@@ -31,12 +30,12 @@ export default (pianoKeyId: number,
   const octave = defaultTo(config?.octave, 4)
   const isComplexIncluded = defaultTo(config?.isComplexIncluded, false)
 
-  let query = NOTE_META.where("pianoKeyId", pianoKeyId)
+  let list = NOTE_META.filter(x => x.pianoKeyId === pianoKeyId)
   // 默认只取最简表示（isNormal=true），开启 isComplexIncluded 则取全部
   if (!isComplexIncluded) {
-    query = query.where("isNormal", true)
+    list = list.filter(x => x.isNormal === true)
   }
-  return query.all().map(x => {
+  return list.map(x => {
     return new Note(x.step as T_NoteStep, x.alter as T_AlterValue, octave)
   })
 }

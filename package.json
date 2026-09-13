@@ -1,6 +1,6 @@
 {
   "name": "music12",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "TypeScript library for music theory calculations - notes, intervals, chords, scales",
   "author": "guohub8080",
   "license": "MIT",
@@ -19,23 +19,22 @@
   ],
   "scripts": {
     "dev": "pnpm vite",
+    "pregen:static-data": "echo '[数据生产] 从 ts-dev/ 源头编译+生成全部 static-data'",
+    "gen:static-data": "npx tsx ts-dev/index.ts",
+    "prebuild": "npx tsx ts-dev/build-all.ts",
     "build": "del-cli dist/* && vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
+    "pretest": "npx tsx ts-dev/build-all.ts",
     "prepublishOnly": "pnpm build",
-    "gen:data": "npx tsx ts-dev/index.ts",
-    "gen:golden": "npx tsx mono-repo/cpp/tools/extract-golden.ts",
     "test": "vitest run",
-    "test:ts": "vitest run",
-    "build:cpp": "cd mono-repo/cpp && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release && cmake --build . --parallel 4",
-    "test:cpp": "cd mono-repo/cpp/build && MUSIC12_ROOT=$(pwd)/../../.. ./music12_tests",
-    "verify:equivalence": "cd mono-repo/cpp/build && MUSIC12_ROOT=$(pwd)/../../.. ./verify_equivalence",
-    "verify:all": "pnpm test:ts && pnpm test:cpp && pnpm verify:equivalence"
+    "test:ts": "vitest run"
   },
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.mjs",
   "types": "./dist/types/index.d.ts",
   "sideEffects": false,
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.mjs",
@@ -71,11 +70,6 @@
       "import": "./dist/esm/find.mjs",
       "require": "./dist/cjs/find.cjs"
     },
-    "./stave": {
-      "types": "./dist/types/Stave/index.d.ts",
-      "import": "./dist/esm/stave.mjs",
-      "require": "./dist/cjs/stave.cjs"
-    },
     "./radix": {
       "types": "./dist/types/common/radix/index.d.ts",
       "import": "./dist/esm/radix.mjs",
@@ -90,6 +84,21 @@
       "types": "./dist/types/factory/index.d.ts",
       "import": "./dist/esm/factory.mjs",
       "require": "./dist/cjs/factory.cjs"
+    },
+    "./pianokey": {
+      "types": "./dist/types/PianoKey/index.d.ts",
+      "import": "./dist/esm/pianokey.mjs",
+      "require": "./dist/cjs/pianokey.cjs"
+    },
+    "./scale-mode": {
+      "types": "./dist/types/ScaleMode/index.d.ts",
+      "import": "./dist/esm/scale-mode.mjs",
+      "require": "./dist/cjs/scale-mode.cjs"
+    },
+    "./key-signature": {
+      "types": "./dist/types/KeySignature/index.d.ts",
+      "import": "./dist/esm/key-signature.mjs",
+      "require": "./dist/cjs/key-signature.cjs"
     }
   },
   "files": [
@@ -100,7 +109,6 @@
   ],
   "dependencies": {
     "chinese-numbering": "^1.0.0",
-    "collect.js": "^4.36.1",
     "es-toolkit": "^1.49.0"
   },
   "devDependencies": {
@@ -116,6 +124,7 @@
     "eslint-plugin-react-refresh": "^0.5.0",
     "immer": "^11.1.4",
     "jsdom": "^28.1.0",
+    "json5": "^2.2.3",
     "pnpm": "^10.30.0",
     "prettier": "^3.8.1",
     "ramda": "^0.32.0",

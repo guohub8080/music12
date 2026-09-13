@@ -15,6 +15,8 @@ export type I_ScaleInstance = {
     pianoKeyIdToDegree: Record<number, number | null>
     degreeAlterationsMap: Record<number, number>
     scaleMode: any
+    /** 烘焙拼写行(每根音拼写一条:tonicStep/alterSum/notesMap/isTonicEnharmonic;≥3 重已在生成期排除) */
+    scales: unknown[]
 }
 
 const ALL_SCALE_META = scaleInstancesJson as any[]

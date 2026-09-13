@@ -1,0 +1,2082 @@
+/**
+ * bake-rules — 烘焙保留规则的正式定义(人工可改的唯一源头)
+ *
+ * 在此之前,「哈希表里保留哪些条目」的规则散落在 bake.ts 代码与
+ * theory.md/README.md 的文字描述里,没有真正可审计的定义。
+ * 本文件把保留逻辑数据化为三层管线,bake.ts 逐层执行:
+ *
+ *   ┌─ 机器 ─────────────────────────────────────────────────┐
+ *   │ 穷举 C(12,n) → 倒推引擎 → 加权 cost → tier 分组          │
+ *   └──────────────────────┬────────────────────────────────┘
+ *                          ▼
+ *   第一层 policy     通用策略:每键集最多几条、tier 上限(机械截断)
+ *   第二层 rules      类型化规则:声明式 when/then,机器自动套用
+ *   第三层 verdicts   人工裁决:逐键集钦定保留,优先级最高
+ *                          ▼
+ *   固化 → static-data/chord-hash-*.json + 报告标注来源
+ *
+ * 三层与人机协作的关系:
+ *   - rules 管 99% 的情况(模式化噪音过滤),改一处全表生效
+ *   - verdicts 管机器模式覆盖不了的特殊判断(乐理争议/顺序钦定),
+ *     是人工审核 hash3-report.md 之后的正式产物
+ *   - verdicts 的键是移调规范形(prime form),如 "0,1,3" ——
+ *     人工审核一次,自动对称作用于全部 12 个移调
+ *
+ * ── 字段说明 ─────────────────────────────────────────────
+ * policy.maxEntries   每键集最多保留条数(截断,顺序在截断前已定)
+ * policy.tierCeiling  tier 上限,超过的条目不进哈希表(查询走 pcset 降级)
+ *
+ * rules[].id          规则 id(报告引用;bake.ts 按字段直读,非 DSL 解释器)
+ * rules[].enabled     开关(false = 保留定义但不生效,留作历史)
+ * rules[].when        触发条件:hasSetHit(有 set 完全命中)
+ *                      / hasExactMatch(有零变换完全命中条目,tier1 且 n="")
+ * rules[].then        动作:filterChords.costMax(过滤 cost 超过该值的 chord 条目)
+ *                      / keepOnly="exactMatch"(只留完全命中条目,其余全滤;
+ *                        set 条目不受规则影响,等和弦的多名全保留)
+ *
+ * verdicts[key]       key = prime form(移调规范形),工具函数 keyset.ts
+ * verdicts[key].anchor    锚点 set id(spset-xxx):在该键集上唯一确定根音,
+ *                          keep 里的 chord 根音以锚点根音为基准
+ * verdicts[key].keep[]    人工钦定保留列表:顺序即最终顺序
+ *   { type: "anchor" }                          锚点 set 条目本身
+ *   { type: "chord", formula, rootShift }       有 anchor:根音 = 锚点根音 + rootShift
+ *   { type: "chord", formula, rootRel }         无 anchor(纯 chord 键集):
+ *                                                根音 = prime form 起点音 + rootRel
+ * (两种偏移都保持移调对称:一处裁决,12 个移调各自命中正确的根音)
+ * verdicts[key].filterRest  true = 未列入 keep 的全部过滤
+ *                           false = keep 置顶,其余按机器顺序殿后
+ *
+ * 运行:改本文件 → pnpm gen:static-data → npx tsx ts-dev/decompose/bake.ts
+ * 匹配不到的 keep 条目会在 bake 时警告(人工数据过期的信号,不静默)。
+ */
+{
+  // ── 第一层:通用策略(机械截断)──────────────────────────────
+  "policy": {
+    // 三音空间条目密度不高,10 条足够;tier 上限 6 = 全保留(占位,收紧时改这里)
+    "maxEntries": 10,
+    "tierCeiling": 6,
+  },
+
+  // ── 第二层:类型化规则(机器自动套用)────────────────────────
+  "rules": [
+    {
+      // 零成本独占(普适):存在 cost=0 的 chord 解释(完全命中或纯省略)时,
+      // 保留全部零成本条目,滤掉 cost>0 的扭曲解释——Tier2 纯省略组同样
+      // 适用(144 组的 1296 条挂尾一次清掉)。
+      //
+      // 乐理依据:cost=0 是「零扭曲」线——完全命中(键集恰等于公式音集)
+      // 与纯省略(omit5/omit11 预期行为)都不扭曲和弦身份;cost>0 的
+      // add/alter 才开始扭曲。等和弦多名(C6/Am7、sus2/sus4、dim7 四重名)
+      // 与省略并列解释(如 CDEG 的 Ddom9sus4(omit5),sus 声部视角)
+      // 全部零扭曲,全部保留;滤掉的是 tier3+ 凑数解释。
+      //
+      // 演化:2026-09-05 初版 exact-exclusive(只留完全命中)→ 同日用户
+      // 四音审核 CDEG 案例放宽——Ddom9sus4(omit5) cost=0 是准确的
+      // sus 声部解释,「cost0 的都纳入不过滤的范围」。
+      // set 命中组由 set-exclusive/verdicts 接管,优先级更高。
+      "id": "zero-cost-exclusive",
+      "enabled": true,
+      "when": { "hasZeroCostChord": true },
+      "then": { "keepOnly": "zeroCost" },
+    },
+    {
+      // 纯自然操作即答案:无零成本解释时,若最优解释的 transform 只含
+      // omit 与 add(不带任何升降号)且这样的解释恰有一条,直接钉死为
+      // 唯一答案,其余全滤。
+      //
+      // 乐理依据:omit(预期省略)与自然 add(色彩扩展)都是零变形成分,
+      // 「纯 omit+add」= 零扭曲解释的近亲;sharp/flat 是变形,不触发,
+      // 留给人工(set 分析或 verdict)。
+      //
+      // 演化:2026-09-08 初版「单 add」(dom7b13(add6) 形归纳)→ 同日
+      // 放宽为「omit+add 组合」(六音 {5,6,7,8,10,11} 的
+      // maj7b9(omit5 add2 add4) 形,用户:「只有简单 omit add 不带
+      // 升降且只有一条 → 直接保留;拿不准的不动,我来」)
+      "id": "lone-natural-add-exclusive",
+      "enabled": true,
+      "when": { "noZeroCostChord": true },
+      "then": { "keepOnly": "naturalOpsOnly" },
+    },
+    {
+      // 同根音完全命中优先:cost=0 并列中,同一根音既有完全命中(零变换)
+      // 又有带变换条目时,只留无变换的——省略记法还原后与完全命中等价,
+      // 同根音下是冗余记法(不同根音的 cost=0 全保留,那是等和弦多视角)。
+      //
+      // 典型:BCEX {0,4,6,11} 同为 C 根的 Cmaj7b5(完全命中)与
+      // Cmaj7#11(omit5)(#11≡b5 等音,omit5 后音集相同)→ 留 maj7b5。
+      //
+      // 审定:用户 2026-09-06(四音审核;「再次提醒:只有同根音才滤,
+      // 根音不同就都保留」)
+      "id": "same-root-exact-preferred",
+      "enabled": true,
+      "when": { "hasExactMatch": true },
+      "then": { "prefer": "transformless-per-root" },
+    },
+    {
+      // set 独占规则:set 完全命中时,chord 只保留 cost=0 的平行解释
+      //
+      // 乐理依据(theory.md):当键集被人工审核认定为独立 set(如 Phrygian 三音),
+      // 该键集已有「最强解释」——set 本身。cost=0 的 chord 解释(如 Phrygian ≡
+      // maj7sus2 减五度子集)是数学恒等,保留供记谱参考;cost>0 的 chord 解释
+      // 是为了凑数而扭曲的弱解释,在强解释面前是噪音。
+      //
+      // 审定:用户 2026-09-04(C-D-B 案例:保留 B·Phrygian + Cmaj7sus2(omit5),
+      // 过滤 sus2(omit5 add7) 及以下的 tier3+ 解释)
+      "id": "set-exclusive",
+      "enabled": true,
+      "when": { "hasSetHit": true },
+      "then": { "filterChords": { "costMax": 0 } },
+    },
+  ],
+
+  // ── 第三层:人工裁决(优先级最高)────────────────────────────
+  "verdicts": {
+    // Phrygian 三音形(Forte 3-2):C-D-B / C#-D-E / ... 共 12 个移调
+    //
+    // 本形已由 set-exclusive 规则覆盖(set + maj7sus2(omit5) 平行解释),
+    // 此处显式钦定为示范条目:固化讨论结论 + 锁定顺序(set 在前,平行解释在后),
+    // 并留下审核痕迹。规则覆盖不了的争议键集,才真正需要 verdict 出场。
+    //
+    // 审核:用户 2026-09-04
+    "0,1,3": {
+      "date": "2026-09-04",
+      "comment": "Phrygian 三音为主解释(弗拉门戈/安达卢西亚终止核心音响);maj7sus2(omit5) 为数学恒等(cost=0),保留供记谱参考",
+      "anchor": "spset-phrygian",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7sus2", "rootShift": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // 半音簇形(Forte 3-1):C-P-D / P-D-Q / ... 共 12 个移调
+    //
+    // 硬规则:纯 set,不保留任何 chord 平行解释。
+    // 决策变更:2026-09-04 曾软保留 maj7sus2(♭2 omit5)(cost=1.5,
+    // sus 单变化);2026-09-05 用户复审改判——它是凑数解释而非数学恒等
+    // (对比 Phrygian 形的 maj7sus2(omit5) 是 cost=0 恒等,够格;这里的
+    // ♭2 变换是硬凑),不够格保留。半音簇本身非功能(secundal),chord
+    // 体系读法都是扭曲,与分叉三和弦同款硬规则。
+    //
+    // 审核:用户 2026-09-04 初判软保留 → 2026-09-05 改判硬规则
+    "0,1,2": {
+      "date": "2026-09-05",
+      "comment": "半音簇为唯一解释(硬规则):maj7sus2(♭2 omit5) 是 cost=1.5 凑数非恒等,改判不保留,纯 set",
+      "anchor": "spset-chromatic_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 分叉三和弦形:A-C-C# / C-E♭-E / ... 共 12 个移调
+    // (prime form = 0,1,9,即 C# 起点的紧致形 [0,1,9];C 根形态 [0,3,4]
+    //  数值更大,不是规范键——键必须是 primeForm() 的输出)
+    //
+    // 硬规则:纯 set,不保留任何 chord 平行解释。
+    // 分叉三度的定义就是大/小三度并存(♪3+3),这在三度堆叠体系内
+    // 本质不可表达——任何 chord 解释都要 add3 或等价扭曲(cost≥3,
+    // 全部 tier5+)。与 Phrygian(maj7sus2 数学恒等)和半音簇(sus 单
+    // 变化平行读法)不同:后两者有低 cost 的亲缘解释,这里没有。
+    //
+    // 现状恰好只剩 set(因无 cost=0 解释),但那是 cost 函数碰巧,
+    // 非声明——固化后调 cost 权重也不会意外放进 chord 解释。
+    //
+    // 审核:用户 2026-09-04
+    "0,1,9": {
+      "date": "2026-09-04",
+      "comment": "分叉三和弦为唯一解释(硬规则):大/小三度并存本质不可 tertian 表达,任何 chord 解释都是扭曲,全滤",
+      "anchor": "spset-split_third",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 减三和弦形:C-E♭-G♭ / ... 共 12 个移调(prime form 0,3,6 自规范)
+    //
+    // 硬规则:完全命中即唯一解释。Cdim3(tier1,cost=0 零变换)已是完美
+    // 答案;其余条目全是噪音——Qdim7(omit5) 是 dim7 对称性的副产品
+    // (C-E♭-G♭ 恰为 E♭dim7 减五度),min3add6/dom7 系是换根音的凑数
+    // 解释,在完美答案面前没有参考价值。
+    //
+    // 本条同时示范无锚模式:键集无 set 命中,不用 anchor,
+    // chord 条目用 rootRel(相对 prime form 起点的偏移)定根音。
+    //
+    // 审核:用户 2026-09-05
+    "0,3,6": {
+      "date": "2026-09-05",
+      "comment": "减三和弦完全命中即唯一解释:dim7 对称性副产品与换根音凑数解释全滤",
+      "keep": [
+        { "type": "chord", "formula": "dim3", "rootRel": 0 },
+      ],
+      "filterRest": true,
+    },
+
+    // 半音叠纯四形:C-C♯-F / C-E-B / ... 共 12 个移调(prime form 0,1,5,Forte 3-4 正形)
+    //
+    // 双根音双保留(set 角度解释和弦现象——用户「创新」裁决):
+    //   set 根 = 半音对低音:C·Phrygian挂留三音(♭2+纯四,7sus4♭9 张力浓缩,
+    //           R+♭2+X 家族 X=5,家族就此补全)
+    //   maj7 壳根 = 半音对高音:Pmaj7(omit5)(cost=0,纯省略零扭曲)
+    // 二度对两音各领一个身份:低音挂摩擦(set),高音展度数(chord)。
+    // tier3+ 挂尾仍全滤;Paugmaj7 等已由变音度数引擎规则消灭。
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级 set+maj7 壳双保留)
+    "0,1,5": {
+      "date": "2026-09-05",
+      "comment": "Phrygian挂留三音(半音对低音根,♭2+纯四)+ maj7(omit5)(半音对高音根)双保留",
+      "anchor": "spset-phrygian_sus",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7", "rootShift": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // Viennese + maj7sus4 双根音形:C-C♯-F♯ / ... 共 12 个移调(prime form 0,1,6,Forte 3-5)
+    //
+    // 软保留(双根音双身份):C 根 = Viennese三音(set,♭2+♭5 集合身份,
+    // 第二维也纳乐派标志细胞);P 根 = maj7sus4(omit5)(cost=0,quartal
+    // 爵士壳)。用户裁决理由:「按 Viennese 的话就是 C 根音了」——多根音
+    // 解释都公认时全保留(与 Hijaz 形同款)。tier3+ 挂尾仍全滤。
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双根音软保留)
+    "0,1,6": {
+      "date": "2026-09-05",
+      "comment": "Viennese三音(C 根,集合身份)+ maj7sus4(omit5)(P 根,爵士壳)双保留",
+      "anchor": "spset-viennese",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "maj7sus4", "rootShift": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7 减五形:C-F♯-G♯ / ... 共 12 个移调(prime form 0,2,6,起点是三全音音;
+    // C 根形态 [0,6,8] 非规范键)
+    //
+    // 硬规则:只保留 dom7(omit5)。输入 = 属七的三音壳(root+M3+b7,
+    // guide tones 齐全的 rootless 前身,爵士 shell voicing 的本体),
+    // 纯省略零扭曲;tier3+ 挂尾全滤。无锚模式:根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    // 全音叠三全音形(dom7 壳形):F♯-G♯-C / ... 共 12 个移调(prime form 0,2,6,Forte 3-8 正形)
+    //
+    // 双根音双保留(「set 根=二度对低音」规律推广,用户 2026-09-05 确认):
+    //   set 根 = 全音对低音:X·全音叠三全音(♮2+♭5)
+    //   dom7 壳根 = 全音对高音:Ydom7(omit5)(cost=0,guide tones 壳)
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双保留)
+    "0,2,6": {
+      "date": "2026-09-05",
+      "comment": "全音叠三全音(二度对低音根)+ dom7(omit5)(二度对高音根)双保留",
+      "anchor": "spset-tone_tritone",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "dom7", "rootShift": 2 },
+      ],
+      "filterRest": true,
+    },
+
+    // 全音对形(Forte 3-6):C-D-E / ... 共 12 个移调(prime form 0,2,4 自规范)
+    //
+    // 双根音双保留(不升 set——「全音三音」身份未采纳,★类 3-6 裁决):
+    //   C 根 = maj3(omit5 add2):add2 记法而非 add9——三音语境无八度
+    //   支撑,D 距 C 是大二度不是九度,add2 更诚实(cost 0.5 用户钦定)
+    //   D 根 = dom7sus2(omit5)(cost=0)
+    // Cmaj3add9(omit5) 同事实的 add9 记法条目不保留(名不副实)。
+    // 无锚模式:maj3 根音 = 起点 + 0,dom7sus2 根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,4": {
+      "date": "2026-09-05",
+      "comment": "双根音双保留:C 根 maj3(omit5 add2)(add2 记法诚实于三音语境)+ D 根 dom7sus2(omit5);add9 记法与挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3", "rootRel": 0 },
+        { "type": "chord", "formula": "dom7sus2", "rootRel": 2 },
+      ],
+      "filterRest": true,
+    },
+
+    // 四度碎片倒影形(Forte 3-7 的另一半):F-A♭-B♭ / ... 共 12 个移调
+    // (prime form 0,2,9;与 {0,2,5} 形互为倒影,同 3-7 类分裂,
+    // 如同 hijaz/split_third 之于 3-3)
+    //
+    // 硬规则:只保留 min3add11(omit5)。F-A♭-B♭ = 小三 + 纯四
+    // (min11 省五度三音壳,也是 F 小五声的特征碎片);其余挂尾全滤。
+    // 无锚模式:min3add11 根音 = 起点 + 9。
+    //
+    // 审核:用户 2026-09-05
+    "0,2,9": {
+      "date": "2026-09-05",
+      "comment": "min3add11(omit5) 为唯一解释(硬规则):小三+纯四五声碎片,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "min3add11", "rootRel": 9 },
+      ],
+      "filterRest": true,
+    },
+
+    // 半音叠纯四倒影形(Forte 3-4 的另一半):F-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,8;与 {0,1,5} 形互为倒影——正形半边已裁
+    // maj7(omit5),本形两半对称收编:maj7 壳 vs maj3add11 壳)
+    //
+    // 硬规则:只保留 maj3add11(omit5)。F-A-B♭ = 大三 + 纯四
+    // (maj3add11 省五度三音壳,大调 1-3-4 音组);其余挂尾全滤。
+    // 无锚模式:maj3add11 根音 = 起点 + 8。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,8": {
+      "date": "2026-09-05",
+      "comment": "maj3add11(omit5) 为唯一解释(硬规则):大三+纯四壳,与正形半边 maj7 壳对称,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3add11", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // 四度碎片正形(Forte 3-7 正半边,★类最后一形):F♯-G♯-B / C-D-F / ...
+    // 共 12 个移调(prime form 0,2,5;与倒影半边 {0,2,9} 互为倒影——
+    // 倒影半边已裁 min3add11(omit5),本形收编 min7 壳,★类就此收官)
+    //
+    // 硬规则:只保留 min7(omit5)。输入 = 小七的三音壳
+    // (root+m3+b7,guide tones 齐全,与 \"0,2,6\" 形的 dom7(omit5) 壳
+    // 同构——一个是小七壳一个是属七壳);其余挂尾全滤。
+    // 无锚模式:min7 根音 = 起点 + 2。
+    //
+    // 审核:用户 2026-09-05
+    // 四度碎片形(min7 壳形):C-D-F / ... 共 12 个移调(prime form 0,2,5,Forte 3-7 正形)
+    //
+    // 双根音双保留(「set 根=二度对低音」规律推广,用户 2026-09-05 确认):
+    //   set 根 = 全音对低音:C·四度碎片(♮2+♮4,大调 1-2-4)
+    //   min7 壳根 = 全音对高音:Dmin7(omit5)(cost=0,guide tones 壳)
+    // ★类 3-7 正形半边就此收官(倒影半边 {0,2,9} 为 min3add11 壳单解释)。
+    //
+    // 审核:用户 2026-09-05(先裁纯 chord 硬规则,同日升级双保留)
+    "0,2,5": {
+      "date": "2026-09-05",
+      "comment": "四度碎片(二度对低音根)+ min7(omit5)(二度对高音根)双保留",
+      "anchor": "spset-fourth_fragment",
+      "keep": [
+        { "type": "anchor" },
+        { "type": "chord", "formula": "min7", "rootShift": 2 },
+      ],
+      "filterRest": true,
+    },
+
+    // Phrygian 倒影形(Forte 3-2 倒影半边):G-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,10;与 {0,1,3} 形互为倒影——正形半边是
+    // spset-phrygian + maj7sus2(omit5) 双保留,倒影半边收编 min 系壳)
+    //
+    // 硬规则:只保留 min3add9(omit5)。G-A-B♭ = 小三 + 大二/九
+    // (min3add9 省五度壳,小调 1-♭3-9 音组,Phrygian 音响的倒影
+    // 紧凑);其余挂尾全滤。无锚模式:min3add9 根音 = 起点 + 10。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,10": {
+      "date": "2026-09-05",
+      "comment": "min3add9(omit5) 为唯一解释(硬规则):小三+九壳(Phrygian 倒影紧凑),挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "min3add9", "rootRel": 10 },
+      ],
+      "filterRest": true,
+    },
+    // Phrygian 五度形(Forte 3-5 倒影形,★类最后一形):C-D♭-G / E-F-B / ...
+    // 共 12 个移调(prime form 0,1,7 自规范)
+    //
+    // 硬规则:纯 set。该形无 cost=0 chord 壳(最优 Csus2(♭2)/Gsus4(♭5)/
+    // Pmaj7sus4(♯4 omit5) 并列 cost=1.5 全是扭曲),与半音簇/分叉三和弦
+    // 同款「体系解释不动它」;Phrygian pedal 声响自成身份。
+    //
+    // 审核:用户 2026-09-05
+    "0,1,7": {
+      "date": "2026-09-05",
+      "comment": "Phrygian五度为唯一解释(硬规则):R+♭2+纯五 pedal 声响,chord 解释全扭曲,纯 set",
+      "anchor": "spset-phrygian_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 增大七形(四音):C-E-G-G♯ / ... 共 12 个移调(prime form 0,1,5,9,起点 G)
+    //
+    // 硬规则:只保留 augmaj7。maj7b13(omit5) 是等音噪音——#5 与 ♭13
+    // 是同一键(8 半音)的两种度数标签;♭13 记法前提是有纯五度支撑、
+    // 十三度为悬挂色彩音,而本键集无纯五度(D♯ 不在),E 顶替了五度的
+    // 结构位置,诚实读法是 ♯5(三和弦骨架改写)而非 ♭13。
+    // 无锚模式:augmaj7 根音 = 起点 + 1(C-E-G-G♯ 形里是 G♯)。
+    //
+    // 审核:用户 2026-09-06(四音 C-E-G-Y 案例,钉死特殊:只要 1)
+    "0,1,5,9": {
+      "date": "2026-09-06",
+      "comment": "augmaj7 为唯一解释(硬规则):无纯五度支撑时 ♯5 是本质读法,♭13(omit5) 等音噪音全滤",
+      "keep": [
+        { "type": "chord", "formula": "augmaj7", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音形(四音 set 首例):C-C♯-D-F♯ / ... 共 12 个移调
+    // (prime form 0,1,2,6 自规范,Forte 4-5 正形)
+    //
+    // 硬规则:纯 set。该形无 cost=0 解释(最优 dom7sus4b9(omit5 ♯7)
+    // cost=1 双变换凑数),chord 体系无法收编;「摩擦+悬浮」自成身份,
+    // 半音簇(spset-chromatic_cluster)的四音长子。倒影半边 4-5B
+    // {0,4,5,6} 同类,待审后同款处理。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,2,6": {
+      "date": "2026-09-06",
+      "comment": "半音簇三全音为唯一解释(硬规则):簇+三全音自成身份,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // maj3b5 加四形:C-C♯-D-G♯ / ... 共 12 个移调(prime form 0,1,2,8 自规范)
+    //
+    // 硬规则:只保留 maj3b5(add4)。结构 = maj3b5 三音壳 + 纯四度
+    // (add4 是 offset=0 自然扩展,cost 0.5 全场最优);其余挂尾全滤。
+    // 无锚模式:maj3b5 根音 = 起点 + 8(C-C♯-D-G♯ 形里是 G♯)。
+    //
+    // 审核:用户 2026-09-06(四音 Tier3 区)
+    "0,1,2,8": {
+      "date": "2026-09-06",
+      "comment": "maj3b5(add4) 为唯一解释(硬规则):三音壳+纯四自然扩展,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj3b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // Hijaz 四音组形:C-C♯-E-F / ... 共 12 个移调(prime form 0,1,4,5 自规范)
+    //
+    // 硬规则:纯 set。jins Hijaz(半音→增二度→半音,1-♭2-3-4)是 maqam
+    // 理论正式构件 + 和声小调 5 级双血统;spset-hijaz(特征前三音)的
+    // 四音完整版。最优 chord 解释 dom7#9(omit5 ♯7) 把 Hendrix 的 ♭7
+    // 升成 M7(本质变形),全场凑数。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,4,5": {
+      "date": "2026-09-06",
+      "comment": "Hijaz四音组为唯一解释(硬规则):jins Hijaz 正式身份,dom7#9(♯7) 升七度变形解释全滤,纯 set",
+      "anchor": "spset-hijaz_tetrachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // minmaj11 减五六形:C-C♯-E-F♯ / ... 共 12 个移调(prime form 0,1,4,6 自规范)
+    //
+    // 硬规则:只保留 minmaj11(omit9 omit5)。结构 = 小大十一和弦骨架
+    // (root+m3+P11+M7,Forte 4-z15 全音程四音组 ⟨111111⟩)。同根同 cost
+    // 三条并列中用户选 minmaj11:11 度(F♯)作为公式正式度数纳入本体,
+    // 优于 minmaj7(add4) 的外挂记法与 min3add11(add7) 的绕路。
+    // 无锚模式:minmaj11 根音 = 起点 + 1(C-C♯-E-F♯ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-06(「希望只保留 minmaj11 omit5 omit9」)
+    "0,1,4,6": {
+      "date": "2026-09-06",
+      "comment": "minmaj11(omit9 omit5) 为唯一解释(硬规则):11 度纳入公式本体,add 记法绕路与 ♯4 无户籍系全滤",
+      "keep": [
+        { "type": "chord", "formula": "minmaj11", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // 分叉加六形(四音):A-C-C♯-F♯ / C-C♯-F♯-A / ... 共 12 个移调
+    // (prime form 0,1,6,9 自规范,Forte 4-18 倒影方向)
+    //
+    // 硬规则:纯 set。分叉三和弦(♭3♮3 并存,blues 标志)+ 大六度;
+    // 最优 chord 解释 dom7#9(omit5 ♭7) 把 Hendrix 的 ♭7 降成 M6
+    // (变形核心音),全场别扭。Forte 4-18 正形 {0,1,4,7} 同类,
+    // 将来审到同款处理。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,6,9": {
+      "date": "2026-09-06",
+      "comment": "分叉加六为唯一解释(硬规则):split_third+大六度 blues 身份,dom7#9(♭7) 变形解释全滤,纯 set",
+      "anchor": "spset-split_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // maj13sus4 减五六形:C-C♯-F♯-B♭ / ... 共 12 个移调(prime form 0,1,6,10 自规范)
+    //
+    // 硬规则:只保留 maj13sus4(omit9 omit5)。结构 = 大十三挂四和弦
+    // 骨架(root+P4+M7+13,quartal 爵士的现代 voicing 惯用形)。
+    // 无锚模式:maj13sus4 根音 = 起点 + 1(C-C♯-F♯-B♭ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-06(四音 Tier3 区)
+    "0,1,6,10": {
+      "date": "2026-09-06",
+      "comment": "maj13sus4(omit9 omit5) 为唯一解释(硬规则):quartal 现代爵士骨架,挂尾全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj13sus4", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度形(四音):C-C♯-D-E / ... 共 12 个移调(prime form 0,1,2,4 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸第二例(半音簇+大三度,
+    // cluster_tritone 兄弟形,♭2♮2 同度并存);最优 chord 解释
+    // maj13sus2(omit5 ♯13) cost 1.5 变形记法,全场凑数。
+    //
+    // 审核:用户 2026-09-06(同意 set 为唯一解释)
+    "0,1,2,4": {
+      "date": "2026-09-06",
+      "comment": "半音簇大三度为唯一解释(硬规则):簇+大三度自成身份,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 梦之和弦形(四音):C-C♯-D-G / ... 共 12 个移调(prime form 0,1,2,7 自规范)
+    //
+    // 硬规则:纯 set。Dream chord(La Monte Young 出身,标准音高恰为
+    // G-C-C♯-D,源自童年电话线嗡鸣)——簇家族四音延伸第三例(簇+纯五);
+    // 亦 = Phrygian五度夹 ♮2。无 cost=0 解释,chord 全凑数。
+    //
+    // 审核:用户 2026-09-06(裁决 set)
+    "0,1,2,7": {
+      "date": "2026-09-06",
+      "comment": "梦之和弦为唯一解释(硬规则):Dream chord 正名(La Monte Young,电话线嗡鸣起源),簇+纯五自成身份,纯 set",
+      "anchor": "spset-dream",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇小七度形(四音):C-C♯-D-B♭ / ... 共 12 个移调(prime form 0,1,2,10 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸第四例(簇+小七度);音程向量
+    // ⟨221100⟩ 与半音簇大三度(4-2)相同——Z 关系伙伴。无 cost=0
+    // 解释,chord 全凑数。
+    //
+    // 审核:用户 2026-09-06(授权直接更新)
+    "0,1,2,10": {
+      "date": "2026-09-06",
+      "comment": "半音簇小七度为唯一解释(硬规则):簇+小七度自成身份,Z 关系于半音簇大三度,纯 set",
+      "anchor": "spset-cluster_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Phrygian 加六形(四音):C-C♯-E♭-A / ... 共 12 个移调(prime form 0,1,3,9 自规范)
+    //
+    // 硬规则:纯 set。Phrygian特征前三音(库内 set 原班)+ 大六度,
+    // 与「分叉加六」对仗;音阶身份 = Dorian ♭2(旋律小调第 6 调式)
+    // 的两个特征音(♭2♭3 并存 + ♮6)。最优 maj7sus2(♯5) 是 sus
+    // 变形记法,全场凑数。
+    //
+    // 审核:用户 2026-09-06
+    "0,1,3,9": {
+      "date": "2026-09-06",
+      "comment": "Phrygian加六为唯一解释(硬规则):phrygian 家族 +6 延伸,Dorian♭2 特征组,纯 set",
+      "anchor": "spset-phrygian_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连半音簇形(四音收官形):C-C♯-D-D♯ / ... 共 12 个移调(prime form 0,1,2,3 自规范)
+    //
+    // 硬规则:纯 set。半音簇(3-1)的四音完整版(Forte 4-1,⟨321000⟩
+    // 全库最高半音密度),集群技法标准材料(Cowell/Penderecki/Ligeti);
+    // 非功能 secundal,最优 chord 解释多重变换凑数。
+    //
+    // 审核:用户 2026-09-06(Tier5 收官)
+    "0,1,2,3": {
+      "date": "2026-09-06",
+      "comment": "四连半音簇为唯一解释(硬规则):簇家族四音完整版,集群技法标准材料,纯 set",
+      "anchor": "spset-chromatic_tetrachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大六度形(四音最后待审形):C-C♯-D-A / ... 共 12 个移调(prime form 0,1,2,9 自规范)
+    //
+    // 硬规则:纯 set。簇家族四音延伸收官位(簇+大六度);最优 chord
+    // 解释 maj3add11(omit5 ♯2) tier5 凑数,功能和声无法收编。
+    //
+    // 审核:用户 2026-09-06(收官清查,同家族同判据)
+    "0,1,2,9": {
+      "date": "2026-09-06",
+      "comment": "半音簇大六度为唯一解释(硬规则):簇家族四音延伸收官,纯 set",
+      "anchor": "spset-cluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇纯四度形(五音审核第一形):C-C♯-D-E♭-F / ... 共 12 个移调
+    // (prime form 0,1,2,3,5 自规范)
+    //
+    // 硬规则:纯 set。Forte 5-2(第二紧致五音簇,仅次于 5-1),
+    // 勋伯格 Op.26 集合回文中心;簇家族五音延伸第一位(四连簇+X)。
+    // 无 cost=0 解释,chord 全凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,3,5": {
+      "date": "2026-09-07",
+      "comment": "四连簇纯四度为唯一解释(硬规则):Forte 5-2 紧致簇,chromatic genus 极值,纯 set",
+      "anchor": "spset-tetracluster_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // dom7#5 加六形(五音):C-C♯-D-E-G♯ / ... 共 12 个移调(prime form 0,1,2,4,8 自规范)
+    //
+    // 硬规则:只保留 dom7#5(add6)。全音阶和弦家族音响(#5 与 6 都是
+    // 全音阶音);同根三条 0.5 并列中 dom7#5(add6) 记法最直接
+    // (dom13#5 省俩/dom7b13 省一加一为绕路)。有够格壳不升 set
+    // (minmaj11 形同款判据)。
+    // 无锚模式:dom7#5 根音 = 起点 + 4(C-C♯-D-E-G♯ 形里是 E)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,4,8": {
+      "date": "2026-09-07",
+      "comment": "dom7#5(add6) 为唯一解释(硬规则):全音阶家族标准扩展,绕路记法全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#5", "rootRel": 4 },
+      ],
+      "filterRest": true,
+    },
+
+    // min7#5 加六形:C-C♯-D-E-G / ... 共 12 个移调(prime form 0,1,2,4,7 自规范)
+    //
+    // 硬规则:只保留 min7#5(add6)。C 走公式的 ♯5 位(纯五度 B 不在
+    // 输入,♯5 顶替其位——「无纯五度支撑时 ♯5 是本质读法」先例,
+    // 非 add♭6);C# 走唯一的 add6。Emin7(omit5)(add♭6)(add6)
+    // 三操作绕路全滤。
+    // 无锚模式:min7#5 根音 = 起点 + 4(C-C♯-D-E-G 形里是 E)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,4,7": {
+      "date": "2026-09-07",
+      "comment": "min7#5(add6) 为唯一解释(硬规则):♯5 顶替五度位本质读法,唯一 add 是 6 度,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "min7#5", "rootRel": 4 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7b9 加九形:C-C♯-D-E-B♭ / ... 共 12 个移调(prime form 0,1,2,4,10 自规范)
+    //
+    // 硬规则:只保留 dom7b9(omit5 add2)。变化属核心公式(Phrygian
+    // dominant 和声的标准属形式),omit5 预期省略 + add9 自然扩展,
+    // 三操作皆标准件;♭9♮9 并存(输入同时有 C♯ 与 D)是输入的真实
+    // 内容,引擎如实。三音簇+大三+♭7 混合延伸无正名,set 性价比低。
+    // 无锚模式:dom7b9 根音 = 起点(C 自根)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,4,10": {
+      "date": "2026-09-07",
+      "comment": "dom7b9(omit5 add2) 为唯一解释(硬规则):变化属核心公式,♭9♮9 并存如实记,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7b9", "rootRel": 0 },
+      ],
+      "filterRest": true,
+    },
+
+    // maj7b9 加四形:C-C♯-D-F-F♯ / ... 共 12 个移调(prime form 0,1,2,5,6 自规范)
+    //
+    // 硬规则:只保留 maj7b9(omit5 add4)。maj7b9 正式公式(和声/旋律
+    // 小调系的 maj7 降九),omit5 预期省略 + add4 自然扩展。
+    // 无锚模式:maj7b9 根音 = 起点 + 1(C-C♯-D-F-F♯ 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,5,6": {
+      "date": "2026-09-07",
+      "comment": "maj7b9(omit5 add4) 为唯一解释(硬规则):正式公式+标准省略扩展,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj7b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // 梦之和弦加四形(五音):C-C♯-D-F-G / ... 共 12 个移调(prime form 0,1,2,5,7 自规范)
+    //
+    // 硬规则:纯 set。梦之和弦(dream 家族)的直系五音扩展——挂纯四度,
+    // 半音摩擦+两个纯音程空灵;最优 dom7#11(♯3) 把 guide tone 三度
+    // 升半音(变形核心音),全场凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,5,7": {
+      "date": "2026-09-07",
+      "comment": "梦之和弦加四为唯一解释(硬规则):dream 家族直系扩展,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-dream_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // maj7b9/dom7sus4b9 双根音形(五音):E-F♯-G-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,2,5,10,起点 F♯)
+    //
+    // 多根音捞回(用户裁决,set 价值评估后维持 chord):zero-cost 规则
+    // 滤掉的两条 0.5 双根音视角捞回置顶——maj7b9(omit5 add6)(G 根)+
+    // dom7sus4b9(omit5 add2)(X 根);主表 cost0(maj13b9(omit11,5))
+    // 殿后。解释皆标准件无变形核心音,三音簇+纯四+♭7 混合无正名,
+    // 不升 set。
+    // 无锚模式:maj7b9 根 = 起点 + 1,dom7sus4b9 根 = 起点 + 0。
+    //
+    // 审核:用户 2026-09-07(首版 prime form 键误写 0,1,2,4,5,
+    //   规范键 0,1,2,5,10——键自检机制暴露后修正)
+    "0,1,2,5,10": {
+      "date": "2026-09-07",
+      "comment": "maj13b9(omit11 omit5) 为唯一解释(硬规则):E 记 13 度入公式本体(七和弦语境 6→13,add6 是语境化不足的冗余记法),全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // aug3 加四加六形(五音):C-C♯-E-G♯-A / ... 共 12 个移调
+    // (prime form 0,1,4,5,8,起点 G♯)
+    //
+    // 硬规则:只保留 aug3(add6 add4)。增三骨架完整(E-G♯-C 无音被动),
+    // 双自然扩展——增三/全音阶体系标准配色,无变形核心音病
+    // (与 dom7#5(add6)/min7#5(add6) 同构处境,公认公式+标准扩展=钉)。
+    // 家族注:该形亦 = Hijaz四音组({0,1,4,5},库内 set)+♭6 的五音
+    // 延伸,整体 ⊂ Phrygian dominant——身份记档,暂不升 set。
+    // 无锚模式:aug3 根音 = 起点 + 8(C-C♯-E-G♯-A 形里是 E)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,4,5,8": {
+      "date": "2026-09-07",
+      "comment": "aug3(add6 add4) 为唯一解释(硬规则):增三骨架完整+双自然扩展,Hijaz 家族身份记档不升",
+      "keep": [
+        { "type": "chord", "formula": "aug3", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // maj7b5 加四形(五音):C-C♯-F-F♯-G / ... 共 12 个移调(prime form 0,1,2,7,8,起点 F)
+    //
+    // 硬规则:只保留 maj7b5(add4)。同根同 cost 并列中 #11/b5 等音
+    // 裁决:键集无纯五度(相对根),♯11 记法名不副实(augmaj7 ♯5/♭13
+    // 与 BCEX maj7b5/maj7#11 两次先例),♭5 走公式正式成员是本质
+    // 读法;maj7#11(omit5 add4) 省一加一绕路全滤。
+    // 无锚模式:maj7b5 根音 = 起点 + 1(C-C♯-F-F♯-G 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,7,8": {
+      "date": "2026-09-07",
+      "comment": "maj7b5(add4) 为唯一解释(硬规则):无五度支撑 ♭5 本质读法(♯11 名不副实),绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj7b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // augmaj7 加四形(五音):C-C♯-F-F♯-A / ... 共 12 个移调
+    // (prime form 0,1,4,7,8,起点 F)
+    //
+    // 硬规则:只保留 augmaj7(add4)。键集无纯五度 → A 走 ♯5 本质
+    // 读法(augmaj7 形 ♯5/♭13 先例,♭13 名不副实);add4 唯一外挂
+    // 自然扩展。与 maj7b5(add4) 形姊妹(增五/降五系色彩+挂四)。
+    // 无锚模式:augmaj7 根音 = 起点 + 8(C-C♯-F-F♯-A 形里是 C♯)。
+    //
+    // 审核:用户 2026-09-07(「有道理吗」确认后钉死)
+    "0,1,4,7,8": {
+      "date": "2026-09-07",
+      "comment": "augmaj7(add4) 为唯一解释(硬规则):无五度支撑 ♯5 本质读法,唯一外挂 add4,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "augmaj7", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7b5 加四形(五音):C-C♯-F-G-B / ... 共 12 个移调
+    // (prime form 0,1,2,6,8,起点 B)
+    //
+    // 硬规则:只保留 dom7b5(add4)。三同根并列中:dom7b5 四音公式
+    // 全在场(root+M3+♭5+♭7)+add4 唯一外挂;♯11 等音名不副实
+    // (键集无纯五度,BCEX/maj7b5 形两次先例);dom11b5(omit9)
+    // 大公式省略绕路。
+    // 无锚模式:dom7b5 根音 = 起点 + 8(C-C♯-F-G-B 形里是 G)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,6,8": {
+      "date": "2026-09-07",
+      "comment": "dom7b5(add4) 为唯一解释(硬规则):♭5 公式本体在场,♯11 等音名不副实,大公式绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // minmaj7b5 加四形(五音):C-C♯-F♯-G-B♭ / ... 共 12 个移调
+    // (prime form 0,1,4,6,7,起点 F♯)
+    //
+    // 硬规则:只保留 minmaj7b5(add4)。公式本体四音全在场
+    // (root+m3+♭5+M7)+add4 唯一外挂;键集无纯五度,C♯ 走 ♭5
+    // 公式成员(♯11 等音名不副实,同判第四例)。
+    // 无锚模式:minmaj7b5 根音 = 起点 + 1(C-C♯-F♯-G-B♭ 形里是 G)。
+    //
+    // 审核:用户 2026-09-07(「符合这个规则的 12 个都只保留」)
+    "0,1,4,6,7": {
+      "date": "2026-09-07",
+      "comment": "minmaj7b5(add4) 为唯一解释(硬规则):公式本体全在场+唯一外挂 add4,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "minmaj7b5", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // minmaj7#5 加二形(五音):C-C♯-F♯-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,3,4,9,起点 A)
+    //
+    // 硬规则:只保留 minmaj7#5(add2)。公式本体四音全在场
+    // (root+m3+♯5+M7)+add2 唯一外挂;无纯五度,F♯ 走 ♯5 公式
+    // 成员(♯5/♭13 等音老判据)——「♭5/♯5 系+唯一外挂」判据链
+    // 第五例(四姐妹之外的 ♯5 小调侧表亲)。
+    // set 评估:分叉加六+♭2 / Hijaz三音+6+♭7 混合两音延伸,
+    // 无正名无单线家族,不升。
+    // 无锚模式:minmaj7#5 根音 = 起点 + 1(C-C♯-F♯-A-B♭ 形里是 B♭)。
+    //
+    // 审核:用户 2026-09-07(问 set 后确认钉死)
+    "0,1,3,4,9": {
+      "date": "2026-09-07",
+      "comment": "minmaj7#5(add2) 为唯一解释(硬规则):公式本体全在场+唯一外挂 add2,♯5 本质读法,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "minmaj7#5", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7#9/maj3b5 双根音形(五音):C-C♯-G-A-B / ... 共 12 个移调
+    // (prime form 0,1,2,8,10,起点 B)
+    //
+    // 硬规则:双根音双视角——A 根 dom7#9(omit5 add2)(0.5,变化属
+    // 张力侧,7♯9 的 add2=♯9? 不,add2 是 M9——7#9 公式带 ♯9,
+    // add2 是额外的自然九度)+ G 根 maj3b5(add4 add2)(1,增五侧
+    // 三音壳加双挂)。不同根音的公认解释并存(多根音原则)。
+    // 无锚模式:dom7#9 根 = 起点 + 10,maj3b5 根 = 起点 + 8。
+    //
+    // 审核:用户 2026-09-07(「保留这两个」)
+    "0,1,2,8,10": {
+      "date": "2026-09-07",
+      "comment": "双根音双视角:dom7#9(omit5 add2)(A 根)+ maj3b5(add4 add2)(G 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#9", "rootRel": 10 },
+        { "type": "chord", "formula": "maj3b5", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7#5/minmaj7/aug3 三根音形(五音):C-D-E-G♯-A / ... 共 12 个移调
+    // (prime form 0,1,4,6,8,起点 G♯)
+    //
+    // 硬规则:三根音三视角——E 根 dom7#5(add4)(0.5,属七增五侧)
+    // + A 根 minmaj7(add4)(0.5,小大七侧)+ C 根 aug3(add2 add6)
+    // (1,增三侧)。三根音的公认解释并存(多根音原则,库内首例
+    // 三根音 verdict)。
+    // 无锚模式:dom7#5 根 = 起点+8,minmaj7 根 = 起点+1,aug3 根 = 起点+4。
+    //
+    // 审核:用户 2026-09-07(「保留如下几个」)
+    "0,1,4,6,8": {
+      "date": "2026-09-07",
+      "comment": "三根音三视角:dom7#5(add4)(E 根)+ minmaj7(add4)(A 根)+ aug3(add2 add6)(C 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#5", "rootRel": 8 },
+        { "type": "chord", "formula": "minmaj7", "rootRel": 1 },
+        { "type": "chord", "formula": "aug3", "rootRel": 4 },
+      ],
+      "filterRest": true,
+    },
+
+    // minmaj7#5 加四形(五音):C-D-F-G♯-A / ... 共 12 个移调
+    // (prime form 0,1,4,6,9,起点 G♯)
+    //
+    // 硬规则:只保留 minmaj7#5(add4)。公式本体四音全在场
+    // (root+m3+♯5+M7)+add4 唯一外挂;无纯五度(A 的 P5 不在),
+    // F 走 ♯5 公式成员——「♭5/♯5 系+唯一外挂」判据链第六例。
+    // 无锚模式:minmaj7#5 根音 = 起点 + 1(C-D-F-G♯-A 形里是 A)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,4,6,9": {
+      "date": "2026-09-07",
+      "comment": "minmaj7#5(add4) 为唯一解释(硬规则):公式本体全在场+唯一外挂 add4,♯5 本质读法,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "minmaj7#5", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // halfdim7 加六形(五音,t4 区第一形):C-D-F-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,3,6,9,起点 B)
+    //
+    // 硬规则:只保留 halfdim7(add6)。公式本体四音全在场
+    // (root+♭3+♭5+♭7,半减七 = 小调 ii 级标准)+add6 唯一外挂。
+    // 记法注:七和弦语境的 6 度按 maj13b9 先例应升记 13
+    // (halfdim13),引擎 6→13 语境化立项挂起时统一处理。
+    // 无锚模式:halfdim7 根音 = 起点 + 3(C-D-F-G♯-B 形里是 D)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,3,6,9": {
+      "date": "2026-09-07",
+      "comment": "halfdim7(add6) 为唯一解释(硬规则):半减七本体全在场+唯一外挂,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "halfdim7", "rootRel": 3 },
+      ],
+      "filterRest": true,
+    },
+
+    // Phrygian双六度形(五音):A-B♭-C-E♭-E / ... 共 12 个移调
+    // (prime form 0,1,3,8,9,起点 A)
+    //
+    // 硬规则:纯 set。Phrygian加六(库内 set)+♭6 的五音延伸,
+    // ♭6♮6 同度双音(phrygian/dorian 六度交汇);最优 dom13#11
+    // (omit9,5 ♯3) 变形 guide tone(三度升半音,第五次同症),
+    // dom13sus4(♭5) 变形五度,全场凑数。phrygian 家族第五位。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,3,8,9": {
+      "date": "2026-09-07",
+      "comment": "Phrygian双六度为唯一解释(硬规则):phrygian 家族五音延伸,♭6♮6 同度双音,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-phrygian_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度加六形(五音):B-C-C♯-E♭-A♭ / ... 共 12 个移调
+    // (prime form 0,1,2,4,9,起点 B)
+    //
+    // 硬规则:纯 set。半音簇大三度(库内四音 set)的五音延伸
+    // (挂大六度);最优 dom7#5(♯3 add6) 变形 guide tone
+    // (第六次同症),全场 1.5 多重变换凑数。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,4,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度加六为唯一解释(硬规则):cluster_third 家族五音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_third_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇小七度加三形(五音):B-C-C♯-D-A / ... 共 12 个移调
+    // (prime form 0,1,2,3,10,起点 B)
+    //
+    // 硬规则:纯 set。半音簇小七度(库内四音 set)的五音延伸
+    // (挂小三度);最优 dom7b9(omit5 ♭3 add2) 的 ♭3 是 guide
+    // tone 变形(降半音——与 ♯3 两方向都齐,第七次同症)。
+    //
+    // 审核:用户 2026-09-07
+    "0,1,2,3,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇小七度加三为唯一解释(硬规则):cluster_minor7 家族五音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_minor7_third",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连半音簇形(五音 t5 区批量):prime form 0,1,2,3,4
+    // 五连半音 · 纯簇完全体(Forte 5-1,音程向量 ⟨432100⟩ 全库最高半音密度);集群技法终极材料。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,4": {
+      "date": "2026-09-07",
+      "comment": "五连半音簇为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-chromatic_pentachord",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音形(五音 t5 区批量):prime form 0,1,2,3,6
+    // 四连半音簇+三全音;摩擦顶格+悬浮。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,6": {
+      "date": "2026-09-07",
+      "comment": "四连簇三全音为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇纯五度形(五音 t5 区批量):prime form 0,1,2,3,7
+    // 四连半音簇+纯五度;摩擦+空灵(dream 气质重装版)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,7": {
+      "date": "2026-09-07",
+      "comment": "四连簇纯五度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇小六度形(五音 t5 区批量):prime form 0,1,2,3,8
+    // 四连半音簇+小六度(♭6)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,8": {
+      "date": "2026-09-07",
+      "comment": "四连簇小六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_flat6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇大六度形(五音 t5 区批量):prime form 0,1,2,3,9
+    // 四连半音簇+大六度(♮6)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,3,9": {
+      "date": "2026-09-07",
+      "comment": "四连簇大六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度加四形(五音 t5 区批量):prime form 0,1,2,4,5
+    // 半音簇大三度(库内四音 set)的五音延伸——挂纯四度;亦 = Hijaz四音组+♮2 双视角。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,4,5": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度加四为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度六度形(五音 t5 区批量):prime form 0,1,2,5,9
+    // 三音簇+纯四度+大六度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,5,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇四度六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_fourth_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音五度形(五音 t5 区批量):prime form 0,1,2,6,7
+    // 三音簇+三全音+纯五度(♭5♮5 同度双音);cluster_tritone 的五音延伸。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,6,7": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音五度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音加六形(五音 t5 区批量):prime form 0,1,2,6,9
+    // 半音簇三全音(库内四音 set)的五音延伸——挂大六度;用户逐形审核后并入批量。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,6,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音加六为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_tritone_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 梦之和弦加七形(五音 t5 区批量):prime form 0,1,2,7,10
+    // 梦之和弦(库内四音 set,La Monte Young)的五音延伸——挂小七度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,7,10": {
+      "date": "2026-09-07",
+      "comment": "梦之和弦加七为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-dream_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇双六度形(五音 t5 区批量):prime form 0,1,2,8,9
+    // 三音簇+♭6♮6 同度双音(小调式双六度交汇)。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,8,9": {
+      "date": "2026-09-07",
+      "comment": "半音簇双六度为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大六度加七形(五音 t5 区批量):prime form 0,1,2,9,10
+    // 半音簇大六度(库内四音 set)的五音延伸——挂小七度。硬规则:纯 set(无 cost0,chord 全凑数,簇家族直系)。
+    // 审核:用户 2026-09-07 批量授权
+    "0,1,2,9,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇大六度加七为唯一解释(硬规则):簇家族五音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度三全音形(五音 t4 收官):prime form 0,1,2,4,6
+    // Hijaz四音组+♮2;三音簇+大三度+三全音。最优 dom7sus2(♯5 add6)
+    // 变形五度,纯 set。审核:用户 2026-09-07
+    "0,1,2,4,6": {
+      "date": "2026-09-07",
+      "comment": "半音簇大三度三全音为唯一解释(硬规则):Hijaz 家族五音延伸,纯 set",
+      "anchor": "spset-cluster_third_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音小七度形(五音 t4 收官):prime form 0,1,2,6,10
+    // 半音簇三全音(库内 set)挂小七度;最优 dom7sus4b9(♯4 ...) 的
+    // ♯4 是 guide tone 系变形(sus 骨架音升半音),纯 set。
+    // 审核:用户 2026-09-07
+    "0,1,2,6,10": {
+      "date": "2026-09-07",
+      "comment": "半音簇三全音小七度为唯一解释(硬规则):cluster_tritone 家族五音延伸,纯 set",
+      "anchor": "spset-cluster_tritone_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // ════════ 六音表审核(2026-09-08)════════
+
+    // dom7b13 加六形(六音第一形):C-C♯-D-E-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,2,3,5,9,起点 B;首版误写 0,1,2,4,8,11——
+    //  B 起点收缩更紧,空组防线当场拒绝烘焙,教训第 6 次)
+    //
+    // 硬规则:只保留 dom7b13(add6)。dom7b13 正式公式(属七降十三,
+    // 变化属标准形)在场+add6 唯一外挂;键集有纯五度(B 在)——
+    // 这次 ♭13 是合法读法(与 augmaj7 形「无五度→♯5」判据互为镜像:
+    // 五度在场→♭13,五度缺席→♯5)。
+    // 无锚模式:dom7b13 根音 = 起点 + 4。
+    //
+    // 审核:用户 2026-09-08(「只保留一个就行啦」)
+    "0,1,2,3,5,9": {
+      "date": "2026-09-08",
+      "comment": "dom7b13(add6) 为唯一解释(硬规则):五度在场 ♭13 合法读法,唯一外挂 add6,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7b13", "rootRel": 5 },
+      ],
+      "filterRest": true,
+    },
+
+    // maj9#5/min9b5 双根音形(六音特殊规则):C-D-E-F-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,3,5,6,9,起点 B)
+    //
+    // 硬规则:双根音双视角——C 根 maj9#5(add4)(0.5,大九增五侧)
+    // + D 根 min9b5(add6)(0.5,小九减五侧);同根的 maj9b13(omit5
+    // add4) 是 ♯5 等音绕路(无五度支撑,♯5 本质读法判据)全滤。
+    // 用户定性为特殊规则记住:lone-natural-add(恰一条才触发)之外的
+    // 多条 0.5 场合,人工钦定。
+    // 无锚模式:maj9#5 根 = 起点+1,min9b5 根 = 起点+3。
+    //
+    // 审核:用户 2026-09-08(「同时保留这两条」+「算是一个特殊规则记住」)
+    "0,1,3,5,6,9": {
+      "date": "2026-09-08",
+      "comment": "双根音双视角:maj9#5(add4)(C 根)+ min9b5(add6)(D 根),同根 ♯5 等音绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj9#5", "rootRel": 1 },
+        { "type": "chord", "formula": "min9b5", "rootRel": 3 },
+      ],
+      "filterRest": true,
+    },
+
+    // minmaj7#5 双加形(六音):C-D-E♭-F-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,3,4,6,9,起点 B)
+    //
+    // 硬规则:只保留 minmaj7#5(add2 add4)。公式本体四音在场
+    // (root+m3+♯5+M7)+双自然外挂(add2 add4,cost 1 非 0.5,
+    // lone-add 恰一条语义不触发是正确行为,由 verdict 接管)。
+    // 无锚模式:minmaj7#5 根音 = 起点 + 1。
+    //
+    // 审核:用户 2026-09-08(「只保留这一个」)
+    "0,1,3,4,6,9": {
+      "date": "2026-09-08",
+      "comment": "minmaj7#5(add2 add4) 为唯一解释(硬规则):本体在场+双自然外挂,lone-add 不触发区由 verdict 接管",
+      "keep": [
+        { "type": "chord", "formula": "minmaj7#5", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // maj13b9 加二形(六音):C-D-E♭-E-F-G / ... 共 12 个移调
+    // (prime form 0,1,2,3,5,10,起点 D)
+    //
+    // 硬规则:只保留 maj13b9(omit11 omit5 add2)。双预期省略(11/5)
+    // +add2 唯一外挂,cost 0.5;非单 add 形态(三操作),lone-add
+    // 恰一条语义不触发,由 verdict 接管。
+    // 无锚模式:maj13b9 根音 = 起点 + 1。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,5,10": {
+      "date": "2026-09-08",
+      "comment": "maj13b9(omit11 omit5 add2) 为唯一解释(硬规则):双预期省略+唯一 add2,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7#5b9/dom7b5#9 三全音双根形(六音):C-C♯-D-E-G♯-B♭ / ... 共 12 个移调
+    // (prime form 0,1,2,4,8,10 自规范,起点 C;含两个三全音对,C/Z 互为 +6
+    //  镜像根——dom7b5 三全音双名机制的六音版)
+    //
+    // 硬规则:双根音双视角——C 根 dom7#5b9(add2) + Z 根 dom7b5#9(add2),
+    // 皆公式本体四音在场+唯一自然 add2,cost 0.5 并列(lone-add 恰一条
+    // 语义不触发,verdict 双保留)。♯5 与 ♭5 各在一条里合法:各自公式
+    // 的五度位改写,且另一条的视角不冲突。
+    // 无锚模式:dom7#5b9 根 = 起点+0,dom7b5#9 根 = 起点+10。
+    //
+    // 审核:用户 2026-09-08(「好神奇啊?都保留」)
+    "0,1,2,4,8,10": {
+      "date": "2026-09-08",
+      "comment": "三全音双根视角:dom7#5b9(add2)(C 根)+ dom7b5#9(add2)(Z 根),其余全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7#5b9", "rootRel": 0 },
+        { "type": "chord", "formula": "dom7b5#9", "rootRel": 10 },
+      ],
+      "filterRest": true,
+    },
+
+    // ════════ 六音 set 升格 ════════
+
+    // 梦之和弦加七升二形(六音):C♯-D-D♯-E-G♯-B / ... 共 12 个移调
+    // (prime form 0,1,2,3,7,10,起点 C♯)
+    //
+    // 硬规则:纯 set。dream_seventh(库内五音 set)挂 ♯2 的六音延伸
+    // (四连簇+纯五+小七);最优 dom7b9(♭3 add2) 的 ♭3 是 guide
+    // tone 变形(第八次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,7,10": {
+      "date": "2026-09-08",
+      "comment": "梦之和弦加七升二为唯一解释(硬规则):dream 家族六音版,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-dream_seventh_sharp2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇大六度加七形(六音):C♯-D-D♯-E-A-B♭ / ... 共 12 个移调
+    // (prime form 0,1,2,3,9,10,起点 C♯)
+    //
+    // 硬规则:纯 set。四连簇大六度(库内五音 set)的六音延伸(挂小七);
+    // 最优 dom13b9(omit11,5 ♭3 add2) 四重操作,♭3 是 guide tone
+    // 变形(第九次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,3,9,10": {
+      "date": "2026-09-08",
+      "comment": "四连簇大六度加七为唯一解释(硬规则):四连簇系六音第三位,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音五度加七形(六音):F-G♭-G-C♯-D-E♭ / ... 共 12 个移调
+    // (prime form 0,1,2,6,7,10,起点 F)
+    //
+    // 硬规则:纯 set。半音簇三全音五度(库内五音 set)挂 ♭7 的六音延伸;
+    // 双血统(双三全音 Petrushka 骨架+♮2+♭7)。sd 双同度双音
+    // (♭2·2·♭5·5·♭7)。最优 dom7sus4b9(♯4 add2) 的 ♯4 变形
+    // sus 骨架音(第十次同症),全场凑数。
+    //
+    // 审核:用户 2026-09-08
+    "0,1,2,6,7,10": {
+      "date": "2026-09-08",
+      "comment": "半音簇三全音五度加七为唯一解释(硬规则):簇家族六音延伸+Petrushka 双血统,纯 set",
+      "anchor": "spset-cluster_tritone_fifth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇双七度形(六音 t6 批量):prime form 0,1,2,3,4,5
+    // (键自检归位:原写 0,1,2,3,10,11,B♭ 起点收缩更紧)
+    // 四连簇+♭7♮7 相邻七度对;七度同度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,5": {
+      "date": "2026-09-08",
+      "comment": "四连簇双七度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_double_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇大六度形(六音 t6 批量):prime form 0,1,2,3,4,9
+    // 五连半音簇(Forte 5-1 系)+大六度;三态二度+大三+大六。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,9": {
+      "date": "2026-09-08",
+      "comment": "五连簇大六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇双六度形(六音 t6 批量):prime form 0,1,2,3,8,9
+    // 四连簇+♭6♮6 相邻六度对;六度同度双音(Phrygian双六度的四连簇版)。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,8,9": {
+      "date": "2026-09-08",
+      "comment": "四连簇双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度双四度形(六音 t6 批量):prime form 0,1,2,4,5,6
+    // 三音簇+大三度+♮4♭4 四度同度双音;Hijaz四音组+♮2+♭4。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,4,5,6": {
+      "date": "2026-09-08",
+      "comment": "半音簇大三度双四度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_third_double_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇双四度五度形(六音 t6 批量):prime form 0,1,2,5,6,7
+    // 三音簇+纯四+♭5♮5 五度同度双音;cluster_fourth_fifth 系。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,6,7": {
+      "date": "2026-09-08",
+      "comment": "半音簇双四度五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_double_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 彼氏簇形(六音 t6 批量):prime form 0,1,2,6,7,8
+    // 双三全音(Petrushka 骨架 {0,1,6,7})+三音簇尾(6,7,8);对称类仅 6 组。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,6,7,8": {
+      "date": "2026-09-08",
+      "comment": "彼氏簇为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-petrushka_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度六度减五形(六音 t6 批量清查补遗):prime form 0,1,2,5,6,9
+    // 半音簇四度六度(库内五音 set)挂 ♭5 六音延伸;t6 起点全凑数。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,6,9": {
+      "date": "2026-09-08",
+      "comment": "半音簇四度六度减五为唯一解释(硬规则):簇家族六音延伸,纯 set",
+      "anchor": "spset-cluster_fourth_sixth_b5",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇三全音形(六音 t5 批量):prime form 0,1,2,3,4,6
+    // 五连半音簇+三全音;三态二度+大三+三全音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,6": {
+      "date": "2026-09-08",
+      "comment": "五连簇三全音为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_tritone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇纯五度形(六音 t5 批量):prime form 0,1,2,3,4,7
+    // 五连半音簇+纯五度;五连簇+X 系第三位。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,7": {
+      "date": "2026-09-08",
+      "comment": "五连簇纯五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇小六度形(六音 t5 批量):prime form 0,1,2,3,4,8
+    // 五连半音簇+小六度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,8": {
+      "date": "2026-09-08",
+      "comment": "五连簇小六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_flat6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇小七度形(六音 t5 批量):prime form 0,1,2,3,4,10
+    // 五连半音簇+小七度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,4,10": {
+      "date": "2026-09-08",
+      "comment": "五连簇小七度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-pentacluster_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音五度形(六音 t5 批量):prime form 0,1,2,3,6,7
+    // 四连簇+♭5♮5 五度同度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,7": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音五度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音大六度形(六音 t5 批量):prime form 0,1,2,3,6,9
+    // 四连簇+三全音+大六度。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,9": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音大六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-tetracluster_tritone_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇四度双六度形(六音 t5 批量):prime form 0,1,2,5,8,9
+    // 三音簇+纯四+♭6♮6 六度双音。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,5,8,9": {
+      "date": "2026-09-08",
+      "comment": "半音簇四度双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-cluster_fourth_double_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Hijaz双六度形(六音 t5 批量):prime form 0,1,4,5,8,9
+    // Hijaz四音组+♭6♮6 双六度;对称类 4 组。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,4,5,8,9": {
+      "date": "2026-09-08",
+      "comment": "Hijaz双六度为唯一解释(硬规则):簇家族六音延伸,chord 解释全凑数,纯 set",
+      "anchor": "spset-hijaz_flat6_sixth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇三全音加六减七形(六音 t5 清查补遗):prime form 0,1,2,6,9,10
+    // 半音簇三全音加六(库内五音 set)挂 ♭7 六音延伸。
+    // (set 匹配自动生效,本 verdict 补审核痕迹;首版插入锚串失配被断言拦下)
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,6,9,10": {
+      "date": "2026-09-08",
+      "comment": "半音簇三全音加六减七为唯一解释(硬规则):簇家族六音延伸,纯 set",
+      "anchor": "spset-cluster_tritone_sixth_seventh",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇纯四纯五度形(六音 t4 批量):prime form 0,1,2,3,5,7
+    // 四连簇+纯四+纯五(四连簇纯四度 {0,1,2,3,5} 的挂五延伸);最优 dom7b13(♯3♯4) 双 guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,5,7": {
+      "date": "2026-09-08",
+      "comment": "四连簇纯四纯五度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音小七度形(六音 t4 批量):prime form 0,1,2,3,6,10
+    // 四连簇+三全音+小七(五音 set 四连簇三全音挂 ♭7);最优 dom7b5b9(♭3 add2) 的 ♭3 guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,3,6,10": {
+      "date": "2026-09-08",
+      "comment": "四连簇三全音小七度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-tetracluster_tritone_minor7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 半音簇大三度四度五度形(六音 t4 批量):prime form 0,1,2,4,5,7
+    // 三音簇+大三+纯四+纯五(Hijaz四音组+♮2+纯五);最优 dom13#11(♯3) guide tone 变形。硬规则:纯 set。
+    // 审核:用户 2026-09-08 批量授权
+    "0,1,2,4,5,7": {
+      "date": "2026-09-08",
+      "comment": "半音簇大三度四度五度为唯一解释(硬规则):簇家族六音延伸,guide tone 变形解释全滤,纯 set",
+      "anchor": "spset-cluster_third_fourth_fifth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Z11簇形(六音 t3 例外区):prime form 0,1,2,7,9,10
+    // Forte 6-Z11 倒影半边;dom11#9(♭2)/dom11b9(♯2) 9 度等音对
+    // 并列 = 变形记号病(新病种)。纯 set。审核:用户 2026-09-08
+    "0,1,2,7,9,10": {
+      "date": "2026-09-08",
+      "comment": "Z11簇为唯一解释(硬规则):Forte 6-Z11 倒影,9 度等音对变形解释全滤,纯 set",
+      "anchor": "spset-z11_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Z13簇形(六音 t3 例外区):prime form 0,1,3,4,6,7
+    // Forte 6-Z13 正形;dom13#9(♭2)/dom13b9(♯2) 9 度等音对并列
+    // (Z11簇同款病种)。纯 set。审核:用户 2026-09-08
+    "0,1,3,4,6,7": {
+      "date": "2026-09-08",
+      "comment": "Z13簇为唯一解释(硬规则):Forte 6-Z13 正形,9 度等音对变形解释全滤,纯 set",
+      "anchor": "spset-z13_cluster",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // min7#5 双加形(六音 t3 例外区):prime form 0,1,2,4,6,7,起点 E
+    // 硬规则:只保留 min7#5(add6 add2)。公式本体四音在场+双自然
+    // 外挂(add6/add2,cost 1);五音 min7#5(add6) 形(钉死过)的
+    // 加二六音版。审核:用户 2026-09-08(「只保留这一个」)
+    "0,1,2,4,6,7": {
+      "date": "2026-09-08",
+      "comment": "min7#5(add6 add2) 为唯一解释(硬规则):本体在场+双自然外挂,绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "min7#5", "rootRel": 4 },
+      ],
+      "filterRest": true,
+    },
+
+    // ════════ 六音 t3 例外区终裁(2026-09-08,用户授权:纯 omit/add 我裁,带升降查证 set)════════
+
+    // maj9b5 加四形:prime form 0,1,2,7,8,10 自规范起点 C
+    // 三条 0.5 纯自然并列 → 钉死 maj9b5(add4)(单操作最直接,本体+唯一外挂;
+    // dom13#9(omit11,5 add2)/maj9#11(omit5 add4) 省略绕路全滤)。
+    // maj9b5 根 = 起点+8(首版起点算错被空组防线拦下)。AI 代裁(纯自然授权)
+    "0,1,2,7,8,10": {
+      "date": "2026-09-08",
+      "comment": "maj9b5(add4) 为唯一解释(硬规则):三 0.5 并列取单操作最直接",
+      "keep": [ { "type": "chord", "formula": "maj9b5", "rootRel": 8 } ],
+      "filterRest": true,
+    },
+
+    // dom13b5/maj7b9 双根形:prime form 0,1,2,5,6,8 自规范起点 C
+    // 双 0.5 异根双保留——Y 根 dom13b5(omit9) + P 根 maj7b9(add4)
+    // (异根双视角,多根音原则;Y 根同款省加绕路滤)。
+    // dom13b5 根 = 起点+8,maj7b9 根 = 起点+1(首版起点算错被
+    // 空组防线拦下)。AI 代裁(纯自然授权)
+    "0,1,2,5,6,8": {
+      "date": "2026-09-08",
+      "comment": "双根双保留:dom13b5(omit9)(Y 根)+ maj7b9(add4)(P 根),绕路全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom13b5", "rootRel": 8 },
+        { "type": "chord", "formula": "maj7b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom7b5#9 对称双根形:prime form 0,1,3,6,7,9 自规范起点 C
+    // 对称双根 0.5 并列双保留——rootRel 3(Q=D♯,3) 与 9(A) 的
+    // dom7b5#9(add6)(本体+唯一外挂;♯9 变形系全滤)。
+    // 两版 rootRel 手算错被空组防线拦下(1/7、1/9 → 正确 3/9,
+    // Q 的 pianoKeyId 是 3 不是 1——符号口算教训)。
+    // AI 代裁(纯自然授权)
+    "0,1,3,6,7,9": {
+      "date": "2026-09-08",
+      "comment": "对称双根双保留:dom7b5#9(add6)×2(rootRel 3/9),变形系全滤",
+      "keep": [
+        { "type": "chord", "formula": "dom7b5#9", "rootRel": 3 },
+        { "type": "chord", "formula": "dom7b5#9", "rootRel": 9 },
+      ],
+      "filterRest": true,
+    },
+
+    // 全音六音形:prime form 0,2,4,6,8,10(对称,仅 2 移调组)
+    // Forte 6-35 全音音阶本身,⟨060603⟩ maximally even。纯 set。
+    "0,2,4,6,8,10": {
+      "date": "2026-09-08",
+      "comment": "全音六音为唯一解释(硬规则):Forte 6-35 全音音阶本体,变形解释全滤,纯 set",
+      "anchor": "spset-whole_tone",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三全音六音形:prime form 0,1,2,4,6,9
+    // dom13sus4(♯5) 变形五度。纯 set。
+    "0,1,2,4,6,9": {
+      "date": "2026-09-08",
+      "comment": "簇三全音六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set",
+      "anchor": "spset-cluster_wide",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇双度六音形:prime form 0,1,2,5,9,10
+    // dom13sus4(omit5 ♭2) 变形二度。纯 set。
+    "0,1,2,5,9,10": {
+      "date": "2026-09-08",
+      "comment": "簇双度六音为唯一解释(硬规则):簇系延伸,变形解释全滤,纯 set",
+      "anchor": "spset-cluster_sixth_seventh_fourth",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Hijaz双三全音形:prime form 0,1,4,6,7,10
+    // dom11b9(♯11) 双根变形系。纯 set。
+    "0,1,4,6,7,10": {
+      "date": "2026-09-08",
+      "comment": "Hijaz双三全音为唯一解释(硬规则):Hijaz 家族第四位,变形解释全滤,纯 set",
+      "anchor": "spset-hijaz_tritone_pair",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // ════════ 七音表审核(2026-09-09,AI 代裁授权:纯 omit/add 并列我裁,带升降 set)════════
+
+    // maj7b9 双加形:prime 0,1,2,3,5,6,8
+    // 同根三条 1.0 并列,取本体最近的 maj7b9(add2 add4)(dom13#11/
+    // dom7#11 为 11 度系大公式省略绕路)。AI 代裁
+    "0,1,2,3,5,6,8": {
+      "date": "2026-09-09",
+      "comment": "maj7b9(add2 add4) 为唯一解释:同根并列取本体最近",
+      "keep": [ { "type": "chord", "formula": "maj7b9", "rootRel": 1 } ],
+      "filterRest": true,
+    },
+
+    // maj13#11 省加形:prime 0,1,2,3,5,7,8
+    // 同根 Y 三条,取最大公式 maj13#11(omit9 add4)(13 度入公式本体,
+    // maj7#11(add4 add6)/dom9b13 为绕路或异质)。AI 代裁
+    "0,1,2,3,5,7,8": {
+      "date": "2026-09-09",
+      "comment": "maj13#11(omit9 add4) 为唯一解释:最大公式本体优先",
+      "keep": [ { "type": "chord", "formula": "maj13#11", "rootRel": 8 } ],
+      "filterRest": true,
+    },
+
+    // dom11#9/maj13b9 双根形:prime 0,1,2,3,5,8,10
+    // 双 0.5 异根双保留(Z 根 dom11#9(add2) + P 根 maj13b9(omit11 add2))。AI 代裁
+    "0,1,2,3,5,8,10": {
+      "date": "2026-09-09",
+      "comment": "双根双保留:dom11#9(add2)(Z)+ maj13b9(omit11 add2)(P)",
+      "keep": [
+        { "type": "chord", "formula": "dom11#9", "rootRel": 10 },
+        { "type": "chord", "formula": "maj13b9", "rootRel": 1 },
+      ],
+      "filterRest": true,
+    },
+
+    // dom11b13 省九形:prime 0,1,2,3,5,9,10
+    // 同根 F 系两条 1.0 并列,取 dom11b13(omit9 add6)(11 度系大公式,
+    // dom7b13(add4 add6) 为小公式双 add 绕路)。AI 代裁
+    "0,1,2,3,5,9,10": {
+      "date": "2026-09-09",
+      "comment": "dom11b13(omit9 add6) 为唯一解释:大公式本体优先",
+      "keep": [ { "type": "chord", "formula": "dom11b13", "rootRel": 5 } ],
+      "filterRest": true,
+    },
+
+    // dom13#9/maj9#11 双根形:prime 0,1,2,3,7,8,10
+    // 双 0.5 异根双保留(Z 根 dom13#9(omit5 add2) + Y 根 maj9#11(add4))。AI 代裁
+    "0,1,2,3,7,8,10": {
+      "date": "2026-09-09",
+      "comment": "双根双保留:dom13#9(omit5 add2)(Z)+ maj9#11(add4)(Y)",
+      "keep": [
+        { "type": "chord", "formula": "dom13#9", "rootRel": 10 },
+        { "type": "chord", "formula": "maj9#11", "rootRel": 8 },
+      ],
+      "filterRest": true,
+    },
+
+    // 五连簇五九度形(七音批量):prime form 0,1,2,3,4,7,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,7,9": {
+      "date": "2026-09-09",
+      "comment": "五连簇五九度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a1",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇六七度形(七音批量):prime form 0,1,2,3,4,8,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,8,10": {
+      "date": "2026-09-09",
+      "comment": "五连簇六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇双三全音形(七音批量):prime form 0,1,2,3,6,7,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,6,7,9": {
+      "date": "2026-09-09",
+      "comment": "四连簇双三全音为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a3",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音六度形(七音批量):prime form 0,1,2,3,6,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,6,8,9": {
+      "date": "2026-09-09",
+      "comment": "四连簇三全音六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a4",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度双四度六度形(七音批量):prime form 0,1,2,4,5,6,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,6,8": {
+      "date": "2026-09-09",
+      "comment": "簇三度双四度六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a5",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度双四五七度形(七音批量):prime form 0,1,2,4,5,6,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,6,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度双四五七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇Hijaz双六度形(七音批量):prime form 0,1,2,4,5,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,8,9": {
+      "date": "2026-09-09",
+      "comment": "簇Hijaz双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇Hijaz六七度形(七音批量):prime form 0,1,2,4,5,8,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,8,10": {
+      "date": "2026-09-09",
+      "comment": "簇Hijaz六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a8",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度三全音五度簇形(七音批量):prime form 0,1,2,4,6,7,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,6,7,8": {
+      "date": "2026-09-09",
+      "comment": "簇三度三全音五度簇为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a9",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度三全音五七度形(七音批量):prime form 0,1,2,4,6,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,6,7,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度三全音五七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a10",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度三全音度系形(七音批量):prime form 0,1,2,4,6,8,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,6,8,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度三全音度系为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a11",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度三全音六七形(七音批量):prime form 0,1,2,4,6,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,6,9,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度三全音六七为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a12",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度五度双六度形(七音批量):prime form 0,1,2,4,7,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,7,8,9": {
+      "date": "2026-09-09",
+      "comment": "簇三度五度双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a13",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度五度六七度形(七音批量):prime form 0,1,2,4,7,8,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,7,8,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度五度六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a14",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度五度六七度b形(七音批量):prime form 0,1,2,4,7,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,7,9,10": {
+      "date": "2026-09-09",
+      "comment": "簇三度五度六七度b为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a15",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇四度五度双六度形(七音批量):prime form 0,1,2,5,6,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,5,6,8,9": {
+      "date": "2026-09-09",
+      "comment": "簇四度五度双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a16",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇四五度六七度形(七音批量):prime form 0,1,2,5,7,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,5,7,9,10": {
+      "date": "2026-09-09",
+      "comment": "簇四五度六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a17",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三全音五度六七形(七音批量):prime form 0,1,2,6,7,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,6,7,9,10": {
+      "date": "2026-09-09",
+      "comment": "簇三全音五度六七为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-a18",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇三全音六度形(七音批量):prime form 0,1,2,3,4,6,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,6,8": {
+      "date": "2026-09-09",
+      "comment": "五连簇三全音六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b1",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇三全音七度形(七音批量):prime form 0,1,2,3,4,6,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,6,10": {
+      "date": "2026-09-09",
+      "comment": "五连簇三全音七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇四度六度形(七音批量):prime form 0,1,2,3,5,6,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,5,6,9": {
+      "date": "2026-09-09",
+      "comment": "四连簇四度六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b3",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇四度五七度形(七音批量):prime form 0,1,2,3,5,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,5,7,10": {
+      "date": "2026-09-09",
+      "comment": "四连簇四度五七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b4",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇四度双六度形(七音批量):prime form 0,1,2,3,5,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,5,8,9": {
+      "date": "2026-09-09",
+      "comment": "四连簇四度双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b5",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音五七形(七音批量):prime form 0,1,2,3,6,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,6,7,10": {
+      "date": "2026-09-09",
+      "comment": "四连簇三全音五七为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音六七形(七音批量):prime form 0,1,2,3,6,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,6,9,10": {
+      "date": "2026-09-09",
+      "comment": "四连簇三全音六七为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇五度六七度形(七音批量):prime form 0,1,2,3,7,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,7,9,10": {
+      "date": "2026-09-09",
+      "comment": "四连簇五度六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b8",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇双六七度形(七音批量):prime form 0,1,2,3,8,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,8,9,10": {
+      "date": "2026-09-09",
+      "comment": "四连簇双六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b9",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇三全音大六形(七音批量):prime form 0,1,2,3,4,6,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,6,9": {
+      "date": "2026-09-09",
+      "comment": "五连簇三全音大六为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b10",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇五度小六形(七音批量):prime form 0,1,2,3,4,7,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,7,8": {
+      "date": "2026-09-09",
+      "comment": "五连簇五度小六为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b11",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇五度七度形(七音批量):prime form 0,1,2,3,4,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,7,10": {
+      "date": "2026-09-09",
+      "comment": "五连簇五度七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b12",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 六连簇五度形(七音批量):prime form 0,1,2,3,4,5,7。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,5,7": {
+      "date": "2026-09-09",
+      "comment": "六连簇五度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-b13",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 六连簇小六度形(七音批量):prime form 0,1,2,3,4,5,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,5,8": {
+      "date": "2026-09-09",
+      "comment": "六连簇小六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-c1",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 六连簇大六度形(七音批量):prime form 0,1,2,3,4,5,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,5,9": {
+      "date": "2026-09-09",
+      "comment": "六连簇大六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-c2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 六连簇小七度形(七音批量):prime form 0,1,2,3,4,5,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,5,10": {
+      "date": "2026-09-09",
+      "comment": "六连簇小七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-c3",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 七连半音簇形(七音批量):prime form 0,1,2,3,4,5,6。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,5,6": {
+      "date": "2026-09-09",
+      "comment": "七连半音簇为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-c4",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇三全音五度形(七音批量):prime form 0,1,2,3,4,6,7。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,6,7": {
+      "date": "2026-09-09",
+      "comment": "五连簇三全音五度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-d1",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇双六度形(七音批量):prime form 0,1,2,3,4,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,8,9": {
+      "date": "2026-09-09",
+      "comment": "五连簇双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-d2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 五连簇六七度b形(七音批量):prime form 0,1,2,3,4,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,4,9,10": {
+      "date": "2026-09-09",
+      "comment": "五连簇六七度b为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-d3",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇四度五度簇形(七音批量补遗):prime form 0,1,2,3,5,6,7。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,5,6,7": {
+      "date": "2026-09-09",
+      "comment": "四连簇四度五度簇为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e1",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇三全音五度簇形(七音批量补遗):prime form 0,1,2,3,6,7,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,6,7,8": {
+      "date": "2026-09-09",
+      "comment": "四连簇三全音五度簇为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e2",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 四连簇五度双六度形(七音批量补遗):prime form 0,1,2,3,7,8,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,3,7,8,9": {
+      "date": "2026-09-09",
+      "comment": "四连簇五度双六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e3",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇三度四度三全音六度形(七音批量补遗):prime form 0,1,2,4,5,6,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,6,9": {
+      "date": "2026-09-09",
+      "comment": "簇三度四度三全音六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e4",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇Hijaz五度小六形(七音批量补遗):prime form 0,1,2,4,5,7,8。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,4,5,7,8": {
+      "date": "2026-09-09",
+      "comment": "簇Hijaz五度小六为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e5",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇四度五度三全音七形(七音批量补遗):prime form 0,1,2,5,6,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,5,6,7,10": {
+      "date": "2026-09-09",
+      "comment": "簇四度五度三全音七为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e6",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // 簇四度三全音六七度形(七音批量补遗):prime form 0,1,2,5,6,9,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,2,5,6,9,10": {
+      "date": "2026-09-09",
+      "comment": "簇四度三全音六七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e7",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Hijaz三全音五度六度形(七音批量补遗):prime form 0,1,3,4,6,7,9。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,3,4,6,7,9": {
+      "date": "2026-09-09",
+      "comment": "Hijaz三全音五度六度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e8",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    },
+
+    // Hijaz三全音五度七度形(七音批量补遗):prime form 0,1,3,4,6,7,10。纯 set。审核:用户 2026-09-09 AI 代裁
+    "0,1,3,4,6,7,10": {
+      "date": "2026-09-09",
+      "comment": "Hijaz三全音五度七度为唯一解释(硬规则):簇家族七音延伸,变形解释全滤,纯 set",
+      "anchor": "spset-hepta-e9",
+      "keep": [{ "type": "anchor" }],
+      "filterRest": true,
+    }
+  },
+}

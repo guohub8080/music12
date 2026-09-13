@@ -1,0 +1,1485 @@
+/**
+ * special-sets — 特殊音集定义表(人工审核后命名的非 tertian 和弦)
+ *
+ * 本文件是 JSON5 源头,与 chord-formulas.json5 同级但独立——
+ * 这里的条目不是三度堆叠和弦,不进入 chord 体系,是独立的 set。
+ *
+ * ── 为什么不用音程(Interval)而用半音数 ─────────────────────
+ * 这些 set 本身就是因为「用标准音程体系解释会很混乱」才被单独命名的。
+ * 用半音数定义最干净:根音 + [半音偏移量],无歧义、无记谱争议。
+ *
+ * ── 定义规则 ─────────────────────────────────────────────
+ * offsets 只写根音之外的半音偏移量(不含 0,根音由引擎自动补):
+ *   "offsets": [3, 4]  = 根音 + 3半音(小三度) + 4半音(大三度)
+ * 与 chord 的 intervalList 不含根音一致。
+ *
+ * 生成实例时:for root in 0..11: 键集 = [root, ...offsets.map(o => (root + o) % 12)]
+ *
+ * ── 字段说明 ─────────────────────────────────────────────
+ * setId         唯一标识(spset- 前缀),即对象的键
+ * cnName        中文名
+ * name          英文名
+ * scoreDisplay  记谱原子(度数体系,非和弦符号——set 不是和弦,不用和弦记法):
+ *               { "度数": 变化量 | [变化量, ...] } 对象形式,变化量 -1=♭ 0=♮ +1=♯。
+ *               单音标量({"2": -1}),同度多音用数组({"3": [-1, 0]}——分叉三和弦
+ *               ♭3·♮3、半音簇 ♭2·♮2)。与 degreeToIntervalMap 同族(度数做键)。
+ *               原子化设计:消费端自行渲染升降号(♭2·♮4 等任意风格)。
+ * offsets       半音偏移量数组(不含 0,升序)——原子的,一切的起点
+ * forte         Forte 音级集合编号(Wikipedia「List of set classes」Rahn 素数形约定);
+ *               A/B 后缀 = 该类倒影对中的代表素数形,无后缀 = 自倒影单一素数形。
+ *               2026-09-11 全 114 形逐一查证:素数形匹配 + 音程向量双重校验 100% 通过
+ * tags          检索标签
+ */
+{
+  // 分叉三和弦 · root + 3半音 + 4半音 · 布鲁斯「蓝调三度」的和声化表达
+  // 大三与小三是并存关系而非替代关系;五度可省略;属七♯9 的三音版本
+  // 分类:added-tone chord(非 tertian)
+  // 来源:OERTX 大学教科书 / Wikipedia "Added tone chord" / Offtonic Theory §7.8
+  // 审核:用户 2024-09-04
+  "spset-split_third": {
+    "forte": "3-3A",
+    "cnName": "分叉三和弦",
+    "name": "Split Third",
+    "scoreDisplay": { "3": [-1, 0] },
+    "offsets": [3, 4],
+    "tags": ["blues", "non-tertian", "added-tone"]
+  },
+
+  // 半音簇 · root + 1半音 + 2半音 · 三个相邻半音同时发声
+  // 非功能和声(secundal),存在理由是音色/色彩效果而非调性解决
+  // Henry Cowell 钢琴音簇技法;20 世纪现代音乐(Penderecki/Ligeti)的音块写法
+  // Forte 3-1;审核结论:不可用三度体系解释,12 个移调全部为 set
+  // 来源:Wikipedia "Tone cluster" / Kostka & Payne / Reddit 共识
+  // 审核:用户 2024-09-04
+  "spset-chromatic_cluster": {
+    "forte": "3-1",
+    "cnName": "半音簇",
+    "name": "Chromatic Cluster",
+    "scoreDisplay": { "2": [-1, 0] },
+    "offsets": [1, 2],
+    "tags": ["cluster", "secundal", "non-functional"]
+  },
+
+  // Phrygian 特征组 · root + 1半音(♭2) + 3半音(♭3) · 弗拉门戈/变化属的核心音响
+  // 安达卢西亚终止式的灵魂(E-F-G over E pedal);7♭9 和弦中 ♭9+♭3 张力的三音浓缩
+  // Forte 3-2(音程向量 <111000>);中东 hicaz tetrachord 的三音子集
+  // 引擎的 chord 解释(Pmaj7sus2 omit5)技术上成立但丢失音乐身份
+  // 来源:Ian Ring Scale Database / Flamenco Explained / Open Music Theory
+  // 审核:用户 2024-09-04
+  "spset-phrygian": {
+    "forte": "3-2A",
+    "cnName": "Phrygian特征前三音",
+    "name": "Phrygian Trichord",
+    "scoreDisplay": { "2": -1, "3": -1 },
+    "offsets": [1, 3],
+    "tags": ["modal", "phrygian", "flamenco", "altered-dominant"]
+  },
+
+  // Hijaz 三音 · root + 1半音(♭2) + 4半音(♮3) · 中东/弗拉门戈 Phrygian dominant 音阶的特征组
+  // 与 spset-phrygian 成对:♭2·♭3(安达卢西亚 E-F-G) vs ♭2·♮3(Hijaz E-F-G♯);
+  // 也是 7♭9 的张力壳(root+♭9+大三度),与 phrygian 的 ♭9+♭3 浓缩互补
+  // Forte 3-3(prime form 014)——恰为分叉三和弦 {0,3,4} 的倒影形:
+  // 本库 prime form 不做倒影等价,3-3 类的 24 键集由 split_third 与本条各收一半
+  // 双保留:本 set(C 根) + minmaj7(omit5)(P 根,cost=0 平行解释,set-exclusive 自动保留)
+  // 来源:Open Music Theory set class 表 / Hijaz-Freygish 音阶文献 / Bartók-Schoenberg 014 集合
+  // 审核:用户 2026-09-05(「C 是根音 Hijaz 对,P 是根音 minmaj7 也对,同时保留」)
+  "spset-hijaz": {
+    "forte": "3-3A",
+    "cnName": "Hijaz特征前三音",
+    "name": "Hijaz Trichord",
+    "scoreDisplay": { "2": -1, "3": 0 },
+    "offsets": [1, 4],
+    "tags": ["modal", "phrygian-dominant", "hijaz", "flamenco", "altered-dominant"]
+  },
+
+  // Viennese 三音 · root + 1半音(♭2) + 6半音(♭5) · 第二维也纳乐派的标志细胞
+  // Schoenberg op.11/3 终止处、Berg、Webern 高频;无调性张力音响(半音+三全音)。
+  // 与 Phrygian(♭2·♭3)/Hijaz(♭2·3) 构成 R+♭2+X 特征音组家族,X=♭5。
+  // 身份性质略异:名字来自学院集合论分析(作曲家用此音响但不这么叫),
+  // 但用户裁决采纳——它给 C-P-X 形补上 C 根音视角,与 P 根的 maj7sus4
+  // 壳构成双根音双保留(set[C 根] + maj7sus4(omit5)[P 根])。
+  // Forte 3-5,音程向量 [100011];★类第 4 个裁决(3-1/3-2/3-3 之后)。
+  // 来源:Music Theory Online(Jack Boss)/ Cambridge 勋伯格研究 / Forte 名录
+  // 审核:用户 2026-09-05
+  "spset-viennese": {
+    "forte": "3-5A",
+    "cnName": "Viennese特征前三音",
+    "name": "Viennese Trichord",
+    "scoreDisplay": { "2": -1, "5": -1 },
+    "offsets": [1, 6],
+    "tags": ["atonal", "second-viennese-school", "tritone", "post-tonal"]
+  },
+
+  // Phrygian 挂留三音 · root + 1半音(♭2) + 5半音(纯四) · B-C-E / C-D♭-F 型
+  // 功能:7sus4♭9 的张力浓缩(root+sus4+♭9,变化属的挂留形)——Phrygian 调式
+  // 的 1-♭2-4,弗拉门戈安达卢西亚终止的挂留版,与 spset-phrygian(特征版
+  // ♭2+♭3)配对:Phrygian 和声的挂留/张力两浓缩。
+  // R+♭2+X 家族 X=5 员,家族就此补全(X=2..6 连续):
+  //   半音簇 ♭2·2 / Phrygian特征 ♭2·♭3 / Hijaz ♭2·3 / 本条 ♭2·4 / Viennese ♭2·♭5
+  // Forte 3-4 正形(与倒影形 {0,1,8} maj3add11 壳分领一类);
+  // 双根音用法:set 根 = 半音对低音(摩擦挂身),maj7 壳根 = 半音对高音
+  // 审核:用户 2026-09-05(命名功能化:突出「Phrygian+挂留」的调式功能)
+  "spset-phrygian_sus": {
+    "forte": "3-4A",
+    "cnName": "Phrygian挂留前三音",
+    "name": "Phrygian Suspended Trichord",
+    "scoreDisplay": { "2": -1, "4": 0 },
+    "offsets": [1, 5],
+    "tags": ["phrygian", "sus", "altered-dominant", "flamenco"]
+  },
+
+  // 四度碎片 · root + 2半音(♮2) + 5半音(纯四) · C-D-F 型(Forte 3-7 正形)
+  // 「set 根=二度对低音」规律推广:min7 壳形的 set 视角——
+  // 全音对(C-D)低音 C 领 set 身份(♮2+♮4,大调 1-2-4 挂留声响),
+  // 高音 D 领 chord 身份(min7(omit5) 壳)。全自然音级,无 ♭2 基因。
+  // 审核:用户 2026-09-05
+  "spset-fourth_fragment": {
+    "forte": "3-7A",
+    "cnName": "四度碎片",
+    "name": "Fourth Fragment",
+    "scoreDisplay": { "2": 0, "4": 0 },
+    "offsets": [2, 5],
+    "tags": ["quartal", "sus", "diatonic"]
+  },
+
+  // 全音叠三全音 · root + 2半音(♮2) + 6半音(♭5) · F♯-G♯-C 型(Forte 3-8 正形)
+  // 「set 根=二度对低音」规律推广:dom7 壳形的 set 视角——
+  // 全音对低音领 set 身份(♮2+♭5),高音领 chord 身份(dom7(omit5) 壳)。
+  // 与 maj3b5({0,2,8} 倒影形)分领 3-8 一类。无 ♭2 基因(♮2 对)。
+  // 审核:用户 2026-09-05
+  "spset-tone_tritone": {
+    "forte": "3-8A",
+    "cnName": "全音叠三全音",
+    "name": "Tone-Tritone",
+    "scoreDisplay": { "2": 0, "5": -1 },
+    "offsets": [2, 6],
+    "tags": ["tritone", "dominant", "symmetrical"]
+  },
+
+  // Phrygian 五度 · root + 1半音(♭2) + 7半音(纯五) · C-D♭-G / E-F-B 型
+  // 功能:Phrygian pedal 声响——root 上挂 ♭2 加纯五度支撑,弗拉门戈/金属
+  // Phrygian riff 的低音骨架(E5+F 型,Metallica《Wherever I May Roam》等);
+  // 也是 7♭9 骨架的一半(root+P5+♭9,三音七音缺由 guide tone 规则正确排除)。
+  // R+♭2+X 家族 X=7 延伸;Forte 3-5 倒影形(正形半边 Viennese 已入库)。
+  // 硬规则纯 set:该形无 cost=0 chord 壳(最优 1.5 全是扭曲)。
+  // 审核:用户 2026-09-05——★类(含两半)就此全部收官
+  "spset-phrygian_fifth": {
+    "forte": "3-5A",
+    "cnName": "Phrygian五度",
+    "name": "Phrygian Fifth",
+    "scoreDisplay": { "2": -1, "5": 0 },
+    "offsets": [1, 7],
+    "tags": ["phrygian", "flamenco", "metal", "pedal"]
+  },
+
+  // 半音簇三全音 · root + 1半音(♭2) + 2半音(♮2) + 6半音(♭5) · C-C♯-D-F♯ 型
+  // 结构 = 半音簇(前三个音,spset-chromatic_cluster 原班) + 一颗三全音位置的音:
+  // 「摩擦 + 悬浮」两高紧张元素的叠加,紧张度顶格,功能和声无法收编
+  // (最优 chord 解释 dom7sus4b9(omit5 ♯7) cost=1 已是引擎榨到极限的凑数)。
+  // Forte 4-5(音程向量 ⟨210111⟩,两个半音 + ic2/4/5/6 各一);
+  // 倒影形 4-5B {0,4,5,6} 同类待审,将来同款处理。
+  // 四音 set 首例;scoreDisplay 同度双音数组(♭2·♮2)格式原生支持。
+  // 审核:用户 2026-09-06(四音 Tier3 区「很难解释」首形)
+  "spset-cluster_tritone": {
+    "forte": "4-5A",
+    "cnName": "半音簇三全音",
+    "name": "Cluster-Tritone",
+    "scoreDisplay": { "2": [-1, 0], "5": -1 },
+    "offsets": [1, 2, 6],
+    "tags": ["cluster", "tritone", "non-functional", "forte-4-5"]
+  },
+
+  // Hijaz 四音组 · root + 1半音(♭2) + 4半音(♮3) + 5半音(♮4) · C-C♯-E-F 型
+  // maqam 理论正式构件(jins Hijaz):签名音程 = 半音→增二度→半音,
+  // 拼法 1-♭2-3-4;同时出现在和声小调 5 级(= Phrygian dominant 头四音),
+  // 中东传统 + 西方和声小调双血统。spset-hijaz(特征前三音)的四音完整版
+  // ——三音版是 jins 的截断,四音版是完整 jins。
+  // 最优 chord 解释 dom7#9(omit5 ♯7) 把 Hendrix 的 ♭7 升成 M7(本质变形),
+  // 全场凑数,功能和声无法收编。
+  // 来源:Offtonic Theory §7.9 Maqamat / maqam 理论 jins 体系
+  // 审核:用户 2026-09-06(四音 Tier3 区「怎么解释都解释不通」)
+  "spset-hijaz_tetrachord": {
+    "forte": "4-7",
+    "cnName": "Hijaz四音组",
+    "name": "Hijaz Tetrachord",
+    "scoreDisplay": { "2": -1, "3": 0, "4": 0 },
+    "offsets": [1, 4, 5],
+    "tags": ["hijaz", "maqam", "phrygian-dominant", "harmonic-minor"]
+  },
+
+  // 分叉加六 · root + 3半音(♭3) + 4半音(♮3) + 9半音(♮6) · A-C-C♯-F♯ 型
+  // 分叉三和弦(♭3♮3 并存,blues 标志音响)的四音延伸——加大六度,
+  // blues/rock 和声常见张力堆(双 bend 场景的音高内容)。
+  // Forte 4-18(prime form (0,1,4,7) 为正形,本形 0,1,6,9 为倒影方向,
+  // 同类两半边将来同款处理);音程向量 ⟨102111⟩。无流通别名,
+  // 学院标签级身份(Viennese 先例)+ split_third 家族原班人马。
+  // 最优 chord 解释 dom7#9(omit5 ♭7) 把 Hendrix 的 ♭7 降成 M6
+  // (变形核心音),全场别扭。
+  // 审核:用户 2026-09-06(四音审核「怎么解释都别扭」,A 根视角裁决)
+  "spset-split_sixth": {
+    "forte": "4-18A",
+    "cnName": "分叉加六",
+    "name": "Split-Sixth",
+    "scoreDisplay": { "3": [-1, 0], "6": 0 },
+    "offsets": [3, 4, 9],
+    "tags": ["blues", "split-third", "non-tertian", "forte-4-18"]
+  },
+
+  // 半音簇大三度 · root + 1半音(♭2) + 2半音(♮2) + 4半音(♮3) · C-C♯-D-E 型
+  // 簇家族四音延伸第二例(半音簇 + 大三度,spset-cluster_tritone 的兄弟形):
+  // 三个连续半音的摩擦 + 一个有方向感的大三度;♭2♮2 同度并存。
+  // Forte 4-2(音程向量 ⟨221100⟩,两个半音簇基因);无流通别名,学院标签级。
+  // 最优 chord 解释 maj13sus2(omit5 ♯13) cost 1.5 变形记法,全场凑数。
+  // 审核:用户 2026-09-06(四音审核「怎么解释都不行」,同意 set 唯一)
+  "spset-cluster_third": {
+    "forte": "4-2A",
+    "cnName": "半音簇大三度",
+    "name": "Cluster-Third",
+    "scoreDisplay": { "2": [-1, 0], "3": 0 },
+    "offsets": [1, 2, 4],
+    "tags": ["cluster", "non-tertian", "non-functional", "forte-4-2"]
+  },
+
+  // 梦之和弦 · root + 1半音(♭2) + 2半音(♮2) + 7半音(纯五) · G-C-C♯-D 型
+  // 正式昵称 Dream chord(Wikipedia 独立词条),出处 = La Monte Young
+  // (极简主义之父):标准音高恰为 G-C-C♯-D,是其 1958 起(Trio for Strings,
+  // For Guitar 等)的核心音高材料;音高来源是他童年在 Bern, Idaho 听到的
+  // 电话线持续嗡鸣——60Hz 电线 drone 的童年记忆。Forte 4-6,音程向量
+  // ⟨210021⟩(两个半音簇基因+两个纯五度+三全音)。Cage《Dream》(1948)
+  // 是美学上游(持续音美学),非直接出处。
+  // 簇家族四音延伸第三例(簇+纯五,与 +三全音/+大三度成三兄弟);
+  // 亦 = Phrygian五度(spset-phrygian_fifth)夹一个 ♮2。♭2♮2 同度并存。
+  // 审核:用户 2026-09-06(四音审核「没有合适的和弦解释」,裁决 set)
+  "spset-dream": {
+    "forte": "4-6",
+    "cnName": "梦之和弦",
+    "name": "Dream Chord",
+    "scoreDisplay": { "2": [-1, 0], "5": 0 },
+    "offsets": [1, 2, 7],
+    "tags": ["cluster", "cage", "minimalism", "forte-4-6"]
+  },
+
+  // 半音簇小七度 · root + 1半音(♭2) + 2半音(♮2) + 10半音(♭7) · C-C♯-D-B♭ 型
+  // 簇家族四音延伸第四例(半音簇 + 小七度,与 +三全音/+大三度/+纯五度并列);
+  // 音程向量 ⟨221100⟩ 与半音簇大三度(4-2)完全相同——Z 关系伙伴
+  // (同向量非移调/倒影等价,集合论的经典亲缘)。♭2♮2 同度并存。
+  // 最优 chord 解释亦为多重变换凑数,功能和声无法收编。
+  // 审核:用户 2026-09-06(四音审核「无法解释」,授权直接更新)
+  "spset-cluster_minor7": {
+    "forte": "4-2A",
+    "cnName": "半音簇小七度",
+    "name": "Cluster-Minor7",
+    "scoreDisplay": {"2": [-1, 0], "7": -1},
+    "offsets": [1, 2, 10],
+    "tags": ["cluster", "non-tertian", "non-functional", "z-related-4-2"]
+  },
+
+  // Phrygian 加六 · root + 1半音(♭2) + 3半音(♭3) + 9半音(♮6) · C-C♯-E♭-A 型
+  // Phrygian特征前三音(spset-phrygian 原班)的四音延伸——加大六度,
+  // 与「分叉加六」对仗(+6 延伸第二例)。音阶身份:♭2♭3 并存 + ♮6 =
+  // Dorian ♭2(旋律小调第 6 调式)区别于 Phrygian(♭6)/Dorian(♮2)
+  // 的两个特征音齐备。最优 chord 解释 maj7sus2(♯5) 是 sus 上变形
+  // 记法,全场凑数,功能和声无法收编。
+  // 审核:用户 2026-09-06(四音审核,「感觉用 set 解释更合适」)
+  "spset-phrygian_sixth": {
+    "forte": "4-12A",
+    "cnName": "Phrygian加六",
+    "name": "Phrygian Sixth",
+    "scoreDisplay": { "2": -1, "3": -1, "6": 0 },
+    "offsets": [1, 3, 9],
+    "tags": ["phrygian", "dorian-b2", "melodic-minor", "modal"]
+  },
+
+  // 双三全音 · root + 1半音(♭2) + 6半音(♭5) + 7半音(纯五) · C-C♯-F♯-G 型
+  // 全对称集合:Forte 4-9,音程向量 ⟨200022⟩(全偶数——每类音程恰 0/2 个),
+  // +6 移调自映射(仅 6 个独立移调,每键集两个对称根名)。
+  // 结构 = 两组三全音对(C-F♯ 与 C♯-G)相互咬合——Petrushka 和弦
+  // (C 对 F♯ 双调性对峙,Stravinsky)的矛盾浓缩骨架;♭5♮5 同度并存。
+  // 最优 chord 解释多重变换凑数,功能和声无法收编。
+  // 对称双根名由 set-exclusive 规则自动保留(aug3/dim7 同款多名机制),
+  // 无需 verdict。
+  // 审核:用户 2026-09-06(四音审核「怎么都不好解释」,裁决 set)
+  "spset-double_tritone": {
+    "forte": "4-9",
+    "cnName": "双三全音",
+    "name": "Double Tritone",
+    "scoreDisplay": { "2": -1, "5": [-1, 0] },
+    "offsets": [1, 6, 7],
+    "tags": ["tritone", "symmetrical", "bitonality", "petrushka", "forte-4-9"]
+  },
+
+  // 四连半音簇 · root + 1半音(♭2) + 2半音(♮2) + 3半音(♯2) · C-C♯-D-D♯ 型
+  // 半音簇(spset-chromatic_cluster,Forte 3-1)的直系四音完整版;
+  // Forte 4-1,音程向量 ⟨321000⟩(三个半音——全库最高半音密度)。
+  // 集群作曲法(tone cluster)标准材料:Cowell 音块技法、Penderecki
+  // 《广岛受难者之歌》、Ligeti 微复调的基础声能单位;非功能 secundal,
+  // 存在理由是音色/色彩效果。scoreDisplay 首次三态数组(♭2·♮2·♯2
+  // 同度三音并存)。最优 chord 解释多重变换凑数,功能和声无法收编。
+  // 审核:用户 2026-09-06(四音 Tier5 收官形,簇家族最后一块拼图)
+  "spset-chromatic_tetrachord": {
+    "forte": "4-1",
+    "cnName": "四连半音簇",
+    "name": "Chromatic Tetrachord",
+    "scoreDisplay": { "2": [-1, 0, 1] },
+    "offsets": [1, 2, 3],
+    "tags": ["cluster", "secundal", "non-functional", "forte-4-1", "penderecki", "ligeti"]
+  },
+
+  // 半音簇大六度 · root + 1半音(♭2) + 2半音(♮2) + 9半音(♮6) · C-C♯-D-A 型
+  // 簇家族四音延伸收官位(+三全音/+大三度/+纯五/+小七度之后的 +大六度);
+  // 音程向量 ⟨211110⟩(两个半音簇基因+各音程各一)。♭2♮2 同度并存。
+  // 最优 chord 解释 maj3add11(omit5 ♯2) tier5 多重变换凑数,
+  // 功能和声无法收编。
+  // 审核:用户 2026-09-06(四音收官清查:tier5 残留 12 组即本形)
+  "spset-cluster_sixth": {
+    "forte": "4-4A",
+    "cnName": "半音簇大六度",
+    "name": "Cluster-Sixth",
+    "scoreDisplay": { "2": [-1, 0], "6": 0 },
+    "offsets": [1, 2, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇纯四度 · root + 1+2+3半音(四连半音簇) + 5半音(纯四) · C-C♯-D-E♭-F 型
+  // Forte 5-2,音程向量 ⟨332110⟩——仅次于纯五连半音(5-1)的第二紧致五音簇;
+  // 文献别名 Pentacluster.2 / Chromatic Pentamirror(Scribd 集合表系)。
+  // 勋伯格《木管五重奏》Op.26 集合回文序列中心(5-9→5-8→5-2→5-8→5-9);
+  // Samplaski(MTO)归为 chromatic genus 极值。簇家族五音延伸第一位
+  // (四连簇+X 系列)。最优 chord 解释 maj7b9(omit5 add2) 0.5 凑数。
+  // scoreDisplay 2 度双态(♭2·♮2)+♭3+♮4。
+  // 审核:用户 2026-09-07(五音 Tier3 第一形「一个一个来」)
+  "spset-tetracluster_fourth": {
+    "forte": "5-2A",
+    "cnName": "四连簇纯四度",
+    "name": "Tetracluster-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "3": -1, "4": 0 },
+    "offsets": [1, 2, 3, 5],
+    "tags": ["cluster", "secundal", "non-functional", "forte-5-2"]
+  },
+
+  // 梦之和弦加四 · root + 1+2半音(簇) + 5半音(纯四) + 7半音(纯五) · C-C♯-D-F-G 型
+  // 梦之和弦(spset-dream,{0,1,2,7})的直系五音扩展——挂纯四度:
+  // 三音簇的半音摩擦 + 纯四纯五两个空灵纯音程,dream 气质的加宽版
+  // (La Monte Young 血统延续)。♭2♮2 同度双音。
+  // 最优 chord 解释 dom7#11(♯3) 把属七三度(guide tone)升半音,
+  // 变形核心音(Hijaz 形 ♭7→M6 同款病),全场凑数。
+  // 审核:用户 2026-09-07(五音审核「解释得有点丑」,裁决 set)
+  "spset-dream_fourth": {
+    "forte": "5-14A",
+    "cnName": "梦之和弦加四",
+    "name": "Dream-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "5": 0 },
+    "offsets": [1, 2, 5, 7],
+    "tags": ["cluster", "cage-minimalism-lineage", "non-functional"]
+  },
+
+  // Phrygian双六度 · root + 1半音(♭2) + 3半音(♭3) + 8半音(♭6) + 9半音(♮6) · A-B♭-C-E♭-E 型
+  // Phrygian加六(spset-phrygian_sixth,{0,1,3,9})的五音延伸——挂 ♭6;
+  // ♭6♮6 同度双音 = phrygian 的 ♭6 与 dorian 的 ♮6 并存标志
+  // (两种小调式六度的交汇)。phrygian 家族第五位成员。
+  // 最优 chord 解释 dom13#11(omit9,5 ♯3) 变形 guide tone(三度
+  // 升半音),dom13sus4(♭5) 变形五度,全场凑数。
+  // 审核:用户 2026-09-07(五音 t4 区「怎么解释都不行」)
+  "spset-phrygian_double_sixth": {
+    "forte": "5-Z18A",
+    "cnName": "Phrygian双六度",
+    "name": "Phrygian Double-Sixth",
+    "scoreDisplay": { "2": -1, "3": -1, "6": [-1, 0] },
+    "offsets": [1, 3, 8, 9],
+    "tags": ["phrygian", "dorian", "modal", "non-tertian"]
+  },
+
+  // 半音簇大三度加六 · root + 1+2半音(簇) + 4半音(大三) + 9半音(大六) · B-C-C♯-E♭-A♭ 型
+  // 半音簇大三度(spset-cluster_third,{0,1,2,4})的五音延伸——挂大六度;
+  // = 三音簇 + 大三度 + 大六度。最优 dom7#5(♯3 add6) 变形 guide tone
+  // (三度升半音,第六次同症),全场 1.5 多重变换凑数。
+  // 审核:用户 2026-09-07(五音 t4 区)
+  "spset-cluster_third_sixth": {
+    "forte": "5-11A",
+    "cnName": "半音簇大三度加六",
+    "name": "Cluster-Third-Sixth",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "6": 0 },
+    "offsets": [1, 2, 4, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇小七度加三 · root + 1+2半音(簇) + 3半音(小三) + 10半音(小七) · B-C-C♯-D-A 型
+  // 半音簇小七度(spset-cluster_minor7,{0,1,2,10})的五音延伸——挂小三度;
+  // = 三音簇 + 小三度 + 小七度。最优 dom7b9(omit5 ♭3 add2) 的 ♭3
+  // 是 guide tone 变形(降半音——与 ♯3 升半音两方向都齐),全场凑数。
+  // 审核:用户 2026-09-07(五音 t4 区)
+  "spset-cluster_minor7_third": {
+    "forte": "5-2A",
+    "cnName": "半音簇小七度加三",
+    "name": "Cluster-Minor7-Third",
+    "scoreDisplay": { "2": [-1, 0], "3": -1, "7": -1 },
+    "offsets": [1, 2, 3, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 五音 Tier5 区批量升格(用户授权「tie5 的都能解释为 set 了,请你更新」)════════
+  // 全部为簇家族五音延伸:0,1,2,x,y 系(三音簇+两音)与 0,1,2,3,x 系(四连簇+单音)
+  // 判据:无 cost0(t5 起点最优已 3+)/chord 全凑数/簇家族直系
+  // 审核:用户 2026-09-07 批量授权(每个仍走结构拆解+家族身份+命名流程)
+
+  // 五连半音簇 · 五连半音 · 纯簇完全体(Forte 5-1,音程向量 ⟨432100⟩ 全库最高半音密度);集群技法终极材料
+  // prime form 0,1,2,3,4
+  "spset-chromatic_pentachord": {
+    "forte": "5-1",
+    "cnName": "五连半音簇",
+    "name": "Chromatic Pentachord",
+    "scoreDisplay": {"2":[-1,0,1],"3":0},
+    "offsets": [1, 2, 3, 4],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音 · 四连半音簇+三全音;摩擦顶格+悬浮
+  // prime form 0,1,2,3,6
+  "spset-tetracluster_tritone": {
+    "forte": "5-4A",
+    "cnName": "四连簇三全音",
+    "name": "Tetracluster-Tritone",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1},
+    "offsets": [1, 2, 3, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇纯五度 · 四连半音簇+纯五度;摩擦+空灵(dream 气质重装版)
+  // prime form 0,1,2,3,7
+  "spset-tetracluster_fifth": {
+    "forte": "5-5A",
+    "cnName": "四连簇纯五度",
+    "name": "Tetracluster-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"5":0},
+    "offsets": [1, 2, 3, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇小六度 · 四连半音簇+小六度(♭6)
+  // prime form 0,1,2,3,8
+  "spset-tetracluster_flat6": {
+    "forte": "5-5A",
+    "cnName": "四连簇小六度",
+    "name": "Tetracluster-Flat6",
+    "scoreDisplay": {"2":[-1,0,1],"6":-1},
+    "offsets": [1, 2, 3, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇大六度 · 四连半音簇+大六度(♮6)
+  // prime form 0,1,2,3,9
+  "spset-tetracluster_sixth": {
+    "forte": "5-4A",
+    "cnName": "四连簇大六度",
+    "name": "Tetracluster-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"6":0},
+    "offsets": [1, 2, 3, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度加四 · 半音簇大三度(库内四音 set)的五音延伸——挂纯四度;亦 = Hijaz四音组+♮2 双视角
+  // prime form 0,1,2,4,5
+  "spset-cluster_third_fourth": {
+    "forte": "5-3A",
+    "cnName": "半音簇大三度加四",
+    "name": "Cluster-Third-Fourth",
+    "scoreDisplay": {"2":[-1,0],"3":0,"4":0},
+    "offsets": [1, 2, 4, 5],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度六度 · 三音簇+纯四度+大六度
+  // prime form 0,1,2,5,9
+  "spset-cluster_fourth_sixth": {
+    "forte": "5-Z37",
+    "cnName": "半音簇四度六度",
+    "name": "Cluster-Fourth-Sixth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"6":0},
+    "offsets": [1, 2, 5, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音五度 · 三音簇+三全音+纯五度(♭5♮5 同度双音);cluster_tritone 的五音延伸
+  // prime form 0,1,2,6,7
+  "spset-cluster_tritone_fifth": {
+    "forte": "5-7A",
+    "cnName": "半音簇三全音五度",
+    "name": "Cluster-Tritone-Fifth",
+    "scoreDisplay": {"2":[-1,0],"5":[-1,0]},
+    "offsets": [1, 2, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音加六 · 半音簇三全音(库内四音 set)的五音延伸——挂大六度;用户逐形审核后并入批量
+  // prime form 0,1,2,6,9
+  "spset-cluster_tritone_sixth": {
+    "forte": "5-Z38A",
+    "cnName": "半音簇三全音加六",
+    "name": "Cluster-Tritone-Sixth",
+    "scoreDisplay": {"2":[-1,0],"5":-1,"6":0},
+    "offsets": [1, 2, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 梦之和弦加七 · 梦之和弦(库内四音 set,La Monte Young)的五音延伸——挂小七度
+  // prime form 0,1,2,7,10
+  "spset-dream_seventh": {
+    "forte": "5-Z36A",
+    "cnName": "梦之和弦加七",
+    "name": "Dream-Seventh",
+    "scoreDisplay": {"2":[-1,0],"5":0,"7":-1},
+    "offsets": [1, 2, 7, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇双六度 · 三音簇+♭6♮6 同度双音(小调式双六度交汇)
+  // prime form 0,1,2,8,9
+  "spset-cluster_double_sixth": {
+    "forte": "5-6A",
+    "cnName": "半音簇双六度",
+    "name": "Cluster-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0],"6":[-1,0]},
+    "offsets": [1, 2, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大六度加七 · 半音簇大六度(库内四音 set)的五音延伸——挂小七度
+  // prime form 0,1,2,9,10
+  "spset-cluster_sixth_seventh": {
+    "forte": "5-3A",
+    "cnName": "半音簇大六度加七",
+    "name": "Cluster-Sixth-Seventh",
+    "scoreDisplay": {"2":[-1,0],"6":0,"7":-1},
+    "offsets": [1, 2, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 五音 Tier4 区收官两形(用户指出 t4 也应 set 化)════════
+
+  // 半音簇大三度三全音 · root + 1+2+4+6半音 · C-C♯-D-E-F♯ 型
+  // Hijaz四音组({0,1,4,5} 库内 set)+♮2 的五音延伸;亦 = 半音簇大三度
+  // (库内 set)+三全音。三音簇+大三度+三全音(Hijaz 家族第二位)。
+  // 最优 dom7sus2(♯5 add6) 多重变换(♯5 变形五度),全场凑数。
+  // 审核:用户 2026-09-07(t4 收官)
+  "spset-cluster_third_tritone": {
+    "forte": "5-9A",
+    "cnName": "半音簇大三度三全音",
+    "name": "Cluster-Third-Tritone",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "5": -1 },
+    "offsets": [1, 2, 4, 6],
+    "tags": ["cluster", "hijaz", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音小七度 · root + 1+2+6+10半音 · C-C♯-D-F♯-B♭ 型
+  // 半音簇三全音(库内四音 set {0,1,2,6})的五音延伸——挂小七度;
+  // 三音簇+三全音+小七度。最优 dom7sus4b9(♯4 omit5 add2) 的 ♯4
+  // 是 guide tone 系变形(sus 骨架音升半音),全场凑数。
+  // 审核:用户 2026-09-07(t4 收官)
+  "spset-cluster_tritone_minor7": {
+    "forte": "5-13A",
+    "cnName": "半音簇三全音小七度",
+    "name": "Cluster-Tritone-Minor7",
+    "scoreDisplay": { "2": [-1, 0], "5": -1, "7": -1 },
+    "offsets": [1, 2, 6, 10],
+    "tags": ["cluster", "tritone", "non-tertian", "non-functional"]
+  },
+
+  // 梦之和弦加七升二 · root + 1+2+3半音(四连簇) + 7半音(纯五) + 10半音(小七)
+  // · C♯-D-D♯-E-G♯-B 型(prime form 0,1,2,3,7,10,起点 C♯)
+  // 梦之和弦加七(spset-dream_seventh,{0,1,2,7,10})的六音延伸——挂 ♯2;
+  // = 四连半音簇 + 纯五 + 小七。dream 家族第四代(梦之和弦→加四→加七
+  // →完整六音版)。scoreDisplay 首次三态二度+五七度位组合(♭2·2·♯2·5·♭7)。
+  // 最优 chord 解释 dom7b9(♭3 add2) 的 ♭3 是 guide tone 变形
+  // (三度降半音,第八次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「是不是用 set 解释更好」)
+  "spset-dream_seventh_sharp2": {
+    "forte": "6-Z40A",
+    "cnName": "梦之和弦加七升二",
+    "name": "Dream-Seventh-Sharp2",
+    "scoreDisplay": { "2": [-1, 0, 1], "5": 0, "7": -1 },
+    "offsets": [1, 2, 3, 7, 10],
+    "tags": ["cluster", "dream-lineage", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇大六度加七 · root + 1+2+3半音(四连簇) + 9半音(大六) + 10半音(小七)
+  // · C♯-D-D♯-E-A-B♭ 型(prime form 0,1,2,3,9,10,起点 C♯)
+  // 四连簇大六度(库内五音 set {0,1,2,3,9})的六音延伸——挂小七度;
+  // 四连簇系第三位六音成员(纯五度系=梦之和弦加七升二之后)。
+  // 最优 chord 解释 dom13b9(omit11,5 ♭3 add2) 四重操作,♭3 是
+  // guide tone 变形(三度降半音,第九次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「怎么解释都不对,用 set」)
+  "spset-tetracluster_sixth_seventh": {
+    "forte": "6-Z3A",
+    "cnName": "四连簇大六度加七",
+    "name": "Tetracluster-Sixth-Seventh",
+    "scoreDisplay": { "2": [-1, 0, 1], "6": 0, "7": -1 },
+    "offsets": [1, 2, 3, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音五度加七 · root + 1+2半音(三音簇) + 6半音(♭5) + 7半音(♮5)
+  // + 10半音(♭7) · F-G♭-G-C♯-D-E♭ 型(prime form 0,1,2,6,7,10,起点 F)
+  // 半音簇三全音五度(库内五音 set {0,1,2,6,7})的六音延伸——挂小七度;
+  // 双血统:亦是双三全音(四音 set {0,1,6,7},Petrushka 骨架)+♮2+♭7。
+  // scoreDisplay 双同度双音(2 度与 5 度皆数组:♭2·2·♭5·5·♭7)。
+  // 最优 chord 解释 dom7sus4b9(♯4 add2) 的 ♯4 变形 sus 骨架音
+  // (4 度升半音,guide tone 系第十次同症),全场凑数。
+  // 审核:用户 2026-09-08(六音审核,「这个也是用 set 解释吧」)
+  "spset-cluster_tritone_fifth_seventh": {
+    "forte": "6-Z17A",
+    "cnName": "半音簇三全音五度加七",
+    "name": "Cluster-Tritone-Fifth-Seventh",
+    "scoreDisplay": { "2": [-1, 0], "5": [-1, 0], "7": -1 },
+    "offsets": [1, 2, 6, 7, 10],
+    "tags": ["cluster", "tritone", "petrushka", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier6 区批量升格(用户授权「tie6 的全部用 set 解释」)════════
+  // 全部为簇家族六音延伸;判据:无 cost0/t6 起点全凑数/簇家族直系
+
+  // 四连簇双七度 · prime form 0,1,2,3,10,11 · 四连簇+♭7♮7 相邻七度对;七度同度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_double_seventh": {
+    "forte": "6-1",
+    "cnName": "四连簇双七度",
+    "name": "Tetracluster-Double-Seventh",
+    "scoreDisplay": {"2":[-1,0,1],"7":[-1,0]},
+    "offsets": [1, 2, 3, 10, 11],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇大六度 · prime form 0,1,2,3,4,9 · 五连半音簇(Forte 5-1 系)+大六度;三态二度+大三+大六
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_sixth": {
+    "forte": "6-Z36A",
+    "cnName": "五连簇大六度",
+    "name": "Pentacluster-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"6":0},
+    "offsets": [1, 2, 3, 4, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇双六度 · prime form 0,1,2,3,8,9 · 四连簇+♭6♮6 相邻六度对;六度同度双音(Phrygian双六度的四连簇版)
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_double_sixth": {
+    "forte": "6-5A",
+    "cnName": "四连簇双六度",
+    "name": "Tetracluster-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"6":[-1,0]},
+    "offsets": [1, 2, 3, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度双四度 · prime form 0,1,2,4,5,6 · 三音簇+大三度+♮4♭4 四度同度双音;Hijaz四音组+♮2+♭4
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_third_double_fourth": {
+    "forte": "6-Z4",
+    "cnName": "半音簇大三度双四度",
+    "name": "Cluster-Third-Double-Fourth",
+    "scoreDisplay": {"2": [-1, 0], "3": 0, "4": 0, "5": -1},
+    "offsets": [1, 2, 4, 5, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇双四度五度 · prime form 0,1,2,5,6,7 · 三音簇+纯四+♭5♮5 五度同度双音;cluster_fourth_fifth 系
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_double_fourth_fifth": {
+    "forte": "6-Z6",
+    "cnName": "半音簇双四度五度",
+    "name": "Cluster-Double-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"5":[-1,0]},
+    "offsets": [1, 2, 5, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 彼氏簇 · prime form 0,1,2,6,7,8 · 双三全音(Petrushka 骨架 {0,1,6,7})+三音簇尾(6,7,8);对称类仅 6 组
+  // 审核:用户 2026-09-08 批量授权
+  "spset-petrushka_cluster": {
+    "forte": "6-7",
+    "cnName": "彼氏簇",
+    "name": "Petrushka-Cluster",
+    "scoreDisplay": {"2": [-1, 0], "5": [-1, 0], "6": -1},
+    "offsets": [1, 2, 6, 7, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度六度减五 · root + 1+2半音(簇) + 5半音(纯四) + 6半音(♭5)
+  // + 9半音(大六) · prime form 0,1,2,5,6,9
+  // 半音簇四度六度(库内五音 set {0,1,2,5,9})挂 ♭5 的六音延伸
+  // (三音簇+纯四+♭5+大六)。t6 起点全凑数。批量清查补遗。
+  // 审核:用户 2026-09-08 批量授权(t6 残留清查)
+  "spset-cluster_fourth_sixth_b5": {
+    "forte": "6-Z44A",
+    "cnName": "半音簇四度六度减五",
+    "name": "Cluster-Fourth-Sixth-B5",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "5": -1, "6": 0 },
+    "offsets": [1, 2, 5, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier5 区批量升格(用户授权「tie5、6 的都入 hash6 的 set」)════════
+
+  // 五连簇三全音 · prime form 0,1,2,3,4,6 · 五连半音簇+三全音;三态二度+大三+三全音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_tritone": {
+    "forte": "6-2A",
+    "cnName": "五连簇三全音",
+    "name": "Pentacluster-Tritone",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"5":-1},
+    "offsets": [1, 2, 3, 4, 6],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇纯五度 · prime form 0,1,2,3,4,7 · 五连半音簇+纯五度;五连簇+X 系第三位
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_fifth": {
+    "forte": "6-Z36A",
+    "cnName": "五连簇纯五度",
+    "name": "Pentacluster-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"5":0},
+    "offsets": [1, 2, 3, 4, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇小六度 · prime form 0,1,2,3,4,8 · 五连半音簇+小六度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_flat6": {
+    "forte": "6-Z37",
+    "cnName": "五连簇小六度",
+    "name": "Pentacluster-Flat6",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"6":-1},
+    "offsets": [1, 2, 3, 4, 8],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 五连簇小七度 · prime form 0,1,2,3,4,10 · 五连半音簇+小七度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-pentacluster_minor7": {
+    "forte": "6-2A",
+    "cnName": "五连簇小七度",
+    "name": "Pentacluster-Minor7",
+    "scoreDisplay": {"2":[-1,0,1],"3":0,"7":-1},
+    "offsets": [1, 2, 3, 4, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音五度 · prime form 0,1,2,3,6,7 · 四连簇+♭5♮5 五度同度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_fifth": {
+    "forte": "6-5A",
+    "cnName": "四连簇三全音五度",
+    "name": "Tetracluster-Tritone-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"5":[-1,0]},
+    "offsets": [1, 2, 3, 6, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音大六度 · prime form 0,1,2,3,6,9 · 四连簇+三全音+大六度
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_sixth": {
+    "forte": "6-Z42",
+    "cnName": "四连簇三全音大六度",
+    "name": "Tetracluster-Tritone-Sixth",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1,"6":0},
+    "offsets": [1, 2, 3, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇四度双六度 · prime form 0,1,2,5,8,9 · 三音簇+纯四+♭6♮6 六度双音
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_fourth_double_sixth": {
+    "forte": "6-Z44A",
+    "cnName": "半音簇四度双六度",
+    "name": "Cluster-Fourth-Double-Sixth",
+    "scoreDisplay": {"2":[-1,0],"4":0,"6":[-1,0]},
+    "offsets": [1, 2, 5, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // Hijaz双六度 · prime form 0,1,4,5,8,9 · Hijaz四音组+♭6♮6 双六度;对称类 4 组
+  // 审核:用户 2026-09-08 批量授权
+  "spset-hijaz_flat6_sixth": {
+    "forte": "6-20",
+    "cnName": "Hijaz双六度",
+    "name": "Hijaz-Double-Sixth",
+    "scoreDisplay": {"2":-1,"3":0,"4":0,"6":[-1,0]},
+    "offsets": [1, 4, 5, 8, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇三全音加六减七 · root + 1+2半音(簇) + 6半音(♭5) + 9半音(大六)
+  // + 10半音(小七) · prime form 0,1,2,6,9,10
+  // 半音簇三全音加六(库内五音 set {0,1,2,6,9})挂 ♭7 的六音延伸
+  // (三音簇+三全音+大六+小七)。t5 批量清查补遗。
+  // 审核:用户 2026-09-08 批量授权(t5 残留清查)
+  "spset-cluster_tritone_sixth_seventh": {
+    "forte": "6-15A",
+    "cnName": "半音簇三全音加六减七",
+    "name": "Cluster-Tritone-Sixth-Seventh",
+    "scoreDisplay": { "2": [-1, 0], "5": -1, "6": 0, "7": -1 },
+    "offsets": [1, 2, 6, 9, 10],
+    "tags": ["cluster", "tritone", "non-tertian", "non-functional"]
+  },
+
+  // ════════ 六音 Tier4 区批量升格(用户授权「所有的 tie4 也分析 set」)════════
+  // 三类全部 guide tone 变形病(♯3/♭3),簇家族六音延伸
+
+  // 四连簇纯四纯五度 · prime form 0,1,2,3,5,7 · 四连簇+纯四+纯五(四连簇纯四度 {0,1,2,3,5} 的挂五延伸);最优 dom7b13(♯3♯4) 双 guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_fourth_fifth": {
+    "forte": "6-9A",
+    "cnName": "四连簇纯四纯五度",
+    "name": "Tetracluster-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0,1],"4":0,"5":0},
+    "offsets": [1, 2, 3, 5, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 四连簇三全音小七度 · prime form 0,1,2,3,6,10 · 四连簇+三全音+小七(五音 set 四连簇三全音挂 ♭7);最优 dom7b5b9(♭3 add2) 的 ♭3 guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-tetracluster_tritone_minor7": {
+    "forte": "6-Z39A",
+    "cnName": "四连簇三全音小七度",
+    "name": "Tetracluster-Tritone-Minor7",
+    "scoreDisplay": {"2":[-1,0,1],"5":-1,"7":-1},
+    "offsets": [1, 2, 3, 6, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 半音簇大三度四度五度 · prime form 0,1,2,4,5,7 · 三音簇+大三+纯四+纯五(Hijaz四音组+♮2+纯五);最优 dom13#11(♯3) guide tone 变形
+  // 审核:用户 2026-09-08 批量授权
+  "spset-cluster_third_fourth_fifth": {
+    "forte": "6-Z11A",
+    "cnName": "半音簇大三度四度五度",
+    "name": "Cluster-Third-Fourth-Fifth",
+    "scoreDisplay": {"2":[-1,0],"3":0,"4":0,"5":0},
+    "offsets": [1, 2, 4, 5, 7],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // Z11簇 · root + 1+2半音(三音簇) + 7半音(纯五) + 9半音(大六) + 10半音(小七)
+  // · prime form 0,1,2,7,9,10(倒影半边;Forte 6-Z11 正形 (012457))
+  // 音程向量 ⟨333231⟩,与 6-Z40(012358) 构成 Z 关系对(向量相同
+  // 非移调倒影等价);无流通别名,学院标签级(Viennese 同档)。
+  // 族谱:半音簇大六度加七(五音 set {0,1,2,9,10})挂纯五的六音延伸。
+  // 最优 chord 解释 dom11#9(omit5 ♭2) 与 dom11b9(omit5 ♯2) 是
+  // 9 度等音对(♭9/♯9 同键双标签,引擎左右为难)——变形记号病的
+  // 并列版新病种;第三条 ♭2 add4 更重。
+  // 命名原则(本轮确立):六音簇家族命名必须挂 Forte 编号
+  // (六音层几乎都有编号身份,不像低音层有实践名)。
+  // 审核:用户 2026-09-08(「命名要有依据」纠偏后,go)
+  "spset-z11_cluster": {
+    "forte": "6-Z11A",
+    "cnName": "Z11簇",
+    "name": "Z11 Cluster",
+    "scoreDisplay": { "2": [-1, 0], "5": 0, "6": 0, "7": -1 },
+    "offsets": [1, 2, 7, 9, 10],
+    "tags": ["cluster", "forte-6-Z11", "z-related", "non-tertian"]
+  },
+
+  // Z13簇 · root + 1半音(♭2) + 3半音(♭3) + 4半音(♮4?不——4度=5半音)
+  // 校正:offsets 1,3,4,6,7 = ♭2·♭3·♮3·♭5·♮5(相对起点 E)
+  // · prime form 0,1,3,4,6,7 = Forte 6-Z13 正形
+  // 音程向量 ⟨324222⟩,与 6-Z42(012369) 构成 Z 对;文献非正式昵称
+  // "Diminished-6"(两个减三和弦叠合观感)。9 度等音对病种
+  // (dom13#9(♭2)/dom13b9(♯2) 并列,Z11簇同款)。
+  // 命名:Forte 编号+簇字(六音命名原则)。
+  // 审核:用户 2026-09-08(裁定,Z11簇后例)
+  "spset-z13_cluster": {
+    "forte": "6-Z13",
+    "cnName": "Z13簇",
+    "name": "Z13 Cluster",
+    "scoreDisplay": { "2": -1, "3": [-1, 0], "5": [-1, 0] },
+    "offsets": [1, 3, 4, 6, 7],
+    "tags": ["cluster", "forte-6-Z13", "z-related", "non-tertian"]
+  },
+
+  // ════════ 六音 t3 例外区 set 升格(带升降系,查证落地)════════
+
+  // 全音六音 · prime form 0,2,4,6,8,10 · Forte 6-35(02468T)
+  // 全音音阶本身(完整六音);音程向量 ⟨060603⟩——只含偶数音程类
+  // (六个全音+六个大三度+三个三全音),maximally even 极致均分;
+  // 仅 2 个独立移调(对称极致),Debussy/Messiaen 音色世界基石。
+  // 全库最著名的六音集合;最优 chord 解释 dom11#5(♯11) 变形。
+  // 审核:用户 2026-09-08 授权路线(带升降→查证→set)
+  "spset-whole_tone": {
+    "forte": "6-35",
+    "cnName": "全音六音",
+    "name": "Whole-Tone Hexachord",
+    "scoreDisplay": {"2": 0, "3": 0, "5": -1, "6": -1, "7": -1},
+    "offsets": [2, 4, 6, 8, 10],
+    "tags": ["whole-tone", "symmetrical", "forte-6-35", "debussy"]
+  },
+
+  // 簇三全音六音 · prime form 0,1,2,4,6,9 · 向量 ⟨233331⟩
+  // 三音簇+大三+三全音+大六(半音簇大三度三全音的六音延伸);
+  // 最优 dom13sus4(♯5) 变形五度。无流通别名,簇系身份。
+  // 审核:用户 2026-09-08
+  "spset-cluster_wide": {
+    "forte": "6-Z46A",
+    "cnName": "簇三全音六音",
+    "name": "Cluster-Wide",
+    "scoreDisplay": { "2": [-1, 0], "3": 0, "5": -1, "6": 0 },
+    "offsets": [1, 2, 4, 6, 9],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // 簇双四度六音 · prime form 0,1,2,5,9,10 · 向量 ⟨323430⟩
+  // 三音簇+纯四+大六+小七(半音簇大六度加七的挂四六音延伸);
+  // 最优 dom13sus4(omit5 ♭2) 变形二度。
+  // 审核:用户 2026-09-08
+  "spset-cluster_sixth_seventh_fourth": {
+    "forte": "6-14A",
+    "cnName": "簇双度六音",
+    "name": "Cluster-Sixth-Seventh-Fourth",
+    "scoreDisplay": { "2": [-1, 0], "4": 0, "6": 0, "7": -1 },
+    "offsets": [1, 2, 5, 9, 10],
+    "tags": ["cluster", "non-tertian", "non-functional"]
+  },
+
+  // Hijaz双三全音 · prime form 0,1,4,6,7,10 · 向量 ⟨224223⟩
+  // Hijaz特征前三音(♭2+♮3)+三全音+纯五+小七;dom11b9(♯11)
+  // 双根变形系最优。Hijaz 家族第四位。
+  // 审核:用户 2026-09-08
+  "spset-hijaz_tritone_pair": {
+    "forte": "6-30A",
+    "cnName": "Hijaz双三全音",
+    "name": "Hijaz-Tritone-Pair",
+    "scoreDisplay": {"2": -1, "3": 0, "5": [-1, 0], "7": -1},
+    "offsets": [1, 4, 6, 7, 10],
+    "tags": ["hijaz", "cluster", "non-tertian"]
+  },
+
+  // ════════ 七音表批量升格(用户授权「你自己先判断」;带升降系全 set 化)════════
+  // 七音=最终层;结构语义命名(offsets 注释即身份),Forte 编号未逐一查证
+  // 判据:无 cost0 或最优变形记号/簇家族直系(0,1,2,x,y,z 与 0,1,2,3,x,y 系)
+
+  // 五连簇五九度 · prime form 0,1,2,3,4,7,9 · 五连簇+纯五+大六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a1": {
+    "forte": "7-Z12",
+    "cnName": "五连簇五九度",
+    "name": "hepta-a1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "6": 0},
+    "offsets": [1,2,3,4,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇六七度 · prime form 0,1,2,3,4,8,10 · 五连簇+小六+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a2": {
+    "forte": "7-9A",
+    "cnName": "五连簇六七度",
+    "name": "hepta-a2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": -1, "7": -1},
+    "offsets": [1,2,3,4,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇双三全音 · prime form 0,1,2,3,6,7,9 · 四连簇+♭5♮5+大六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a3": {
+    "forte": "7-19A",
+    "cnName": "四连簇双三全音",
+    "name": "hepta-a3",
+    "scoreDisplay": {"2": [-1,0,1], "5": [-1,0], "6": 0},
+    "offsets": [1,2,3,6,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音六度 · prime form 0,1,2,3,6,8,9 · 四连簇+♭5+♭6♮6
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a4": {
+    "forte": "7-19A",
+    "cnName": "四连簇三全音六度",
+    "name": "hepta-a4",
+    "scoreDisplay": {"2": [-1,0,1], "5": -1, "6": [-1,0]},
+    "offsets": [1,2,3,6,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度双四度六度 · prime form 0,1,2,4,5,6,8 · 簇+大三+♮4+♭5+小六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a5": {
+    "forte": "7-13A",
+    "cnName": "簇三度双四度六度",
+    "name": "hepta-a5",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "6": -1},
+    "offsets": [1,2,4,5,6,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度双四五七度 · prime form 0,1,2,4,5,6,10 · 簇+大三+♮4+♭5+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a6": {
+    "forte": "7-13A",
+    "cnName": "簇三度双四五七度",
+    "name": "hepta-a6",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "7": -1},
+    "offsets": [1,2,4,5,6,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz双六度 · prime form 0,1,2,4,5,8,9 · Hijaz四音组+簇尾+双六
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a7": {
+    "forte": "7-21A",
+    "cnName": "簇Hijaz双六度",
+    "name": "hepta-a7",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "6": [-1,0]},
+    "offsets": [1,2,4,5,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz六七度 · prime form 0,1,2,4,5,8,10 · Hijaz四音组+小六+小七
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a8": {
+    "forte": "7-26A",
+    "cnName": "簇Hijaz六七度",
+    "name": "hepta-a8",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "6": -1, "7": -1},
+    "offsets": [1,2,4,5,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音五度簇 · prime form 0,1,2,4,6,7,8 · 复杂并集
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a9": {
+    "forte": "7-15",
+    "cnName": "簇三度三全音五度簇",
+    "name": "hepta-a9",
+    "scoreDisplay": {"2": [-1, 0], "3": 0, "5": [-1, 0], "6": -1},
+    "offsets": [1,2,4,6,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音五七度 · prime form 0,1,2,4,6,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a10": {
+    "forte": "7-28A",
+    "cnName": "簇三度三全音五七度",
+    "name": "hepta-a10",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": [-1,0], "7": -1},
+    "offsets": [1,2,4,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音度系 · prime form 0,1,2,4,6,8,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a11": {
+    "forte": "7-33",
+    "cnName": "簇三度三全音度系",
+    "name": "hepta-a11",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": -1, "6": -1, "7": -1},
+    "offsets": [1,2,4,6,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度三全音六七 · prime form 0,1,2,4,6,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a12": {
+    "forte": "7-26A",
+    "cnName": "簇三度三全音六七",
+    "name": "hepta-a12",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,4,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度双六度 · prime form 0,1,2,4,7,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a13": {
+    "forte": "7-20A",
+    "cnName": "簇三度五度双六度",
+    "name": "hepta-a13",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": [-1,0]},
+    "offsets": [1,2,4,7,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度六七度 · prime form 0,1,2,4,7,8,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a14": {
+    "forte": "7-28A",
+    "cnName": "簇三度五度六七度",
+    "name": "hepta-a14",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": -1, "7": -1},
+    "offsets": [1,2,4,7,8,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度五度六七度b · prime form 0,1,2,4,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a15": {
+    "forte": "7-25A",
+    "cnName": "簇三度五度六七度b",
+    "name": "hepta-a15",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,4,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度五度双六度 · prime form 0,1,2,5,6,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a16": {
+    "forte": "7-22",
+    "cnName": "簇四度五度双六度",
+    "name": "hepta-a16",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": -1, "6": [-1,0]},
+    "offsets": [1,2,5,6,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四五度六七度 · prime form 0,1,2,5,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a17": {
+    "forte": "7-27A",
+    "cnName": "簇四五度六七度",
+    "name": "hepta-a17",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,5,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三全音五度六七 · prime form 0,1,2,6,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-a18": {
+    "forte": "7-Z38A",
+    "cnName": "簇三全音五度六七",
+    "name": "hepta-a18",
+    "scoreDisplay": {"2": [-1,0], "5": [-1,0], "6": 0, "7": -1},
+    "offsets": [1,2,6,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音六度 · prime form 0,1,2,3,4,6,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b1": {
+    "forte": "7-9A",
+    "cnName": "五连簇三全音六度",
+    "name": "hepta-b1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "6": -1},
+    "offsets": [1,2,3,4,6,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音七度 · prime form 0,1,2,3,4,6,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b2": {
+    "forte": "7-8",
+    "cnName": "五连簇三全音七度",
+    "name": "hepta-b2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "7": -1},
+    "offsets": [1,2,3,4,6,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度六度 · prime form 0,1,2,3,5,6,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b3": {
+    "forte": "7-16A",
+    "cnName": "四连簇四度六度",
+    "name": "hepta-b3",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "5": -1, "6": 0},
+    "offsets": [1,2,3,5,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度五七度 · prime form 0,1,2,3,5,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b4": {
+    "forte": "7-23A",
+    "cnName": "四连簇四度五七度",
+    "name": "hepta-b4",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "5": 0, "7": -1},
+    "offsets": [1,2,3,5,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度双六度 · prime form 0,1,2,3,5,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b5": {
+    "forte": "7-Z18A",
+    "cnName": "四连簇四度双六度",
+    "name": "hepta-b5",
+    "scoreDisplay": {"2": [-1,0,1], "4": 0, "6": [-1,0]},
+    "offsets": [1,2,3,5,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音五七 · prime form 0,1,2,3,6,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b6": {
+    "forte": "7-Z18A",
+    "cnName": "四连簇三全音五七",
+    "name": "hepta-b6",
+    "scoreDisplay": {"2": [-1,0,1], "5": [-1,0], "7": -1},
+    "offsets": [1,2,3,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音六七 · prime form 0,1,2,3,6,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b7": {
+    "forte": "7-16A",
+    "cnName": "四连簇三全音六七",
+    "name": "hepta-b7",
+    "scoreDisplay": {"2": [-1,0,1], "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,3,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇五度六七度 · prime form 0,1,2,3,7,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b8": {
+    "forte": "7-Z36A",
+    "cnName": "四连簇五度六七度",
+    "name": "hepta-b8",
+    "scoreDisplay": {"2": [-1,0,1], "5": 0, "6": 0, "7": -1},
+    "offsets": [1,2,3,7,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇双六七度 · prime form 0,1,2,3,8,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b9": {
+    "forte": "7-5A",
+    "cnName": "四连簇双六七度",
+    "name": "hepta-b9",
+    "scoreDisplay": {"2": [-1,0,1], "6": [-1,0], "7": -1},
+    "offsets": [1,2,3,8,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音大六 · prime form 0,1,2,3,4,6,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b10": {
+    "forte": "7-10A",
+    "cnName": "五连簇三全音大六",
+    "name": "hepta-b10",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": -1, "6": 0},
+    "offsets": [1,2,3,4,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇五度小六 · prime form 0,1,2,3,4,7,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b11": {
+    "forte": "7-6A",
+    "cnName": "五连簇五度小六",
+    "name": "hepta-b11",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "6": -1},
+    "offsets": [1,2,3,4,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇五度七度 · prime form 0,1,2,3,4,7,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b12": {
+    "forte": "7-10A",
+    "cnName": "五连簇五度七度",
+    "name": "hepta-b12",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": 0, "7": -1},
+    "offsets": [1,2,3,4,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇五度 · prime form 0,1,2,3,4,5,7 · 六连簇+纯五(6音连续半音)
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-b13": {
+    "forte": "7-2A",
+    "cnName": "六连簇五度",
+    "name": "hepta-b13",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "5": 0},
+    "offsets": [1,2,3,4,5,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇小六度 · prime form 0,1,2,3,4,5,8
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c1": {
+    "forte": "7-3A",
+    "cnName": "六连簇小六度",
+    "name": "hepta-c1",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "6": -1},
+    "offsets": [1,2,3,4,5,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇大六度 · prime form 0,1,2,3,4,5,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c2": {
+    "forte": "7-3A",
+    "cnName": "六连簇大六度",
+    "name": "hepta-c2",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "6": 0},
+    "offsets": [1,2,3,4,5,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 六连簇小七度 · prime form 0,1,2,3,4,5,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c3": {
+    "forte": "7-2A",
+    "cnName": "六连簇小七度",
+    "name": "hepta-c3",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "7": -1},
+    "offsets": [1,2,3,4,5,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 七连半音簇 · prime form 0,1,2,3,4,5,6 · 七个连续半音!Forte 7-1,极致簇
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-c4": {
+    "forte": "7-1",
+    "cnName": "七连半音簇",
+    "name": "hepta-c4",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "5": -1},
+    "offsets": [1,2,3,4,5,6],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇三全音五度 · prime form 0,1,2,3,4,6,7
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d1": {
+    "forte": "7-4A",
+    "cnName": "五连簇三全音五度",
+    "name": "hepta-d1",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "5": [-1,0]},
+    "offsets": [1,2,3,4,6,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇双六度 · prime form 0,1,2,3,4,8,9
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d2": {
+    "forte": "7-6A",
+    "cnName": "五连簇双六度",
+    "name": "hepta-d2",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": [-1,0]},
+    "offsets": [1,2,3,4,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 五连簇六七度b · prime form 0,1,2,3,4,9,10
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d3": {
+    "forte": "7-4A",
+    "cnName": "五连簇六七度b",
+    "name": "hepta-d3",
+    "scoreDisplay": {"2": [-1,0,1], "3": 0, "6": 0, "7": -1},
+    "offsets": [1,2,3,4,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+
+  // 六连簇大七度 · prime form 0,1,2,3,4,5,11
+  // 审核:用户 2026-09-09 AI 代裁(批量授权)
+  "spset-hepta-d5": {
+    "forte": "7-1",
+    "cnName": "六连簇大七度",
+    "name": "hepta-d5",
+    "scoreDisplay": {"2": [-1, 0, 1], "3": 0, "4": 0, "7": 0},
+    "offsets": [1,2,3,4,5,11],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇四度五度簇 · prime form 0,1,2,3,5,6,7 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e1": {
+    "forte": "7-5A",
+    "cnName": "四连簇四度五度簇",
+    "name": "hepta-e1",
+    "scoreDisplay": {"2": [-1, 0, 1], "4": 0, "5": [-1, 0]},
+    "offsets": [1,2,3,5,6,7],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇三全音五度簇 · prime form 0,1,2,3,6,7,8 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e2": {
+    "forte": "7-7A",
+    "cnName": "四连簇三全音五度簇",
+    "name": "hepta-e2",
+    "scoreDisplay": {"2": [-1, 0, 1], "5": [-1, 0], "6": -1},
+    "offsets": [1,2,3,6,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 四连簇五度双六度 · prime form 0,1,2,3,7,8,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e3": {
+    "forte": "7-7A",
+    "cnName": "四连簇五度双六度",
+    "name": "hepta-e3",
+    "scoreDisplay": {"2": [-1,0,1], "5": 0, "6": [-1,0]},
+    "offsets": [1,2,3,7,8,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇三度四度三全音六度 · prime form 0,1,2,4,5,6,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e4": {
+    "forte": "7-Z17",
+    "cnName": "簇三度四度三全音六度",
+    "name": "hepta-e4",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": -1, "6": 0},
+    "offsets": [1,2,4,5,6,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇Hijaz五度小六 · prime form 0,1,2,4,5,7,8 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e5": {
+    "forte": "7-Z38A",
+    "cnName": "簇Hijaz五度小六",
+    "name": "hepta-e5",
+    "scoreDisplay": {"2": [-1,0], "3": 0, "4": 0, "5": 0, "6": -1},
+    "offsets": [1,2,4,5,7,8],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度五度三全音七 · prime form 0,1,2,5,6,7,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e6": {
+    "forte": "7-20A",
+    "cnName": "簇四度五度三全音七",
+    "name": "hepta-e6",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": [-1,0], "7": -1},
+    "offsets": [1,2,5,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // 簇四度三全音六七度 · prime form 0,1,2,5,6,9,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e7": {
+    "forte": "7-21A",
+    "cnName": "簇四度三全音六七度",
+    "name": "hepta-e7",
+    "scoreDisplay": {"2": [-1,0], "4": 0, "5": -1, "6": 0, "7": -1},
+    "offsets": [1,2,5,6,9,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // Hijaz三全音五度六度 · prime form 0,1,3,4,6,7,9 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e8": {
+    "forte": "7-31A",
+    "cnName": "Hijaz三全音五度六度",
+    "name": "hepta-e8",
+    "scoreDisplay": {"2": -1, "3": [-1, 0], "5": [-1, 0], "6": 0},
+    "offsets": [1,3,4,6,7,9],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  },
+
+  // Hijaz三全音五度七度 · prime form 0,1,3,4,6,7,10 · 批量补遗
+  // 审核:用户 2026-09-09 AI 代裁
+  "spset-hepta-e9": {
+    "forte": "7-31A",
+    "cnName": "Hijaz三全音五度七度",
+    "name": "hepta-e9",
+    "scoreDisplay": {"2": -1, "3": [-1, 0], "5": [-1, 0], "7": -1},
+    "offsets": [1,3,4,6,7,10],
+    "tags": ["cluster", "non-tertian", "non-functional", "heptachord"]
+  }
+}

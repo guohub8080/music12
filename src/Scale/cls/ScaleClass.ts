@@ -1,10 +1,10 @@
-import { isNil } from 'es-toolkit'
-import { values } from 'es-toolkit/compat'
-import { getNoteByPianoKeyId } from "@note"
+import { isNil, isNotNil } from "es-toolkit/predicate";
+import { defaultTo, values } from "es-toolkit/compat";
+import { getNoteByPianoKeyId, Note } from "@note"
+import { Interval } from "@interval"
 import { getScaleInstance, type I_ScaleInstance } from "../../Scale/static/allScaleInstances"
 import type { I_ScaleModeMeta } from "@scale-mode/static/types"
 import type { T_ScaleModeId } from "../../Scale/static/scaleModeTypes"
-import { isDefined } from "@common/utils/isDefined"
 
 // 类方法导入（非简单内联的）
 import cls_getRootNote from "./classFn/cls_getRootNote"
@@ -12,7 +12,11 @@ import cls_getNoteByDegree from "./classFn/cls_getNoteByDegree"
 import cls_getScaleDegreeChord3 from "./classFn/cls_getScaleDegreeChord3"
 import cls_getScaleDegreeChord7 from "./classFn/cls_getScaleDegreeChord7"
 import cls_getNoteByIntervalNum from "./classFn/cls_getNoteByIntervalNum"
-import type { I_AnalyzedChordResult } from "@find/findChord"
+import type { I_ChordFindResult } from "@find/findChord"
+import type { T_NoteStep } from "@common/static/NOTE_TYPES"
+
+/** 本位字母半音位(alter 推导用:step+键位 → 变音) */
+const SEMI_OF_STEP: Record<T_NoteStep, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }
 
 /**
  * 调式类
@@ -76,13 +80,13 @@ export class Scale {
 		return this.scale.pianoKeyIdsSorted
 	}
 
-	/** 度数到钢琴键 ID 的映射 */
-	public get degreeToPianoKeyId(): Record<number, number> {
+	/** 度数到钢琴键 ID 的映射(五声缺度为 null) */
+	public get degreeToPianoKeyId(): Record<number, number | null> {
 		return this.scale.degreeToPianoKeyId
 	}
 
-	/** 钢琴键 ID 到度数的映射 */
-	public get pianoKeyIdToDegree(): Record<number, number> {
+	/** 钢琴键 ID 到度数的映射(五声缺度为 null) */
+	public get pianoKeyIdToDegree(): Record<number, number | null> {
 		return this.scale.pianoKeyIdToDegree
 	}
 
@@ -101,10 +105,7 @@ export class Scale {
 		return this.scaleMode.type
 	}
 
-	/** 调式描述 */
-	public get modeDescription(): string {
-		return this.scaleMode.description
-	}
+	// modeDescription getter 已随 description 字段移除(数据源注释承载,零核心消费)
 
 	// ========== 简单计算属性（内联） ==========
 
@@ -140,6 +141,104 @@ export class Scale {
 		return this.alteredNotesNum === this.scale.pianoKeyIds.length
 	}
 
+	/**
+	 * 调号升降号代数和（mtkit 对照补齐,2026-09-12 用户裁决定稿）
+	 *
+	 * 直查烘焙实例表的拼写行（生成期已按 ≥3 重升降排除规则删过,查不到即报错）——
+	 * 不做任何运行时拼写计算。需指定根音拼写 step（alter 可省,由 step+键位推导）：
+	 * 同一键集不同拼写调号不同（键 1 大调:C♯ 拼写 7 / D♭ 拼写 -5）。
+	 *
+	 * @param step 根音拼写字母（如 "D" 选 D♭ 读法,"C" 选 C♯ 读法）
+	 * @param alter 可选变音（省略则由 step 与键位推导）
+	 * @returns 调号升降号代数和（升号根音加重升可自然超 ±7,合法值）
+	 * @throws 该拼写不在烘焙表（生成期因 ≥3 重升降被排除,必有等音根音可代）
+	 */
+	public getAlterSum(step: T_NoteStep, alter?: number): number {
+		return this.findSpellingRow(step, alter).alterSum
+	}
+
+	/**
+	 * 升降号方向计数（mtkit 对照补齐）：升号音 +1、降号音 -1 累计（不计重数）。
+	 * 从烘焙拼写行的 notesMap 读回累计——与 getAlterSum 是两个不同字段。
+	 */
+	public getAlterTimesSum(step: T_NoteStep, alter?: number): number {
+		const row = this.findSpellingRow(step, alter)
+		return Object.values(row.notesMap).reduce(
+			(acc, n) => acc + (isNil(n) ? 0 : n.alter > 0 ? 1 : n.alter < 0 ? -1 : 0),
+			0,
+		)
+	}
+
+	/**
+	 * 等音替换建议（mtkit 对照补齐）：该拼写行全部音带变音
+	 * （烘焙的 isTonicEnharmonic 标记）时，返回同键另一拼写行的根音；
+	 * 实用区返回该拼写自身根音。
+	 */
+	public getEqualRootNote(step: T_NoteStep, alter?: number) {
+		const row = this.findSpellingRow(step, alter)
+		if (!row.isTonicEnharmonic) {
+			return new Note(row.tonicStep as T_NoteStep, row.tonicAlter as never, 4)
+		}
+		const sibling = this.spellingRows().find(r => r !== row)
+		if (isNil(sibling)) return new Note(row.tonicStep as T_NoteStep, row.tonicAlter as never, 4)
+		return new Note(sibling.tonicStep as T_NoteStep, sibling.tonicAlter as never, 4)
+	}
+
+	/** 烘焙拼写行（实例表 scales 字段,生成期已排除 ≥3 重升降的拼写） */
+	private spellingRows(): Array<{
+		tonicStep: string
+		tonicAlter: number
+		isTonicNormal: boolean
+		isTonicEnharmonic: boolean
+		alterNoteCount: number
+		alterSum: number
+		notesMap: Record<number, { step: string; alter: number } | null>
+	}> {
+		return this.scale.scales as never
+	}
+
+	private findSpellingRow(step: T_NoteStep, alter?: number) {
+		let wantedAlter = alter
+		if (isNil(wantedAlter)) {
+			// alter 省略:由 step 与根音键位推导(差值归到 -2..+2,即等音拼写惯例)
+			const diff = (this.rootPianoKeyId - SEMI_OF_STEP[step] + 12) % 12
+			wantedAlter = diff > 6 ? diff - 12 : diff
+		}
+		const row = this.spellingRows().find(
+			r => r.tonicStep === step && r.tonicAlter === wantedAlter,
+		)
+		if (isNil(row)) {
+			throw new Error(
+				`Scale spelling ${step}${(wantedAlter ?? 0) > 0 ? "♯".repeat(wantedAlter ?? 0) : "♭".repeat(-(wantedAlter ?? 0))}` +
+					` not in baked instances (excluded at generation for ≥3 double accidentals; ` +
+					`an enharmonic root spelling exists — try another step letter)`,
+			)
+		}
+		return row
+	}
+
+	/** 顺阶三和弦全列表（1~7 级,每级取根音优先读法；缺度跳过） */
+	public get chord3OfDegreesList(): string[] {
+		return this.getDegreeChordNames(3)
+	}
+
+	/** 顺阶七和弦全列表（1~7 级,每级取根音优先读法；缺度跳过） */
+	public get chord7OfDegreesList(): string[] {
+		return this.getDegreeChordNames(7)
+	}
+
+	private getDegreeChordNames(which: 3 | 7): string[] {
+		const out: string[] = []
+		for (let d = 1; d <= 7; d++) {
+			// 五声缺度直接跳过( getPianoKeyIdByDegree 对缺度抛错)
+			if (isNil(this.scale.degreeToPianoKeyId[d])) continue
+			const results = which === 3 ? this.getScaleDegreeChord3(d) : this.getScaleDegreeChord7(d)
+			const first = results.find(r => r.pianoKeyIdRoot === this.scale.degreeToPianoKeyId[d])
+			if (isNotNil(first)) out.push(first.chordName)
+		}
+		return out
+	}
+
 
 	// ========== 查询方法（内联） ==========
 
@@ -149,7 +248,7 @@ export class Scale {
 	 * @returns 如果在调式中返回 true，否则返回 false
 	 */
 	public hasPianoKeyId(pianoKeyId: number): boolean {
-		return isDefined(this.scale.pianoKeyIdToDegree[pianoKeyId])
+		return isNotNil(this.scale.pianoKeyIdToDegree[pianoKeyId])
 	}
 
 	/**
@@ -159,7 +258,7 @@ export class Scale {
 	 */
 	public getDegreeByPianoKeyId(pianoKeyId: number): number | null {
 		const degree = this.scale.pianoKeyIdToDegree[pianoKeyId]
-		return isDefined(degree) ? degree : null
+		return isNotNil(degree) ? degree : null
 	}
 
 	/**
@@ -170,7 +269,7 @@ export class Scale {
 	public getDegreeAndAlter(pianoKeyId: number): { degree: number; alter: number } | null {
 		const degree = this.scale.pianoKeyIdToDegree[pianoKeyId]
 		if (isNil(degree)) return null
-		return { degree, alter: this.scale.degreeAlterationsMap[degree] ?? 0 }
+		return { degree, alter: defaultTo(this.scale.degreeAlterationsMap[degree], 0) }
 	}
 
 	/**
@@ -192,7 +291,7 @@ export class Scale {
 	 * @returns 变音值（0=自然, 1=#, -1=b）
 	 */
 	public getAlterByDegree(degree: number): number {
-		return this.scale.degreeAlterationsMap[degree] ?? 0
+		return defaultTo(this.scale.degreeAlterationsMap[degree], 0)
 	}
 
 	// ========== 通过 classFn 实现的方法 ==========
@@ -219,7 +318,7 @@ export class Scale {
 	 * @param scaleDegree 音级（1-7）
 	 * @returns 匹配的和弦结果列表
 	 */
-	public getScaleDegreeChord3(scaleDegree: number): I_AnalyzedChordResult[] {
+	public getScaleDegreeChord3(scaleDegree: number): I_ChordFindResult[] {
 		return cls_getScaleDegreeChord3(this, scaleDegree)
 	}
 
@@ -228,7 +327,7 @@ export class Scale {
 	 * @param scaleDegree 音级（1-7）
 	 * @returns 匹配的和弦结果列表
 	 */
-	public getScaleDegreeChord7(scaleDegree: number): I_AnalyzedChordResult[] {
+	public getScaleDegreeChord7(scaleDegree: number): I_ChordFindResult[] {
 		return cls_getScaleDegreeChord7(this, scaleDegree)
 	}
 

@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import { defaultTo } from 'es-toolkit/compat'
 import type {I_IntervalObj, I_GetEqualIntervalOptions} from "../IntervalClass"
 import {IntervalError} from "@common/processError/errorTypes";
@@ -74,19 +74,19 @@ export default (intervalInstance: InstanceType<typeof Interval>,
   }
 
   // 从元数据中查找相同半音位置的所有音程
-  const findIntervalOnSameLocation = INTERVAL_META.where("semitoneClockPosition",
-    intervalInstance.semitoneClockPosition).all()
+  const findIntervalOnSameLocation = INTERVAL_META.filter(x =>
+    x.semitoneClockPosition === intervalInstance.semitoneClockPosition) as I_IntervalObj[]
   if (isNil(findIntervalOnSameLocation)) throw new IntervalError("Internal error: no intervals found at this location.")
 
   // 过滤 → 计算实际度数 → 排除无效度数 → 构造 Interval
   return findIntervalOnSameLocation
-    .filter((x: I_IntervalObj) => {
+    .filter((x) => {
       if (isSelfTypeExcluded && x.type === intervalInstance.type) return false
       if (isAugDimExcluded && ["aug", "dim"].includes(x.type)) return false
       if (isDoubleAugDimExcluded && ["aug+", "dim-"].includes(x.type)) return false
       return true
     })
-    .map((item: I_IntervalObj) => ({
+    .map((item) => ({
       type: item.type,
       // 实际度数 = 元数据度数 + 7 × (当前音程的实际八度跨度 - 元数据的八度跨度)
       num: item.num + 7 * (intervalInstance.factOctaveGap - item.octaveGap)

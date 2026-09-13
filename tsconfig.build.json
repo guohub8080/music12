@@ -19,8 +19,6 @@
     "node_modules",
     ".vscode",
     ".idea",
-    "test",
-    "web_test",
-    "src/**/__helper__/**"
+    "test"
   ]
 }

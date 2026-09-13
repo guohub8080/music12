@@ -1,3 +1,4 @@
+import { isNil, isNotNil } from "es-toolkit/predicate";
 /**
  * 和弦类 - 重构版 V3
  *
@@ -12,9 +13,7 @@
  * 最终音程面板 = initChordFormulaMeta.degreeToIntervalMap + transformPanel
  */
 
-import { isNil, uniq } from 'es-toolkit'
-import { some, toPairs } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
+import { some, toPairs, uniq } from "es-toolkit/compat";
 import { Note } from "@note/cls/NoteClass";
 import { getNoteByPianoKeyId } from "@note";
 import { cls_initChord, type I_ChordInitMeta } from "./classFn/cls_initChord";
@@ -82,11 +81,6 @@ export class Chord {
     return this.#initChordFormulaMeta.cnName;
   }
 
-  /** 和弦家族 */
-  public get family(): string {
-    return this.#initChordFormulaMeta.family;
-  }
-
   /** 基础音程列表（不含变换） */
   public get baseIntervalList(): [T_IntervalType, number][] {
     return this.#initChordFormulaMeta.baseIntervalList;
@@ -101,20 +95,26 @@ export class Chord {
 
   /** 是否有变换 */
   public get isTransformed(): boolean {
-    return some(this.#transformPanel, (v) => isDefined(v));
+    return some(this.#transformPanel, (v) => isNotNil(v));
   }
 
   /**
-   * 设置和弦度数的音程类型
+   * 设置和弦度数的音程类型——统一面板写入,一个入口两种效果
+   *
+   * - 公式**没有**该度数 → **新增**(即 add):maj3.set(9) 得 add9,自动记谱
+   * - 公式**已有**该度数 → **替换**性质:maj3.set("b3") 得 min3(E♮→E♭)
+   *
+   * 唯一不支持的是**同度双音并存**(♭3·♮3 同时在,如布鲁斯三度)——
+   * tertian 定义每度一音,属 special-sets 体系(scoreDisplay {"3":[-1,0]})。
    *
    * @param input 度数输入，支持：
    *   - 数字：2, 3, 4, 5, 6, 7, 9, 11, 13
    *   - 字符串："2", "#2"/"2#", "b2"/"2B"/"B2" 等（# 和 b 不区分大小写和位置）
    *
    * @example
-   * c.set(2)      // 设置 2 度为大二度
-   * c.set("#2")   // 设置 2 度为增二度
-   * c.set("b2")   // 设置 2 度为小二度
+   * c.set(2)      // 新增大二度(公式无 2 度时),或设置已有 2 度为大二度
+   * c.set("#2")   // 设置/新增 2 度为增二度
+   * c.set("b2")   // 设置/新增 2 度为小二度
    * c.set("2B")   // 同 "b2"（不区分大小写和位置）
    */
   public set(

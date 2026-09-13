@@ -218,3 +218,17 @@ f.lastDigit - c.lastDigit   // 3 → C 到 F 跨 3 步（四度）
 | `fromArray(["x", 0])`（首位非数字） | `RadixError: First element must be a number.` |
 | `new IntervalRadix(0)` | `RadixError: Interval number must be greater than or equal to 1.` |
 | `new ScaleRadix(0)` | `RadixError: Scale degree number must be greater than or equal to 1.` |
+
+## SemitoneRadix：半音位置的十二进制分解
+
+12 进制家族除了 Base12Radix 本体，还有一个音乐语义封装 **SemitoneRadix**——把绝对半音位置分解成 `[八度, 键位]` 二维坐标：
+
+```ts
+import { SemitoneRadix } from "music12"
+
+const sr = new SemitoneRadix(26)
+sr.octave   // 2（第 2 八度）
+sr.location // 2（键位 2 = D，pianoKeyId 语义）
+```
+
+它继承 Base12Radix，`location` 就是 `lastDigit`、`octave` 就是 `firstDigit`——纯粹给「半音数 → 八度+键位」这个高频操作一个乐理名字。

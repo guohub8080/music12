@@ -121,7 +121,7 @@ const cMajor = getScale("C", 0, "NATURAL_MAJOR")
 const chords = []
 for (let i = 1; i <= 7; i++) {
   const result = cMajor.getScaleDegreeChord7(i)[0]
-  chords.push(result.chordFormulaId + "@" + result.pianoKeyIdRoot)
+  chords.push(result.formulaId + "@" + result.pianoKeyIdRoot)
 }
 // ["maj7@0", "min7@2", "min7@4", "maj7@5", "dom7@7", "min7@9", "halfdim7@11"]
 ```

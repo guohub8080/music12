@@ -1,8 +1,7 @@
 /**
  * MIDI 列表转换结果
  */
-import { uniq } from 'es-toolkit'
-import { sortBy } from 'es-toolkit/compat'
+import { sortBy, uniq } from 'es-toolkit/compat';
 import { isArray, min } from 'es-toolkit/compat'
 export type I_MidiListToPianoKeysResult = {
   /** 最低的 pianoKeyId（可能是根音） */
@@ -41,7 +40,8 @@ export const midiListToPianoKeys = (midiPitchList: number[]): I_MidiListToPianoK
 
   // ===== 步骤 1：找到最低的 pianoKeyId（可能是根音） =====
 
-  const lowestPianoKeyId = min(midiPitchList) % 12
+  // length ≥ 3 已在上方校验,min 不会返回 undefined
+  const lowestPianoKeyId = (min(midiPitchList) as number) % 12
 
   // ===== 步骤 2：计算 pianoKeyId 列表并去重排序 =====
 

@@ -1,3 +1,4 @@
+import { intersection, union } from 'es-toolkit/compat';
 /**
  * 集合相似度计算工具
  */
@@ -29,9 +30,8 @@
  *
  * @see https://en.wikipedia.org/wiki/Jaccard_index
  */
-import { intersection, union } from 'es-toolkit'
 export const jaccard = (a: number[], b: number[]): number => {
-	// lodash 的 intersection 和 union 会自动去重
+	// intersection / union 结果自动去重
 	const intersectionArr = intersection(a, b)
 	const unionArr = union(a, b)
 	return intersectionArr.length / unionArr.length

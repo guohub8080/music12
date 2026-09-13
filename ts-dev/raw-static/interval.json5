@@ -1,0 +1,555 @@
+/**
+ * interval — 音程表(39 条)
+ *
+ * 本文件是 JSON5 源头(可带注释、尾逗号),编译产物为 static-data/intervals.json。
+ * 手改只改这里,然后跑 pnpm gen:static-data;产物永不手改。
+ *
+ * ── 整体结构 ─────────────────────────────────────────────
+ * 39 = 3 个纯类度数(1/4/5)×5 变体 + 4 个大小类度数(2/3/6/7)×6 变体(15+24)。
+ * 纯类度数:倍减 减 纯 增 倍增
+ * 大小类度数:倍减 减 小 大 增 倍增
+ * 每组内按半音距离从大到小排列。
+ *
+ * ── 字段说明 ─────────────────────────────────────────────
+ *   type        性质码(主键之一):p=纯 maj=大 min=小 aug=增 dim=减;
+ *              后缀 + / - 表示「倍」(aug+ 倍增,dim- 倍减)
+ *   num         度数 1-7(主键之二)。(type, num) 联合唯一
+ *   cnPrefix    中文前缀:倍增/增/纯/大/小/减/倍减
+ *   isNatural   是否自然音程——全表恰 13 条 true,即 C 大音阶内
+ *              两音之间可形成的全部音程。关键细节:增四(aug4)与
+ *              减五(dim5)都是 natural——F-B 与 B-F 两个方向的三全音
+ *              都属自然音集,这两条最容易看走眼
+ *   alter       越出自然区间的半音数:高于上界(纯或大)+1/+2,
+ *              低于下界(纯或小,五度下界是减五)-1/-2。
+ *              例:增四度比纯四高 1 → +1;减二度比小二低 1 → -1
+ *   semitoneGap 物理半音距离,可为负(负音程)。
+ *              锚:纯类基准 1/4/5 度 = 0/5/7,大阶级基准 2/3/6/7 度 = 2/4/9/11,
+ *              正是大音阶 2-2-1-2-2-2-1 的骨架
+ *   semitoneClockPosition  semiGap mod 12 收进 0-11(12 进制钟面位置)
+ *   octaveGap   穿越八度数 = floor(semiGap/12)。全表仅 4 条非零:
+ *              减一度 -1、倍减一度 -1、倍减二度 -1(负音程,向下越界)、
+ *              倍增七度 +1(13 半音)
+ *
+ * ── 本质 ─────────────────────────────────────────────────
+ * 又一张 7×12 交点表:num 是 7 进制度数轴(字母距离),semitoneGap 是
+ * 12 进制半音轴(物理距离),音程 = 两轴的交点。
+ * 等音音程:aug4 ≡ dim5(同 6 半音,不同度数与拼法)——与钢琴键表的
+ * 等音(C♯≡D♭)同构,是「记谱歧义、物理唯一」的又一层体现。
+ * 负音程(dim1/dim-1/dim-2)表示向下越界的音程,支持向下音程计算。
+ *
+ * ── 派生关系 ─────────────────────────────────────────────
+ * semitoneClockPosition 与 octaveGap 均可由 semitoneGap 推导:
+ *   clock  = ((semiGap mod 12) + 12) mod 12
+ *   octGap = floor(semiGap / 12)
+ * 源里真正自由的只有 type/num(度数+性质),其余都是派生或常量映射。
+ */
+[
+  // 倍增一度 · 2半音
+  {
+  "type": "aug+",
+  "num": 1,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 2,
+  "semitoneClockPosition": 2,
+  "octaveGap": 0
+  },
+
+
+  // 增一度 · 1半音
+  {
+  "type": "aug",
+  "num": 1,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 1,
+  "semitoneClockPosition": 1,
+  "octaveGap": 0
+  },
+
+
+  // 纯一度 · 0半音
+  {
+  "type": "p",
+  "num": 1,
+  "cnPrefix": "纯",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 0,
+  "semitoneClockPosition": 0,
+  "octaveGap": 0
+  },
+
+
+  // 减一度 · -1半音
+  // 注:向升方向单独不存在(同字母向上最少 0 半音);实际用途是配合八度计算——
+  // 减八度 = 纯八度(12) + 减一度(-1) = 11 半音,如 C4→C♭5
+  {
+  "type": "dim",
+  "num": 1,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": -1,
+  "semitoneClockPosition": 11,
+  "octaveGap": -1
+  },
+
+
+  // 倍减一度 · -2半音
+  // 注:同减一度,配合八度用——倍减八度 = 12 + (-2) = 10 半音,如 C4→C♭♭5
+  {
+  "type": "dim-",
+  "num": 1,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": -2,
+  "semitoneClockPosition": 10,
+  "octaveGap": -1
+  },
+
+
+  // 倍增二度 · 4半音
+  {
+  "type": "aug+",
+  "num": 2,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 4,
+  "semitoneClockPosition": 4,
+  "octaveGap": 0
+  },
+
+
+  // 增二度 · 3半音
+  {
+  "type": "aug",
+  "num": 2,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 3,
+  "semitoneClockPosition": 3,
+  "octaveGap": 0
+  },
+
+
+  // 大二度 · 2半音
+  {
+  "type": "maj",
+  "num": 2,
+  "cnPrefix": "大",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 2,
+  "semitoneClockPosition": 2,
+  "octaveGap": 0
+  },
+
+
+  // 小二度 · 1半音
+  {
+  "type": "min",
+  "num": 2,
+  "cnPrefix": "小",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 1,
+  "semitoneClockPosition": 1,
+  "octaveGap": 0
+  },
+
+
+  // 减二度 · 0半音
+  {
+  "type": "dim",
+  "num": 2,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": 0,
+  "semitoneClockPosition": 0,
+  "octaveGap": 0
+  },
+
+
+  // 倍减二度 · -1半音
+  {
+  "type": "dim-",
+  "num": 2,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": -1,
+  "semitoneClockPosition": 11,
+  "octaveGap": -1
+  },
+
+
+  // 倍增三度 · 6半音
+  {
+  "type": "aug+",
+  "num": 3,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 6,
+  "semitoneClockPosition": 6,
+  "octaveGap": 0
+  },
+
+
+  // 增三度 · 5半音
+  {
+  "type": "aug",
+  "num": 3,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 5,
+  "semitoneClockPosition": 5,
+  "octaveGap": 0
+  },
+
+
+  // 大三度 · 4半音
+  {
+  "type": "maj",
+  "num": 3,
+  "cnPrefix": "大",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 4,
+  "semitoneClockPosition": 4,
+  "octaveGap": 0
+  },
+
+
+  // 小三度 · 3半音
+  {
+  "type": "min",
+  "num": 3,
+  "cnPrefix": "小",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 3,
+  "semitoneClockPosition": 3,
+  "octaveGap": 0
+  },
+
+
+  // 减三度 · 2半音
+  {
+  "type": "dim",
+  "num": 3,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": 2,
+  "semitoneClockPosition": 2,
+  "octaveGap": 0
+  },
+
+
+  // 倍减三度 · 1半音
+  {
+  "type": "dim-",
+  "num": 3,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": 1,
+  "semitoneClockPosition": 1,
+  "octaveGap": 0
+  },
+
+
+  // 倍增四度 · 7半音
+  {
+  "type": "aug+",
+  "num": 4,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 7,
+  "semitoneClockPosition": 7,
+  "octaveGap": 0
+  },
+
+
+  // 增四度 · 6半音
+  {
+  "type": "aug",
+  "num": 4,
+  "cnPrefix": "增",
+  "isNatural": true,
+  "alter": 1,
+  "semitoneGap": 6,
+  "semitoneClockPosition": 6,
+  "octaveGap": 0
+  },
+
+
+  // 纯四度 · 5半音
+  {
+  "type": "p",
+  "num": 4,
+  "cnPrefix": "纯",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 5,
+  "semitoneClockPosition": 5,
+  "octaveGap": 0
+  },
+
+
+  // 减四度 · 4半音
+  {
+  "type": "dim",
+  "num": 4,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": 4,
+  "semitoneClockPosition": 4,
+  "octaveGap": 0
+  },
+
+
+  // 倍减四度 · 3半音
+  {
+  "type": "dim-",
+  "num": 4,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": 3,
+  "semitoneClockPosition": 3,
+  "octaveGap": 0
+  },
+
+
+  // 倍增五度 · 9半音
+  {
+  "type": "aug+",
+  "num": 5,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 9,
+  "semitoneClockPosition": 9,
+  "octaveGap": 0
+  },
+
+
+  // 增五度 · 8半音
+  {
+  "type": "aug",
+  "num": 5,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 8,
+  "semitoneClockPosition": 8,
+  "octaveGap": 0
+  },
+
+
+  // 纯五度 · 7半音
+  {
+  "type": "p",
+  "num": 5,
+  "cnPrefix": "纯",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 7,
+  "semitoneClockPosition": 7,
+  "octaveGap": 0
+  },
+
+
+  // 减五度 · 6半音
+  {
+  "type": "dim",
+  "num": 5,
+  "cnPrefix": "减",
+  "isNatural": true,
+  "alter": -1,
+  "semitoneGap": 6,
+  "semitoneClockPosition": 6,
+  "octaveGap": 0
+  },
+
+
+  // 倍减五度 · 5半音
+  {
+  "type": "dim-",
+  "num": 5,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": 5,
+  "semitoneClockPosition": 5,
+  "octaveGap": 0
+  },
+
+
+  // 倍增六度 · 11半音
+  {
+  "type": "aug+",
+  "num": 6,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 11,
+  "semitoneClockPosition": 11,
+  "octaveGap": 0
+  },
+
+
+  // 增六度 · 10半音
+  {
+  "type": "aug",
+  "num": 6,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 10,
+  "semitoneClockPosition": 10,
+  "octaveGap": 0
+  },
+
+
+  // 大六度 · 9半音
+  {
+  "type": "maj",
+  "num": 6,
+  "cnPrefix": "大",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 9,
+  "semitoneClockPosition": 9,
+  "octaveGap": 0
+  },
+
+
+  // 小六度 · 8半音
+  {
+  "type": "min",
+  "num": 6,
+  "cnPrefix": "小",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 8,
+  "semitoneClockPosition": 8,
+  "octaveGap": 0
+  },
+
+
+  // 减六度 · 7半音
+  {
+  "type": "dim",
+  "num": 6,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": 7,
+  "semitoneClockPosition": 7,
+  "octaveGap": 0
+  },
+
+
+  // 倍减六度 · 6半音
+  {
+  "type": "dim-",
+  "num": 6,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": 6,
+  "semitoneClockPosition": 6,
+  "octaveGap": 0
+  },
+
+
+  // 倍增七度 · 13半音
+  {
+  "type": "aug+",
+  "num": 7,
+  "cnPrefix": "倍增",
+  "isNatural": false,
+  "alter": 2,
+  "semitoneGap": 13,
+  "semitoneClockPosition": 1,
+  "octaveGap": 1
+  },
+
+
+  // 增七度 · 12半音
+  {
+  "type": "aug",
+  "num": 7,
+  "cnPrefix": "增",
+  "isNatural": false,
+  "alter": 1,
+  "semitoneGap": 12,
+  "semitoneClockPosition": 0,
+  "octaveGap": 1
+  },
+
+
+  // 大七度 · 11半音
+  {
+  "type": "maj",
+  "num": 7,
+  "cnPrefix": "大",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 11,
+  "semitoneClockPosition": 11,
+  "octaveGap": 0
+  },
+
+
+  // 小七度 · 10半音
+  {
+  "type": "min",
+  "num": 7,
+  "cnPrefix": "小",
+  "isNatural": true,
+  "alter": 0,
+  "semitoneGap": 10,
+  "semitoneClockPosition": 10,
+  "octaveGap": 0
+  },
+
+
+  // 减七度 · 9半音
+  {
+  "type": "dim",
+  "num": 7,
+  "cnPrefix": "减",
+  "isNatural": false,
+  "alter": -1,
+  "semitoneGap": 9,
+  "semitoneClockPosition": 9,
+  "octaveGap": 0
+  },
+
+
+  // 倍减七度 · 8半音
+  {
+  "type": "dim-",
+  "num": 7,
+  "cnPrefix": "倍减",
+  "isNatural": false,
+  "alter": -2,
+  "semitoneGap": 8,
+  "semitoneClockPosition": 8,
+  "octaveGap": 0
+  }
+]

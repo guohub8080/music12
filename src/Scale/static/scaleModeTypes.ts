@@ -1,5 +1,4 @@
-import { uniq } from 'es-toolkit'
-import { fromPairs } from 'es-toolkit/compat'
+import { fromPairs, uniq } from 'es-toolkit/compat';
 import ALL_SCALE_META from "./allScaleInstances"
 
 // 提取所有调式 ID
@@ -38,19 +37,29 @@ export const SCALE_MODE = fromPairs(
  * 按调式族分组的调式 ID 列表
  */
 export const SCALE_MODE_GROUPS = {
-	// 自然大调族
+	// 自然大调族(含 IONIAN/AEOLIAN 别名键——按组过滤不应静默漏掉合法 id)
 	DIATONIC: [
 		"NATURAL_MAJOR",
+		"IONIAN",
 		"DORIAN",
 		"PHRYGIAN",
 		"LYDIAN",
 		"MIXOLYDIAN",
 		"NATURAL_MINOR",
+		"AEOLIAN",
 		"LOCRIAN",
 	] as const,
 
-	// 和声大调
-	HARMONIC_MAJOR: ["HARMONIC_MAJOR"] as const,
+	// 和声大调(2026-09-11 七调式补全)
+	HARMONIC_MAJOR: [
+		"HARMONIC_MAJOR",
+		"DORIAN_FLAT5",
+		"PHRYGIAN_FLAT4",
+		"LYDIAN_FLAT3",
+		"MIXOLYDIAN_FLAT2",
+		"LYDIAN_AUGMENTED_SHARP2",
+		"LOCRIAN_DOUBLE_FLAT7",
+	] as const,
 
 	// 旋律大调
 	MELODIC_MAJOR: ["MELODIC_MAJOR_DESCENDING"] as const,
@@ -63,6 +72,7 @@ export const SCALE_MODE_GROUPS = {
 		"DORIAN_SHARP4",
 		"PHRYGIAN_DOMINANT",
 		"LYDIAN_SHARP2",
+		"ULTRA_LOCRIAN",
 	] as const,
 
 	// 旋律小调族
@@ -72,6 +82,8 @@ export const SCALE_MODE_GROUPS = {
 		"LYDIAN_AUGMENTED",
 		"LYDIAN_DOMINANT",
 		"LOCRIAN_SHARP2",
+		"MIXOLYDIAN_FLAT6",
+		"ALTERED",
 	] as const,
 
 	// 双重和声调式族
@@ -80,6 +92,8 @@ export const SCALE_MODE_GROUPS = {
 		"HUNGARIAN_MINOR",
 		"ORIENTAL",
 		"IONIAN_SHARP2_SHARP5",
+		"LYDIAN_SHARP2_SHARP6",
+		"ULTRAPHRYGIAN",
 	] as const,
 
 	// 中国五声调式
@@ -93,6 +107,10 @@ export const SCALE_MODE_GROUPS = {
 
 	// 中国燕乐七声调式
 	CHINESE_YANYUE: ["YAN_YUE_GONG", "YAN_YUE_SHANG", "YAN_YUE_JUE", "YAN_YUE_ZHI", "YAN_YUE_YU"] as const,
+
+	// 其他常用系(2026-09-11 补全)
+	NEAPOLITAN: ["NEAPOLITAN_MAJOR", "NEAPOLITAN_MINOR"] as const,
+	HUNGARIAN: ["HUNGARIAN_MAJOR"] as const,
 } as const
 
 /**

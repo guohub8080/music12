@@ -11,12 +11,14 @@
  * @param num 音级数/度数（可以是跨八度的，如 9 表示九度=高二度音）
  * @returns pianoKeyId (0-11) + octave 信息；度数不存在时返回 null
  */
+import { isNil } from 'es-toolkit/predicate'
+
 export default function cls_getNoteByIntervalNum(scale: any, num: number): { pianoKeyId: number; octave: number } | null {
 	const normalizedDegree = ((num - 1) % 7) + 1
 	const octaveOffset = Math.floor((num - 1) / 7)
 	// 直接读取度数映射，五声缺音（4/7度=null）时返回 null
 	const pianoKeyId = scale.scale.degreeToPianoKeyId[normalizedDegree]
-	if (pianoKeyId === null || pianoKeyId === undefined) return null
+	if (isNil(pianoKeyId)) return null
 	return {
 		pianoKeyId: (pianoKeyId + octaveOffset * 12) % 12,
 		octave: Math.floor((pianoKeyId + octaveOffset * 12) / 12)

@@ -35,7 +35,7 @@ const MINOR_INTERVALS: [string, number][] = [
 
 describe('验证五度圈 fifthMeta 调号准确性', () => {
   it('大调调号应与 Interval 计算一致', () => {
-    const majorKeys = FIFTH_META.filter(x => x.mode === 'major' && x.circleID >= 0).all();
+    const majorKeys = FIFTH_META.filter(x => x.mode === 'major' && x.circleID >= 0);
 
     console.log('\n验证大调调号（使用 Interval 手动计算）：\n');
     console.log('音符'.padEnd(8) + 'meta调号'.padEnd(10) + '计算调号'.padEnd(10) + '结果');
@@ -82,7 +82,7 @@ describe('验证五度圈 fifthMeta 调号准确性', () => {
   });
 
   it('小调调号应与 Interval 计算一致', () => {
-    const minorKeys = FIFTH_META.filter(x => x.mode === 'minor' && x.circleID >= 0).all();
+    const minorKeys = FIFTH_META.filter(x => x.mode === 'minor' && x.circleID >= 0);
 
     console.log('\n验证小调调号（使用 Interval 手动计算）：\n');
     console.log('音符'.padEnd(8) + 'meta调号'.padEnd(10) + '计算调号'.padEnd(10) + '结果');

@@ -70,8 +70,8 @@ describe("getChordFormulaByTags", () => {
     expect(results).toEqual([])
   })
 
-  it("空标签数组返回全部 87 个公式", () => {
+  it("空标签数组返回全部 88 个公式", () => {
     const results = getChordFormulaByTags([])
-    expect(results.length).toBe(87)
+    expect(results.length).toBe(88)
   })
 })

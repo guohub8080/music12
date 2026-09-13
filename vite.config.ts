@@ -27,7 +27,7 @@ export default defineConfig({
       "@circle-of-fifths": resolve(__dirname,"src/CircleOfFifths"),
       "@find": resolve(__dirname,"src/Find"),
       "@pianokey": resolve(__dirname,"src/PianoKey"),
-      "@stave": resolve(__dirname,"src/Stave"),
+      "@key-signature": resolve(__dirname,"src/KeySignature"),
       "@common": resolve(__dirname,"src/common"),
       "@factory": resolve(__dirname,"src/factory"),
       "@static-data": resolve(__dirname,"static-data"),

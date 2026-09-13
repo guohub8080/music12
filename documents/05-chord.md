@@ -35,13 +35,13 @@ const g7 = new Chord(7, "dom7")
 g7.pianoKeyIds        // [7, 11, 2, 5] —— G-B-D-F（按度数序）
 g7.pianoKeyIdsSorted  // [2, 5, 7, 11]（升序）
 g7.notesNum           // 4
-g7.chordFormulaId     // "dom7"
+g7.formulaId     // "dom7"
 g7.cnName             // "属七"
 g7.scoreSymbol        // "7" —— 记谱符号
 g7.intervalList       // [["maj",3],["p",5],["min",7]] —— 构成音程
 ```
 
-`pianoKeyIds` 按度数排列（根、三、五、七），`pianoKeyIdsSorted` 是排序后的——findChord 用后者做匹配。
+`pianoKeyIds` 按度数排列（根、三、五、七），`pianoKeyIdsSorted` 是排序后的——findChord 内部用 pianoKeyId 直查哈希表。
 
 <details>
 <summary>完整属性列表</summary>
@@ -49,7 +49,7 @@ g7.intervalList       // [["maj",3],["p",5],["min",7]] —— 构成音程
 | 属性 | 类型 | 说明 | 示例（dom7@C） |
 |---|---|---|---|
 | `rootPianoKeyId` | `number` | 根音 pianoKeyId | `0` |
-| `chordFormulaId` | `string` | 公式 ID | `"dom7"` |
+| `formulaId` | `string` | 公式 ID（find 读法字段） | `"dom7"` |
 | `family` | `string` | 家族（旧分类） | `"chord7"` |
 | `baseSymbol` | `string` | 基础记谱符号 | `"7"` |
 | `cnName` | `string` | 中文名 | `"属七"` |
@@ -149,11 +149,11 @@ cmaj7.simpleDescription // "C4,E4,G4,B4"
 ```ts
 const c9 = new Chord(0, "dom9")
 const results = c9.find()
-console.log(results[0].chordFormulaId) // "dom9"
-console.log(results[0].similarity)     // 1（完全匹配）
+console.log(results[0].formulaId)  // "dom9"
+console.log(results[0].isExact)    // true（完全命中）
 ```
 
-变换后的和弦也能查——查出来会带 `transformString` 说明省了/加了什么。详见 [Find 文档](./08-find.md)。
+变换后的和弦也能查——查出来会带 `transform` 分组对象（omit/add/sharp/flat）说明省了/加了/升降了什么。详见 [Find 文档](./08-find.md)。
 
 ## 工具函数
 
@@ -164,7 +164,7 @@ import { getChordTransformByPianoKeyIds } from "music12"
 
 // 标准是 C7 [0,4,7,10]，但用户弹了 [0,4,10]（省了五度 G）
 const result = getChordTransformByPianoKeyIds(
-  { rootPianoKeyId: 0, chordFormulaId: "dom7" },
+  { rootPianoKeyId: 0, formulaId: "dom7" },
   [0, 4, 10]
 )
 // result.omit = [5]（省略了五度）

@@ -1,4 +1,4 @@
-import { isNil } from "es-toolkit"
+import { isNil } from "es-toolkit/predicate";
 import ALL_SCALE_META from "../allScaleInstances"
 import type { I_ScaleInstance } from "../allScaleInstances"
 

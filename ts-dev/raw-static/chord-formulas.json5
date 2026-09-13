@@ -1,0 +1,1006 @@
+/**
+ * chord-formulas — 和弦公式定义表(88 个,极简源 + 基座引用)
+ *
+ * 本文件是 JSON5 源头,编译产物为 static-data/chord-formulas.json(gen:static-data 展开)。
+ * 手改只改这里;产物永不手改。展开正确性由 ts-dev/verify/verifyChordFormulas.ts 兜底。
+ *
+ * ── 极简原则 ─────────────────────────────────────────────
+ * 每条只写不可推导的真信息:键(id) + intervalList(或基座引用) +
+ * cnName/name/scoreDisplay 三名。派生字段一律不存,编译时算回:
+ *   semitonesList       gap(type,N) = 同型简单度数半音 + 12×((N-1)//7)
+ *   notesNum            intervalList 长度 + 1
+ *   degreeToIntervalMap intervalList 的 map 形态
+ *   tags                deriveTags(intervalList) 注入(五维:基因/扩展/性质/变音/结构)
+ *   family              已删(v1/v2 目录名化石,与 tags 无对应,勿复活)
+ *   description         已删(职责由每条第二行注释承载)
+ *   chordFormulaId      编译时从键回填
+ *
+ * ── 基座引用 DSL(三键,可组合) ─────────────────────────
+ *   $base  基座公式 id,继承其 intervalList(可链式:dom13→dom11→dom9→dom7→maj3)
+ *   $set   {度数: 性质} 替换基座中该度数的性质(dom7#5 = dom7 + $set{5:aug})
+ *   $add   [[性质, 度数],...] 追加扩展音(dom9 = dom7 + $add[[maj,9]])
+ * 展开顺序:递归展开 $base → 应用 $set → 应用 $add → 按度数升序。
+ * 全表 6 个完整定义(树根,基础三和弦/挂留):
+ *   maj3 min3 dim3 aug3 sus2 sus4;其余 82 个基座化,
+ * intervalList 音数 359 → 94(压缩 74%)。
+ *
+ * 基座规则(无环 + 乐理双重保证,编译器必须遵守):
+ *   1. 偏序:基座的「度数+性质秩」序列必须严格小于目标的序列。
+ *      性质秩:p=0, maj=0(基准), min=1, aug=2, dim=2(变音), aug+/dim-=3。
+ *      严格偏序 → 引用图天然 DAG(maj3↔min3 互指成环的历史教训)。
+ *   2. $set 仅限同名前缀的变音(dom7#5 基于 dom7);跨 id 禁用 set——
+ *      maj3/min3/dim3/aug3 是平级基础和弦,不是相互修改出来的。
+ *   3. $add 任意合法基座(堆叠视角):dom7 = maj3+min7, halfdim7 = dim3+min7
+ *      (减小七), dim7 = dim3+dim7(减减七), minmaj7 = min3+maj7(小大七)。
+ *   4. 基座选择:操作数最少者优先;平手同名前缀优先(名字即意图);再平手按键序。
+ *
+ * ── 记录注释格式(展开快照) ──────────────────────────────
+ * 两行注释展示「展开后」的完整面貌(弥补基座引用不直读的代价):
+ *   第一行:id · 中文名 · C 为根正确拼法 · 音程=半音列表(复合音程含八度,maj9=14)
+ *   第二行:人读描述(原 description)
+ *
+ * ── 度数体系 ─────────────────────────────────────────────
+ * 出现 {2,3,4,5,6,7,9,11,13},无 8/10/12;sus2 用 maj2(大二度,二度无「纯」);
+ * 9/11/13 为复合音程。拼法按乐理推(#9 拼作 D♯,减七度拼作 B♭♭ — 等音 A)。
+ */
+{
+  // maj3 · 大三 · C-E-G · maj3=4 p5=7
+  //   大三和弦，根音、大三度、纯五度构成,是最基本的和弦之一
+  "maj3": {
+  "intervalList": [["maj", 3], ["p", 5]],
+  "cnName": "大三",
+  "name": "Major"
+  },
+
+
+  // min3 · 小三 · C-E♭-G · min3=3 p5=7
+  //   小三和弦,根音、小三度、纯五度构成
+  "min3": {
+  "intervalList": [["min", 3], ["p", 5]],
+  "cnName": "小三",
+  "name": "Minor",
+  "scoreDisplay": "m"
+  },
+
+
+  // dim3 · 减三 · C-E♭-G♭ · min3=3 dim5=6
+  //   减三和弦,根音、小三度、减五度构成
+  "dim3": {
+  "intervalList": [["min", 3], ["dim", 5]],
+  "cnName": "减三",
+  "name": "Diminished",
+  "scoreDisplay": "°"
+  },
+
+
+  // aug3 · 增三 · C-E-G♯ · maj3=4 aug5=8
+  //   增三和弦,根音、大三度、增五度构成
+  "aug3": {
+  "intervalList": [["maj", 3], ["aug", 5]],
+  "cnName": "增三",
+  "name": "Augmented",
+  "scoreDisplay": "+"
+  },
+
+
+  // maj3b5 · 大三减五 · C-E-G♭ · maj3=4 dim5=6
+  //   大三减五和弦,根音、大三度、减五度构成
+  "maj3b5": {
+  "$base": "maj3",
+  "$set": {"5": "dim"},
+  "cnName": "大三减五",
+  "name": "Major Flat Five",
+  "scoreDisplay": "b5"
+  },
+
+
+  // maj3add6 · 大三加六 · C-E-G-A · maj3=4 p5=7 maj6=9
+  //   大三加六和弦，在大三和弦基础上增加大六度音
+  "maj3add6": {
+  "$base": "maj3",
+  "$add": [["maj", 6]],
+  "cnName": "大三加六",
+  "name": "Major Add 6",
+  "scoreDisplay": "add6"
+  },
+
+
+  // min3add6 · 小三加六 · C-E♭-G-A · min3=3 p5=7 maj6=9
+  //   小三加六和弦，在小三和弦基础上增加大六度音
+  "min3add6": {
+  "$base": "min3",
+  "$add": [["maj", 6]],
+  "cnName": "小三加六",
+  "name": "Minor Add 6",
+  "scoreDisplay": "madd6"
+  },
+
+
+  // maj3add6add9 · 大三加六加九 · C-E-G-A-D · maj3=4 p5=7 maj6=9 maj9=14
+  //   大三加六加九和弦，在大三和弦基础上增加大六度和大九度音
+  "maj3add6add9": {
+  "$base": "maj3add6",
+  "$add": [["maj", 9]],
+  "cnName": "大三加六加九",
+  "name": "Major Add 6 Add 9",
+  "scoreDisplay": "add6add9"
+  },
+
+
+  // min3add6add9 · 小三加六加九 · C-E♭-G-A-D · min3=3 p5=7 maj6=9 maj9=14
+  //   小三加六加九和弦，在小三和弦基础上增加大六度和大九度音
+  "min3add6add9": {
+  "$base": "min3add6",
+  "$add": [["maj", 9]],
+  "cnName": "小三加六加九",
+  "name": "Minor Add 6 Add 9",
+  "scoreDisplay": "madd6add9"
+  },
+
+
+  // maj3add9 · 大三加九 · C-E-G-D · maj3=4 p5=7 maj9=14
+  //   大三加九和弦，在大三和弦基础上增加大九度音
+  "maj3add9": {
+  "$base": "maj3",
+  "$add": [["maj", 9]],
+  "cnName": "大三加九",
+  "name": "Major Add 9",
+  "scoreDisplay": "add9"
+  },
+
+
+  // maj3add11 · 大三加十一 · C-E-G-F · maj3=4 p5=7 p11=17
+  //   大三加十一和弦，在大三和弦基础上增加纯十一度音
+  "maj3add11": {
+  "$base": "maj3",
+  "$add": [["p", 11]],
+  "cnName": "大三加十一",
+  "name": "Major Add 11",
+  "scoreDisplay": "add11"
+  },
+
+
+  // min3add9 · 小三加九 · C-E♭-G-D · min3=3 p5=7 maj9=14
+  //   小三加九和弦，在小三和弦基础上增加大九度音
+  "min3add9": {
+  "$base": "min3",
+  "$add": [["maj", 9]],
+  "cnName": "小三加九",
+  "name": "Minor Add 9",
+  "scoreDisplay": "madd9"
+  },
+
+
+  // min3add11 · 小三加十一 · C-E♭-G-F · min3=3 p5=7 p11=17
+  //   小三加十一和弦，在小三和弦基础上增加纯十一度音
+  "min3add11": {
+  "$base": "min3",
+  "$add": [["p", 11]],
+  "cnName": "小三加十一",
+  "name": "Minor Add 11",
+  "scoreDisplay": "madd11"
+  },
+
+
+  // maj7 · 大七 · C-E-G-B · maj3=4 p5=7 maj7=11
+  //   大七和弦，由大三和弦加大七度音构成，音响明亮稳定
+  "maj7": {
+  "$base": "maj3",
+  "$add": [["maj", 7]],
+  "cnName": "大七",
+  "name": "Major Seventh",
+  "scoreDisplay": "M7"
+  },
+
+
+  // dom7 · 属七 · C-E-G-B♭ · maj3=4 p5=7 min7=10
+  //   属七和弦，由大三和弦加小七度音构成，具有强烈的解决倾向性
+  "dom7": {
+  "$base": "maj3",
+  "$add": [["min", 7]],
+  "cnName": "属七",
+  "name": "Dominant Seventh",
+  "scoreDisplay": "7"
+  },
+
+
+  // min7 · 小七 · C-E♭-G-B♭ · min3=3 p5=7 min7=10
+  //   小七和弦，由小三和弦加小七度音构成，音响柔和常见
+  "min7": {
+  "$base": "min3",
+  "$add": [["min", 7]],
+  "cnName": "小七",
+  "name": "Minor Seventh",
+  "scoreDisplay": "m7"
+  },
+
+
+  // halfdim7 · 半减七 · C-E♭-G♭-B♭ · min3=3 dim5=6 min7=10
+  //   半减七和弦，由减三和弦加小七度音构成，也称为小七减五和弦
+  "halfdim7": {
+  "$base": "dim3",
+  "$add": [["min", 7]],
+  "cnName": "半减七",
+  "name": "Half-Diminished Seventh",
+  "scoreDisplay": "ø"
+  },
+
+
+  // dim7 · 减七 · C-E♭-G♭-B♭♭ · min3=3 dim5=6 dim7=9
+  //   减七和弦，由减三和弦加减七度音构成，所有音程均为小三度，具有对称性
+  "dim7": {
+  "$base": "dim3",
+  "$add": [["dim", 7]],
+  "cnName": "减七",
+  "name": "Diminished Seventh",
+  "scoreDisplay": "°7"
+  },
+
+
+  // minmaj7 · 小大七 · C-E♭-G-B · min3=3 p5=7 maj7=11
+  //   小大七和弦，由小三和弦加大七度音构成，音响独特而神秘
+  "minmaj7": {
+  "$base": "min3",
+  "$add": [["maj", 7]],
+  "cnName": "小大七",
+  "name": "Minor Major Seventh",
+  "scoreDisplay": "mM7"
+  },
+
+
+  // maj7add11 · 大七加十一 · C-E-G-B-F · maj3=4 p5=7 maj7=11 p11=17
+  //   大七加十一和弦，在大七和弦基础上增加纯十一度音
+  "maj7add11": {
+  "$base": "maj7",
+  "$add": [["p", 11]],
+  "cnName": "大七加十一",
+  "name": "Major 7th Add 11",
+  "scoreDisplay": "maj7add11"
+  },
+
+
+  // dom7add6 · 属七加六 · C-E-G-A-B♭ · maj3=4 p5=7 maj6=9 min7=10
+  //   属七加六和弦，在属七和弦基础上增加大六度音
+  "dom7add6": {
+  "$base": "maj3add6",
+  "$add": [["min", 7]],
+  "cnName": "属七加六",
+  "name": "Dominant 7th Add 6",
+  "scoreDisplay": "7add6"
+  },
+
+
+  // sus2 · 挂二 · C-D-G · maj2=2 p5=7
+  //   挂二和弦，用大二度音替代三度音，具有解决到大三或小三和弦的倾向
+  "sus2": {
+  "intervalList": [["maj", 2], ["p", 5]],
+  "cnName": "挂二",
+  "name": "Suspended 2nd",
+  "scoreDisplay": "sus2"
+  },
+
+
+  // sus4 · 挂四 · C-F-G · p4=5 p5=7
+  //   挂四和弦，用纯四度音替代三度音，是最常见的挂留和弦形式
+  "sus4": {
+  "intervalList": [["p", 4], ["p", 5]],
+  "cnName": "挂四",
+  "name": "Suspended 4th",
+  "scoreDisplay": "sus4"
+  },
+
+
+  // dom7sus2 · 属七挂二 · C-D-G-B♭ · maj2=2 p5=7 min7=10
+  //   属七挂二和弦，在属七和弦基础上用大二度音替代三度音
+  "dom7sus2": {
+  "$base": "sus2",
+  "$add": [["min", 7]],
+  "cnName": "属七挂二",
+  "name": "Dominant 7th Suspended 2nd",
+  "scoreDisplay": "7sus2"
+  },
+
+
+  // dom7sus4 · 属七挂四 · C-F-G-B♭ · p4=5 p5=7 min7=10
+  //   属七挂四和弦，在属七和弦基础上用纯四度音替代三度音
+  "dom7sus4": {
+  "$base": "sus4",
+  "$add": [["min", 7]],
+  "cnName": "属七挂四",
+  "name": "Dominant 7th Suspended 4th",
+  "scoreDisplay": "7sus4"
+  },
+
+
+  // dom7sus4b9 · 属七挂四减九 · C-F-G-B♭-D♭ · p4=5 p5=7 min7=10 min9=13
+  //   属七挂四减九和弦，在属七挂四和弦基础上增加小九度音
+  "dom7sus4b9": {
+  "$base": "dom7sus4",
+  "$add": [["min", 9]],
+  "cnName": "属七挂四减九",
+  "name": "Dominant 7th Suspended 4th Flat 9",
+  "scoreDisplay": "7sus4b9"
+  },
+
+
+  // maj7sus2 · 大七挂二 · C-D-G-B · maj2=2 p5=7 maj7=11
+  //   大七挂二和弦，在大七和弦基础上用大二度音替代三度音
+  "maj7sus2": {
+  "$base": "sus2",
+  "$add": [["maj", 7]],
+  "cnName": "大七挂二",
+  "name": "Major 7th Suspended 2nd",
+  "scoreDisplay": "maj7sus2"
+  },
+
+
+  // maj7sus4 · 大七挂四 · C-F-G-B · p4=5 p5=7 maj7=11
+  //   大七挂四和弦，在大七和弦基础上用纯四度音替代三度音
+  "maj7sus4": {
+  "$base": "sus4",
+  "$add": [["maj", 7]],
+  "cnName": "大七挂四",
+  "name": "Major 7th Suspended 4th",
+  "scoreDisplay": "maj7sus4"
+  },
+
+
+  // dom9sus4 · 属九挂四 · C-F-G-B♭-D · p4=5 p5=7 min7=10 maj9=14
+  //   属九挂四和弦，在属九和弦基础上用纯四度音替代三度音，常用于爵士乐
+  "dom9sus4": {
+  "$base": "dom7sus4",
+  "$add": [["maj", 9]],
+  "cnName": "属九挂四",
+  "name": "Dominant 9th Suspended 4th",
+  "scoreDisplay": "9sus4"
+  },
+
+
+  // maj9sus4 · 大九挂四 · C-F-G-B-D · p4=5 p5=7 maj7=11 maj9=14
+  //   大九挂四和弦，在大九和弦基础上用纯四度音替代三度音
+  "maj9sus4": {
+  "$base": "maj7sus4",
+  "$add": [["maj", 9]],
+  "cnName": "大九挂四",
+  "name": "Major 9th Suspended 4th",
+  "scoreDisplay": "maj9sus4"
+  },
+
+
+  // dom13sus4 · 属十三挂四 · C-F-G-B♭-D-A · p4=5 p5=7 min7=10 maj9=14 maj13=21
+  //   属十三挂四和弦，在属十三和弦基础上用纯四度音替代三度音
+  "dom13sus4": {
+  "$base": "dom9sus4",
+  "$add": [["maj", 13]],
+  "cnName": "属十三挂四",
+  "name": "Dominant 13th Suspended 4th",
+  "scoreDisplay": "13sus4"
+  },
+
+
+  // maj13sus4 · 大十三挂四 · C-F-G-B-D-A · p4=5 p5=7 maj7=11 maj9=14 maj13=21
+  //   大十三挂四和弦，在大十三和弦基础上用纯四度音替代三度音
+  "maj13sus4": {
+  "$base": "maj9sus4",
+  "$add": [["maj", 13]],
+  "cnName": "大十三挂四",
+  "name": "Major 13th Suspended 4th",
+  "scoreDisplay": "maj13sus4"
+  },
+
+
+  // maj13sus2 · 大十三挂二 · C-D-G-B-A · maj2=2 p5=7 maj7=11 maj13=21
+  //   大十三挂二和弦，在大十三和弦基础上用大二度音替代三度音
+  "maj13sus2": {
+  "$base": "maj7sus2",
+  "$add": [["maj", 13]],
+  "cnName": "大十三挂二",
+  "name": "Major 13th Suspended 2nd",
+  "scoreDisplay": "maj13sus2"
+  },
+
+
+  // maj9 · 大九 · C-E-G-B-D · maj3=4 p5=7 maj7=11 maj9=14
+  //   大九和弦，在大七和弦基础上增加大九度音，音响丰富温暖
+  "maj9": {
+  "$base": "maj7",
+  "$add": [["maj", 9]],
+  "cnName": "大九",
+  "name": "Major Ninth",
+  "scoreDisplay": "maj9"
+  },
+
+
+  // dom9 · 属九 · C-E-G-B♭-D · maj3=4 p5=7 min7=10 maj9=14
+  //   属九和弦，在属七和弦基础上增加大九度音，常用于爵士乐和流行音乐
+  "dom9": {
+  "$base": "dom7",
+  "$add": [["maj", 9]],
+  "cnName": "属九",
+  "name": "Dominant Ninth",
+  "scoreDisplay": "9"
+  },
+
+
+  // min9 · 小九 · C-E♭-G-B♭-D · min3=3 p5=7 min7=10 maj9=14
+  //   小九和弦，在小七和弦基础上增加大九度音，音响柔和忧郁
+  "min9": {
+  "$base": "min7",
+  "$add": [["maj", 9]],
+  "cnName": "小九",
+  "name": "Minor Ninth",
+  "scoreDisplay": "m9"
+  },
+
+
+  // minmaj9 · 小大九 · C-E♭-G-B-D · min3=3 p5=7 maj7=11 maj9=14
+  //   小大九和弦，在小大七和弦基础上增加大九度音，音响神秘而独特
+  "minmaj9": {
+  "$base": "minmaj7",
+  "$add": [["maj", 9]],
+  "cnName": "小大九",
+  "name": "Minor Major Ninth",
+  "scoreDisplay": "mM9"
+  },
+
+
+  // dom9#5 · 属九增五 · C-E-G♯-B♭-D · maj3=4 aug5=8 min7=10 maj9=14
+  //   属九增五和弦，在属九和弦基础上将五度音升高半音
+  "dom9#5": {
+  "$base": "dom9",
+  "$set": {"5": "aug"},
+  "cnName": "属九增五",
+  "name": "Dominant 9th Sharp 5",
+  "scoreDisplay": "9#5"
+  },
+
+
+  // dom9b5 · 属九减五 · C-E-G♭-B♭-D · maj3=4 dim5=6 min7=10 maj9=14
+  //   属九减五和弦，在属九和弦基础上将五度音降低半音;与 maj9b5/min9b5 对称补全 dom 系变音
+  "dom9b5": {
+  "$base": "dom9",
+  "$set": {"5": "dim"},
+  "cnName": "属九减五",
+  "name": "Dominant 9th Flat 5",
+  "scoreDisplay": "9b5"
+  },
+
+
+  // dom9#11 · 属九增十一 · C-E-G-B♭-D-F♯ · maj3=4 p5=7 min7=10 maj9=14 aug11=18
+  //   属九增十一和弦，在属九和弦基础上增加增十一度音
+  "dom9#11": {
+  "$base": "dom9",
+  "$add": [["aug", 11]],
+  "cnName": "属九增十一",
+  "name": "Dominant 9th Sharp 11",
+  "scoreDisplay": "9#11"
+  },
+
+
+  // dom9b13 · 属九减十三 · C-E-G-B♭-D-A♭ · maj3=4 p5=7 min7=10 maj9=14 min13=20
+  //   属九减十三和弦，在属九和弦基础上增加小十三度音
+  "dom9b13": {
+  "$base": "dom9",
+  "$add": [["min", 13]],
+  "cnName": "属九减十三",
+  "name": "Dominant 9th Flat 13",
+  "scoreDisplay": "9b13"
+  },
+
+
+  // dom9add13 · 属九加十三 · C-E-G-B♭-D-A · maj3=4 p5=7 min7=10 maj9=14 maj13=21
+  //   属九加十三和弦，在属九和弦基础上增加大十三度音，省略十一度音
+  "dom9add13": {
+  "$base": "dom9",
+  "$add": [["maj", 13]],
+  "cnName": "属九加十三",
+  "name": "Dominant 9th Add 13",
+  "scoreDisplay": "9add13"
+  },
+
+
+  // maj9b5 · 大九减五 · C-E-G♭-B-D · maj3=4 dim5=6 maj7=11 maj9=14
+  //   大九减五和弦，在大九和弦基础上将五度音降低半音
+  "maj9b5": {
+  "$base": "maj9",
+  "$set": {"5": "dim"},
+  "cnName": "大九减五",
+  "name": "Major 9th Flat 5",
+  "scoreDisplay": "maj9b5"
+  },
+
+
+  // maj9#5 · 大九增五 · C-E-G♯-B-D · maj3=4 aug5=8 maj7=11 maj9=14
+  //   大九增五和弦，在大九和弦基础上将五度音升高半音
+  "maj9#5": {
+  "$base": "maj9",
+  "$set": {"5": "aug"},
+  "cnName": "大九增五",
+  "name": "Major 9th Sharp 5",
+  "scoreDisplay": "maj9#5"
+  },
+
+
+  // maj9#11 · 大九增十一 · C-E-G-B-D-F♯ · maj3=4 p5=7 maj7=11 maj9=14 aug11=18
+  //   大九增十一和弦，在大九和弦基础上增加增十一度音
+  "maj9#11": {
+  "$base": "maj9",
+  "$add": [["aug", 11]],
+  "cnName": "大九增十一",
+  "name": "Major 9th Sharp 11",
+  "scoreDisplay": "maj9#11"
+  },
+
+
+  // maj9b13 · 大九减十三 · C-E-G-B-D-A♭ · maj3=4 p5=7 maj7=11 maj9=14 min13=20
+  //   大九减十三和弦，在大九和弦基础上增加小十三度音
+  "maj9b13": {
+  "$base": "maj9",
+  "$add": [["min", 13]],
+  "cnName": "大九减十三",
+  "name": "Major 9th Flat 13",
+  "scoreDisplay": "maj9b13"
+  },
+
+
+  // min9b5 · 小九减五 · C-E♭-G♭-B♭-D · min3=3 dim5=6 min7=10 maj9=14
+  //   小九减五和弦，在小九和弦基础上将五度音降低半音
+  "min9b5": {
+  "$base": "min9",
+  "$set": {"5": "dim"},
+  "cnName": "小九减五",
+  "name": "Minor 9th Flat 5",
+  "scoreDisplay": "m9b5"
+  },
+
+
+  // maj11 · 大十一 · C-E-G-B-D-F · maj3=4 p5=7 maj7=11 maj9=14 p11=17
+  //   大十一和弦，在大九和弦基础上增加纯十一度音，音响宽广丰富
+  "maj11": {
+  "$base": "maj9",
+  "$add": [["p", 11]],
+  "cnName": "大十一",
+  "name": "Major Eleventh",
+  "scoreDisplay": "maj11"
+  },
+
+
+  // dom11 · 属十一 · C-E-G-B♭-D-F · maj3=4 p5=7 min7=10 maj9=14 p11=17
+  //   属十一和弦，在属九和弦基础上增加纯十一度音，常用于爵士乐
+  "dom11": {
+  "$base": "dom9",
+  "$add": [["p", 11]],
+  "cnName": "属十一",
+  "name": "Dominant Eleventh",
+  "scoreDisplay": "11"
+  },
+
+
+  // min11 · 小十一 · C-E♭-G-B♭-D-F · min3=3 p5=7 min7=10 maj9=14 p11=17
+  //   小十一和弦，在小九和弦基础上增加纯十一度音，音响柔和
+  "min11": {
+  "$base": "min9",
+  "$add": [["p", 11]],
+  "cnName": "小十一",
+  "name": "Minor Eleventh",
+  "scoreDisplay": "m11"
+  },
+
+
+  // minmaj11 · 小大十一 · C-E♭-G-B-D-F · min3=3 p5=7 maj7=11 maj9=14 p11=17
+  //   小大十一和弦，在小大九和弦基础上增加纯十一度音，音响独特
+  "minmaj11": {
+  "$base": "minmaj9",
+  "$add": [["p", 11]],
+  "cnName": "小大十一",
+  "name": "Minor Major Eleventh",
+  "scoreDisplay": "mM11"
+  },
+
+
+  // dom11b5 · 属十一减五 · C-E-G♭-B♭-D-F · maj3=4 dim5=6 min7=10 maj9=14 p11=17
+  //   属十一减五和弦，在属十一和弦基础上将五度音降低半音
+  "dom11b5": {
+  "$base": "dom11",
+  "$set": {"5": "dim"},
+  "cnName": "属十一减五",
+  "name": "Dominant 11th Flat 5",
+  "scoreDisplay": "11b5"
+  },
+
+
+  // dom11#5 · 属十一增五 · C-E-G♯-B♭-D-F · maj3=4 aug5=8 min7=10 maj9=14 p11=17
+  //   属十一增五和弦，在属十一和弦基础上将五度音升高半音
+  "dom11#5": {
+  "$base": "dom11",
+  "$set": {"5": "aug"},
+  "cnName": "属十一增五",
+  "name": "Dominant 11th Sharp 5",
+  "scoreDisplay": "11#5"
+  },
+
+
+  // dom11b9 · 属十一减九 · C-E-G-B♭-D♭-F · maj3=4 p5=7 min7=10 min9=13 p11=17
+  //   属十一减九和弦，在属十一和弦基础上将九度音降低半音
+  "dom11b9": {
+  "$base": "dom11",
+  "$set": {"9": "min"},
+  "cnName": "属十一减九",
+  "name": "Dominant 11th Flat 9",
+  "scoreDisplay": "11b9"
+  },
+
+
+  // dom11#9 · 属十一增九 · C-E-G-B♭-D♯-F · maj3=4 p5=7 min7=10 aug9=15 p11=17
+  //   属十一增九和弦，在属十一和弦基础上将九度音升高半音
+  "dom11#9": {
+  "$base": "dom11",
+  "$set": {"9": "aug"},
+  "cnName": "属十一增九",
+  "name": "Dominant 11th Sharp 9",
+  "scoreDisplay": "11#9"
+  },
+
+
+  // dom11b13 · 属十一减十三 · C-E-G-B♭-D-F-A♭ · maj3=4 p5=7 min7=10 maj9=14 p11=17 min13=20
+  //   属十一减十三和弦，在属十一和弦基础上增加小十三度音
+  "dom11b13": {
+  "$base": "dom11",
+  "$add": [["min", 13]],
+  "cnName": "属十一减十三",
+  "name": "Dominant 11th Flat 13",
+  "scoreDisplay": "11b13"
+  },
+
+
+  // min11b5 · 小十一减五 · C-E♭-G♭-B♭-D-F · min3=3 dim5=6 min7=10 maj9=14 p11=17
+  //   小十一减五和弦，在小十一和弦基础上将五度音降低半音
+  "min11b5": {
+  "$base": "min11",
+  "$set": {"5": "dim"},
+  "cnName": "小十一减五",
+  "name": "Minor 11th Flat 5",
+  "scoreDisplay": "m11b5"
+  },
+
+
+  // maj13 · 大十三 · C-E-G-B-D-F-A · maj3=4 p5=7 maj7=11 maj9=14 p11=17 maj13=21
+  //   大十三和弦，在大十一和弦基础上增加大十三度音，音响最为丰满
+  "maj13": {
+  "$base": "maj11",
+  "$add": [["maj", 13]],
+  "cnName": "大十三",
+  "name": "Major Thirteenth",
+  "scoreDisplay": "maj13"
+  },
+
+
+  // dom13 · 属十三 · C-E-G-B♭-D-F-A · maj3=4 p5=7 min7=10 maj9=14 p11=17 maj13=21
+  //   属十三和弦，在属十一和弦基础上增加大十三度音，常用于爵士乐
+  "dom13": {
+  "$base": "dom11",
+  "$add": [["maj", 13]],
+  "cnName": "属十三",
+  "name": "Dominant Thirteenth",
+  "scoreDisplay": "13"
+  },
+
+
+  // min13 · 小十三 · C-E♭-G-B♭-D-F-A · min3=3 p5=7 min7=10 maj9=14 p11=17 maj13=21
+  //   小十三和弦，在小十一和弦基础上增加大十三度音，音响丰富柔和
+  "min13": {
+  "$base": "min11",
+  "$add": [["maj", 13]],
+  "cnName": "小十三",
+  "name": "Minor Thirteenth",
+  "scoreDisplay": "m13"
+  },
+
+
+  // minmaj13 · 小大十三 · C-E♭-G-B-D-F-A · min3=3 p5=7 maj7=11 maj9=14 p11=17 maj13=21
+  //   小大十三和弦，在小大十一和弦基础上增加大十三度音，音响独特而神秘
+  "minmaj13": {
+  "$base": "minmaj11",
+  "$add": [["maj", 13]],
+  "cnName": "小大十三",
+  "name": "Minor Major Thirteenth",
+  "scoreDisplay": "mM13"
+  },
+
+
+  // dom13b5 · 属十三减五 · C-E-G♭-B♭-D-F-A · maj3=4 dim5=6 min7=10 maj9=14 p11=17 maj13=21
+  //   属十三减五和弦，在属十三和弦基础上将五度音降低半音
+  "dom13b5": {
+  "$base": "dom13",
+  "$set": {"5": "dim"},
+  "cnName": "属十三减五",
+  "name": "Dominant 13th Flat 5",
+  "scoreDisplay": "13b5"
+  },
+
+
+  // dom13#5 · 属十三增五 · C-E-G♯-B♭-D-F-A · maj3=4 aug5=8 min7=10 maj9=14 p11=17 maj13=21
+  //   属十三增五和弦，在属十三和弦基础上将五度音升高半音
+  "dom13#5": {
+  "$base": "dom13",
+  "$set": {"5": "aug"},
+  "cnName": "属十三增五",
+  "name": "Dominant 13th Sharp 5",
+  "scoreDisplay": "13#5"
+  },
+
+
+  // dom13b9 · 属十三减九 · C-E-G-B♭-D♭-F-A · maj3=4 p5=7 min7=10 min9=13 p11=17 maj13=21
+  //   属十三减九和弦，在属十三和弦基础上将九度音降低半音
+  "dom13b9": {
+  "$base": "dom13",
+  "$set": {"9": "min"},
+  "cnName": "属十三减九",
+  "name": "Dominant 13th Flat 9",
+  "scoreDisplay": "13b9"
+  },
+
+
+  // dom13#9 · 属十三增九 · C-E-G-B♭-D♯-F-A · maj3=4 p5=7 min7=10 aug9=15 p11=17 maj13=21
+  //   属十三增九和弦，在属十三和弦基础上将九度音升高半音
+  "dom13#9": {
+  "$base": "dom13",
+  "$set": {"9": "aug"},
+  "cnName": "属十三增九",
+  "name": "Dominant 13th Sharp 9",
+  "scoreDisplay": "13#9"
+  },
+
+
+  // dom13#11 · 属十三增十一 · C-E-G-B♭-D-F♯-A · maj3=4 p5=7 min7=10 maj9=14 aug11=18 maj13=21
+  //   属十三增十一和弦，在属十三和弦基础上将十一度音升高半音
+  "dom13#11": {
+  "$base": "dom13",
+  "$set": {"11": "aug"},
+  "cnName": "属十三增十一",
+  "name": "Dominant 13th Sharp 11",
+  "scoreDisplay": "13#11"
+  },
+
+
+  // maj13b5 · 大十三减五 · C-E-G♭-B-D-F-A · maj3=4 dim5=6 maj7=11 maj9=14 p11=17 maj13=21
+  //   大十三减五和弦，在大十三和弦基础上将五度音降低半音
+  "maj13b5": {
+  "$base": "maj13",
+  "$set": {"5": "dim"},
+  "cnName": "大十三减五",
+  "name": "Major 13th Flat 5",
+  "scoreDisplay": "maj13b5"
+  },
+
+
+  // maj13#5 · 大十三增五 · C-E-G♯-B-D-F-A · maj3=4 aug5=8 maj7=11 maj9=14 p11=17 maj13=21
+  //   大十三增五和弦，在大十三和弦基础上将五度音升高半音
+  "maj13#5": {
+  "$base": "maj13",
+  "$set": {"5": "aug"},
+  "cnName": "大十三增五",
+  "name": "Major 13th Sharp 5",
+  "scoreDisplay": "maj13#5"
+  },
+
+
+  // maj13b9 · 大十三减九 · C-E-G-B-D♭-F-A · maj3=4 p5=7 maj7=11 min9=13 p11=17 maj13=21
+  //   大十三减九和弦，在大十三和弦基础上将九度音降低半音
+  "maj13b9": {
+  "$base": "maj13",
+  "$set": {"9": "min"},
+  "cnName": "大十三减九",
+  "name": "Major 13th Flat 9",
+  "scoreDisplay": "maj13b9"
+  },
+
+
+  // maj13#11 · 大十三增十一 · C-E-G-B-D-F♯-A · maj3=4 p5=7 maj7=11 maj9=14 aug11=18 maj13=21
+  //   大十三增十一和弦，在大十三和弦基础上将十一度音升高半音
+  "maj13#11": {
+  "$base": "maj13",
+  "$set": {"11": "aug"},
+  "cnName": "大十三增十一",
+  "name": "Major 13th Sharp 11",
+  "scoreDisplay": "maj13#11"
+  },
+
+
+  // dom7#5 · 属七增五 · C-E-G♯-B♭ · maj3=4 aug5=8 min7=10
+  //   属七增五和弦，在属七和弦基础上将五度音升高半音
+  "dom7#5": {
+  "$base": "dom7",
+  "$set": {"5": "aug"},
+  "cnName": "属七增五",
+  "name": "Dominant 7th Sharp 5",
+  "scoreDisplay": "7#5"
+  },
+
+
+  // dom7b5 · 属七减五 · C-E-G♭-B♭ · maj3=4 dim5=6 min7=10
+  //   属七减五和弦，在属七和弦基础上将五度音降低半音
+  "dom7b5": {
+  "$base": "dom7",
+  "$set": {"5": "dim"},
+  "cnName": "属七减五",
+  "name": "Dominant 7th Flat 5",
+  "scoreDisplay": "7b5"
+  },
+
+
+  // dom7b9 · 属七减九 · C-E-G-B♭-D♭ · maj3=4 p5=7 min7=10 min9=13
+  //   属七减九和弦，在属七和弦基础上增加小九度音，常用于爵士乐
+  "dom7b9": {
+  "$base": "dom7",
+  "$add": [["min", 9]],
+  "cnName": "属七减九",
+  "name": "Dominant 7th Flat 9",
+  "scoreDisplay": "7b9"
+  },
+
+
+  // dom7#9 · 属七增九 · C-E-G-B♭-D♯ · maj3=4 p5=7 min7=10 aug9=15
+  //   属七增九和弦，在属七和弦基础上增加增九度音，常用于布鲁斯和摇滚乐
+  "dom7#9": {
+  "$base": "dom7",
+  "$add": [["aug", 9]],
+  "cnName": "属七增九",
+  "name": "Dominant 7th Sharp 9",
+  "scoreDisplay": "7#9"
+  },
+
+
+  // dom7#11 · 属七增十一 · C-E-G-B♭-F♯ · maj3=4 p5=7 min7=10 aug11=18
+  //   属七增十一和弦，在属七和弦基础上增加增十一度音
+  "dom7#11": {
+  "$base": "dom7",
+  "$add": [["aug", 11]],
+  "cnName": "属七增十一",
+  "name": "Dominant 7th Sharp 11",
+  "scoreDisplay": "7#11"
+  },
+
+
+  // dom7b13 · 属七减十三 · C-E-G-B♭-A♭ · maj3=4 p5=7 min7=10 min13=20
+  //   属七减十三和弦，在属七和弦基础上增加小十三度音
+  "dom7b13": {
+  "$base": "dom7",
+  "$add": [["min", 13]],
+  "cnName": "属七减十三",
+  "name": "Dominant 7th Flat 13",
+  "scoreDisplay": "7b13"
+  },
+
+
+  // dom7b5b9 · 属七减五减九 · C-E-G♭-B♭-D♭ · maj3=4 dim5=6 min7=10 min9=13
+  //   属七减五减九和弦，在属七和弦基础上同时降低五度和九度音
+  "dom7b5b9": {
+  "$base": "dom7b5",
+  "$add": [["min", 9]],
+  "cnName": "属七减五减九",
+  "name": "Dominant 7th Flat 5 Flat 9",
+  "scoreDisplay": "7b5b9"
+  },
+
+
+  // dom7b5#9 · 属七减五增九 · C-E-G♭-B♭-D♯ · maj3=4 dim5=6 min7=10 aug9=15
+  //   属七减五增九和弦，在属七和弦基础上同时降低五度音和升高九度音
+  "dom7b5#9": {
+  "$base": "dom7b5",
+  "$add": [["aug", 9]],
+  "cnName": "属七减五增九",
+  "name": "Dominant 7th Flat 5 Sharp 9",
+  "scoreDisplay": "7b5#9"
+  },
+
+
+  // dom7#5b9 · 属七增五减九 · C-E-G♯-B♭-D♭ · maj3=4 aug5=8 min7=10 min9=13
+  //   属七增五减九和弦，在属七和弦基础上同时升高五度音和降低九度音
+  "dom7#5b9": {
+  "$base": "dom7#5",
+  "$add": [["min", 9]],
+  "cnName": "属七增五减九",
+  "name": "Dominant 7th Sharp 5 Flat 9",
+  "scoreDisplay": "7#5b9"
+  },
+
+
+  // dom7#5#9 · 属七增五增九 · C-E-G♯-B♭-D♯ · maj3=4 aug5=8 min7=10 aug9=15
+  //   属七增五增九和弦，在属七和弦基础上同时升高五度和九度音
+  "dom7#5#9": {
+  "$base": "dom7#5",
+  "$add": [["aug", 9]],
+  "cnName": "属七增五增九",
+  "name": "Dominant 7th Sharp 5 Sharp 9",
+  "scoreDisplay": "7#5#9"
+  },
+
+
+  // maj7b5 · 大七减五 · C-E-G♭-B · maj3=4 dim5=6 maj7=11
+  //   大七减五和弦，在大七和弦基础上将五度音降低半音
+  "maj7b5": {
+  "$base": "maj7",
+  "$set": {"5": "dim"},
+  "cnName": "大七减五",
+  "name": "Major 7th Flat 5",
+  "scoreDisplay": "maj7b5"
+  },
+
+
+  // maj7b9 · 大七减九 · C-E-G-B-D♭ · maj3=4 p5=7 maj7=11 min9=13
+  //   大七减九和弦，在大七和弦基础上增加小九度音
+  "maj7b9": {
+  "$base": "maj7",
+  "$add": [["min", 9]],
+  "cnName": "大七减九",
+  "name": "Major 7th Flat 9",
+  "scoreDisplay": "maj7b9"
+  },
+
+
+  // maj7b13 · 大七减十三 · C-E-G-B-A♭ · maj3=4 p5=7 maj7=11 min13=20
+  //   大七减十三和弦，在大七和弦基础上增加小十三度音
+  "maj7b13": {
+  "$base": "maj7",
+  "$add": [["min", 13]],
+  "cnName": "大七减十三",
+  "name": "Major 7th Flat 13",
+  "scoreDisplay": "maj7b13"
+  },
+
+
+  // maj7#11 · 大七增十一 · C-E-G-B-F♯ · maj3=4 p5=7 maj7=11 aug11=18
+  //   大七增十一和弦，在大七和弦基础上增加增十一度音，也称为利底亚和弦
+  "maj7#11": {
+  "$base": "maj7",
+  "$add": [["aug", 11]],
+  "cnName": "大七增十一",
+  "name": "Major 7th Sharp 11",
+  "scoreDisplay": "maj7#11"
+  },
+
+
+  // augmaj7 · 增大七 · C-E-G♯-B · maj3=4 aug5=8 maj7=11
+  //   增大七和弦，由增三和弦加大七度音构成。此和弦也称为大七增五和弦(maj7#5)，两者为同一和弦的不同命名
+  "augmaj7": {
+  "$base": "aug3",
+  "$add": [["maj", 7]],
+  "cnName": "增大七",
+  "name": "Augmented Major Seventh",
+  "scoreDisplay": "maj7#5"
+  },
+
+
+  // min7#5 · 小七增五 · C-E♭-G♯-B♭ · min3=3 aug5=8 min7=10
+  //   小七增五和弦，在小七和弦基础上将五度音升高半音
+  "min7#5": {
+  "$base": "min7",
+  "$set": {"5": "aug"},
+  "cnName": "小七增五",
+  "name": "Minor 7th Sharp 5",
+  "scoreDisplay": "m7#5"
+  },
+
+
+  // minmaj7b5 · 小大七减五 · C-E♭-G♭-B · min3=3 dim5=6 maj7=11
+  //   小大七减五和弦，在小大七和弦基础上将五度音降低半音
+  "minmaj7b5": {
+  "$base": "minmaj7",
+  "$set": {"5": "dim"},
+  "cnName": "小大七减五",
+  "name": "Minor Major 7th Flat 5",
+  "scoreDisplay": "mM7b5"
+  },
+
+
+  // minmaj7#5 · 小大七增五 · C-E♭-G♯-B · min3=3 aug5=8 maj7=11
+  //   小大七增五和弦，在小大七和弦基础上将五度音升高半音
+  "minmaj7#5": {
+  "$base": "minmaj7",
+  "$set": {"5": "aug"},
+  "cnName": "小大七增五",
+  "name": "Minor Major 7th Sharp 5",
+  "scoreDisplay": "mM7#5"
+  }
+}

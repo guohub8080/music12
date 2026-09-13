@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import { getNoteByPianoKeyId } from "@note"
 /**
  * 获取指定度数的 Note 实例

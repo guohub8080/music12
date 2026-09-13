@@ -1,6 +1,5 @@
-import { isNil } from 'es-toolkit'
+import { isNil, isNotNil } from "es-toolkit/predicate";
 import { defaultTo } from 'es-toolkit/compat'
-import { isDefined } from "@common/utils/isDefined"
 import NOTE_META from "@note/static/NOTE_META"
 import { T_NoteStep, T_AlterValue } from "@common/static/NOTE_TYPES"
 import { Note } from "@note/cls/NoteClass"
@@ -18,20 +17,20 @@ export const cls_getNotes = (
   pianoKey: PianoKey,
   config?: { isNormal?: boolean, alterAbsLte?: 0 | 1 | 2 }
 ): InstanceType<typeof Note>[] => {
-  let handle = NOTE_META.where("pianoKeyId", pianoKey.pianoKeyId)
+  let list = NOTE_META.filter(x => x.pianoKeyId === pianoKey.pianoKeyId)
 
   const isNormal = defaultTo(config?.isNormal, false)
-  if (isNormal) handle = handle.where("isNormal", true)
+  if (isNormal) list = list.filter(x => x.isNormal === true)
 
   const alterLimit = config?.alterAbsLte
-  if (isDefined(alterLimit)) {
+  if (isNotNil(alterLimit)) {
     if (alterLimit < 0 || alterLimit > 2) {
       throw new Error("alterAbsLte must be 0, 1, or 2.")
     }
-    handle = handle.filter(x => Math.abs(x.alter) <= alterLimit)
+    list = list.filter(x => Math.abs(x.alter) <= alterLimit)
   }
 
-  return handle.all().map(x => {
+  return list.map(x => {
     const octaveOffset = x.semitone >= 12 ? -1 : (x.semitone < 0 ? 1 : 0)
     return new Note(x.step as T_NoteStep, x.alter as T_AlterValue, pianoKey.octave + octaveOffset)
   })

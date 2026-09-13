@@ -14,6 +14,6 @@ export const getScale = (step: string, alter: number, mode: string) => {
     const rootNote = getNote(step, alter)
     return new Scale(rootNote.pianoKeyId, mode.trim().toUpperCase() as T_ScaleModeId)
   } catch (e) {
-    throw new FactoryError(e.message)
+    throw new FactoryError((e as Error).message)
   }
 }

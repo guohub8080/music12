@@ -1,6 +1,6 @@
 # Find（反向查找）
 
-你给 Find 一组音，它告诉你这是什么和弦、属于什么调。这是 music12 最「智能」的部分——`findChord` 能从一堆琴键里识别出和弦，还懂得区分等和弦、处理省略音。
+你给 Find 一组音，它告诉你这是什么和弦、属于什么调。这是 music12 最「智能」的部分——`findChord` 直查预烘焙哈希表（3~7 音 3223 键集全量，一次 O(1)），识别和弦、等和弦、省略音、变音、special-set——全部裁决已在烘焙时经人工审核固化进表。
 
 反向查找是音乐应用的高频需求：用户在键盘上弹了几个音，app 要识别「这是什么和弦」；用户哼了一段旋律，要分析「这是什么调」。Find 模块就是干这个的——从音（输入）推导出和弦/调式（输出）。
 
@@ -24,8 +24,8 @@ import { findChord } from "music12"
 
 // 你弹了 C-E-G-Bb（MIDI 60-64-67-70）
 const results = findChord([60, 64, 67, 70])
-console.log(results[0].chordFormulaId) // "dom7"（C7）
-console.log(results[0].similarity)     // 1（完全匹配）
+console.log(results[0].formulaId)    // "dom7"（C7）
+console.log(results[0].isExact)         // true（完全命中,cost=0 无变换）
 ```
 
 findChord 返回一个数组——因为同一组音可能有多种和弦解释（等和弦）。比如 C-E-G-A 既可能是 C6 也可能是 Am7，findChord 会把两种都返回，让你根据上下文选。
@@ -36,7 +36,8 @@ findChord 返回一个数组——因为同一组音可能有多种和弦解释�
 
 ```ts
 findChord([60, 64, 71]) // C-E-B
-// → [{ chordFormulaId: "maj7", similarity: 0.75, transformString: "omit5" }]
+// → [{ formulaId: "maj7", isExact: false, transform: { omit: 5 }, cost: 1, tier: 2 }]
+// transform 是分组对象(omit/add/sharp/flat,原子化);惰性 chord getter 可取完整实例
 // 告诉你：这是 Cmaj7，省略了五度 G
 ```
 
@@ -75,21 +76,44 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 9 }) // 只返回 Am7（根是 A
 
 ```ts
 {
-  chordFormulaId: "dom7",       // 公式 ID
+  formulaId: "dom7",            // 公式 ID（set 读法为 spset- 前缀）
+  chordName: "Cdom7",           // 根音符号 + 公式 ID
   pianoKeyIdRoot: 0,            // 根音 pianoKeyId
-  pianoKeyIdsSorted: [0,4,7,10], // 音集（排序去重）
-  similarity: 1,                 // 相似度（完全匹配=1，省略音<1）
-  intersection: [0,4,7,10],     // 交集
-  transformString: "omit5",      // 变换描述（省略音匹配时才有）
-  isRootPosition: false          // 是否原位
+  isExact: true,                // 完全命中（cost=0 且无变换）
+  transform: {},                // 变换分组对象（omit/add/sharp/flat;完全命中为 {}）
+  cost: 0,                      // 加权变换成本（越低越合理）
+  tier: 1,                      // 1 完全命中 … 6 极端
+  isChordFormula: true,         // true=和弦公式 / false=special-set 读法
+  isRootPosition: false,        // 是否原位（仅 rootNoteLocation 指定时为 true）
+  chord: Chord | null,          // 惰性 Chord 实例（set 读法为 null）
+  setEntity: I_SetEntity | null // 惰性 set 实体（和弦读法为 null）
 }
 ```
 
-`transformString` 在省略音匹配时特别有用——它告诉你「相对标准和弦，你省了/加了什么」。如 `"omit5"` 表示省了五度，`"add9"` 表示多了九度。
+`transform` 是分组对象，省略音匹配时特别有用——如 `{ omit: 5 }` 表示省了五度，`{ add: 9 }` 多了九度，`{ sharp: 5 }` 升了五度。裁决已由烘焙管线固化进表（每个键集 1~4 条零噪音答案），运行时纯查表 O(1)。
 
 ### 至少要 3 个音
 
 少于 3 个不同的音，findChord 会抛错——2 个音没法构成和弦（连三和弦都不够）。重复的音也不算（`[60, 60, 60]` 只有 1 个独立音）。
+
+## findByHash / findByScaleHash：直查哈希表
+
+`findChord` 的底层是两张预烘焙哈希表，也可以直接用（pianoKeyId 输入，省去 MIDI 换算）：
+
+```ts
+import { findByHash, findByScaleHash } from "music12"
+
+// 和弦+set 识别：3~7 音五张表按音数自动路由
+findByHash([0, 4, 7])       // [{ formulaId: "maj3", isExact: true, ... }]
+findByHash([0, 3, 4])       // [{ formulaId: "spset-split_third", ... }]——同度双音给 set 读法
+
+// 音阶识别：键集 → 调式读法（含等音拼写层）
+findByScaleHash([0, 1, 3, 5, 6, 8, 10])
+// → 7 条 modal 读法，C♯ 大调读法自带拼写变体：
+//   C♯(7♯) / D♭(5♭) 并列；理论调显式标记附等音建议
+```
+
+`findByScaleHash` 的每条读法自带度数语义（哪个音是几度）和等音拼写（C♯ 还是 D♭ 的调号各是多少）——「区分升降号」在输出层完成，输入永远只需要琴键。
 
 ## findNotesInScales：这组音属于哪些调
 
@@ -161,7 +185,7 @@ findScaleByDegreePositions([
 ```ts
 const userNotes = [60, 64, 67, 70, 74] // C-E-G-Bb-D
 const results = findChord(userNotes)
-console.log(results[0].chordFormulaId) // "dom9"（C9）
+console.log(results[0].formulaId)    // "dom9"（C9）
 // 用户弹的是 C9，findChord 识别出来了
 ```
 

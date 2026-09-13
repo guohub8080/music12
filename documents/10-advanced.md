@@ -43,6 +43,12 @@ f.location // -1 即 11（F 大调，1 个降号 Bb）
 ```ts
 circleOfFifths.getFifthCircleByAlter(2)   // 2 个升号 → D 大调
 circleOfFifths.getFifthCircleByAlter(-3)  // 3 个降号 → Eb 大调
+
+// 理论调（|调号| ≥ 8，如 D♯ 大调 9 个升号）明确抛错并附等音建议——
+// 它们没有独立的五度圈位置（表中 circleID = -1 是「无座位」哨兵）：
+circleOfFifths.getFifthCircleByAlter(9)
+// 抛错: "...Use the enharmonic practical signature -3 instead"
+// 修复历史:哨兵值曾被静默取模成 F 大调位返回错误数据,v4 起显式报错
 ```
 
 这在读谱时有用——看到调号有 3 个升号，立刻能查到是 A 大调（或 F# 小调）。

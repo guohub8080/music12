@@ -1,4 +1,4 @@
-import { isNil } from 'es-toolkit'
+import { isNil } from 'es-toolkit/predicate';
 import { values } from 'es-toolkit/compat'
 import { SCALE_MODE_META_MAP } from '../static/SCALE_MODE_META_MAP'
 import type { I_ScaleModeMeta } from '../static/types'

@@ -37,7 +37,9 @@ export {getChordFormulaByTags, deriveTags} from "@chord-formula"
 export type {ChordTag} from "@chord-formula"
 
 // ==================== Find 模块 ====================
-export {findChord, findScaleByDegreePositions} from "@find"
+export {findChord, findScaleByDegreePositions, findByHash, findByScaleHash} from "@find"
+export type {I_HashEntry, I_HashResult, I_ChordFindResult, I_FindResult} from "@find"
+export type {I_ScaleHashEntry, I_ScaleHashResult, I_ScaleSpelling} from "@find"
 export type {I_DegreePositionConstraint, I_ScaleData} from "@find"
 export {findNotesInScales, areNotesInScale} from "@find"
 export type {I_NotesInScale, INoteDegree} from "@find"
@@ -45,7 +47,9 @@ export {findNoteDegreeInAllScales, findNoteDegreeInScale} from "@find"
 export type {I_NoteDegreeInScale} from "@find"
 
 // ==================== Stave 模块 ====================
-export {getScaleByStaveAlters, getStaveAlterByNote, getAlterStepListByNum} from "@stave"
+export {getScaleByStaveAlters, getStaveAlterByNote, getAlterStepListByNum,
+  getRelativeMinor, getRelativeMajor, getEnharmonicKey, getNeighborKeys, getKeySignatureDistance} from "@key-signature"
+export type { I_KeyTonic } from "@key-signature"
 
 // ==================== Factory 模块 ====================
 export {getNote, getInterval, getChord, getScale} from "@factory"
@@ -54,4 +58,4 @@ export {getNote, getInterval, getChord, getScale} from "@factory"
 export * as circleOfFifths from "@circle-of-fifths"
 
 // ==================== 数学工具 ====================
-export {Radix, Base7Radix, Base12Radix, StepRadix, IntervalRadix, ScaleRadix} from "@common/radix"
+export {Radix, Base7Radix, Base12Radix, StepRadix, IntervalRadix, ScaleRadix, SemitoneRadix} from "@common/radix"

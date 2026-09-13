@@ -1,95 +1,84 @@
-import { isNil } from 'es-toolkit'
-import {midiListToPianoKeys} from "./methods/midiListToPianoKeys"
-import {findRoughChord} from "./methods/findRoughChord"
-import {analyzeChordTransform, type I_AnalyzedChordResult} from "./methods/analyzeChordTransform"
+import { isNotNil } from 'es-toolkit/predicate';
+import { midiListToPianoKeys } from "./methods/midiListToPianoKeys"
+import { findByHash, type I_HashResult } from "./methods/findByHash"
+import { findPcset, type I_PcsetResult } from "./methods/findPcset"
 
 // 导出类型
-export type { I_ChordAlteration, I_ChordTransform, I_AnalyzedChordResult } from "./methods/analyzeChordTransform"
+export type { I_HashEntry, I_HashResult } from "./methods/findByHash"
+export type { I_PcsetResult } from "./methods/findPcset"
 
 /**
- * 根据音符列表查找和弦
+ * 统一查找结果:判别联合(type 字段分流)。
+ * 和弦/set 结果 = 哈希读法 + type/isRootPosition;pcset 为降级兜底项(fallback:"pcset" 时才出现)。
+ */
+export type I_ChordFindResult = I_HashResult & { type: "chord"; isRootPosition: boolean }
+export type I_FindResult = I_ChordFindResult | I_PcsetResult
+
+/**
+ * 根据音符列表查找和弦(哈希直查版,2026-09-12 大修)
  *
- * 采用两层匹配策略（对齐 mtkit）：
+ * 主路径切换:旧两层管线(findRoughChord 线性扫 1056 实例 + analyzeChordTransform
+ * 变换分析)退役,改为 findByHash 直查五张烘焙表(3~7 音,C(12,3)~C(12,7)
+ * 3223 键集全量,一次 O(1))。省略音/特征音/等和弦/对称家族/special-set
+ * 的全部裁决已由烘焙管线(policy→rules→verdicts,数月人机协作审核)固化进表。
  *
- * ### 严格模式（isStrict: true）
- * 只返回**音集完全相等**的和弦。
+ * ### 匹配语义(与旧契约对齐)
+ * - **默认**:返回该键集的全部烘焙读法(通常 1~4 条;完全命中与合法省略/变换并列)
+ * - **isStrict: true**:只返回完全匹配(isExact:cost=0 且无变换;set 条目天然完全命中)
+ * - **rootNoteLocation**:按根音 pianoKeyId 过滤读法(区分等和弦 C6 vs Am7)
  *
- * ### 模糊模式（isStrict: false，默认）
- * - **完全匹配优先**：有完全匹配则只返回它们
- * - **省略音匹配**：无完全匹配时，返回"用户少弹了音"的候选——
- *   用户弹的音必须全是候选和弦的音（无错音），且候选和弦的特征音都被弹到。
- *   例：输入 C-E-G 匹配 Cmaj7（少弹了 B），但 C-E-G 不匹配 dom7（特征音小七度 Bb 没弹到）。
+ * ### 关于根音(rootNoteLocation)
+ * pianoKeyId 是音高类(0-11),输入顺序不代表"哪个音最低/是根音"。
+ * 不传时 isRootPosition 恒为 false(信息不足,不猜测转位);传时过滤后恒为 true。
  *
- * ### 关于根音（rootNoteLocation）
- * pianoKeyId 是音高类（0-11），输入顺序不代表"哪个音最低/是根音"。
- * - **不传 rootNoteLocation（默认）**：查所有根音，`isRootPosition` 设为 false
- *   （信息不足，不猜测转位）。
- * - **传 rootNoteLocation**：先按此根音过滤候选库（结果更精准），
- *   `isRootPosition` 为 true（候选根音与指定根音一致）。
- *
- * @param midiPitchList - MIDI 音符值列表，如 [60, 64, 67] 表示 C-E-G（至少 3 个独立音）
- * @param config - 配置选项
- * @param config.isStrict - true=只完全匹配；false=完全匹配+省略音（默认 false）
- * @param config.rootNoteLocation - 可选：指定根音（0-11），缩小搜索范围并确定原位
- * @returns 匹配的和弦列表（完全匹配 similarity=1；省略音匹配 similarity<1）
- *
- * @example
- * // 默认模糊：C 大三完全匹配
- * findChord([60, 64, 67])
- * // → [{ chordFormulaId: "maj3", similarity: 1, ... }]
+ * @param midiPitchList - MIDI 音符值列表,如 [60, 64, 67] 表示 C-E-G(至少 3 个独立音)
+ * @param config.isStrict - true=只返回完全匹配(isExact);默认 false
+ * @param config.rootNoteLocation - 可选:指定根音 pianoKeyId(0-11),过滤读法并确定原位
+ * @param config.fallback - 可选:"pcset" 时无匹配降级返回音集的集合论身份(prime form+命名+最近和弦)
+ * @returns 匹配读法列表(每条带 chordName/isExact/transform/cost/tier 与惰性 chord/setEntity 实例)
  *
  * @example
- * // 严格模式：只返回完全匹配
- * findChord([60, 64, 67], { isStrict: true })
- *
- * @example
- * // 指定根音 C：只查 C 为根的和弦
- * findChord([60, 64, 67], { rootNoteLocation: 0 })
+ * findChord([60, 64, 67])                       // C 大三(isExact)
+ * findChord([60, 64, 67, 69])                   // C6 与 Am7 双读法并列
+ * findChord([60, 64, 67, 69], { rootNoteLocation: 0 })  // 只留 C6
+ * findChord([60, 64, 71])                       // Cmaj7(omit5)——省五度的合法读法
+ * findChord([60, 63, 64])                       // 分叉三和弦(set 条目,♭3·♮3 并存)
  */
 export const findChord = (
   midiPitchList: number[],
   config?: {
-    /** true=只返回完全匹配；false=完全匹配+省略音（默认 false） */
+    /** true=只返回完全匹配(isExact);false=返回全部烘焙读法(默认 false) */
     isStrict?: boolean
-    /** 可选：指定根音（0-11），缩小搜索范围并确定原位 */
+    /** 可选:指定根音(0-11),过滤读法并确定原位 */
     rootNoteLocation?: number
+    /**
+     * 降级兜底:无匹配时返回音集的集合论身份(prime form + 命名 + 最近和弦)。
+     * 默认不开启(返回空数组,与历史行为一致)。仅音数 <3(抛错)或 >7(烘焙表域外)时可能触发。
+     */
+    fallback?: "pcset"
   }
-): I_AnalyzedChordResult[] => {
-  const isStrict = config?.isStrict ?? false
-  const rootNoteLocation = config?.rootNoteLocation
-
-  // ===== 步骤 1：将 MIDI 列表转换为 pianoKeyId 并去重排序 =====
+): I_FindResult[] => {
+  // ===== 步骤 1:MIDI → pianoKeyId 去重排序(<3 独立音抛错,契约保留) =====
   const { sortedPianoKeyIdList } = midiListToPianoKeys(midiPitchList)
 
-  // ===== 步骤 2：查找候选和弦 =====
-  const findRoughChordResult = findRoughChord(
-    sortedPianoKeyIdList,
-    isStrict,
-    rootNoteLocation,
-  )
+  // ===== 步骤 2:哈希直查(3~7 音五张表按音数路由) =====
+  const entries = findByHash(sortedPianoKeyIdList)
 
-  // ===== 步骤 3：根据匹配类型映射结果 =====
-  // isRootPosition 仅在调用方明确指定根音时才有意义（否则音高类无法判断"最低音"）
-  const hasRoot = rootNoteLocation !== undefined
-  const results = findRoughChordResult
-    .map(x => {
-      if (x.similarity === 1) {
-        // 完全匹配
-        return {
-          ...x,
-          isRootPosition: hasRoot,
-        }
-      } else {
-        // 省略音匹配：分析变换（omit/add/alter）
-        const analyzed = analyzeChordTransform(
-          x,
-          sortedPianoKeyIdList,
-          x.pianoKeyIdRoot,
-        )
-        return analyzed
-      }
-    })
-    .filter((x): x is I_AnalyzedChordResult => !isNil(x))
+  // ===== 步骤 3:选项过滤 + 语义化映射 =====
+  const hasRoot = isNotNil(config?.rootNoteLocation)
+  const results: I_ChordFindResult[] = entries
+    .filter(e => !hasRoot || e.pianoKeyIdRoot === config!.rootNoteLocation)
+    .filter(e => config?.isStrict !== true || e.isExact)
+    .map(e => ({ type: "chord" as const, ...e, isRootPosition: hasRoot }))
+
+  // ===== 步骤 4:降级兜底(可选;烘焙表 3~7 音全域覆盖,仅 >7 音可触发空) =====
+  if (results.length === 0 && config?.fallback === "pcset" && config?.isStrict !== true) {
+    return [findPcset(sortedPianoKeyIdList)]
+  }
 
   return results
 }
+
+export { findByHash } from "./methods/findByHash"
+export { restoreChord } from "./methods/restoreChord"
+export { restoreSet, type I_SetEntity } from "./methods/restoreSet"

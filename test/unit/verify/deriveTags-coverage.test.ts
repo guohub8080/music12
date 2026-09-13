@@ -3,7 +3,7 @@ import { deriveTags } from "@chord-formula/static/deriveTags"
 import { CHORD_FORMULA_META_MAP } from "@chord-formula/static/CHORD_FORMULA_META_MAP"
 
 /**
- * 全量覆盖率验证：对 87 个公式跑 deriveTags，确保 0 遗漏、0 异常
+ * 全量覆盖率验证：对 88 个公式跑 deriveTags，确保 0 遗漏、0 异常
  */
 describe("deriveTags 全量覆盖率", () => {
   const allFormulas = Object.entries(CHORD_FORMULA_META_MAP)
@@ -34,9 +34,9 @@ describe("deriveTags 全量覆盖率", () => {
       const family = tags[0]
       families[family] = (families[family] || 0) + 1
     }
-    // 总数必须是 87
+    // 总数必须是 88
     const total = Object.values(families).reduce((a, b) => a + b, 0)
-    expect(total).toBe(87)
+    expect(total).toBe(88)
     // 应该正好 6 个家族
     expect(Object.keys(families).sort()).toEqual(
       ["chord11", "chord13", "chord3", "chord7", "chord9", "sus"],

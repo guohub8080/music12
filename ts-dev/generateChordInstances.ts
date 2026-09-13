@@ -26,11 +26,6 @@ type I_RootVariantMeta = {
 type I_ChordInstanceMeta = {
     pianoKeyIdRoot: number;
     chordFormulaId: string;
-    pianoKeyIds: number[];
-    pianoKeyIdsSorted: number[];
-    notesNum: number;
-    pianoKeyIdToInterval: Record<number, { intervalType: string; intervalNum: number }>;
-    intervalToPianoKeyId: Record<number, { intervalType: string; pianoKeyId: number }>;
     notes: I_RootVariantMeta[];
 };
 
@@ -97,32 +92,21 @@ function generateChordInstances(formulaMeta: I_ChordFormulaMeta): I_ChordInstanc
         if (rootNotes.length === 0) continue;
 
         const rootNote = rootNotes[0];
-        const pianoKeyIds: number[] = [rootPianoKeyId];
+        // 音集层字段(pianoKeyIds/sorted/双映射/notesNum)不落盘——
+        // 由 src/Chord/static/chord-instance-data.ts 加载器实时 enrich(已验证逐字段等价)
         const pianoKeyIdToInterval: Record<number, { intervalType: string; intervalNum: number }> = {};
-        const intervalToPianoKeyId: Record<number, { intervalType: string; pianoKeyId: number }> = {};
-
-        pianoKeyIdToInterval[rootPianoKeyId] = { intervalType: "p", intervalNum: 1 };
-        intervalToPianoKeyId[1] = { intervalType: "p", pianoKeyId: rootPianoKeyId };
-
         for (const [intervalType, degree] of formulaMeta.intervalList) {
             const interval = new Interval(intervalType as any, degree);
-            const targetNote = rootNote.getNoteByInterval(interval);
-            const targetKeyId = targetNote.pianoKeyId;
-            pianoKeyIds.push(targetKeyId);
+            const targetKeyId = rootNote.getNoteByInterval(interval).pianoKeyId;
             pianoKeyIdToInterval[targetKeyId] = { intervalType, intervalNum: degree };
-            intervalToPianoKeyId[degree] = { intervalType, pianoKeyId: targetKeyId };
         }
+        pianoKeyIdToInterval[rootPianoKeyId] = { intervalType: "p", intervalNum: 1 };
 
         const notes = generateNotesMeta(rootNote, pianoKeyIdToInterval, formulaMeta.intervalList);
 
         instances.push({
             pianoKeyIdRoot: rootPianoKeyId,
             chordFormulaId: formulaMeta.chordFormulaId,
-            pianoKeyIds,
-            pianoKeyIdsSorted: [...pianoKeyIds].sort((a, b) => a - b),
-            notesNum: formulaMeta.notesNum,
-            pianoKeyIdToInterval,
-            intervalToPianoKeyId,
             notes,
         });
     }

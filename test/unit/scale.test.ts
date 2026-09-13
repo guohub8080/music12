@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { Scale } from "@scale"
+import { Scale, ALL_MAJOR_MINOR_SCALE_META, getMajorMinorScaleInstance, SCALE_MODE_GROUPS, SCALE_MODE_IDS } from "@scale"
 import { getScale } from "@factory/getScale"
 import type { T_ScaleModeId } from "@scale/static/scaleModeTypes"
 
@@ -124,7 +124,7 @@ describe("Scale 调式和弦", () => {
     const c = C_MAJOR()
     const chord = c.getScaleDegreeChord3(1)
     expect(chord.length).toBeGreaterThan(0)
-    const full = chord.find((r) => r.similarity === 1)
+    const full = chord.find(r => r.isExact)
     expect(full).toBeDefined()
     expect(full!.pianoKeyIdRoot).toBe(0)
   })
@@ -132,7 +132,7 @@ describe("Scale 调式和弦", () => {
   it("C 大调 5 级三和弦 = G 大三", () => {
     const c = C_MAJOR()
     const chord = c.getScaleDegreeChord3(5)
-    const full = chord.find((r) => r.similarity === 1)
+    const full = chord.find(r => r.isExact)
     expect(full).toBeDefined()
     expect(full!.pianoKeyIdRoot).toBe(7)
   })
@@ -143,10 +143,10 @@ describe("Scale 调式和弦", () => {
     // 第一条应以该级音 B 为根，而非等和弦 Dm6（root=D）
     const first = chord[0]
     expect(first.pianoKeyIdRoot).toBe(11) // B
-    expect(first.chordFormulaId).toBe("halfdim7")
-    expect(first.pianoKeyIdsSorted).toEqual([2, 5, 9, 11])
+    expect(first.formulaId).toBe("halfdim7")
+    expect(first.chord!.pianoKeyIdsSorted).toEqual([2, 5, 9, 11])
     // Dm6 作为等和弦仍在结果里（排在后面）
-    const dm6 = chord.find((r) => r.chordFormulaId === "min3add6")
+    const dm6 = chord.find(r => r.formulaId === "min3add6")
     expect(dm6).toBeDefined()
   })
 
@@ -209,5 +209,34 @@ describe("getScale 工厂函数", () => {
 
   it("无效 mode 抛错", () => {
     expect(() => getScale("C", 0, "BOGUS")).toThrow()
+  })
+})
+
+
+describe("大小调实例切片(scale-instances-major-minor)", () => {
+  it("24 条 = 两调 × 12 移调,只含 canonical 双调(别名键不重复)", () => {
+    expect(ALL_MAJOR_MINOR_SCALE_META).toHaveLength(24)
+    const ids = new Set(ALL_MAJOR_MINOR_SCALE_META.map(s => s.scaleModeId))
+    expect(ids).toEqual(new Set(["NATURAL_MAJOR", "NATURAL_MINOR"]))
+  })
+
+  it("切片数据与全量表同构(C 大调实例音集一致)", () => {
+    const inst = getMajorMinorScaleInstance(0, "NATURAL_MAJOR")
+    expect(inst).toBeDefined()
+    expect(inst!.pianoKeyIds).toEqual([0, 2, 4, 5, 7, 9, 11])
+  })
+
+  it("a 小调:根音 9,自然小调音集", () => {
+    const inst = getMajorMinorScaleInstance(9, "NATURAL_MINOR")
+    expect(inst!.pianoKeyIds).toEqual([9, 11, 0, 2, 4, 5, 7])
+  })
+})
+
+describe("SCALE_MODE_GROUPS 漂移防线(手维护分组 × 数据驱动 id)", () => {
+  it("每个调式 id 都被某组收录(不漏),组内无未知 id(不多),无重复", () => {
+    const grouped = Object.values(SCALE_MODE_GROUPS).flat() as string[]
+    expect(SCALE_MODE_IDS.filter(id => !grouped.includes(id))).toEqual([])
+    expect(grouped.filter(id => !SCALE_MODE_IDS.includes(id))).toEqual([])
+    expect(grouped.filter((x, i) => grouped.indexOf(x) !== i)).toEqual([])
   })
 })

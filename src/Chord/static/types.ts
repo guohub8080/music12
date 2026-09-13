@@ -130,10 +130,14 @@ export type I_ChordRootVariantMeta = {
 
 /** 和弦实例元数据（某个和弦公式在某个根音上的完整数据） */
 export type I_ChordInstanceMeta = {
-  /** 根音钢琴键 ID (0-11) */
+  /** 根音钢琴键 ID (0-11) —— 以下三字段存于 JSON(记谱层) */
   pianoKeyIdRoot: number
   /** 和弦公式 ID */
   chordFormulaId: string
+  /** 所有根音变体的音符详情 */
+  notes: I_ChordRootVariantMeta[]
+  /* ↓ 音集层 5 字段:不存于 JSON,由 chord-instance-data.ts 加载器
+       用公式 semitonesList + 根实时 enrich(对消费端接口不变) */
   /** 音符钢琴键 ID 列表（未排序） */
   pianoKeyIds: number[]
   /** 排序后的音符钢琴键 ID 列表 */
@@ -144,6 +148,4 @@ export type I_ChordInstanceMeta = {
   pianoKeyIdToInterval: I_PianoKeyIdToInterval
   /** 音程 → 钢琴键 ID 映射 */
   intervalToPianoKeyId: I_IntervalToPianoKeyId
-  /** 所有根音变体的音符详情 */
-  notes: I_ChordRootVariantMeta[]
 }

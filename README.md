@@ -2,9 +2,9 @@
 
 TypeScript 乐理计算库 — 音符、音程、和弦、调式音阶。
 
-> **v3 核心理念：以钢琴键（pianoKeyId）为一等公民。**
+> **v4 核心理念：以钢琴键（pianoKeyId）为一等公民,查询走预烘焙哈希表。**
 >
-> 传统的乐理库以音名（C/D/E...）为核心，但音名带了记谱歧义（C# 还是 Db？）。music12 v3 把**钢琴键**（0-11 的半音位置）作为基础抽象——每个键是客观唯一的物理存在，不存在歧义。音名只是键的「记谱身份」，和弦/调式都建立在键的集合之上。这让等音、等和弦、转位等问题自然消解为同一个键集合的不同解释。
+> 传统的乐理库以音名（C/D/E...）为核心，但音名带了记谱歧义（C# 还是 Db？）。music12 把**钢琴键**（0-11 的半音位置）作为基础抽象——每个键是客观唯一的物理存在，不存在歧义。音名只是键的「记谱身份」，和弦/调式都建立在键的集合之上。这让等音、等和弦、转位等问题自然消解为同一个键集合的不同解释。v4 起,和弦/音阶识别的全部裁决经烘焙管线固化进表——运行时纯查表 O(1),3~7 音键集全量覆盖。
 >
 > **典型例子——减七和弦的重降号**：Cdim7 的七度音，按记谱法严格推算是 **B♭♭（重降 B）**，因为它从 C 的七度字母 B 降了两个半音。但 B♭♭ 在钢琴上就是 A 键（pianoKeyId 都是 9）。传统记谱要纠结「写 B♭♭ 还是 A」，而 music12 直接用 pianoKeyId 9 表示这个音——重降号的记谱包袱在键的层面自然消解，需要严格记谱时再取等音身份即可。
 >
@@ -62,11 +62,12 @@ console.log(results[0].chordFormulaId)        // "dom7"
 | [Note](./documents/03-note.md) | 音符：构造、属性、音程叠加、等音、半音移动、泛音列 |
 | [Interval](./documents/04-interval.md) | 音程：类型（纯/大/小/增/减）、度数、半音间距、音程滑动 |
 | [Chord](./documents/05-chord.md) | 和弦：构造、变换（set/sus/omit）、音符获取、find 反查 |
-| [和弦公式](./documents/06-chord-formula.md) | 87 个公式、tags 标签系统、getChordFormulaByTags 查询 |
+| [和弦公式](./documents/06-chord-formula.md) | 88 个公式、tags 标签系统、getChordFormulaByTags 查询 |
 | [Scale](./documents/07-scale.md) | 调式：构造、度数查询、顺阶和弦、调式列表 |
 | [Find](./documents/08-find.md) | 反向查找：findChord（严格/模糊模式）、调式查找 |
 | [Factory](./documents/09-factory.md) | 工厂函数：getNote/getInterval/getChord/getScale |
 | [进阶模块](./documents/10-advanced.md) | 五度圈、调号 |
+| [v4 和弦算法](./documents/11-chord-algorithm-v4.md) | **v4 升级全记录**：json5 基座 DSL、实例表瘦身、音集哈希引擎（900x） |
 
 ## 核心概念
 
@@ -99,16 +100,15 @@ findChord([60, 64, 67, 69], { rootNoteLocation: 0 }) // → 只 C6
 
 ## Monorepo 架构(v4.0+)
 
-music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄金测试向量保证幂等。
+music12 是 **TS 实现** 的乐理库(C++ 双实现暂缓存档于 git 历史),数据由 json5 单一真相源编译,黄金测试向量保留于 test/vectors。
 
 ### 双实现
 
 | 实现 | 语言 | 用途 |
 |---|---|---|
 | `src/` | TypeScript | Web/Node.js 项目(发布 npm) |
-| `mono-repo/cpp/` | C++20 | 桌面应用(如 LMMS 二次开发)|
 
-两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1687/1687 通过)。
+两个版本读同一份 JSON 数据(`static-data/`),输出完全一致(幂等验证 1699/1699 通过)。
 
 ### 数据架构
 
@@ -116,21 +116,22 @@ music12 是 **TS + C++ 双实现** 的乐理库,通过共享 JSON 数据 + 黄�
 static-data/          ← 单一真相源(7 个 JSON)
 ├── notes.json        (35 条音符元数据)
 ├── intervals.json    (39 条音程元数据)
-├── chord-formulas.json (87 个和弦公式)
+├── chord-formulas.json (88 个和弦公式)
 ├── scale-modes.json  (46 个调式)
-├── chord-instances.json (1044 条 = 87×12)
+├── chord-instances.json (1056 条 = 88×12)
 └── scale-instances.json (552 条 = 46×12)
 ```
 
-数据由 `ts-dev/` 生成器产出,改数据只需重跑 `pnpm gen:data`。
+数据由 `ts-dev/` 生成器产出,改数据只需重跑 `pnpm gen:static-data`。
 
-### 幂等验证
+### 验证
 
 ```bash
-pnpm verify:all   # TS 测试(213) + C++ 测试(32) + 黄金向量(1687)
+npx vitest run           # 313 个单元测试(全部公共出口 × 乐理断言)
+npx tsx ts-dev/build-all.ts  # 全链:编译幂等 + 五表烘焙 + 五道防线 round-trip
 ```
 
-1687 个黄金测试向量覆盖全调式 × 全和弦,TS 版和 C++ 版跑同样输入,输出必须一致。
+(C++ 双实现暂缓存档于 git 历史,恢复即 revert 摘除提交;黄金向量保留在 test/vectors 供回归复用。)
 
 ### Tree Shaking
 
